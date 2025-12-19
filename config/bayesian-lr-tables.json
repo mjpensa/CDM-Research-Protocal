@@ -1,0 +1,271 @@
+{
+  "$schema": "CDM/DRR Bayesian Likelihood Ratio Tables v2.0",
+  "description": "Likelihood ratio lookup tables for Bayesian evidence updating in CDM/DRR bank research protocol",
+
+  "default_priors": {
+    "description": "Base priors for banks with no prior information",
+    "architect_native": 0.05,
+    "architect_leader": 0.10,
+    "architect_follower": 0.15,
+    "pragmatist": 0.70,
+    "rationale": {
+      "architect_native": "Only 4 firms globally confirmed in production",
+      "architect_leader": "Requires significant commitment; rare",
+      "architect_follower": "More common but still minority",
+      "pragmatist": "Default assumption; most banks"
+    }
+  },
+
+  "prior_adjustments": {
+    "description": "Contextual adjustments to apply BEFORE evidence gathering",
+    "adjustments": [
+      {
+        "condition": "derivatives_dominant",
+        "condition_description": "Bank derivatives revenue >40% of IB&M",
+        "adjustment_pct": 15,
+        "direction": "architect",
+        "rationale": "Higher derivatives exposure = stronger business case"
+      },
+      {
+        "condition": "regulatory_enforcement_investment",
+        "condition_description": "Enforcement driving investment",
+        "adjustment_pct": 10,
+        "direction": "architect",
+        "rationale": "Regulatory pressure drives CDM adoption"
+      },
+      {
+        "condition": "regulatory_enforcement_capacity",
+        "condition_description": "Enforcement consuming capacity",
+        "adjustment_pct": 10,
+        "direction": "pragmatist",
+        "rationale": "Capacity consumed by remediation, not innovation"
+      },
+      {
+        "condition": "regional_peer_architect",
+        "condition_description": "Regional peer confirmed as Architect",
+        "adjustment_pct": 10,
+        "direction": "architect",
+        "rationale": "Regional peer pressure and follow-the-leader dynamics"
+      },
+      {
+        "condition": "active_ma_integration",
+        "condition_description": "Bank in active M&A integration",
+        "adjustment_pct": 15,
+        "direction": "pragmatist",
+        "rationale": "Capacity constraints from integration"
+      }
+    ]
+  },
+
+  "tier1_evidence": {
+    "description": "Official sources - Highest quality evidence",
+    "evidence_types": {
+      "official_production_announcement": {
+        "p_e_given_architect": 0.95,
+        "p_e_given_pragmatist": 0.01,
+        "lr": 95.0,
+        "interpretation": "Near-definitive Architect"
+      },
+      "official_pilot_announcement_with_timeline": {
+        "p_e_given_architect": 0.80,
+        "p_e_given_pragmatist": 0.03,
+        "lr": 27.0,
+        "interpretation": "Very strong Architect"
+      },
+      "named_isda_press_release_contributor": {
+        "p_e_given_architect": 0.70,
+        "p_e_given_pragmatist": 0.05,
+        "lr": 14.0,
+        "interpretation": "Strong Architect"
+      },
+      "named_finos_announcement": {
+        "p_e_given_architect": 0.65,
+        "p_e_given_pragmatist": 0.05,
+        "lr": 13.0,
+        "interpretation": "Strong Architect"
+      },
+      "annual_report_mentions_cdm_initiative": {
+        "p_e_given_architect": 0.60,
+        "p_e_given_pragmatist": 0.08,
+        "lr": 7.5,
+        "interpretation": "Moderate Architect"
+      },
+      "official_statement_no_cdm_plans": {
+        "p_e_given_architect": 0.02,
+        "p_e_given_pragmatist": 0.70,
+        "lr": 0.03,
+        "interpretation": "Strong Pragmatist"
+      },
+      "announced_vendor_only_approach": {
+        "p_e_given_architect": 0.15,
+        "p_e_given_pragmatist": 0.60,
+        "lr": 0.25,
+        "interpretation": "Moderate Pragmatist"
+      }
+    }
+  },
+
+  "tier2_evidence": {
+    "description": "Industry sources - Strong quality evidence",
+    "evidence_types": {
+      "trade_press_reports_cdm_pilot": {
+        "p_e_given_architect": 0.75,
+        "p_e_given_pragmatist": 0.05,
+        "lr": 15.0,
+        "interpretation": "Strong Architect"
+      },
+      "conference_speaker_cdm_topic": {
+        "p_e_given_architect": 0.50,
+        "p_e_given_pragmatist": 0.10,
+        "lr": 5.0,
+        "interpretation": "Moderate Architect"
+      },
+      "named_working_group_membership": {
+        "p_e_given_architect": 0.55,
+        "p_e_given_pragmatist": 0.15,
+        "lr": 3.7,
+        "interpretation": "Moderate Architect"
+      },
+      "isda_agm_speaker_general": {
+        "p_e_given_architect": 0.40,
+        "p_e_given_pragmatist": 0.25,
+        "lr": 1.6,
+        "interpretation": "Weak Architect"
+      },
+      "trade_press_reports_traditional_approach": {
+        "p_e_given_architect": 0.10,
+        "p_e_given_pragmatist": 0.50,
+        "lr": 0.2,
+        "interpretation": "Moderate Pragmatist"
+      },
+      "no_mention_cdm_trade_coverage": {
+        "p_e_given_architect": 0.20,
+        "p_e_given_pragmatist": 0.60,
+        "lr": 0.33,
+        "interpretation": "Weak Pragmatist"
+      }
+    }
+  },
+
+  "tier3_evidence": {
+    "description": "Indirect signals - Moderate quality evidence",
+    "evidence_types": {
+      "job_posting_specifically_mentions_cdm": {
+        "p_e_given_architect": 0.45,
+        "p_e_given_pragmatist": 0.15,
+        "lr": 3.0,
+        "interpretation": "Weak Architect"
+      },
+      "linkedin_profile_mentions_cdm_work": {
+        "p_e_given_architect": 0.35,
+        "p_e_given_pragmatist": 0.15,
+        "lr": 2.3,
+        "interpretation": "Weak Architect"
+      },
+      "vendor_claims_bank_cdm_client": {
+        "p_e_given_architect": 0.40,
+        "p_e_given_pragmatist": 0.20,
+        "lr": 2.0,
+        "interpretation": "Very weak Architect"
+      },
+      "job_posting_generic_regulatory_reporting": {
+        "p_e_given_architect": 0.30,
+        "p_e_given_pragmatist": 0.30,
+        "lr": 1.0,
+        "interpretation": "Uninformative"
+      },
+      "no_cdm_job_postings_found": {
+        "p_e_given_architect": 0.30,
+        "p_e_given_pragmatist": 0.50,
+        "lr": 0.6,
+        "interpretation": "Very weak Pragmatist"
+      }
+    }
+  },
+
+  "absence_evidence": {
+    "description": "Informative absence - Evidence from exhaustive searches that yield no results",
+    "evidence_types": {
+      "no_evidence_after_exhaustive_tier1_search": {
+        "p_e_given_architect": 0.15,
+        "p_e_given_pragmatist": 0.70,
+        "lr": 0.21,
+        "interpretation": "Moderate Pragmatist",
+        "note": "Would expect to find Tier 1 evidence if Architect"
+      },
+      "no_evidence_after_exhaustive_tier1_tier2_search": {
+        "p_e_given_architect": 0.08,
+        "p_e_given_pragmatist": 0.75,
+        "lr": 0.11,
+        "interpretation": "Strong Pragmatist",
+        "note": "Would expect to find Tier 1 or 2 evidence if Architect"
+      },
+      "no_evidence_after_full_protocol_search": {
+        "p_e_given_architect": 0.05,
+        "p_e_given_pragmatist": 0.80,
+        "lr": 0.06,
+        "interpretation": "Very strong Pragmatist",
+        "note": "Complete absence after exhaustive search strongly suggests Pragmatist"
+      }
+    }
+  },
+
+  "calculation_instructions": {
+    "step1_prior_odds": {
+      "formula": "Prior Odds = P(Architect) / P(Pragmatist)",
+      "example": "0.30 / 0.70 = 0.43"
+    },
+    "step2_combined_lr": {
+      "formula": "Combined LR = LR₁ × LR₂ × LR₃ × ... × LRₙ",
+      "example": "14 × 5 × 0.21 = 14.7",
+      "note": "Multiply all likelihood ratios from all evidence"
+    },
+    "step3_posterior_odds": {
+      "formula": "Posterior Odds = Prior Odds × Combined LR",
+      "example": "0.43 × 14.7 = 6.32"
+    },
+    "step4_posterior_probability": {
+      "formula": "P(Architect | Evidence) = Posterior Odds / (1 + Posterior Odds)",
+      "example": "6.32 / (1 + 6.32) = 6.32 / 7.32 = 0.86 = 86%"
+    },
+    "step5_determine_variant": {
+      "condition": "If P(Architect) > 50%",
+      "rules": {
+        "native": "Production confirmed",
+        "leader": "Production committed",
+        "follower": "Contributing without production"
+      }
+    }
+  },
+
+  "calibration_checks": {
+    "extreme_lrs": {
+      "condition": "Combined LR > 100 or < 0.01",
+      "checks": [
+        "Are you double-counting the same evidence?",
+        "Is a single piece of evidence carrying too much weight?",
+        "Have you correctly identified the evidence type?"
+      ]
+    },
+    "belief_reversal": {
+      "condition": "Posterior is opposite prior (e.g., 80% Pragmatist → 80% Architect)",
+      "checks": [
+        "Is the evidence really that strong?",
+        "Could there be a simpler explanation?",
+        "Does this pass the 'would I bet at these odds' test?"
+      ]
+    },
+    "unchanged_beliefs": {
+      "condition": "Posterior ≈ Prior despite substantial searching",
+      "checks": [
+        "Did you find genuinely uninformative evidence (all LR ≈ 1)?",
+        "Or did positive and negative evidence cancel out (worth noting)?",
+        "Is 'unchanged with more confidence' the right interpretation?"
+      ]
+    }
+  },
+
+  "independence_note": "Multiplying LRs assumes evidence is independent. If two pieces of evidence come from the same source or are causally linked, do not count both fully.",
+
+  "missing_evidence_guidance": "If you encounter evidence not in the tables, estimate LR by asking: 'How much more likely is this if Architect vs. Pragmatist?'"
+}

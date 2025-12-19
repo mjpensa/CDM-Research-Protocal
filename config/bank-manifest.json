@@ -1,0 +1,868 @@
+{
+  "$schema": "CDM/DRR Bank Research Manifest v2.0",
+  "description": "Complete list of all banks for CDM/DRR research with metadata and research contexts",
+  "total_banks": 24,
+  "phases": 7,
+
+  "banks": [
+    {
+      "bank_id": "deutsche-bank",
+      "bank_name": "Deutsche Bank AG",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "Frankfurt, Germany",
+      "region": "Europe",
+      "subregion": "Germany",
+      "business_model": "Global universal bank with significant investment banking",
+      "derivatives_relevance": "High",
+      "primary_regulator": "BaFin",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "regulatory_enforcement_history": true,
+        "enforcement_direction": "unclear",
+        "european_regulatory_pressure": true
+      },
+      "research_objective": {
+        "primary_goal": "Validate 'Pilot; production expected 2025' claim from framework v20",
+        "key_questions": [
+          "Has Deutsche Bank announced any CDM/DRR pilot or production timeline?",
+          "Is Deutsche Bank contributing to CDM development at ISDA or FINOS?",
+          "How did Deutsche Bank address EMIR Refit (April 2024)?",
+          "Are regulatory enforcement priorities consuming technology capacity?",
+          "What do named individuals say about derivatives technology direction?"
+        ],
+        "framework_claim": "Pilot; production expected 2025",
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": "phases/phase-1-european-tier1/deutsche-bank.md"
+    },
+    {
+      "bank_id": "societe-generale",
+      "bank_name": "Société Générale",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "Paris, France",
+      "region": "Europe",
+      "subregion": "France",
+      "business_model": "Universal bank with strong investment banking",
+      "derivatives_relevance": "High",
+      "primary_regulator": "AMF/ACPR",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "regional_peer_architect": true,
+        "peer_name": "BNP Paribas",
+        "peer_adjustment_pct": 10
+      },
+      "research_objective": {
+        "primary_goal": "Assess whether SocGen is following BNP Paribas CDM path",
+        "key_questions": [
+          "Has Société Générale announced any CDM/DRR initiatives?",
+          "Is there evidence of BNP → SocGen knowledge transfer or pattern following?",
+          "How did SocGen address EMIR Refit (April 2024)?",
+          "Are there named individuals at SocGen involved in CDM/ISDA working groups?",
+          "What is SocGen's derivatives technology direction?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Société Générale is following BNP Paribas CDM path with 12-24 month lag"
+      },
+      "known_evidence": [
+        {
+          "evidence": "BNP Paribas (French peer) in CDM production Q3 2022",
+          "source": "Industry knowledge",
+          "implication": "Potential regional peer pressure"
+        }
+      ],
+      "prompt_file": "phases/phase-1-european-tier1/societe-generale.md"
+    },
+    {
+      "bank_id": "ubs",
+      "bank_name": "UBS Group AG",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "Zurich, Switzerland",
+      "region": "Europe",
+      "subregion": "Switzerland",
+      "business_model": "Global wealth management and investment banking",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FINMA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "active_ma_integration": true,
+        "integration_adjustment_pct": 15,
+        "net_direction": "pragmatist"
+      },
+      "research_objective": {
+        "primary_goal": "Assess if Credit Suisse integration is consuming CDM capacity",
+        "key_questions": [
+          "Is there ANY evidence of CDM work at UBS despite integration?",
+          "Did Credit Suisse have CDM initiatives that UBS may have inherited?",
+          "What are FINMA requirements for derivatives reporting?",
+          "What is UBS post-integration technology strategy for derivatives?",
+          "When will integration capacity constraints free up?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Credit Suisse integration is consuming all CDM investment capacity through 2026"
+      },
+      "known_evidence": [
+        {
+          "evidence": "UBS acquired Credit Suisse June 2023",
+          "source": "Public knowledge",
+          "implication": "Integration ~90% complete Oct 2024, consuming capacity"
+        }
+      ],
+      "prompt_file": "phases/phase-1-european-tier1/ubs.md"
+    },
+    {
+      "bank_id": "barclays",
+      "bank_name": "Barclays PLC",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "London, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "Universal bank with strong investment banking",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FCA/PRA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "confirmed_contributor": true,
+        "contributor_adjustment_pct": 20
+      },
+      "research_objective": {
+        "primary_goal": "Assess if Barclays is upgrading from Follower to Leader",
+        "key_questions": [
+          "Is Barclays moving toward production commitment?",
+          "What is the scope and depth of their FINOS contribution?",
+          "Have they demonstrated production-grade capabilities?",
+          "Are they taking governance/leadership roles in CDM ecosystem?",
+          "How did they respond to UK EMIR (September 2024)?"
+        ],
+        "framework_claim": "ARCHITECT-Follower (confirmed)",
+        "hypothesis_to_test": "Barclays meets upgrade criteria from Follower to Leader"
+      },
+      "known_evidence": [
+        {
+          "evidence": "FINOS contributor (confirmed)",
+          "source": "FINOS.org",
+          "implication": "Baseline ARCHITECT-Follower established"
+        },
+        {
+          "evidence": "2018 BOE/FCA DRR pilot participant",
+          "source": "BOE/FCA documentation",
+          "implication": "Early engagement with DRR standards"
+        }
+      ],
+      "prompt_file": "phases/phase-1-european-tier1/barclays.md"
+    },
+    {
+      "bank_id": "hsbc",
+      "bank_name": "HSBC Holdings PLC",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "London, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "Global universal bank with Asia focus",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FCA/PRA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "vendor_relationship": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess if HSBC is building internal CDM capability or vendor-only",
+        "key_questions": [
+          "Is HSBC building internal CDM capability in addition to Delta Capita?",
+          "Or is HSBC purely relying on vendor for CDM connectivity?",
+          "What is the scope of the Delta Capita engagement?",
+          "Did HSBC's 2018 pilot participation lead to sustained internal capability?",
+          "How do Asian regulatory requirements (HKMA, MAS) affect HSBC's approach?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": null,
+        "classification_nuance": "Building + vendor = ARCHITECT; Vendor-only = PRAGMATIST (Vendor-dependent)"
+      },
+      "known_evidence": [
+        {
+          "evidence": "Delta Capita contract (January 2025)",
+          "source": "Delta Capita announcement",
+          "implication": "Vendor relationship for CDM connectivity"
+        },
+        {
+          "evidence": "2018 UK DRR pilot participant",
+          "source": "BOE/FCA documentation",
+          "implication": "Historical engagement"
+        }
+      ],
+      "prompt_file": "phases/phase-1-european-tier1/hsbc.md"
+    },
+    {
+      "bank_id": "natwest",
+      "bank_name": "NatWest Group PLC",
+      "phase": 2,
+      "phase_name": "UK Regional",
+      "execution_tier": "B",
+      "time_budget_hours": 2.5,
+      "headquarters": "Edinburgh, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "UK-focused retail and commercial bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "FCA/PRA",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "uk_regional": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess UK regional bank CDM positioning",
+        "key_questions": [
+          "Is NatWest following larger UK banks (Barclays/HSBC)?",
+          "What is UK EMIR (Sept 2024) impact on NatWest?",
+          "Is NatWest relying on vendor solutions?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "lloyds",
+      "bank_name": "Lloyds Banking Group PLC",
+      "phase": 2,
+      "phase_name": "UK Regional",
+      "execution_tier": "B",
+      "time_budget_hours": 2.5,
+      "headquarters": "London, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "UK-focused retail and commercial bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "FCA/PRA",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "uk_regional": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess UK regional bank CDM positioning",
+        "key_questions": [
+          "Is Lloyds following larger UK banks (Barclays/HSBC)?",
+          "What is UK EMIR (Sept 2024) impact on Lloyds?",
+          "Is Lloyds relying on vendor solutions?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "nomura",
+      "bank_name": "Nomura Holdings, Inc.",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Investment bank and broker",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FSA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "jscc_forcing_function": true,
+        "forcing_adjustment_pct": 15
+      },
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production (June 2025)",
+        "key_questions": [
+          "Is Nomura building CDM capability for JSCC connectivity?",
+          "What type of response: CDM-native build vs minimum connectivity vs vendor?",
+          "Are there ISDA/FINOS contributions from Nomura?",
+          "What is FSA position on CDM/DRR?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "JSCC production creates structural forcing function"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JSCC CDM production June 2025",
+          "source": "JSCC announcement",
+          "implication": "Structural connectivity requirement for Japanese banks"
+        }
+      ],
+      "prompt_file": "phases/phase-3-japanese/nomura.md"
+    },
+    {
+      "bank_id": "mufg",
+      "bank_name": "Mitsubishi UFJ Financial Group",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Megabank with global presence",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FSA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "jscc_forcing_function": true,
+        "forcing_adjustment_pct": 15
+      },
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": "Japanese megabanks show cohort behavior in CDM response"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JSCC CDM production June 2025",
+          "source": "JSCC announcement",
+          "implication": "Structural connectivity requirement"
+        }
+      ],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "mizuho",
+      "bank_name": "Mizuho Financial Group",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Megabank with global presence",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FSA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "jscc_forcing_function": true,
+        "forcing_adjustment_pct": 15
+      },
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": "Japanese megabanks show cohort behavior in CDM response"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JSCC CDM production June 2025",
+          "source": "JSCC announcement",
+          "implication": "Structural connectivity requirement"
+        }
+      ],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "smbc",
+      "bank_name": "Sumitomo Mitsui Banking Corporation",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Megabank with global presence",
+      "derivatives_relevance": "High",
+      "primary_regulator": "FSA",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "jscc_forcing_function": true,
+        "forcing_adjustment_pct": 15
+      },
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": "Japanese megabanks show cohort behavior in CDM response"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JSCC CDM production June 2025",
+          "source": "JSCC announcement",
+          "implication": "Structural connectivity requirement"
+        }
+      ],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "ing",
+      "bank_name": "ING Group N.V.",
+      "phase": 4,
+      "phase_name": "Other European",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Amsterdam, Netherlands",
+      "region": "Europe",
+      "subregion": "Netherlands",
+      "business_model": "Retail and commercial bank with investment banking",
+      "derivatives_relevance": "Medium-High",
+      "primary_regulator": "DNB",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "european_regulatory_pressure": true
+      },
+      "research_objective": {
+        "primary_goal": "Rapid assessment of CDM positioning",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": "phases/phase-4-other-european/ing.md"
+    },
+    {
+      "bank_id": "credit-agricole",
+      "bank_name": "Crédit Agricole S.A.",
+      "phase": 4,
+      "phase_name": "Other European",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Paris, France",
+      "region": "Europe",
+      "subregion": "France",
+      "business_model": "Universal bank",
+      "derivatives_relevance": "Medium-High",
+      "primary_regulator": "AMF/ACPR",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "regional_peer_architect": true,
+        "peer_name": "BNP Paribas"
+      },
+      "research_objective": {
+        "primary_goal": "Assess if following BNP/SocGen French cohort",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "unicredit",
+      "bank_name": "UniCredit S.p.A.",
+      "phase": 4,
+      "phase_name": "Other European",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Milan, Italy",
+      "region": "Europe",
+      "subregion": "Italy",
+      "business_model": "Universal bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "Banca d'Italia",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "european_regulatory_pressure": true
+      },
+      "research_objective": {
+        "primary_goal": "Rapid assessment of CDM positioning",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "commerzbank",
+      "bank_name": "Commerzbank AG",
+      "phase": 4,
+      "phase_name": "Other European",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Frankfurt, Germany",
+      "region": "Europe",
+      "subregion": "Germany",
+      "business_model": "Commercial and investment bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "BaFin",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "european_regulatory_pressure": true
+      },
+      "research_objective": {
+        "primary_goal": "Rapid assessment of CDM positioning",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "santander",
+      "bank_name": "Banco Santander S.A.",
+      "phase": 5,
+      "phase_name": "Spanish",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Madrid, Spain",
+      "region": "Europe",
+      "subregion": "Spain",
+      "business_model": "Global retail and commercial bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "Banco de España",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "european_regulatory_pressure": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Spanish bank CDM positioning",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "bbva",
+      "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+      "phase": 5,
+      "phase_name": "Spanish",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Bilbao, Spain",
+      "region": "Europe",
+      "subregion": "Spain",
+      "business_model": "Global retail and commercial bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "Banco de España",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "european_regulatory_pressure": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Spanish bank CDM positioning",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "standard-chartered",
+      "bank_name": "Standard Chartered PLC",
+      "phase": 6,
+      "phase_name": "Deep Dives",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "London, United Kingdom",
+      "region": "Asia",
+      "subregion": "Emerging Markets Focus",
+      "business_model": "Asia/Africa/Middle East focused bank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "FCA/PRA",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "confirmed_contributor": true,
+        "contributor_adjustment_pct": 15
+      },
+      "research_objective": {
+        "primary_goal": "Understand WHY contributing despite smaller derivatives footprint",
+        "key_questions": [
+          "What is the scope of Standard Chartered's CDM contribution?",
+          "What strategic motivation drives contribution despite smaller derivatives business?",
+          "Is this regulatory driven, client driven, or strategic positioning?"
+        ],
+        "framework_claim": "ARCHITECT-Follower (confirmed contributor)",
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [
+        {
+          "evidence": "Confirmed CDM contributor",
+          "source": "Industry knowledge",
+          "implication": "ARCHITECT baseline established"
+        }
+      ],
+      "prompt_file": "phases/phase-6-deep-dives/standard-chartered.md"
+    },
+    {
+      "bank_id": "pictet",
+      "bank_name": "Pictet Group",
+      "phase": 6,
+      "phase_name": "Deep Dives",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "Geneva, Switzerland",
+      "region": "Europe",
+      "subregion": "Switzerland",
+      "business_model": "Private bank and asset manager",
+      "derivatives_relevance": "Low",
+      "primary_regulator": "FINMA",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "confirmed_production": true,
+        "production_adjustment_pct": 30
+      },
+      "research_objective": {
+        "primary_goal": "Understand production deployment for wealth management firm",
+        "key_questions": [
+          "What drove Pictet to CDM production?",
+          "What is the scope of production deployment?",
+          "Is this client-driven, regulatory-driven, or strategic?"
+        ],
+        "framework_claim": "ARCHITECT-Native (confirmed production)",
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [
+        {
+          "evidence": "Confirmed in CDM production",
+          "source": "Industry knowledge",
+          "implication": "ARCHITECT-Native baseline established"
+        }
+      ],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "dbs",
+      "bank_name": "DBS Bank Ltd.",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Singapore",
+      "region": "Asia",
+      "subregion": "Singapore",
+      "business_model": "Regional bank with strong digital focus",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "MAS",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "asian_regional": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Asian emerging market bank positioning",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "icbc",
+      "bank_name": "Industrial and Commercial Bank of China",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "CBIRC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "chinese_regulatory": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "bank-of-china",
+      "bank_name": "Bank of China Limited",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank with international presence",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "CBIRC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "chinese_regulatory": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "ccb",
+      "bank_name": "China Construction Bank Corporation",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "CBIRC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "chinese_regulatory": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    },
+    {
+      "bank_id": "abc",
+      "bank_name": "Agricultural Bank of China Limited",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank with agricultural focus",
+      "derivatives_relevance": "Low-Medium",
+      "primary_regulator": "CBIRC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "chinese_regulatory": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [],
+        "framework_claim": null,
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [],
+      "prompt_file": null
+    }
+  ],
+
+  "phase_summary": {
+    "phase_1": {
+      "name": "European Tier 1",
+      "banks": 5,
+      "total_hours": 22.5,
+      "execution_tier": "A",
+      "dependencies": "None - establishes baselines"
+    },
+    "phase_2": {
+      "name": "UK Regional",
+      "banks": 2,
+      "total_hours": 5.0,
+      "execution_tier": "B",
+      "dependencies": "Phase 1 UK baseline (Barclays/HSBC)"
+    },
+    "phase_3": {
+      "name": "Japanese",
+      "banks": 4,
+      "total_hours": 12.0,
+      "execution_tier": "B",
+      "dependencies": "None - JSCC forcing function"
+    },
+    "phase_4": {
+      "name": "Other European",
+      "banks": 4,
+      "total_hours": 6.0,
+      "execution_tier": "C",
+      "dependencies": "Phase 1 European patterns"
+    },
+    "phase_5": {
+      "name": "Spanish",
+      "banks": 2,
+      "total_hours": 3.0,
+      "execution_tier": "C",
+      "dependencies": "None"
+    },
+    "phase_6": {
+      "name": "Deep Dives",
+      "banks": 2,
+      "total_hours": 6.0,
+      "execution_tier": "B",
+      "dependencies": "Confirmed contributors deep analysis"
+    },
+    "phase_7": {
+      "name": "Emerging Markets",
+      "banks": 5,
+      "total_hours": 7.5,
+      "execution_tier": "C",
+      "dependencies": "None - limited evidence expected"
+    }
+  },
+
+  "anchor_points": [
+    {
+      "anchor": "BNP Paribas",
+      "fact": "First major bank in CDM production (Q3 2022)",
+      "check": "No bank can claim earlier major bank production"
+    },
+    {
+      "anchor": "JPMorgan",
+      "fact": "CDM production announced October 2024",
+      "check": "Validates US bank CDM adoption"
+    },
+    {
+      "anchor": "JSCC",
+      "fact": "CDM production June 2025",
+      "check": "Structural forcing function for Japanese banks"
+    },
+    {
+      "anchor": "Pictet",
+      "fact": "Confirmed in CDM production",
+      "check": "Validates wealth management use case"
+    },
+    {
+      "anchor": "Total in production",
+      "fact": "4 firms globally (BNP, JPM, JSCC, Pictet)",
+      "check": "Production claims require extraordinary evidence"
+    },
+    {
+      "anchor": "EMIR Refit",
+      "fact": "EU effective April 2024, UK effective September 2024",
+      "check": "European banks must have addressed this"
+    },
+    {
+      "anchor": "Confirmed contributors",
+      "fact": "Barclays, Standard Chartered (FINOS)",
+      "check": "Establishes Follower threshold"
+    }
+  ]
+}

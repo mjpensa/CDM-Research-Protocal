@@ -1,0 +1,55 @@
+{
+  "$schema": "CDM/DRR Checkpoint Log v2.0",
+  "description": "Log of all checkpoint decisions (AUTO-PROCEED and BLOCK)",
+
+  "checkpoints": [
+    {
+      "timestamp": "2025-12-18T12:00:00Z",
+      "bank_id": "deutsche-bank",
+      "checkpoint_id": "final_classification",
+      "checkpoint_name": "Final Classification Approval",
+      "action": "BLOCK",
+      "condition_met": "always",
+      "human_decision": "approved",
+      "classification": "PRAGMATIST",
+      "variant": "Strategic-Dormant",
+      "confidence": 80,
+      "rationale": "User approved classification after reviewing complete reasoning chain"
+    },
+    {
+      "timestamp": "2025-12-19T02:00:00Z",
+      "bank_id": "societe-generale",
+      "checkpoint_id": "final_classification",
+      "checkpoint_name": "Final Classification Approval",
+      "action": "BLOCK",
+      "condition_met": "always",
+      "human_decision": "approved",
+      "classification": "PRAGMATIST",
+      "variant": "Vendor-Dependent",
+      "confidence": 95,
+      "rationale": "Litvack Paradox confirmed - BNP follower hypothesis rejected"
+    },
+    {
+      "timestamp": "2025-12-19T04:00:00Z",
+      "bank_id": "ubs",
+      "checkpoint_id": "final_classification",
+      "checkpoint_name": "Final Classification Approval",
+      "action": "BLOCK",
+      "condition_met": "always",
+      "human_decision": "approved",
+      "classification": "ARCHITECT",
+      "variant": "Adopter-Low-Confidence",
+      "confidence": 54,
+      "rationale": "CS integration hypothesis partially refuted - CDM engagement continues"
+    }
+  ],
+
+  "summary": {
+    "total_checkpoints": 3,
+    "auto_proceed": 0,
+    "blocked": 3,
+    "human_decisions": 3
+  },
+
+  "notes": "This file will be populated as checkpoints are encountered during execution."
+}

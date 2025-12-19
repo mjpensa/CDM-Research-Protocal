@@ -1,0 +1,286 @@
+{
+  "$schema": "CDM/DRR Checkpoint Rules v2.0",
+  "description": "Defines when to BLOCK for human approval vs auto-proceed with file output",
+  "checkpoint_model": "Hybrid: Most gates auto-proceed with audit trail, critical decisions require approval",
+
+  "auto_proceed_checkpoints": {
+    "description": "These checkpoints auto-proceed and write to files for later review",
+    "checkpoints": [
+      {
+        "checkpoint_id": "pre_mortem_gate",
+        "checkpoint_name": "Pre-Mortem Gate",
+        "stage": "Before any searches",
+        "action": "AUTO_PROCEED",
+        "output_file": "3-gates/pre-mortem.md",
+        "rationale": "Pre-mortem analysis is preparatory and low-risk",
+        "validation": "Verify file contains all 4 failure modes documented"
+      },
+      {
+        "checkpoint_id": "reasoning_gate_1",
+        "checkpoint_name": "Reasoning Gate 1",
+        "stage": "After Tier 1 evidence, before Tier 2",
+        "action": "AUTO_PROCEED",
+        "output_file": "3-gates/gate-1.md",
+        "rationale": "Structured gate with clear template, can be reviewed later",
+        "validation": "Verify probability update calculated and sufficiency check completed"
+      },
+      {
+        "checkpoint_id": "reasoning_gate_2",
+        "checkpoint_name": "Reasoning Gate 2",
+        "stage": "After Tier 2 evidence, before Tier 3",
+        "action": "AUTO_PROCEED",
+        "output_file": "3-gates/gate-2.md",
+        "rationale": "Structured gate with clear template",
+        "validation": "Verify observable implications tested (≥3/6 for leading hypothesis)"
+      },
+      {
+        "checkpoint_id": "reasoning_gate_3",
+        "checkpoint_name": "Reasoning Gate 3",
+        "stage": "After Tier 3 evidence, before adversarial",
+        "action": "AUTO_PROCEED",
+        "output_file": "3-gates/gate-3.md",
+        "rationale": "Structured gate with clear template",
+        "validation": "Verify evidence pattern assessed and trajectory determined"
+      },
+      {
+        "checkpoint_id": "adversarial_verdict_standard",
+        "checkpoint_name": "Adversarial Verdict (Standard)",
+        "stage": "After adversarial challenge",
+        "action": "AUTO_PROCEED",
+        "condition": "adversarial_verdict != 'REVISED' AND no_major_contradictions",
+        "output_file": "4-adversarial/verdict.md",
+        "rationale": "If adversarial strengthened, weakened, or unchanged classification, proceed",
+        "validation": "Verify verdict documented with confidence adjustment"
+      },
+      {
+        "checkpoint_id": "bayesian_updates",
+        "checkpoint_name": "Bayesian Probability Updates",
+        "stage": "After each evidence tier",
+        "action": "AUTO_PROCEED",
+        "output_file": "2-bayesian/post-tier[N]-update.md",
+        "rationale": "Calculations are deterministic given evidence and LR tables",
+        "validation": "Verify posterior calculation formula applied correctly"
+      }
+    ]
+  },
+
+  "block_checkpoints": {
+    "description": "These checkpoints BLOCK execution and require human approval to proceed",
+    "checkpoints": [
+      {
+        "checkpoint_id": "major_contradiction",
+        "checkpoint_name": "Major Contradiction Detected",
+        "stage": "Any stage where contradiction detected",
+        "action": "BLOCK",
+        "condition": "tier1_or_tier2_evidence_contradiction AND unresolved",
+        "rationale": "Tier 1/2 contradictions require human judgment to resolve",
+        "prompt_user": "Unresolved contradiction detected between high-quality evidence sources. Please review and decide resolution path.",
+        "options": [
+          "Accept Evidence A and discount Evidence B",
+          "Accept Evidence B and discount Evidence A",
+          "Weight both equally and document uncertainty",
+          "Flag for external validation"
+        ]
+      },
+      {
+        "checkpoint_id": "classification_change_from_adversarial",
+        "checkpoint_name": "Adversarial Changed Classification",
+        "stage": "After adversarial challenge",
+        "action": "BLOCK",
+        "condition": "adversarial_verdict == 'REVISED'",
+        "rationale": "Classification reversal from adversarial is significant and requires review",
+        "prompt_user": "Adversarial challenge resulted in classification change. Original: {original_classification}. Revised: {revised_classification}. Please review adversarial reasoning and approve/modify.",
+        "options": [
+          "Approve revised classification",
+          "Retain original classification",
+          "Request additional evidence gathering",
+          "Flag for manual analysis"
+        ]
+      },
+      {
+        "checkpoint_id": "final_classification",
+        "checkpoint_name": "Final Classification Approval",
+        "stage": "Before synthesis agent finalizes assessment",
+        "action": "BLOCK",
+        "condition": "always",
+        "rationale": "Final classification is the key deliverable and must be approved",
+        "prompt_user": "Bank: {bank_name}. Classification: {classification} ({variant}). Confidence: {confidence}%. Please review full reasoning chain and approve.",
+        "options": [
+          "Approve classification and confidence",
+          "Approve classification but adjust confidence",
+          "Change classification",
+          "Request additional evidence"
+        ]
+      },
+      {
+        "checkpoint_id": "low_confidence",
+        "checkpoint_name": "Low Confidence (<50%)",
+        "stage": "Before finalizing classification",
+        "action": "BLOCK",
+        "condition": "confidence_pct < 50",
+        "rationale": "Low confidence classifications should not proceed without review",
+        "prompt_user": "Classification confidence is {confidence}% (below 50% threshold). Classification: {classification}. Key uncertainties: {uncertainties}. Please decide action.",
+        "options": [
+          "Accept low confidence and flag for validation",
+          "Classify as UNKNOWN",
+          "Request targeted additional research",
+          "Proceed with current classification"
+        ]
+      },
+      {
+        "checkpoint_id": "cross_bank_consistency_failure",
+        "checkpoint_name": "Cross-Bank Consistency Failure",
+        "stage": "After phase synthesis",
+        "action": "BLOCK",
+        "condition": "consistency_test_failed",
+        "rationale": "Consistency failures indicate systematic issues requiring review",
+        "prompt_user": "Cross-bank consistency test failed: {test_name}. Banks affected: {bank_list}. Issue: {issue_description}. Please review.",
+        "options": [
+          "Adjust affected bank classifications",
+          "Accept inconsistency and document exception",
+          "Re-research affected banks",
+          "Proceed with current classifications"
+        ]
+      },
+      {
+        "checkpoint_id": "anchor_point_violation",
+        "checkpoint_name": "Anchor Point Violation",
+        "stage": "Before finalizing classification",
+        "action": "BLOCK",
+        "condition": "classification_violates_anchor_point",
+        "rationale": "Anchor points are immutable facts; violations indicate error",
+        "prompt_user": "Classification violates anchor point: {anchor_point}. Bank: {bank_name}. Classification: {classification}. This requires immediate review.",
+        "options": [
+          "Revise classification to respect anchor",
+          "Challenge anchor point validity (rare)",
+          "Re-research bank"
+        ]
+      },
+      {
+        "checkpoint_id": "extreme_lr_detected",
+        "checkpoint_name": "Extreme Likelihood Ratio",
+        "stage": "During Bayesian update",
+        "action": "BLOCK",
+        "condition": "combined_lr > 100 OR combined_lr < 0.01",
+        "rationale": "Extreme LRs may indicate double-counting or error",
+        "prompt_user": "Extreme combined LR detected: {combined_lr}. Bank: {bank_name}. Evidence count: {evidence_count}. Please review for double-counting.",
+        "options": [
+          "Accept extreme LR (evidence is genuinely strong)",
+          "Review evidence for independence violations",
+          "Adjust LR mappings",
+          "Request evidence review"
+        ]
+      }
+    ]
+  },
+
+  "validation_checks": {
+    "description": "Automated validation checks performed by orchestrator before advancing stages",
+    "checks": [
+      {
+        "check_id": "gate_completeness",
+        "check_name": "Gate Completeness Check",
+        "trigger": "Before advancing past any reasoning gate",
+        "validation": "Verify gate output file exists and contains all required sections",
+        "required_sections": {
+          "pre_mortem": ["Failure Mode 1", "Failure Mode 2", "Failure Mode 3", "Failure Mode 4", "Difficulty Assessment", "Success Criteria"],
+          "gate_1": ["Evidence Delta", "Probability Update", "Evidence Sufficiency", "Counterfactual Test", "Mini-Adversarial"],
+          "gate_2": ["Evidence Delta", "Probability Update", "Corroboration Assessment", "Observable Implications", "Mini-Adversarial"],
+          "gate_3": ["Evidence Delta", "Final Probability", "Evidence Pattern", "Trajectory Assessment", "Readiness Check"]
+        },
+        "action_on_failure": "BLOCK and alert: Gate incomplete, cannot proceed"
+      },
+      {
+        "check_id": "evidence_count",
+        "check_name": "Evidence Count Validation",
+        "trigger": "After each evidence tier",
+        "validation": "Count evidence blocks documented",
+        "threshold": "< 3 evidence blocks triggers warning (not BLOCK)",
+        "action_on_warning": "Flag for review: Low evidence count may indicate insufficient search"
+      },
+      {
+        "check_id": "null_documentation",
+        "check_name": "Null Results Documentation",
+        "trigger": "After evidence gathering",
+        "validation": "Verify null-results.md file exists and is not empty",
+        "threshold": "0 null results triggers warning",
+        "action_on_warning": "Flag for review: No null results documented suggests incomplete search"
+      },
+      {
+        "check_id": "probability_sanity",
+        "check_name": "Probability Sanity Check",
+        "trigger": "After each Bayesian update",
+        "validation": "Verify 0 <= P(Architect) <= 100 and P(Architect) + P(Pragmatist) ≈ 100",
+        "tolerance": "±2%",
+        "action_on_failure": "BLOCK: Probability calculation error detected"
+      },
+      {
+        "check_id": "observable_implications",
+        "check_name": "Observable Implications Validation",
+        "trigger": "After Gate 2",
+        "validation": "Verify ≥3 of 6 implications tested for leading hypothesis",
+        "action_on_failure": "Warning: Incomplete observable implications testing"
+      },
+      {
+        "check_id": "adversarial_completeness",
+        "check_name": "Adversarial Protocol Completeness",
+        "trigger": "After adversarial challenge",
+        "validation": "Verify tier-appropriate adversarial protocol completed",
+        "tier_requirements": {
+          "A": ["counter-case.md (4 parts)", "disconfirming-searches.md (3 searches)", "steelman.md", "verdict.md (5 questions answered)"],
+          "B": ["counter-case.md", "disconfirming-searches.md (1 search)", "verdict.md"],
+          "C": ["verdict.md (single adversarial question answered)"]
+        },
+        "action_on_failure": "BLOCK: Adversarial protocol incomplete for tier"
+      }
+    ]
+  },
+
+  "workflow_decision_rules": {
+    "description": "Logic for workflow branching decisions",
+    "rules": [
+      {
+        "rule_id": "early_classification",
+        "rule_name": "Skip to Adversarial if High Confidence Early",
+        "condition": "P(Architect) > 80% OR P(Pragmatist) > 80% after Gate 1 or Gate 2",
+        "action": "Skip remaining evidence tiers and proceed directly to Adversarial Challenge",
+        "rationale": "High confidence early suggests additional evidence gathering has diminishing returns"
+      },
+      {
+        "rule_id": "extended_search",
+        "rule_name": "Extend Search if Near 50%",
+        "condition": "40% < P(Architect) < 60% after Gate 3",
+        "action": "Flag for potential extended Tier 3 search or targeted disconfirming searches",
+        "rationale": "Substantial uncertainty benefits from additional evidence"
+      },
+      {
+        "rule_id": "confidence_cap",
+        "rule_name": "Confidence Cap Based on Evidence Tier",
+        "condition": "always",
+        "rules": {
+          "tier1_max_only": "95%",
+          "tier2_max_only": "75%",
+          "tier3_max_only": "50%",
+          "tier4_inference_only": "35%"
+        },
+        "action": "Apply confidence cap based on highest tier evidence found",
+        "rationale": "Confidence cannot exceed quality of available evidence"
+      }
+    ]
+  },
+
+  "logging_requirements": {
+    "description": "What must be logged in checkpoint-log.json",
+    "log_fields": [
+      "timestamp",
+      "bank_id",
+      "checkpoint_id",
+      "checkpoint_name",
+      "action (AUTO_PROCEED / BLOCK)",
+      "condition_evaluation",
+      "human_decision (if BLOCK)",
+      "rationale",
+      "files_written"
+    ]
+  }
+}

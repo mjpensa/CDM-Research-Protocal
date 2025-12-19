@@ -1,0 +1,17 @@
+{
+  "$schema": "CDM/DRR Error Log v2.0",
+  "description": "Log of all errors encountered during execution",
+
+  "errors": [],
+
+  "summary": {
+    "total_errors": 0,
+    "agent_failures": 0,
+    "validation_failures": 0,
+    "retries_attempted": 0,
+    "retries_successful": 0,
+    "manual_interventions_required": 0
+  },
+
+  "notes": "This file will be populated if errors occur during execution."
+}

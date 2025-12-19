@@ -1,0 +1,26 @@
+{
+  "bank_id": "societe-generale",
+  "bank_name": "Societe Generale",
+  "phase": 1,
+  "execution_tier": "A",
+  "current_probability": {
+    "architect": 0.05,
+    "pragmatist": 0.95
+  },
+  "stages_completed": ["pre-mortem", "tier1-evidence", "bayesian-t1", "gate-1", "adversarial", "synthesis"],
+  "current_stage": "COMPLETE",
+  "classification": "PRAGMATIST-Vendor-Dependent",
+  "confidence": 0.95,
+  "gate_1_decision": "SKIP_TO_ADVERSARIAL",
+  "adversarial_outcome": "STRENGTHENED",
+  "hypothesis_tested": "BNP_FOLLOWER",
+  "hypothesis_result": "REJECTED",
+  "key_finding": "Litvack Paradox - 10-year ISDA chairmanship did not translate to CDM adoption",
+  "blocked_at": null,
+  "started_at": "2025-12-18T13:00:00Z",
+  "gate_1_completed_at": "2025-12-19T00:00:00Z",
+  "adversarial_completed_at": "2025-12-19T01:00:00Z",
+  "completed_at": "2025-12-19T02:00:00Z",
+  "errors": [],
+  "framework_integration_ready": true
+}

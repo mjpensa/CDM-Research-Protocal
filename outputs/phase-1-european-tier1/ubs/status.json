@@ -1,0 +1,22 @@
+{
+  "bank_id": "ubs",
+  "bank_name": "UBS Group AG",
+  "phase": 1,
+  "execution_tier": "A",
+  "current_probability": {
+    "architect": 0.54,
+    "pragmatist": 0.46
+  },
+  "stages_completed": ["pre-mortem", "tier1-evidence", "bayesian-t1", "gate-1", "adversarial", "synthesis"],
+  "current_stage": "complete",
+  "completed_at": "2025-12-19T04:00:00Z",
+  "classification": "ARCHITECT",
+  "classification_variant": "Adopter-Low-Confidence",
+  "confidence": 54,
+  "hypothesis_tested": "CS_integration_consuming_capacity",
+  "hypothesis_result": "PARTIALLY_REFUTED",
+  "blocked_at": null,
+  "classification_approved_at": "2025-12-19T04:00:00Z",
+  "started_at": "2025-12-19T03:00:00Z",
+  "errors": []
+}

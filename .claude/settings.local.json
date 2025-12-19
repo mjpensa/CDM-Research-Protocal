@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"c:\\\\cdm-research-protocol\\\\templates\")",
+      "Bash(if not exist \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\1-evidence\" mkdir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\1-evidence\")",
+      "Bash(dir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\" /B)",
+      "Bash(dir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\2-bayesian\" /B)",
+      "Bash(mkdir:*)",
+      "Bash(dir /s /b \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\")"
+    ]
+  }
+}
