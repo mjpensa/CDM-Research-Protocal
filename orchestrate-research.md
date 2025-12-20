@@ -14,9 +14,9 @@ This is the MASTER WORKFLOW for executing the CDM/DRR research protocol on 24 in
 
 ### Mode 1: Single Bank Test (Recommended First)
 Test the entire system on one bank before full rollout.
-- **Bank**: Deutsche Bank (Tier A - most rigorous)
+- **Bank**: Deutsche Bank
 - **Purpose**: Validate all agents, templates, and workflows
-- **Time**: ~1.5 hours
+- **Time**: ~4-6 hours (full protocol)
 - **Proceed if**: All outputs generated correctly, checkpoints work
 
 ### Mode 2: Phase Pilot
@@ -63,7 +63,6 @@ For each bank, execute this sequence using Task tool to spawn agents:
   "bank_id": "deutsche-bank",
   "bank_name": "Deutsche Bank AG",
   "phase": 1,
-  "execution_tier": "A",
   "current_probability": {
     "architect": 0.40,
     "pragmatist": 0.60
@@ -81,7 +80,7 @@ For each bank, execute this sequence using Task tool to spawn agents:
 ### Stage 2: Pre-Mortem Gate
 
 **Agent**: Reasoning Gate Agent
-**Input**: Bank configuration, execution tier
+**Input**: Bank configuration
 **Output**: `outputs/phase-[N]/[bank]/3-gates/pre-mortem.md`
 
 **Spawn**:
@@ -89,7 +88,7 @@ For each bank, execute this sequence using Task tool to spawn agents:
 Task tool, subagent_type="general-purpose", model="opus"
 Read: config/agent-prompts/reasoning-gate.md
 Read: config/bank-manifest.json (for bank context)
-Prompt: "Complete Pre-Mortem Gate for [bank-name]. Use execution tier [A/B/C] template..."
+Prompt: "Complete Pre-Mortem Gate for [bank-name]. Use full gate template..."
 ```
 
 **Checkpoint**: AUTO-PROCEED (log to checkpoint-log.json)
@@ -200,7 +199,7 @@ Read: config/agent-prompts/adversarial-challenger.md
 Read: All evidence files
 Read: All bayesian update files
 Read: All gate files
-Prompt: "Execute [Tier A/B/C] adversarial challenge for [bank-name]..."
+Prompt: "Execute full adversarial challenge for [bank-name]..."
 Enable thinking mode: YES
 ```
 
@@ -321,32 +320,32 @@ Enable thinking mode: YES
 **Execute phases sequentially**:
 
 ```
-Phase 1: European Tier 1 (5 banks, Tier A)
+Phase 1: European Tier 1 (5 banks)
   → Execute banks: Barclays, HSBC, Société Générale, Deutsche Bank, UBS
   → Phase synthesis + QA validation
   → Checkpoint: Review consistency
 
-Phase 2: UK Regional (2 banks, Tier B)
+Phase 2: UK Regional (2 banks)
   → Execute banks: NatWest, Lloyds
   → Phase synthesis + QA validation
 
-Phase 3: Japanese (4 banks, Tier B)
+Phase 3: Japanese (4 banks)
   → Execute banks: Nomura, MUFG, Mizuho, SMBC
   → Phase synthesis + QA validation
 
-Phase 4: Other European (4 banks, Tier C)
+Phase 4: Other European (4 banks)
   → Execute banks: ING, Crédit Agricole, UniCredit, Commerzbank
   → Phase synthesis + QA validation
 
-Phase 5: Spanish (2 banks, Tier C)
+Phase 5: Spanish (2 banks)
   → Execute banks: Santander, BBVA
   → Phase synthesis + QA validation
 
-Phase 6: Deep Dives (2 banks, Tier B)
+Phase 6: Deep Dives (2 banks)
   → Execute banks: Standard Chartered, Pictet
   → Phase synthesis + QA validation
 
-Phase 7: Emerging Markets (5 banks, Tier C)
+Phase 7: Emerging Markets (5 banks)
   → Execute banks: DBS, ICBC, Bank of China, CCB, ABC
   → Phase synthesis + QA validation
 ```
@@ -609,6 +608,6 @@ Before each write:
 
 **Execute Single Bank Test** using this workflow to validate the complete system before full rollout.
 
-Bank: Deutsche Bank (Tier A)
-Expected Time: 1.5 hours
+Bank: Deutsche Bank
+Expected Time: 4-6 hours (full protocol)
 Validation Criteria: All outputs complete, checkpoints functional

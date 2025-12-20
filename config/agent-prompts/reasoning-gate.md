@@ -25,7 +25,6 @@ Use extended thinking to show:
 - Current gate: pre-mortem / gate-1 / gate-2 / gate-3
 - Evidence gathered so far
 - Current probability (from Bayesian Analyst)
-- Execution tier (A = full gates, B = abbreviated, C = rapid)
 
 ---
 
@@ -51,9 +50,16 @@ Use extended thinking to show:
 1. **Evidence Delta Analysis**: Table showing how each finding changed beliefs
 2. **Probability Update**: Bayesian calculation (from Bayesian Analyst file)
 3. **Evidence Sufficiency Check**: Can classify with confidence exceeding skip_threshold? If no, what must Tier 2 answer?
-4. **Counterfactual Test**: If opposite evidence found, how would assessment change?
-5. **Mini-Adversarial Check**: Challenge strongest Tier 1 evidence
-6. **Gate Clearance**: All sections complete, decision to proceed
+4. **Disconfirmation Test**: What evidence would DISPROVE the leading hypothesis? Was it searched?
+5. **Counterfactual Test**: If opposite evidence found, how would assessment change?
+6. **Mini-Adversarial Check**: Challenge strongest Tier 1 evidence
+7. **Gate Clearance**: All sections complete, decision to proceed
+
+**Disconfirmation Requirement (ACH Principle)**:
+- Before proceeding, explicitly search for evidence that would DISPROVE the leading hypothesis
+- Document what disconfirming searches were attempted
+- If disconfirming evidence was found, it must be addressed before proceeding
+- ACH principle: "The correct hypothesis is the one with the least inconsistent information"
 
 **Key Decision**: SKIP TO ADVERSARIAL (if P > skip_to_adversarial threshold from `config/decision-thresholds.json`) or CONTINUE TO TIER 2
 
@@ -63,17 +69,21 @@ Use extended thinking to show:
 1. **Evidence Delta Analysis**: Changes from post-Tier 1 beliefs
 2. **Probability Update**: Bayesian calculation
 3. **Corroboration Assessment**: Do Tier 2 findings corroborate or contradict Tier 1?
-4. **Observable Implications Test**: For leading hypothesis, check if 6 implications are observed
+4. **Disconfirmation Test**: What evidence would DISPROVE the leading hypothesis? Was it searched?
+5. **Observable Implications Test**: For BOTH hypotheses, check if 6 implications are observed
    - List 6 implications for ARCHITECT (e.g., bank in ISDA lists, CDM job postings, etc.)
    - List 6 implications for PRAGMATIST (e.g., absence from CDM events, traditional vendors, etc.)
-   - Check ≥3/6 for leading hypothesis
-5. **Mini-Adversarial Check**: Test leading hypothesis
-6. **Gate Clearance**: Decision to proceed
+   - Check ≥3/6 for BOTH hypotheses (not just leading)
+6. **Mini-Adversarial Check**: Test leading hypothesis
+7. **Gate Clearance**: Decision to proceed
 
 **Observable Implications Template:** Use `templates/observable-implications.md` for standard implications.
-- Test ≥3 of 6 implications for LEADING hypothesis
+
+- Test all 6 implications for BOTH hypotheses (ARCHITECT and PRAGMATIST)
 - Document each implication test with evidence ID reference
-- If <3 implications confirmed, flag for review before proceeding
+- Leading hypothesis must pass (≥3/6 confirmed)
+- Alternative hypothesis should fail (<3/6 confirmed)
+- If BOTH hypotheses pass or BOTH fail: Evidence is ambiguous, flag for additional analysis
 
 **Observable Implications Summary** (from methodology):
 - If ARCHITECT: Expect ISDA/FINOS contributions, CDM events, job postings, pilot announcements, vendor partnerships
@@ -97,17 +107,7 @@ Use extended thinking to show:
 - Decelerating: Reducing engagement
 - Unknown: Insufficient temporal data
 
-### ABBREVIATED GATES (Tier B Banks)
-
-Streamlined versions:
-- **Pre-Mortem**: 2 failure modes instead of 4
-- **Gate 1/2/3**: Evidence delta + probability update + quick sufficiency check + proceeding decision
-
-### RAPID GATES (Tier C Banks)
-
-Minimal versions:
-- **Pre-Mortem**: 1-paragraph pre-mortem
-- **Single Gate** after all evidence: Evidence summary + probability + classification direction + uncertainties
+**Note**: Full gate protocol applies to ALL banks universally. No abbreviated or rapid variants.
 
 ---
 
@@ -122,6 +122,71 @@ Where [gate-name] is:
 - gate-1.md
 - gate-2.md
 - gate-3.md
+
+---
+
+## Contradiction Resolution Mode
+
+When triggered by Orchestrator for Stage 5.5 (Contradiction Resolution):
+
+### Trigger Condition
+
+The Orchestrator invokes this mode when `trust_audit.py` returns `CONTRADICTIONS_DETECTED` flag in the trust_metrics.
+
+### Input for Contradiction Resolution
+
+1. **evidence.json** - with `contradiction_details` array from trust_audit
+2. **appendices/contradiction-resolution.md** - resolution methodology
+3. **templates/contradiction-resolution-output.md** - output template
+
+### Your Task in Contradiction Resolution Mode
+
+For EACH contradiction in `contradiction_details`:
+
+1. **Classify Type** (from appendices/contradiction-resolution.md):
+   - TEMPORAL: Both claims true at different points in time
+   - DEFINITIONAL: Terms used differently, creating apparent conflict
+   - FACTUAL: Genuine disagreement; both cannot be true simultaneously
+
+2. **Analyze Source Reliability**:
+   - Compare Authority (Tier 1 > Tier 2 > Tier 3)
+   - Compare Recency (Current > Recent > Dated > Historical)
+   - Compare Specificity (Specific > Moderate > Vague)
+   - Check Independence (Are sources truly independent?)
+
+3. **Apply Resolution Method**:
+   - Temporal: Use most recent source, document evolution
+   - Definitional: Clarify terminology, both may be valid
+   - Factual: Compare reliability, determine which prevails OR flag as unresolved
+
+4. **Calculate Confidence Impact**:
+   - Resolved (no adjustment needed): 0%
+   - Minor resolved contradiction: -5%
+   - Significant resolved contradiction: -10%
+   - Unresolved contradiction: -15% to -25%
+
+5. **Document Resolution**:
+   - Create `3-gates/contradiction-resolution.md` using template
+   - Include all required sections per template
+
+### Output for Contradiction Resolution Mode
+
+**File**: `outputs/phase-[N]/[bank_id]/3-gates/contradiction-resolution.md`
+
+**Template**: Use `templates/contradiction-resolution-output.md`
+
+### Checkpoint Decision
+
+After completing resolution:
+
+- If ALL contradictions resolved → `PROCEED` (AUTO-PROCEED to next stage)
+- If ANY contradictions UNRESOLVED → `BLOCK` (human review required)
+
+### Integration with Downstream Agents
+
+Your output will be used by:
+- **Bayesian Analyst**: To apply LR adjustments (×0.5 for superseded, 0.7 penalty for unresolved)
+- **Synthesis Agent**: To apply confidence penalties in calibration
 
 ---
 

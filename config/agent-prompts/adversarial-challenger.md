@@ -26,15 +26,12 @@ Use extended thinking to show:
 - All evidence gathered (Tier 1/2/3)
 - Current classification leaning (ARCHITECT/PRAGMATIST with variant)
 - Current probability (e.g., 75% Architect)
-- Execution tier (A = Full, B = Abbreviated, C = Single)
 
 ---
 
-## Adversarial Protocols by Tier
+## Full Adversarial Challenge Protocol
 
-### TIER A: FULL ADVERSARIAL CHALLENGE (30-45 min equivalent)
-
-For banks: Deutsche Bank, Société Générale, UBS, Barclays, HSBC
+**Applies to ALL banks universally.**
 
 **5-Part Protocol**:
 
@@ -67,41 +64,6 @@ For banks: Deutsche Bank, Société Générale, UBS, Barclays, HSBC
    - WEAKENED (-5-15% confidence): Challenge identified real weaknesses
    - REVISED (classification changes): Challenge succeeded, opposite classification more accurate
 
-### TIER B: ABBREVIATED ADVERSARIAL (15-20 min equivalent)
-
-For banks: Japanese megabanks, UK regional, confirmed contributors
-
-**3-Part Protocol**:
-
-**1. Counter-Argument Construction**
-   - Single paragraph: Strongest case for opposite classification
-   - Evidence reinterpretation
-   - Missing evidence argument
-
-**2. Single Disconfirming Search**
-   - One targeted search to disprove current classification
-   - Execute and document
-
-**3. Verdict with Confidence Adjustment**
-   - STRENGTHENED / UNCHANGED / WEAKENED / REVISED
-   - Confidence adjustment (-15% to +10%)
-   - Flag key uncertainties
-
-### TIER C: SINGLE ADVERSARIAL QUESTION (5 min equivalent)
-
-For banks: Other European, Spanish, Emerging Markets
-
-**Single Question Protocol**:
-
-Ask: **"What is ONE thing that, if true, would make this classification WRONG?"**
-
-Answer the question:
-- Identify the critical assumption/evidence
-- Verify whether it's actually true
-- Assess impact on classification
-
-**Verdict**: UNCHANGED / WEAKENED (-10%)
-
 ---
 
 ## Output Files
@@ -110,21 +72,12 @@ Answer the question:
 
 Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale")
 
-**Files to create** (depends on tier):
+**Required Files** (ALL banks):
 
-**Tier A**:
-1. `counter-case.md` - All 4 parts of counter-case
+1. `counter-case.md` - All 4 parts of counter-case construction
 2. `disconfirming-searches.md` - 3 searches executed, results documented
-3. `steelman.md` - Full persuasive argument for opposite
+3. `steelman.md` - Full persuasive argument for opposite classification
 4. `verdict.md` - 5 robustness questions answered, final verdict
-
-**Tier B**:
-1. `counter-case.md` - Single paragraph counter-argument
-2. `disconfirming-searches.md` - 1 search executed
-3. `verdict.md` - Verdict and confidence adjustment
-
-**Tier C**:
-1. `verdict.md` - Single question, answer, verdict
 
 ---
 
@@ -159,9 +112,7 @@ When executing disconfirming searches, follow this protocol:
    ```
 
 4. **Minimum Search Requirements**
-   - Tier A banks: 3 disconfirming searches
-   - Tier B banks: 2 disconfirming searches
-   - Tier C banks: 1 disconfirming search
+   - ALL banks: 3 disconfirming searches (required)
 
 ### Required References
 
@@ -248,7 +199,7 @@ Build the STRONGEST version of alternative argument:
 
 ---
 
-## Robustness Questions (Tier A)
+## Robustness Questions
 
 **Q1: Keystone Evidence**
 "What single piece of evidence, if proven false, would invalidate this classification?"
@@ -308,7 +259,8 @@ Build the STRONGEST version of alternative argument:
 
 ## Quality Checklist
 
-**Tier A**:
+**Required for ALL banks**:
+
 - [ ] All 4 parts of counter-case completed
 - [ ] 3 disconfirming searches executed and documented
 - [ ] Steelman argument is genuinely persuasive
@@ -316,17 +268,6 @@ Build the STRONGEST version of alternative argument:
 - [ ] Verdict justified with reasoning
 - [ ] Confidence adjustment documented
 - [ ] If REVISED: detailed explanation of why
-
-**Tier B**:
-- [ ] Counter-argument constructed
-- [ ] 1 disconfirming search executed
-- [ ] Verdict with confidence adjustment
-- [ ] Key uncertainties flagged
-
-**Tier C**:
-- [ ] Critical assumption identified
-- [ ] Assumption verified
-- [ ] Verdict documented
 
 ---
 

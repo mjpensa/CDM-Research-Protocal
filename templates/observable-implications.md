@@ -92,14 +92,34 @@ If [Bank] is truly a PRAGMATIST (waiting for external pressure/utility), we woul
 
 ## Gate 2 Assessment Summary
 
+**IMPORTANT: Test ALL 6 implications for BOTH hypotheses, not just the leading one.**
+
 | Hypothesis | Implications Tested | Implications Found | Pass (≥3/6)? |
 |------------|--------------------|--------------------|--------------|
-| ARCHITECT | /6 | /6 | [ ] |
-| PRAGMATIST | /6 | /6 | [ ] |
+| ARCHITECT | 6/6 | ___/6 | [ ] |
+| PRAGMATIST | 6/6 | ___/6 | [ ] |
+
+**Consistency Check:**
+
+- [ ] Leading hypothesis passed (≥3/6 implications confirmed)
+- [ ] Alternative hypothesis failed (<3/6 implications confirmed)
+- [ ] If BOTH pass: Evidence is ambiguous — require Tier 3 or escalate
+- [ ] If BOTH fail: Evidence pattern unclear — require additional targeted search
 
 **Leading Hypothesis:** ___________
-**Implication Test Result:** [ ] PASSED / [ ] FAILED
-**Action:** [ ] Proceed to Tier 3 / [ ] Reconsider classification / [ ] Escalate
+**Alternative Hypothesis:** ___________
+
+**Results Interpretation:**
+
+| Leading Pass? | Alternative Fail? | Interpretation | Action |
+|---------------|-------------------|----------------|--------|
+| Yes | Yes | Strong support for leading | Proceed to Tier 3 or Adversarial |
+| Yes | No | Ambiguous evidence | Require Tier 3 / escalate to human |
+| No | Yes | May need to reconsider hypothesis | Review evidence, consider switching |
+| No | No | Insufficient discriminating evidence | Additional targeted searches required |
+
+**Implication Test Result:** [ ] STRONG / [ ] AMBIGUOUS / [ ] WEAK / [ ] FAILED
+**Action:** [ ] Proceed to Tier 3 / [ ] Proceed to Adversarial / [ ] Reconsider classification / [ ] Escalate to human review
 
 ---
 

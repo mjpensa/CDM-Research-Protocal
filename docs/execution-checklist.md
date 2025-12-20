@@ -31,11 +31,10 @@ This checklist provides a step-by-step guide for executing the research protocol
 
 - [ ] Open bank-specific prompt file (e.g., `/phases/phase-1-european-tier1/deutsche-bank.md`)
 - [ ] Read completely before starting any searches
-- [ ] Note the execution tier (A/B/C) and time budget
 - [ ] Set up evidence tracking (text file or notes)
 - [ ] Review anchor points that constrain findings
 
-### Step 2: Pre-Research Analysis (15-20 min for Tier A, less for B/C)
+### Step 2: Pre-Research Analysis (15-20 min)
 
 - [ ] Complete Pre-Mortem Analysis
   - Document anticipated failure modes
@@ -49,16 +48,24 @@ This checklist provides a step-by-step guide for executing the research protocol
 
 ### Step 3: Evidence Gathering (60-120 min depending on tier)
 
+**CRITICAL (Ledger-First)**: Evidence Gatherer produces `evidence.json` as PRIMARY output. Markdown files in `1-evidence/` are rendered from JSON.
+
 #### Tier 1 Searches
 - [ ] Execute all specified Tier 1 searches
-- [ ] Document each result using evidence block format
-- [ ] Document null results explicitly
+- [ ] Document each result in `evidence.json` with `lr_mapping` field
+- [ ] Document null results in `evidence.json` `null_results` array
+- [ ] Run `tools/run_pipeline.py` to verify and render Markdown views
 - [ ] Complete Reasoning Gate 1
   - Evidence delta analysis
   - Probability update
   - Sufficiency check
   - Counterfactual test
   - Mini-adversarial
+- [ ] **If CONTRADICTIONS_DETECTED**: Complete Stage 5.5 Contradiction Resolution
+  - Create `3-gates/contradiction-resolution.md`
+  - Classify each contradiction (Temporal/Definitional/Factual)
+  - Apply resolution methodology
+  - Calculate confidence impact
 - [ ] Decide: proceed to Tier 2 or sufficient evidence?
 
 #### Tier 2 Searches (if needed)
@@ -78,7 +85,7 @@ This checklist provides a step-by-step guide for executing the research protocol
   - Evidence pattern assessment
   - Trajectory assessment
 
-### Step 4: Synthesis (30-45 min for Tier A, less for B/C)
+### Step 4: Synthesis (30-45 min)
 
 - [ ] Compile evidence inventory
 - [ ] Build reasoning chain
@@ -86,25 +93,16 @@ This checklist provides a step-by-step guide for executing the research protocol
 - [ ] Assess confidence using calibration criteria
 - [ ] Complete stakeholder motivation analysis
 
-### Step 5: Adversarial Challenge (15-45 min depending on tier)
+### Step 5: Adversarial Challenge (30-45 min)
 
-**Tier A:** Full Adversarial
+**Full Adversarial (required for all banks):**
 - [ ] Construct counter-case
-- [ ] Execute targeted disconfirming searches
+- [ ] Execute targeted disconfirming searches (3 required)
 - [ ] Steelman the alternative
-- [ ] Evaluate robustness
+- [ ] Evaluate robustness (5 questions)
 - [ ] Determine adversarial verdict
 
-**Tier B:** Abbreviated Adversarial
-- [ ] Document strongest counter-argument
-- [ ] Execute single disconfirming search
-- [ ] Adjust confidence if needed
-
-**Tier C:** Single Adversarial Question
-- [ ] Identify one thing that would make classification wrong
-- [ ] Note if checked or flag as uncertainty
-
-### Step 6: Cross-Validation (15-20 min for Tier A)
+### Step 6: Cross-Validation (15-20 min)
 
 - [ ] Check against anchor points
 - [ ] Verify consistency with known peers
@@ -175,15 +173,18 @@ After completing all phases:
 
 ## Quick Reference: Time Budgets
 
-| Activity | Tier A | Tier B | Tier C |
-|----------|--------|--------|--------|
-| Pre-research | 15-20 min | 10-15 min | 5 min |
-| Evidence gathering | 90-120 min | 60-90 min | 30-45 min |
-| Synthesis | 30-45 min | 20-30 min | 10-15 min |
-| Adversarial | 30-45 min | 15-20 min | 5 min |
-| Cross-validation | 15-20 min | 10-15 min | 5 min |
-| Output | 20-30 min | 15-20 min | 15-20 min |
-| **Total** | **4-6 hours** | **2-3 hours** | **1-1.5 hours** |
+All banks receive the same full protocol:
+
+| Activity | Time |
+|----------|------|
+| Pre-research | 15-20 min |
+| Evidence gathering (all 3 tiers) | 90-120 min |
+| Reasoning gates (3 gates) | 30-45 min |
+| Synthesis | 30-45 min |
+| Adversarial (full) | 30-45 min |
+| Cross-validation | 15-20 min |
+| Output | 20-30 min |
+| **Total per bank** | **4-6 hours** |
 
 ---
 

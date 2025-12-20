@@ -108,18 +108,13 @@ Complete abbreviated versions of:
 1. /templates/per-bank-output.md — Key sections only
 2. /templates/framework-integration.md — Bank table entry + uncertainty log
 
-**Required Sections:**
+**Required Sections (Full Protocol):**
 - Classification with confidence
-- Key evidence (top 3 findings or absence note)
-- Single adversarial check
-- One key uncertainty
+- Complete evidence inventory (all 3 tiers)
+- Full Bayesian calculations at each gate
+- Complete reasoning chain
+- Full adversarial challenge (3 disconfirming searches, steelman, 5 robustness questions)
 - Framework table entry
-
-**Skip for Tier C:**
-- Detailed Bayesian calculations (just estimate)
-- Full reasoning chain (brief summary acceptable)
-- Multiple adversarial searches (single question sufficient)
-- Exhaustive evidence inventory (summary acceptable)
 
 Save to:
 - /outputs/phase-4/ing-assessment.md (abbreviated)

@@ -259,7 +259,7 @@ Save to:
 
 ---
 
-## Time Budget: 4-5 hours (Tier A Full Protocol)
+## Time Budget: 4-5 hours (Full Protocol)
 
 ---
 

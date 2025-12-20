@@ -163,7 +163,6 @@ How did your classification fare in adversarial testing?
 | Unchanged | +0% |
 | Weakened but maintained | -5% |
 | Required revision | -10% |
-| Not tested (Tier C) | -5% |
 
 **Adjustment:** ____%
 

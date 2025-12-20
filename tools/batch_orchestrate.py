@@ -1,12 +1,13 @@
 """
-CDM Research Protocol - Batch Orchestrator v1.0
+CDM Research Protocol - Batch Orchestrator v1.1
 
-Runs complete research pipeline for all banks without blocking.
+Runs complete live research pipeline for all banks.
+All research is executed with Claude API - no simulation mode.
 Collects edge cases into a review queue for deferred human review.
 
 Usage:
-    # Run all banks overnight (never blocks)
-    python tools/batch_orchestrate.py --phase 1 --all
+    # Run all banks overnight
+    python tools/batch_orchestrate.py --phase 1
     python tools/batch_orchestrate.py --all-phases
 
     # Review results in the morning
@@ -17,7 +18,7 @@ Usage:
     python tools/batch_orchestrate.py --approve deutsche-bank barclays
 
 Features:
-    - Never blocks during execution
+    - Live research with Claude API
     - Provisional classifications assigned to edge cases
     - Consolidated review queue generated at end
     - Batch approval/adjustment interface
@@ -236,93 +237,50 @@ def check_review_triggers(state: Dict[str, Any]) -> List[tuple]:
     return triggered
 
 
-def simulate_bank_research(bank_id: str, phase: int, bank_config: dict) -> Dict[str, Any]:
+def run_research(bank_id: str, phase: int, bank_config: dict,
+                 model: str = "claude-opus-4-5-20250101") -> Dict[str, Any]:
     """
-    Simulate bank research execution.
+    Execute live research using Claude API.
 
-    In production, this would:
-    1. Spawn Claude agent for evidence gathering
-    2. Run Bayesian calculations
-    3. Execute adversarial challenge
-    4. Generate outputs
+    Args:
+        bank_id: Bank identifier
+        phase: Phase number
+        bank_config: Bank configuration
+        model: Claude model to use
 
-    For now, returns simulated state for demonstration.
+    Returns:
+        Research state dictionary
     """
-    import random
-    import time
+    from research_executor import execute_research
 
-    # Simulate research time
-    time.sleep(0.5)
-
-    # Generate realistic simulated state based on bank config
-    prior = bank_config.get('prior_adjustments', {})
-    is_derivatives_heavy = prior.get('derivatives_dominant', False)
-    is_confirmed = prior.get('confirmed_contributor', False) or prior.get('confirmed_production', False)
-
-    # Simulate probability based on bank characteristics
-    if is_confirmed:
-        prob = random.uniform(75, 95)
-    elif is_derivatives_heavy:
-        prob = random.uniform(35, 75)
-    else:
-        prob = random.uniform(15, 45)
-
-    # Determine classification
-    if prob > 70:
-        classification = "ARCHITECT"
-        sub = random.choice(["Native", "Leader", "Follower"])
-    elif prob < 30:
-        classification = "PRAGMATIST"
-        sub = random.choice(["Vendor-Dependent", "Traditional", "Wait-and-See"])
-    else:
-        classification = random.choice(["ARCHITECT", "PRAGMATIST"])
-        sub = "Follower" if classification == "ARCHITECT" else "Wait-and-See"
-
-    # Simulate confidence
-    if prob > 80 or prob < 20:
-        confidence = random.randint(70, 90)
-    elif 30 <= prob <= 70:
-        confidence = random.randint(40, 65)
-    else:
-        confidence = random.randint(55, 75)
-
-    # Simulate evidence count
-    evidence_count = random.randint(2, 12)
-
-    # Simulate potential issues
-    trust_flags = []
-    if evidence_count < 4:
-        trust_flags.append("LOW_EVIDENCE_COUNT")
-    if random.random() < 0.1:
-        trust_flags.append("SINGLE_SOURCE_CLAIM")
+    state = execute_research(bank_id, phase, model=model)
 
     return {
-        'bank_id': bank_id,
-        'phase': phase,
-        'probability_architect': round(prob, 1),
-        'classification': classification,
-        'sub_classification': sub,
-        'confidence': confidence,
-        'evidence_count': evidence_count,
-        'highest_tier': random.choice([1, 2, 2, 3, 3, 3]),
-        'trust_flags': trust_flags,
-        'adversarial_verdict': random.choice(['SUSTAINED', 'SUSTAINED', 'SUSTAINED', 'WEAKENED', 'REVISED']),
-        'combined_lr': random.uniform(0.5, 50),
-        'contradictions': [] if random.random() > 0.1 else ['Evidence A vs B'],
-        'anchor_violation': random.random() < 0.02
+        'bank_id': state.bank_id,
+        'phase': state.phase,
+        'probability_architect': state.probability_architect,
+        'classification': state.classification,
+        'sub_classification': state.sub_classification,
+        'confidence': state.confidence,
+        'evidence_count': len(state.evidence_items),
+        'highest_tier': state.highest_tier,
+        'trust_flags': state.trust_flags,
+        'adversarial_verdict': state.adversarial_verdict,
+        'contradictions': [],
+        'combined_lr': 1.0,
+        'anchor_violation': False,
+        'errors': state.errors
     }
 
 
-def execute_bank_research(bank_id: str, phase: int, queue: ReviewQueue,
-                          simulate: bool = True) -> BatchResult:
+def execute_bank_research(bank_id: str, phase: int, queue: ReviewQueue) -> BatchResult:
     """
-    Execute research for a single bank without blocking.
+    Execute live research for a single bank.
 
     Args:
         bank_id: Bank identifier
         phase: Phase number
         queue: Review queue to add items to
-        simulate: If True, simulate research; if False, run actual agents
 
     Returns:
         BatchResult with status and any review items
@@ -345,13 +303,8 @@ def execute_bank_research(bank_id: str, phase: int, queue: ReviewQueue,
     logger.info(f"Processing: {bank_name}")
 
     try:
-        # Execute research (simulated or real)
-        if simulate:
-            state = simulate_bank_research(bank_id, phase, bank_config)
-        else:
-            # TODO: Integrate with actual research agents
-            # state = run_actual_research(bank_id, phase, bank_config)
-            state = simulate_bank_research(bank_id, phase, bank_config)
+        # Execute live research
+        state = run_research(bank_id, phase, bank_config)
 
         # Check for review triggers
         triggers = check_review_triggers(state)
@@ -408,14 +361,13 @@ def execute_bank_research(bank_id: str, phase: int, queue: ReviewQueue,
 
 
 def run_batch(phases: List[int] = None, parallel: int = 3,
-              simulate: bool = True, fresh: bool = False) -> ReviewQueue:
+              fresh: bool = False) -> ReviewQueue:
     """
-    Run batch processing for all banks.
+    Run batch processing for all banks with live research.
 
     Args:
         phases: List of phase numbers to process (None = all)
         parallel: Number of parallel workers
-        simulate: If True, simulate research
         fresh: If True, clear existing queue
 
     Returns:
@@ -434,7 +386,6 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
     logger.info(f"\n{'='*70}")
     logger.info(f"BATCH ORCHESTRATOR - Processing {len(banks)} banks")
     logger.info(f"Parallel workers: {parallel}")
-    logger.info(f"Mode: {'Simulation' if simulate else 'Live Research'}")
     logger.info(f"{'='*70}\n")
 
     start_time = datetime.utcnow()
@@ -445,8 +396,7 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
             execute_bank_research(
                 bank['bank_id'],
                 bank['phase'],
-                queue,
-                simulate=simulate
+                queue
             )
     else:
         # Parallel
@@ -456,8 +406,7 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
                     execute_bank_research,
                     bank['bank_id'],
                     bank['phase'],
-                    queue,
-                    simulate
+                    queue
                 ): bank
                 for bank in banks
             }
@@ -648,7 +597,7 @@ def interactive_review(queue: ReviewQueue):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="CDM Research - Batch Orchestrator with Deferred Review"
+        description="CDM Research - Batch Orchestrator (Live Research Only)"
     )
 
     # Execution modes
@@ -660,10 +609,10 @@ def main():
                         help="Parallel workers (default: 3)")
     parser.add_argument('--fresh', action='store_true',
                         help="Clear existing queue and start fresh")
-    parser.add_argument('--simulate', action='store_true', default=True,
-                        help="Simulate research (default)")
-    parser.add_argument('--live', action='store_true',
-                        help="Run live research with Claude agents")
+    parser.add_argument('--claude-code', action='store_true',
+                        help="Generate instructions for Claude Code execution")
+    parser.add_argument('--bank', type=str,
+                        help="Single bank to process (use with --claude-code)")
 
     # Review modes
     parser.add_argument('--review', action='store_true',
@@ -747,7 +696,77 @@ def main():
         print(f"Exported to: {args.export_csv}")
         return
 
-    # Run batch processing
+    # Claude Code mode - generate instructions for interactive execution
+    if args.claude_code:
+        try:
+            from claude_code_executor import generate_claude_code_instructions, ClaudeCodeQueue
+        except ImportError:
+            print("Error: claude_code_executor.py not found")
+            return
+
+        if args.bank and args.phase:
+            # Single bank
+            phase = args.phase[0] if isinstance(args.phase, list) else args.phase
+            instructions = generate_claude_code_instructions(args.bank, phase)
+            output_file = PROJECT_ROOT / "outputs" / "state" / f"research-instructions-{args.bank}.md"
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            output_file.write_text(instructions, encoding='utf-8')
+
+            print(f"\n{'='*60}")
+            print(f"CLAUDE CODE INSTRUCTIONS GENERATED")
+            print(f"{'='*60}")
+            print(f"Bank: {args.bank}")
+            print(f"Phase: {phase}")
+            print(f"Output: {output_file}")
+            print(f"\nTo execute, tell Claude Code:")
+            print(f"  'Research {args.bank} following outputs/state/research-instructions-{args.bank}.md'")
+            print(f"{'='*60}\n")
+
+        elif args.phase:
+            # All banks in phase(s)
+            manifest = load_bank_manifest()
+            phases_to_process = args.phase if isinstance(args.phase, list) else [args.phase]
+
+            for phase in phases_to_process:
+                banks = [b for b in manifest.get('banks', []) if b.get('phase') == phase]
+                print(f"\n{'='*60}")
+                print(f"PHASE {phase} - Generating instructions for {len(banks)} banks")
+                print(f"{'='*60}")
+
+                for bank in banks:
+                    bank_id = bank['bank_id']
+                    instructions = generate_claude_code_instructions(bank_id, phase)
+                    output_file = PROJECT_ROOT / "outputs" / "state" / f"research-instructions-{bank_id}.md"
+                    output_file.write_text(instructions, encoding='utf-8')
+                    print(f"  Generated: {bank_id}")
+
+                print(f"\nTo execute all, tell Claude Code:")
+                print(f"  'Research all Phase {phase} banks following the instructions in outputs/state/'")
+
+        elif args.all_phases:
+            manifest = load_bank_manifest()
+            banks = manifest.get('banks', [])
+            print(f"\n{'='*60}")
+            print(f"ALL PHASES - Generating instructions for {len(banks)} banks")
+            print(f"{'='*60}")
+
+            for bank in banks:
+                bank_id = bank['bank_id']
+                phase = bank['phase']
+                instructions = generate_claude_code_instructions(bank_id, phase)
+                output_file = PROJECT_ROOT / "outputs" / "state" / f"research-instructions-{bank_id}.md"
+                output_file.parent.mkdir(parents=True, exist_ok=True)
+                output_file.write_text(instructions, encoding='utf-8')
+                print(f"  Generated: {bank_id} (Phase {phase})")
+
+            print(f"\nTo execute, tell Claude Code:")
+            print(f"  'Research all banks following the instructions in outputs/state/'")
+
+        else:
+            print("Error: --claude-code requires --bank and --phase, or --phase alone, or --all-phases")
+        return
+
+    # Run batch processing (always live)
     phases = args.phase if args.phase else None
     if args.all_phases:
         phases = None  # None means all
@@ -756,7 +775,6 @@ def main():
         run_batch(
             phases=phases,
             parallel=args.parallel,
-            simulate=not args.live,
             fresh=args.fresh
         )
     else:

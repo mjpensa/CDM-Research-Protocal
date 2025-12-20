@@ -120,6 +120,24 @@ Using Bayesian framework from /methodology/bayesian-updating.md:
 [ ] If Tier 2 finds NOTHING relevant, my conclusion will be:
     [Write the conditional conclusion — e.g., "PRAGMATIST at ~75% confidence"]
 
+### Disconfirmation Test
+
+**Question:** What specific evidence would DISPROVE my current leading hypothesis?
+
+| Hypothesis | Disconfirming Evidence | Search Attempted? | Found? |
+|------------|----------------------|-------------------|--------|
+| ARCHITECT | [e.g., Official statement rejecting CDM, vendor-only announcement] | [ ] Yes [ ] No | [ ] Yes [ ] No |
+| PRAGMATIST | [e.g., Production announcement, FINOS contributor status] | [ ] Yes [ ] No | [ ] Yes [ ] No |
+
+**Disconfirmation Search Requirement:**
+- [ ] I have explicitly searched for evidence that would DISPROVE my leading hypothesis
+- [ ] If disconfirming evidence was not searched: Document why and search before proceeding
+
+**Disconfirmation Results:**
+[Document what disconfirming searches were attempted and their results]
+
+---
+
 ### Counterfactual Test
 
 "If I had found the OPPOSITE of what I found in Tier 1, how would my assessment change?"
@@ -141,10 +159,33 @@ For the strongest piece of Tier 1 evidence, challenge it:
 
 [ ] All sections above are complete (not just checked, but substantively filled)
 [ ] Probability update is calculated correctly
+[ ] Disconfirmation test completed with explicit searches
 [ ] Counterfactual test confirms evidence is informative
-[ ] Decision on proceeding to Tier 2 is documented
+[ ] Decision on proceeding is documented
 
-**Cleared to proceed to Tier 2:** [ ] YES / [ ] NO (address gaps first)
+**Gate Decision Options:**
+
+[ ] **CONTINUE** — Proceed to Tier 2
+    Rationale: [Why more evidence is needed]
+
+[ ] **SKIP** — Evidence sufficient, skip to Adversarial (requires P > 80%)
+    Rationale: [Why evidence is sufficient]
+
+[ ] **ABANDON** — Terminate research with UNKNOWN classification
+    Rationale: [Why evidence is unobtainable]
+
+**ABANDON Criteria** (any one triggers consideration):
+- [ ] Exhaustive Tier 1 search found zero relevant evidence
+- [ ] Unresolvable contradiction between Tier 1 sources
+- [ ] Bank operates in privacy jurisdiction with no public disclosure
+- [ ] Research objective fundamentally unanswerable with available sources
+
+**If ABANDON selected:**
+- Classification: UNKNOWN
+- Confidence: N/A
+- Recommendation: [ ] Direct outreach / [ ] Wait for future disclosure / [ ] Mark as not assessable
+
+**Cleared to proceed:** [ ] CONTINUE / [ ] SKIP / [ ] ABANDON
 ```
 
 ---
@@ -194,9 +235,27 @@ Do Tier 2 findings corroborate or contradict Tier 1?
 
 If contradictions exist, trigger: /appendices/contradiction-resolution.md
 
+### Disconfirmation Test
+
+**Question:** What specific evidence would DISPROVE my current leading hypothesis?
+
+| Hypothesis | Disconfirming Evidence | Search Attempted? | Found? |
+|------------|----------------------|-------------------|--------|
+| ARCHITECT | [e.g., Official statement rejecting CDM, vendor-only announcement] | [ ] Yes [ ] No | [ ] Yes [ ] No |
+| PRAGMATIST | [e.g., Production announcement, FINOS contributor status] | [ ] Yes [ ] No | [ ] Yes [ ] No |
+
+**Disconfirmation Search Requirement:**
+- [ ] I have explicitly searched for evidence that would DISPROVE my leading hypothesis
+- [ ] If disconfirming evidence was not searched: Document why and search before proceeding
+
+**Disconfirmation Results:**
+[Document what disconfirming searches were attempted and their results]
+
+---
+
 ### Observable Implications Test
 
-For my current leading hypothesis ([ARCHITECT/PRAGMATIST]), what should I observe?
+**IMPORTANT: Test ALL implications for BOTH hypotheses, not just the leading one.**
 
 **If ARCHITECT hypothesis is correct:**
 | Observable Implication | Found? | Notes |
@@ -206,9 +265,9 @@ For my current leading hypothesis ([ARCHITECT/PRAGMATIST]), what should I observ
 | Job postings for CDM-related roles | [ ] Yes [ ] No | |
 | Vendor partnerships for CDM tooling | [ ] Yes [ ] No | |
 | Production or pilot announcement | [ ] Yes [ ] No | |
+| Public statements about CDM adoption | [ ] Yes [ ] No | |
 
-**Implications found:** [X] / 5
-**If <3/5:** Downgrade ARCHITECT hypothesis or explain why implications wouldn't be visible
+**ARCHITECT Implications found:** [X] / 6
 
 **If PRAGMATIST hypothesis is correct:**
 | Observable Implication | Found? | Notes |
@@ -218,9 +277,22 @@ For my current leading hypothesis ([ARCHITECT/PRAGMATIST]), what should I observ
 | Regulatory compliance without CDM mentioned | [ ] Yes [ ] No | |
 | Capacity consumed by other priorities | [ ] Yes [ ] No | |
 | No speakers at CDM-specific events | [ ] Yes [ ] No | |
+| Reliance on market utilities (DTCC, Regis-TR) | [ ] Yes [ ] No | |
 
-**Implications found:** [X] / 5
-**If <3/5:** Upgrade away from PRAGMATIST or explain anomaly
+**PRAGMATIST Implications found:** [X] / 6
+
+### Implications Consistency Check
+
+| Hypothesis | Implications Found | Pass (≥3/6)? |
+|------------|-------------------|--------------|
+| ARCHITECT | ___/6 | [ ] Yes [ ] No |
+| PRAGMATIST | ___/6 | [ ] Yes [ ] No |
+
+**Interpretation:**
+- [ ] Leading hypothesis PASSED, Alternative FAILED → Strong support, proceed
+- [ ] BOTH hypotheses passed → Evidence ambiguous, require Tier 3 or escalate
+- [ ] BOTH hypotheses failed → Evidence unclear, additional targeted search needed
+- [ ] Leading hypothesis FAILED, Alternative PASSED → Reconsider classification
 
 ### Evidence Sufficiency Check
 
@@ -248,11 +320,34 @@ For my current leading hypothesis ([ARCHITECT/PRAGMATIST]), what should I observ
 
 [ ] All sections complete
 [ ] Probability update calculated
+[ ] Disconfirmation test completed
 [ ] Corroboration assessed
-[ ] Observable implications tested
+[ ] Observable implications tested for BOTH hypotheses
 [ ] Adversarial check performed
 
-**Cleared to proceed:** [ ] To Tier 3 / [ ] To Synthesis (justify skip)
+**Gate Decision Options:**
+
+[ ] **CONTINUE** — Proceed to Tier 3
+    Rationale: [Why more evidence is needed]
+
+[ ] **SKIP** — Evidence sufficient, skip to Adversarial (requires P > 80%)
+    Rationale: [Why evidence is sufficient]
+
+[ ] **ABANDON** — Terminate research with UNKNOWN classification
+    Rationale: [Why evidence is unobtainable]
+
+**ABANDON Criteria** (any one triggers consideration):
+- [ ] Exhaustive Tier 1+2 search found zero relevant evidence
+- [ ] Unresolvable contradiction between sources
+- [ ] Observable implications test failed for BOTH hypotheses
+- [ ] Research objective fundamentally unanswerable
+
+**If ABANDON selected:**
+- Classification: UNKNOWN
+- Confidence: N/A
+- Recommendation: [ ] Direct outreach / [ ] Wait for future disclosure / [ ] Mark as not assessable
+
+**Cleared to proceed:** [ ] CONTINUE / [ ] SKIP / [ ] ABANDON
 ```
 
 ---
@@ -315,67 +410,33 @@ Based on temporal analysis of evidence:
 [ ] I have gathered evidence across all relevant tiers
 [ ] I have documented null results as well as findings
 [ ] I have updated probabilities at each gate
-[ ] I have tested observable implications
+[ ] I have tested observable implications for BOTH hypotheses
 [ ] I have challenged my emerging conclusion
 [ ] I am ready to synthesize
 
 **Evidence inventory complete:** [ ] YES
 
-**Proceed to:** [ ] Full Synthesis (Pass 3) / [ ] Abbreviated Synthesis (Tier B/C)
+**Gate Decision Options:**
+
+[ ] **PROCEED** — Continue to Full Synthesis and Adversarial
+    Rationale: [Evidence is sufficient for classification]
+
+[ ] **ABANDON** — Terminate research with UNKNOWN classification
+    Rationale: [Why evidence is unobtainable despite full protocol]
+
+**ABANDON Criteria** (any one triggers consideration):
+- [ ] Full protocol search found zero discriminating evidence
+- [ ] Unresolvable contradictions remain after all tiers
+- [ ] Both hypotheses equally supported (cannot discriminate)
+- [ ] Evidence pattern is fundamentally ambiguous
+
+**If ABANDON selected:**
+- Classification: UNKNOWN
+- Confidence: N/A
+- Evidence Pattern: [Describe what was found]
+- Recommendation: [ ] Direct outreach / [ ] Wait for disclosure / [ ] Mark as not assessable
+
+**Proceed to:** [ ] Full Synthesis / [ ] ABANDON
 ```
 
----
-
-## Quick Gates for Tier B and C Banks
-
-### Tier B Abbreviated Gate (Use after each search tier)
-
-```markdown
-## ABBREVIATED GATE: [BANK NAME] — After Tier [X]
-
-### Key Findings
-1. [Most important finding]
-2. [Second most important]
-3. [Third if applicable]
-
-### Probability Update
-- Prior P(Architect): [X]% → Posterior P(Architect): [Y]%
-- Direction: [Toward Architect / Toward Pragmatist / Unchanged]
-
-### Sufficiency Check
-[ ] Enough to classify? → [Yes: proceed to output / No: continue searching]
-
-### Quick Adversarial
-Best argument against my emerging conclusion: [1-2 sentences]
-Response: [1-2 sentences]
-
-### Proceed: [ ] YES
-```
-
----
-
-### Tier C Rapid Gate (Use once after all searches)
-
-```markdown
-## RAPID GATE: [BANK NAME]
-
-### Evidence Summary
-- Searches executed: [count]
-- Relevant findings: [count]
-- Highest evidence tier reached: [1/2/3/4]
-
-### Quick Classification
-Based on evidence gathered:
-- Classification: [ARCHITECT-variant / PRAGMATIST-variant / UNKNOWN]
-- Confidence: [X]%
-- Key supporting evidence: [1-2 sentences]
-
-### Single Adversarial Question
-What is ONE thing that, if true, would make this classification wrong?
-[Answer in 1-2 sentences]
-
-Did I check for this? [ ] Yes → Result: [finding]
-                      [ ] No → Flag as: [uncertainty]
-
-### Output Ready: [ ] YES
-```
+**Note**: Full gate protocol applies to ALL banks universally. No abbreviated or rapid variants.

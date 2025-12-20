@@ -1,9 +1,9 @@
 """
-CDM Research Protocol - Output Validator v1.0
+CDM Research Protocol - Output Validator v1.1
 
 Validates that research outputs match claimed workflow state.
 Checks for:
-- Required files per execution tier
+- Required files (same for ALL banks - universal standard)
 - Probability sum validity (should sum to ~1.0)
 - Deprecated classification terms
 - Status.json consistency
@@ -28,51 +28,29 @@ class ValidationResult:
     issues: list
 
 
-# Required files by execution tier
-REQUIRED_BY_TIER = {
-    'A': [
-        '1-evidence/tier1-evidence.md',
-        '2-bayesian/post-tier1-update.md',
-        '3-gates/pre-mortem.md',
-        '3-gates/gate-1.md',
-        '4-adversarial/verdict.md',
-        '4-adversarial/steelman.md',
-        '5-synthesis/assessment.md',
-        'status.json',
-    ],
-    'B': [
-        '1-evidence/tier1-evidence.md',
-        '2-bayesian/post-tier1-update.md',
-        '3-gates/pre-mortem.md',
-        '3-gates/gate-1.md',
-        '4-adversarial/verdict.md',
-        '5-synthesis/assessment.md',
-        'status.json',
-    ],
-    'C': [
-        '1-evidence/tier1-evidence.md',
-        '2-bayesian/post-tier1-update.md',
-        '3-gates/gate-1.md',
-        '4-adversarial/verdict.md',
-        '5-synthesis/assessment.md',
-        'status.json',
-    ]
-}
+# Required files - universal standard for ALL banks
+REQUIRED_FILES = [
+    '1-evidence/tier1-evidence.md',
+    '1-evidence/tier2-evidence.md',
+    '1-evidence/tier3-evidence.md',
+    '2-bayesian/post-tier1-update.md',
+    '2-bayesian/post-tier2-update.md',
+    '2-bayesian/post-tier3-update.md',
+    '3-gates/pre-mortem.md',
+    '3-gates/gate-1.md',
+    '3-gates/gate-2.md',
+    '3-gates/gate-3.md',
+    '4-adversarial/counter-case.md',
+    '4-adversarial/disconfirming-searches.md',
+    '4-adversarial/steelman.md',
+    '4-adversarial/verdict.md',
+    '5-synthesis/assessment.md',
+    '5-synthesis/framework-integration.md',
+    'status.json',
+]
 
 # Deprecated terms that should not appear
 DEPRECATED_TERMS = ['NOT ENGAGED', 'NOT_ENGAGED', 'NON-ARCHITECT', 'NON_ARCHITECT']
-
-
-def get_execution_tier(bank_dir: Path) -> str:
-    """Get execution tier from status.json or default to 'B'."""
-    status_path = bank_dir / 'status.json'
-    if status_path.exists():
-        try:
-            status = json.loads(status_path.read_text(encoding='utf-8'))
-            return status.get('execution_tier', 'B')
-        except (json.JSONDecodeError, KeyError):
-            pass
-    return 'B'
 
 
 def validate_bank(bank_dir: Path) -> ValidationResult:
@@ -85,12 +63,9 @@ def validate_bank(bank_dir: Path) -> ValidationResult:
     Returns:
         ValidationResult with any issues found
     """
-    tier = get_execution_tier(bank_dir)
-    required = REQUIRED_BY_TIER.get(tier, REQUIRED_BY_TIER['B'])
-
-    # Check for missing files
+    # Check for missing files (universal standard for all banks)
     missing = []
-    for rel_path in required:
+    for rel_path in REQUIRED_FILES:
         full_path = bank_dir / rel_path
         if not full_path.exists():
             missing.append(rel_path)

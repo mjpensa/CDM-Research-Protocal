@@ -18,9 +18,9 @@ This is the MASTER WORKFLOW for executing the CDM/DRR research protocol on 24 in
 
 ### Mode 1: Single Bank Test (Recommended First)
 Test the entire system on one bank before full rollout.
-- **Bank**: Deutsche Bank (Tier A - most rigorous)
+- **Bank**: Deutsche Bank
 - **Purpose**: Validate all agents, templates, and workflows
-- **Time**: ~1.5 hours
+- **Time**: ~4-6 hours (full protocol)
 - **Proceed if**: All outputs generated correctly, checkpoints work
 
 ### Mode 2: Phase Pilot
@@ -67,7 +67,6 @@ For each bank, execute this sequence using Task tool to spawn agents:
   "bank_id": "deutsche-bank",
   "bank_name": "Deutsche Bank AG",
   "phase": 1,
-  "execution_tier": "A",
   "current_probability": {
     "architect": 0.40,
     "pragmatist": 0.60
@@ -85,7 +84,7 @@ For each bank, execute this sequence using Task tool to spawn agents:
 ### Stage 2: Pre-Mortem Gate
 
 **Agent**: Reasoning Gate Agent
-**Input**: Bank configuration, execution tier
+**Input**: Bank configuration
 **Output**: `outputs/phase-[N]/[bank]/3-gates/pre-mortem.md`
 
 **Spawn**:
@@ -93,7 +92,7 @@ For each bank, execute this sequence using Task tool to spawn agents:
 Task tool, subagent_type="general-purpose", model="opus"
 Read: config/agent-prompts/reasoning-gate.md
 Read: config/bank-manifest.json (for bank context)
-Prompt: "Complete Pre-Mortem Gate for [bank-name]. Use execution tier [A/B/C] template..."
+Prompt: "Complete Pre-Mortem Gate for [bank-name]. Use full gate template..."
 ```
 
 **Checkpoint**: AUTO-PROCEED (log to checkpoint-log.json)
@@ -171,6 +170,45 @@ Enable thinking mode: YES
 
 **Update**: status.json stages_completed += "gate-1"
 
+### Stage 5.5: Contradiction Resolution (Conditional)
+
+**Trigger**: `trust_audit.py` returns `CONTRADICTIONS_DETECTED` flag in trust_metrics
+
+**Agent**: Reasoning Gate Agent (contradiction resolution mode)
+**Input**: evidence.json with contradiction details, appendices/contradiction-resolution.md
+**Output**: `outputs/phase-[N]/[bank]/3-gates/contradiction-resolution.md`
+
+**Process**:
+1. Check evidence.json trust_metrics for CONTRADICTIONS_DETECTED flag
+2. If flag NOT present → SKIP to Stage 6
+3. If flag present → Execute contradiction resolution:
+
+**Spawn** (only if CONTRADICTIONS_DETECTED):
+```
+Task tool, subagent_type="general-purpose", model="opus"
+Read: config/agent-prompts/reasoning-gate.md
+Read: appendices/contradiction-resolution.md
+Read: templates/contradiction-resolution-output.md
+Read: evidence.json (for contradiction details)
+Prompt: "Execute Contradiction Resolution for [bank-name].
+        CONTRADICTIONS_DETECTED flag is set. Identify all contradicting evidence pairs,
+        classify each (Temporal/Definitional/Factual), apply resolution methodology,
+        calculate confidence impact, and document residual uncertainties..."
+Enable thinking mode: YES
+```
+
+**Validation After**:
+- Verify contradiction-resolution.md created
+- Count resolved vs unresolved contradictions
+- Calculate total confidence impact
+
+**Checkpoint Decision**:
+- If ALL contradictions resolved → AUTO-PROCEED
+- If ANY contradictions UNRESOLVED → **BLOCK** for human review
+- Human options: Accept resolution, Provide additional context, Request more evidence
+
+**Update**: status.json stages_completed += "contradiction-resolution" (if executed)
+
 ### Stage 6-8: Tier 2 (If Not Skipped)
 
 Repeat pattern:
@@ -204,7 +242,7 @@ Read: config/agent-prompts/adversarial-challenger.md
 Read: All evidence files
 Read: All bayesian update files
 Read: All gate files
-Prompt: "Execute [Tier A/B/C] adversarial challenge for [bank-name]..."
+Prompt: "Execute full adversarial challenge for [bank-name]..."
 Enable thinking mode: YES
 ```
 
@@ -250,24 +288,34 @@ Options:
 
 **Agent**: Synthesis Agent
 **Input**: All files from stages 1-13, approved classification
-**Output**: `outputs/phase-[N]/[bank]/5-synthesis/assessment.md`, `framework-integration.md`
+**Output**: THREE files in ORDER:
+1. `outputs/phase-[N]/[bank]/5-synthesis/confidence-calibration.md` (FIRST)
+2. `outputs/phase-[N]/[bank]/5-synthesis/assessment.md`
+3. `outputs/phase-[N]/[bank]/5-synthesis/framework-integration.md`
+
+**CRITICAL**: confidence-calibration.md MUST be created BEFORE assessment.md. This provides an auditable confidence calculation trail.
 
 **Spawn**:
 ```
 Task tool, subagent_type="general-purpose", model="opus"
 Read: config/agent-prompts/synthesis.md
+Read: templates/confidence-calibration-output.md (REQUIRED)
 Read: templates/per-bank-output.md (597-line template)
 Read: templates/framework-integration.md
-Read: All evidence files
+Read: evidence.json (for trust_metrics)
 Read: All bayesian files
 Read: All gate files
 Read: Adversarial files
 Read: status.json (approved classification)
-Prompt: "Complete final synthesis for [bank-name]..."
+Prompt: "Complete final synthesis for [bank-name].
+        IMPORTANT: Create confidence-calibration.md FIRST using the 6-step calibration process,
+        then create assessment.md using the confidence value from calibration..."
 Enable thinking mode: YES
 ```
 
 **Validation After**:
+- Verify confidence-calibration.md exists (REQUIRED)
+- Verify confidence value in confidence-calibration.md matches assessment.md
 - Verify assessment.md matches template structure (19 sections)
 - Verify framework-integration.md created
 - Verify all mandatory sections complete
@@ -325,32 +373,32 @@ Enable thinking mode: YES
 **Execute phases sequentially**:
 
 ```
-Phase 1: European Tier 1 (5 banks, Tier A)
+Phase 1: European Tier 1 (5 banks)
   → Execute banks: Barclays, HSBC, Société Générale, Deutsche Bank, UBS
   → Phase synthesis + QA validation
   → Checkpoint: Review consistency
 
-Phase 2: UK Regional (2 banks, Tier B)
+Phase 2: UK Regional (2 banks)
   → Execute banks: NatWest, Lloyds
   → Phase synthesis + QA validation
 
-Phase 3: Japanese (4 banks, Tier B)
+Phase 3: Japanese (4 banks)
   → Execute banks: Nomura, MUFG, Mizuho, SMBC
   → Phase synthesis + QA validation
 
-Phase 4: Other European (4 banks, Tier C)
+Phase 4: Other European (4 banks)
   → Execute banks: ING, Crédit Agricole, UniCredit, Commerzbank
   → Phase synthesis + QA validation
 
-Phase 5: Spanish (2 banks, Tier C)
+Phase 5: Spanish (2 banks)
   → Execute banks: Santander, BBVA
   → Phase synthesis + QA validation
 
-Phase 6: Deep Dives (2 banks, Tier B)
+Phase 6: Deep Dives (2 banks)
   → Execute banks: Standard Chartered, Pictet
   → Phase synthesis + QA validation
 
-Phase 7: Emerging Markets (5 banks, Tier C)
+Phase 7: Emerging Markets (5 banks)
   → Execute banks: DBS, ICBC, Bank of China, CCB, ABC
   → Phase synthesis + QA validation
 ```
@@ -613,6 +661,6 @@ Before each write:
 
 **Execute Single Bank Test** using this workflow to validate the complete system before full rollout.
 
-Bank: Deutsche Bank (Tier A)
-Expected Time: 1.5 hours
+Bank: Deutsche Bank
+Expected Time: 4-6 hours (full protocol)
 Validation Criteria: All outputs complete, checkpoints functional

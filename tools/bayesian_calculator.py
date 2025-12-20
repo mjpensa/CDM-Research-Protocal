@@ -294,7 +294,8 @@ class BayesianCalculator:
 
         if apply_cap and individual_lrs:
             highest_tier = min(lr.tier for lr in individual_lrs)
-            cap = self.confidence_caps.get(highest_tier, 0.35)
+            cap_percent = self.confidence_caps.get(highest_tier, 35)
+            cap = cap_percent / 100.0  # Convert percentage to probability
             confidence_cap = cap
 
             if posterior > cap:

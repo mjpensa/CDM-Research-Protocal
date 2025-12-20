@@ -56,9 +56,7 @@ From the Orchestrator, you will receive:
 
 2. **Current Tier**: 1, 2, or 3
 
-3. **Execution Tier**: A (exhaustive), B (standard), or C (rapid)
-
-4. **Prior Context**: Any evidence already gathered in previous tiers
+3. **Prior Context**: Any evidence already gathered in previous tiers
 
 ---
 
@@ -106,10 +104,7 @@ From the Orchestrator, you will receive:
    "[Bank Name]" UK EMIR implementation (for UK banks)
    ```
 
-**Execution Tier Adjustments**:
-- Tier A: Execute ALL 15+ searches, reformulate nulls
-- Tier B: Execute core 10 searches
-- Tier C: Execute core 5 searches
+**Required**: Execute ALL 15+ searches, reformulate null results through 4 iterations.
 
 ### Tier 2 Evidence Gathering
 
@@ -153,10 +148,7 @@ From the Orchestrator, you will receive:
    "[Bank Name]" presented CDM implementation
    ```
 
-**Execution Tier Adjustments**:
-- Tier A: Execute ALL searches, review 20+ results each
-- Tier B: Execute core searches, review 10 results each
-- Tier C: Execute top 5 searches, review 5 results each
+**Required**: Execute ALL searches, review 20+ results per query.
 
 ### Tier 3 Evidence Gathering
 
@@ -192,10 +184,7 @@ From the Orchestrator, you will receive:
    "[Bank Name]" post-trade infrastructure modernization
    ```
 
-**Execution Tier Adjustments**:
-- Tier A: Execute ALL searches
-- Tier B: Execute job posting + vendor searches
-- Tier C: Execute job posting search only
+**Required**: Execute ALL searches across all categories.
 
 ---
 
@@ -307,18 +296,92 @@ If initial search returns no results:
 
 ## Output Files You Must Create
 
-### File 1: tier[N]-evidence.md
+### CRITICAL: Ledger-First Principle
 
-Location: `outputs/phase-[N]/[bank_id]/1-evidence/tier[N]-evidence.md`
+Per CLAUDE.md Section 1: "All findings committed to evidence.json before writing prose analysis."
 
-Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale", "natwest")
+**evidence.json is the PRIMARY output. Markdown files are SECONDARY (rendered views).**
 
-Content:
+---
+
+### Primary Output: evidence.json (REQUIRED)
+
+**Location**: `outputs/phase-[N]/[bank_id]/evidence.json`
+
+**Note**: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale", "natwest")
+
+**CRITICAL**: Append to existing evidence.json for each tier. Do NOT overwrite previous tiers.
+
+**Structure**:
+```json
+{
+  "bank_id": "[bank-id]",
+  "bank_name": "[Bank Name]",
+  "schema_version": "3.1",
+  "evidence_items": [
+    {
+      "id": "BANK-001",
+      "claim": "Description of finding",
+      "source_url": "https://...",
+      "tier": 1,
+      "claim_type": "production_usage|pilot_or_poc|membership_or_participation|open_source_contribution|vendor_proxy_signal|hiring_signal",
+      "date": "YYYY-MM-DD",
+      "direction": "SUPPORTS_ARCHITECT|SUPPORTS_PRAGMATIST|NEUTRAL",
+      "quality_assessment": {
+        "authority": "HIGH|MEDIUM|LOW",
+        "recency": "current|dated|historical",
+        "specificity": "specific|moderate|vague"
+      },
+      "excerpt": "Exact quote from source in quotes",
+      "caveats": "Limitations, alternative interpretations, or uncertainty",
+      "lr_mapping": {
+        "evidence_type": "Key from config/bayesian-lr-tables.json",
+        "likelihood_ratio": 14.0
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "category": "Search Category Name",
+      "queries": ["query1", "query2", "query3"],
+      "results_reviewed": 20,
+      "null_type": "NO_RESULTS|IRRELEVANT|PAYWALLED|OUTDATED_ONLY",
+      "informative_absence": true,
+      "implication": "What the absence suggests about classification"
+    }
+  ],
+  "meta": {
+    "tier_completed": 1,
+    "generated_at": "2025-12-20T10:30:00Z",
+    "searches_executed": 15
+  }
+}
+```
+
+**LR Mapping Reference** (from config/bayesian-lr-tables.json):
+- `official_production_announcement`: LR = 200
+- `official_pilot_with_timeline`: LR = 27
+- `named_isda_press_contributor`: LR = 14
+- `trade_press_cdm_pilot`: LR = 15
+- `named_working_group`: LR = 3.7
+- `job_posting_cdm`: LR = 3.0
+- `no_evidence_after_exhaustive_t1`: LR = 0.21
+- See full tables in config/bayesian-lr-tables.json
+
+---
+
+### Secondary Output: tier[N]-evidence.md (Rendered View)
+
+**Location**: `outputs/phase-[N]/[bank_id]/1-evidence/tier[N]-evidence.md`
+
+This Markdown file is RENDERED from evidence.json for human readability.
+The JSON is the source of truth.
+
+**Content**:
 ```markdown
 # Tier [N] Evidence: [Bank Name]
 
 ## Search Execution Summary
-- Execution Tier: [A/B/C]
 - Date: [YYYY-MM-DD]
 - Searches Executed: [Count]
 - Evidence Blocks Found: [Count]
@@ -330,22 +393,21 @@ Content:
 
 [BANK-001] TIER [N] — [DIRECTION] [Classification]
 ...
-[Full evidence block]
----
-
-[BANK-002] TIER [N] — [DIRECTION] [Classification]
-...
-[Full evidence block]
+[Full evidence block matching JSON structure]
 ---
 
 [Continue for all evidence found]
 ```
 
-### File 2: null-results.md
+---
 
-Location: `outputs/phase-[N]/[bank_id]/1-evidence/null-results.md`
+### Secondary Output: null-results.md (Rendered View)
 
-Content:
+**Location**: `outputs/phase-[N]/[bank_id]/1-evidence/null-results.md`
+
+Rendered from evidence.json null_results array.
+
+**Content**:
 ```markdown
 # Null Results: [Bank Name]
 
@@ -358,7 +420,7 @@ Content:
 
 ## Null Result Blocks
 
-[Full null result block for each category with no findings]
+[Rendered from null_results array in evidence.json]
 
 ---
 
@@ -426,25 +488,14 @@ If you find evidence that contradicts earlier findings:
 
 ---
 
-## Search Depth by Execution Tier
+## Search Depth Requirements
 
-### Tier A (Exhaustive)
-- Execute ALL search templates (20+ searches per tier)
+**Universal Standard for ALL Banks**:
+
+- Execute ALL search templates (20+ searches per evidence tier)
 - Review first 20-30 results per query
-- Reformulate null results (4 iterations)
-- Time budget: ~45-60 min per tier
-
-### Tier B (Standard)
-- Execute core search templates (10-12 searches per tier)
-- Review first 10-15 results per query
-- Reformulate null results (2 iterations)
-- Time budget: ~25-35 min per tier
-
-### Tier C (Rapid)
-- Execute priority searches (5-7 searches per tier)
-- Review first 5-10 results per query
-- Reformulate nulls once
-- Time budget: ~15-20 min per tier
+- Reformulate null results through 4 iterations
+- Complete thoroughness required - no shortcuts
 
 ---
 
@@ -512,4 +563,4 @@ Your job is simple but critical:
 3. Document null results rigorously
 4. Hand off to Bayesian Analyst for interpretation
 
-Speed and thoroughness matter. Leave no stone unturned (within tier budget), but move efficiently. The research protocol depends on your evidence quality.
+Thoroughness is paramount. Leave no stone unturned. The research protocol depends on your evidence quality.

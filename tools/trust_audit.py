@@ -379,6 +379,118 @@ def detect_contradictions(items: list[dict]) -> list[dict]:
     return contradictions
 
 
+def get_contradiction_details(items: list[dict], contradictions: list[dict]) -> list[dict]:
+    """
+    Get detailed information about contradictions for resolution workflow.
+
+    This function enriches the basic contradiction detection with full context
+    needed by the Reasoning Gate Agent during Stage 5.5 (Contradiction Resolution).
+
+    Args:
+        items: List of evidence items from evidence.json
+        contradictions: List of contradictions from detect_contradictions()
+
+    Returns:
+        List of enriched contradiction details with full evidence context
+    """
+    # Build item lookup by ID
+    item_lookup = {item.get('id'): item for item in items}
+
+    detailed_contradictions = []
+
+    for contradiction in contradictions:
+        item_ids = contradiction.get('item_ids', [])
+
+        # Gather full details for each involved item
+        involved_items = []
+        for item_id in item_ids:
+            item = item_lookup.get(item_id, {})
+            involved_items.append({
+                'id': item_id,
+                'claim': item.get('claim', ''),
+                'excerpt': item.get('excerpt', ''),
+                'source_url': item.get('source_url', ''),
+                'date': item.get('date', ''),
+                'tier': item.get('tier', 3),
+                'claim_type': item.get('claim_type', 'unknown'),
+                'direction': item.get('direction', 'NEUTRAL'),
+                'quality_assessment': item.get('quality_assessment', {}),
+                'freshness': item.get('freshness', {})
+            })
+
+        # Classify contradiction type based on pattern
+        description = contradiction.get('description', '').lower()
+        if 'dated after' in description or 'timeline' in description:
+            contradiction_type = 'TEMPORAL'
+        elif 'same url' in description:
+            contradiction_type = 'DEFINITIONAL'
+        elif 'tier' in description and ('architect' in description or 'pragmatist' in description):
+            contradiction_type = 'FACTUAL'
+        else:
+            contradiction_type = 'FACTUAL'  # Default to factual
+
+        # Determine severity
+        severity = contradiction.get('severity', 'medium')
+        if not severity:
+            # Infer severity from tiers involved
+            tiers = [i.get('tier', 3) for i in involved_items]
+            if 1 in tiers:
+                severity = 'high'
+            elif 2 in tiers:
+                severity = 'medium'
+            else:
+                severity = 'low'
+
+        detailed = {
+            'contradiction_id': f"CONTRA-{len(detailed_contradictions) + 1:03d}",
+            'type': contradiction_type,
+            'severity': severity,
+            'description': contradiction.get('description', ''),
+            'resolution': contradiction.get('resolution', 'unresolved'),
+            'resolution_notes': contradiction.get('resolution_notes', ''),
+            'involved_items': involved_items,
+            'source_a': involved_items[0] if len(involved_items) > 0 else None,
+            'source_b': involved_items[1] if len(involved_items) > 1 else None,
+            'recommended_action': _recommend_resolution_action(contradiction_type, involved_items)
+        }
+
+        detailed_contradictions.append(detailed)
+
+    return detailed_contradictions
+
+
+def _recommend_resolution_action(contradiction_type: str, involved_items: list[dict]) -> str:
+    """
+    Recommend a resolution action based on contradiction type and items.
+
+    Args:
+        contradiction_type: TEMPORAL, DEFINITIONAL, or FACTUAL
+        involved_items: List of involved evidence items
+
+    Returns:
+        Recommended action string
+    """
+    if contradiction_type == 'TEMPORAL':
+        # Find most recent item
+        dates = [(i.get('id'), i.get('date', '')) for i in involved_items]
+        sorted_dates = sorted(dates, key=lambda x: x[1] if x[1] else '', reverse=True)
+        if sorted_dates:
+            return f"Use most recent source ({sorted_dates[0][0]}), document evolution"
+        return "Order sources chronologically, use most recent"
+
+    elif contradiction_type == 'DEFINITIONAL':
+        return "Clarify terminology differences, both may be valid simultaneously"
+
+    else:  # FACTUAL
+        # Compare tiers
+        tiers = {i.get('id'): i.get('tier', 3) for i in involved_items}
+        sorted_by_tier = sorted(tiers.items(), key=lambda x: x[1])
+        if sorted_by_tier and len(sorted_by_tier) >= 2:
+            if sorted_by_tier[0][1] < sorted_by_tier[1][1]:
+                return f"Higher-tier source ({sorted_by_tier[0][0]}) should prevail, verify recency"
+        return "Manual review required - compare source authority and recency"
+
+
 def calculate_confidence(
     items: list[dict],
     verification_rate: float,
@@ -806,9 +918,13 @@ def run_trust_audit(json_path: str) -> dict:
         "flags": flags
     }
 
+    # --- Get detailed contradiction info for resolution workflow ---
+    contradiction_details = get_contradiction_details(items, contradictions)
+
     # --- Update data ---
     data['trust_metrics'] = trust_metrics
     data['contradictions'] = contradictions
+    data['contradiction_details'] = contradiction_details  # For Stage 5.5 resolution
     data['evidence_items'] = items  # With freshness added
 
     # Update provenance

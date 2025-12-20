@@ -1,16 +1,17 @@
 """
-CDM Research Protocol - Research Executor v2.0
+CDM Research Protocol - Research Executor v2.1
 
-Executes actual research by calling Claude API with web search capabilities.
+Executes live research by calling Claude API with web search capabilities.
+All research is executed live - no simulation mode.
 Designed for overnight batch processing with no human intervention.
 
 Usage:
-    # Called by batch_orchestrate.py in live mode
+    # Called by batch_orchestrate.py
     from research_executor import execute_research
 
     # Or run standalone
-    python tools/research_executor.py --bank deutsche-bank --phase 1 --live
-    python tools/research_executor.py --bank deutsche-bank --phase 1 --dry-run
+    python tools/research_executor.py --bank deutsche-bank --phase 1
+    python tools/research_executor.py --bank deutsche-bank --phase 1 --show-prompts
 
 Requirements:
     pip install anthropic
@@ -35,7 +36,8 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 from config_loader import (
     load_bank_manifest, get_bank_config, load_decision_thresholds,
-    load_bayesian_tables
+    load_bayesian_tables, get_api_model, get_api_retry_config,
+    get_api_timeout, load_api_config
 )
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -101,14 +103,15 @@ class ResearchState:
 class ClaudeResearcher:
     """Handles Claude API interactions for research tasks."""
 
-    def __init__(self, model: str = "claude-sonnet-4-20250514"):
+    def __init__(self, model: str = None):
         """
         Initialize the Claude researcher.
 
         Args:
-            model: Claude model to use. Options:
-                - claude-sonnet-4-20250514 (fast, good for most tasks)
-                - claude-opus-4-20250514 (best quality, slower)
+            model: Claude model to use. If None, loads from config/api-config.json.
+                Options:
+                - claude-opus-4-5-20250101 (best quality, recommended)
+                - claude-sonnet-4-20250514 (faster, cheaper)
         """
         if not ANTHROPIC_AVAILABLE:
             raise ImportError("anthropic package required. Install with: pip install anthropic")
@@ -118,9 +121,17 @@ class ClaudeResearcher:
             raise ValueError("ANTHROPIC_API_KEY environment variable not set")
 
         self.client = anthropic.Anthropic(api_key=api_key)
-        self.model = model
-        self.max_retries = 3
-        self.retry_delay = 5  # seconds
+
+        # Load configuration from api-config.json
+        self.model = model if model else get_api_model()
+        retry_config = get_api_retry_config()
+        self.max_retries = retry_config.get('max_retries', 3)
+        self.retry_delay = retry_config.get('retry_delay_seconds', 5)
+        self.exponential_backoff = retry_config.get('exponential_backoff', True)
+        self.max_delay = retry_config.get('max_delay_seconds', 60)
+        self.timeout = get_api_timeout()
+
+        logger.info(f"ClaudeResearcher initialized with model={self.model}, max_retries={self.max_retries}")
 
     def research_with_web_search(self, prompt: str, max_tokens: int = 4096) -> str:
         """
@@ -515,16 +526,16 @@ def create_output_structure(bank_dir: Path):
 
 
 def execute_research(bank_id: str, phase: int,
-                     live: bool = False,
-                     model: str = "claude-sonnet-4-20250514") -> ResearchState:
+                     model: str = "claude-opus-4-5-20250101") -> ResearchState:
     """
     Execute complete research pipeline for a bank.
+
+    All research is executed live with Claude API - no simulation mode.
 
     Args:
         bank_id: Bank identifier
         phase: Phase number
-        live: If True, use Claude API; if False, simulate
-        model: Claude model to use for live research
+        model: Claude model to use
 
     Returns:
         ResearchState with complete results
@@ -566,20 +577,17 @@ def execute_research(bank_id: str, phase: int,
 
     logger.info(f"\n{'='*60}")
     logger.info(f"RESEARCH: {bank_name}")
-    logger.info(f"Mode: {'LIVE' if live else 'SIMULATION'}")
     logger.info(f"Prior P(ARCHITECT): {state.probability_architect:.1f}%")
     logger.info(f"{'='*60}")
 
-    # Initialize Claude researcher if live mode
-    researcher = None
-    if live:
-        try:
-            researcher = ClaudeResearcher(model=model)
-            logger.info(f"Claude API initialized with model: {model}")
-        except Exception as e:
-            logger.error(f"Failed to initialize Claude API: {e}")
-            state.errors.append(f"API initialization failed: {e}")
-            return state
+    # Initialize Claude researcher
+    try:
+        researcher = ClaudeResearcher(model=model)
+        logger.info(f"Claude API initialized with model: {model}")
+    except Exception as e:
+        logger.error(f"Failed to initialize Claude API: {e}")
+        state.errors.append(f"API initialization failed: {e}")
+        return state
 
     # Get skip threshold
     thresholds = load_decision_thresholds()
@@ -602,30 +610,23 @@ def execute_research(bank_id: str, phase: int,
         # Generate evidence prompt
         evidence_prompt = generate_evidence_prompt(bank_config, tier, all_evidence_text)
 
-        if live and researcher:
-            try:
-                # Execute live search
-                logger.info(f"  Executing web search...")
-                evidence_response = researcher.research_with_web_search(evidence_prompt)
+        try:
+            # Execute live search
+            logger.info(f"  Executing web search...")
+            evidence_response = researcher.research_with_web_search(evidence_prompt)
 
-                # Save raw response
-                evidence_file = bank_dir / "1-evidence" / f"tier{tier}-evidence.md"
-                evidence_file.write_text(f"# Tier {tier} Evidence: {bank_name}\n\n{evidence_response}", encoding='utf-8')
-                logger.info(f"  Saved to {evidence_file.name}")
-
-                all_evidence_text += f"\n\n## Tier {tier} Evidence\n{evidence_response}"
-                state.highest_tier = tier
-
-            except Exception as e:
-                logger.error(f"  Error in Tier {tier}: {e}")
-                state.errors.append(f"Tier {tier} error: {e}")
-                continue
-        else:
-            # Simulation mode
-            logger.info(f"  [SIMULATION] Would execute evidence search")
+            # Save raw response
             evidence_file = bank_dir / "1-evidence" / f"tier{tier}-evidence.md"
-            evidence_file.write_text(f"# Tier {tier} Evidence: {bank_name}\n\n[Simulated - prompt would be executed]\n", encoding='utf-8')
+            evidence_file.write_text(f"# Tier {tier} Evidence: {bank_name}\n\n{evidence_response}", encoding='utf-8')
+            logger.info(f"  Saved to {evidence_file.name}")
+
+            all_evidence_text += f"\n\n## Tier {tier} Evidence\n{evidence_response}"
             state.highest_tier = tier
+
+        except Exception as e:
+            logger.error(f"  Error in Tier {tier}: {e}")
+            state.errors.append(f"Tier {tier} error: {e}")
+            continue
 
         state.stages_completed.append(f'tier{tier}_evidence')
 
@@ -634,28 +635,23 @@ def execute_research(bank_id: str, phase: int,
 
         bayesian_prompt = generate_bayesian_prompt(state, all_evidence_text, tier)
 
-        if live and researcher:
-            try:
-                bayesian_response = researcher.analyze(bayesian_prompt)
+        try:
+            bayesian_response = researcher.analyze(bayesian_prompt)
 
-                # Parse probability
-                new_prob = parse_probability_from_response(bayesian_response)
-                if new_prob is not None:
-                    state.probability_architect = new_prob
-                    state.probability_pragmatist = 100 - new_prob
-                    logger.info(f"  Updated P(ARCHITECT): {new_prob:.1f}%")
+            # Parse probability
+            new_prob = parse_probability_from_response(bayesian_response)
+            if new_prob is not None:
+                state.probability_architect = new_prob
+                state.probability_pragmatist = 100 - new_prob
+                logger.info(f"  Updated P(ARCHITECT): {new_prob:.1f}%")
 
-                # Save response
-                bayesian_file = bank_dir / "2-bayesian" / f"post-tier{tier}-update.md"
-                bayesian_file.write_text(f"# Bayesian Update: Post Tier {tier}\n\n{bayesian_response}", encoding='utf-8')
-
-            except Exception as e:
-                logger.error(f"  Bayesian error: {e}")
-                state.errors.append(f"Bayesian T{tier} error: {e}")
-        else:
-            logger.info(f"  [SIMULATION] Would calculate Bayesian update")
+            # Save response
             bayesian_file = bank_dir / "2-bayesian" / f"post-tier{tier}-update.md"
-            bayesian_file.write_text(f"# Bayesian Update: Post Tier {tier}\n\n[Simulated]\n", encoding='utf-8')
+            bayesian_file.write_text(f"# Bayesian Update: Post Tier {tier}\n\n{bayesian_response}", encoding='utf-8')
+
+        except Exception as e:
+            logger.error(f"  Bayesian error: {e}")
+            state.errors.append(f"Bayesian T{tier} error: {e}")
 
         state.stages_completed.append(f'bayesian_t{tier}')
 
@@ -691,30 +687,24 @@ def execute_research(bank_id: str, phase: int,
 
     adversarial_prompt = generate_adversarial_prompt(state, all_evidence_text)
 
-    if live and researcher:
-        try:
-            adversarial_response = researcher.research_with_web_search(adversarial_prompt)
+    try:
+        adversarial_response = researcher.research_with_web_search(adversarial_prompt)
 
-            # Parse verdict
-            verdict, adjustment = parse_verdict_from_response(adversarial_response)
-            state.adversarial_verdict = verdict
-            state.confidence = max(0, min(100, state.confidence + adjustment))
+        # Parse verdict
+        verdict, adjustment = parse_verdict_from_response(adversarial_response)
+        state.adversarial_verdict = verdict
+        state.confidence = max(0, min(100, state.confidence + adjustment))
 
-            logger.info(f"  Verdict: {verdict}, Adjustment: {adjustment:+d}%")
+        logger.info(f"  Verdict: {verdict}, Adjustment: {adjustment:+d}%")
 
-            # Save response
-            verdict_file = bank_dir / "4-adversarial" / "verdict.md"
-            verdict_file.write_text(f"# Adversarial Verdict: {bank_name}\n\n{adversarial_response}", encoding='utf-8')
-
-        except Exception as e:
-            logger.error(f"  Adversarial error: {e}")
-            state.errors.append(f"Adversarial error: {e}")
-            state.adversarial_verdict = "SUSTAINED"
-    else:
-        logger.info(f"  [SIMULATION] Would execute adversarial challenge")
-        state.adversarial_verdict = "SUSTAINED"
+        # Save response
         verdict_file = bank_dir / "4-adversarial" / "verdict.md"
-        verdict_file.write_text(f"# Adversarial Verdict: {bank_name}\n\n[Simulated]\n", encoding='utf-8')
+        verdict_file.write_text(f"# Adversarial Verdict: {bank_name}\n\n{adversarial_response}", encoding='utf-8')
+
+    except Exception as e:
+        logger.error(f"  Adversarial error: {e}")
+        state.errors.append(f"Adversarial error: {e}")
+        state.adversarial_verdict = "SUSTAINED"
 
     state.stages_completed.append('adversarial')
     state.completed_at = datetime.now(timezone.utc).isoformat()
@@ -737,14 +727,12 @@ def execute_research(bank_id: str, phase: int,
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser(description="CDM Research Executor")
+    parser = argparse.ArgumentParser(description="CDM Research Executor - Live Research Only")
     parser.add_argument('--bank', required=True, help="Bank ID to research")
     parser.add_argument('--phase', type=int, required=True, help="Phase number")
-    parser.add_argument('--live', action='store_true', help="Use Claude API for live research")
-    parser.add_argument('--dry-run', action='store_true', help="Generate prompts without executing")
-    parser.add_argument('--model', default="claude-sonnet-4-20250514",
-                        help="Claude model (default: claude-sonnet-4-20250514)")
-    parser.add_argument('--show-prompts', action='store_true', help="Print generated prompts")
+    parser.add_argument('--model', default="claude-opus-4-5-20250101",
+                        help="Claude model (default: claude-opus-4-5-20250101)")
+    parser.add_argument('--show-prompts', action='store_true', help="Print generated prompts without executing")
 
     args = parser.parse_args()
 
@@ -760,7 +748,6 @@ def main():
     state = execute_research(
         args.bank,
         args.phase,
-        live=args.live and not args.dry_run,
         model=args.model
     )
 

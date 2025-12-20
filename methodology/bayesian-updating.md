@@ -124,6 +124,85 @@ The likelihood ratio (LR) represents how much more likely you are to see this ev
 
 ---
 
+## Independence Assessment
+
+### Why Independence Matters
+
+The standard Bayesian updating formula (multiplying LRs) assumes evidence is **independent**. When evidence is correlated, multiplying LRs overstates the combined weight. This section provides guidance on identifying and adjusting for non-independent evidence.
+
+**Reference**: ENFSI 2016 and Titterington (1984) recommend weight reduction for non-independent evidence.
+
+### When Evidence is NOT Independent
+
+Evidence is correlated when any of the following apply:
+
+| Scenario | Example | Independence Level |
+|----------|---------|-------------------|
+| Same original source | Two articles citing the same press release | Highly correlated |
+| Causal chain | Conference presentation → trade press coverage of same talk | Highly correlated |
+| Same author/analyst | Multiple articles by same journalist | Partially correlated |
+| Vendor + bank confirmation | Vendor claims bank as client, bank confirms same initiative | Partially correlated |
+| Same event, different outlets | Multiple outlets covering same announcement | Partially correlated |
+| Different events, same topic | Separate CDM mentions at different times | Independent |
+
+### Adjustment Formula
+
+For non-independent evidence pairs, apply the following adjustments:
+
+| Independence Level | Adjustment Formula | Example |
+|-------------------|-------------------|---------|
+| **Fully independent** | LR₁ × LR₂ | Two separate announcements → 14 × 5 = 70 |
+| **Partially correlated** | LR₁ × √LR₂ | Vendor + bank confirm same → 14 × √5 = 31.3 |
+| **Highly correlated** | max(LR₁, LR₂) | Two articles, same source → max(14, 5) = 14 |
+
+**Rationale**: The square root adjustment (w=0.5) follows forensic science standards for correlated evidence. Using the maximum for highly correlated evidence prevents double-counting.
+
+### Independence Assessment Template
+
+When combining evidence, document independence:
+
+```markdown
+## Independence Assessment
+
+| Evidence Pair | Relationship | Independence Level | Adjustment |
+|---------------|--------------|-------------------|------------|
+| E001 + E002 | Different events | Independent | LR₁ × LR₂ |
+| E003 + E004 | Same press release | Highly correlated | max(LR₃, LR₄) |
+| E005 + E006 | Vendor + bank confirm | Partial | LR₅ × √LR₆ |
+
+**Adjusted Combined LR Calculation:**
+- Independent pairs: [calculation]
+- Correlated adjustments: [calculation]
+- Final Combined LR: [result]
+```
+
+### Worked Example: Correlated Evidence
+
+**Scenario**: Found three pieces of evidence for Deutsche Bank:
+- E001: FINOS press release naming DB as contributor (LR = 13)
+- E002: Trade press article citing the same FINOS press release (LR = 15)
+- E003: Separate conference presentation 6 months later (LR = 5)
+
+**Independence Assessment**:
+- E001 + E002: Highly correlated (same source) → use max(13, 15) = 15
+- E001/E002 + E003: Independent (different events) → multiply
+
+**Calculation**:
+- Combined LR = 15 × 5 = 75 (not 13 × 15 × 5 = 975)
+
+**Impact**: Without independence adjustment, LR would be overstated by 13×.
+
+### Common Independence Traps
+
+| Trap | Description | Solution |
+|------|-------------|----------|
+| **Press echo** | Multiple outlets repeating same story | Use max LR, not product |
+| **Vendor marketing** | Same claim in multiple vendor materials | Count as single source |
+| **Conference cascade** | Same presentation cited in slides + press + blog | Count as single event |
+| **Annual report + press release** | Bank's own materials repeating same claim | Count as single source |
+
+---
+
 ## Posterior Calculation
 
 ### Step-by-Step Process
@@ -279,3 +358,110 @@ If your posterior ≈ your prior despite substantial searching, verify:
 4. **Subjectivity in prior:** Prior adjustments are subjective. Document your reasoning so it can be reviewed.
 
 5. **This is a tool, not a replacement for judgment:** The Bayesian framework structures thinking but doesn't eliminate the need for analytical judgment.
+
+---
+
+## Extended Hypothesis Space (Optional)
+
+### Purpose
+
+The standard binary framework (ARCHITECT vs PRAGMATIST) may be insufficient for nuanced analysis. This section provides guidance for expanding to a 4-way hypothesis space when needed.
+
+**Reference**: Denzin's theoretical triangulation principle recommends considering multiple theoretical lenses.
+
+### When to Use Extended Hypotheses
+
+Consider 4-way classification when:
+
+| Condition | Example |
+|-----------|---------|
+| Evidence of past engagement but no current activity | Bank contributed to 2020 pilot but no 2024-2025 activity |
+| Explicit statements about CDM strategy | Bank publicly stated evaluation but no commitment |
+| Need to distinguish "waiting" from "rejected" | Different implications for future engagement |
+| Trajectory analysis is critical | Understanding direction of travel matters |
+
+### Extended Hypothesis Definitions
+
+| Hypothesis | Description | Observable Indicators | Base Prior |
+|------------|-------------|----------------------|------------|
+| **ARCHITECT-Active** | Currently building or deploying CDM | Recent commits, active pilot, production timeline | 15% |
+| **ARCHITECT-Dormant** | Past engagement, current status unclear | Historical contributions, no recent activity | 15% |
+| **PRAGMATIST-Interested** | Watching CDM, not currently investing | Working group observer, no technical commitment | 40% |
+| **PRAGMATIST-Opposed** | Explicitly rejected or deprioritized CDM | Public statements, vendor-only commitment | 30% |
+
+### Likelihood Ratios for Extended Space
+
+When using 4-way classification, adjust LRs as follows:
+
+**Strong Active Signals** (shift toward ARCHITECT-Active):
+
+| Evidence | LR vs Dormant | LR vs Interested | LR vs Opposed |
+|----------|---------------|------------------|---------------|
+| Production announcement (current year) | 20 | 50 | 100 |
+| Active pilot with timeline | 10 | 25 | 50 |
+| Recent conference speaker (CDM topic) | 5 | 10 | 20 |
+| CDM job posting (current) | 3 | 8 | 15 |
+
+**Dormancy Signals** (shift toward ARCHITECT-Dormant):
+
+| Evidence | LR vs Active | LR vs Interested | LR vs Opposed |
+|----------|--------------|------------------|---------------|
+| Historical pilot, no recent activity | 0.2 | 3 | 5 |
+| Past contributions, not current maintainer | 0.3 | 2 | 4 |
+| Old conference presentations only | 0.4 | 2 | 3 |
+
+**Opposition Signals** (shift toward PRAGMATIST-Opposed):
+
+| Evidence | LR vs Active | LR vs Dormant | LR vs Interested |
+|----------|--------------|---------------|------------------|
+| Official rejection statement | 0.01 | 0.1 | 0.2 |
+| Announced vendor-only approach | 0.05 | 0.2 | 0.3 |
+| Explicit deprioritization | 0.1 | 0.3 | 0.4 |
+
+### Collapsing Back to Binary
+
+After analysis, collapse to binary for final classification:
+
+| 4-Way Hypothesis | Binary Mapping | Variant |
+|------------------|----------------|---------|
+| ARCHITECT-Active | ARCHITECT | Leader or Native |
+| ARCHITECT-Dormant | ARCHITECT | Follower |
+| PRAGMATIST-Interested | PRAGMATIST | Network-Accelerant |
+| PRAGMATIST-Opposed | PRAGMATIST | Vendor-Dependent or Traditional |
+
+### Extended Analysis Template
+
+```markdown
+## Extended Hypothesis Analysis: [BANK NAME]
+
+### Prior Probabilities (4-Way)
+- P(ARCHITECT-Active) = [X]%
+- P(ARCHITECT-Dormant) = [X]%
+- P(PRAGMATIST-Interested) = [X]%
+- P(PRAGMATIST-Opposed) = [X]%
+
+### Evidence Assessment
+| Evidence | Active LR | Dormant LR | Interested LR | Opposed LR |
+|----------|-----------|------------|---------------|------------|
+| [E001] | [X] | [X] | [X] | [X] |
+| [E002] | [X] | [X] | [X] | [X] |
+
+### Posterior Probabilities
+- P(ARCHITECT-Active | E) = [X]%
+- P(ARCHITECT-Dormant | E) = [X]%
+- P(PRAGMATIST-Interested | E) = [X]%
+- P(PRAGMATIST-Opposed | E) = [X]%
+
+### Binary Collapse
+- P(ARCHITECT) = Active + Dormant = [X]%
+- P(PRAGMATIST) = Interested + Opposed = [X]%
+
+### Classification
+**4-Way**: [Highest probability hypothesis]
+**Binary**: [ARCHITECT/PRAGMATIST]
+**Variant**: [Specific variant]
+```
+
+---
+
+_Last Updated: 2025-12-20_

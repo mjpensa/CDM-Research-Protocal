@@ -49,26 +49,57 @@ Sanity check: Moved from 40% to 79% Architect. Large shift but justified by stro
 
 ## Input You Will Receive
 
+### Primary Input: evidence.json (Ledger-First)
+
+Per CLAUDE.md Ledger-First mandate, read evidence from JSON directly:
+
+- **File location**: `outputs/phase-[N]/[bank_id]/evidence.json`
+- **Schema**: See `templates/evidence-schema.json`
+
+**Key fields per evidence item**:
+```json
+{
+  "id": "BANK-001",
+  "claim": "Description of finding",
+  "tier": 1,
+  "claim_type": "pilot_or_poc",
+  "direction": "SUPPORTS_ARCHITECT",
+  "quality_assessment": {
+    "authority": "HIGH",
+    "recency": "current",
+    "specificity": "specific"
+  },
+  "lr_mapping": {
+    "evidence_type": "official_pilot_with_timeline",
+    "likelihood_ratio": 27.0
+  }
+}
+```
+
+**Note**: If evidence items already include `lr_mapping`, use the pre-assigned LR. If not, look up from `config/bayesian-lr-tables.json`.
+
+### Other Inputs
+
 1. **Prior Probability** (from previous stage or initial assessment):
    - P(Architect) = X%
    - P(Pragmatist) = Y%
    - Prior Odds = X / Y
 
-2. **Evidence Blocks** (from Evidence Gatherer):
-   - File location: `outputs/phase-[N]/[bank_id]/1-evidence/tier[N]-evidence.md`
-   - Each evidence block with Source, Date, Finding, Quality Assessment
-
-3. **Null Results** (from Evidence Gatherer):
-   - File location: `outputs/phase-[N]/[bank_id]/1-evidence/null-results.md`
+2. **Null Results** (from evidence.json `null_results` array):
    - Categories where exhaustive search yielded no results
+   - Each includes `informative_absence` flag and `implication`
 
-4. **LR Lookup Tables**:
+3. **LR Lookup Tables**:
    - File location: `config/bayesian-lr-tables.json`
    - Tier 1/2/3 evidence LRs
    - Absence evidence LRs
    - Prior adjustment rules
 
-5. **Current Tier**: Which evidence tier you're updating after (1, 2, or 3)
+4. **Current Tier**: Which evidence tier you're updating after (1, 2, or 3)
+
+5. **Contradiction Resolution** (if exists):
+   - File location: `outputs/phase-[N]/[bank_id]/3-gates/contradiction-resolution.md`
+   - Contains resolution outcomes and confidence adjustments
 
 ---
 
@@ -462,6 +493,49 @@ If Evidence Gatherer flagged contradictions:
 - DO NOT include in LR calculation if >3 years old
 - Note in interpretation: "[BANK-XXX] is historical context only, not included in calculation"
 - Exception: If used to establish trajectory (e.g., 2018 pilot → current status)
+
+---
+
+## Contradiction Handling
+
+If `contradiction-resolution.md` exists in the bank's `3-gates/` directory, you MUST integrate the resolution outcomes into your Bayesian update.
+
+### Reading Contradiction Resolution
+
+1. Check for file: `outputs/phase-[N]/[bank_id]/3-gates/contradiction-resolution.md`
+2. If exists, read the resolution outcomes for each contradiction
+3. Apply appropriate LR adjustments based on resolution type
+
+### LR Adjustments for Contradictions
+
+| Resolution Type | LR Adjustment | Rationale |
+|-----------------|---------------|-----------|
+| **Resolved (Temporal)** | No adjustment | Use most recent source only |
+| **Resolved (Definitional)** | No adjustment | Both valid under different definitions |
+| **Resolved (Factual)** | Reduce superseded source LR by ×0.5 | Source credibility diminished |
+| **Unresolved** | Apply penalty LR of 0.7 | Uncertainty persists |
+
+### Documentation in Output
+
+If contradictions were handled, add this section to `post-tier[N]-update.md`:
+
+```markdown
+## Contradiction Adjustments
+
+| Contradiction | Resolution | Adjustment Applied |
+|--------------|------------|-------------------|
+| [E001 vs E003] | Temporal - E003 newer | E001 excluded from calculation |
+| [E002 vs E005] | Unresolved | Applied penalty LR = 0.7 |
+
+Total contradiction penalty applied: [LR factor or "None"]
+```
+
+### Impact on Confidence
+
+Unresolved contradictions ALWAYS reduce final confidence:
+- 1 unresolved contradiction: -5% confidence
+- 2+ unresolved contradictions: -10% confidence
+- Document in Confidence Cap Assessment section
 
 ---
 

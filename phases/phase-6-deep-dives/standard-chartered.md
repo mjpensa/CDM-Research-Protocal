@@ -195,7 +195,7 @@ Save to:
 
 ---
 
-## Time Budget: 2-3 hours (Tier B Standard Protocol)
+## Time Budget: 2-3 hours (Full Protocol)
 
 ---
 

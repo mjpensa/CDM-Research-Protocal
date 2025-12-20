@@ -161,7 +161,7 @@ After research, compare:
 ## Output Requirements
 
 Complete:
-1. /templates/per-bank-output.md (can abbreviate some sections for Tier B)
+1. /templates/per-bank-output.md (full protocol)
 2. /templates/framework-integration.md
 
 Save to:
@@ -170,7 +170,7 @@ Save to:
 
 ---
 
-## Time Budget: 2-3 hours (Tier B Standard Protocol)
+## Time Budget: 2-3 hours (Full Protocol)
 
 | Pass | Activity | Est. Time |
 |------|----------|-----------|

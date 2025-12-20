@@ -77,6 +77,22 @@ def load_source_authority() -> dict:
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+@lru_cache(maxsize=1)
+def load_api_config() -> dict:
+    """Load api-config.json with caching."""
+    path = CONFIG_DIR / "api-config.json"
+    if not path.exists():
+        # Return sensible defaults if config doesn't exist
+        return {
+            "model": {"primary": "claude-opus-4-5-20250101", "fallback": "claude-sonnet-4-20250514"},
+            "retry": {"max_retries": 3, "retry_delay_seconds": 5, "exponential_backoff": True, "max_delay_seconds": 60},
+            "timeouts": {"request_timeout_seconds": 300},
+            "rate_limiting": {"requests_per_minute": 50, "concurrent_requests": 3},
+            "tools": {"web_search_enabled": True, "web_search_tool_name": "web_search_20250305"}
+        }
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
 # --- CONVENIENCE ACCESSORS ---
 
 def get_confidence_caps() -> dict:
@@ -235,6 +251,50 @@ def get_vendor_domains() -> list:
     return cfg.get('vendor_domains', [])
 
 
+def get_api_model() -> str:
+    """Returns the primary Claude model to use."""
+    cfg = load_api_config()
+    return cfg.get('model', {}).get('primary', 'claude-opus-4-5-20250101')
+
+
+def get_api_fallback_model() -> str:
+    """Returns the fallback Claude model."""
+    cfg = load_api_config()
+    return cfg.get('model', {}).get('fallback', 'claude-sonnet-4-20250514')
+
+
+def get_api_retry_config() -> dict:
+    """
+    Returns retry configuration.
+    Example: {'max_retries': 3, 'retry_delay_seconds': 5, 'exponential_backoff': True}
+    """
+    cfg = load_api_config()
+    return cfg.get('retry', {
+        'max_retries': 3,
+        'retry_delay_seconds': 5,
+        'exponential_backoff': True,
+        'max_delay_seconds': 60
+    })
+
+
+def get_api_timeout() -> int:
+    """Returns request timeout in seconds."""
+    cfg = load_api_config()
+    return cfg.get('timeouts', {}).get('request_timeout_seconds', 300)
+
+
+def get_api_rate_limits() -> dict:
+    """
+    Returns rate limiting configuration.
+    Example: {'requests_per_minute': 50, 'concurrent_requests': 3}
+    """
+    cfg = load_api_config()
+    return cfg.get('rate_limiting', {
+        'requests_per_minute': 50,
+        'concurrent_requests': 3
+    })
+
+
 def get_maturity_weights() -> dict:
     """
     Returns claim_type to maturity weight mapping.
@@ -326,6 +386,7 @@ def clear_config_cache():
     load_source_authority.cache_clear()
     load_vendor_matrix.cache_clear()
     load_bank_manifest.cache_clear()
+    load_api_config.cache_clear()
 
 
 # --- MAIN (for testing) ---

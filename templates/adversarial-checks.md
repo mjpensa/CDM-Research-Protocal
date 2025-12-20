@@ -6,11 +6,9 @@ Adversarial thinking is critical to producing reliable classifications. This tem
 
 ---
 
-## Full Adversarial Challenge (Tier A Banks)
+## Full Adversarial Challenge
 
-Use for: Deutsche Bank, Société Générale, UBS, Barclays, HSBC
-
-Estimated time: 30-45 minutes
+**Applies to ALL banks universally.**
 
 ```markdown
 ## FULL ADVERSARIAL CHALLENGE: [BANK NAME]
@@ -153,108 +151,6 @@ Impact: [Does this undermine PRAGMATIST classification?]
 
 **Key Uncertainty Surfaced by Adversarial:**
 [What is the most important thing the adversarial process revealed?]
-```
-
----
-
-## Abbreviated Adversarial (Tier B Banks)
-
-Use for: Japanese megabanks, UK regional banks, Phase 6 deep-dives
-
-Estimated time: 15-20 minutes
-
-```markdown
-## ABBREVIATED ADVERSARIAL: [BANK NAME]
-
-### Classification Under Challenge
-Classification: [POSTURE-VARIANT]
-Confidence: [X]%
-
----
-
-### Counter-Argument Construction
-
-"The single strongest argument against my classification is:
-
-[Write 3-5 sentences presenting the best counter-argument. Be specific and cite what evidence would need to exist or what interpretation would need to change.]"
-
-This argument is:
-[ ] Compelling — I need to address this
-[ ] Somewhat compelling — Worth noting as uncertainty
-[ ] Not compelling — Considered and rejected because: [reason]
-
----
-
-### Targeted Disconfirming Search
-
-The ONE search most likely to disprove my classification:
-
-Search query: [Write query]
-Result: [Document finding or null]
-Impact on classification: [None / Minor / Significant]
-
----
-
-### Confidence Adjustment
-
-| Factor | Adjustment |
-|--------|------------|
-| Counter-argument strength | [+/- X]% |
-| Disconfirming search result | [+/- X]% |
-| **Net adjustment** | [+/- X]% |
-
-**Post-Adversarial Confidence:** [X]% (was [Y]%)
-
----
-
-### Uncertainty Flag
-
-Based on adversarial challenge, the key uncertainty for this bank is:
-[Write 1-2 sentences]
-
-This should be flagged in final output: [ ] Yes [ ] No
-```
-
----
-
-## Single Adversarial Question (Tier C Banks)
-
-Use for: Other European banks, Spanish banks, Emerging market banks
-
-Estimated time: 5 minutes
-
-```markdown
-## SINGLE ADVERSARIAL: [BANK NAME]
-
-### Classification: [POSTURE-VARIANT] at [X]% confidence
-
-### The Adversarial Question
-
-"What is ONE thing that, if true, would make this classification WRONG?"
-
-Answer: [Write 1-2 sentences identifying the key vulnerability]
-
----
-
-### Verification
-
-Did I check for this during research?
-
-[ ] **YES** — Result: [What I found]
-    → Impact: [None / Classification adjusted]
-
-[ ] **NO** — Flag as: [Key uncertainty to document]
-    → Should I search now? [ ] Yes (execute) / [ ] No (document gap)
-
----
-
-### Confidence Impact
-
-Adversarial question changes confidence: [ ] Yes: [X]% → [Y]% / [ ] No
-
-### Output Note
-
-Include in uncertainties section: [ ] Yes / [ ] No
 ```
 
 ---

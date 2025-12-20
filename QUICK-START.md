@@ -63,9 +63,9 @@ cdm-research-protocol/
 
 **Purpose**: Validate entire system on one bank before full rollout
 
-**Bank**: Deutsche Bank (Tier A - most rigorous protocol)
+**Bank**: Deutsche Bank
 
-**Time**: ~1.5 hours
+**Time**: ~4-6 hours (full protocol)
 
 **What It Does**:
 1. Spawns 6 agents in sequence for Deutsche Bank

@@ -28,7 +28,7 @@ All probability thresholds and decision rules are centralized in configuration f
 - `workflow_decisions.skip_to_adversarial.threshold` (currently 80%)
 - `workflow_decisions.low_confidence_block.threshold` (currently 50%)
 - `workflow_decisions.uncertainty_range` (currently 40-60%)
-- `confidence_caps` (tier-based maximum confidence values)
+- `confidence_caps` (maximum confidence values by evidence tier)
 
 ---
 
@@ -144,7 +144,7 @@ For each bank, execute stages in this order:
     ↓
 11. REASONING GATE 3 (auto-proceed)
     ↓
-12. ADVERSARIAL CHALLENGE (tier-appropriate)
+12. ADVERSARIAL CHALLENGE (full protocol)
     ↓
 13. CHECKPOINT: Major Contradiction? → BLOCK if yes
     ↓
@@ -170,7 +170,6 @@ For each bank, execute stages in this order:
 **Input**:
 - Bank configuration from `config/bank-manifest.json`
 - Current tier (1, 2, or 3)
-- Execution tier (A, B, or C) for search depth
 
 **Spawn**:
 ```
@@ -221,7 +220,6 @@ Enable thinking mode
 - Current stage (pre-mortem, gate-1, gate-2, gate-3)
 - Evidence gathered so far
 - Current probability
-- Execution tier (determines gate depth)
 
 **Spawn**:
 ```
@@ -251,39 +249,24 @@ Enable thinking mode
 - All evidence gathered
 - Current classification leaning
 - Current probability
-- Execution tier (A = Full, B = Abbreviated, C = Single)
 
 **Spawn**:
 ```
 Task tool, subagent_type="general-purpose", model="opus"
-Prompt: "Execute [tier-appropriate] adversarial challenge for [bank-name]..."
+Prompt: "Execute full adversarial challenge for [bank-name]..."
 Enable thinking mode
 ```
 
-**Output Expected**:
-
-**Tier A Banks (Full Adversarial):**
+**Output Expected** (ALL banks):
 
 - `outputs/phase-[N]/[bank_id]/4-adversarial/counter-case.md`
 - `outputs/phase-[N]/[bank_id]/4-adversarial/disconfirming-searches.md`
 - `outputs/phase-[N]/[bank_id]/4-adversarial/steelman.md`
 - `outputs/phase-[N]/[bank_id]/4-adversarial/verdict.md`
 
-**Tier B Banks (Abbreviated):**
-
-- `outputs/phase-[N]/[bank_id]/4-adversarial/counter-case.md`
-- `outputs/phase-[N]/[bank_id]/4-adversarial/disconfirming-searches.md`
-- `outputs/phase-[N]/[bank_id]/4-adversarial/verdict.md`
-
-**Tier C Banks (Single Question):**
-
-- `outputs/phase-[N]/[bank_id]/4-adversarial/verdict.md`
-
 **Validation After**:
 
-- **Tier A**: Verify 4 files present (counter-case, disconfirming-searches, steelman, verdict)
-- **Tier B**: Verify 3 files present (counter-case, disconfirming-searches, verdict)
-- **Tier C**: Verify 1 file present (verdict)
+- Verify all 4 files present (counter-case, disconfirming-searches, steelman, verdict)
 - Check verdict (STRENGTHENED / UNCHANGED / WEAKENED / REVISED)
 
 **Decision Point**:
@@ -438,10 +421,12 @@ If fail → WARNING
 
 ### Adversarial Completeness Check
 ```
-Tier A: counter-case (4 parts), disconfirming-searches (3), steelman, verdict (5 questions)
-Tier B: counter-case, disconfirming-searches (1), verdict
-Tier C: verdict (single question)
-If incomplete for tier → BLOCK
+Required for ALL banks:
+- counter-case.md (4 parts)
+- disconfirming-searches.md (3 searches)
+- steelman.md
+- verdict.md (5 robustness questions)
+If incomplete → BLOCK
 ```
 
 ---
@@ -459,10 +444,7 @@ Execute phases sequentially: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 ### Bank Execution Within Phase
 
-**Execution Tier Constraints**:
-- Tier A banks: Run one at a time (require full attention)
-- Tier B banks: Can run up to 2 in parallel
-- Tier C banks: Can run up to 3 in parallel
+**Execution Standard**: All banks receive full protocol. Run one bank at a time to ensure complete analytical attention.
 
 **Recommended Order (Phase 1 example)**:
 1. Barclays (known baseline)

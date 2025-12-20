@@ -37,7 +37,40 @@ You receive:
 
 ## Your Task
 
-Create TWO output files:
+Create THREE output files in the following ORDER:
+
+### 0. Confidence Calibration (REQUIRED FIRST)
+
+**CRITICAL**: You MUST create this file BEFORE assessment.md.
+
+**File**: `outputs/phase-[N]/[bank_id]/5-synthesis/confidence-calibration.md`
+**Template**: `templates/confidence-calibration-output.md`
+
+The confidence value calculated here MUST be used in assessment.md. This ensures an auditable confidence calculation trail.
+
+**Steps**:
+1. Read trust_audit results from evidence.json (`trust_metrics` field)
+2. Identify highest evidence tier present
+3. Apply 6-step calibration from methodology/confidence-calibration.md:
+   - Step 1: Maximum by tier cap
+   - Step 2: Corroboration adjustment
+   - Step 3: Contradiction adjustment
+   - Step 4: Adversarial survival adjustment
+   - Step 5: Coherence check adjustment
+   - Step 6: Final calculation with floor (20%) and ceiling (95%)
+4. Perform betting test (would you bet at the implied odds?)
+5. Document rationale
+6. Check cross-bank consistency
+
+**Inputs Required**:
+- `evidence.json` (evidence_items array with tier info)
+- `2-bayesian/post-tier*-update.md` (Bayesian posterior)
+- `4-adversarial/verdict.md` (adversarial challenge outcome)
+- `3-gates/contradiction-resolution.md` (if exists)
+
+**Validation**: The pipeline will verify that confidence-calibration.md exists and that its final confidence value matches assessment.md.
+
+---
 
 ### 1. Complete Assessment (597 lines)
 

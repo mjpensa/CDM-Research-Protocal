@@ -58,19 +58,43 @@
   },
 
   "temporal_thresholds": {
-    "description": "Evidence freshness boundaries for confidence weighting",
-    "current_days": 548,
+    "description": "Evidence freshness boundaries aligned with Tetlock superforecasting research",
+    "current_days": 365,
+    "recent_days": 548,
     "dated_days": 1095,
     "weights": {
       "current": 1.0,
-      "dated_low": 0.5,
-      "dated_high": 0.8,
-      "historical": 0.25
+      "recent": 0.8,
+      "dated": 0.5,
+      "historical": 0.3
     },
     "rationale": {
-      "current": "Evidence less than 18 months old receives full weight",
-      "dated": "Evidence 18-36 months old receives reduced weight (0.5-0.8)",
-      "historical": "Evidence over 3 years old provides context only (0.25 weight)"
+      "current": "Evidence less than 12 months old receives full weight (Tetlock-aligned)",
+      "recent": "Evidence 12-18 months old receives 0.8 weight (transitional)",
+      "dated": "Evidence 18-36 months old receives 0.5 weight",
+      "historical": "Evidence over 3 years old provides context only (0.3 weight)"
+    }
+  },
+
+  "calibration_targets": {
+    "description": "Targets for Brier score calibration tracking per methodology/calibration-tracking.md",
+    "brier_score_target": 0.20,
+    "brier_score_warning": 0.25,
+    "minimum_validations_for_assessment": 10,
+    "rationale": {
+      "target": "Good calibration benchmark (Tetlock superforecasters achieve ~0.14)",
+      "warning": "Approaching random chance (0.25 for binary predictions)",
+      "minimum": "Fewer than 10 validations is insufficient for reliable calibration assessment"
+    }
+  },
+
+  "abandon_thresholds": {
+    "description": "Thresholds for triggering ABANDON gate decision",
+    "max_null_results_before_abandon": 15,
+    "min_tiers_searched_before_abandon": 2,
+    "rationale": {
+      "null_results": "After 15 searches with no relevant evidence, consider abandoning",
+      "tiers": "Must complete at least Tier 1 and Tier 2 before abandoning"
     }
   },
 

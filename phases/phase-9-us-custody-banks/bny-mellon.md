@@ -94,7 +94,7 @@
 
 ---
 
-## Single Adversarial Question (Tier C Protocol)
+## Single Adversarial Question (Full Protocol)
 
 **Question:** Does BNY Mellon's market infrastructure role (clearing, settlement) create CDM engagement, or is CDM irrelevant to custody business model?
 

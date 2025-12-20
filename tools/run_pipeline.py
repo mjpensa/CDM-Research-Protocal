@@ -30,6 +30,7 @@ from markdown_to_json import convert_bank_directory
 from markdown_parser import validate_bank_outputs, parse_bayesian_file, parse_evidence_file
 from bayesian_calculator import BayesianCalculator
 from url_validator import validate_bank_urls
+from render_evidence_md import render_all as render_evidence_markdown
 
 # --- LOGGING ---
 logging.basicConfig(
@@ -75,7 +76,14 @@ def check_negative_facts(bank_id: str) -> list:
 
 def ensure_evidence_json(bank_dir: Path) -> Path:
     """
-    Ensure evidence.json exists for a bank. Convert from Markdown if needed.
+    Ensure evidence.json exists for a bank.
+
+    Per CLAUDE.md Ledger-First mandate:
+    - evidence.json is the PRIMARY output (source of truth)
+    - Markdown files are SECONDARY (rendered views)
+
+    This function checks for existing JSON first. Falls back to
+    Markdown conversion only for backward compatibility.
 
     Args:
         bank_dir: Path to bank directory (e.g., outputs/phase-1/deutsche-bank)
@@ -86,22 +94,29 @@ def ensure_evidence_json(bank_dir: Path) -> Path:
     json_path = bank_dir / 'evidence.json'
     evidence_dir = bank_dir / '1-evidence'
 
-    # Check if Markdown evidence files exist
+    # JSON-First: Check if evidence.json already exists and is valid
+    if json_path.exists():
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                existing_json = json.load(f)
+
+            # Check if JSON has valid structure (evidence_items array)
+            if 'evidence_items' in existing_json:
+                item_count = len(existing_json.get('evidence_items', []))
+                logger.info(f"Using existing evidence.json ({item_count} items)")
+                return json_path
+            else:
+                logger.warning(f"evidence.json missing evidence_items array, will attempt rebuild")
+        except json.JSONDecodeError as e:
+            logger.warning(f"Invalid JSON in evidence.json: {e}, will attempt rebuild")
+        except Exception as e:
+            logger.warning(f"Could not read evidence.json: {e}")
+
+    # Fallback: Check if Markdown evidence files exist (backward compatibility)
     md_exists = evidence_dir.exists() and any(evidence_dir.glob('tier*-evidence.md'))
 
-    # Determine if we need to create or refresh JSON
-    needs_create = not json_path.exists()
-
-    if json_path.exists() and md_exists:
-        # Check if any Markdown file is newer than the JSON
-        json_mtime = json_path.stat().st_mtime
-        md_files = list(evidence_dir.glob('tier*-evidence.md'))
-        if md_files:
-            md_mtime = max(f.stat().st_mtime for f in md_files)
-            needs_create = md_mtime > json_mtime
-
-    if md_exists and needs_create:
-        logger.info(f"Converting Markdown to JSON for {bank_dir.name}")
+    if md_exists:
+        logger.info(f"[FALLBACK] Converting Markdown to JSON for {bank_dir.name}")
         try:
             result = convert_bank_directory(bank_dir)
             json_path.write_text(json.dumps(result, indent=2), encoding='utf-8')
@@ -110,6 +125,37 @@ def ensure_evidence_json(bank_dir: Path) -> Path:
             logger.error(f"Failed to convert Markdown: {e}")
 
     return json_path
+
+
+def render_markdown_views(bank_dir: Path) -> dict:
+    """
+    Render Markdown views from evidence.json.
+
+    Per CLAUDE.md Ledger-First mandate:
+    - evidence.json is the PRIMARY output
+    - tier*-evidence.md and null-results.md are SECONDARY (rendered views)
+
+    Args:
+        bank_dir: Path to bank directory
+
+    Returns:
+        dict with rendering results
+    """
+    json_path = bank_dir / 'evidence.json'
+
+    if not json_path.exists():
+        return {'error': 'No evidence.json found', 'files_rendered': []}
+
+    try:
+        result = render_evidence_markdown(json_path)
+        if result.get('files_rendered'):
+            logger.info(f"Rendered {len(result['files_rendered'])} Markdown view(s)")
+            for f in result['files_rendered']:
+                logger.debug(f"  → {Path(f).name}")
+        return result
+    except Exception as e:
+        logger.error(f"Failed to render Markdown views: {e}")
+        return {'error': str(e), 'files_rendered': []}
 
 
 def validate_bayesian_calculations(bank_dir: Path) -> dict:
@@ -334,7 +380,7 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
 
     # Step 1: Process Evidence (URL verification)
     if not skip_verification:
-        logger.info("\n[1/3] Processing evidence (URL verification)...")
+        logger.info("\n[1/4] Processing evidence (URL verification)...")
         try:
             success = process_bank_evidence(str(json_path))
             result["steps"]["process_evidence"] = "success" if success else "failed"
@@ -348,11 +394,11 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
             logger.error(f"Pipeline failed at step 1: {e}")
             return result
     else:
-        logger.info("\n[1/3] Skipping URL verification (--skip-verification)")
+        logger.info("\n[1/4] Skipping URL verification (--skip-verification)")
         result["steps"]["process_evidence"] = "skipped"
 
     # Step 2: Trust Audit
-    logger.info("\n[2/3] Running trust audit...")
+    logger.info("\n[2/4] Running trust audit...")
     try:
         audit_result = run_trust_audit(str(json_path))
         result["steps"]["trust_audit"] = "success"
@@ -364,8 +410,23 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
         logger.error(f"Pipeline failed at step 2: {e}")
         return result
 
-    # Step 3: Render Report
-    logger.info("\n[3/3] Rendering report...")
+    # Step 3: Render Markdown Views (Ledger-First: JSON → Markdown)
+    logger.info("\n[3/4] Rendering Markdown views from evidence.json...")
+    try:
+        render_result = render_markdown_views(bank_dir)
+        if render_result.get('error'):
+            result["steps"]["render_markdown_views"] = f"warning: {render_result['error']}"
+            logger.warning(f"Markdown rendering issue: {render_result['error']}")
+        else:
+            files_count = len(render_result.get('files_rendered', []))
+            result["steps"]["render_markdown_views"] = f"success ({files_count} files)"
+    except Exception as e:
+        result["steps"]["render_markdown_views"] = f"warning: {e}"
+        logger.warning(f"Markdown rendering skipped: {e}")
+        # Non-fatal: continue pipeline even if rendering fails
+
+    # Step 4: Render Report
+    logger.info("\n[4/4] Rendering final report...")
     try:
         success = render_report(str(json_path))
         result["steps"]["render_report"] = "success" if success else "failed"

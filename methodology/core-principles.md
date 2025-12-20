@@ -66,9 +66,7 @@ This research protocol is built on six core principles that must guide all analy
 
 **Implementation:**
 - Mini-adversarial checkpoint after each evidence tier
-- Full adversarial pass for Tier A banks
-- Abbreviated adversarial for Tier B banks
-- Single adversarial question for Tier C banks
+- Full adversarial pass for ALL banks (3 disconfirming searches, steelman, 5 robustness questions)
 - Pre-mortem analysis before research begins
 
 ---

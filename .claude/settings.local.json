@@ -2,8 +2,9 @@
   "permissions": {
     "allow": [
       "*",
-      "Bash(tree:*)",
-      "Bash(python:*)"
+      "WebSearch",
+      "WebFetch",
+      "Bash"
     ]
   }
 }

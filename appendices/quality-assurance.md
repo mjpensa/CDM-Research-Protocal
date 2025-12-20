@@ -95,13 +95,10 @@ Complete BEFORE finalizing any bank assessment:
 ### Adversarial Survival
 
 ```markdown
-□ Completed appropriate adversarial challenge
-  - Tier A: Full adversarial [Y/N]
-  - Tier B: Abbreviated adversarial [Y/N]
-  - Tier C: Single question [Y/N]
+□ Completed full adversarial challenge [Y/N]
 
 □ Genuinely searched for disconfirming evidence
-  - Disconfirming searches executed: [X]
+  - Disconfirming searches executed: [3 required]
   - Disconfirming evidence found: [List or "None"]
 
 □ Considered alternative interpretation seriously

@@ -1,17 +1,134 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "CDM/DRR Evidence Documentation Schema v3.0",
-  "description": "Documents the structure of research outputs. Primary output format is Markdown; this schema serves as documentation, not strict validation.",
-  "version": "3.0",
-  "last_updated": "2025-12-19",
+  "title": "CDM/DRR Evidence Documentation Schema v3.1",
+  "description": "Documents the structure of research outputs. Primary output format is JSON (Ledger-First principle); Markdown files are rendered views for human readability.",
+  "version": "3.1",
+  "last_updated": "2025-12-20",
 
-  "output_format": "markdown",
-  "note": "This schema documents the expected structure of Markdown evidence files. JSON tooling (process_evidence.py, trust_audit.py) is available for optional advanced processing but not required for core workflow.",
+  "output_format": "json",
+  "note": "Per CLAUDE.md Ledger-First mandate: evidence.json is the PRIMARY output. Markdown tier*-evidence.md files are RENDERED from JSON. All downstream agents (Bayesian, Gates, Adversarial) read from evidence.json.",
+
+  "evidence_json_structure": {
+    "filename": "evidence.json",
+    "location": "outputs/phase-[N]/[bank_id]/",
+    "description": "Primary evidence ledger. Agent appends items after each tier; do not overwrite.",
+    "schema": {
+      "bank_id": {
+        "type": "string",
+        "description": "Lowercase hyphenated identifier (e.g., 'deutsche-bank')"
+      },
+      "bank_name": {
+        "type": "string",
+        "description": "Full display name (e.g., 'Deutsche Bank AG')"
+      },
+      "schema_version": {
+        "type": "string",
+        "default": "3.1"
+      },
+      "evidence_items": {
+        "type": "array",
+        "items": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z]+-[0-9]+$",
+            "description": "Evidence ID (e.g., 'BANK-001')"
+          },
+          "claim": {
+            "type": "string",
+            "description": "Description of the finding"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Full URL to source"
+          },
+          "tier": {
+            "type": "integer",
+            "enum": [1, 2, 3],
+            "description": "Evidence tier (1=Official, 2=Industry, 3=Indirect)"
+          },
+          "claim_type": {
+            "type": "string",
+            "enum": ["production_usage", "pilot_or_poc", "membership_or_participation", "open_source_contribution", "vendor_proxy_signal", "hiring_signal"],
+            "description": "Classification of claim type per CLAUDE.md Section 3"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Publication date (YYYY-MM-DD)"
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["SUPPORTS_ARCHITECT", "SUPPORTS_PRAGMATIST", "NEUTRAL"],
+            "description": "Which hypothesis this evidence supports"
+          },
+          "quality_assessment": {
+            "type": "object",
+            "properties": {
+              "authority": {"type": "string", "enum": ["HIGH", "MEDIUM", "LOW"]},
+              "recency": {"type": "string", "enum": ["current", "dated", "historical"]},
+              "specificity": {"type": "string", "enum": ["specific", "moderate", "vague"]}
+            }
+          },
+          "excerpt": {
+            "type": "string",
+            "description": "Exact quote from source"
+          },
+          "caveats": {
+            "type": "string",
+            "description": "Limitations or alternative interpretations"
+          },
+          "lr_mapping": {
+            "type": "object",
+            "description": "Likelihood ratio mapping for Bayesian updates",
+            "properties": {
+              "evidence_type": {
+                "type": "string",
+                "description": "Key from config/bayesian-lr-tables.json"
+              },
+              "likelihood_ratio": {
+                "type": "number",
+                "description": "LR value (>1 supports Architect, <1 supports Pragmatist)"
+              }
+            }
+          }
+        }
+      },
+      "null_results": {
+        "type": "array",
+        "items": {
+          "category": {"type": "string"},
+          "queries": {"type": "array", "items": {"type": "string"}},
+          "results_reviewed": {"type": "integer"},
+          "null_type": {"type": "string", "enum": ["NO_RESULTS", "IRRELEVANT", "PAYWALLED", "OUTDATED_ONLY"]},
+          "informative_absence": {"type": "boolean"},
+          "implication": {"type": "string"}
+        }
+      },
+      "meta": {
+        "type": "object",
+        "properties": {
+          "tier_completed": {"type": "integer", "description": "Highest tier completed (1, 2, or 3)"},
+          "generated_at": {"type": "string", "format": "date-time"},
+          "searches_executed": {"type": "integer"},
+          "evidence_hash": {"type": "string", "description": "SHA256 of evidence_items for integrity"}
+        }
+      }
+    }
+  },
+
+  "rendered_markdown_files": {
+    "description": "Markdown files are RENDERED from evidence.json for human readability. These are secondary outputs.",
+    "files": ["tier1-evidence.md", "tier2-evidence.md", "tier3-evidence.md", "null-results.md"],
+    "renderer": "tools/render_evidence_md.py"
+  },
 
   "evidence_file_structure": {
+    "_note": "These Markdown structures are RENDERED from evidence.json. They are secondary outputs for human readability.",
     "tier_evidence_md": {
       "filename_pattern": "tier[N]-evidence.md",
       "location": "outputs/phase-[N]/[bank_id]/1-evidence/",
+      "source": "Rendered from evidence.json by tools/render_evidence_md.py",
       "sections": [
         "# Tier [N] Evidence: [Bank Name]",
         "## Search Execution Summary",

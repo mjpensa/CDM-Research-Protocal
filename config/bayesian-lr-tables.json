@@ -61,39 +61,39 @@
     "description": "Official sources - Highest quality evidence",
     "evidence_types": {
       "official_production_announcement": {
-        "p_e_given_architect": 0.95,
-        "p_e_given_pragmatist": 0.01,
-        "lr": 95.0,
+        "p_e_given_architect": 0.98,
+        "p_e_given_pragmatist": 0.005,
+        "lr": 200.0,
         "interpretation": "Near-definitive Architect"
       },
       "official_pilot_announcement_with_timeline": {
         "p_e_given_architect": 0.80,
         "p_e_given_pragmatist": 0.03,
         "lr": 27.0,
-        "interpretation": "Very strong Architect"
+        "interpretation": "Moderate Architect"
       },
       "named_isda_press_release_contributor": {
         "p_e_given_architect": 0.70,
         "p_e_given_pragmatist": 0.05,
         "lr": 14.0,
-        "interpretation": "Strong Architect"
+        "interpretation": "Moderate Architect"
       },
       "named_finos_announcement": {
         "p_e_given_architect": 0.65,
         "p_e_given_pragmatist": 0.05,
         "lr": 13.0,
-        "interpretation": "Strong Architect"
+        "interpretation": "Moderate Architect"
       },
       "annual_report_mentions_cdm_initiative": {
         "p_e_given_architect": 0.60,
         "p_e_given_pragmatist": 0.08,
         "lr": 7.5,
-        "interpretation": "Moderate Architect"
+        "interpretation": "Weak-to-Moderate Architect"
       },
       "official_statement_no_cdm_plans": {
-        "p_e_given_architect": 0.02,
-        "p_e_given_pragmatist": 0.70,
-        "lr": 0.03,
+        "p_e_given_architect": 0.01,
+        "p_e_given_pragmatist": 0.80,
+        "lr": 0.0125,
         "interpretation": "Strong Pragmatist"
       },
       "announced_vendor_only_approach": {
@@ -112,19 +112,19 @@
         "p_e_given_architect": 0.75,
         "p_e_given_pragmatist": 0.05,
         "lr": 15.0,
-        "interpretation": "Strong Architect"
+        "interpretation": "Moderate Architect"
       },
       "conference_speaker_cdm_topic": {
         "p_e_given_architect": 0.50,
         "p_e_given_pragmatist": 0.10,
         "lr": 5.0,
-        "interpretation": "Moderate Architect"
+        "interpretation": "Weak Architect"
       },
       "named_working_group_membership": {
         "p_e_given_architect": 0.55,
         "p_e_given_pragmatist": 0.15,
         "lr": 3.7,
-        "interpretation": "Moderate Architect"
+        "interpretation": "Weak Architect"
       },
       "isda_agm_speaker_general": {
         "p_e_given_architect": 0.40,
@@ -191,7 +191,7 @@
         "p_e_given_architect": 0.15,
         "p_e_given_pragmatist": 0.70,
         "lr": 0.21,
-        "interpretation": "Moderate Pragmatist",
+        "interpretation": "Weak Pragmatist",
         "note": "Would expect to find Tier 1 evidence if Architect"
       },
       "no_evidence_after_exhaustive_tier1_tier2_search": {
@@ -202,9 +202,9 @@
         "note": "Would expect to find Tier 1 or 2 evidence if Architect"
       },
       "no_evidence_after_full_protocol_search": {
-        "p_e_given_architect": 0.05,
-        "p_e_given_pragmatist": 0.80,
-        "lr": 0.06,
+        "p_e_given_architect": 0.01,
+        "p_e_given_pragmatist": 0.85,
+        "lr": 0.012,
         "interpretation": "Very strong Pragmatist",
         "note": "Complete absence after exhaustive search strongly suggests Pragmatist"
       },

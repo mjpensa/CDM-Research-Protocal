@@ -94,7 +94,7 @@
 
 ---
 
-## Single Adversarial Question (Tier C Protocol)
+## Single Adversarial Question (Full Protocol)
 
 **Question:** Does State Street offer any CDM-based services to custody clients, or is CDM irrelevant to custody business model?
 
