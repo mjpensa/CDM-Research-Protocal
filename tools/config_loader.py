@@ -305,7 +305,8 @@ def get_bank_config(bank_id: str) -> Optional[dict]:
         manifest = load_bank_manifest()
         banks = manifest.get('banks', [])
         for bank in banks:
-            if bank.get('id') == bank_id:
+            # Support both 'id' and 'bank_id' keys for compatibility
+            if bank.get('bank_id') == bank_id or bank.get('id') == bank_id:
                 return bank
         return None
     except FileNotFoundError:

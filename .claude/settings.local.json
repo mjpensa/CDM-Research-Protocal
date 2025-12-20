@@ -1,28 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dir \"c:\\\\cdm-research-protocol\\\\templates\")",
-      "Bash(if not exist \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\1-evidence\" mkdir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\1-evidence\")",
-      "Bash(dir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\" /B)",
-      "Bash(dir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\2-bayesian\" /B)",
-      "Bash(mkdir:*)",
-      "Bash(dir /s /b \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\")",
-      "Bash(python -m py_compile:*)",
-      "Bash(grep:*)",
-      "Bash(done)",
-      "Bash(cat:*)",
-      "Bash(python:*)",
-      "Bash(ls:*)",
-      "Bash(if not exist \"c:\\\\cdm-research-protocol\\\\outputs\\\\qa\" mkdir \"c:\\\\cdm-research-protocol\\\\outputs\\\\qa\")",
-      "Bash(if not exist \"c:\\\\cdm-research-protocol\\\\outputs\\\\final\" mkdir \"c:\\\\cdm-research-protocol\\\\outputs\\\\final\")",
-      "Bash(wc:*)",
-      "Bash(xargs -I {} bash -c 'echo \"\"=== {} ===\"\" && wc -l \"\"{}\"\"')",
-      "Bash(dir c:cdm-research-protocol /b)",
-      "Bash(rm:*)",
-      "Bash(for bank in outputs/phase-1-european-tier1/*/)",
-      "Bash(copy \"c:\\\\cdm-research-protocol\\\\orchestrate-research.md\" \"c:\\\\cdm-research-protocol\\\\docs\\\\workflow.md\")",
-      "Bash(copy \"c:\\\\cdm-research-protocol\\\\HYBRID-WORKFLOW-GUIDE.md\" \"c:\\\\cdm-research-protocol\\\\docs\\\\hybrid-workflow.md\")",
-      "Bash(copy \"c:\\\\cdm-research-protocol\\\\EXECUTION-CHECKLIST.md\" \"c:\\\\cdm-research-protocol\\\\docs\\\\execution-checklist.md\")"
+      "*",
+      "Bash(tree:*)",
+      "Bash(python:*)"
     ]
   }
 }

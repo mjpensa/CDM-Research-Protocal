@@ -129,25 +129,44 @@ def check_deprecated_terminology(data: dict) -> list:
 
 
 def parse_date(date_str: str | None) -> datetime | None:
-    """Parse various date formats."""
+    """Parse various date formats commonly found in evidence sources."""
     if not date_str:
         return None
 
+    # Normalize whitespace
+    date_str = date_str.strip()
+
     formats = [
+        # ISO formats (most common)
         "%Y-%m-%d",
         "%Y-%m-%dT%H:%M:%S",
         "%Y-%m-%dT%H:%M:%SZ",
         "%Y-%m-%dT%H:%M:%S.%fZ",
+        "%Y-%m-%dT%H:%M:%S%z",
+        # Slash variants
+        "%Y/%m/%d",
+        "%d/%m/%Y",
+        "%m/%d/%Y",
+        # Human-readable formats
+        "%B %d, %Y",      # December 19, 2025
+        "%b %d, %Y",      # Dec 19, 2025
+        "%d %B %Y",       # 19 December 2025
+        "%d %b %Y",       # 19 Dec 2025
+        # Partial dates
+        "%B %Y",          # December 2025
+        "%b %Y",          # Dec 2025
         "%Y-%m",
         "%Y"
     ]
 
     for fmt in formats:
         try:
-            return datetime.strptime(date_str[:len(date_str)], fmt)
+            return datetime.strptime(date_str, fmt)
         except ValueError:
             continue
 
+    # Log unparseable dates for debugging (only if logging at DEBUG level)
+    logger.debug(f"Could not parse date: '{date_str}'")
     return None
 
 
@@ -491,7 +510,8 @@ def check_source_authority(items: list[dict]) -> tuple[float, list[str]]:
     warnings = []
     authority_scores = []
 
-    authority_values = {"HIGH": 1.0, "MEDIUM-HIGH": 0.8, "MEDIUM": 0.6, "LOW": 0.3, "VERY LOW": 0.1}
+    # Use centralized config (AUTHORITY_LEVELS loaded at module level from source-authority.json)
+    # Keys use underscores: HIGH, MEDIUM_HIGH, MEDIUM, LOW, VERY_LOW
 
     for item in items:
         url = item.get('source_url', '').lower()
@@ -503,14 +523,14 @@ def check_source_authority(items: list[dict]) -> tuple[float, list[str]]:
         for domain_pattern, (authority, expected_tier) in SOURCE_AUTHORITY.items():
             if is_trusted_domain(url, domain_pattern):
                 matched = True
-                authority_scores.append(authority_values.get(authority, 0.5))
+                authority_scores.append(AUTHORITY_LEVELS.get(authority, 0.5))
 
                 # Check tier alignment
                 if tier < expected_tier:
                     warnings.append(
                         f"{item_id}: Tier {tier} too high for {domain_pattern} (expected T{expected_tier}+)"
                     )
-                elif tier > expected_tier and authority in ["HIGH", "MEDIUM-HIGH"]:
+                elif tier > expected_tier and authority in ["HIGH", "MEDIUM_HIGH"]:
                     warnings.append(
                         f"{item_id}: Tier {tier} may be too conservative for {domain_pattern}"
                     )

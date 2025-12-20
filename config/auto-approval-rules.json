@@ -1,0 +1,65 @@
+{
+  "$schema": "Auto-approval rules for CDM research protocol checkpoints",
+  "description": "Rules for automatically approving checkpoints that meet clear criteria",
+  "version": "1.0",
+
+  "auto_approve_conditions": {
+    "final_classification": {
+      "description": "Auto-approve final classification when criteria are clearly met",
+      "conditions": {
+        "min_confidence": 65,
+        "probability_classification_aligned": true,
+        "no_contradictions": true,
+        "no_anchor_violations": true,
+        "min_evidence_count": 3
+      },
+      "alignment_rules": {
+        "architect_if_probability_above": 70,
+        "pragmatist_if_probability_below": 30
+      }
+    },
+    "adversarial_verdict": {
+      "description": "Auto-approve adversarial verdict if SUSTAINED",
+      "conditions": {
+        "verdict_must_be": "SUSTAINED",
+        "confidence_adjustment_max": 10
+      }
+    },
+    "low_confidence": {
+      "auto_approve": false,
+      "reason": "Low confidence findings always require human review"
+    },
+    "gate_decisions": {
+      "description": "Gates auto-proceed unless extreme LRs detected",
+      "auto_approve": true,
+      "block_if": {
+        "combined_lr_above": 100,
+        "combined_lr_below": 0.01
+      }
+    }
+  },
+
+  "force_block_checkpoints": [
+    "anchor_point_violation",
+    "contradiction",
+    "provenance_drift",
+    "single_source",
+    "adversarial_revised"
+  ],
+
+  "auto_approve_all_if": {
+    "description": "Batch auto-approve all pending checkpoints if these global conditions met",
+    "conditions": {
+      "no_flags_in_trust_audit": true,
+      "all_urls_verified": true,
+      "confidence_above": 70,
+      "probability_classification_aligned": true
+    }
+  },
+
+  "logging": {
+    "log_auto_approvals": true,
+    "log_path": "outputs/state/auto-approval-log.json",
+    "include_reasoning": true
+  }
+}

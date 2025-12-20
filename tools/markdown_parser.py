@@ -62,14 +62,20 @@ class EvidenceBlock:
 
 @dataclass
 class BayesianUpdate:
-    """Parsed Bayesian update."""
+    """
+    Parsed Bayesian update.
+
+    Note: evidence_items and absence_items are currently NOT PARSED from markdown.
+    They return empty lists. Use parse_evidence_file() for evidence block parsing.
+    The combined_lr, posteriors, and other calculated values ARE parsed correctly.
+    """
     bank_name: str
     tier: int
     prior_architect: float
     prior_pragmatist: float
     prior_odds: float
-    evidence_items: List[Dict]  # List of {id, type, lr, direction, rationale}
-    absence_items: List[Dict]  # List of {category, informative, lr, rationale}
+    evidence_items: List[Dict]  # NOT PARSED - returns empty list
+    absence_items: List[Dict]   # NOT PARSED - returns empty list
     combined_lr: float
     posterior_odds: float
     posterior_architect: float
@@ -356,8 +362,8 @@ def parse_bayesian_file(file_path: str) -> Tuple[Optional[BayesianUpdate], Valid
         prior_architect=prior_architect,
         prior_pragmatist=prior_pragmatist,
         prior_odds=prior_odds,
-        evidence_items=[],  # TODO: Parse evidence table
-        absence_items=[],  # TODO: Parse absence table
+        evidence_items=[],  # NOT IMPLEMENTED: Use parse_evidence_file() instead
+        absence_items=[],   # NOT IMPLEMENTED: Absence parsing not yet supported
         combined_lr=combined_lr,
         posterior_odds=posterior_odds,
         posterior_architect=posterior_architect,
