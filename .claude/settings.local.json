@@ -19,7 +19,10 @@
       "Bash(xargs -I {} bash -c 'echo \"\"=== {} ===\"\" && wc -l \"\"{}\"\"')",
       "Bash(dir c:cdm-research-protocol /b)",
       "Bash(rm:*)",
-      "Bash(for bank in outputs/phase-1-european-tier1/*/)"
+      "Bash(for bank in outputs/phase-1-european-tier1/*/)",
+      "Bash(copy \"c:\\\\cdm-research-protocol\\\\orchestrate-research.md\" \"c:\\\\cdm-research-protocol\\\\docs\\\\workflow.md\")",
+      "Bash(copy \"c:\\\\cdm-research-protocol\\\\HYBRID-WORKFLOW-GUIDE.md\" \"c:\\\\cdm-research-protocol\\\\docs\\\\hybrid-workflow.md\")",
+      "Bash(copy \"c:\\\\cdm-research-protocol\\\\EXECUTION-CHECKLIST.md\" \"c:\\\\cdm-research-protocol\\\\docs\\\\execution-checklist.md\")"
     ]
   }
 }

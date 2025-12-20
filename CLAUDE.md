@@ -1,7 +1,7 @@
 # CLAUDE.md - CDM Forensic Research Rules v2.3
 
 **Purpose**: Central configuration for the CDM/DRR International Bank Research Protocol.
-**Read During**: Pre-Flight (Step 1) of master_orchestrator.md
+**Read During**: Pre-Flight (Step 1) of docs/workflow.md
 
 ---
 
@@ -50,6 +50,7 @@
 - Informative absence (exhaustive search yielded no evidence)
 - No direct source URL required (inference-based)
 - **Maximum Confidence**: 35%
+- **Note**: Tier 4 is applied during the Synthesis stage, not as a separate evidence-gathering stage. The workflow processes Tiers 1-3 actively; Tier 4 represents logical deductions made from the absence or pattern of evidence.
 
 ### Conflict Resolution Rules
 1. **Newer Tier 1** supersedes older Tier 1
@@ -153,12 +154,16 @@ Evidence freshness impacts confidence scoring:
 
 ## 7. Confidence Maxima by Evidence Tier
 
-| Highest Tier Present | Maximum Confidence |
-|---------------------|-------------------|
-| Tier 1 evidence | 95% |
-| Tier 2 evidence only | 75% |
-| Tier 3 evidence only | 50% |
-| Inference only (no evidence) | 35% |
+**Authoritative Source**: `config/decision-thresholds.json` → `confidence_caps`
+
+| Highest Tier Present | Maximum Confidence | Config Key |
+|---------------------|-------------------|------------|
+| Tier 1 evidence | 95% | `tier1_only` |
+| Tier 2 evidence only | 75% | `tier2_only` |
+| Tier 3 evidence only | 50% | `tier3_only` |
+| Inference only (no evidence) | 35% | `tier4_inference_only` |
+
+> **Note**: Always load thresholds from `config/decision-thresholds.json` via `config_loader.py` for programmatic use. Values above are for quick reference only.
 
 ---
 

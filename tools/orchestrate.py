@@ -163,6 +163,31 @@ class WorkflowState:
             'at': datetime.utcnow().isoformat()
         }
 
+    def verify_provenance(self, bank_dir: Path) -> list[str]:
+        """
+        Verify all recorded stage hashes match current files.
+
+        Args:
+            bank_dir: Path to bank directory
+
+        Returns:
+            List of stages with drift detected (empty if all OK)
+        """
+        drift = []
+        for stage, record in self.provenance.items():
+            expected_hash = record.get('hash')
+            if not expected_hash:
+                continue
+
+            current_hash = compute_stage_hash(bank_dir, stage)
+            if current_hash != expected_hash:
+                drift.append(
+                    f"{stage}: expected {expected_hash[:8]}..., "
+                    f"got {current_hash[:8]}... (file modified since {record.get('at', 'unknown')})"
+                )
+
+        return drift
+
     def save(self, state_path: Path):
         """Save state to JSON file."""
         self.updated_at = datetime.utcnow().isoformat()
@@ -234,7 +259,19 @@ class Orchestrator:
         """Load existing state or initialize new state."""
         if self.state_path.exists():
             try:
-                return WorkflowState.load(self.state_path)
+                state = WorkflowState.load(self.state_path)
+
+                # Verify provenance integrity
+                drift = state.verify_provenance(self.bank_dir)
+                if drift:
+                    logger.warning("PROVENANCE DRIFT DETECTED - output files modified:")
+                    for d in drift:
+                        logger.warning(f"  {d}")
+                    # Add to checkpoints_pending for review
+                    if 'provenance_drift' not in state.checkpoints_pending:
+                        state.checkpoints_pending.append('provenance_drift')
+
+                return state
             except Exception as e:
                 logger.warning(f"Failed to load state: {e}. Creating new state.")
 
@@ -282,6 +319,58 @@ class Orchestrator:
 
         return None
 
+    def _load_anchor_points(self) -> dict:
+        """Load anchor points from config."""
+        anchor_path = Path(__file__).parent.parent / "config" / "anchor-points.json"
+        if anchor_path.exists():
+            try:
+                return json.loads(anchor_path.read_text(encoding='utf-8'))
+            except Exception as e:
+                logger.warning(f"Could not load anchor points: {e}")
+                return {}
+        return {}
+
+    def check_anchor_violation(self) -> tuple[bool, str]:
+        """
+        Check if current classification violates anchor points.
+
+        Returns:
+            (violation_found, violation_message)
+        """
+        anchors = self._load_anchor_points()
+        if not anchors:
+            return False, ""
+
+        # Normalize bank_id for comparison
+        bank_id = self.state.bank_id.lower().replace('_', '-')
+        classification = self.state.classification
+        sub_class = self.state.sub_classification
+
+        if not classification:
+            return False, ""
+
+        # Check production banks - must be ARCHITECT-Native
+        for prod_bank in anchors.get('production_banks', {}).get('banks', []):
+            if prod_bank.get('id', '').lower() == bank_id:
+                if classification != 'ARCHITECT' or sub_class != 'Native':
+                    return True, (
+                        f"ANCHOR VIOLATION: {self.state.bank_id} is confirmed in production "
+                        f"(since {prod_bank.get('date', 'unknown')}) but classified as "
+                        f"{classification}/{sub_class}. Must be ARCHITECT/Native."
+                    )
+
+        # Check confirmed contributors - must be ARCHITECT (any variant)
+        for contrib in anchors.get('confirmed_contributors', {}).get('banks', []):
+            if contrib.get('id', '').lower() == bank_id:
+                if classification != 'ARCHITECT':
+                    return True, (
+                        f"ANCHOR WARNING: {self.state.bank_id} is confirmed contributor "
+                        f"({contrib.get('evidence', 'see anchor-points.json')}) but classified as "
+                        f"{classification}. Expected ARCHITECT unless explicit contrary evidence."
+                    )
+
+        return False, ""
+
     def should_block(self) -> tuple[bool, str, str]:
         """
         Check if current checkpoint requires human approval.
@@ -296,6 +385,12 @@ class Orchestrator:
         if current == Stage.SYNTHESIS:
             return True, "Final classification requires human approval", "final_classification"
 
+        # Check anchor point violations
+        if self.state.classification:
+            violation, msg = self.check_anchor_violation()
+            if violation:
+                return True, msg, "anchor_point_violation"
+
         # Low confidence requires review
         if self.state.confidence > 0 and self.state.confidence < self.low_confidence_threshold:
             return True, f"Low confidence ({self.state.confidence}%) requires review", "low_confidence"
@@ -309,7 +404,25 @@ class Orchestrator:
         if "contradiction_detected" in self.state.checkpoints_pending:
             return True, "Contradiction detected in evidence", "contradiction"
 
+        # Check for provenance drift (files modified after stage completion)
+        if "provenance_drift" in self.state.checkpoints_pending:
+            return True, "Provenance drift detected - output files modified after completion", "provenance_drift"
+
+        # Check for single-source triangulation requirement
+        if "single_source" in self.state.checkpoints_pending:
+            return True, "Single-source claim requires corroboration (triangulation)", "triangulation"
+
         return False, "", ""
+
+    def is_blocked(self) -> bool:
+        """
+        Check if workflow is currently blocked awaiting approval.
+
+        Returns:
+            True if blocked, False if can proceed
+        """
+        blocked, _, _ = self.should_block()
+        return blocked
 
     def advance(self) -> bool:
         """
@@ -323,6 +436,8 @@ class Orchestrator:
         if should_block:
             if checkpoint_id not in self.state.checkpoints_pending:
                 self.state.checkpoints_pending.append(checkpoint_id)
+            # Log the block decision
+            self.log_checkpoint(checkpoint_id, "BLOCK", reason)
             logger.warning(f"BLOCKED: {reason}")
             logger.warning("Run with --approve to approve checkpoint")
             self.state.save(self.state_path)
@@ -347,6 +462,39 @@ class Orchestrator:
         logger.info(f"Advanced from {current.value} to {next_stage.value}")
         return True
 
+    def log_checkpoint(self, checkpoint_id: str, action: str, reason: str = None):
+        """
+        Log checkpoint decision to central checkpoint-log.json.
+
+        Args:
+            checkpoint_id: ID of the checkpoint
+            action: Action taken (BLOCK, AUTO_PROCEED, APPROVED)
+            reason: Reason for the action
+        """
+        log_path = self.bank_dir.parent.parent / "state" / "checkpoint-log.json"
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+
+        existing = []
+        if log_path.exists():
+            try:
+                existing = json.loads(log_path.read_text(encoding='utf-8'))
+            except Exception:
+                existing = []
+
+        entry = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "bank_id": self.state.bank_id,
+            "checkpoint_id": checkpoint_id,
+            "action": action,
+            "reason": reason,
+            "stage": self.state.current_stage,
+            "probability": self.state.probability_architect
+        }
+        existing.append(entry)
+
+        log_path.write_text(json.dumps(existing, indent=2), encoding='utf-8')
+        logger.debug(f"Logged checkpoint: {checkpoint_id} -> {action}")
+
     def approve_checkpoint(self, checkpoint_id: str, approver: str = "human") -> bool:
         """
         Approve a pending checkpoint.
@@ -369,6 +517,8 @@ class Orchestrator:
             "approved_at": datetime.utcnow().isoformat()
         })
 
+        # Log the approval
+        self.log_checkpoint(checkpoint_id, "APPROVED", f"Approved by {approver}")
         self.state.save(self.state_path)
         logger.info(f"Approved checkpoint: {checkpoint_id}")
         return True

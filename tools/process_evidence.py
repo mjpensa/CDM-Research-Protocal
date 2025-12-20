@@ -24,6 +24,16 @@ from datetime import datetime
 from urllib.parse import urlparse
 from jsonschema import validate, ValidationError
 
+# Import config loader for claim type validation
+try:
+    from config_loader import get_valid_claim_types
+    CONFIG_LOADER_AVAILABLE = True
+except ImportError:
+    CONFIG_LOADER_AVAILABLE = False
+    def get_valid_claim_types():
+        return ['production_usage', 'pilot_or_poc', 'membership_or_participation',
+                'open_source_contribution', 'vendor_proxy_signal', 'hiring_signal']
+
 # --- CONFIG ---
 SCRIPT_DIR = Path(__file__).parent.resolve()
 PROJECT_ROOT = SCRIPT_DIR.parent
@@ -63,6 +73,24 @@ def sanitize_id(item_id: str) -> str:
     sanitized = re.sub(r'[^a-zA-Z0-9_-]', '_', str(item_id))
     # Prevent empty result
     return sanitized if sanitized else "unknown"
+
+
+def validate_claim_types(items: list) -> list:
+    """
+    Validate claim_type enum values against allowed types.
+    Returns list of warning messages for invalid types.
+    """
+    valid_types = get_valid_claim_types()
+    warnings = []
+    for item in items:
+        claim_type = item.get('claim_type')
+        if claim_type and claim_type not in valid_types:
+            item_id = item.get('id', 'unknown')
+            warnings.append(
+                f"Invalid claim_type '{claim_type}' for {item_id}. "
+                f"Valid types: {', '.join(valid_types)}"
+            )
+    return warnings
 
 
 def is_safe_url(url: str) -> tuple[bool, str]:
@@ -169,6 +197,11 @@ def process_bank_evidence(json_path: str) -> bool:
 
         validate(instance=data, schema=schema)
         logger.info("Schema validation passed")
+
+        # Validate claim_type values
+        claim_warnings = validate_claim_types(data.get('evidence_items', []))
+        for warning in claim_warnings:
+            logger.warning(f"CLAIM TYPE: {warning}")
 
     except json.JSONDecodeError as e:
         logger.error(f"FATAL: Invalid JSON: {e}")

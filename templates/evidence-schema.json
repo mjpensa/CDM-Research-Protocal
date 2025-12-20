@@ -80,10 +80,11 @@
   },
 
   "classification_taxonomy": {
-    "valid_classifications": ["ARCHITECT", "PRAGMATIST", "UNKNOWN"],
+    "valid_classifications": ["ARCHITECT", "PRAGMATIST", "OBSERVER", "UNKNOWN"],
     "valid_sub_classifications": {
       "ARCHITECT": ["Native", "Leader", "Follower"],
       "PRAGMATIST": ["Vendor-Dependent", "Integration-Constrained", "Regulatory-Driven", "Network-Accelerant"],
+      "OBSERVER": ["Active-Watcher", "Passive"],
       "UNKNOWN": ["Insufficient-Evidence", "Conflicting-Evidence"]
     },
     "deprecated_terms": {

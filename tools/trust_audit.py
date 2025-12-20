@@ -324,6 +324,39 @@ def detect_contradictions(items: list[dict]) -> list[dict]:
                     "resolution_notes": "Review if URL actually supports multiple claims"
                 })
 
+    # Check for tier conflicts (Tier 1 vs Tier 2 supporting opposite conclusions)
+    tier1_items = [i for i in items if i.get('tier') == 1]
+    tier2_items = [i for i in items if i.get('tier') == 2]
+
+    def get_direction(item: dict) -> str:
+        """Infer evidence direction from claim content."""
+        claim = (item.get('claim', '') + ' ' + item.get('finding', '')).lower()
+        if any(kw in claim for kw in ['production', 'live', 'deployed', 'pilot', 'poc', 'proof of concept']):
+            return 'ARCHITECT'
+        if any(kw in claim for kw in ['no evidence', 'not found', 'no mention', 'absence', 'traditional']):
+            return 'PRAGMATIST'
+        return 'NEUTRAL'
+
+    tier1_directions = set(get_direction(i) for i in tier1_items) - {'NEUTRAL'}
+    tier2_directions = set(get_direction(i) for i in tier2_items) - {'NEUTRAL'}
+
+    if 'ARCHITECT' in tier1_directions and 'PRAGMATIST' in tier2_directions:
+        contradictions.append({
+            "item_ids": [i.get('id') for i in tier1_items + tier2_items],
+            "description": "Tier 1 evidence supports ARCHITECT but Tier 2 contains PRAGMATIST signals",
+            "resolution": "unresolved",
+            "severity": "medium",
+            "resolution_notes": "Higher-authority Tier 1 should generally prevail, but review Tier 2 for recency"
+        })
+    elif 'PRAGMATIST' in tier1_directions and 'ARCHITECT' in tier2_directions:
+        contradictions.append({
+            "item_ids": [i.get('id') for i in tier1_items + tier2_items],
+            "description": "Tier 1 evidence suggests PRAGMATIST but Tier 2 supports ARCHITECT",
+            "resolution": "unresolved",
+            "severity": "high",
+            "resolution_notes": "Unusual pattern - Tier 2 should not contradict Tier 1. Manual review required."
+        })
+
     return contradictions
 
 

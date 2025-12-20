@@ -439,6 +439,31 @@ def run_batch(directory: str, skip_verification: bool = False, validate_urls_fir
 
     print("=" * 70)
 
+    # Cross-bank validation
+    logger.info("\n" + "=" * 70)
+    logger.info("CROSS-BANK VALIDATION")
+    logger.info("=" * 70)
+
+    try:
+        from cross_bank_validator import run_checks
+        xbank_results = run_checks(str(directory))
+
+        if xbank_results.get('passed', True):
+            logger.info("Cross-bank validation: PASSED")
+        else:
+            logger.warning("Cross-bank validation: ISSUES DETECTED")
+            for issue in xbank_results.get('critical', [])[:5]:
+                logger.error(f"  CRITICAL: {issue.get('issue', 'Unknown')}")
+            for issue in xbank_results.get('warnings', [])[:5]:
+                logger.warning(f"  WARNING: {issue.get('issue', 'Unknown')}")
+
+    except ImportError:
+        logger.warning("Cross-bank validator not available (import failed)")
+    except Exception as e:
+        logger.error(f"Cross-bank validation failed: {e}")
+
+    logger.info("=" * 70)
+
     return results
 
 
