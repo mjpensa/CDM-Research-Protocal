@@ -37,7 +37,7 @@ Executed after ALL 7 phases complete.
 
 ### Input
 
-- All bank assessments from phase: `outputs/phase-[N]/[bank]/5-synthesis/assessment.md`
+- All bank assessments from phase: `outputs/phase-[N]/[bank_id]/5-synthesis/assessment.md`
 - Anchor points from `config/bank-manifest.json`
 - Phase configuration
 

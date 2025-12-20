@@ -1,0 +1,114 @@
+{
+  "$schema": "CDM/DRR Classification Taxonomy v1.0",
+  "description": "Official classification values for bank CDM adoption posture",
+  "version": "1.0",
+  "last_updated": "2025-12-19",
+
+  "valid_classifications": ["ARCHITECT", "PRAGMATIST", "OBSERVER", "UNKNOWN"],
+
+  "classification_definitions": {
+    "ARCHITECT": {
+      "description": "Banks actively building, contributing to, or implementing CDM",
+      "variants": {
+        "Native": {
+          "description": "Production usage with governance leadership",
+          "minimum_evidence": "production_usage confirmed + working group leadership",
+          "minimum_probability": 90
+        },
+        "Leader": {
+          "description": "Production or pilot with significant contribution",
+          "minimum_evidence": "pilot_or_poc with open_source_contribution",
+          "minimum_probability": 75
+        },
+        "Follower": {
+          "description": "Active contribution without production",
+          "minimum_evidence": "open_source_contribution or membership_or_participation",
+          "minimum_probability": 60
+        }
+      }
+    },
+    "PRAGMATIST": {
+      "description": "Banks waiting for external pressure, utilities, or vendor solutions",
+      "variants": {
+        "Vendor-Dependent": {
+          "description": "Will adopt CDM through third-party vendor tools",
+          "indicators": ["uses regulatory reporting vendors", "no internal CDM team", "vendor relationships confirmed"]
+        },
+        "Integration-Constrained": {
+          "description": "Capacity consumed by other priorities (mergers, legacy migration)",
+          "indicators": ["known major integration projects", "limited derivatives focus", "resource constraints documented"]
+        },
+        "Regulatory-Driven": {
+          "description": "Will move only when mandated by regulators",
+          "indicators": ["compliance-focused statements", "no proactive technology investment", "waits for deadlines"]
+        },
+        "Network-Accelerant": {
+          "description": "Will move based on counterparty or peer pressure",
+          "indicators": ["follows regional leaders", "responds to client pressure", "network effects important"]
+        }
+      }
+    },
+    "OBSERVER": {
+      "description": "Banks aware of CDM but with minimal direct engagement",
+      "variants": {
+        "Active-Watcher": {
+          "description": "Monitoring CDM developments, attending events, but not contributing",
+          "indicators": ["membership_or_participation without contribution", "conference attendance", "internal awareness"]
+        },
+        "Passive": {
+          "description": "Minimal awareness, no active monitoring",
+          "indicators": ["hiring_signal only", "no public statements", "limited derivatives business"]
+        }
+      }
+    },
+    "UNKNOWN": {
+      "description": "Insufficient or conflicting evidence to classify",
+      "variants": {
+        "Insufficient-Evidence": {
+          "description": "Not enough evidence found to make determination",
+          "trigger": "confidence < 50% after full search protocol"
+        },
+        "Conflicting-Evidence": {
+          "description": "Evidence points in multiple directions",
+          "trigger": "unresolved Tier 1/2 contradictions"
+        }
+      }
+    }
+  },
+
+  "deprecated_terms": {
+    "NOT_ENGAGED": {
+      "replacement": "PRAGMATIST",
+      "suggested_variant": "Vendor-Dependent or Regulatory-Driven",
+      "rationale": "All banks are 'engaged' to some degree; PRAGMATIST better captures wait-and-see posture"
+    },
+    "NON-ARCHITECT": {
+      "replacement": "PRAGMATIST",
+      "suggested_variant": "Based on evidence of why not ARCHITECT",
+      "rationale": "Negative framing replaced with descriptive posture"
+    },
+    "CDM User (via vendors)": {
+      "replacement": "PRAGMATIST",
+      "suggested_variant": "Vendor-Dependent",
+      "rationale": "Clarifies bank is not building internally"
+    },
+    "Potential Future Adopter": {
+      "replacement": "PRAGMATIST",
+      "suggested_variant": "Network-Accelerant or Regulatory-Driven",
+      "rationale": "All PRAGMATIST banks are potential future adopters; specify the trigger"
+    }
+  },
+
+  "validation_rules": [
+    "classification must be one of valid_classifications",
+    "sub_classification must match a variant for the chosen classification",
+    "deprecated terms should be replaced in new analyses",
+    "existing status.json files using deprecated terms should be updated"
+  ],
+
+  "usage_notes": [
+    "Use this taxonomy when creating status.json files",
+    "Reference in agent prompts via config/classification-taxonomy.json",
+    "Update checkpoint-log.json entries to use standard taxonomy"
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "$schema": "CDM/DRR Vendor Matrix v1.0",
+  "description": "Vendor-Bank relationships for CDM/derivatives technology classification",
+  "version": "1.0",
+  "last_updated": "2025-12-19",
+  "purpose": "Track vendor relationships to distinguish ARCHITECT (internal capability) from PRAGMATIST (vendor-dependent)",
+
+  "vendors": [
+    {
+      "vendor_id": "murex",
+      "vendor_name": "Murex",
+      "domain": "murex.com",
+      "parent_company": "Tokyo Stock Exchange Group",
+      "category": "Trading & Risk Management",
+      "cdm_capability": "partial",
+      "cdm_capability_description": "Derivatives trading system with regulatory reporting; CDM module available but not core",
+      "market_segment": ["Investment Banks", "Asset Managers", "Corporates"]
+    },
+    {
+      "vendor_id": "calypso",
+      "vendor_name": "Calypso Technology",
+      "domain": "calypso.com",
+      "parent_company": "IFS (Industrial and Financial Systems)",
+      "category": "Trade Execution & Risk",
+      "cdm_capability": "partial",
+      "cdm_capability_description": "Cross-asset trading platform; CDM integration for regulatory reporting",
+      "market_segment": ["Investment Banks", "Hedge Funds"]
+    },
+    {
+      "vendor_id": "delta-capita",
+      "vendor_name": "Delta Capita",
+      "domain": "deltacapita.com",
+      "category": "Post-Trade OTC Services",
+      "cdm_capability": "native",
+      "cdm_capability_description": "Elaris OTC platform is CDM-native for derivatives confirmation and settlement",
+      "technology_partner": "fragmos-chain",
+      "market_segment": ["Global Banks", "OTC Derivatives Users"],
+      "notes": "First verified CDM-native vendor platform for post-trade (January 2025)"
+    },
+    {
+      "vendor_id": "fragmos-chain",
+      "vendor_name": "Fragmos Chain",
+      "domain": "fragmos-chain.com",
+      "category": "Post-Trade Infrastructure",
+      "cdm_capability": "native",
+      "cdm_capability_description": "CDM-native post-trade infrastructure; powers Delta Capita's Elaris",
+      "market_segment": ["Infrastructure Providers", "Banks"]
+    },
+    {
+      "vendor_id": "finastra",
+      "vendor_name": "Finastra",
+      "domain": "finastra.com",
+      "category": "Core Banking Software",
+      "cdm_capability": "partial",
+      "cdm_capability_description": "Broad financial software; some regulatory reporting modules",
+      "market_segment": ["Universal Banks", "Regional Banks"]
+    },
+    {
+      "vendor_id": "refinitiv",
+      "vendor_name": "Refinitiv (LSEG)",
+      "domain": "refinitiv.com",
+      "parent_company": "London Stock Exchange Group",
+      "category": "Data & Analytics",
+      "cdm_capability": "minimal",
+      "cdm_capability_description": "Market data provider; limited CDM-specific offerings",
+      "market_segment": ["All Financial Institutions"]
+    },
+    {
+      "vendor_id": "regnosys",
+      "vendor_name": "REGnosys",
+      "domain": "regnosys.com",
+      "category": "CDM Implementation & Tools",
+      "cdm_capability": "expert",
+      "cdm_capability_description": "CDM specification development partner; Rosetta DSL creator; implementation consulting",
+      "market_segment": ["Banks implementing CDM", "Regulators"],
+      "isda_partnership": true,
+      "notes": "Core contributor to CDM specification and tooling"
+    },
+    {
+      "vendor_id": "broadridge",
+      "vendor_name": "Broadridge Financial Solutions",
+      "domain": "broadridge.com",
+      "category": "Post-Trade Services",
+      "cdm_capability": "partial",
+      "cdm_capability_description": "Post-trade processing; some CDM integration for regulatory reporting",
+      "market_segment": ["Asset Managers", "Banks", "Broker-Dealers"]
+    },
+    {
+      "vendor_id": "ion-group",
+      "vendor_name": "ION Group",
+      "domain": "iongroup.com",
+      "category": "Trading & Treasury",
+      "cdm_capability": "partial",
+      "cdm_capability_description": "Treasury and trading systems; acquired multiple vendors",
+      "market_segment": ["Banks", "Corporates"]
+    },
+    {
+      "vendor_id": "fis",
+      "vendor_name": "FIS Global",
+      "domain": "fisglobal.com",
+      "category": "Financial Technology",
+      "cdm_capability": "partial",
+      "cdm_capability_description": "Broad financial services technology; regulatory reporting solutions",
+      "market_segment": ["Universal Banks", "Asset Managers"]
+    },
+    {
+      "vendor_id": "ssc",
+      "vendor_name": "SS&C Technologies",
+      "domain": "ssctech.com",
+      "category": "Fund Services & Operations",
+      "cdm_capability": "minimal",
+      "cdm_capability_description": "Fund administration and operations; limited derivatives focus",
+      "market_segment": ["Asset Managers", "Hedge Funds"]
+    }
+  ],
+
+  "bank_vendor_relationships": [
+    {
+      "bank_id": "hsbc",
+      "bank_name": "HSBC Holdings PLC",
+      "vendor_id": "delta-capita",
+      "relationship_type": "outsourcing",
+      "scope": [
+        "OTC derivatives confirmation",
+        "OTC derivatives settlement",
+        "Global coverage"
+      ],
+      "status": "active",
+      "date_announced": "2025-01",
+      "classification_impact": "PRAGMATIST (Vendor-dependent)",
+      "evidence_tier": 1,
+      "evidence_sources": [
+        "Delta Capita official announcement",
+        "The Trade News",
+        "A-Team Insight"
+      ],
+      "notes": "Multi-year global outsourcing agreement; comprehensive scope suggests full vendor dependency rather than acceleration"
+    }
+  ],
+
+  "classification_guidance": {
+    "architect_with_vendor": {
+      "pattern": "Bank building internal CDM capability AND using vendors for acceleration/tooling",
+      "indicators": [
+        "Internal CDM development team exists",
+        "Bank contributes to CDM open source",
+        "Vendor used for specific components, not end-to-end",
+        "Bank retains CDM expertise in-house"
+      ],
+      "classification": "ARCHITECT",
+      "example": "Bank with internal CDM team + Regnosys consulting for Rosetta DSL"
+    },
+    "pragmatist_via_vendor": {
+      "pattern": "Bank outsourcing CDM capability entirely to vendor(s)",
+      "indicators": [
+        "No internal CDM development team",
+        "No CDM open source contributions",
+        "Vendor provides end-to-end CDM solution",
+        "Bank treats CDM as vendor-managed compliance"
+      ],
+      "classification": "PRAGMATIST (Vendor-dependent)",
+      "example": "HSBC + Delta Capita (comprehensive global outsourcing)"
+    },
+    "pragmatist_avoiding": {
+      "pattern": "Bank using traditional derivatives platforms without CDM layer",
+      "indicators": [
+        "Traditional Murex/Calypso without CDM modules",
+        "No CDM-related vendor relationships",
+        "Regulatory reporting via legacy systems"
+      ],
+      "classification": "PRAGMATIST (Traditional)",
+      "example": "Bank using Murex 3.1 without CDM regulatory module"
+    }
+  },
+
+  "vendor_evidence_rules": {
+    "description": "How to handle vendor-sourced evidence",
+    "rules": [
+      {
+        "scenario": "Vendor press release without bank confirmation",
+        "claim_type": "vendor_proxy_signal",
+        "max_tier": 2,
+        "max_confidence": 60,
+        "action": "Seek bank confirmation before elevating"
+      },
+      {
+        "scenario": "Vendor AND bank both confirm relationship",
+        "claim_type": "production_usage or pilot_or_poc",
+        "max_tier": 1,
+        "max_confidence": 85,
+        "action": "Verify scope (outsourcing vs. tooling) for classification"
+      },
+      {
+        "scenario": "Bank job posting mentions vendor product",
+        "claim_type": "hiring_signal",
+        "max_tier": 3,
+        "max_confidence": 40,
+        "action": "Does not confirm adoption; only indicates consideration"
+      }
+    ]
+  },
+
+  "cdm_capability_levels": {
+    "native": {
+      "description": "Platform built on CDM from the ground up",
+      "examples": ["Delta Capita Elaris", "Fragmos Chain"],
+      "implication": "Bank using this vendor gets CDM capability without internal development"
+    },
+    "expert": {
+      "description": "Vendor specializes in CDM implementation and tooling",
+      "examples": ["REGnosys"],
+      "implication": "Consulting/tooling relationship; bank still needs internal capability"
+    },
+    "partial": {
+      "description": "Vendor has CDM modules/integrations but not core to platform",
+      "examples": ["Murex", "Calypso", "Broadridge"],
+      "implication": "Bank may or may not use CDM features; requires verification"
+    },
+    "minimal": {
+      "description": "Vendor has limited or no CDM-specific offerings",
+      "examples": ["Refinitiv", "SS&C"],
+      "implication": "Vendor relationship doesn't indicate CDM adoption"
+    }
+  },
+
+  "usage_notes": {
+    "trust_audit_integration": "trust_audit.py VENDOR_DOMAINS list should be synchronized with this file",
+    "pre_flight_check": "Read this file during Pre-Flight (Step 1) to understand known vendor relationships",
+    "classification_impact": "Vendor relationships can shift classification from ARCHITECT to PRAGMATIST",
+    "update_frequency": "Update when new bank-vendor relationships are discovered during research"
+  }
+}

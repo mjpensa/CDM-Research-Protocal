@@ -46,7 +46,7 @@ For banks: Deutsche Bank, Société Générale, UBS, Barclays, HSBC
 
 **2. Targeted Disconfirming Searches** (3 specific searches)
    - Design 3 searches that would DISPROVE current classification if they returned results
-   - Execute searches using Evidence Gatherer tools
+   - Execute searches using the Evidence Gatherer search protocol (see below)
    - Document results
 
 **3. Steelman the Alternative** (2-3 paragraphs)
@@ -106,7 +106,9 @@ Answer the question:
 
 ## Output Files
 
-**Location**: `outputs/phase-[N]/[bank]/4-adversarial/`
+**Location**: `outputs/phase-[N]/[bank_id]/4-adversarial/`
+
+Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale")
 
 **Files to create** (depends on tier):
 
@@ -123,6 +125,49 @@ Answer the question:
 
 **Tier C**:
 1. `verdict.md` - Single question, answer, verdict
+
+---
+
+## Evidence Gatherer Search Protocol
+
+When executing disconfirming searches, follow this protocol:
+
+### Search Execution Steps
+
+1. **Query Construction**
+   - Target evidence that would CONTRADICT current classification
+   - If classifying as ARCHITECT: search for vendor dependency, outsourcing, traditional approach signals
+   - If classifying as PRAGMATIST: search for CDM contributions, pilot announcements, named individuals
+
+2. **Source Hierarchy**
+   - Apply Tier 1 → Tier 2 → Tier 3 source hierarchy from `methodology/evidence-framework.md`
+   - Prioritize official sources, then industry sources, then indirect signals
+
+3. **Documentation Format**
+   For each search, document using this structure:
+
+   ```markdown
+   ### Disconfirming Search [N]
+   **Query:** [exact search string used]
+   **Target:** Evidence that would support [OPPOSITE_CLASSIFICATION]
+   **Sources Checked:** [list of sources]
+   **Results:**
+   - [FOUND / NOT FOUND]
+   - If FOUND: [Evidence block in standard format from methodology/evidence-framework.md]
+   - If NOT FOUND: [Document as informative absence per appendices/null-result-handling.md]
+   **Impact on Classification:** [Does this weaken, strengthen, or leave unchanged?]
+   ```
+
+4. **Minimum Search Requirements**
+   - Tier A banks: 3 disconfirming searches
+   - Tier B banks: 2 disconfirming searches
+   - Tier C banks: 1 disconfirming search
+
+### Required References
+
+- `methodology/evidence-framework.md` - Evidence block format
+- `appendices/null-result-handling.md` - How to document informative absences
+- `appendices/search-strategies.md` - Query construction patterns
 
 ---
 

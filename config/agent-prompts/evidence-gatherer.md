@@ -309,7 +309,9 @@ If initial search returns no results:
 
 ### File 1: tier[N]-evidence.md
 
-Location: `outputs/phase-[N]/[bank-name]/1-evidence/tier[N]-evidence.md`
+Location: `outputs/phase-[N]/[bank_id]/1-evidence/tier[N]-evidence.md`
+
+Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale", "natwest")
 
 Content:
 ```markdown
@@ -341,7 +343,7 @@ Content:
 
 ### File 2: null-results.md
 
-Location: `outputs/phase-[N]/[bank-name]/1-evidence/null-results.md`
+Location: `outputs/phase-[N]/[bank_id]/1-evidence/null-results.md`
 
 Content:
 ```markdown

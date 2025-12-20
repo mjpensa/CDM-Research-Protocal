@@ -1,0 +1,32 @@
+{
+  "bank_id": "credit-agricole",
+  "bank_name": "Credit Agricole S.A.",
+  "phase": 4,
+  "execution_tier": "C",
+  "status": "completed",
+  "current_stage": "synthesis",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Vendor-Dependent",
+  "probability_architect": 0.10,
+  "probability_pragmatist": 0.90,
+  "confidence": 80,
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 0,
+    "tier2": 1,
+    "tier3": 0,
+    "tier4": 3,
+    "null_results": 4
+  },
+  "key_findings": [
+    "Not following BNP Paribas CDM path",
+    "Matches Societe Generale pattern (Pragmatist)",
+    "Cooperative structure may slow innovation adoption",
+    "CA-CIB exists but no CDM leadership signals",
+    "French cohort split: BNP (Architect) vs SocGen+CA (Pragmatist)"
+  ],
+  "gate1_decision": "FAIL",
+  "adversarial_verdict": "UNCHANGED",
+  "last_updated": "2025-12-19T12:00:00Z",
+  "notes": "Tier C rapid assessment. French bank cohort clearly split between BNP (Architect) and others (Pragmatist)."
+}

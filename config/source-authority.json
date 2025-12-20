@@ -1,0 +1,62 @@
+{
+  "$schema": "CDM/DRR Source Authority Configuration v1.0",
+  "description": "Domain authority mappings for evidence tier validation",
+  "version": "1.0",
+  "last_updated": "2025-12-19",
+
+  "authority_levels": {
+    "HIGH": 1.0,
+    "MEDIUM_HIGH": 0.8,
+    "MEDIUM": 0.6,
+    "LOW": 0.3,
+    "VERY_LOW": 0.1
+  },
+
+  "domain_mappings": {
+    "isda.org": { "authority": "HIGH", "tier": 1, "type": "standards_body" },
+    "finos.org": { "authority": "HIGH", "tier": 1, "type": "open_source_foundation" },
+    "github.com/finos": { "authority": "HIGH", "tier": 1, "type": "official_repository" },
+    "github.com/isda": { "authority": "HIGH", "tier": 1, "type": "official_repository" },
+    "sec.gov": { "authority": "HIGH", "tier": 1, "type": "us_regulator" },
+    "fca.org.uk": { "authority": "HIGH", "tier": 1, "type": "uk_regulator" },
+    "bafin.de": { "authority": "HIGH", "tier": 1, "type": "german_regulator" },
+    "esma.europa.eu": { "authority": "HIGH", "tier": 1, "type": "eu_regulator" },
+
+    "risk.net": { "authority": "HIGH", "tier": 2, "type": "trade_press" },
+    "waterstechnology.com": { "authority": "HIGH", "tier": 2, "type": "trade_press" },
+    "fnlondon.com": { "authority": "HIGH", "tier": 2, "type": "trade_press" },
+
+    "ft.com": { "authority": "MEDIUM_HIGH", "tier": 2, "type": "business_press" },
+    "wsj.com": { "authority": "MEDIUM_HIGH", "tier": 2, "type": "business_press" },
+    "bloomberg.com": { "authority": "MEDIUM_HIGH", "tier": 2, "type": "business_press" },
+    "reuters.com": { "authority": "MEDIUM_HIGH", "tier": 2, "type": "business_press" },
+
+    "mckinsey.com": { "authority": "MEDIUM", "tier": 2, "type": "consulting" },
+    "oliverwyman.com": { "authority": "MEDIUM", "tier": 2, "type": "consulting" },
+
+    "linkedin.com": { "authority": "VERY_LOW", "tier": 3, "type": "social_media" },
+    "medium.com": { "authority": "LOW", "tier": 3, "type": "blog_platform" },
+    "substack.com": { "authority": "LOW", "tier": 3, "type": "newsletter_platform" }
+  },
+
+  "vendor_domains": [
+    "murex.com",
+    "calypso.com",
+    "finastra.com",
+    "refinitiv.com",
+    "broadridge.com",
+    "sscinc.com",
+    "iongroup.com",
+    "fis.com",
+    "deltacapita.com",
+    "regnosys.com",
+    "isda-cdm.org"
+  ],
+
+  "usage_notes": [
+    "Tier field indicates the expected minimum tier for evidence from that source",
+    "Authority level affects confidence scoring",
+    "Vendor domains trigger special handling for vendor_proxy_signal claim types",
+    "Use github.com/finos pattern to match repository paths"
+  ]
+}

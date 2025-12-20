@@ -6,7 +6,19 @@
       "Bash(dir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\" /B)",
       "Bash(dir \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\\\\2-bayesian\" /B)",
       "Bash(mkdir:*)",
-      "Bash(dir /s /b \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\")"
+      "Bash(dir /s /b \"c:\\\\cdm-research-protocol\\\\outputs\\\\phase-1-european-tier1\\\\deutsche-bank\")",
+      "Bash(python -m py_compile:*)",
+      "Bash(grep:*)",
+      "Bash(done)",
+      "Bash(cat:*)",
+      "Bash(python:*)",
+      "Bash(ls:*)",
+      "Bash(if not exist \"c:\\\\cdm-research-protocol\\\\outputs\\\\qa\" mkdir \"c:\\\\cdm-research-protocol\\\\outputs\\\\qa\")",
+      "Bash(if not exist \"c:\\\\cdm-research-protocol\\\\outputs\\\\final\" mkdir \"c:\\\\cdm-research-protocol\\\\outputs\\\\final\")",
+      "Bash(wc:*)",
+      "Bash(xargs -I {} bash -c 'echo \"\"=== {} ===\"\" && wc -l \"\"{}\"\"')",
+      "Bash(dir c:cdm-research-protocol /b)",
+      "Bash(rm:*)"
     ]
   }
 }

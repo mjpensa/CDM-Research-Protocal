@@ -1,0 +1,32 @@
+{
+  "bank_id": "bank-of-america",
+  "bank_name": "Bank of America Corporation",
+  "phase": 8,
+  "execution_tier": "B",
+  "status": "completed",
+  "current_stage": "synthesis",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Vendor-Dependent",
+  "probability_architect": 0.03,
+  "probability_pragmatist": 0.97,
+  "confidence": 85,
+  "prior_probability": 0.20,
+  "evidence_count": {
+    "tier1": 0,
+    "tier2": 1,
+    "tier3": 1,
+    "tier4": 1,
+    "null_results": 2
+  },
+  "key_findings": [
+    "No CDM production announcement",
+    "Retail banking is primary strategic focus",
+    "Merrill Lynch trading capability secondary",
+    "Similar pattern to UK retail banks (Lloyds, NatWest)",
+    "High confidence PRAGMATIST classification"
+  ],
+  "gate1_decision": "FAIL",
+  "adversarial_verdict": "UNCHANGED",
+  "last_updated": "2025-12-19T15:00:00Z",
+  "notes": "Tier B abbreviated protocol. Retail focus provides clear PRAGMATIST signal similar to UK regional banks."
+}

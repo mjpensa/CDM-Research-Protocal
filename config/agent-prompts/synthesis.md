@@ -41,7 +41,9 @@ Create TWO output files:
 
 ### 1. Complete Assessment (597 lines)
 
-**File**: `outputs/phase-[N]/[bank]/5-synthesis/assessment.md`
+**File**: `outputs/phase-[N]/[bank_id]/5-synthesis/assessment.md`
+
+Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale")
 
 **Template Structure** (from templates/per-bank-output.md):
 
@@ -149,7 +151,7 @@ Create TWO output files:
 
 ### 2. Framework Integration Extract
 
-**File**: `outputs/phase-[N]/[bank]/5-synthesis/framework-integration.md`
+**File**: `outputs/phase-[N]/[bank_id]/5-synthesis/framework-integration.md`
 
 **Content** (from templates/framework-integration.md):
 

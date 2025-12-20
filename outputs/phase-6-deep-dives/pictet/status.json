@@ -1,0 +1,32 @@
+{
+  "bank_id": "pictet",
+  "bank_name": "Pictet Group",
+  "phase": 6,
+  "execution_tier": "B",
+  "status": "completed",
+  "current_stage": "synthesis",
+  "classification": "ARCHITECT",
+  "sub_classification": "Native",
+  "probability_architect": 0.98,
+  "probability_pragmatist": 0.02,
+  "confidence": 90,
+  "prior_probability": 0.90,
+  "evidence_count": {
+    "tier1": 1,
+    "tier2": 3,
+    "tier3": 0,
+    "tier4": 0,
+    "null_results": 2
+  },
+  "key_findings": [
+    "Confirmed CDM production - one of only 4 globally",
+    "Unexpected adopter: private bank with low derivatives relevance",
+    "Not regulatory-driven: Swiss environment doesn't mandate CDM",
+    "Client-service motivation: UHNW sophistication expectations",
+    "User, not contributor: production without governance role"
+  ],
+  "gate1_decision": "PASS",
+  "adversarial_verdict": "UNCHANGED",
+  "last_updated": "2025-12-19T12:00:00Z",
+  "notes": "Deep dive assessment. Confirmed production deployment. Only non-investment-bank in CDM production globally. Client-service motivated strategic adoption."
+}

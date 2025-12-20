@@ -1,0 +1,32 @@
+{
+  "bank_id": "goldman-sachs",
+  "bank_name": "Goldman Sachs Group, Inc.",
+  "phase": 8,
+  "execution_tier": "A",
+  "status": "completed",
+  "current_stage": "synthesis",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Vendor-Dependent",
+  "probability_architect": 0.17,
+  "probability_pragmatist": 0.83,
+  "confidence": 65,
+  "prior_probability": 0.40,
+  "evidence_count": {
+    "tier1": 0,
+    "tier2": 1,
+    "tier3": 1,
+    "tier4": 2,
+    "null_results": 3
+  },
+  "key_findings": [
+    "No CDM production announcement despite JPMorgan first mover",
+    "Strong proprietary technology culture",
+    "ISDA membership confirmed but doesn't indicate adoption",
+    "Secretive technology strategy limits evidence",
+    "Classification provisional - could change with announcement"
+  ],
+  "gate1_decision": "FAIL",
+  "adversarial_verdict": "UNCHANGED",
+  "last_updated": "2025-12-19T14:15:00Z",
+  "notes": "Tier A full protocol. No CDM evidence despite high prior. Classification PRAGMATIST with lower confidence due to Goldman secrecy. May be building quietly or pursuing alternative."
+}

@@ -15,6 +15,23 @@ You are the **Orchestrator Agent** for the CDM/DRR International Bank Research P
 
 ---
 
+## Configuration References
+
+All probability thresholds and decision rules are centralized in configuration files:
+
+- **Decision thresholds**: `config/decision-thresholds.json` — Skip-to-adversarial (80%), low confidence block (50%), uncertainty range (40-60%)
+- **Checkpoint rules**: `config/checkpoint-rules.json` — BLOCK vs AUTO-PROCEED conditions
+- **LR tables**: `config/bayesian-lr-tables.json` — Evidence-to-likelihood ratio mappings
+- **Classification taxonomy**: `config/classification-taxonomy.json` — Valid classification values
+
+**IMPORTANT**: Do NOT hardcode threshold values. Always reference `config/decision-thresholds.json` for:
+- `workflow_decisions.skip_to_adversarial.threshold` (currently 80%)
+- `workflow_decisions.low_confidence_block.threshold` (currently 50%)
+- `workflow_decisions.uncertainty_range` (currently 40-60%)
+- `confidence_caps` (tier-based maximum confidence values)
+
+---
+
 ## Core Principles (ALWAYS Apply)
 
 ### Principle 1: Null Hypothesis Default
@@ -163,8 +180,8 @@ Pass: Bank context, research questions, known evidence, tier-specific search tem
 ```
 
 **Output Expected**:
-- `outputs/phase-[N]/[bank]/1-evidence/tier[N]-evidence.md`
-- `outputs/phase-[N]/[bank]/1-evidence/null-results.md`
+- `outputs/phase-[N]/[bank_id]/1-evidence/tier[N]-evidence.md`
+- `outputs/phase-[N]/[bank_id]/1-evidence/null-results.md`
 
 **Validation After**:
 - Verify files exist
@@ -188,7 +205,7 @@ Enable thinking mode
 ```
 
 **Output Expected**:
-- `outputs/phase-[N]/[bank]/2-bayesian/post-tier[N]-update.md`
+- `outputs/phase-[N]/[bank_id]/2-bayesian/post-tier[N]-update.md`
 - Updated status.json with new probability
 
 **Validation After**:
@@ -214,7 +231,7 @@ Enable thinking mode
 ```
 
 **Output Expected**:
-- `outputs/phase-[N]/[bank]/3-gates/[gate-name].md`
+- `outputs/phase-[N]/[bank_id]/3-gates/[gate-name].md`
 
 **Validation After**:
 - Verify all required sections present (per checkpoint-rules.json)
@@ -243,12 +260,29 @@ Enable thinking mode
 ```
 
 **Output Expected**:
-- `outputs/phase-[N]/[bank]/4-adversarial/counter-case.md`
-- `outputs/phase-[N]/[bank]/4-adversarial/disconfirming-searches.md` (if Tier A/B)
-- `outputs/phase-[N]/[bank]/4-adversarial/verdict.md`
+
+**Tier A Banks (Full Adversarial):**
+
+- `outputs/phase-[N]/[bank_id]/4-adversarial/counter-case.md`
+- `outputs/phase-[N]/[bank_id]/4-adversarial/disconfirming-searches.md`
+- `outputs/phase-[N]/[bank_id]/4-adversarial/steelman.md`
+- `outputs/phase-[N]/[bank_id]/4-adversarial/verdict.md`
+
+**Tier B Banks (Abbreviated):**
+
+- `outputs/phase-[N]/[bank_id]/4-adversarial/counter-case.md`
+- `outputs/phase-[N]/[bank_id]/4-adversarial/disconfirming-searches.md`
+- `outputs/phase-[N]/[bank_id]/4-adversarial/verdict.md`
+
+**Tier C Banks (Single Question):**
+
+- `outputs/phase-[N]/[bank_id]/4-adversarial/verdict.md`
 
 **Validation After**:
-- Verify tier-appropriate completeness
+
+- **Tier A**: Verify 4 files present (counter-case, disconfirming-searches, steelman, verdict)
+- **Tier B**: Verify 3 files present (counter-case, disconfirming-searches, verdict)
+- **Tier C**: Verify 1 file present (verdict)
 - Check verdict (STRENGTHENED / UNCHANGED / WEAKENED / REVISED)
 
 **Decision Point**:
@@ -275,8 +309,8 @@ Pass: Complete 597-line template from templates/per-bank-output.md
 ```
 
 **Output Expected**:
-- `outputs/phase-[N]/[bank]/5-synthesis/assessment.md` (597 lines)
-- `outputs/phase-[N]/[bank]/5-synthesis/framework-integration.md`
+- `outputs/phase-[N]/[bank_id]/5-synthesis/assessment.md` (597 lines)
+- `outputs/phase-[N]/[bank_id]/5-synthesis/framework-integration.md`
 
 **Validation After**:
 - Verify assessment.md matches template structure

@@ -1,0 +1,133 @@
+{
+  "$schema": "CDM/DRR Decision Thresholds v1.0",
+  "description": "Centralized probability and confidence thresholds for workflow decisions",
+  "version": "1.0",
+  "last_updated": "2025-12-19",
+
+  "workflow_decisions": {
+    "skip_to_adversarial": {
+      "threshold": 80,
+      "unit": "percent",
+      "description": "Skip remaining evidence tiers if P(Architect) OR P(Pragmatist) exceeds this value",
+      "applies_to": ["reasoning_gate_1", "reasoning_gate_2"],
+      "rationale": "High probability indicates sufficient evidence to proceed to adversarial challenge"
+    },
+    "low_confidence_block": {
+      "threshold": 50,
+      "unit": "percent",
+      "description": "BLOCK checkpoint if final confidence below this value",
+      "applies_to": ["final_classification"],
+      "rationale": "Classifications below 50% confidence require human review"
+    },
+    "uncertainty_range": {
+      "lower": 40,
+      "upper": 60,
+      "unit": "percent",
+      "description": "Flag as high uncertainty if probability falls within this range",
+      "applies_to": ["all_gates"],
+      "rationale": "Probabilities in 40-60% range indicate genuine uncertainty requiring careful analysis"
+    },
+    "early_termination": {
+      "threshold": 95,
+      "unit": "percent",
+      "description": "May terminate early if confidence exceeds this after Tier 1 with strong evidence",
+      "applies_to": ["reasoning_gate_1"],
+      "rationale": "Very high confidence with Tier 1 evidence may not need additional tiers"
+    },
+    "extreme_lr_flag": {
+      "upper": 100,
+      "lower": 0.01,
+      "description": "Flag for review if combined likelihood ratio exceeds these bounds",
+      "applies_to": ["bayesian_updates"],
+      "rationale": "Extreme LRs suggest potential calculation error or extraordinary evidence"
+    }
+  },
+
+  "confidence_caps": {
+    "description": "Maximum confidence allowed based on highest quality evidence tier present",
+    "tier1_only": 95,
+    "tier2_only": 75,
+    "tier3_only": 50,
+    "tier4_inference_only": 35,
+    "rationale": {
+      "tier1": "Even official sources can be outdated or misinterpreted",
+      "tier2": "Industry sources require triangulation for high confidence",
+      "tier3": "Indirect signals are inherently uncertain",
+      "tier4": "Pure inference without direct evidence has high uncertainty"
+    }
+  },
+
+  "temporal_thresholds": {
+    "description": "Evidence freshness boundaries for confidence weighting",
+    "current_days": 548,
+    "dated_days": 1095,
+    "weights": {
+      "current": 1.0,
+      "dated_low": 0.5,
+      "dated_high": 0.8,
+      "historical": 0.25
+    },
+    "rationale": {
+      "current": "Evidence less than 18 months old receives full weight",
+      "dated": "Evidence 18-36 months old receives reduced weight (0.5-0.8)",
+      "historical": "Evidence over 3 years old provides context only (0.25 weight)"
+    }
+  },
+
+  "probability_anchors": {
+    "strong_architect": 80,
+    "strong_pragmatist": 20,
+    "description": "Thresholds for 'strong' classification signals",
+    "rationale": "P(Architect) > 80% or P(Architect) < 20% indicates strong directional evidence"
+  },
+
+  "gate_decision_points": {
+    "gate_1": {
+      "proceed_to_tier2": "P(Architect) between 20% and 80%",
+      "skip_to_adversarial": "P(Architect) > 80% OR P(Architect) < 20%"
+    },
+    "gate_2": {
+      "proceed_to_tier3": "P(Architect) between 20% and 80%",
+      "skip_to_adversarial": "P(Architect) > 80% OR P(Architect) < 20%"
+    },
+    "gate_3": {
+      "proceed_to_adversarial": "Always proceed after Gate 3"
+    }
+  },
+
+  "classification_thresholds": {
+    "architect_native": {
+      "minimum_probability": 90,
+      "required_evidence": "production_usage confirmed"
+    },
+    "architect_leader": {
+      "minimum_probability": 75,
+      "required_evidence": "pilot_or_poc with significant contribution"
+    },
+    "architect_follower": {
+      "minimum_probability": 60,
+      "required_evidence": "open_source_contribution or membership_or_participation"
+    },
+    "pragmatist": {
+      "probability_range": "P(Architect) < 50%",
+      "variants": ["Vendor-Dependent", "Integration-Constrained", "Regulatory-Driven", "Network-Accelerant"]
+    }
+  },
+
+  "maturity_weights": {
+    "description": "Weights for calculating maturity score from claim types",
+    "production_usage": 5,
+    "pilot_or_poc": 3,
+    "open_source_contribution": 2,
+    "vendor_proxy_signal": 2,
+    "membership_or_participation": 1,
+    "hiring_signal": 1
+  },
+
+  "usage_notes": [
+    "All thresholds in this file should be referenced by agent prompts rather than hardcoded",
+    "Changes to thresholds here will propagate to all agents on next execution",
+    "Threshold changes should be logged in checkpoint-log.json with rationale",
+    "The 80% skip threshold is intentionally asymmetric - we're more cautious about ARCHITECT claims"
+  ]
+}

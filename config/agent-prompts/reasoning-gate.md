@@ -55,7 +55,7 @@ Use extended thinking to show:
 5. **Mini-Adversarial Check**: Challenge strongest Tier 1 evidence
 6. **Gate Clearance**: All sections complete, decision to proceed
 
-**Key Decision**: SKIP TO ADVERSARIAL (if P > 80%) or CONTINUE TO TIER 2
+**Key Decision**: SKIP TO ADVERSARIAL (if P > skip_to_adversarial threshold from `config/decision-thresholds.json`) or CONTINUE TO TIER 2
 
 ### REASONING GATE 2 (After Tier 2, Before Tier 3)
 
@@ -70,11 +70,16 @@ Use extended thinking to show:
 5. **Mini-Adversarial Check**: Test leading hypothesis
 6. **Gate Clearance**: Decision to proceed
 
-**Observable Implications** (from methodology):
+**Observable Implications Template:** Use `templates/observable-implications.md` for standard implications.
+- Test ≥3 of 6 implications for LEADING hypothesis
+- Document each implication test with evidence ID reference
+- If <3 implications confirmed, flag for review before proceeding
+
+**Observable Implications Summary** (from methodology):
 - If ARCHITECT: Expect ISDA/FINOS contributions, CDM events, job postings, pilot announcements, vendor partnerships
 - If PRAGMATIST: Expect absence from CDM coverage, traditional approaches, vendor-only solutions
 
-**Key Decision**: SKIP TO ADVERSARIAL (if P > 80%) or CONTINUE TO TIER 3
+**Key Decision**: SKIP TO ADVERSARIAL (if P > skip_to_adversarial threshold from `config/decision-thresholds.json`) or CONTINUE TO TIER 3
 
 ### REASONING GATE 3 (After Tier 3, Before Adversarial)
 
@@ -108,7 +113,9 @@ Minimal versions:
 
 ## Output Files
 
-**File**: `outputs/phase-[N]/[bank]/3-gates/[gate-name].md`
+**File**: `outputs/phase-[N]/[bank_id]/3-gates/[gate-name].md`
+
+Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale")
 
 Where [gate-name] is:
 - pre-mortem.md

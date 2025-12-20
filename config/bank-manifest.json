@@ -1,8 +1,8 @@
 {
   "$schema": "CDM/DRR Bank Research Manifest v2.0",
   "description": "Complete list of all banks for CDM/DRR research with metadata and research contexts",
-  "total_banks": 24,
-  "phases": 7,
+  "total_banks": 31,
+  "phases": 9,
 
   "banks": [
     {
@@ -240,7 +240,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-2-uk-regional/natwest.md"
     },
     {
       "bank_id": "lloyds",
@@ -270,7 +270,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-2-uk-regional/lloyds.md"
     },
     {
       "bank_id": "nomura",
@@ -343,7 +343,7 @@
           "implication": "Structural connectivity requirement"
         }
       ],
-      "prompt_file": null
+      "prompt_file": "phases/phase-3-japanese/mufg.md"
     },
     {
       "bank_id": "mizuho",
@@ -377,7 +377,7 @@
           "implication": "Structural connectivity requirement"
         }
       ],
-      "prompt_file": null
+      "prompt_file": "phases/phase-3-japanese/mizuho.md"
     },
     {
       "bank_id": "smbc",
@@ -411,7 +411,7 @@
           "implication": "Structural connectivity requirement"
         }
       ],
-      "prompt_file": null
+      "prompt_file": "phases/phase-3-japanese/smbc.md"
     },
     {
       "bank_id": "ing",
@@ -464,7 +464,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-4-other-european/credit-agricole.md"
     },
     {
       "bank_id": "unicredit",
@@ -490,7 +490,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-4-other-european/unicredit.md"
     },
     {
       "bank_id": "commerzbank",
@@ -516,7 +516,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-4-other-european/commerzbank.md"
     },
     {
       "bank_id": "santander",
@@ -542,7 +542,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-5-spanish/santander.md"
     },
     {
       "bank_id": "bbva",
@@ -568,7 +568,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-5-spanish/bbva.md"
     },
     {
       "bank_id": "standard-chartered",
@@ -642,7 +642,7 @@
           "implication": "ARCHITECT-Native baseline established"
         }
       ],
-      "prompt_file": null
+      "prompt_file": "phases/phase-6-deep-dives/pictet.md"
     },
     {
       "bank_id": "dbs",
@@ -668,7 +668,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-7-emerging-markets/dbs.md"
     },
     {
       "bank_id": "icbc",
@@ -694,7 +694,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-7-emerging-markets/icbc.md"
     },
     {
       "bank_id": "bank-of-china",
@@ -720,7 +720,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-7-emerging-markets/bank-of-china.md"
     },
     {
       "bank_id": "ccb",
@@ -746,7 +746,7 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-7-emerging-markets/ccb.md"
     },
     {
       "bank_id": "abc",
@@ -772,7 +772,268 @@
         "hypothesis_to_test": null
       },
       "known_evidence": [],
-      "prompt_file": null
+      "prompt_file": "phases/phase-7-emerging-markets/abc.md"
+    },
+    {
+      "bank_id": "jpmorgan",
+      "bank_name": "JPMorgan Chase & Co.",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global investment bank and financial services",
+      "derivatives_relevance": "Very High",
+      "primary_regulator": "OCC/Federal Reserve/SEC/CFTC",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 15,
+        "confirmed_production": true,
+        "production_adjustment_pct": 30,
+        "us_gsib": true
+      },
+      "research_objective": {
+        "primary_goal": "Document confirmed ARCHITECT-Native status and production scope",
+        "key_questions": [
+          "What is the scope of JPMorgan's CDM production deployment?",
+          "What products/workflows are in CDM production?",
+          "Is JPMorgan contributing to CDM governance/development?",
+          "How does CFTC Rewrite drive their CDM strategy?"
+        ],
+        "framework_claim": "ARCHITECT-Native (confirmed production October 2024)",
+        "hypothesis_to_test": null
+      },
+      "known_evidence": [
+        {
+          "evidence": "CDM production announced October 2024",
+          "source": "Official announcement",
+          "implication": "ARCHITECT-Native baseline established"
+        }
+      ],
+      "prompt_file": "phases/phase-8-us-investment-banks/jpmorgan.md"
+    },
+    {
+      "bank_id": "goldman-sachs",
+      "bank_name": "Goldman Sachs Group, Inc.",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global investment bank",
+      "derivatives_relevance": "Very High",
+      "primary_regulator": "Federal Reserve/SEC/CFTC",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 15,
+        "us_gsib": true,
+        "peer_production": true,
+        "peer_name": "JPMorgan"
+      },
+      "research_objective": {
+        "primary_goal": "Assess if Goldman Sachs is following JPMorgan CDM path",
+        "key_questions": [
+          "Is Goldman Sachs building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from Goldman Sachs?",
+          "How is Goldman Sachs addressing CFTC Rewrite?",
+          "Is there evidence of CDM pilot or production planning?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Goldman Sachs as major derivatives dealer is likely ARCHITECT candidate"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JPMorgan (peer) in CDM production October 2024",
+          "source": "Industry knowledge",
+          "implication": "Potential peer pressure for US derivatives dealers"
+        }
+      ],
+      "prompt_file": "phases/phase-8-us-investment-banks/goldman-sachs.md"
+    },
+    {
+      "bank_id": "morgan-stanley",
+      "bank_name": "Morgan Stanley",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "execution_tier": "A",
+      "time_budget_hours": 4.5,
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global investment bank and wealth management",
+      "derivatives_relevance": "Very High",
+      "primary_regulator": "Federal Reserve/SEC/CFTC",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 15,
+        "us_gsib": true,
+        "peer_production": true,
+        "peer_name": "JPMorgan"
+      },
+      "research_objective": {
+        "primary_goal": "Assess if Morgan Stanley is following JPMorgan CDM path",
+        "key_questions": [
+          "Is Morgan Stanley building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from Morgan Stanley?",
+          "How is Morgan Stanley addressing CFTC Rewrite?",
+          "Is there evidence of CDM pilot or production planning?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Morgan Stanley as major derivatives dealer is likely ARCHITECT candidate"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JPMorgan (peer) in CDM production October 2024",
+          "source": "Industry knowledge",
+          "implication": "Potential peer pressure for US derivatives dealers"
+        }
+      ],
+      "prompt_file": "phases/phase-8-us-investment-banks/morgan-stanley.md"
+    },
+    {
+      "bank_id": "citigroup",
+      "bank_name": "Citigroup Inc.",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global universal bank",
+      "derivatives_relevance": "High",
+      "primary_regulator": "OCC/Federal Reserve/SEC/CFTC",
+      "prior_adjustments": {
+        "derivatives_dominant": true,
+        "adjustment_pct": 10,
+        "us_gsib": true,
+        "peer_production": true,
+        "peer_name": "JPMorgan"
+      },
+      "research_objective": {
+        "primary_goal": "Assess Citigroup CDM positioning",
+        "key_questions": [
+          "Is Citigroup building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from Citigroup?",
+          "How is Citigroup addressing CFTC Rewrite?",
+          "Is vendor path more likely given universal bank model?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Citigroup may follow vendor path despite derivatives exposure"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JPMorgan (peer) in CDM production October 2024",
+          "source": "Industry knowledge",
+          "implication": "Potential peer pressure for US G-SIBs"
+        }
+      ],
+      "prompt_file": "phases/phase-8-us-investment-banks/citigroup.md"
+    },
+    {
+      "bank_id": "bank-of-america",
+      "bank_name": "Bank of America Corporation",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "execution_tier": "B",
+      "time_budget_hours": 3.0,
+      "headquarters": "Charlotte, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global universal bank with retail focus",
+      "derivatives_relevance": "High",
+      "primary_regulator": "OCC/Federal Reserve/SEC/CFTC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "us_gsib": true,
+        "peer_production": true,
+        "peer_name": "JPMorgan"
+      },
+      "research_objective": {
+        "primary_goal": "Assess Bank of America CDM positioning",
+        "key_questions": [
+          "Is Bank of America building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from BofA?",
+          "How is BofA addressing CFTC Rewrite?",
+          "Does retail banking focus reduce CDM priority?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Bank of America likely PRAGMATIST given retail focus"
+      },
+      "known_evidence": [
+        {
+          "evidence": "JPMorgan (peer) in CDM production October 2024",
+          "source": "Industry knowledge",
+          "implication": "Potential peer pressure but different business model"
+        }
+      ],
+      "prompt_file": "phases/phase-8-us-investment-banks/bank-of-america.md"
+    },
+    {
+      "bank_id": "state-street",
+      "bank_name": "State Street Corporation",
+      "phase": 9,
+      "phase_name": "US Custody Banks",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "Boston, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Custody bank and asset servicing",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "Federal Reserve/SEC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "us_gsib": true,
+        "custody_bank": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess custody bank CDM positioning",
+        "key_questions": [
+          "Does custody/asset servicing drive different CDM motivation?",
+          "Is State Street building CDM capability for client servicing?",
+          "How does CFTC Rewrite affect custody bank derivatives operations?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Custody banks may have different CDM drivers than investment banks"
+      },
+      "known_evidence": [],
+      "prompt_file": "phases/phase-9-us-custody-banks/state-street.md"
+    },
+    {
+      "bank_id": "bny-mellon",
+      "bank_name": "The Bank of New York Mellon Corporation",
+      "phase": 9,
+      "phase_name": "US Custody Banks",
+      "execution_tier": "C",
+      "time_budget_hours": 1.5,
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Custody bank and asset servicing",
+      "derivatives_relevance": "Medium",
+      "primary_regulator": "Federal Reserve/SEC",
+      "prior_adjustments": {
+        "derivatives_dominant": false,
+        "us_gsib": true,
+        "custody_bank": true
+      },
+      "research_objective": {
+        "primary_goal": "Assess custody bank CDM positioning",
+        "key_questions": [
+          "Does custody/asset servicing drive different CDM motivation?",
+          "Is BNY Mellon building CDM capability for client servicing?",
+          "How does CFTC Rewrite affect custody bank derivatives operations?"
+        ],
+        "framework_claim": null,
+        "hypothesis_to_test": "Custody banks may have different CDM drivers than investment banks"
+      },
+      "known_evidence": [],
+      "prompt_file": "phases/phase-9-us-custody-banks/bny-mellon.md"
     }
   ],
 
@@ -825,6 +1086,20 @@
       "total_hours": 7.5,
       "execution_tier": "C",
       "dependencies": "None - limited evidence expected"
+    },
+    "phase_8": {
+      "name": "US Investment Banks",
+      "banks": 5,
+      "total_hours": 18.0,
+      "execution_tier": "Mixed (A/B)",
+      "dependencies": "JPMorgan anchor point established"
+    },
+    "phase_9": {
+      "name": "US Custody Banks",
+      "banks": 2,
+      "total_hours": 3.0,
+      "execution_tier": "C",
+      "dependencies": "Phase 8 US investment bank patterns"
     }
   },
 
@@ -863,6 +1138,16 @@
       "anchor": "Confirmed contributors",
       "fact": "Barclays, Standard Chartered (FINOS)",
       "check": "Establishes Follower threshold"
+    },
+    {
+      "anchor": "CFTC Rewrite",
+      "fact": "US regulatory reporting overhaul (effective dates vary by rule)",
+      "check": "US banks must address CFTC reporting requirements"
+    },
+    {
+      "anchor": "DTCC",
+      "fact": "Major US derivatives infrastructure provider",
+      "check": "DTCC CDM involvement may affect US bank strategies"
     }
   ]
 }

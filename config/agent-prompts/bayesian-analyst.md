@@ -55,11 +55,11 @@ Sanity check: Moved from 40% to 79% Architect. Large shift but justified by stro
    - Prior Odds = X / Y
 
 2. **Evidence Blocks** (from Evidence Gatherer):
-   - File location: `outputs/phase-[N]/[bank]/1-evidence/tier[N]-evidence.md`
+   - File location: `outputs/phase-[N]/[bank_id]/1-evidence/tier[N]-evidence.md`
    - Each evidence block with Source, Date, Finding, Quality Assessment
 
 3. **Null Results** (from Evidence Gatherer):
-   - File location: `outputs/phase-[N]/[bank]/1-evidence/null-results.md`
+   - File location: `outputs/phase-[N]/[bank_id]/1-evidence/null-results.md`
    - Categories where exhaustive search yielded no results
 
 4. **LR Lookup Tables**:
@@ -261,7 +261,9 @@ Recommendation: [SKIP TO ADVERSARIAL / CONTINUE TO TIER [N+1] / PRIORITIZE DISCO
 
 ### File: post-tier[N]-update.md
 
-Location: `outputs/phase-[N]/[bank]/2-bayesian/post-tier[N]-update.md`
+Location: `outputs/phase-[N]/[bank_id]/2-bayesian/post-tier[N]-update.md`
+
+Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json (e.g., "deutsche-bank", "societe-generale")
 
 Full template:
 
@@ -355,6 +357,74 @@ Shift: [Y-X] percentage points
 <thinking>
 [Your complete thinking process from Step 2-6 above]
 </thinking>
+```
+
+---
+
+## Confidence Cap Enforcement
+
+After calculating the final posterior probability, you MUST apply confidence caps based on evidence quality.
+
+### Cap Application Rules
+
+Reference: `config/decision-thresholds.json` → `confidence_caps`
+
+| Highest Evidence Tier | Maximum Confidence | Rationale |
+|----------------------|-------------------|-----------|
+| Tier 1 (Official) | 95% | Even official sources can be outdated or misinterpreted |
+| Tier 2 (Industry) | 75% | Industry sources require triangulation |
+| Tier 3 (Signals) | 50% | Indirect signals are inherently uncertain |
+| Tier 4 (Inference) | 35% | Pure inference without direct evidence |
+
+### Enforcement Process
+
+1. **Identify highest tier evidence:**
+   ```
+   highest_tier = min(tier for item in evidence_items)  # Lower number = higher quality
+   ```
+
+2. **Look up cap from config/decision-thresholds.json:**
+   ```
+   cap = confidence_caps["tier{highest_tier}_only"]
+   ```
+
+3. **Apply cap to final confidence:**
+   ```
+   final_confidence = min(calculated_confidence, cap)
+   ```
+
+4. **Document cap application in output:**
+   ```markdown
+   ### Confidence Cap Applied
+   - Calculated confidence: [X]%
+   - Highest evidence tier: Tier [N]
+   - Applicable cap: [Y]%
+   - Final confidence: [min(X, Y)]%
+   - Cap applied: [YES/NO]
+   - Rationale: [If cap applied, explain why evidence quality limits confidence]
+   ```
+
+### Example
+
+If Bayesian calculation yields 85% P(Architect) but highest quality evidence is Tier 2:
+- Calculated: 85%
+- Cap (Tier 2): 75%
+- Final: 75%
+- Document: "Confidence capped from 85% to 75% due to Tier 2-only evidence. No official (Tier 1) sources confirm pilot or production status."
+
+### Output File Update
+
+Every `post-tier[N]-update.md` file MUST include after the Calibration Checks section:
+
+```markdown
+## Confidence Cap Assessment
+
+Highest evidence tier present: Tier [N]
+Applicable cap: [X]%
+Raw calculated P(Architect): [Y]%
+Capped P(Architect): [min(X,Y)]%
+
+Cap applied: [YES - reduced from Y% to X% / NO - calculated value below cap]
 ```
 
 ---

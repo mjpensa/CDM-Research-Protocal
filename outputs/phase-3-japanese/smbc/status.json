@@ -1,0 +1,32 @@
+{
+  "bank_id": "smbc",
+  "bank_name": "Sumitomo Mitsui Banking Corporation (SMBC)",
+  "phase": 3,
+  "execution_tier": "B",
+  "status": "completed",
+  "current_stage": "synthesis",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Vendor-Dependent",
+  "probability_architect": 0.04,
+  "probability_pragmatist": 0.90,
+  "confidence": 80,
+  "prior_probability": 0.20,
+  "evidence_count": {
+    "tier1": 0,
+    "tier2": 1,
+    "tier3": 1,
+    "tier4": 2,
+    "null_results": 6
+  },
+  "key_findings": [
+    "Complete absence of direct CDM evidence",
+    "Commercial banking focus reduces likelihood of CDM leadership",
+    "Strong regulatory environment and JBA coordination supports pragmatic adoption",
+    "SMBC Nikko Securities houses derivatives operations but no CDM signals",
+    "Evidence pattern nearly perfectly matches Pragmatist profile"
+  ],
+  "gate1_decision": "FAIL",
+  "adversarial_verdict": "UNCHANGED",
+  "last_updated": "2025-12-19T12:00:00Z",
+  "notes": "Very high confidence in Pragmatist classification (80%). Adversarial analysis raised P(Architect) from 1% to 3-5% as uncertainty floor. Commercial banking focus is key differentiator from Architect."
+}

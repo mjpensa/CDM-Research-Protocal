@@ -1,0 +1,32 @@
+{
+  "bank_id": "dbs",
+  "bank_name": "DBS Bank Ltd.",
+  "phase": 7,
+  "execution_tier": "C",
+  "status": "completed",
+  "current_stage": "synthesis",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Vendor-Dependent",
+  "probability_architect": 0.10,
+  "probability_pragmatist": 0.90,
+  "confidence": 75,
+  "prior_probability": 0.30,
+  "evidence_count": {
+    "tier1": 0,
+    "tier2": 1,
+    "tier3": 0,
+    "tier4": 3,
+    "null_results": 4
+  },
+  "key_findings": [
+    "No direct CDM evidence found",
+    "Digital innovation leader but in retail, not capital markets",
+    "MAS not mandating CDM - no regulatory driver",
+    "JSCC proximity creates awareness but not adoption",
+    "Pattern consistent with BBVA (digital leader != CDM architect)"
+  ],
+  "gate1_decision": "FAIL",
+  "adversarial_verdict": "UNCHANGED",
+  "last_updated": "2025-12-19T12:00:00Z",
+  "notes": "Tier C rapid assessment. Southeast Asian digital leader but CDM not in scope."
+}

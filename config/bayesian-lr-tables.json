@@ -183,8 +183,9 @@
     }
   },
 
-  "absence_evidence": {
-    "description": "Informative absence - Evidence from exhaustive searches that yield no results",
+  "tier4_evidence": {
+    "description": "Tier 4: Contextual inference - Lowest quality evidence from absence, inference, or peer behavior",
+    "max_confidence": 35,
     "evidence_types": {
       "no_evidence_after_exhaustive_tier1_search": {
         "p_e_given_architect": 0.15,
@@ -206,6 +207,27 @@
         "lr": 0.06,
         "interpretation": "Very strong Pragmatist",
         "note": "Complete absence after exhaustive search strongly suggests Pragmatist"
+      },
+      "business_model_inference": {
+        "p_e_given_architect": 0.40,
+        "p_e_given_pragmatist": 0.30,
+        "lr": 1.33,
+        "interpretation": "Very weak Architect",
+        "note": "Derivatives-heavy business model suggests higher CDM likelihood but weak evidence"
+      },
+      "regulatory_pressure_inference": {
+        "p_e_given_architect": 0.35,
+        "p_e_given_pragmatist": 0.35,
+        "lr": 1.0,
+        "interpretation": "Uninformative",
+        "note": "All banks face similar regulatory pressure; not differentiating"
+      },
+      "peer_behavior_inference": {
+        "p_e_given_architect": 0.45,
+        "p_e_given_pragmatist": 0.25,
+        "lr": 1.8,
+        "interpretation": "Weak Architect",
+        "note": "If regional peers are Architects, slight increase in likelihood"
       }
     }
   },

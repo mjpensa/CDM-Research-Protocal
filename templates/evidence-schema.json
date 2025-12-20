@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CDM/DRR Evidence Documentation Schema v3.0",
+  "description": "Documents the structure of research outputs. Primary output format is Markdown; this schema serves as documentation, not strict validation.",
+  "version": "3.0",
+  "last_updated": "2025-12-19",
+
+  "output_format": "markdown",
+  "note": "This schema documents the expected structure of Markdown evidence files. JSON tooling (process_evidence.py, trust_audit.py) is available for optional advanced processing but not required for core workflow.",
+
+  "evidence_file_structure": {
+    "tier_evidence_md": {
+      "filename_pattern": "tier[N]-evidence.md",
+      "location": "outputs/phase-[N]/[bank_id]/1-evidence/",
+      "sections": [
+        "# Tier [N] Evidence: [Bank Name]",
+        "## Search Execution Summary",
+        "- Execution Tier: [A/B/C]",
+        "- Date: [YYYY-MM-DD]",
+        "- Searches Executed: [Count]",
+        "- Evidence Blocks Found: [Count]",
+        "- Null Results: [Count]",
+        "## Evidence Inventory",
+        "[BANK-XXX] TIER [N] — [SUPPORTS/UNDERMINES/NEUTRAL] [Classification]",
+        "Source: [source name and URL]",
+        "Date: [YYYY-MM-DD]",
+        "Finding: [quote or summary]",
+        "Quality Assessment:",
+        "- Authority: [High/Medium/Low]",
+        "- Recency: [Current/Dated/Historical]",
+        "- Specificity: [Specific/Moderate/Vague]",
+        "- Corroborated: [Yes/No - pending]",
+        "Confidence: [HIGH/MEDIUM/LOW]",
+        "Reasoning: [one sentence]",
+        "Caveats: [limitations]"
+      ]
+    },
+    "null_results_md": {
+      "filename_pattern": "null-results.md",
+      "location": "outputs/phase-[N]/[bank_id]/1-evidence/",
+      "sections": [
+        "# Null Results: [Bank Name]",
+        "## Summary",
+        "- Total Search Categories: [Count]",
+        "- Categories with Null Results: [Count]",
+        "- Informative Absences: [Count]",
+        "## Null Result Blocks",
+        "Search Category: [category name]",
+        "Queries Executed: [list]",
+        "Results Reviewed: [count]",
+        "Relevant Findings: 0",
+        "Null Classification: [NO_RESULTS/IRRELEVANT/PAYWALLED/OUTDATED_ONLY]",
+        "Informative Absence Assessment: [YES/NO/UNCLEAR]",
+        "Implication: [what absence suggests]"
+      ]
+    }
+  },
+
+  "status_json_structure": {
+    "filename": "status.json",
+    "location": "outputs/phase-[N]/[bank_id]/",
+    "required_fields": {
+      "bank_id": "string - lowercase hyphenated identifier",
+      "bank_name": "string - full display name",
+      "phase": "integer - phase number (1-7)",
+      "classification": "enum - ARCHITECT | PRAGMATIST | UNKNOWN",
+      "sub_classification": "string - variant name from taxonomy",
+      "confidence": "number - 0-100 percentage",
+      "status": "enum - pending | in_progress | completed",
+      "current_stage": "string - current workflow stage"
+    },
+    "optional_fields": {
+      "probability_architect": "number - 0.0 to 1.0",
+      "probability_pragmatist": "number - 0.0 to 1.0",
+      "prior_probability": "number - starting probability",
+      "evidence_count": "object - {tier1, tier2, tier3, null_results}",
+      "last_updated": "string - ISO 8601 timestamp",
+      "notes": "string - additional context"
+    }
+  },
+
+  "classification_taxonomy": {
+    "valid_classifications": ["ARCHITECT", "PRAGMATIST", "UNKNOWN"],
+    "valid_sub_classifications": {
+      "ARCHITECT": ["Native", "Leader", "Follower"],
+      "PRAGMATIST": ["Vendor-Dependent", "Integration-Constrained", "Regulatory-Driven", "Network-Accelerant"],
+      "UNKNOWN": ["Insufficient-Evidence", "Conflicting-Evidence"]
+    },
+    "deprecated_terms": {
+      "NOT_ENGAGED": "Use PRAGMATIST with appropriate sub-classification",
+      "NON-ARCHITECT": "Use PRAGMATIST with appropriate sub-classification",
+      "CDM User": "Use PRAGMATIST Vendor-Dependent"
+    }
+  },
+
+  "optional_json_processing": {
+    "description": "The following fields are used by optional Python tools for advanced verification",
+    "tools": ["tools/process_evidence.py", "tools/trust_audit.py"],
+    "fields": {
+      "verification": {
+        "status": "enum - VERIFIED|ARCHIVED|PAYWALLED|DEAD|ERROR|PENDING",
+        "live_ok": "boolean",
+        "archive_ok": "boolean",
+        "last_verified": "ISO timestamp"
+      },
+      "content": {
+        "hash_sha256": "string - content hash for drift detection",
+        "byte_length": "integer",
+        "archive_url": "string - Wayback Machine URL",
+        "content_changed": "boolean - drift detection flag"
+      },
+      "trust_metrics": {
+        "overall_confidence": "number 0-100",
+        "corroboration_rate": "number 0-1",
+        "verification_rate": "number 0-1",
+        "flags": "array of trust flag strings"
+      }
+    }
+  },
+
+  "trust_flags": {
+    "description": "Flags that can be raised by trust_audit.py",
+    "values": [
+      "SINGLE_SOURCE_CLAIM",
+      "STALE_EVIDENCE",
+      "UNVERIFIED_URLS",
+      "CONTRADICTIONS_DETECTED",
+      "LOW_TIER_ONLY",
+      "CONTENT_DRIFT_DETECTED",
+      "MISSING_CORROBORATION",
+      "DUPLICATE_IDS",
+      "EXCERPTS_NOT_VERIFIED",
+      "TIER_AUTHORITY_MISMATCH"
+    ]
+  },
+
+  "deprecated_v2_fields": {
+    "note": "The following fields from schema v2.3 are documented for reference but not required in Markdown workflow",
+    "fields": ["meta.provenance", "evidence_items.verification", "evidence_items.content.hash_history"]
+  }
+}
