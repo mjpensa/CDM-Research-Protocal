@@ -1,0 +1,48 @@
+{
+  "$schema": "CDM/DRR Anchor Points v1.0",
+  "description": "Immutable facts that no classification can violate",
+
+  "production_banks": {
+    "description": "Banks confirmed in CDM production as of knowledge cutoff",
+    "banks": [
+      {"id": "bnp-paribas", "date": "2022-Q3", "source": "ISDA official announcement"},
+      {"id": "jpmorgan", "date": "2024-10", "source": "ISDA official announcement"},
+      {"id": "jscc", "date": "2023", "source": "ISDA official announcement"},
+      {"id": "pictet", "date": "2024", "source": "FINOS announcement"}
+    ],
+    "constraint": "These banks MUST be classified as ARCHITECT-Native"
+  },
+
+  "confirmed_contributors": {
+    "description": "Banks confirmed as CDM contributors",
+    "banks": [
+      {"id": "barclays", "evidence": "Lee Braine public advocacy, ISDA working groups"},
+      {"id": "standard-chartered", "evidence": "FINOS contributor lists"},
+      {"id": "deutsche-bank", "evidence": "ISDA working group participation"},
+      {"id": "societe-generale", "evidence": "ISDA CDM steering committee"}
+    ],
+    "constraint": "These banks MUST be classified as ARCHITECT (any variant) or have explicit contrary evidence"
+  },
+
+  "regulatory_deadlines": {
+    "emir_refit_eu": "2024-04-29",
+    "emir_refit_uk": "2024-09-30",
+    "cftc_rewrite": "2025-01-01",
+    "constraint": "Post-deadline evidence for EU/UK banks carries higher weight"
+  },
+
+  "first_major_bank": {
+    "bank": "bnp-paribas",
+    "date": "2022-Q3",
+    "constraint": "No other bank can claim production before this date without exceptional evidence"
+  },
+
+  "known_vendor_relationships": {
+    "description": "Banks with confirmed vendor dependencies",
+    "banks": [
+      {"id": "hsbc", "vendor": "delta-capita", "scope": "global OTC derivatives"},
+      {"id": "nomura", "vendor": "delta-capita", "scope": "post-trade processing"}
+    ],
+    "constraint": "These banks likely PRAGMATIST (Vendor-dependent) unless contradicted"
+  }
+}

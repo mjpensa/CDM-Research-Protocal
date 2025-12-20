@@ -55,17 +55,17 @@
     {
       "timestamp": "2025-12-19T09:00:00Z",
       "event": "bank_completed",
-      "details": "NatWest assessment complete: NOT ENGAGED, 5% P(Architect), 95% confidence"
+      "details": "NatWest assessment complete: PRAGMATIST, 5% P(Architect), 95% confidence"
     },
     {
       "timestamp": "2025-12-19T09:30:00Z",
       "event": "bank_completed",
-      "details": "Lloyds assessment complete: NON-ARCHITECT, 5% P(Architect), 95% confidence"
+      "details": "Lloyds assessment complete: PRAGMATIST, 5% P(Architect), 95% confidence"
     },
     {
       "timestamp": "2025-12-19T10:00:00Z",
       "event": "phase_2_complete",
-      "details": "Phase 2 (UK Regional) complete: 2 banks assessed. Both NOT ENGAGED. QA validation passed."
+      "details": "Phase 2 (UK Regional) complete: 2 banks assessed. Both PRAGMATIST. QA validation passed."
     },
     {
       "timestamp": "2025-12-19T10:00:00Z",

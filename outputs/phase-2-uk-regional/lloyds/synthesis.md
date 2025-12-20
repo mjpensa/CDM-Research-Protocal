@@ -2,7 +2,7 @@
 ## Tier B Protocol (Condensed)
 
 **Date**: 2025-12-19
-**Classification**: NON-ARCHITECT
+**Classification**: PRAGMATIST
 **Confidence**: 95%
 **Final P(Architect)**: 5%
 
@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-Lloyds Banking Group PLC is classified as a **Non-Architect** with **high confidence (95%)**. The bank's retail-focused business model, absence from ISDA CDM working groups, and technology investments oriented toward consumer digital banking collectively indicate no meaningful engagement with CDM architecture.
+Lloyds Banking Group PLC is classified as a **PRAGMATIST** with **high confidence (95%)**. The bank's retail-focused business model, absence from ISDA CDM working groups, and technology investments oriented toward consumer digital banking collectively indicate no meaningful engagement with CDM architecture.
 
 ---
 
@@ -68,7 +68,7 @@ Post-Evidence:   P(Architect) = 5%
 Post-Adversarial: P(Architect) = 5%
 ```
 
-**Movement**: -15 percentage points (significant shift toward Non-Architect)
+**Movement**: -15 percentage points (significant shift toward PRAGMATIST)
 
 ---
 
@@ -112,7 +112,7 @@ Post-Adversarial: P(Architect) = 5%
 | Attribute | Value |
 |-----------|-------|
 | **Bank** | Lloyds Banking Group PLC |
-| **Classification** | **NON-ARCHITECT** |
+| **Classification** | **PRAGMATIST** |
 | **Confidence** | **95%** |
 | **P(Architect)** | **5%** |
 | **Sub-Classification** | Potential CDM User (via vendors) |

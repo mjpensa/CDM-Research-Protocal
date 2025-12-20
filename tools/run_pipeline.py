@@ -27,6 +27,9 @@ from process_evidence import process_bank_evidence
 from trust_audit import run_trust_audit
 from render_report import render_report
 from markdown_to_json import convert_bank_directory
+from markdown_parser import validate_bank_outputs, parse_bayesian_file, parse_evidence_file
+from bayesian_calculator import BayesianCalculator
+from url_validator import validate_bank_urls
 
 # --- LOGGING ---
 logging.basicConfig(
@@ -109,7 +112,92 @@ def ensure_evidence_json(bank_dir: Path) -> Path:
     return json_path
 
 
-def run_pipeline(path_input: str, skip_verification: bool = False) -> dict:
+def validate_bayesian_calculations(bank_dir: Path) -> dict:
+    """
+    Validate Bayesian calculations against Python implementation.
+
+    Args:
+        bank_dir: Path to bank directory
+
+    Returns:
+        dict with 'valid', 'issues', and 'warnings'
+    """
+    calc = BayesianCalculator()
+    results = {'valid': True, 'issues': [], 'warnings': []}
+
+    evidence_dir = bank_dir / "1-evidence"
+    bayesian_dir = bank_dir / "2-bayesian"
+
+    if not bayesian_dir.exists():
+        return results
+
+    # For each tier, check independence and extreme LRs
+    for tier in [1, 2, 3]:
+        bayesian_file = bayesian_dir / f"post-tier{tier}-update.md"
+        evidence_file = evidence_dir / f"tier{tier}-evidence.md"
+
+        if not bayesian_file.exists():
+            continue
+
+        # Parse agent's output
+        try:
+            agent_update, parse_result = parse_bayesian_file(str(bayesian_file))
+        except Exception as e:
+            results['issues'].append(f"Tier {tier}: Could not parse Bayesian file: {e}")
+            continue
+
+        if not agent_update:
+            results['issues'].append(f"Tier {tier}: Empty Bayesian update")
+            continue
+
+        # Parse evidence
+        evidence_blocks = []
+        if evidence_file.exists():
+            try:
+                evidence_blocks, _ = parse_evidence_file(str(evidence_file))
+            except Exception:
+                pass
+
+        # Convert evidence blocks to calculator format for independence check
+        evidence_items = []
+        for block in evidence_blocks:
+            evidence_items.append({
+                'type': 'unknown',
+                'tier': block.tier,
+                'source_url': block.source_url
+            })
+
+        # Check independence
+        if evidence_items:
+            independence = calc.check_independence(evidence_items)
+            if not independence.independent:
+                results['valid'] = False
+                for warning in independence.warnings:
+                    results['issues'].append(f"Tier {tier} Independence: {warning}")
+
+        # Check extreme LR (if combined LR is available and not placeholder)
+        if agent_update.combined_lr > 0 and agent_update.combined_lr != 1.0:
+            lower_bound, upper_bound = calc.extreme_lr_bounds
+            if agent_update.combined_lr > upper_bound:
+                results['warnings'].append(
+                    f"Tier {tier}: Extreme LR ({agent_update.combined_lr:.2f}) exceeds {upper_bound}"
+                )
+            elif agent_update.combined_lr < lower_bound:
+                results['warnings'].append(
+                    f"Tier {tier}: Extreme LR ({agent_update.combined_lr:.4f}) below {lower_bound}"
+                )
+
+        # Check probability validity
+        if agent_update.posterior_architect > 0:
+            if agent_update.posterior_architect > 0.95:
+                results['warnings'].append(
+                    f"Tier {tier}: Posterior ({agent_update.posterior_architect:.1%}) exceeds confidence cap"
+                )
+
+    return results
+
+
+def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls_first: bool = False) -> dict:
     """
     Run complete pipeline on a bank directory or evidence.json file.
     Automatically converts Markdown to JSON if needed.
@@ -117,6 +205,7 @@ def run_pipeline(path_input: str, skip_verification: bool = False) -> dict:
     Args:
         path_input: Path to bank directory or evidence.json file
         skip_verification: Skip URL verification step
+        validate_urls_first: Validate URLs before processing
 
     Returns:
         dict with status and metrics
@@ -165,6 +254,83 @@ def run_pipeline(path_input: str, skip_verification: bool = False) -> dict:
     for warning in negative_warnings:
         logger.warning(f"KNOWLEDGE BASE: {warning}")
         result["flags"].append("NEGATIVE_FACTS_WARNING")
+
+    # Step 0.5: Validate Markdown structure
+    logger.info("\n[0.5/3] Validating markdown structure...")
+    try:
+        md_results = validate_bank_outputs(str(bank_dir))
+        md_errors = []
+        md_warnings = []
+
+        for file_type, md_result in md_results.items():
+            md_errors.extend([f"{file_type}: {e}" for e in md_result.get('errors', [])])
+            md_warnings.extend([f"{file_type}: {w}" for w in md_result.get('warnings', [])])
+
+        if md_errors:
+            logger.error(f"  Markdown validation: {len(md_errors)} errors")
+            for err in md_errors[:5]:  # Show first 5
+                logger.error(f"    {err}")
+            result["steps"]["markdown_validation"] = "errors"
+            result["markdown_errors"] = md_errors
+        elif md_warnings:
+            logger.warning(f"  Markdown validation: {len(md_warnings)} warnings")
+            for warn in md_warnings[:3]:  # Show first 3
+                logger.warning(f"    {warn}")
+            result["steps"]["markdown_validation"] = "warnings"
+        else:
+            logger.info("  Markdown validation: PASSED")
+            result["steps"]["markdown_validation"] = "success"
+
+    except Exception as e:
+        logger.warning(f"  Markdown validation skipped: {e}")
+        result["steps"]["markdown_validation"] = f"skipped: {e}"
+
+    # Step 0.6: Validate Bayesian calculations
+    logger.info("\n[0.6/3] Validating Bayesian calculations...")
+    try:
+        bayes_results = validate_bayesian_calculations(bank_dir)
+
+        if bayes_results['issues']:
+            logger.error(f"  Bayesian validation: {len(bayes_results['issues'])} issues")
+            for issue in bayes_results['issues'][:3]:
+                logger.error(f"    {issue}")
+            result["steps"]["bayesian_validation"] = "issues"
+            result["bayesian_issues"] = bayes_results['issues']
+        elif bayes_results['warnings']:
+            logger.warning(f"  Bayesian validation: {len(bayes_results['warnings'])} warnings")
+            for warn in bayes_results['warnings'][:3]:
+                logger.warning(f"    {warn}")
+            result["steps"]["bayesian_validation"] = "warnings"
+        else:
+            logger.info("  Bayesian validation: PASSED")
+            result["steps"]["bayesian_validation"] = "success"
+
+    except Exception as e:
+        logger.warning(f"  Bayesian validation skipped: {e}")
+        result["steps"]["bayesian_validation"] = f"skipped: {e}"
+
+    # Step 0.7: Pre-validate URLs (optional)
+    if validate_urls_first:
+        logger.info("\n[0.7/3] Pre-validating URLs...")
+        try:
+            url_results = validate_bank_urls(str(bank_dir))
+
+            if url_results.get('dead', 0) > 0:
+                logger.warning(f"  URL validation: {url_results['dead']} dead URLs detected")
+                for dead_url in url_results.get('dead_urls', [])[:3]:
+                    logger.warning(f"    {dead_url['url'][:50]}...")
+                result["steps"]["url_validation"] = "dead_urls"
+                result["flags"].append("DEAD_URLS_DETECTED")
+            elif url_results.get('total', 0) == 0:
+                logger.info("  URL validation: No URLs to check")
+                result["steps"]["url_validation"] = "no_urls"
+            else:
+                logger.info(f"  URL validation: {url_results['alive']}/{url_results['total']} alive")
+                result["steps"]["url_validation"] = "success"
+
+        except Exception as e:
+            logger.warning(f"  URL pre-validation skipped: {e}")
+            result["steps"]["url_validation"] = f"skipped: {e}"
 
     # Step 1: Process Evidence (URL verification)
     if not skip_verification:
@@ -227,7 +393,7 @@ def run_pipeline(path_input: str, skip_verification: bool = False) -> dict:
     return result
 
 
-def run_batch(directory: str, skip_verification: bool = False) -> list:
+def run_batch(directory: str, skip_verification: bool = False, validate_urls_first: bool = False) -> list:
     """
     Run pipeline on all bank directories in a directory tree.
     Automatically converts Markdown to JSON if needed.
@@ -254,7 +420,7 @@ def run_batch(directory: str, skip_verification: bool = False) -> list:
     results = []
     for i, bank_dir in enumerate(bank_dirs, 1):
         logger.info(f"\n[{i}/{len(bank_dirs)}] Processing {bank_dir.name}...")
-        result = run_pipeline(str(bank_dir), skip_verification)
+        result = run_pipeline(str(bank_dir), skip_verification, validate_urls_first)
         results.append(result)
 
     # Summary table
@@ -336,6 +502,16 @@ def main():
         action="store_true",
         help="Skip URL verification step (use existing verification data)"
     )
+    parser.add_argument(
+        "--validate-urls-first",
+        action="store_true",
+        help="Validate URLs before processing (catches dead links early)"
+    )
+    parser.add_argument(
+        "--full-validation",
+        action="store_true",
+        help="Run full validation pipeline including all Phase 1-6 checks"
+    )
 
     args = parser.parse_args()
     path = Path(args.path)
@@ -350,7 +526,7 @@ def main():
         if not path.is_dir():
             print("Error: --batch requires a directory path")
             sys.exit(1)
-        results = run_batch(str(path), args.skip_verification)
+        results = run_batch(str(path), args.skip_verification, args.validate_urls_first)
         failed = sum(1 for r in results if r['status'] == 'failed')
         sys.exit(1 if failed > 0 else 0)
 
@@ -358,7 +534,36 @@ def main():
         if not path.exists():
             print(f"Error: File not found: {path}")
             sys.exit(1)
-        result = run_pipeline(str(path), args.skip_verification)
+        result = run_pipeline(str(path), args.skip_verification, args.validate_urls_first)
+
+        # Run full validation if requested
+        if args.full_validation:
+            try:
+                from research_runner import ResearchRunner
+
+                # Determine bank directory
+                if path.suffix == '.json':
+                    bank_dir = path.parent
+                else:
+                    bank_dir = path
+
+                runner = ResearchRunner()
+                validation = runner.run_validation_pipeline(bank_dir)
+
+                result["full_validation"] = validation
+
+                if not validation.get('valid', True):
+                    result["status"] = "validation_failed"
+                    logger.warning("Full validation found issues")
+                else:
+                    logger.info("Full validation passed")
+
+            except ImportError as e:
+                logger.warning(f"Could not run full validation: {e}")
+            except Exception as e:
+                logger.error(f"Full validation error: {e}")
+                result["full_validation"] = {"error": str(e)}
+
         sys.exit(0 if result['status'] == 'complete' else 1)
 
 

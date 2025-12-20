@@ -30,7 +30,7 @@
 **What We Would Expect to Find**:
 - **If ARCHITECT**: Named on ISDA CDM steering committees, technology working groups, or contributor lists; speaking roles at ISDA conferences; published white papers on CDM implementation
 - **If PRAGMATIST**: General ISDA membership without specific CDM working group roles; attendance at industry events without leadership positions
-- **If NOT ENGAGED**: No mentions in ISDA CDM documentation; absence from public working group lists
+- **If PRAGMATIST**: No mentions in ISDA CDM documentation; absence from public working group lists
 
 **Analytical Baseline**:
 MUFG is a Global Systemically Important Bank (G-SIB) and major ISDA member. However:
@@ -48,7 +48,7 @@ MUFG is a Global Systemically Important Bank (G-SIB) and major ISDA member. Howe
 **What We Would Expect to Find**:
 - **If ARCHITECT**: Specific CDM implementation programs with timelines and investment figures; partnerships with CDM-focused vendors (Linklaters, REGnosys); multi-year roadmaps citing CDM as strategic foundation
 - **If PRAGMATIST**: General digital transformation initiatives; vendor partnerships that include CDM capability but not as primary focus; pilot programs without production commitments
-- **If NOT ENGAGED**: Technology strategy focused on proprietary systems; emphasis on internal efficiency rather than industry standardization
+- **If PRAGMATIST**: Technology strategy focused on proprietary systems; emphasis on internal efficiency rather than industry standardization
 
 **Analytical Baseline**:
 MUFG has publicly emphasized:
@@ -71,7 +71,7 @@ MUFG has publicly emphasized:
 **What We Would Expect to Find**:
 - **If ARCHITECT**: Subsidiaries acting as CDM centers of excellence; publishing case studies; recruiting CDM-specific talent; offering CDM-enabled client services
 - **If PRAGMATIST**: Subsidiaries adopting CDM for regulatory reporting (EMIR, Dodd-Frank) via third-party vendors; compliance-driven rather than strategic
-- **If NOT ENGAGED**: No subsidiary-specific CDM initiatives; reliance on legacy systems and manual processes
+- **If PRAGMATIST**: No subsidiary-specific CDM initiatives; reliance on legacy systems and manual processes
 
 **Analytical Baseline**:
 MUFG Securities Americas and MUFG Securities EMEA operate in heavily regulated markets:
@@ -94,7 +94,7 @@ MUFG Securities Americas and MUFG Securities EMEA operate in heavily regulated m
 **What We Would Expect to Find**:
 - **If ARCHITECT**: Leading JSDA working groups on derivatives digitalization; partnering with Japanese FSA on regulatory standards; publishing Japanese-language research on CDM benefits
 - **If PRAGMATIST**: Participating in industry consortia as one of many members; following standards set by regulators or international bodies
-- **IF NOT ENGAGED**: Minimal participation in Japanese derivatives standardization discussions
+- **IF PRAGMATIST**: Minimal participation in Japanese derivatives standardization discussions
 
 **Analytical Baseline**:
 Japan's derivatives market context:
@@ -118,7 +118,7 @@ Japan's derivatives market context:
 **What We Would Expect to Find**:
 - **If ARCHITECT**: Partnerships with CDM-native vendors (REGnosys, ISDA Create); co-development projects; open-source contributions
 - **If PRAGMATIST**: Using established vendors (Bloomberg, Murex, FIS) whose platforms may support CDM as one feature among many
-- **If NOT ENGAGED**: Legacy vendor relationships with no CDM capability
+- **If PRAGMATIST**: Legacy vendor relationships with no CDM capability
 
 **Analytical Baseline**:
 MUFG's known technology ecosystem:
@@ -142,7 +142,7 @@ MUFG's known technology ecosystem:
 **What We Would Expect to Find**:
 - **If ARCHITECT**: Executives speaking at ISDA conferences on CDM; published case studies; media interviews discussing CDM strategy; recruiting materials mentioning CDM skills
 - **If PRAGMATIST**: General attendance at industry events; broad statements about digital transformation without CDM specifics
-- **IF NOT ENGAGED**: No public commentary on derivatives standardization
+- **IF PRAGMATIST**: No public commentary on derivatives standardization
 
 **Analytical Baseline**:
 MUFG's public communication style:

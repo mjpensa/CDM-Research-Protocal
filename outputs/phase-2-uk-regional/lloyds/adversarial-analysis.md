@@ -2,8 +2,8 @@
 ## Tier B Protocol (Single-Tier)
 
 **Date**: 2025-12-19
-**Current Classification**: Non-Architect (95% confidence)
-**Adversarial Objective**: Challenge Non-Architect classification by steelmanning Architect hypothesis
+**Current Classification**: PRAGMATIST (95% confidence)
+**Adversarial Objective**: Challenge PRAGMATIST classification by steelmanning Architect hypothesis
 
 ---
 
@@ -98,7 +98,7 @@
 The vendor-mediated adoption argument is the most plausible, but it would reclassify Lloyds as a potential "CDM User" rather than "CDM Architect". The research question specifically concerns architectural involvement, not passive consumption through vendors.
 
 ### Adversarial Conclusion
-The steelman arguments fail to overcome the evidence for Non-Architect classification. The strongest argument (vendor adoption) actually supports a "User" sub-classification rather than elevating to "Architect" status.
+The steelman arguments fail to overcome the evidence for PRAGMATIST classification. The strongest argument (vendor adoption) actually supports a "User" sub-classification rather than elevating to "Architect" status.
 
 ---
 
@@ -112,11 +112,11 @@ The steelman arguments fail to overcome the evidence for Non-Architect classific
 | **Post-Adversarial P(Architect)** | **5%** |
 
 **Final Classification Confidence**:
-- P(Non-Architect) = 95%
+- P(PRAGMATIST) = 95%
 - Confidence Level: HIGH
 
 ---
 
 ## Adversarial Gate Status: PASSED
 
-Classification confirmed as Non-Architect with high confidence. No adversarial argument sufficiently challenges the evidence-based conclusion.
+Classification confirmed as PRAGMATIST with high confidence. No adversarial argument sufficiently challenges the evidence-based conclusion.

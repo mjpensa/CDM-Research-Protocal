@@ -106,7 +106,7 @@ P(Architect) = 1.0% may be too low. Should there be a floor on probability given
 **Counter-Argument**:
 - The Bayesian update correctly reflects evidence pattern
 - Low posterior reflects genuinely low probability
-- Uncertainty is in the direction (Pragmatist vs. Not Engaged), not Architect vs. others
+- Uncertainty is in the direction (Pragmatist vs. PRAGMATIST), not Architect vs. others
 - Evidence pattern almost perfectly matches Pragmatist profile
 
 **Resolution**:
@@ -155,7 +155,7 @@ P(Architect) = 1.0% may be too low. Should there be a floor on probability given
 **Revised Probabilities**:
 - P(Architect) = 3-5% (increased from 1.0% as uncertainty floor)
 - P(Pragmatist) = 88-92% (slightly decreased)
-- P(Not Engaged) = 5-7% (maintained)
+- P(PRAGMATIST) = 5-7% (maintained)
 
 ### Verdict Rationale
 

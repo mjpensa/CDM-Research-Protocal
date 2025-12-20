@@ -18,7 +18,7 @@ P(A|E) = P(E|A) * P(A) / [P(E|A) * P(A) + P(E|~A) * P(~A)]
 Where:
 - P(A) = Prior probability of being Architect (0.20)
 - P(E|A) = Probability of observing this evidence if Architect
-- P(E|~A) = Probability of observing this evidence if Non-Architect
+- P(E|~A) = Probability of observing this evidence if PRAGMATIST
 
 ---
 
@@ -27,13 +27,13 @@ Where:
 ### Evidence Set 1: No ISDA CDM Working Group Membership
 - **Observation**: Lloyds not listed among CDM contributors
 - **P(E|A)**: 0.10 (unlikely an Architect would have no public CDM involvement)
-- **P(E|~A)**: 0.95 (expected for Non-Architect)
+- **P(E|~A)**: 0.95 (expected for PRAGMATIST)
 - **Likelihood Ratio**: 0.10 / 0.95 = 0.105
 
 ### Evidence Set 2: Retail-Focused Business Model
 - **Observation**: Limited derivatives operations, no investment banking
 - **P(E|A)**: 0.15 (Architects typically have significant derivatives business)
-- **P(E|~A)**: 0.70 (common among Non-Architect regional banks)
+- **P(E|~A)**: 0.70 (common among PRAGMATIST regional banks)
 - **Likelihood Ratio**: 0.15 / 0.70 = 0.214
 
 ### Evidence Set 3: Technology Focus on Retail Digital
@@ -96,12 +96,12 @@ Applying conservative floor and uncertainty adjustment:
 | Criterion | Value | Threshold | Result |
 |-----------|-------|-----------|--------|
 | P(Architect) | 5% | > 80% | **NOT MET** |
-| P(Non-Architect) | 95% | > 80% | **MET** |
+| P(PRAGMATIST) | 95% | > 80% | **MET** |
 
 ### Gate 1 Decision
 - **Skip to adversarial**: NO (P < 80% Architect threshold)
-- **Proceed to adversarial**: YES (to confirm Non-Architect classification)
-- **High confidence Non-Architect**: P(Non-Architect) = 95% exceeds 80% threshold
+- **Proceed to adversarial**: YES (to confirm PRAGMATIST classification)
+- **High confidence PRAGMATIST**: P(PRAGMATIST) = 95% exceeds 80% threshold
 
 Per Tier B protocol, proceed to single-tier adversarial analysis to confirm classification.
 
@@ -109,9 +109,9 @@ Per Tier B protocol, proceed to single-tier adversarial analysis to confirm clas
 
 ## Updated Probability Summary
 
-| Stage | P(Architect) | P(Non-Architect) |
+| Stage | P(Architect) | P(PRAGMATIST) |
 |-------|--------------|------------------|
 | Prior | 20% | 80% |
 | Post-Evidence | 5% | 95% |
 
-**Probability Movement**: -15 percentage points (significant shift toward Non-Architect)
+**Probability Movement**: -15 percentage points (significant shift toward PRAGMATIST)

@@ -59,7 +59,7 @@
 1. **Profile Mismatch**
    - CDM Architects are primarily global investment banks with large derivatives books
    - NatWest is a UK regional bank with medium derivatives exposure
-   - Profile strongly suggests Adopter/Not Engaged trajectory
+   - Profile strongly suggests Adopter/PRAGMATIST trajectory
 
 2. **Absence of Evidence IS Evidence**
    - CDM contributions are typically publicized (good PR for banks)
@@ -99,6 +99,6 @@ The devil's advocate arguments are speculative and unsupported by evidence. The 
 
 **Classification**: NOT ARCHITECT (High Confidence)
 
-**Rationale**: Adversarial challenge failed to identify credible evidence or plausible pathways for NatWest as CDM Architect. The bank's profile, market position, and absence of any CDM-related evidence strongly support classification as "Not Engaged" or "Potential Future Adopter."
+**Rationale**: Adversarial challenge failed to identify credible evidence or plausible pathways for NatWest as CDM Architect. The bank's profile, market position, and absence of any CDM-related evidence strongly support classification as "PRAGMATIST" or "Potential Future Adopter."
 
 **Remaining Uncertainty**: Primarily from data limitations (web search unavailable). If web search reveals undiscovered evidence, reclassification would be warranted.

@@ -10,12 +10,12 @@
 
 ## Executive Summary
 
-Phase 2 assessed UK regional banks with medium derivatives exposure. Both banks were classified as **NOT ENGAGED** with CDM architecture, consistent with their retail/commercial banking focus and limited derivatives operations.
+Phase 2 assessed UK regional banks with medium derivatives exposure. Both banks were classified as **PRAGMATIST** with CDM architecture, consistent with their retail/commercial banking focus and limited derivatives operations.
 
 | Bank | Classification | P(Architect) | Confidence | Key Finding |
 |------|---------------|--------------|------------|-------------|
-| NatWest Group PLC | NOT ENGAGED | 5% | 95% | No evidence; retail/commercial focus |
-| Lloyds Banking Group PLC | NON-ARCHITECT | 5% | 95% | Retail-focused; no ISDA CDM involvement |
+| NatWest Group PLC | PRAGMATIST | 5% | 95% | No evidence; retail/commercial focus |
+| Lloyds Banking Group PLC | PRAGMATIST | 5% | 95% | Retail-focused; no ISDA CDM involvement |
 
 ---
 
@@ -24,7 +24,7 @@ Phase 2 assessed UK regional banks with medium derivatives exposure. Both banks 
 ```
 ARCHITECT:     0 (0%)
 PRAGMATIST:    0 (0%)
-NOT ENGAGED:   2 (100%)
+PRAGMATIST:   2 (100%)
 ```
 
 **Total Banks**: 2
@@ -34,7 +34,7 @@ NOT ENGAGED:   2 (100%)
 
 ## Cross-Bank Patterns
 
-### Pattern 1: UK Regional = NOT ENGAGED
+### Pattern 1: UK Regional = PRAGMATIST
 
 Both UK regional banks show identical classification patterns:
 - **No direct CDM evidence** found
@@ -48,8 +48,8 @@ Both UK regional banks show identical classification patterns:
 |-------|------|---------------|-------------------|
 | 1 | Barclays | ARCHITECT (Follower) | Investment Banking |
 | 1 | HSBC | PRAGMATIST (Vendor-Dependent) | Global Markets |
-| 2 | NatWest | NOT ENGAGED | UK Retail/Commercial |
-| 2 | Lloyds | NOT ENGAGED | UK Retail/Commercial |
+| 2 | NatWest | PRAGMATIST | UK Retail/Commercial |
+| 2 | Lloyds | PRAGMATIST | UK Retail/Commercial |
 
 **Insight**: CDM engagement strongly correlates with investment banking activity and global derivatives operations. UK regional banks without significant investment banking divisions show no CDM architectural involvement.
 
@@ -106,7 +106,7 @@ Tier B (Abbreviated) protocol proved appropriate for UK regional banks:
 - **2 failure modes** sufficient for low-complexity assessment
 - **6 searches** adequate given limited derivatives exposure
 - **Single-tier adversarial** confirmed classifications without extended analysis
-- **Condensed synthesis** appropriate for NOT ENGAGED outcomes
+- **Condensed synthesis** appropriate for PRAGMATIST outcomes
 
 ---
 
@@ -137,14 +137,14 @@ Tier B (Abbreviated) protocol proved appropriate for UK regional banks:
 |----------------|---------|---------|-------|
 | ARCHITECT | 2 | 0 | 2 |
 | PRAGMATIST | 3 | 0 | 3 |
-| NOT ENGAGED | 0 | 2 | 2 |
+| PRAGMATIST | 0 | 2 | 2 |
 | **Total** | **5** | **2** | **7** |
 
 ### Distribution After 7 Banks
 ```
 ARCHITECT:     29% (2/7)
 PRAGMATIST:    43% (3/7)
-NOT ENGAGED:   29% (2/7)
+PRAGMATIST:   29% (2/7)
 ```
 
 ---
@@ -155,7 +155,7 @@ NOT ENGAGED:   29% (2/7)
 
 2. **UK Market Segmentation**: UK banking sector shows clear segmentation:
    - Tier 1 (Barclays, HSBC): CDM-engaged (varying degrees)
-   - Regional (NatWest, Lloyds): CDM not engaged
+   - Regional (NatWest, Lloyds): CDM PRAGMATIST
 
 3. **EMIR Refit ≠ CDM Adoption**: Regulatory compliance can be achieved without CDM. Regional banks use standard vendor/TR solutions.
 

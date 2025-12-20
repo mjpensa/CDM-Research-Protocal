@@ -125,7 +125,8 @@ Note: `[bank_id]` is the lowercase hyphenated identifier from bank-manifest.json
 **Section 15: Client Engagement Guidance**
 - If confidence ≥ 70%: Standard engagement approach
 - If confidence 50-69%: Exploratory questions recommended
-- If confidence < 50%: Full diagnostic engagement brief (see Section 18)
+- If confidence below low_confidence_block threshold: Full diagnostic engagement brief (see Section 18)
+- Reference: See config/decision-thresholds.json for threshold values
 
 **Section 16: Evidence Inventory**
 - Tier 1 Evidence Table (ID, Source, Date, Finding, LR)

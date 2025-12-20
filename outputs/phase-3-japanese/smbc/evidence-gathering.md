@@ -162,7 +162,7 @@ SMBC OR SMFG + "digital transformation" OR "technology modernization" + derivati
 ### Direct Evidence
 - **ARCHITECT signals:** NONE found
 - **PRAGMATIST signals:** NONE found (direct)
-- **NOT ENGAGED signals:** NONE found
+- **PRAGMATIST signals:** NONE found
 
 ### Contextual Evidence
 - **Derivatives activity:** CONFIRMED (SMBC Nikko Securities, wholesale banking)
@@ -201,7 +201,7 @@ Based on contextual evidence and industry patterns:
 4. **Commercial focus:** Less likely to be CDM architect, more likely to follow
 5. **Peer dynamics:** Cannot afford to lag significantly behind Nomura/MUFG
 
-### Alternative: NOT ENGAGED
+### Alternative: PRAGMATIST
 **Confidence:** MODERATE (30-40%)
 
 **Reasoning:**
@@ -234,6 +234,6 @@ Given LIMITED direct evidence:
 ### Suggested Likelihood Ratios
 - P(Evidence | ARCHITECT) = 0.3 (would expect more visibility if true architect)
 - P(Evidence | PRAGMATIST) = 0.6 (fits pattern of quiet follower)
-- P(Evidence | NOT ENGAGED) = 0.4 (but would expect some contrary evidence)
+- P(Evidence | PRAGMATIST) = 0.4 (but would expect some contrary evidence)
 
 **Next Stage:** Bayesian Update with these likelihood assessments

@@ -12,7 +12,7 @@
 
 | Metric | Value |
 |--------|-------|
-| **Final Classification** | NOT ENGAGED |
+| **Final Classification** | PRAGMATIST |
 | **P(Architect)** | 5% |
 | **Confidence Level** | HIGH |
 | **Derivatives Relevance** | Medium |
@@ -78,7 +78,7 @@ Post-Adversarial: 5% (uncertainty margin added)
 
 ## Classification Rationale
 
-### Why NOT ENGAGED (not Architect)
+### Why PRAGMATIST (not Architect)
 
 1. **Zero Direct Evidence**: No CDM mentions, working group participation, or technical contributions
 2. **Profile Mismatch**: UK regional bank with retail/commercial focus ≠ global derivatives architect profile
@@ -137,7 +137,7 @@ Post-Adversarial: 5% (uncertainty margin added)
 | Field | Value |
 |-------|-------|
 | **Bank** | NatWest Group PLC |
-| **Classification** | NOT ENGAGED |
+| **Classification** | PRAGMATIST |
 | **P(Architect)** | 5% |
 | **Confidence** | HIGH |
 | **CDM Role** | None (Potential Future Adopter) |

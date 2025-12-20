@@ -54,7 +54,7 @@ Nomura's unique position as Japan's largest investment bank with significant glo
 ## Adversarial Challenge 2: Evidence Absence Reliability
 
 ### Thesis
-The complete absence of CDM evidence may reflect research limitations rather than genuine non-Architect status.
+The complete absence of CDM evidence may reflect research limitations rather than genuine PRAGMATIST status.
 
 ### Analysis
 
@@ -155,7 +155,7 @@ Nomura's investment banking focus may drive higher CDM engagement than the Bayes
 **Revised Probabilities**:
 - P(Architect) = 12-15% (slight increase from 11.3%)
 - P(Pragmatist) = 78-82% (maintained)
-- P(Not Engaged) = 5-8% (maintained)
+- P(PRAGMATIST) = 5-8% (maintained)
 
 ### Verdict Rationale
 
@@ -165,7 +165,7 @@ Nomura's investment banking focus may drive higher CDM engagement than the Bayes
    - Investment bank differentiation: Accounted for in higher prior
 
 2. **Key Supporting Evidence for PRAGMATIST**:
-   - JSCC connectivity confirms engagement (not "Not Engaged")
+   - JSCC connectivity confirms engagement (not "PRAGMATIST")
    - No CDM contribution evidence after systematic search
    - Vendor mediation pattern expected for Japanese institutions
    - Investment bank profile alone insufficient for Architect

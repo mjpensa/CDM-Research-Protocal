@@ -13,12 +13,12 @@ Based on bank profile and Tier B classification:
 
 - **P(ARCHITECT)** = 0.20
 - **P(PRAGMATIST)** = 0.50
-- **P(NOT ENGAGED)** = 0.30
+- **P(PRAGMATIST)** = 0.30
 
 ### Prior Justification
 1. **20% ARCHITECT:** MEDIUM-HIGH derivatives relevance, significant scale, but commercial banking focus
 2. **50% PRAGMATIST:** Most likely - follows industry standards, part of JBA coordination
-3. **30% NOT ENGAGED:** Possible given commercial focus and lack of public CDM signals
+3. **30% PRAGMATIST:** Possible given commercial focus and lack of public CDM signals
 
 ---
 
@@ -34,7 +34,7 @@ Based on bank profile and Tier B classification:
 - P(E1 | PRAGMATIST) = 0.50
   - *Followers often adopt quietly without public announcements*
   - *Consistent with strategic pragmatism*
-- P(E1 | NOT ENGAGED) = 0.70
+- P(E1 | PRAGMATIST) = 0.70
   - *Most consistent with no engagement*
   - *But not definitive - could be engaged privately*
 
@@ -49,7 +49,7 @@ Based on bank profile and Tier B classification:
 - P(E2 | PRAGMATIST) = 0.80
   - *Strong fit - regulatory compliance drives pragmatic adoption*
   - *JBA coordination enables collective implementation*
-- P(E2 | NOT ENGAGED) = 0.20
+- P(E2 | PRAGMATIST) = 0.20
   - *Difficult to ignore regulatory pressure and peer behavior*
 
 ---
@@ -64,7 +64,7 @@ Based on bank profile and Tier B classification:
 - P(E3 | PRAGMATIST) = 0.60
   - *Perfect fit - derivatives operations exist but not strategic priority*
   - *Follows industry standards for operational efficiency*
-- P(E3 | NOT ENGAGED) = 0.50
+- P(E3 | PRAGMATIST) = 0.50
   - *Commercial focus could mean CDM is not priority*
   - *But derivatives operations suggest some engagement likely*
 
@@ -79,7 +79,7 @@ Based on bank profile and Tier B classification:
 - P(E4 | PRAGMATIST) = 0.70
   - *Strong fit - efficiency focus drives standards adoption*
   - *Pragmatic approach to modernization*
-- P(E4 | NOT ENGAGED) = 0.30
+- P(E4 | PRAGMATIST) = 0.30
   - *Digital transformation could exclude derivatives standardization*
 
 ---
@@ -94,7 +94,7 @@ P(Evidence | ARCHITECT) = 0.15 × 0.40 × 0.25 × 0.30 = 0.0045
 
 P(Evidence | PRAGMATIST) = 0.50 × 0.80 × 0.60 × 0.70 = 0.168
 
-P(Evidence | NOT ENGAGED) = 0.70 × 0.20 × 0.50 × 0.30 = 0.021
+P(Evidence | PRAGMATIST) = 0.70 × 0.20 × 0.50 × 0.30 = 0.021
 
 ### Posterior Calculation
 
@@ -104,7 +104,7 @@ P(ARCHITECT) × P(E | ARCHITECT) = 0.20 × 0.0045 = 0.0009
 
 P(PRAGMATIST) × P(E | PRAGMATIST) = 0.50 × 0.168 = 0.084
 
-P(NOT ENGAGED) × P(E | NOT ENGAGED) = 0.30 × 0.021 = 0.0063
+P(PRAGMATIST) × P(E | PRAGMATIST) = 0.30 × 0.021 = 0.0063
 
 **Step 2: Calculate normalization constant**
 
@@ -116,7 +116,7 @@ Z = 0.0009 + 0.084 + 0.0063 = 0.0912
 
 **P(PRAGMATIST | Evidence) = 0.084 / 0.0912 = 0.921 (92.1%)**
 
-**P(NOT ENGAGED | Evidence) = 0.0063 / 0.0912 = 0.069 (6.9%)**
+**P(PRAGMATIST | Evidence) = 0.0063 / 0.0912 = 0.069 (6.9%)**
 
 ---
 
@@ -126,7 +126,7 @@ Z = 0.0009 + 0.084 + 0.0063 = 0.0912
 |---------------|-------|-----------|---------|
 | ARCHITECT | 20.0% | 1.0% | -19.0% |
 | PRAGMATIST | 50.0% | 92.1% | +42.1% |
-| NOT ENGAGED | 30.0% | 6.9% | -23.1% |
+| PRAGMATIST | 30.0% | 6.9% | -23.1% |
 
 ---
 
@@ -146,7 +146,7 @@ Z = 0.0009 + 0.084 + 0.0063 = 0.0912
 - JBA membership enables collective implementation
 - Commercial focus with derivatives operations matches pragmatic profile
 
-### NOT ENGAGED: 30% → 6.9% (Moderate Decrease)
+### PRAGMATIST: 30% → 6.9% (Moderate Decrease)
 **Interpretation:** Evidence suggests some engagement likely
 - Regulatory pressure makes complete non-engagement unlikely
 - Peer behavior and industry coordination create adoption pressure
@@ -169,7 +169,7 @@ The evidence pattern is almost perfectly consistent with a pragmatic follower:
 SMBC's commercial banking focus has dual effect:
 - **Negative for ARCHITECT:** Reduces priority for derivatives innovation leadership
 - **Neutral for PRAGMATIST:** Still has derivatives operations requiring standards
-- **Negative for NOT ENGAGED:** Regulatory compliance requirements still apply
+- **Negative for PRAGMATIST:** Regulatory compliance requirements still apply
 
 ### 3. Japanese Industry Dynamics
 Evidence reflects typical Japanese bank pattern:

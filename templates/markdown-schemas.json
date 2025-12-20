@@ -1,0 +1,149 @@
+{
+  "$schema": "CDM/DRR Markdown Schema Definitions v1.0",
+  "description": "Validation schemas for agent markdown outputs",
+
+  "evidence_block": {
+    "required_fields": [
+      "id",
+      "tier",
+      "direction",
+      "source",
+      "finding"
+    ],
+    "optional_fields": [
+      "source_url",
+      "date",
+      "authority",
+      "recency",
+      "specificity",
+      "confidence",
+      "reasoning",
+      "caveats",
+      "corroborated"
+    ],
+    "id_pattern": "^[A-Z]+-\\d{3}$",
+    "tier_values": [1, 2, 3],
+    "direction_values": ["SUPPORTS ARCHITECT", "SUPPORTS PRAGMATIST", "NEUTRAL"],
+    "authority_values": ["High", "Medium", "Low"],
+    "recency_values": ["Current", "Dated", "Historical"],
+    "specificity_values": ["Specific", "Moderate", "Vague"],
+    "confidence_values": ["HIGH", "MEDIUM", "LOW"]
+  },
+
+  "bayesian_update": {
+    "required_sections": [
+      "Prior",
+      "Evidence This Tier",
+      "Combined Likelihood Ratio",
+      "Posterior Calculation",
+      "Interpretation"
+    ],
+    "optional_sections": [
+      "Absence Evidence",
+      "Proceeding Decision",
+      "Calibration Checks",
+      "Confidence Cap Assessment",
+      "Thinking Trace"
+    ],
+    "required_values": [
+      "prior_architect",
+      "prior_pragmatist",
+      "prior_odds",
+      "combined_lr",
+      "posterior_architect",
+      "posterior_pragmatist"
+    ],
+    "validation_rules": {
+      "probability_sum": "prior_architect + prior_pragmatist = 1.0 (tolerance: 0.02)",
+      "posterior_sum": "posterior_architect + posterior_pragmatist = 1.0 (tolerance: 0.02)",
+      "extreme_lr": "combined_lr should be between 0.01 and 100"
+    }
+  },
+
+  "gate_output": {
+    "pre-mortem": {
+      "required_sections": ["Failure Modes", "Success Criteria"],
+      "min_failure_modes": 4
+    },
+    "gate-1": {
+      "required_sections": ["Evidence Delta", "Probability Update", "Sufficiency Assessment"],
+      "decision_values": ["PROCEED", "SKIP TO ADVERSARIAL"]
+    },
+    "gate-2": {
+      "required_sections": ["Evidence Delta", "Probability Update", "Observable Implications"],
+      "min_implications_tested": 3,
+      "decision_values": ["PROCEED", "SKIP TO ADVERSARIAL"]
+    },
+    "gate-3": {
+      "required_sections": ["Evidence Delta", "Final Probability", "Trajectory Assessment"],
+      "decision_values": ["PROCEED TO ADVERSARIAL"]
+    }
+  },
+
+  "adversarial_output": {
+    "counter-case": {
+      "required_sections": ["Counter-Argument"],
+      "optional_sections": ["Alternative Hypothesis", "Disconfirming Evidence"]
+    },
+    "disconfirming-searches": {
+      "required_sections": ["Search Query", "Results", "Conclusion"],
+      "min_searches": 3
+    },
+    "steelman": {
+      "required_sections": ["Steelman Argument", "Strongest Evidence"],
+      "optional_sections": ["Rebuttal Points"]
+    },
+    "verdict": {
+      "required_sections": ["Original Classification", "Adversarial Verdict", "Confidence Adjustment"],
+      "verdict_values": ["STRENGTHENED", "UNCHANGED", "WEAKENED", "REVISED"]
+    }
+  },
+
+  "null_results": {
+    "required_fields": [
+      "search_category",
+      "queries_executed",
+      "results_reviewed",
+      "null_classification",
+      "informative_absence_assessment"
+    ],
+    "null_classification_values": [
+      "NO RESULTS",
+      "IRRELEVANT RESULTS",
+      "PAYWALLED",
+      "OUTDATED ONLY"
+    ]
+  },
+
+  "synthesis_assessment": {
+    "required_sections": [
+      "Research Metadata",
+      "Executive Summary",
+      "Classification",
+      "Evidence Summary",
+      "Reasoning Chain",
+      "Bayesian Analysis Summary",
+      "Adversarial Challenge Results",
+      "Key Uncertainties",
+      "Evidence Inventory",
+      "Sources Cited",
+      "Quality Assurance Checklist"
+    ],
+    "optional_sections": [
+      "Framework Comparison",
+      "Client Strategic Implications",
+      "Counterparty Relevance",
+      "Infrastructure Relationships",
+      "Vendor Relationships",
+      "Stakeholder Motivation Analysis",
+      "Client Engagement Guidance",
+      "Diagnostic Engagement Brief"
+    ],
+    "classification_values": {
+      "posture": ["ARCHITECT", "PRAGMATIST", "UNKNOWN"],
+      "variant_architect": ["Native", "Leader", "Follower"],
+      "variant_pragmatist": ["Vendor-dependent", "Integration-constrained", "Regulatory-driven", "Network-accelerant"],
+      "trajectory": ["Accelerating", "Stable", "Stalled", "Decelerating", "Unknown"]
+    }
+  }
+}

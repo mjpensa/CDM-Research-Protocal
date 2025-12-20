@@ -129,14 +129,14 @@ For each bank, execute stages in this order:
 4. BAYESIAN UPDATE T1
    ↓
 5. REASONING GATE 1 (auto-proceed)
-   ↓ [Check: P(Architect) > 80% OR P(Pragmatist) > 80%? → Skip to Adversarial]
+   ↓ [Check: P exceeds skip_threshold? → Skip to Adversarial — see config/decision-thresholds.json]
    ↓
 6. TIER 2 EVIDENCE GATHERING
    ↓
 7. BAYESIAN UPDATE T2
    ↓
 8. REASONING GATE 2 (auto-proceed)
-   ↓ [Check: P(Architect) > 80% OR P(Pragmatist) > 80%? → Skip to Adversarial]
+   ↓ [Check: P exceeds skip_threshold? → Skip to Adversarial — see config/decision-thresholds.json]
    ↓
 9. TIER 3 EVIDENCE GATHERING
    ↓
@@ -239,8 +239,9 @@ Enable thinking mode
 - Check sufficiency decision
 
 **Decision Point After Gates 1/2**:
-- If P(Architect) > 80% OR P(Pragmatist) > 80%: Skip to Stage 12 (Adversarial)
+- If P(Architect) OR P(Pragmatist) exceeds skip_threshold: Skip to Stage 12 (Adversarial)
 - Else: Continue to next tier
+- Reference: `config/decision-thresholds.json` → `workflow_decisions.skip_to_adversarial.threshold`
 
 ### 4. Adversarial Challenger Agent
 
@@ -373,8 +374,9 @@ Pause workflow and prompt user for decision:
    - If approved → proceed to Synthesis
    - If modified → update, then proceed
 
-4. **Low Confidence** (confidence < 50%)
+4. **Low Confidence** (confidence below low_confidence_block threshold)
    - Prompt: "Confidence {%} below threshold. Action?"
+   - Reference: `config/decision-thresholds.json` → `workflow_decisions.low_confidence_block.threshold`
    - Options: Accept and flag / Classify UNKNOWN / Additional research / Proceed
    - Log decision
 
@@ -581,9 +583,9 @@ WHILE phases_remaining:
         CREATE bank status.json
 
         EXECUTE Pre-Mortem → Evidence T1 → Bayesian T1 → Gate 1
-        IF P > 80%: SKIP to Adversarial
+        IF P exceeds skip_threshold: SKIP to Adversarial
         ELSE: EXECUTE Evidence T2 → Bayesian T2 → Gate 2
-        IF P > 80%: SKIP to Adversarial
+        IF P exceeds skip_threshold: SKIP to Adversarial
         ELSE: EXECUTE Evidence T3 → Bayesian T3 → Gate 3
 
         EXECUTE Adversarial

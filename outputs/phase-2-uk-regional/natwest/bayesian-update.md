@@ -82,4 +82,4 @@ Given data limitations and potential for hidden evidence, apply conservative flo
 | Direction | Strong decrease |
 | Confidence | Medium |
 
-**Interpretation**: Evidence strongly suggests NatWest is NOT a CDM Architect. The absence of any direct CDM involvement, combined with the UK regional bank profile and vendor-dependent derivatives infrastructure, indicates NatWest is likely in the "Not Engaged" or "Potential Future Adopter" category rather than Architect.
+**Interpretation**: Evidence strongly suggests NatWest is NOT a CDM Architect. The absence of any direct CDM involvement, combined with the UK regional bank profile and vendor-dependent derivatives infrastructure, indicates NatWest is likely in the "PRAGMATIST" or "Potential Future Adopter" category rather than Architect.

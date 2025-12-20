@@ -136,7 +136,7 @@ P(Follower | Tier 1 Evidence) = **99.3%**
 | Architect (any level) | 55% | 96% | +41% |
 | Architect-Leader | 16.5% (30% of 55%) | 0.7% | -15.8% |
 | Architect-Follower | 38.5% (70% of 55%) | 95.3% | +56.8% |
-| Non-Architect | 45% | 4% | -41% |
+| PRAGMATIST | 45% | 4% | -41% |
 
 ---
 

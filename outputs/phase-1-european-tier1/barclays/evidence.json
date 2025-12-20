@@ -1,0 +1,15 @@
+{
+  "bank_id": "barclays",
+  "bank_name": "Barclays PLC",
+  "schema_version": "3.0",
+  "generated_from": "markdown",
+  "generated_at": "2025-12-20T02:17:10.318075",
+  "evidence_items": [],
+  "item_count": 0,
+  "meta": {
+    "source_files": [
+      "tier1-evidence.md"
+    ],
+    "converter_version": "2.0"
+  }
+}

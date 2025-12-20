@@ -113,7 +113,7 @@
 ### Methodological Strengths
 1. **Tier B protocol** appropriate for medium-relevance banks
 2. **Pre-mortem failure modes** correctly identified false positive risk (vendor adoption misattribution)
-3. **Adversarial analysis** appropriately brief for high-confidence NOT ENGAGED classifications
+3. **Adversarial analysis** appropriately brief for high-confidence PRAGMATIST classifications
 
 ### Minor Variations (Not Errors)
 1. **Terminology**: Updated to standard taxonomy (PRAGMATIST Vendor-Dependent)

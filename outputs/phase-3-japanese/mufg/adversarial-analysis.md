@@ -149,7 +149,7 @@ The Bayesian update relied heavily on low-quality evidence (structural analysis,
 **Revised Probabilities**:
 - P(Architect) = 10-12% (increased from 7.6% due to uncertainty buffer)
 - P(Pragmatist) = 82-85% (slightly decreased)
-- P(Not Engaged) = 5-7% (maintained)
+- P(PRAGMATIST) = 5-7% (maintained)
 
 ### Verdict Rationale
 

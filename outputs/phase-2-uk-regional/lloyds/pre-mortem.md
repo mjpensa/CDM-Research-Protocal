@@ -36,7 +36,7 @@ Research incorrectly classifies Lloyds as CDM Architect based on:
 ## Failure Mode 2: False Negative - Missing CDM Work Through UK Finance Consortium
 
 ### Scenario
-Research incorrectly classifies Lloyds as Non-Architect because:
+Research incorrectly classifies Lloyds as PRAGMATIST because:
 - CDM work is conducted through UK Finance industry body rather than publicly
 - Collaborative efforts with other UK banks (Barclays, NatWest, HSBC) obscure individual contributions
 - Regulatory-driven adoption via FCA/BoE coordination not visible in public sources

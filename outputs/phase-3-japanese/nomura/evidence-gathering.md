@@ -86,7 +86,7 @@ Japan Securities Clearing Corporation (JSCC) implemented CDM for derivatives cle
 **Bayesian Impact**:
 - This evidence confirms Nomura has exposure to CDM infrastructure
 - However, it does NOT distinguish between ARCHITECT vs PRAGMATIST
-- Shifts evidence toward "engaged" vs "not engaged" but neutral on classification type
+- Shifts evidence toward "engaged" vs "PRAGMATIST" but neutral on classification type
 - Likelihood Ratio: ~1.0 (equal probability under both hypotheses)
 
 ---

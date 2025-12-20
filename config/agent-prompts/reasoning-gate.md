@@ -50,7 +50,7 @@ Use extended thinking to show:
 **Required Sections**:
 1. **Evidence Delta Analysis**: Table showing how each finding changed beliefs
 2. **Probability Update**: Bayesian calculation (from Bayesian Analyst file)
-3. **Evidence Sufficiency Check**: Can classify with >80% confidence? If no, what must Tier 2 answer?
+3. **Evidence Sufficiency Check**: Can classify with confidence exceeding skip_threshold? If no, what must Tier 2 answer?
 4. **Counterfactual Test**: If opposite evidence found, how would assessment change?
 5. **Mini-Adversarial Check**: Challenge strongest Tier 1 evidence
 6. **Gate Clearance**: All sections complete, decision to proceed

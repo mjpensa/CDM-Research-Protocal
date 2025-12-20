@@ -212,7 +212,7 @@ PRAGMATIST:    82% (9/11)
 UNKNOWN:       0% (0/11)
 ```
 
-**Note**: Phase 2 classifications updated from NOT_ENGAGED/NON-ARCHITECT to PRAGMATIST Vendor-Dependent per standardized taxonomy.
+**Note**: Phase 2 classifications updated from PRAGMATIST/PRAGMATIST to PRAGMATIST Vendor-Dependent per standardized taxonomy.
 
 ---
 

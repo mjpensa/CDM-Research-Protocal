@@ -247,10 +247,12 @@ Based on posterior probability, recommend next action:
 
 Current P(Architect) = [X]%
 
-☐ P > 80%: Evidence sufficient for classification, recommend skip to Adversarial
-☑ 50% < P < 80%: Continue gathering evidence (proceed to next tier)
-☐ P near 50% (40-60%): Substantial uncertainty, prioritize disconfirming searches
-☐ P < 20%: Strong Pragmatist signal, consider skipping to Adversarial
+☐ P exceeds skip_threshold: Evidence sufficient, recommend skip to Adversarial
+☑ P in middle range: Continue gathering evidence (proceed to next tier)
+☐ P in uncertainty_range: Substantial uncertainty, prioritize disconfirming searches
+☐ P below inverse skip_threshold: Strong Pragmatist signal, consider skipping to Adversarial
+
+Note: See config/decision-thresholds.json for current threshold values
 
 Recommendation: [SKIP TO ADVERSARIAL / CONTINUE TO TIER [N+1] / PRIORITIZE DISCONFIRMING]
 ```

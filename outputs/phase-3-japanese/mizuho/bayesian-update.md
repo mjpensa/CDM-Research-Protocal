@@ -17,7 +17,7 @@
 - May adopt CDM once standards are established
 - Likely to follow industry leaders
 
-**P(Not Engaged) = 40%** (assumed)
+**P(PRAGMATIST) = 40%** (assumed)
 - May focus on domestic Japanese standards
 - Could be waiting for clearer industry direction
 - May prioritize other technology initiatives
@@ -30,7 +30,7 @@
 **Likelihood Ratios:**
 - P(No evidence found | Architect): 0.3 (Architects usually publicize participation)
 - P(No evidence found | Pragmatist): 0.7 (Pragmatists less likely to publicize early)
-- P(No evidence found | Not Engaged): 0.9 (Would expect no evidence if not engaged)
+- P(No evidence found | PRAGMATIST): 0.9 (Would expect no evidence if PRAGMATIST)
 
 **Analysis:**
 The absence of evidence is ambiguous given search limitations. However, true CDM Architects (like Nomura, Goldman Sachs) typically have public footprints through ISDA announcements, technology partnerships, or press releases. The lack of findable evidence provides a weak signal against Architect classification.
@@ -43,7 +43,7 @@ The absence of evidence is ambiguous given search limitations. However, true CDM
 **Likelihood Ratios:**
 - P(Megabank status | Architect): 0.8 (Most architects are major institutions)
 - P(Megabank status | Pragmatist): 0.7 (Large banks likely pragmatists)
-- P(Megabank status | Not Engaged): 0.4 (Less likely for megabanks to be fully disengaged)
+- P(Megabank status | PRAGMATIST): 0.4 (Less likely for megabanks to be fully disengaged)
 
 **Analysis:**
 Mizuho's status as one of Japan's three megabanks with substantial derivatives operations suggests engagement capability and motivation. However, this is a necessary but not sufficient condition for Architect status.
@@ -56,7 +56,7 @@ Mizuho's status as one of Japan's three megabanks with substantial derivatives o
 **Likelihood Ratios:**
 - P(Peer is Architect | Mizuho is Architect): 0.6 (Japanese banks may coordinate)
 - P(Peer is Architect | Mizuho is Pragmatist): 0.5 (Peer activity may influence)
-- P(Peer is Architect | Mizuho is Not Engaged): 0.5 (Peer activity doesn't determine Mizuho's)
+- P(Peer is Architect | Mizuho is PRAGMATIST): 0.5 (Peer activity doesn't determine Mizuho's)
 
 **Analysis:**
 Nomura's CDM participation shows Japanese bank engagement is viable. However, it doesn't strongly predict Mizuho's behavior. Nomura has a larger global derivatives footprint, particularly in equity derivatives and investment banking.
@@ -69,10 +69,10 @@ Nomura's CDM participation shows Japanese bank engagement is viable. However, it
 **Likelihood Ratios:**
 - P(No partnerships found | Architect): 0.4 (Some architects work quietly)
 - P(No partnerships found | Pragmatist): 0.8 (Wouldn't expect partnerships yet)
-- P(No partnerships found | Not Engaged): 0.95 (Expected result)
+- P(No partnerships found | PRAGMATIST): 0.95 (Expected result)
 
 **Analysis:**
-CDM Architects often partner with technology vendors (REGnosys, FINOS, etc.) or announce internal development initiatives. The absence of such announcements (with caveats about search limitations) weakly suggests non-Architect status.
+CDM Architects often partner with technology vendors (REGnosys, FINOS, etc.) or announce internal development initiatives. The absence of such announcements (with caveats about search limitations) weakly suggests PRAGMATIST status.
 
 **Weight:** LOW (0.3) - Search limitations reduce confidence
 
@@ -104,7 +104,7 @@ Given the low quality and limited quantity of evidence, a full Bayesian calculat
 - Lack of public leadership role fits Pragmatist pattern
 - Megabank status suggests will eventually adopt industry standards
 
-**P(Not Engaged | Evidence) = 35-40%**
+**P(PRAGMATIST | Evidence) = 35-40%**
 - Down slightly from 40% prior
 - Rationale: Megabank status makes complete disengagement less likely
 - However, no evidence of current engagement
@@ -113,7 +113,7 @@ Given the low quality and limited quantity of evidence, a full Bayesian calculat
 ### Point Estimates for Gate Decision
 **P(Architect | Evidence) = 18%**
 **P(Pragmatist | Evidence) = 42%**
-**P(Not Engaged | Evidence) = 40%**
+**P(PRAGMATIST | Evidence) = 40%**
 
 ## Uncertainty Assessment
 
@@ -133,7 +133,7 @@ Given the low quality and limited quantity of evidence, a full Bayesian calculat
 **Sensitivity Analysis:**
 - If Japanese-language sources revealed CDM participation: P(Architect) could jump to 40-50%
 - If ISDA working group membership confirmed: P(Architect) would increase to 35-45%
-- If explicit non-participation confirmed: P(Not Engaged) would increase to 70%+
+- If explicit non-participation confirmed: P(PRAGMATIST) would increase to 70%+
 
 ## Gate 1 Decision Criteria
 
@@ -143,8 +143,8 @@ Given the low quality and limited quantity of evidence, a full Bayesian calculat
 **Decision: FAIL Architect Threshold**
 
 **Proceed to Single-Tier Adversarial Analysis:**
-- Current evidence suggests Pragmatist (42%) or Not Engaged (40%) most likely
-- Adversarial analysis should challenge assumption of non-Architect status
+- Current evidence suggests Pragmatist (42%) or PRAGMATIST (40%) most likely
+- Adversarial analysis should challenge assumption of PRAGMATIST status
 - Focus on evidence gaps and alternative explanations
 
 ## Summary
@@ -152,7 +152,7 @@ Given the low quality and limited quantity of evidence, a full Bayesian calculat
 **Prior → Posterior Shift:**
 - P(Architect): 25% → 18% (↓7 percentage points)
 - P(Pragmatist): 35% → 42% (↑7 percentage points)
-- P(Not Engaged): 40% → 40% (no change)
+- P(PRAGMATIST): 40% → 40% (no change)
 
 **Update Direction:** Slight downward revision of Architect probability, slight upward revision of Pragmatist probability
 

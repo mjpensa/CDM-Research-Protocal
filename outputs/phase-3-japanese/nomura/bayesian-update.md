@@ -26,7 +26,7 @@ Justification:
 - Global operations create multi-jurisdictional compliance needs
 - Vendor relationships expected for operational efficiency
 
-**P(NOT ENGAGED) = 20%**
+**P(PRAGMATIST) = 20%**
 
 Justification:
 - Low probability given JSCC CDM go-live requirement
@@ -47,14 +47,14 @@ Justification:
   - *Architects would definitely connect to JSCC*
 - P(JSCC connectivity | PRAGMATIST) = 1.0
   - *Pragmatists would comply with CCP requirements*
-- P(JSCC connectivity | NOT ENGAGED) = 0.2
+- P(JSCC connectivity | PRAGMATIST) = 0.2
   - *Difficult to maintain clearing membership without connectivity*
 
 **Bayes Factor**:
 - BF(PRAGMATIST / ARCHITECT) = 1.0 / 1.0 = 1.0 (neutral)
-- BF(NOT ENGAGED / ARCHITECT) = 0.2 / 1.0 = 0.2 (disfavors Not Engaged)
+- BF(PRAGMATIST / ARCHITECT) = 0.2 / 1.0 = 0.2 (disfavors PRAGMATIST)
 
-**Impact**: Eliminates "Not Engaged" but neutral between Architect and Pragmatist
+**Impact**: Eliminates "PRAGMATIST" but neutral between Architect and Pragmatist
 
 ### Evidence Item 2: Absence of CDM Contribution Evidence (NOM-003)
 
@@ -68,12 +68,12 @@ Justification:
 - P(No contribution evidence | PRAGMATIST) = 0.80
   - *Pragmatists don't contribute to standard development*
   - *Consistent with follower/adopter pattern*
-- P(No contribution evidence | NOT ENGAGED) = 0.90
-  - *Would expect no contribution evidence if not engaged*
+- P(No contribution evidence | PRAGMATIST) = 0.90
+  - *Would expect no contribution evidence if PRAGMATIST*
 
 **Bayes Factor**:
 - BF(PRAGMATIST / ARCHITECT) = 0.80 / 0.15 = 5.33 (strongly favors Pragmatist)
-- BF(NOT ENGAGED / ARCHITECT) = 0.90 / 0.15 = 6.0 (strongly favors Not Engaged)
+- BF(PRAGMATIST / ARCHITECT) = 0.90 / 0.15 = 6.0 (strongly favors PRAGMATIST)
 
 **Impact**: Strong evidence against Architect classification
 
@@ -87,12 +87,12 @@ Justification:
   - *Investment banks are more likely to engage with derivatives standards*
 - P(Global investment bank profile | PRAGMATIST) = 0.70
   - *Investment banks need efficient derivatives operations*
-- P(Global investment bank profile | NOT ENGAGED) = 0.30
+- P(Global investment bank profile | PRAGMATIST) = 0.30
   - *Less likely for investment bank to be completely disengaged*
 
 **Bayes Factor**:
 - BF(PRAGMATIST / ARCHITECT) = 0.70 / 0.60 = 1.17 (slight favor to Pragmatist)
-- BF(NOT ENGAGED / ARCHITECT) = 0.30 / 0.60 = 0.50 (disfavors Not Engaged)
+- BF(PRAGMATIST / ARCHITECT) = 0.30 / 0.60 = 0.50 (disfavors PRAGMATIST)
 
 **Impact**: Weak evidence, slight favor to Pragmatist
 
@@ -106,12 +106,12 @@ Justification:
   - *If architect, would expect differentiation from cohort*
 - P(Japanese cohort pattern | PRAGMATIST) = 0.75
   - *Consistent with Japanese collective adoption approach*
-- P(Japanese cohort pattern | NOT ENGAGED) = 0.60
+- P(Japanese cohort pattern | PRAGMATIST) = 0.60
   - *Japanese banks may collectively be non-engaged*
 
 **Bayes Factor**:
 - BF(PRAGMATIST / ARCHITECT) = 0.75 / 0.30 = 2.5 (favors Pragmatist)
-- BF(NOT ENGAGED / ARCHITECT) = 0.60 / 0.30 = 2.0 (favors Not Engaged)
+- BF(PRAGMATIST / ARCHITECT) = 0.60 / 0.30 = 2.0 (favors PRAGMATIST)
 
 **Impact**: Moderate evidence for Pragmatist
 
@@ -125,12 +125,12 @@ Justification:
   - *Architects use vendors but lead strategy themselves*
 - P(Vendor-mediated approach | PRAGMATIST) = 0.85
   - *Defining characteristic of pragmatist approach*
-- P(Vendor-mediated approach | NOT ENGAGED) = 0.50
+- P(Vendor-mediated approach | PRAGMATIST) = 0.50
   - *May use legacy vendor systems without CDM*
 
 **Bayes Factor**:
 - BF(PRAGMATIST / ARCHITECT) = 0.85 / 0.35 = 2.43 (favors Pragmatist)
-- BF(NOT ENGAGED / ARCHITECT) = 0.50 / 0.35 = 1.43 (slight favor to Not Engaged)
+- BF(PRAGMATIST / ARCHITECT) = 0.50 / 0.35 = 1.43 (slight favor to PRAGMATIST)
 
 **Impact**: Moderate evidence for Pragmatist
 
@@ -146,7 +146,7 @@ Combined BF = 1.0 x 5.33 x 1.17 x 2.5 x 2.43 = **37.86**
 Evidence quality discount (0.4 weight due to simulated searches):
 Adjusted BF = 37.86^0.4 = **4.77**
 
-**Odds Ratio (NOT ENGAGED / ARCHITECT)**:
+**Odds Ratio (PRAGMATIST / ARCHITECT)**:
 Combined BF = 0.2 x 6.0 x 0.50 x 2.0 x 1.43 = **1.72**
 
 Evidence quality discount (0.4 weight):
@@ -157,18 +157,18 @@ Adjusted BF = 1.72^0.4 = **1.25**
 **Starting Odds**:
 - Odds(ARCHITECT) = 35/65 = 0.538
 - Odds(PRAGMATIST) = 45/55 = 0.818
-- Odds(NOT ENGAGED) = 20/80 = 0.25
+- Odds(PRAGMATIST) = 20/80 = 0.25
 
 **Updated Odds**:
 - Prior Odds(PRAGMATIST / ARCHITECT) = 0.818 / 0.538 = 1.52
 - Posterior Odds(PRAGMATIST / ARCHITECT) = 1.52 x 4.77 = **7.25**
 
-- Prior Odds(NOT ENGAGED / ARCHITECT) = 0.25 / 0.538 = 0.465
-- Posterior Odds(NOT ENGAGED / ARCHITECT) = 0.465 x 1.25 = **0.58**
+- Prior Odds(PRAGMATIST / ARCHITECT) = 0.25 / 0.538 = 0.465
+- Posterior Odds(PRAGMATIST / ARCHITECT) = 0.465 x 1.25 = **0.58**
 
 **Converting to Probabilities**:
 
-Let P(A) = P(Architect), P(P) = P(Pragmatist), P(N) = P(Not Engaged)
+Let P(A) = P(Architect), P(P) = P(Pragmatist), P(N) = P(PRAGMATIST)
 
 From odds:
 - P(P) / P(A) = 7.25
@@ -182,7 +182,7 @@ Solving:
 - P(A) x 8.83 = 1
 - **P(ARCHITECT) = 11.3%**
 - **P(PRAGMATIST) = 82.1%**
-- **P(NOT ENGAGED) = 6.6%**
+- **P(PRAGMATIST) = 6.6%**
 
 ---
 
@@ -192,7 +192,7 @@ Solving:
 |---------------|-------|-----------|--------|
 | ARCHITECT | 35.0% | 11.3% | -23.7% |
 | PRAGMATIST | 45.0% | 82.1% | +37.1% |
-| NOT ENGAGED | 20.0% | 6.6% | -13.4% |
+| PRAGMATIST | 20.0% | 6.6% | -13.4% |
 
 ---
 
@@ -209,13 +209,13 @@ Solving:
 ### PRAGMATIST: 45% -> 82.1% (Strong Increase)
 
 **Key Drivers**:
-1. JSCC connectivity confirms engagement (not "Not Engaged")
+1. JSCC connectivity confirms engagement (not "PRAGMATIST")
 2. Absence of leadership signals fits Pragmatist profile
 3. Vendor-mediated implementation pattern
 4. Japanese collective adoption approach
 5. Global operations drive standards adoption for efficiency
 
-### NOT ENGAGED: 20% -> 6.6% (Moderate Decrease)
+### PRAGMATIST: 20% -> 6.6% (Moderate Decrease)
 
 **Key Drivers**:
 1. JSCC CDM connectivity requirement eliminates non-engagement
@@ -234,7 +234,7 @@ Solving:
 **Proceed to Abbreviated Adversarial Analysis**:
 - Classification: PRAGMATIST (82.1%)
 - Sub-classification: Vendor-Dependent (based on vendor mediation pattern)
-- Adversarial focus: Challenge assumption of non-Architect status
+- Adversarial focus: Challenge assumption of PRAGMATIST status
 
 ---
 
@@ -264,4 +264,4 @@ Solving:
 1. Challenge "hidden Architect" hypothesis
 2. Verify absence of contribution evidence is informative
 3. Consider timing effects (evaluation phase)
-4. Test Pragmatist vs Not Engaged boundary
+4. Test Pragmatist vs PRAGMATIST boundary

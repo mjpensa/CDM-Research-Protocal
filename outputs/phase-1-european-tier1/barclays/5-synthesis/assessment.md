@@ -91,7 +91,7 @@ Barclays demonstrates strong intellectual and strategic engagement with CDM thro
 | Architect (any) | 55% | 96% | Very High |
 | Architect-Leader | 16.5% | 0.7% | Minimal |
 | Architect-Follower | 38.5% | 95.3% | Very High |
-| Non-Architect | 45% | 4% | Minimal |
+| PRAGMATIST | 45% | 4% | Minimal |
 
 ### Key Likelihood Ratios
 - Hackathon hosting: LR = 6.0 (for Architect)

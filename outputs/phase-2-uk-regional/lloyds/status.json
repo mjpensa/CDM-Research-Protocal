@@ -20,7 +20,7 @@
     "gate_1": {
       "status": "passed",
       "threshold": 0.80,
-      "result": "P(Non-Architect)=95% exceeds threshold",
+      "result": "P(PRAGMATIST)=95% exceeds threshold",
       "action": "Proceed to adversarial"
     },
     "adversarial": {

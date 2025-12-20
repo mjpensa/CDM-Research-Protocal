@@ -159,7 +159,7 @@ Where:
 
 **LR = 0.50 / 0.50 = 1.0**
 
-**Rationale**: Purely contextual - doesn't discriminate between Architect and non-Architect.
+**Rationale**: Purely contextual - doesn't discriminate between Architect and PRAGMATIST.
 
 ---
 

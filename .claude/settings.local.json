@@ -18,7 +18,8 @@
       "Bash(wc:*)",
       "Bash(xargs -I {} bash -c 'echo \"\"=== {} ===\"\" && wc -l \"\"{}\"\"')",
       "Bash(dir c:cdm-research-protocol /b)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(for bank in outputs/phase-1-european-tier1/*/)"
     ]
   }
 }

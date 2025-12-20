@@ -2,7 +2,7 @@
 
 **Institution:** Mizuho Financial Group
 **Date:** 2025-12-19
-**Current Classification:** Pragmatist (42%) / Not Engaged (40%)
+**Current Classification:** Pragmatist (42%) / PRAGMATIST (40%)
 **Challenge Target:** Test whether Architect classification (18%) is incorrectly low
 
 ## Purpose
@@ -65,7 +65,7 @@ Mizuho may be a CDM Architect operating quietly, with participation obscured by:
 **Probability:** 15-20%
 - Language and cultural factors may hide some activity
 - However, true Architects leave discoverable footprints
-- Multiple evidence gaps align more with non-Architect status
+- Multiple evidence gaps align more with PRAGMATIST status
 - Hypothesis is possible but not probable
 
 ## Adversarial Challenge 2: The "Evidence Absence Fallacy"
@@ -106,13 +106,13 @@ The research suffered from severe search limitations, making "absence of evidenc
 **Scenario A: Accept Search Limitations, Maintain Near-Prior**
 - P(Architect) = 22-25% (minimal update from prior)
 - P(Pragmatist) = 38-40%
-- P(Not Engaged) = 35-40%
+- P(PRAGMATIST) = 35-40%
 - Rationale: Evidence too limited to justify update
 
 **Scenario B: Evidence Absence is Informative Despite Limitations**
 - P(Architect) = 15-18% (original update)
 - P(Pragmatist) = 40-45%
-- P(Not Engaged) = 37-45%
+- P(PRAGMATIST) = 37-45%
 - Rationale: True Architects leave footprints; absence is meaningful
 
 **Recommended Position: Scenario B with High Uncertainty**
@@ -141,11 +141,11 @@ Mizuho may be in early stages of CDM evaluation or implementation, making curren
 - Japanese coordination approach could delay individual announcements
 
 **Implication:**
-- Current "Not Engaged" appearance may be temporary
-- Pragmatist classification may be more accurate than Not Engaged
+- Current "PRAGMATIST" appearance may be temporary
+- Pragmatist classification may be more accurate than PRAGMATIST
 - Timing uncertainty supports probability spread across categories
 
-**Verdict:** MODERATE - Supports Pragmatist over Not Engaged classification
+**Verdict:** MODERATE - Supports Pragmatist over PRAGMATIST classification
 
 ## Adversarial Challenge 4: Questioning the Prior Probability
 
@@ -200,7 +200,7 @@ The prior P(Architect) = 25% may have been too high, leading to insufficient dow
 - **Impact:** Current classification may not reflect in-progress initiatives
 - **Mitigation:** Acknowledge temporal uncertainty; classify based on current evidence
 
-**4. Confirmation Bias Toward Not Engaged**
+**4. Confirmation Bias Toward PRAGMATIST**
 - **Risk Level:** LOW TO MODERATE
 - **Impact:** Lack of evidence may be over-weighted
 - **Mitigation:** Adversarial analysis balances; maintain probability spread
@@ -215,7 +215,7 @@ The prior P(Architect) = 25% may have been too high, leading to insufficient dow
 ### Explanation 1: Mizuho is Not a CDM Architect
 - **Probability:** 60-65%
 - **Supporting:** No public evidence despite multiple search angles
-- **Consistent with:** Pragmatist or Not Engaged classification
+- **Consistent with:** Pragmatist or PRAGMATIST classification
 
 ### Explanation 2: Mizuho is a Hidden/Quiet Architect
 - **Probability:** 15-20%
@@ -235,7 +235,7 @@ The prior P(Architect) = 25% may have been too high, leading to insufficient dow
 - Could be higher if Japanese-language sources reveal hidden activity
 - Language and search limitations create uncertainty
 - However, lack of international footprint is informative
-- **Confidence in NON-Architect classification: MODERATE (70%)**
+- **Confidence in PRAGMATIST classification: MODERATE (70%)**
 
 **Pragmatist (40-45%):**
 - Most consistent with evidence pattern
@@ -243,18 +243,18 @@ The prior P(Architect) = 25% may have been too high, leading to insufficient dow
 - Lack of leadership role fits Pragmatist profile
 - **Confidence in Pragmatist classification: MODERATE (60%)**
 
-**Not Engaged (35-40%):**
+**PRAGMATIST (35-40%):**
 - Cannot rule out based on current evidence
 - However, megabank derivatives business makes disengagement less likely
 - May reflect timing rather than permanent disengagement
-- **Confidence in Not Engaged classification: LOW TO MODERATE (50%)**
+- **Confidence in PRAGMATIST classification: LOW TO MODERATE (50%)**
 
 ### Adversarial Recommendations
 
 **1. Maintain Probability Spread**
 - Don't collapse to single classification given high uncertainty
 - Keep Architect probability at 15-20% (not <10%) due to evidence limitations
-- Pragmatist and Not Engaged remain competitive
+- Pragmatist and PRAGMATIST remain competitive
 
 **2. Flag for Further Research**
 - Japanese-language sources critical for definitive classification
@@ -278,7 +278,7 @@ The prior P(Architect) = 25% may have been too high, leading to insufficient dow
 **Probability Ranges After Adversarial Review:**
 - **P(Architect) = 18-22%** (slightly increased from 18% due to adversarial challenges)
 - **P(Pragmatist) = 40-44%** (maintained as most likely)
-- **P(Not Engaged) = 35-40%** (maintained as competitive alternative)
+- **P(PRAGMATIST) = 35-40%** (maintained as competitive alternative)
 
 **Key Insight from Adversarial Review:**
 The evidence limitations are real and significant, but the original analysis was appropriately conservative. The lack of public CDM footprint is meaningful even with search constraints. However, uncertainty remains high enough that Architect status cannot be ruled out definitively.

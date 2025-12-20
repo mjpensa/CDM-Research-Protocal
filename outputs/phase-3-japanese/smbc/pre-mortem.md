@@ -47,7 +47,7 @@ SMBC's strong commercial banking focus might obscure significant derivatives act
 ## Failure Mode 2: Follower Misclassification as Non-Engaged
 
 ### Description
-SMBC may be a strategic PRAGMATIST following larger peers (Nomura, MUFG, Mizuho) but could be incorrectly classified as NOT ENGAGED due to lower public visibility.
+SMBC may be a strategic PRAGMATIST following larger peers (Nomura, MUFG, Mizuho) but could be incorrectly classified as PRAGMATIST due to lower public visibility.
 
 ### Risk Assessment
 - **Likelihood:** MEDIUM

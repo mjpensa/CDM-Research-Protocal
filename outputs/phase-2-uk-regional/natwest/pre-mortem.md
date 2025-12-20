@@ -30,7 +30,7 @@ NatWest gets classified as CDM Architect based on:
 ## Failure Mode 2: False Negative Risk (Classify as Adopter when actually Architect)
 
 ### Scenario
-NatWest is incorrectly classified as Adopter/Not Engaged because:
+NatWest is incorrectly classified as Adopter/PRAGMATIST because:
 - CDM work is conducted through subsidiaries or joint ventures
 - Technical contributions are made quietly without public announcements
 - UK-specific regulatory initiatives overlap with CDM but aren't labeled as such
