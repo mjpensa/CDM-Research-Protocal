@@ -251,7 +251,43 @@ See `docs/claude-code-workflow.md` for complete workflow documentation.
 
 ---
 
-## 12. Quick Commands
+## 12. Sequential Processing Rules (MANDATORY)
+
+**CRITICAL**: Bank research MUST be processed sequentially:
+
+1. **One Bank at a Time**: Complete ALL 14 stages for the current bank before starting the next bank
+2. **No Parallel Bank Research**: NEVER launch multiple Task agents to research different banks simultaneously
+3. **Phase Order**: Complete all banks in Phase N before starting Phase N+1
+4. **Within-Phase Order**: Process banks in the order listed in `config/bank-manifest.json`
+
+### What is PROHIBITED
+- Launching Task agents for multiple banks in parallel
+- Starting research on Bank B while Bank A is still in progress
+- Skipping ahead to later phases before completing earlier phases
+- Using background agents (`run_in_background: true`) for bank research
+
+### Correct Pattern
+```
+Bank 1: Initialize → Tier 1 → Bayesian → Gate 1 → ... → Synthesis → COMPLETE
+Bank 2: Initialize → Tier 1 → Bayesian → Gate 1 → ... → Synthesis → COMPLETE
+Bank 3: Initialize → ...
+```
+
+### Incorrect Pattern (NEVER DO THIS)
+```
+Bank 1: Initialize → Tier 1...
+Bank 2: Initialize → Tier 1...  ← WRONG: Don't start Bank 2 until Bank 1 is COMPLETE
+Bank 3: Initialize → Tier 1...  ← WRONG
+```
+
+### Rationale
+- Later banks may depend on findings from earlier banks (peer patterns, regional cohorts)
+- Sequential processing ensures consistency and prevents race conditions
+- Human review checkpoints require focused attention on one bank at a time
+
+---
+
+## 13. Quick Commands
 
 ### Single Bank Processing
 ```bash
@@ -300,7 +336,7 @@ python tools/render_evidence_md.py --batch outputs/phase-1-european-tier1/
 
 ---
 
-## 12. Output Files
+## 13. Output Files
 
 After successful processing, each bank folder contains:
 
@@ -342,7 +378,7 @@ outputs/phase-[N]/{bank-id}/
 
 ---
 
-## 13. Pre-Flight Checklist
+## 14. Pre-Flight Checklist
 
 Before starting research on any bank:
 
@@ -354,7 +390,7 @@ Before starting research on any bank:
 
 ---
 
-## 14. Schema Reference
+## 15. Schema Reference
 
 Evidence must conform to `templates/evidence-schema.json`.
 

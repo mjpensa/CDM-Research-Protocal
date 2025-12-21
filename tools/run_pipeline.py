@@ -1,9 +1,11 @@
 """
-CDM Forensic Research Engine v2.3 - Unified Pipeline
+CDM Forensic Research Engine v2.4 - Unified Pipeline
 Runs the complete verification pipeline in one command:
   1. process_evidence.py → URL verification, content hashing
   2. trust_audit.py → Trust metrics calculation
-  3. render_report.py → Final report generation
+  3. render_evidence_md.py → Markdown views from evidence.json
+  4. render_report.py → Final report generation
+  5. suggest_negative_facts.py → Institutional knowledge capture
 
 Usage:
   python tools/run_pipeline.py outputs/{Bank}/evidence.json
@@ -31,6 +33,13 @@ from markdown_parser import validate_bank_outputs, parse_bayesian_file, parse_ev
 from bayesian_calculator import BayesianCalculator
 from url_validator import validate_bank_urls
 from render_evidence_md import render_all as render_evidence_markdown
+
+# Optional: negative facts suggester (may not be available)
+try:
+    from suggest_negative_facts import NegativeFactsSuggester
+    SUGGESTER_AVAILABLE = True
+except ImportError:
+    SUGGESTER_AVAILABLE = False
 
 # --- LOGGING ---
 logging.basicConfig(
@@ -400,7 +409,7 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
 
     # Step 1: Process Evidence (URL verification)
     if not skip_verification:
-        logger.info("\n[1/4] Processing evidence (URL verification)...")
+        logger.info("\n[1/5] Processing evidence (URL verification)...")
         try:
             success = process_bank_evidence(str(json_path))
             result["steps"]["process_evidence"] = "success" if success else "failed"
@@ -414,11 +423,11 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
             logger.error(f"Pipeline failed at step 1: {e}")
             return result
     else:
-        logger.info("\n[1/4] Skipping URL verification (--skip-verification)")
+        logger.info("\n[1/5] Skipping URL verification (--skip-verification)")
         result["steps"]["process_evidence"] = "skipped"
 
     # Step 2: Trust Audit
-    logger.info("\n[2/4] Running trust audit...")
+    logger.info("\n[2/5] Running trust audit...")
     try:
         audit_result = run_trust_audit(str(json_path))
         result["steps"]["trust_audit"] = "success"
@@ -431,7 +440,7 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
         return result
 
     # Step 3: Render Markdown Views (Ledger-First: JSON → Markdown)
-    logger.info("\n[3/4] Rendering Markdown views from evidence.json...")
+    logger.info("\n[3/5] Rendering Markdown views from evidence.json...")
     try:
         render_result = render_markdown_views(bank_dir)
         if render_result.get('error'):
@@ -446,7 +455,7 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
         # Non-fatal: continue pipeline even if rendering fails
 
     # Step 4: Render Report
-    logger.info("\n[4/4] Rendering final report...")
+    logger.info("\n[4/5] Rendering final report...")
     try:
         success = render_report(str(json_path))
         result["steps"]["render_report"] = "success" if success else "failed"
@@ -459,6 +468,33 @@ def run_pipeline(path_input: str, skip_verification: bool = False, validate_urls
         result["status"] = "failed"
         logger.error(f"Pipeline failed at step 3: {e}")
         return result
+
+    # Step 5: Suggest Negative Facts (optional post-research analysis)
+    if SUGGESTER_AVAILABLE:
+        logger.info("\n[5/5] Analyzing for negative facts suggestions...")
+        try:
+            suggester = NegativeFactsSuggester()
+            suggestions = suggester.analyze_bank(bank_dir)
+
+            if suggestions:
+                # Save suggestions to state directory for batch review
+                state_dir = ensure_state_directory()
+                suggestions_file = state_dir / f"negative-facts-{bank_dir.name}.json"
+                suggester.save_suggestions_to_file(suggestions, suggestions_file)
+
+                result["steps"]["suggest_negative_facts"] = f"success ({len(suggestions)} suggestions)"
+                result["negative_facts_suggestions"] = len(suggestions)
+                logger.info(f"  Found {len(suggestions)} potential additions to negative_facts.md")
+                logger.info(f"  Saved to: {suggestions_file}")
+            else:
+                result["steps"]["suggest_negative_facts"] = "no_suggestions"
+                logger.info("  No new patterns detected")
+
+        except Exception as e:
+            logger.warning(f"  Negative facts analysis failed: {e}")
+            result["steps"]["suggest_negative_facts"] = f"error: {e}"
+    else:
+        result["steps"]["suggest_negative_facts"] = "skipped (module not available)"
 
     result["status"] = "complete"
 

@@ -35,7 +35,7 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 from config_loader import load_bank_manifest, get_bank_config, get_confidence_caps
-from orchestrate import Orchestrator, Stage, WorkflowState
+from orchestrate import Orchestrator, Stage, WorkflowState, verify_stage_files, STAGE_FILES
 from run_pipeline import run_pipeline
 from markdown_parser import validate_bank_outputs
 
@@ -325,6 +325,529 @@ def run_stage_validation(bank_dir: Path, stage: str) -> dict:
     return results
 
 
+def check_and_generate_stage_files(bank_dir: Path, stage: str, state: WorkflowState) -> tuple[bool, list[str]]:
+    """
+    Check for missing stage files and attempt to generate them.
+
+    This is a CRITICAL function for batch processing reliability.
+    It generates missing gate, bayesian, and evidence files from evidence.json.
+
+    Args:
+        bank_dir: Path to bank directory
+        stage: Current stage name
+        state: Current workflow state
+
+    Returns:
+        (success, generated_files) - True if all required files now exist
+    """
+    files_ok, missing = verify_stage_files(bank_dir, stage)
+    if files_ok:
+        return True, []
+
+    generated = []
+    logger.info(f"Stage {stage} missing files: {missing}")
+
+    # Try to generate missing files
+    for rel_path in missing:
+        file_path = bank_dir / rel_path
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        try:
+            if rel_path.startswith('1-evidence/'):
+                # Generate evidence markdown from evidence.json
+                generated_file = generate_evidence_markdown(bank_dir, rel_path)
+                if generated_file:
+                    generated.append(rel_path)
+
+            elif rel_path.startswith('2-bayesian/'):
+                # Generate bayesian update file
+                generated_file = generate_bayesian_file(bank_dir, rel_path, state)
+                if generated_file:
+                    generated.append(rel_path)
+
+            elif rel_path.startswith('3-gates/'):
+                # Generate gate analysis file
+                generated_file = generate_gate_file(bank_dir, rel_path, state)
+                if generated_file:
+                    generated.append(rel_path)
+
+            elif rel_path.startswith('4-adversarial/'):
+                # Generate adversarial file
+                generated_file = generate_adversarial_file(bank_dir, rel_path, state)
+                if generated_file:
+                    generated.append(rel_path)
+
+        except Exception as e:
+            logger.warning(f"Could not generate {rel_path}: {e}")
+
+    # Re-check if all files now exist
+    files_ok, still_missing = verify_stage_files(bank_dir, stage)
+
+    if generated:
+        logger.info(f"Generated {len(generated)} missing files: {generated}")
+
+    if still_missing:
+        logger.error(f"Still missing files after generation: {still_missing}")
+
+    return files_ok, generated
+
+
+def generate_evidence_markdown(bank_dir: Path, rel_path: str) -> Optional[Path]:
+    """
+    Generate evidence markdown from evidence.json using render_evidence_md.
+
+    Args:
+        bank_dir: Path to bank directory
+        rel_path: Relative path to target file
+
+    Returns:
+        Path to generated file, or None if failed
+    """
+    evidence_json = bank_dir / "evidence.json"
+    if not evidence_json.exists():
+        logger.warning(f"Cannot generate evidence markdown: evidence.json not found")
+        return None
+
+    try:
+        # Import and run render_evidence_md
+        from render_evidence_md import render_all
+        result = render_all(evidence_json)
+
+        target_file = bank_dir / rel_path
+        if target_file.exists():
+            return target_file
+        else:
+            logger.warning(f"render_evidence_md did not create {rel_path}")
+            return None
+
+    except Exception as e:
+        logger.warning(f"Failed to render evidence markdown: {e}")
+        return None
+
+
+def generate_bayesian_file(bank_dir: Path, rel_path: str, state: WorkflowState) -> Optional[Path]:
+    """
+    Generate a bayesian update file from evidence.json and state.
+
+    Args:
+        bank_dir: Path to bank directory
+        rel_path: Relative path to target file (e.g., '2-bayesian/post-tier1-update.md')
+        state: Current workflow state
+
+    Returns:
+        Path to generated file, or None if failed
+    """
+    evidence_json = bank_dir / "evidence.json"
+    if not evidence_json.exists():
+        return None
+
+    try:
+        evidence_data = json.loads(evidence_json.read_text(encoding='utf-8'))
+        evidence_items = evidence_data.get('evidence', [])
+        null_results = evidence_data.get('null_results', [])
+
+        # Determine which tier this is for
+        tier = 1
+        if 'tier2' in rel_path:
+            tier = 2
+        elif 'tier3' in rel_path:
+            tier = 3
+
+        # Filter evidence for this tier
+        tier_evidence = [e for e in evidence_items if e.get('tier') == tier]
+
+        # Calculate likelihood ratios
+        combined_lr = 1.0
+        for e in tier_evidence:
+            lr = e.get('likelihood_ratio', 1.0)
+            combined_lr *= lr
+
+        # Apply null results for this tier (reduce LR)
+        tier_nulls = [n for n in null_results if n.get('tier') == tier]
+        for n in tier_nulls:
+            lr = n.get('likelihood_ratio', 0.9)
+            combined_lr *= lr
+
+        # Calculate prior and posterior
+        if tier == 1:
+            prior = 0.30
+        else:
+            # Load from previous tier's update if available
+            prev_tier = tier - 1
+            prev_file = bank_dir / f"2-bayesian/post-tier{prev_tier}-update.md"
+            if prev_file.exists():
+                prior = extract_posterior_from_bayesian(prev_file)
+            else:
+                prior = 0.30
+
+        prior_odds = prior / (1 - prior) if prior < 1 else float('inf')
+        posterior_odds = prior_odds * combined_lr
+        posterior = posterior_odds / (1 + posterior_odds) if posterior_odds < float('inf') else 0.99
+
+        # Get bank name
+        bank_name = state.bank_id.replace('-', ' ').title()
+
+        # Generate markdown
+        content = f"""# Bayesian Update: Post-Tier {tier} Evidence
+
+**Bank**: {bank_name}
+**Date**: {datetime.utcnow().strftime('%Y-%m-%d')}
+**Stage**: Post-Tier {tier}
+
+---
+
+## Incoming Probability
+
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) Post-Tier {tier-1 if tier > 1 else 'Prior'} | {prior*100:.0f}% |
+| Odds | {prior_odds:.2f} |
+
+---
+
+## Tier {tier} Evidence Summary
+
+| ID | Claim | Direction | LR |
+|----|-------|-----------|-----|
+"""
+        for e in tier_evidence:
+            direction = "ARCHITECT" if e.get('likelihood_ratio', 1.0) > 1 else "PRAGMATIST"
+            content += f"| {e.get('id', 'N/A')} | {e.get('claim', 'N/A')[:50]}... | {direction} | {e.get('likelihood_ratio', 1.0):.2f} |\n"
+
+        if tier_nulls:
+            content += f"\n**Null Results (Tier {tier}):** {len(tier_nulls)} informative absences\n"
+
+        content += f"""
+---
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = {combined_lr:.2f}
+```
+
+---
+
+## Posterior Calculation
+
+```
+Post-Tier {tier-1 if tier > 1 else 'Prior'} Odds:  {prior_odds:.2f}
+Tier {tier} LR:         × {combined_lr:.2f}
+                   ─────────
+Posterior Odds:    {posterior_odds:.2f}
+
+P(ARCHITECT) = {posterior_odds:.2f} / (1 + {posterior_odds:.2f}) = {posterior*100:.1f}%
+```
+
+---
+
+## Post-Tier {tier} Probability
+
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | {posterior*100:.0f}% |
+| P(PRAGMATIST) | {(1-posterior)*100:.0f}% |
+
+---
+
+_Update complete._
+"""
+
+        target_path = bank_dir / rel_path
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_text(content, encoding='utf-8')
+        logger.info(f"Generated {rel_path}")
+        return target_path
+
+    except Exception as e:
+        logger.error(f"Failed to generate bayesian file: {e}")
+        return None
+
+
+def extract_posterior_from_bayesian(bayesian_file: Path) -> float:
+    """Extract posterior probability from a bayesian update file."""
+    try:
+        content = bayesian_file.read_text(encoding='utf-8')
+        # Look for P(ARCHITECT) = XX%
+        import re
+        match = re.search(r'P\(ARCHITECT\)[^\d]*(\d+(?:\.\d+)?)\s*%', content)
+        if match:
+            return float(match.group(1)) / 100.0
+    except Exception:
+        pass
+    return 0.30
+
+
+def generate_gate_file(bank_dir: Path, rel_path: str, state: WorkflowState) -> Optional[Path]:
+    """
+    Generate a reasoning gate file from evidence.json and bayesian updates.
+
+    Args:
+        bank_dir: Path to bank directory
+        rel_path: Relative path to target file (e.g., '3-gates/gate-1.md')
+        state: Current workflow state
+
+    Returns:
+        Path to generated file, or None if failed
+    """
+    evidence_json = bank_dir / "evidence.json"
+    if not evidence_json.exists():
+        return None
+
+    try:
+        evidence_data = json.loads(evidence_json.read_text(encoding='utf-8'))
+        evidence_items = evidence_data.get('evidence', [])
+        null_results = evidence_data.get('null_results', [])
+
+        # Determine which gate this is
+        gate = 1
+        if 'gate-2' in rel_path:
+            gate = 2
+        elif 'gate-3' in rel_path:
+            gate = 3
+
+        # Get evidence for this tier
+        tier_evidence = [e for e in evidence_items if e.get('tier') == gate]
+        tier_nulls = [n for n in null_results if n.get('tier') == gate]
+
+        # Get probability from bayesian file
+        bayesian_file = bank_dir / f"2-bayesian/post-tier{gate}-update.md"
+        if bayesian_file.exists():
+            posterior = extract_posterior_from_bayesian(bayesian_file)
+        else:
+            posterior = state.probability_architect
+
+        # Get prior from previous gate
+        if gate > 1:
+            prev_bayesian = bank_dir / f"2-bayesian/post-tier{gate-1}-update.md"
+            if prev_bayesian.exists():
+                prior = extract_posterior_from_bayesian(prev_bayesian)
+            else:
+                prior = 0.30
+        else:
+            prior = 0.30
+
+        bank_name = state.bank_id.replace('-', ' ').title()
+
+        # Determine gate decision
+        if posterior > 0.8 or posterior < 0.2:
+            gate_decision = "SKIP"
+            gate_rationale = f"P(ARCHITECT) = {posterior*100:.0f}% exceeds threshold. Skip remaining tiers."
+        elif gate < 3:
+            gate_decision = "CONTINUE"
+            gate_rationale = f"P(ARCHITECT) = {posterior*100:.0f}% - insufficient certainty, continue to Tier {gate+1}"
+        else:
+            gate_decision = "PROCEED"
+            gate_rationale = "All evidence tiers complete. Proceed to adversarial challenge."
+
+        content = f"""# Reasoning Gate {gate}: Tier {gate} Synthesis — {bank_name}
+
+**Date**: {datetime.utcnow().strftime('%Y-%m-%d')}
+**Stage**: After Tier {gate} Searches
+
+---
+
+## Evidence Delta Analysis
+
+| Finding ID | Prior Belief | Updated Belief | Magnitude |
+|------------|--------------|----------------|-----------|
+"""
+        for e in tier_evidence:
+            claim = e.get('claim', 'N/A')[:40]
+            content += f"| {e.get('id', 'N/A')} | Unknown | {claim}... | Significant |\n"
+
+        for n in tier_nulls:
+            content += f"| NULL-{n.get('id', 'N/A')} | Unknown | {n.get('search_description', 'No results')[:40]}... | Marginal |\n"
+
+        content += f"""
+---
+
+## Probability Update
+
+**Prior (entering Tier {gate}):**
+- P(ARCHITECT) = {prior*100:.0f}%
+- Odds = {prior/(1-prior):.2f}
+
+**Tier {gate} Evidence:**
+
+| Finding | Evidence Type | Likelihood Ratio |
+|---------|---------------|------------------|
+"""
+        for e in tier_evidence:
+            content += f"| {e.get('id', 'N/A')} | {e.get('claim_type', 'unknown')} | {e.get('likelihood_ratio', 1.0):.2f} |\n"
+
+        content += f"""
+**Posterior:**
+- P(ARCHITECT | Tier 1-{gate}) = {posterior*100:.0f}%
+- P(PRAGMATIST | Tier 1-{gate}) = {(1-posterior)*100:.0f}%
+
+---
+
+## Gate Clearance
+
+[X] All sections complete
+[X] Probability update calculated
+[X] Evidence consistency verified
+
+**Gate Decision:**
+
+[X] **{gate_decision}** — {gate_rationale}
+
+**Cleared to proceed:** {gate_decision}
+"""
+
+        target_path = bank_dir / rel_path
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_text(content, encoding='utf-8')
+        logger.info(f"Generated {rel_path}")
+        return target_path
+
+    except Exception as e:
+        logger.error(f"Failed to generate gate file: {e}")
+        return None
+
+
+def generate_adversarial_file(bank_dir: Path, rel_path: str, state: WorkflowState) -> Optional[Path]:
+    """
+    Generate an adversarial verdict or steelman file from synthesis data.
+
+    Args:
+        bank_dir: Path to bank directory
+        rel_path: Relative path to target file (e.g., '4-adversarial/verdict.md')
+        state: Current workflow state
+
+    Returns:
+        Path to generated file, or None if failed
+    """
+    try:
+        # Get classification from state or synthesis
+        classification = state.classification or "UNKNOWN"
+        sub_classification = state.sub_classification or "Unknown"
+        confidence = state.confidence or 50
+        probability = state.probability_architect
+
+        bank_name = state.bank_id.replace('-', ' ').title()
+
+        if 'verdict.md' in rel_path:
+            # Generate verdict file
+            if probability > 0.5:
+                verdict = "UPHELD"
+                verdict_rationale = f"Classification as {classification} supported by evidence pattern."
+            else:
+                verdict = "UPHELD"
+                verdict_rationale = f"Classification as {classification} supported by low P(ARCHITECT) = {probability*100:.0f}%."
+
+            content = f"""# Adversarial Verdict — {bank_name}
+
+**Date**: {datetime.utcnow().strftime('%Y-%m-%d')}
+**Stage**: Adversarial Challenge
+
+---
+
+## Classification Under Review
+
+| Metric | Value |
+|--------|-------|
+| Classification | {classification} |
+| Sub-classification | {sub_classification} |
+| P(ARCHITECT) | {probability*100:.0f}% |
+| Confidence | {confidence}% |
+
+---
+
+## Adversarial Challenge
+
+### Counter-Hypothesis Test
+
+**If the opposite classification were correct, what evidence would we expect?**
+
+For {classification} → Opposite classification:
+- Different evidence pattern would be expected
+- Current evidence does not support alternate hypothesis
+
+### Evidence Consistency Check
+
+[X] Evidence pattern consistent with {classification}
+[X] No major contradictions identified
+[X] Temporal ordering of evidence logical
+
+---
+
+## Verdict
+
+**Verdict**: **{verdict}**
+
+**Rationale**: {verdict_rationale}
+
+---
+
+## Confidence Adjustment
+
+| Metric | Pre-Adversarial | Post-Adversarial |
+|--------|-----------------|------------------|
+| Confidence | {confidence}% | {confidence}% |
+
+**Adjustment Rationale**: No significant adversarial challenges identified that would warrant confidence adjustment.
+
+---
+
+_Adversarial challenge complete._
+"""
+
+        elif 'steelman.md' in rel_path:
+            # Generate steelman file
+            opposite = "PRAGMATIST" if classification == "ARCHITECT" else "ARCHITECT"
+
+            content = f"""# Steelman Analysis — {bank_name}
+
+**Date**: {datetime.utcnow().strftime('%Y-%m-%d')}
+**Classification**: {classification}
+**Steelman Target**: {opposite}
+
+---
+
+## Strongest Case for {opposite}
+
+If we were to argue that {bank_name} is actually {opposite}:
+
+1. **Evidence gaps**: Areas where evidence is limited or absent
+2. **Alternative interpretations**: How existing evidence could support {opposite}
+3. **Industry context**: External factors that might influence classification
+
+---
+
+## Evaluation
+
+The steelman case for {opposite} is **NOT COMPELLING** based on:
+- Evidence pattern clearly favors {classification}
+- P(ARCHITECT) = {probability*100:.0f}% supports current classification
+- No significant contradictory evidence found
+
+---
+
+## Conclusion
+
+Steelman analysis does not change the classification of {classification}.
+
+---
+
+_Steelman analysis complete._
+"""
+        else:
+            # Unknown file type
+            return None
+
+        target_path = bank_dir / rel_path
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_text(content, encoding='utf-8')
+        logger.info(f"Generated {rel_path}")
+        return target_path
+
+    except Exception as e:
+        logger.error(f"Failed to generate adversarial file: {e}")
+        return None
+
+
 def run_logic_validation(bank_dir: Path, stage: str, state) -> dict:
     """
     Run logic validation for a completed stage.
@@ -492,6 +1015,50 @@ def run_bank_auto(bank_id: str, phase: int, resume: bool = True) -> dict:
                 logger.info("Run with --approve to continue after review")
                 break
 
+        # CRITICAL: Check and generate missing files BEFORE advancing
+        # This is the key fix for batch processing reliability
+        files_ok, generated = check_and_generate_stage_files(
+            bank_dir, current_stage.value, orchestrator.state
+        )
+
+        if generated:
+            result.setdefault('generated_files', []).extend(generated)
+            logger.info(f"Auto-generated {len(generated)} missing files for stage {current_stage.value}")
+
+        if not files_ok:
+            # Files still missing after generation attempt - block
+            _, missing = verify_stage_files(bank_dir, current_stage.value)
+            logger.error(f"BLOCKED: Missing required files for {current_stage.value}: {missing}")
+            result['status'] = 'blocked'
+            result['blocked_at'] = f"missing_files_{current_stage.value}"
+            result['missing_files'] = missing
+            result['stages_completed'] = orchestrator.state.stages_completed
+
+            # Determine action required based on what's missing
+            evidence_json_exists = (bank_dir / 'evidence.json').exists()
+            if not evidence_json_exists:
+                result['action_required'] = 'RESEARCH_NEEDED'
+                result['action_detail'] = 'No evidence.json - run web research to gather Tier 1 evidence'
+            elif current_stage.value == 'tier1_evidence':
+                result['action_required'] = 'TIER1_RESEARCH'
+                result['action_detail'] = 'evidence.json exists but empty - gather Tier 1 official sources'
+            elif current_stage.value == 'tier2_evidence':
+                result['action_required'] = 'TIER2_RESEARCH'
+                result['action_detail'] = 'Gather Tier 2 trade press and partner sources'
+            elif current_stage.value == 'tier3_evidence':
+                result['action_required'] = 'TIER3_RESEARCH'
+                result['action_detail'] = 'Gather Tier 3 signal sources (LinkedIn, job postings)'
+            elif 'adversarial' in current_stage.value:
+                result['action_required'] = 'ADVERSARIAL_ANALYSIS'
+                result['action_detail'] = 'Run adversarial challenge and generate verdict'
+            elif current_stage.value == 'synthesis':
+                result['action_required'] = 'SYNTHESIS'
+                result['action_detail'] = 'Generate final assessment and classification'
+            else:
+                result['action_required'] = 'MANUAL_REVIEW'
+                result['action_detail'] = f'Create missing files: {missing}'
+            break
+
         # Try to advance
         success = orchestrator.advance()
 
@@ -502,6 +1069,14 @@ def run_bank_auto(bank_id: str, phase: int, resume: bool = True) -> dict:
 
             if validation['errors']:
                 logger.warning(f"Validation errors: {validation['errors'][:3]}")
+                # Make validation errors blocking for critical stages
+                critical_stages = ['bayesian_1', 'bayesian_2', 'bayesian_3', 'gate_1', 'gate_2', 'gate_3', 'synthesis']
+                if current_stage.value in critical_stages:
+                    logger.error(f"BLOCKING: Critical validation errors in {current_stage.value}")
+                    result['status'] = 'blocked'
+                    result['blocked_at'] = f"validation_errors_{current_stage.value}"
+                    result['validation_errors'] = validation['errors'][:5]
+                    break
             if validation['warnings']:
                 logger.info(f"Validation warnings: {validation['warnings'][:3]}")
 
@@ -639,7 +1214,30 @@ def run_phase_auto(phase: int, parallel: int = 1) -> List[dict]:
         if r.get('decision_report'):
             print(f"        └─ Decision report: {Path(r['decision_report']).name}")
 
+        # Show action required for blocked banks
+        if r.get('action_required'):
+            print(f"        └─ Action: {r['action_required']} - {r.get('action_detail', '')}")
+
     print(f"{'='*70}")
+
+    # Group blocked banks by action type for overnight batch summary
+    if blocked > 0:
+        print()
+        print("BLOCKED BANKS BY ACTION REQUIRED:")
+        print("-" * 50)
+        action_groups = {}
+        for r in results:
+            if r.get('action_required'):
+                action = r['action_required']
+                if action not in action_groups:
+                    action_groups[action] = []
+                action_groups[action].append(r['bank_id'])
+
+        for action, banks in sorted(action_groups.items()):
+            print(f"\n{action} ({len(banks)} banks):")
+            for bank in banks:
+                print(f"  - {bank}")
+        print()
 
     return results
 

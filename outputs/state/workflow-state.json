@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.2",
+  "execution_mode": "full_rollout",
+  "current_phase": 1,
+  "current_bank": null,
+  "current_stage": null,
+  "banks_completed": [],
+  "banks_in_progress": [],
+  "banks_pending": [
+    "state-street",
+    "bny-mellon"
+  ],
+  "banks_blocked": [],
+  "phase_status": {},
+  "started_at": "2025-12-21T17:46:38.812307+00:00",
+  "last_updated": "2025-12-21T17:46:39.087908+00:00",
+  "execution_log": [
+    {
+      "timestamp": "2025-12-21T17:46:38.844737+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 5 bank states: 0 complete, 5 in progress, 0 blocked, 0 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:38.878544+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 2 bank states: 0 complete, 2 in progress, 0 blocked, 0 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:38.908573+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 4 bank states: 0 complete, 0 in progress, 0 blocked, 4 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:38.947747+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 4 bank states: 0 complete, 0 in progress, 0 blocked, 4 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:38.975164+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 2 bank states: 0 complete, 2 in progress, 0 blocked, 0 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:39.002384+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 2 bank states: 0 complete, 2 in progress, 0 blocked, 0 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:39.034302+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 5 bank states: 0 complete, 0 in progress, 0 blocked, 5 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:39.068893+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 5 bank states: 0 complete, 0 in progress, 0 blocked, 5 pending"
+    },
+    {
+      "timestamp": "2025-12-21T17:46:39.087894+00:00",
+      "event": "workflow_synced",
+      "details": "Rebuilt from 2 bank states: 0 complete, 0 in progress, 0 blocked, 2 pending"
+    }
+  ],
+  "notes": null
+}

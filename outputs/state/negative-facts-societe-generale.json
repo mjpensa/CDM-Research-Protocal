@@ -1,0 +1,22 @@
+{
+  "generated_at": "2025-12-21T11:10:22.771101",
+  "suggestion_count": 2,
+  "suggestions": [
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (wholesale.banking.societegenerale.com)\n\n- **Misleading Signal**: Vendor claim from wholesale.banking.societegenerale.com: Soci\u00e9t\u00e9 G\u00e9n\u00e9rale provides detailed EMIR Refit information showing compliance via...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: societe-generale\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "societe-generale",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from wholesale.banking.societegenerale.com: soci\u00e9t\u00e9 g\u00e9n\u00e9rale provides detailed emir refit information showing compliance via..."
+    },
+    {
+      "section": "F",
+      "content": "| Dead-end patterns for similar banks | 0.5 hours |",
+      "confidence": 0.7,
+      "source_bank": "societe-generale",
+      "source_evidence_ids": [],
+      "pattern_key": "time_savings_similar bank"
+    }
+  ]
+}
