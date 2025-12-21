@@ -188,6 +188,632 @@ From the Orchestrator, you will receive:
 
 ---
 
+## Product-Specific Intelligence Gathering (v4.0)
+
+**Objective**: Determine which product lines use CDM and to what extent.
+
+### Product Categories to Investigate
+
+| Product | Aliases | Regulatory Relevance |
+|---------|---------|---------------------|
+| IRS | Interest Rate Swaps, rates, interest rate derivatives | EMIR Refit (high), CFTC (high), JSCC (high) |
+| CDS | Credit Default Swaps, credit derivatives | EMIR Refit (high), CFTC (high) |
+| FX_Options | FX options, currency derivatives, forex | EMIR Refit (medium), CFTC (medium) |
+| Equity_Derivatives | Equity swaps, equity options, TRS | EMIR Refit (medium), CFTC (medium) |
+| Commodities | Commodity swaps, energy derivatives | EMIR Refit (medium), CFTC (high) |
+
+### Product-Specific Search Patterns
+
+For EACH major product line, execute these searches:
+
+**1. Product + CDM Searches**
+```
+"[Bank Name]" "[Product]" CDM OR "Common Domain Model"
+"[Bank Name]" "[Product]" regulatory reporting technology
+"[Bank Name]" "[Product]" post-trade modernization
+"[Bank Name]" "interest rate" OR "rates" CDM implementation
+"[Bank Name]" "credit derivatives" CDM pilot
+```
+
+**2. Product + Regulatory Searches**
+```
+"[Bank Name]" "[Product]" "EMIR Refit" implementation
+"[Bank Name]" "[Product]" CFTC reporting upgrade
+"[Bank Name]" "[Product]" trade repository connectivity
+```
+
+**3. Product Volume/Exposure Indicators**
+```
+"[Bank Name]" derivatives notional [year] annual report
+"[Bank Name]" "[Product]" market maker OR dealer
+"[Bank Name]" derivatives revenue breakdown by asset class
+"[Bank Name]" rates business CDM OR technology
+```
+
+### Product Intelligence Documentation
+
+When product-specific evidence is found, add to evidence block:
+
+```markdown
+Product Scope: [IRS, CDS, FX_Options, Equity_Derivatives, Commodities]
+Coverage Specificity: [explicit - product named / inferred - from context / unknown]
+```
+
+Example:
+```markdown
+[BANK-015] TIER 2 — SUPPORTS ARCHITECT
+
+Source: Risk.net "Bank X pilots CDM for rates products"
+...
+Product Scope: [IRS]
+Coverage Specificity: explicit
+Regulatory Driver: EMIR_Refit
+```
+
+---
+
+## Jurisdiction-Specific Intelligence Gathering (v4.0)
+
+**Objective**: Determine which regulatory jurisdictions the bank prioritizes for CDM and rollout sequence.
+
+### Regulatory Calendar Reference
+
+| Jurisdiction | Regulation | Deadline | Status |
+|--------------|------------|----------|--------|
+| EU | EMIR Refit | April 2024 | LIVE |
+| UK | UK EMIR | September 2024 | LIVE |
+| US | CFTC Rewrite | December 2024 | LIVE |
+| Japan | JSCC CDM | June 2025 | Pending |
+| Singapore | MAS | Ongoing | Evolving |
+| Hong Kong | HKMA | Ongoing | Evolving |
+
+### Jurisdiction-Prioritized Search Order
+
+**For European Banks (Deutsche Bank, SocGen, Barclays, HSBC, UBS)**:
+1. EMIR Refit response searches (PRIORITY 1)
+2. UK EMIR response searches (if UK presence)
+3. CFTC exposure searches (if US presence)
+4. JSCC connectivity (if Japan exposure)
+
+**For Japanese Banks (Nomura, MUFG, Mizuho, SMBC)**:
+1. JSCC CDM preparation searches (PRIORITY 1)
+2. FSA regulatory guidance searches
+3. Cross-border regulatory exposure
+
+**For US Banks (JPMorgan, Goldman, Morgan Stanley, Citi, BofA)**:
+1. CFTC Rewrite response searches (PRIORITY 1)
+2. Global subsidiary regulatory exposure
+3. CCP connectivity requirements
+
+### Jurisdiction-Specific Search Patterns
+
+**EMIR Refit (EU banks - CRITICAL)**:
+```
+"[Bank Name]" "EMIR Refit" implementation [2024]
+"[Bank Name]" "ESMA" derivatives reporting upgrade
+"[Bank Name]" April 2024 EMIR compliance CDM
+"[Bank Name]" European regulatory reporting modernization
+```
+
+**UK EMIR (UK-exposed banks)**:
+```
+"[Bank Name]" "UK EMIR" implementation [2024]
+"[Bank Name]" FCA derivatives reporting September 2024
+"[Bank Name]" post-Brexit EMIR compliance approach
+```
+
+**CFTC Rewrite (US-exposed banks)**:
+```
+"[Bank Name]" "CFTC rewrite" swap reporting
+"[Bank Name]" swap data repository reporting [2024]
+"[Bank Name]" US derivatives compliance December 2024
+```
+
+**JSCC CDM (Japan-exposed banks)**:
+```
+"[Bank Name]" JSCC CDM connectivity
+"[Bank Name]" JSCC June 2025 preparation
+"[Bank Name]" Japan clearing CDM implementation
+```
+
+### Jurisdiction Intelligence Documentation
+
+When jurisdiction-specific evidence is found, add to evidence block:
+
+```markdown
+Jurisdiction Scope: [EU, UK, US, Japan, Singapore, Hong_Kong]
+Coverage Specificity: [explicit / inferred / unknown]
+Regulatory Driver: [EMIR_Refit, UK_EMIR, CFTC_Rewrite, JSCC, MAS, HKMA]
+```
+
+---
+
+## Adoption Driver Intelligence Gathering (v4.1)
+
+**Objective**: Identify factors pushing the bank toward or away from CDM adoption to understand adoption likelihood and timeline.
+
+### Pressure Signal Search Patterns
+
+Search for evidence of factors PUSHING the bank toward CDM adoption:
+
+**1. Regulatory Mandate Pressure**
+```
+"[Bank Name]" EMIR enforcement OR fine OR remediation
+"[Bank Name]" derivatives reporting regulatory action
+"[Bank Name]" trade reporting compliance issues
+"[Bank Name]" regulatory deadline derivatives technology
+```
+
+**2. Infrastructure Mandate Pressure**
+```
+"[Bank Name]" JSCC clearing member CDM
+"[Bank Name]" LCH connectivity requirements
+"[Bank Name]" CCP technology upgrade derivatives
+"[Bank Name]" trade repository connectivity modernization
+```
+
+**3. Counterparty Pressure**
+```
+"[Bank Name]" derivatives technology partnership
+"[Bank Name]" bilateral connectivity derivatives
+"[Bank Name]" interoperability derivatives counterparty
+"[Bank Name]" Delta Capita OR DTCC client
+```
+
+**4. Competitive Positioning Signals**
+```
+"[Bank Name]" derivatives technology leadership
+"[Bank Name]" "technology investment" derivatives [year]
+"[Bank Name]" innovation derivatives operations
+"[Bank Name]" digital transformation IB&M
+```
+
+**5. Operational Efficiency Signals**
+```
+"[Bank Name]" straight-through processing derivatives
+"[Bank Name]" post-trade automation
+"[Bank Name]" derivatives operations efficiency
+"[Bank Name]" trade reporting cost reduction
+```
+
+### Hesitation Signal Search Patterns
+
+Search for evidence of factors HOLDING THE BANK BACK from CDM adoption:
+
+**1. Capacity Constraint Signals**
+```
+"[Bank Name]" technology cost cutting
+"[Bank Name]" derivatives IT budget
+"[Bank Name]" technology headcount reduction
+"[Bank Name]" competing priorities technology
+```
+
+**2. M&A Integration Signals**
+```
+"[Bank Name]" merger integration technology
+"[Bank Name]" acquisition technology consolidation
+"[Bank Name]" divestiture separation
+"[Bank Name]" integration challenges technology
+```
+
+**3. Regulatory Remediation Signals**
+```
+"[Bank Name]" regulatory remediation program
+"[Bank Name]" consent order derivatives
+"[Bank Name]" compliance backlog
+"[Bank Name]" enforcement action technology
+```
+
+**4. Vendor Preference Signals**
+```
+"[Bank Name]" outsourcing derivatives technology
+"[Bank Name]" vendor partnership regulatory reporting
+"[Bank Name]" managed services derivatives
+"[Bank Name]" buy not build technology strategy
+```
+
+**5. Technology Debt Signals**
+```
+"[Bank Name]" legacy systems derivatives
+"[Bank Name]" technology modernization backlog
+"[Bank Name]" technical debt remediation
+"[Bank Name]" core systems replacement
+```
+
+**6. Wait-and-See Signals**
+```
+"[Bank Name]" CDM evaluation OR assessment
+"[Bank Name]" watching market derivatives technology
+"[Bank Name]" not ready CDM
+"[Bank Name]" waiting industry maturity standards
+```
+
+### Driver Documentation Format
+
+When pressure or hesitation signals are found, document as follows:
+
+```markdown
+[BANK-###] TIER [2/3] — [PRESSURE/HESITATION] Signal
+
+Source: [URL]
+Date: [YYYY-MM-DD]
+
+Driver Type: [regulatory_mandate / infrastructure_mandate / counterparty_pressure / competitive_positioning / operational_efficiency / capacity_constraint / ma_integration / regulatory_remediation / vendor_preference / technology_debt / wait_for_maturity]
+
+Finding: "[Quote or summary]"
+
+Strength: [HIGH / MEDIUM / LOW]
+- HIGH: Explicit statement, clear timeline, significant commitment
+- MEDIUM: Indirect signal, inferred from context
+- LOW: Weak signal, speculation, or old information
+
+Timeline Impact: [When does this pressure peak / When might hesitation resolve?]
+
+Confidence: [HIGH / MEDIUM / LOW]
+```
+
+### Net Assessment Documentation
+
+After gathering all driver signals, create a net assessment:
+
+```markdown
+## Adoption Driver Summary
+
+### Pressures Identified
+| Driver Type | Strength | Evidence | Timeline |
+|-------------|----------|----------|----------|
+| [type] | [H/M/L] | [BANK-###] | [when] |
+
+### Hesitations Identified
+| Hesitation Type | Strength | Duration | Evidence |
+|-----------------|----------|----------|----------|
+| [type] | [H/M/L] | [temp/med/struct] | [BANK-###] |
+
+### Net Assessment
+Outcome: [adoption_likely / adoption_possible / adoption_uncertain / adoption_unlikely]
+Rationale: [Brief explanation of how pressures and hesitations balance]
+Knowledge Gaps: [What insider knowledge would clarify this assessment?]
+```
+
+---
+
+## Knowledge Gap Documentation (v4.1)
+
+**Objective**: Systematically document where public research has been exhausted and insider knowledge is required.
+
+### When to Document a Knowledge Gap
+
+Create a GAP entry when:
+1. You've executed comprehensive searches (all relevant query patterns)
+2. No definitive evidence was found
+3. The unknown information would materially affect the assessment
+4. Only insider knowledge or primary research could resolve it
+
+### Gap Documentation Format
+
+```markdown
+GAP-### [Category]
+
+Category: [product_coverage / jurisdiction / vendor / driver / counterparty / strategic / technical]
+Gap Type: [specific type from config/gap-taxonomy.json]
+
+Description: [What specifically is unknown]
+
+Business Impact: [HIGH / MEDIUM / LOW]
+Impact Rationale: [Why this gap matters for the assessment]
+
+Public Research Exhausted: [YES / NO]
+Searches Attempted:
+1. "[query 1]" - [result]
+2. "[query 2]" - [result]
+3. "[query 3]" - [result]
+
+Suggested Resolution:
+- Source Type: [insider_interview / vendor_backdoor / conference_networking / analyst_report]
+- Target Role: [e.g., "Head of Derivatives Technology"]
+- Discovery Question: "[Question from gap-taxonomy.json interview bank]"
+
+Resolution Value: [0-100] - How much would resolving this improve the assessment?
+Strategic Urgency: [0-100] - How time-sensitive is this gap?
+Priority Score: [Calculated per gap-taxonomy.json formula]
+
+Related Evidence: [BANK-### evidence items that relate to this gap]
+```
+
+### Gap Categories Reference (from config/gap-taxonomy.json)
+
+| Category | Gap Types | Discoverability |
+|----------|-----------|-----------------|
+| product_coverage | asset_class, percentage, workflow, rollout | Very Low |
+| jurisdiction | priority, sequence, cross_border, subsidiary | Low |
+| vendor | scope, build_vs_buy, stage, dependency | Very Low |
+| driver | pressure, barrier, timeline, budget | Low-Medium |
+| counterparty | readiness, bilateral, ccp, utility | Low |
+| strategic | roadmap, positioning, investment, commitment | Very Low |
+| technical | architecture, integration, team, tooling | Low |
+
+---
+
+## Counterparty Intelligence Gathering (v4.2)
+
+**Objective**: Map the bank's counterparty ecosystem and identify CDM interoperability pressures from CCPs, dealers, and utilities.
+
+### CCP Relationship Search Patterns
+
+Search for evidence of CCP memberships and CDM connectivity requirements:
+
+**1. Major CCP Memberships**
+```
+"[Bank Name]" "clearing member" LCH OR CME OR Eurex
+"[Bank Name]" JSCC clearing membership
+"[Bank Name]" ICE Clear derivatives
+"[Bank Name]" clearing house connectivity
+"[Bank Name]" CCP membership list
+```
+
+**2. CCP CDM Requirements**
+```
+"[Bank Name]" JSCC CDM connectivity June 2025
+"[Bank Name]" LCH CDM interface
+"[Bank Name]" CCP technology upgrade derivatives
+"[Bank Name]" clearing connectivity modernization
+```
+
+**3. CCP-Specific Deadlines**
+```
+JSCC CDM "[Bank Name]" OR "[Bank Alias]"
+"[Bank Name]" Japan clearing CDM requirement
+"[Bank Name]" CCP mandate technology change
+```
+
+### G16 Counterparty Search Patterns
+
+Search for evidence of bilateral relationships with G16 dealer banks:
+
+**1. Trading Relationship Evidence**
+```
+"[Bank Name]" "[G16 Bank]" derivatives partnership
+"[Bank Name]" "[G16 Bank]" bilateral connectivity
+"[Bank Name]" major derivatives counterparty
+"[Bank Name]" interdealer connectivity OTC
+```
+
+**2. Counterparty CDM Status Cross-Reference**
+
+When researching a bank, note CDM status of known counterparties:
+- JPMorgan, Goldman Sachs, Morgan Stanley (US G-SIBs)
+- Deutsche Bank, Barclays, UBS, Credit Suisse (EU G-SIBs)
+- Nomura, MUFG, Mizuho (Japanese majors)
+
+```
+"[Counterparty Bank]" CDM production OR pilot
+"[Counterparty Bank]" CDM connectivity bilateral
+```
+
+**3. Interoperability Pressure Signals**
+```
+"[Bank Name]" derivatives interoperability standards
+"[Bank Name]" bilateral trade matching CDM
+"[Bank Name]" counterparty connectivity upgrade
+```
+
+### Utility Connectivity Search Patterns
+
+Search for evidence of CDM-related utility usage:
+
+**1. Delta Capita (CDM-native utility)**
+```
+"[Bank Name]" "Delta Capita" client
+"[Bank Name]" "Delta Capita" EMIR Refit
+"[Bank Name]" "Delta Capita" regulatory reporting
+Delta Capita client list "[Bank Name]"
+```
+
+**2. DTCC**
+```
+"[Bank Name]" DTCC connectivity derivatives
+"[Bank Name]" GTR trade repository
+"[Bank Name]" DTCC CDM OR standards
+```
+
+**3. MarkitServ / Traiana / AcadiaSoft**
+```
+"[Bank Name]" MarkitServ confirmation
+"[Bank Name]" Traiana trade matching
+"[Bank Name]" AcadiaSoft collateral
+"[Bank Name]" post-trade utilities CDM
+```
+
+### Counterparty Documentation Format
+
+When counterparty evidence is found, document as follows:
+
+```markdown
+[BANK-###] TIER [2/3] — COUNTERPARTY SIGNAL
+
+Source: [URL]
+Date: [YYYY-MM-DD]
+
+Counterparty Type: [CCP / G16_dealer / utility]
+Counterparty Name: [e.g., JSCC, JPMorgan, Delta Capita]
+
+Finding: "[Quote or summary]"
+
+Relationship Details:
+- Membership/Client Status: [clearing_member / client_clearing / utility_client / bilateral_counterparty]
+- CDM Requirement from Counterparty: [mandatory / preferred / none / unknown]
+- CDM Deadline (if any): [YYYY-MM-DD or N/A]
+- Bank CDM Status with Counterparty: [connected / building / planned / not_started / unknown]
+
+Network Pressure Assessment:
+- Pressure Level: [HIGH / MEDIUM / LOW]
+  - HIGH: Counterparty mandating CDM with deadline
+  - MEDIUM: Counterparty prefers CDM, no hard mandate
+  - LOW: Counterparty CDM-capable but not requiring
+
+Confidence: [HIGH / MEDIUM / LOW]
+```
+
+---
+
+## Vendor Analysis Intelligence Gathering (v4.2)
+
+**Objective**: Map the bank's vendor relationships and internal capabilities to understand build vs buy strategy.
+
+### Vendor Relationship Search Patterns
+
+**1. Platform Vendors (Trading/Post-Trade Systems)**
+```
+"[Bank Name]" Murex derivatives
+"[Bank Name]" Calypso implementation
+"[Bank Name]" Finastra derivatives
+"[Bank Name]" Ion derivatives platform
+"[Bank Name]" OpenGamma derivatives
+```
+
+**2. CDM-Specialist Vendors**
+```
+"[Bank Name]" "Delta Capita" CDM implementation
+"[Bank Name]" "Fragmos Chain" OR REGnosys
+"[Bank Name]" Rosetta CDM
+"[Bank Name]" CDM vendor implementation
+"[Bank Name]" regulatory reporting vendor CDM
+```
+
+**3. Systems Integrators**
+```
+"[Bank Name]" Accenture derivatives technology
+"[Bank Name]" Deloitte regulatory reporting
+"[Bank Name]" McKinsey derivatives operations
+"[Bank Name]" Oliver Wyman post-trade
+"[Bank Name]" consulting derivatives modernization
+```
+
+**4. Vendor Press Releases**
+```
+site:murex.com "[Bank Name]"
+site:calypso.com "[Bank Name]"
+site:deltacapita.com "[Bank Name]"
+"vendor" "[Bank Name]" CDM client announcement
+```
+
+### Internal Capability Search Patterns
+
+**1. Internal Team Signals**
+```
+"[Bank Name]" CDM team hiring
+"[Bank Name]" "Common Domain Model" internal
+"[Bank Name]" derivatives technology team
+"[Bank Name]" regulatory reporting internal development
+```
+
+**2. Build vs Buy Philosophy**
+```
+"[Bank Name]" technology strategy build buy
+"[Bank Name]" outsourcing derivatives operations
+"[Bank Name]" in-house development regulatory
+"[Bank Name]" technology insourcing
+```
+
+**3. Technology Investment Signals**
+```
+"[Bank Name]" technology investment derivatives
+"[Bank Name]" tech spend regulatory reporting
+"[Bank Name]" modernization budget derivatives
+"[Bank Name]" digital transformation capital markets
+```
+
+### Vendor Relationship Documentation Format
+
+When vendor evidence is found, document as follows:
+
+```markdown
+[BANK-###] TIER [2/3] — VENDOR RELATIONSHIP
+
+Source: [URL]
+Date: [YYYY-MM-DD]
+
+Vendor Name: [e.g., Murex, Delta Capita, Accenture]
+Vendor Type: [platform_vendor / cdm_specialist / systems_integrator / consulting / utility_provider]
+
+Finding: "[Quote or summary]"
+
+Relationship Scope:
+- Capabilities: [cdm_core / cdm_translation / reporting / matching / regulatory_filing / ccp_connectivity / data_management / implementation_services]
+- Products Covered: [IRS, CDS, FX, etc. if specified]
+- Jurisdictions Covered: [EU, UK, US, etc. if specified]
+
+Relationship Stage: [production / implementation / pilot / evaluation / planned / unknown]
+Dependency Level: [HIGH / MEDIUM / LOW]
+- HIGH: Core CDM capability dependent on this vendor
+- MEDIUM: Important but not critical dependency
+- LOW: Tactical or limited scope engagement
+
+Evidence Quality:
+- Source Type: [vendor_announcement / bank_confirmation / trade_press / job_posting]
+- Confirmation Status: [confirmed_by_bank / vendor_claim_only / inferred]
+
+Confidence: [HIGH / MEDIUM / LOW]
+```
+
+### Internal Capability Documentation Format
+
+When internal capability evidence is found:
+
+```markdown
+[BANK-###] TIER [2/3] — INTERNAL CAPABILITY
+
+Source: [URL]
+Date: [YYYY-MM-DD]
+
+Capability Type: [cdm_team / derivatives_tech / regulatory_reporting / integration]
+
+Finding: "[Quote or summary]"
+
+Internal Capability Details:
+- Has Dedicated CDM Team: [yes_dedicated / yes_shared / no / unknown]
+- Team Size Signal: [large_10plus / medium_5to10 / small_under5 / unknown]
+- Internal Scope: [cdm_core_development / cdm_translation / integration / testing / operations / governance]
+- Build Appetite: [high_prefers_build / balanced / low_prefers_buy / unknown]
+
+Evidence Quality:
+- Signal Strength: [direct_statement / inferred_from_hiring / inferred_from_org / weak_signal]
+
+Confidence: [HIGH / MEDIUM / LOW]
+```
+
+### Build vs Buy Assessment Summary
+
+After gathering vendor/internal evidence, create a summary:
+
+```markdown
+## Vendor & Internal Capability Summary
+
+### Identified Vendor Relationships
+| Vendor | Type | Scope | Stage | Dependency |
+|--------|------|-------|-------|------------|
+| [name] | [type] | [scope] | [stage] | [H/M/L] |
+
+### Internal Capabilities
+- Has CDM Team: [yes/no/unknown]
+- Build Appetite: [high/balanced/low/unknown]
+- Internal Scope: [list activities]
+
+### Overall Strategy Assessment
+Strategy: [internal_build / hybrid_internal_lead / hybrid_vendor_lead / full_outsource / unknown]
+Rationale: [Brief explanation]
+
+### Capability Gaps Identified
+| Capability | Internal Coverage | Vendor Coverage | Gap Severity |
+|------------|------------------|-----------------|--------------|
+| [capability] | [full/partial/none] | [full/partial/none] | [critical/significant/minor] |
+
+### Classification Implication
+[supports_architect / supports_pragmatist_vendor / supports_pragmatist_hybrid / neutral / insufficient_data]
+```
+
+---
+
 ## Evidence Block Format
 
 For EVERY piece of evidence you find, create an evidence block:
@@ -318,7 +944,7 @@ Per CLAUDE.md Section 1: "All findings committed to evidence.json before writing
 {
   "bank_id": "[bank-id]",
   "bank_name": "[Bank Name]",
-  "schema_version": "3.1",
+  "schema_version": "4.0",
   "evidence_items": [
     {
       "id": "BANK-001",
@@ -338,7 +964,10 @@ Per CLAUDE.md Section 1: "All findings committed to evidence.json before writing
       "lr_mapping": {
         "evidence_type": "Key from config/bayesian-lr-tables.json",
         "likelihood_ratio": 14.0
-      }
+      },
+      "product_scope": ["IRS", "CDS"],
+      "jurisdiction_scope": ["EU", "UK"],
+      "coverage_specificity": "explicit|inferred|unknown"
     }
   ],
   "null_results": [
@@ -361,8 +990,8 @@ Per CLAUDE.md Section 1: "All findings committed to evidence.json before writing
 
 **LR Mapping Reference** (from config/bayesian-lr-tables.json):
 - `official_production_announcement`: LR = 200
-- `official_pilot_with_timeline`: LR = 27
-- `named_isda_press_contributor`: LR = 14
+- `official_pilot_announcement_with_timeline`: LR = 27
+- `named_isda_press_release_contributor`: LR = 14
 - `trade_press_cdm_pilot`: LR = 15
 - `named_working_group`: LR = 3.7
 - `job_posting_cdm`: LR = 3.0

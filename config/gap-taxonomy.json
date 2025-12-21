@@ -1,0 +1,443 @@
+{
+  "$schema": "CDM/DRR Knowledge Gap Taxonomy v1.0",
+  "description": "Defines gap categories, priority scoring, discoverability levels, and interview question templates for knowledge gaps identified during research",
+  "version": "1.0",
+  "last_updated": "2025-12-20",
+
+  "gap_categories": {
+    "product_coverage": {
+      "description": "Gaps in understanding which product lines use CDM",
+      "gap_types": [
+        "asset_class_coverage",
+        "product_percentage",
+        "workflow_integration",
+        "product_rollout_sequence"
+      ],
+      "discoverability": "very_low",
+      "discoverability_rationale": "Banks rarely disclose product-level technology details publicly",
+      "base_priority_weight": 40
+    },
+    "jurisdiction": {
+      "description": "Gaps in understanding regulatory jurisdiction priorities and rollout",
+      "gap_types": [
+        "jurisdiction_priority",
+        "rollout_sequence",
+        "cross_border_approach",
+        "subsidiary_strategy"
+      ],
+      "discoverability": "low",
+      "discoverability_rationale": "Some regulatory compliance info public, but CDM-specific approach rarely disclosed",
+      "base_priority_weight": 35
+    },
+    "vendor": {
+      "description": "Gaps in understanding vendor relationships and build vs buy decisions",
+      "gap_types": [
+        "vendor_scope",
+        "build_vs_buy_ratio",
+        "implementation_stage",
+        "vendor_dependency_level"
+      ],
+      "discoverability": "very_low",
+      "discoverability_rationale": "Vendor relationships rarely disclosed; competitive sensitivity",
+      "base_priority_weight": 35
+    },
+    "driver": {
+      "description": "Gaps in understanding adoption pressures and hesitations",
+      "gap_types": [
+        "adoption_pressure",
+        "adoption_barrier",
+        "timeline_driver",
+        "budget_allocation"
+      ],
+      "discoverability": "low_medium",
+      "discoverability_rationale": "Some signals from regulatory filings and tech investments",
+      "base_priority_weight": 30
+    },
+    "counterparty": {
+      "description": "Gaps in understanding counterparty CDM readiness and interoperability",
+      "gap_types": [
+        "counterparty_readiness",
+        "bilateral_connectivity",
+        "ccp_approach",
+        "utility_usage"
+      ],
+      "discoverability": "low",
+      "discoverability_rationale": "Bilateral relationships confidential; some CCP info public",
+      "base_priority_weight": 25
+    },
+    "strategic": {
+      "description": "Gaps in understanding future CDM roadmap and competitive positioning",
+      "gap_types": [
+        "future_roadmap",
+        "competitive_positioning",
+        "investment_appetite",
+        "organizational_commitment"
+      ],
+      "discoverability": "very_low",
+      "discoverability_rationale": "Strategic plans confidential; rarely disclosed publicly",
+      "base_priority_weight": 30
+    },
+    "technical": {
+      "description": "Gaps in understanding technical implementation details",
+      "gap_types": [
+        "architecture_approach",
+        "integration_pattern",
+        "team_structure",
+        "tooling_stack"
+      ],
+      "discoverability": "low",
+      "discoverability_rationale": "Some signals from job postings and conference talks",
+      "base_priority_weight": 20
+    }
+  },
+
+  "discoverability_levels": {
+    "very_low": {
+      "penalty": 15,
+      "description": "Almost never available from public sources",
+      "resolution_approach": "Requires insider interview or direct relationship"
+    },
+    "low": {
+      "penalty": 10,
+      "description": "Occasionally available with deep research",
+      "resolution_approach": "May require conference networking or vendor back-channel"
+    },
+    "low_medium": {
+      "penalty": 5,
+      "description": "Sometimes discoverable with persistent research",
+      "resolution_approach": "Extended web research, regulatory filings, industry analyst reports"
+    },
+    "medium": {
+      "penalty": 0,
+      "description": "Reasonably discoverable with standard research",
+      "resolution_approach": "Standard web search, trade press, public filings"
+    }
+  },
+
+  "priority_scoring": {
+    "formula": "Priority = (Business Impact × 40) + (Resolution Value × 30) + (Discoverability Penalty × 15) + (Strategic Urgency × 15)",
+    "max_score": 100,
+    "thresholds": {
+      "critical": {"min": 80, "action": "Prioritize for immediate primary research"},
+      "high": {"min": 60, "action": "Include in discovery call agenda"},
+      "medium": {"min": 40, "action": "Note for opportunistic discovery"},
+      "low": {"min": 0, "action": "Document but deprioritize"}
+    },
+    "components": {
+      "business_impact": {
+        "weight": 40,
+        "scale": "0-100",
+        "description": "How much does resolving this gap affect the usefulness of the assessment?"
+      },
+      "resolution_value": {
+        "weight": 30,
+        "scale": "0-100",
+        "description": "How much would resolving this gap improve confidence or change classification?"
+      },
+      "discoverability_penalty": {
+        "weight": 15,
+        "scale": "0-15",
+        "description": "Higher penalty = harder to discover = more valuable if resolved"
+      },
+      "strategic_urgency": {
+        "weight": 15,
+        "scale": "0-100",
+        "description": "How time-sensitive is resolving this gap?"
+      }
+    }
+  },
+
+  "interview_question_bank": {
+    "description": "Three-tier question framework: Tier 1 (opening/rapport), Tier 2 (probing), Tier 3 (specific/detailed)",
+
+    "product_coverage": {
+      "tier1_opening": [
+        "How would you describe your firm's approach to regulatory reporting technology across different asset classes?",
+        "Which product lines have been the focus of your recent regulatory reporting investments?",
+        "How do you think about standardization versus customization across your derivatives business?"
+      ],
+      "tier2_probing": [
+        "For [IRS/CDS/FX], what's driving your technology approach for EMIR Refit compliance?",
+        "Are you seeing different adoption patterns for CDM across rates versus credit products?",
+        "How does your approach differ between high-volume products like IRS and more complex structured products?"
+      ],
+      "tier3_specific": [
+        "What percentage of your [product] trades currently flow through CDM-based workflows?",
+        "For which specific products are you using CDM in production versus pilot?",
+        "What's your target CDM coverage across asset classes by end of 2025?"
+      ]
+    },
+
+    "jurisdiction": {
+      "tier1_opening": [
+        "How are you prioritizing the various global regulatory reporting deadlines?",
+        "Which regulatory change is driving the most technology investment for you right now?",
+        "How do you balance global consistency with local regulatory requirements?"
+      ],
+      "tier2_probing": [
+        "After EMIR Refit, what's your approach for the CFTC rewrite deadline?",
+        "How are you thinking about the JSCC CDM requirement for June 2025?",
+        "Do you plan to use the same technology approach across EU, UK, and US, or different solutions?"
+      ],
+      "tier3_specific": [
+        "Which jurisdiction was your first CDM deployment, and what's the planned sequence for others?",
+        "Are you using CDM for your EMIR Refit reporting, or a traditional approach?",
+        "What's your timeline for extending CDM to non-EU jurisdictions?"
+      ]
+    },
+
+    "vendor": {
+      "tier1_opening": [
+        "How do you think about build versus buy for regulatory reporting technology?",
+        "What role do vendors play in your derivatives technology strategy?",
+        "How important is internal capability building versus leveraging vendor solutions?"
+      ],
+      "tier2_probing": [
+        "For CDM specifically, are you building internal expertise or relying on vendor implementations?",
+        "How do you evaluate CDM vendors versus building your own CDM layer?",
+        "What's your experience with vendors like [Delta Capita/Murex/Calypso] for CDM implementation?"
+      ],
+      "tier3_specific": [
+        "Which vendor(s) are you using for CDM implementation, and for which products?",
+        "What's the split between internal development and vendor-provided CDM components?",
+        "Do you have an internal CDM team, or is it entirely outsourced to vendors?"
+      ]
+    },
+
+    "driver": {
+      "tier1_opening": [
+        "What's driving your technology investments in derivatives operations right now?",
+        "How do you prioritize regulatory compliance versus operational efficiency improvements?",
+        "What are the biggest challenges you're facing in derivatives technology?"
+      ],
+      "tier2_probing": [
+        "Beyond regulatory deadlines, what business drivers are pushing CDM adoption?",
+        "What factors might slow down or delay your CDM implementation?",
+        "How does M&A integration or other organizational changes affect your CDM plans?"
+      ],
+      "tier3_specific": [
+        "Is regulatory compliance the primary driver, or are you seeing efficiency benefits that justify CDM investment?",
+        "What capacity constraints or competing priorities are affecting your CDM timeline?",
+        "What would need to change for you to accelerate CDM adoption?"
+      ]
+    },
+
+    "counterparty": {
+      "tier1_opening": [
+        "How are you thinking about connectivity with counterparties on regulatory reporting?",
+        "What's your experience with CCP connectivity requirements like JSCC's CDM mandate?",
+        "How do you coordinate technology standards with your major trading counterparties?"
+      ],
+      "tier2_probing": [
+        "Are you seeing pressure from major dealers or CCPs to adopt CDM?",
+        "How does counterparty CDM readiness affect your interoperability planning?",
+        "What's your approach to utilities like Delta Capita or DTCC for CDM connectivity?"
+      ],
+      "tier3_specific": [
+        "Which of your major counterparties are CDM-enabled, and how does that affect your approach?",
+        "Are you planning bilateral CDM connectivity with specific dealers?",
+        "What's your CCP CDM connectivity status with LCH, CME, and JSCC?"
+      ]
+    },
+
+    "strategic": {
+      "tier1_opening": [
+        "How do you see regulatory reporting technology evolving over the next 3-5 years?",
+        "What's your long-term vision for derivatives technology standardization?",
+        "How important is being an early mover versus fast follower in regulatory technology?"
+      ],
+      "tier2_probing": [
+        "Do you see CDM as a strategic differentiator or table stakes?",
+        "How does CDM fit into your broader derivatives technology strategy?",
+        "What would need to happen for CDM to become your primary data model for derivatives?"
+      ],
+      "tier3_specific": [
+        "What's your 2025-2027 CDM roadmap?",
+        "Are you planning to contribute to CDM open-source development or primarily consume?",
+        "What budget allocation do you have for CDM implementation?"
+      ]
+    },
+
+    "technical": {
+      "tier1_opening": [
+        "How would you describe your derivatives technology architecture?",
+        "What's your approach to data standardization across trading systems?",
+        "How do you think about integrating new data standards into existing infrastructure?"
+      ],
+      "tier2_probing": [
+        "Where does CDM fit in your technology stack - at the edge or in the core?",
+        "Are you adopting CDM as a translation layer or native data model?",
+        "What's your experience with CDM's Java/Python/JSON representations?"
+      ],
+      "tier3_specific": [
+        "What's your CDM implementation architecture - event sourcing, microservices, monolith?",
+        "Which CDM version are you targeting, and how do you handle version upgrades?",
+        "Do you have a dedicated CDM team, and what's the team structure?"
+      ]
+    }
+  },
+
+  "gap_documentation_template": {
+    "id": "GAP-XXX",
+    "category": "product_coverage|jurisdiction|vendor|driver|counterparty|strategic|technical",
+    "gap_type": "string from gap_types array",
+    "description": "What specifically is unknown",
+    "business_impact": "high|medium|low",
+    "impact_rationale": "Why this matters for the assessment",
+    "public_research_exhausted": true,
+    "searches_attempted": ["list of searches that yielded no results"],
+    "suggested_sources": [
+      {
+        "source_type": "insider_interview|vendor_backdoor|conference_networking|analyst_report",
+        "target_role": "Head of Derivatives Technology|CDM Program Lead|etc.",
+        "discovery_question": "Tier 1/2/3 question from bank"
+      }
+    ],
+    "resolution_value": "0-100",
+    "strategic_urgency": "0-100",
+    "priority_score": "calculated",
+    "evidence_ids": ["related evidence items"],
+    "notes": "Additional context"
+  },
+
+  "adoption_driver_taxonomy": {
+    "pressures_to_adopt": {
+      "regulatory_mandate": {
+        "description": "Regulatory requirement forcing CDM adoption",
+        "examples": ["EMIR Refit deadline", "JSCC CDM mandate", "CFTC Rewrite"],
+        "strength_indicators": {
+          "high": "Imminent deadline with CDM required",
+          "medium": "Upcoming deadline with CDM optional but advantageous",
+          "low": "Distant deadline or CDM one of several options"
+        }
+      },
+      "infrastructure_mandate": {
+        "description": "Market infrastructure requiring CDM connectivity",
+        "examples": ["CCP CDM requirements", "Utility CDM mandates", "Trade repository CDM support"],
+        "strength_indicators": {
+          "high": "Major CCP mandating CDM (e.g., JSCC)",
+          "medium": "Preferred connectivity via CDM",
+          "low": "CDM as optional enhancement"
+        }
+      },
+      "counterparty_pressure": {
+        "description": "Trading partners requiring or preferring CDM",
+        "examples": ["Major dealer CDM requirement", "Client CDM preference", "Interoperability demands"],
+        "strength_indicators": {
+          "high": "Multiple major counterparties requiring CDM",
+          "medium": "Key counterparties preferring CDM",
+          "low": "Some counterparties CDM-capable"
+        }
+      },
+      "competitive_positioning": {
+        "description": "Strategic desire to lead in technology adoption",
+        "examples": ["First-mover advantage", "Client differentiation", "Technology leadership"],
+        "strength_indicators": {
+          "high": "Explicit strategic priority from leadership",
+          "medium": "Technology investment signaling leadership",
+          "low": "General modernization interest"
+        }
+      },
+      "operational_efficiency": {
+        "description": "Business case for cost savings or efficiency",
+        "examples": ["Straight-through processing", "Error reduction", "Multi-regulation reuse"],
+        "strength_indicators": {
+          "high": "Documented ROI justifying investment",
+          "medium": "Expected efficiency gains",
+          "low": "Theoretical benefits"
+        }
+      }
+    },
+    "hesitations_against": {
+      "capacity_constraint": {
+        "description": "Insufficient resources to implement CDM",
+        "examples": ["Competing priorities", "Budget limitations", "Team bandwidth"],
+        "duration_indicators": {
+          "temporary": "Project-based constraint",
+          "medium_term": "Multi-year capacity issue",
+          "structural": "Ongoing resource limitation"
+        }
+      },
+      "insufficient_business_case": {
+        "description": "CDM benefits don't justify investment",
+        "examples": ["Low derivatives volume", "Existing systems adequate", "Alternative approaches sufficient"],
+        "duration_indicators": {
+          "temporary": "Business case may improve",
+          "medium_term": "Waiting for market maturity",
+          "structural": "Fundamental misalignment"
+        }
+      },
+      "vendor_preference": {
+        "description": "Preference for vendor solution over internal CDM build",
+        "examples": ["Outsourcing strategy", "Vendor lock-in", "Buy over build culture"],
+        "duration_indicators": {
+          "temporary": "Vendor selection in progress",
+          "medium_term": "Vendor contract period",
+          "structural": "Strategic outsourcing model"
+        }
+      },
+      "technology_debt": {
+        "description": "Legacy systems prevent CDM adoption",
+        "examples": ["Integration complexity", "Technical debt", "Architecture limitations"],
+        "duration_indicators": {
+          "temporary": "Remediation in progress",
+          "medium_term": "Multi-year modernization",
+          "structural": "Fundamental architecture constraint"
+        }
+      },
+      "wait_for_maturity": {
+        "description": "Waiting for CDM standard or ecosystem to mature",
+        "examples": ["Standard stability concerns", "Vendor ecosystem development", "Peer adoption"],
+        "duration_indicators": {
+          "temporary": "Specific milestone trigger",
+          "medium_term": "General market maturation",
+          "structural": "Fundamental skepticism"
+        }
+      },
+      "regulatory_remediation": {
+        "description": "Capacity consumed by regulatory remediation",
+        "examples": ["Enforcement actions", "Audit findings", "Compliance gaps"],
+        "duration_indicators": {
+          "temporary": "Specific remediation program",
+          "medium_term": "Extended compliance focus",
+          "structural": "Ongoing regulatory challenges"
+        }
+      },
+      "ma_integration": {
+        "description": "M&A integration consuming technology capacity",
+        "examples": ["Merger integration", "Acquisition onboarding", "Divestiture separation"],
+        "duration_indicators": {
+          "temporary": "Active integration phase",
+          "medium_term": "Multi-year integration",
+          "structural": "Serial acquirer pattern"
+        }
+      }
+    }
+  },
+
+  "net_assessment_framework": {
+    "description": "Framework for assessing balance of pressures vs hesitations",
+    "assessment_outcomes": {
+      "adoption_likely": {
+        "condition": "Pressures significantly outweigh hesitations",
+        "indicators": ["Multiple high-strength pressures", "Only temporary/low hesitations"],
+        "timeline_implication": "Near-term CDM adoption expected"
+      },
+      "adoption_possible": {
+        "condition": "Pressures slightly outweigh hesitations",
+        "indicators": ["Some high pressures", "Medium-term hesitations"],
+        "timeline_implication": "Medium-term adoption possible"
+      },
+      "adoption_uncertain": {
+        "condition": "Pressures and hesitations roughly balanced",
+        "indicators": ["Mixed signals", "Conflicting evidence"],
+        "timeline_implication": "Adoption timing uncertain"
+      },
+      "adoption_unlikely": {
+        "condition": "Hesitations outweigh pressures",
+        "indicators": ["Structural hesitations", "Weak pressures"],
+        "timeline_implication": "CDM adoption not expected near-term"
+      }
+    }
+  }
+}
