@@ -627,6 +627,22 @@ class ClaudeCodeBridge:
         state = self.state_manager.load_bank_state(self.bank_id, self.phase)
         return state and state.current_stage == "complete"
 
+    # Phase 8: Review queue resolution methods
+    def get_pending_reviews(self) -> List[Dict[str, Any]]:
+        """Get pending review items for this bank."""
+        all_reviews = self.state_manager.get_pending_reviews()
+        return [r.to_dict() for r in all_reviews if r.bank_id == self.bank_id]
+
+    def resolve_review(self, resolution: str, resolved_by: str = "claude_code") -> bool:
+        """Resolve pending review for this bank."""
+        try:
+            self.state_manager.resolve_review(self.bank_id, resolution, resolved_by)
+            logger.info(f"Resolved review for {self.bank_id}: {resolution}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to resolve review: {e}")
+            return False
+
 
 def main():
     """CLI interface for the bridge."""
@@ -642,6 +658,8 @@ def main():
     parser.add_argument("--json", action="store_true", help="Output as JSON")
     parser.add_argument("--resume", action="store_true", help="Show resume context for interrupted research")
     parser.add_argument("--checkpoint", nargs="*", metavar="FILE", help="Record checkpoint with optional files written")
+    parser.add_argument("--reviews", action="store_true", help="Show pending review items for this bank (Phase 8)")
+    parser.add_argument("--resolve", type=str, metavar="RESOLUTION", help="Resolve pending review with given resolution (Phase 8)")
 
     args = parser.parse_args()
 
@@ -716,6 +734,35 @@ def main():
                     print(f"Checkpoint recorded" + (f" with files: {files}" if files else ""))
                 else:
                     print("Failed to record checkpoint")
+            return 0 if success else 1
+
+        # Phase 8: Reviews handler
+        if args.reviews:
+            reviews = bridge.get_pending_reviews()
+            if args.json:
+                print(json.dumps(reviews, indent=2))
+            else:
+                if reviews:
+                    print(f"\nPending Reviews for {args.bank}:")
+                    for r in reviews:
+                        print(f"  - Stage: {r.get('stage', 'N/A')}")
+                        print(f"    Reason: {r.get('reason', 'N/A')}")
+                        print(f"    Created: {r.get('created_at', 'N/A')}")
+                        print()
+                else:
+                    print(f"No pending reviews for {args.bank}")
+            return 0
+
+        # Phase 8: Resolve handler
+        if args.resolve:
+            success = bridge.resolve_review(args.resolve)
+            if args.json:
+                print(json.dumps({"success": success, "resolution": args.resolve}))
+            else:
+                if success:
+                    print(f"Review resolved: {args.resolve}")
+                else:
+                    print("Failed to resolve review")
             return 0 if success else 1
 
         # Default: show status
