@@ -43,7 +43,7 @@ from config_loader import (
     load_bayesian_tables
 )
 from state_manager import UnifiedStateManager
-from state_schema import BankState, STAGE_SEQUENCE
+from state_schema import BankState, STAGE_SEQUENCE, normalize_stage
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -76,23 +76,12 @@ class StageResult:
         return asdict(self)
 
 
-# Stage sequence for Claude Code execution
-CLAUDE_CODE_STAGES = [
-    "initialize",
-    "pre_mortem",
-    "tier1_evidence",
-    "bayesian_1",
-    "gate_1",
-    "tier2_evidence",
-    "bayesian_2",
-    "gate_2",
-    "tier3_evidence",
-    "bayesian_3",
-    "gate_3",
-    "adversarial",
-    "synthesis",
-    "complete"
-]
+# Phase 2 fix: Use canonical STAGE_SEQUENCE from state_schema.py
+# instead of maintaining a separate list. This ensures consistency
+# across all orchestration tools. The canonical sequence includes:
+# initialize, pre_mortem, tier1_evidence, bayesian_1, gate_1,
+# tier2_evidence, bayesian_2, gate_2, tier3_evidence, bayesian_3,
+# gate_3, adversarial_challenge, final_classification, synthesis, complete
 
 
 class ClaudeCodeBridge:
@@ -301,7 +290,8 @@ class ClaudeCodeBridge:
             warnings.extend(result.get('warnings', []))
             details = result
 
-        elif stage == "adversarial":
+        elif stage == "adversarial" or stage == "adversarial_challenge":
+            # Phase 2 fix: Handle both legacy and canonical stage names
             result = self._validate_adversarial()
             errors.extend(result.get('errors', []))
             warnings.extend(result.get('warnings', []))
@@ -498,13 +488,16 @@ class ClaudeCodeBridge:
         }
 
     def _get_next_stage(self, current_stage: str) -> Optional[str]:
-        """Get the next stage in sequence."""
+        """Get the next stage in sequence using canonical STAGE_SEQUENCE."""
+        # Phase 2 fix: Use canonical sequence with normalization
+        normalized = normalize_stage(current_stage)
+
         try:
-            idx = CLAUDE_CODE_STAGES.index(current_stage)
-            if idx < len(CLAUDE_CODE_STAGES) - 1:
-                return CLAUDE_CODE_STAGES[idx + 1]
+            idx = STAGE_SEQUENCE.index(normalized)
+            if idx < len(STAGE_SEQUENCE) - 1:
+                return STAGE_SEQUENCE[idx + 1]
         except ValueError:
-            pass
+            logger.warning(f"Stage '{current_stage}' (normalized: '{normalized}') not in STAGE_SEQUENCE")
         return None
 
     def advance_to_next_stage(self) -> Tuple[Optional[str], Optional[Path]]:

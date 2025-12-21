@@ -60,8 +60,13 @@ logger = logging.getLogger(__name__)
 
 
 class Stage(Enum):
-    """Workflow stages in execution order."""
-    INIT = "init"
+    """Workflow stages in execution order.
+
+    Phase 2 fix: Aligned with canonical STAGE_SEQUENCE from state_schema.py.
+    Changed 'init' -> 'initialize', 'adversarial' -> 'adversarial_challenge',
+    added 'final_classification', removed 'verification'.
+    """
+    INIT = "initialize"  # Phase 2: Changed from "init"
     PRE_MORTEM = "pre_mortem"
     TIER1_EVIDENCE = "tier1_evidence"
     BAYESIAN_1 = "bayesian_1"
@@ -72,10 +77,11 @@ class Stage(Enum):
     TIER3_EVIDENCE = "tier3_evidence"
     BAYESIAN_3 = "bayesian_3"
     GATE_3 = "gate_3"
-    ADVERSARIAL = "adversarial"
+    ADVERSARIAL = "adversarial_challenge"  # Phase 2: Changed from "adversarial"
+    FINAL_CLASSIFICATION = "final_classification"  # Phase 2: Added
     SYNTHESIS = "synthesis"
-    VERIFICATION = "verification"
     COMPLETE = "complete"
+    # Note: VERIFICATION removed - not in canonical sequence
 
 
 class CheckpointType(Enum):
@@ -253,7 +259,7 @@ class Orchestrator:
     Manages stage progression, gate decisions, and checkpoint enforcement.
     """
 
-    # Stage execution order
+    # Stage execution order - Phase 2: Aligned with canonical state_schema.STAGE_SEQUENCE
     STAGE_SEQUENCE = [
         Stage.INIT,
         Stage.PRE_MORTEM,
@@ -267,8 +273,8 @@ class Orchestrator:
         Stage.BAYESIAN_3,
         Stage.GATE_3,
         Stage.ADVERSARIAL,
+        Stage.FINAL_CLASSIFICATION,  # Phase 2: Added
         Stage.SYNTHESIS,
-        Stage.VERIFICATION,
         Stage.COMPLETE
     ]
 
