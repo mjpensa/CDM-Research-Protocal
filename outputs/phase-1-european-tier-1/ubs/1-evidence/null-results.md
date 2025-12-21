@@ -1,4 +1,10 @@
-# Null Results: UBS Group AG
+# Null Results Registry: UBS Group AG
+
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
+
+---
 
 ## Summary
 
@@ -6,40 +12,20 @@
 - **Categories with Null Results**: 2
 - **Informative Absences**: 2
 
----
+## Tier 1 Null Results
 
-## Null Result Blocks
+N/A
 
-### FINOS CDM Contributor (current)
+## Tier 2 Null Results
 
-**Queries Executed**:
-- `site:finos.org UBS CDM contributor`
+N/A
 
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
+## Tier 3 Null Results
 
-**Informative Absence**: YES
+N/A
 
-**Implication**: No current UBS CDM contribution despite historical pilot participation
+## Implications for Classification
 
----
-
-### Recent CDM Activity
-
-**Queries Executed**:
-- `UBS CDM 2023 2024 production`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No CDM activity since 2020 pilot - stalled during integration
+Informative absence supports PRAGMATIST classification.
 
 ---
-
-## Null Results Summary
-
-- Total null searches: 2
-- Informative absences supporting Pragmatist: 2
-- Search exhaustiveness: Basic

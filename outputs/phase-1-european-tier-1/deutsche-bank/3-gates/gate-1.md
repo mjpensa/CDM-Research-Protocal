@@ -1,7 +1,8 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment
+# Reasoning Gate 1: Post-Tier 1 Assessment: Deutsche Bank AG
 
-**Bank**: Deutsche Bank AG
-**Date**: 2025-12-20
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -21,7 +22,7 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 2
 
-**Rationale**: While P(ARCHITECT) is below the 20% threshold that would normally allow skipping to adversarial, per the user's instructions to **always process all 3 tiers**, we proceed to Tier 2.
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Quality Assessment
 
@@ -43,4 +44,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 1 passed. Proceeding to Tier 2 evidence gathering.*
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

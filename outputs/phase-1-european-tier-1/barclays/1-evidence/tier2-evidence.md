@@ -1,68 +1,89 @@
 # Tier 2 Evidence: Barclays PLC
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 3
-- **Schema Version**: 4.3
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
+
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 3 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[BARC-003] TIER 2 — SUPPORTS ARCHITECT
+### BARC-003: Evidence Item
 
-**Source**: https://www.risk.net/derivatives/7147901/use-cdm-or-some-business-lines-might-die-barclays
-**Date**: 2019-11-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "Lee Braine, director of research and engineering at Barclays: 'It will become an unacceptable scenario if this continues – cost of doing business will be too high in many product categories.'"
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Historical
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: executive_advocacy (LR = 2.5)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Advocacy statement from 2019. Shows strategic commitment to CDM at senior level.
+**Caveats:** N/A
 
----
+### BARC-005: Evidence Item
 
-[BARC-005] TIER 2 — SUPPORTS ARCHITECT
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.risk.net/derivatives/7655006/common-domain-model-needs-infrastructure-push-says-barclays
-**Date**: 2021-03-01
+**Excerpt:** N/A
 
-**Finding**: "Exchanges and clearing houses should take a lead role in delivering the International Swaps and Derivatives Association's data standardisation project to the market, according to a new paper from Barclays."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Dated
-- Specificity: Moderate
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: thought_leadership (LR = 2.0)
+**Caveats:** N/A
 
-**Caveats**: Published paper advocating infrastructure-led adoption strategy.
+### BARC-006: Evidence Item
 
----
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-[BARC-006] TIER 2 — SUPPORTS ARCHITECT
+**Excerpt:** N/A
 
-**Source**: https://www.risk.net/risk-management/7958532/repo-clearing-could-spur-cdm-adoption-barclays
-**Date**: 2023-12-01
+**Analysis:** N/A
 
-**Finding**: "Proponents of the common domain model (CDM) say it could save dealers at least $3 billion a year in swaps reconciliation and post-trade processing costs."
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Recent
-- Specificity: Moderate
+**Caveats:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: continued_advocacy (LR = 1.8)
+## Informative Absences
 
-**Caveats**: Recent continued advocacy for CDM adoption.
+N/A
 
 ---

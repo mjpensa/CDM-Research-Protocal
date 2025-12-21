@@ -1,11 +1,12 @@
-# Steelman: Strongest Counter-Argument
+# Steelman: Strongest Counter-Argument: UBS Group AG
 
-**Bank**: UBS Group AG
-**Date**: 2025-12-20
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## The Strongest Possible Case for ARCHITECT
+## Strongest Counter-Hypothesis
 
 If forced to argue that UBS IS an ARCHITECT, the strongest argument would be:
 
@@ -57,7 +58,13 @@ Unlike the devil's advocate "silent implementation" speculation, this steelman a
 
 This is a coherent story of: ARCHITECT interest (2020) → PRAGMATIST constraint (2023-2026) → ARCHITECT restart (2027+)
 
----
+## Supporting Logic
+
+N/A
+
+## Why This Argument Fails
+
+N/A
 
 ## Steelman Assessment
 
@@ -76,36 +83,3 @@ This is a coherent story of: ARCHITECT interest (2020) → PRAGMATIST constraint
 - Underweights the force of zero current hiring/conference signals
 
 ---
-
-## Why The Steelman Still Doesn't Overcome Current Evidence
-
-Even granting the strongest possible counter-argument, the classification question is **about current state, not future possibility**:
-
-1. **Framework mandate**: "What is UBS's current CDM adoption status?" - not "what might it become?"
-2. **Evidence hierarchy**: Forward projections (Tier 4 inference) rank below current signals (Tiers 1-3)
-3. **Confidence caps**: 60% confidence reflects uncertainty about future intent, not current capability
-4. **Monitoring point**: Q1 2027 re-assessment handles the "what happens after integration?" question
-
----
-
-## Final Verdict on Steelman
-
-**UBS's Current Classification**: PRAGMATIST (Integration-Constrained)
-- P(ARCHITECT) = 7%
-- Confidence = 60%
-
-**Why Steelman Doesn't Change This**:
-- It's an argument about FUTURE optionality, not CURRENT evidence
-- It acknowledges the integration constraint is real and binding
-- It requires speculation about post-2026 behavior
-
-**How Steelman Informs the Assessment**:
-- Justifies the "Integration-Constrained" sub-classification (temporary, not permanent)
-- Supports the Q1 2027 re-assessment point
-- Explains why we don't write UBS off entirely as OBSERVER
-
-The steelman argument actually **supports** the classification: UBS is PRAGMATIST-Integration-Constrained, with credible upside optionality post-2026.
-
----
-
-*Proceeding to final verdict.*

@@ -1,7 +1,8 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment
+# Reasoning Gate 1: Post-Tier 1 Assessment: Barclays PLC
 
-**Bank**: Barclays PLC
-**Date**: 2025-12-20
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -19,9 +20,9 @@ Per `config/decision-thresholds.json`:
 - Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 - Current P(ARCHITECT) = 95% → **Exceeds 80% threshold**
 
-## Decision: PROCEED TO TIER 2 (Per Protocol)
+## Decision: PROCEED TO TIER 2
 
-**Rationale**: While P(ARCHITECT) exceeds the 80% threshold that would normally allow skipping to adversarial, per protocol requirements to process all 3 tiers for comprehensive analysis, we proceed to Tier 2 to strengthen the evidence foundation and refine sub-classification (Follower vs Native).
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Quality Assessment
 
@@ -42,15 +43,10 @@ Per `config/decision-thresholds.json`:
 2. Is there continued strategic commitment evidenced by post-2021 engagement?
 3. What is the timeline for production deployment?
 
----
+## Key Questions for Tier 2
 
-## Framework Classification Assessment
-
-Based on Tier 1 evidence alone:
-- **Strong ARCHITECT signal**: Multiple technical demonstrations, ecosystem leadership
-- **Sub-classification**: Likely FOLLOWER, not NATIVE (POC/prototype evidence, no production)
-- **Confidence**: 85% (awaiting Tier 2 for sustained commitment evidence)
+N/A
 
 ---
 
-*Gate 1 passed. Proceeding to Tier 2 evidence gathering.*
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

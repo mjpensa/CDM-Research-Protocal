@@ -1,0 +1,410 @@
+{
+  "$schema": "CDM/DRR Search Templates v1.0",
+  "version": "1.0-20251221",
+  "description": "Externalized search query templates for Evidence Gatherer Agent",
+  "last_updated": "2025-12-21",
+
+  "placeholders": {
+    "BANK": "Bank name (e.g., 'Deutsche Bank')",
+    "DOMAIN": "Bank's primary domain (e.g., 'db.com')",
+    "REGULATOR": "Primary regulator domain (e.g., 'bafin.de')",
+    "YEAR": "Current or target year (e.g., 2024)",
+    "PRODUCT": "Product category (e.g., 'IRS', 'CDS')"
+  },
+
+  "tier1": {
+    "description": "Official Sources - Definitive Weight (Max Confidence: 95%)",
+    "bank_official": {
+      "description": "Bank press releases and announcements",
+      "queries": [
+        "\"[BANK]\" \"Common Domain Model\" site:[DOMAIN]",
+        "\"[BANK]\" CDM derivatives technology announcement",
+        "\"[BANK]\" pilot production timeline regulatory reporting",
+        "\"[BANK]\" \"Digital Regulatory Reporting\" announcement"
+      ]
+    },
+    "annual_reports": {
+      "description": "Annual reports and investor presentations",
+      "queries": [
+        "\"[BANK]\" annual report [YEAR] \"derivatives\" \"technology\"",
+        "\"[BANK]\" annual report [YEAR-1] \"regulatory reporting\" \"modernization\"",
+        "\"[BANK]\" investor presentation [YEAR] filetype:pdf",
+        "\"[BANK]\" investor day derivatives technology"
+      ]
+    },
+    "isda_official": {
+      "description": "ISDA official publications",
+      "queries": [
+        "site:isda.org \"[BANK]\" CDM",
+        "site:isda.org \"[BANK]\" \"Common Domain Model\"",
+        "site:isda.org \"[BANK]\" contributor",
+        "site:isda.org \"[BANK]\" DRR \"Digital Regulatory Reporting\""
+      ]
+    },
+    "finos_official": {
+      "description": "FINOS official repositories",
+      "queries": [
+        "site:finos.org \"[BANK]\"",
+        "site:github.com/finos \"[BANK]\" CDM",
+        "\"[BANK]\" FINOS contributor CDM",
+        "site:github.com/finos/common-domain-model \"[BANK]\""
+      ]
+    },
+    "regulatory": {
+      "description": "Regulatory filings and announcements",
+      "queries": [
+        "site:[REGULATOR] \"[BANK]\" derivatives reporting",
+        "\"[BANK]\" EMIR Refit implementation",
+        "\"[BANK]\" UK EMIR implementation",
+        "\"[BANK]\" regulatory filing derivatives technology"
+      ]
+    }
+  },
+
+  "tier2": {
+    "description": "Industry Sources - Strong Weight (Max Confidence: 75%)",
+    "trade_press": {
+      "description": "Trade press coverage",
+      "queries": [
+        "\"[BANK]\" \"Common Domain Model\" site:risk.net",
+        "\"[BANK]\" CDM DRR site:waterstechnology.com",
+        "\"[BANK]\" derivatives technology transformation Risk.net OR Waters",
+        "\"[BANK]\" regulatory reporting modernization [YEAR] [YEAR-1]",
+        "site:fnlondon.com \"[BANK]\" derivatives technology"
+      ]
+    },
+    "isda_events": {
+      "description": "ISDA events and working groups",
+      "queries": [
+        "\"[BANK]\" ISDA AGM [YEAR] speaker",
+        "\"[BANK]\" ISDA AGM [YEAR-1] speaker CDM",
+        "\"[BANK]\" ISDA working group CDM",
+        "ISDA conference \"[BANK]\" derivatives standards"
+      ]
+    },
+    "finos_activity": {
+      "description": "FINOS contribution activity",
+      "queries": [
+        "site:github.com/finos commits \"[BANK]\"",
+        "FINOS CDM working group \"[BANK]\" participant",
+        "\"[BANK]\" FINOS open source contribution"
+      ]
+    },
+    "industry_analysis": {
+      "description": "Analyst reports and industry coverage",
+      "queries": [
+        "\"[BANK]\" derivatives technology investment CDM",
+        "\"[BANK]\" post-trade modernization Celent OR \"Oliver Wyman\"",
+        "\"[BANK]\" regulatory technology Chartis OR Aite",
+        "\"[BANK]\" derivatives operations McKinsey"
+      ]
+    },
+    "conference_proceedings": {
+      "description": "Conference speaker listings",
+      "queries": [
+        "\"[BANK]\" speaker derivatives technology conference [YEAR]",
+        "\"[BANK]\" presented CDM implementation",
+        "\"[BANK]\" speaker regulatory reporting conference"
+      ]
+    }
+  },
+
+  "tier3": {
+    "description": "Indirect Signals - Moderate Weight (Max Confidence: 50%)",
+    "job_postings": {
+      "description": "CDM-related job postings",
+      "queries": [
+        "\"[BANK]\" job posting \"Common Domain Model\"",
+        "\"[BANK]\" careers CDM \"regulatory reporting\"",
+        "\"[BANK]\" hiring derivatives technology CDM",
+        "site:linkedin.com/jobs \"[BANK]\" CDM"
+      ]
+    },
+    "linkedin_profiles": {
+      "description": "LinkedIn profiles mentioning CDM work",
+      "queries": [
+        "site:linkedin.com \"[BANK]\" \"Common Domain Model\"",
+        "site:linkedin.com \"[BANK]\" CDM implementation",
+        "\"[BANK]\" employee derivatives technology CDM LinkedIn"
+      ]
+    },
+    "vendor_announcements": {
+      "description": "Vendor claims of bank relationships",
+      "queries": [
+        "\"Delta Capita\" \"[BANK]\" CDM",
+        "\"Fragmos Chain\" \"[BANK]\"",
+        "\"REGnosys\" \"[BANK]\"",
+        "vendor \"[BANK]\" \"Common Domain Model\" client"
+      ]
+    },
+    "technology_press": {
+      "description": "General technology press",
+      "queries": [
+        "\"[BANK]\" derivatives platform upgrade [YEAR]",
+        "\"[BANK]\" post-trade infrastructure modernization"
+      ]
+    }
+  },
+
+  "product_specific": {
+    "description": "v4.0: Product-level intelligence gathering",
+    "products": ["IRS", "CDS", "FX_Options", "Equity_Derivatives", "Commodities"],
+    "product_aliases": {
+      "IRS": ["Interest Rate Swaps", "rates", "interest rate derivatives"],
+      "CDS": ["Credit Default Swaps", "credit derivatives"],
+      "FX_Options": ["FX options", "currency derivatives", "forex options"],
+      "Equity_Derivatives": ["Equity swaps", "equity options", "TRS", "total return swaps"],
+      "Commodities": ["Commodity swaps", "energy derivatives", "commodity derivatives"]
+    },
+    "patterns": {
+      "product_cdm": [
+        "\"[BANK]\" \"[PRODUCT]\" CDM OR \"Common Domain Model\"",
+        "\"[BANK]\" \"[PRODUCT]\" regulatory reporting technology",
+        "\"[BANK]\" \"[PRODUCT]\" post-trade modernization"
+      ],
+      "product_regulatory": [
+        "\"[BANK]\" \"[PRODUCT]\" \"EMIR Refit\" implementation",
+        "\"[BANK]\" \"[PRODUCT]\" CFTC reporting upgrade",
+        "\"[BANK]\" \"[PRODUCT]\" trade repository connectivity"
+      ],
+      "product_volume": [
+        "\"[BANK]\" derivatives notional [YEAR] annual report",
+        "\"[BANK]\" \"[PRODUCT]\" market maker OR dealer",
+        "\"[BANK]\" derivatives revenue breakdown by asset class"
+      ]
+    }
+  },
+
+  "jurisdiction_specific": {
+    "description": "v4.0: Jurisdiction-level intelligence gathering",
+    "regulatory_calendar": {
+      "EU_EMIR_Refit": {"deadline": "2024-04", "status": "LIVE"},
+      "UK_EMIR": {"deadline": "2024-09", "status": "LIVE"},
+      "US_CFTC_Rewrite": {"deadline": "2024-12", "status": "LIVE"},
+      "Japan_JSCC": {"deadline": "2025-06", "status": "Pending"},
+      "Singapore_MAS": {"deadline": "ongoing", "status": "Evolving"},
+      "Hong_Kong_HKMA": {"deadline": "ongoing", "status": "Evolving"}
+    },
+    "patterns": {
+      "eu_emir": [
+        "\"[BANK]\" \"EMIR Refit\" implementation [YEAR]",
+        "\"[BANK]\" \"ESMA\" derivatives reporting upgrade",
+        "\"[BANK]\" April 2024 EMIR compliance CDM",
+        "\"[BANK]\" European regulatory reporting modernization"
+      ],
+      "uk_emir": [
+        "\"[BANK]\" \"UK EMIR\" implementation [YEAR]",
+        "\"[BANK]\" FCA derivatives reporting September 2024",
+        "\"[BANK]\" post-Brexit EMIR compliance approach"
+      ],
+      "us_cftc": [
+        "\"[BANK]\" \"CFTC rewrite\" swap reporting",
+        "\"[BANK]\" swap data repository reporting [YEAR]",
+        "\"[BANK]\" US derivatives compliance December 2024"
+      ],
+      "japan_jscc": [
+        "\"[BANK]\" JSCC CDM connectivity",
+        "\"[BANK]\" JSCC June 2025 preparation",
+        "\"[BANK]\" Japan clearing CDM implementation"
+      ]
+    },
+    "bank_jurisdiction_priority": {
+      "european": ["eu_emir", "uk_emir", "us_cftc", "japan_jscc"],
+      "japanese": ["japan_jscc", "us_cftc", "eu_emir"],
+      "us": ["us_cftc", "eu_emir", "uk_emir", "japan_jscc"]
+    }
+  },
+
+  "adoption_drivers": {
+    "description": "v4.1: Pressure and hesitation signal detection",
+    "pressure_signals": {
+      "regulatory_mandate": [
+        "\"[BANK]\" EMIR enforcement OR fine OR remediation",
+        "\"[BANK]\" derivatives reporting regulatory action",
+        "\"[BANK]\" trade reporting compliance issues",
+        "\"[BANK]\" regulatory deadline derivatives technology"
+      ],
+      "infrastructure_mandate": [
+        "\"[BANK]\" JSCC clearing member CDM",
+        "\"[BANK]\" LCH connectivity requirements",
+        "\"[BANK]\" CCP technology upgrade derivatives",
+        "\"[BANK]\" trade repository connectivity modernization"
+      ],
+      "counterparty_pressure": [
+        "\"[BANK]\" derivatives technology partnership",
+        "\"[BANK]\" bilateral connectivity derivatives",
+        "\"[BANK]\" interoperability derivatives counterparty",
+        "\"[BANK]\" \"Delta Capita\" OR DTCC client"
+      ],
+      "competitive_positioning": [
+        "\"[BANK]\" derivatives technology leadership",
+        "\"[BANK]\" \"technology investment\" derivatives [YEAR]",
+        "\"[BANK]\" innovation derivatives operations",
+        "\"[BANK]\" digital transformation IB&M"
+      ],
+      "operational_efficiency": [
+        "\"[BANK]\" straight-through processing derivatives",
+        "\"[BANK]\" post-trade automation",
+        "\"[BANK]\" derivatives operations efficiency",
+        "\"[BANK]\" trade reporting cost reduction"
+      ]
+    },
+    "hesitation_signals": {
+      "capacity_constraint": [
+        "\"[BANK]\" technology cost cutting",
+        "\"[BANK]\" derivatives IT budget",
+        "\"[BANK]\" technology headcount reduction",
+        "\"[BANK]\" competing priorities technology"
+      ],
+      "ma_integration": [
+        "\"[BANK]\" merger integration technology",
+        "\"[BANK]\" acquisition technology consolidation",
+        "\"[BANK]\" divestiture separation",
+        "\"[BANK]\" integration challenges technology"
+      ],
+      "regulatory_remediation": [
+        "\"[BANK]\" regulatory remediation program",
+        "\"[BANK]\" consent order derivatives",
+        "\"[BANK]\" compliance backlog",
+        "\"[BANK]\" enforcement action technology"
+      ],
+      "vendor_preference": [
+        "\"[BANK]\" outsourcing derivatives technology",
+        "\"[BANK]\" vendor partnership regulatory reporting",
+        "\"[BANK]\" managed services derivatives",
+        "\"[BANK]\" buy not build technology strategy"
+      ],
+      "technology_debt": [
+        "\"[BANK]\" legacy systems derivatives",
+        "\"[BANK]\" technology modernization backlog",
+        "\"[BANK]\" technical debt remediation",
+        "\"[BANK]\" core systems replacement"
+      ],
+      "wait_for_maturity": [
+        "\"[BANK]\" CDM evaluation OR assessment",
+        "\"[BANK]\" watching market derivatives technology",
+        "\"[BANK]\" not ready CDM",
+        "\"[BANK]\" waiting industry maturity standards"
+      ]
+    }
+  },
+
+  "counterparty_intelligence": {
+    "description": "v4.2: CCP, dealer, and utility relationship mapping",
+    "ccp_relationships": {
+      "membership": [
+        "\"[BANK]\" \"clearing member\" LCH OR CME OR Eurex",
+        "\"[BANK]\" JSCC clearing membership",
+        "\"[BANK]\" ICE Clear derivatives",
+        "\"[BANK]\" clearing house connectivity",
+        "\"[BANK]\" CCP membership list"
+      ],
+      "cdm_requirements": [
+        "\"[BANK]\" JSCC CDM connectivity June 2025",
+        "\"[BANK]\" LCH CDM interface",
+        "\"[BANK]\" CCP technology upgrade derivatives",
+        "\"[BANK]\" clearing connectivity modernization"
+      ]
+    },
+    "g16_counterparties": {
+      "description": "G16 dealer bank relationships",
+      "banks": [
+        "JPMorgan", "Goldman Sachs", "Morgan Stanley", "Citigroup", "Bank of America",
+        "Deutsche Bank", "Barclays", "UBS", "Credit Suisse", "BNP Paribas",
+        "Societe Generale", "HSBC", "Nomura", "MUFG", "Mizuho", "SMBC"
+      ],
+      "patterns": [
+        "\"[BANK]\" \"[G16_BANK]\" derivatives partnership",
+        "\"[BANK]\" \"[G16_BANK]\" bilateral connectivity",
+        "\"[BANK]\" major derivatives counterparty",
+        "\"[BANK]\" interdealer connectivity OTC"
+      ]
+    },
+    "utility_connectivity": {
+      "delta_capita": [
+        "\"[BANK]\" \"Delta Capita\" client",
+        "\"[BANK]\" \"Delta Capita\" EMIR Refit",
+        "\"[BANK]\" \"Delta Capita\" regulatory reporting",
+        "Delta Capita client list \"[BANK]\""
+      ],
+      "dtcc": [
+        "\"[BANK]\" DTCC connectivity derivatives",
+        "\"[BANK]\" GTR trade repository",
+        "\"[BANK]\" DTCC CDM OR standards"
+      ],
+      "other_utilities": [
+        "\"[BANK]\" MarkitServ confirmation",
+        "\"[BANK]\" Traiana trade matching",
+        "\"[BANK]\" AcadiaSoft collateral",
+        "\"[BANK]\" post-trade utilities CDM"
+      ]
+    }
+  },
+
+  "vendor_analysis": {
+    "description": "v4.2: Vendor relationship and build vs buy analysis",
+    "platform_vendors": [
+      "\"[BANK]\" Murex derivatives",
+      "\"[BANK]\" Calypso implementation",
+      "\"[BANK]\" Finastra derivatives",
+      "\"[BANK]\" Ion derivatives platform",
+      "\"[BANK]\" OpenGamma derivatives"
+    ],
+    "cdm_specialists": [
+      "\"[BANK]\" \"Delta Capita\" CDM implementation",
+      "\"[BANK]\" \"Fragmos Chain\" OR REGnosys",
+      "\"[BANK]\" Rosetta CDM",
+      "\"[BANK]\" CDM vendor implementation",
+      "\"[BANK]\" regulatory reporting vendor CDM"
+    ],
+    "systems_integrators": [
+      "\"[BANK]\" Accenture derivatives technology",
+      "\"[BANK]\" Deloitte regulatory reporting",
+      "\"[BANK]\" McKinsey derivatives operations",
+      "\"[BANK]\" \"Oliver Wyman\" post-trade",
+      "\"[BANK]\" consulting derivatives modernization"
+    ],
+    "vendor_press_releases": [
+      "site:murex.com \"[BANK]\"",
+      "site:calypso.com \"[BANK]\"",
+      "site:deltacapita.com \"[BANK]\"",
+      "\"vendor\" \"[BANK]\" CDM client announcement"
+    ],
+    "internal_capability": [
+      "\"[BANK]\" CDM team hiring",
+      "\"[BANK]\" \"Common Domain Model\" internal",
+      "\"[BANK]\" derivatives technology team",
+      "\"[BANK]\" regulatory reporting internal development"
+    ],
+    "build_vs_buy": [
+      "\"[BANK]\" technology strategy build buy",
+      "\"[BANK]\" outsourcing derivatives operations",
+      "\"[BANK]\" in-house development regulatory",
+      "\"[BANK]\" technology insourcing"
+    ]
+  },
+
+  "null_result_guidance": {
+    "description": "Guidance for when searches return no results",
+    "reformulation_iterations": 4,
+    "reformulation_strategies": [
+      "Remove one search term",
+      "Try synonyms (CDM → 'Common Domain Model' → 'regulatory reporting')",
+      "Broader search (ISDA → 'derivatives standards')",
+      "Check related initiatives (ISO 20022, FpML, DLT)"
+    ],
+    "informative_absence_assessment": {
+      "question": "Would we EXPECT to find evidence in this category if bank were ARCHITECT?",
+      "if_yes": "Absence SUPPORTS PRAGMATIST hypothesis",
+      "if_no": "Absence is NEUTRAL"
+    }
+  },
+
+  "usage_instructions": {
+    "placeholder_replacement": "Replace [BANK], [DOMAIN], [REGULATOR], [YEAR], [PRODUCT] with actual values",
+    "minimum_searches_per_tier": 15,
+    "results_to_review_per_query": 20,
+    "reformulation_iterations_for_null": 4,
+    "document_all_null_results": true
+  }
+}

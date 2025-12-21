@@ -1,4 +1,10 @@
-# CDM/DRR Research Assessment: Sumitomo Mitsui Financial Group
+# CDM/DRR Assessment: Sumitomo Mitsui Banking Corporation
+
+**Bank:** Sumitomo Mitsui Banking Corporation
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
 
 ## Executive Summary
 
@@ -9,6 +15,65 @@
 **Phase:** 3 (Japanese Banks)
 
 SMBC shows no evidence of direct CDM strategic adoption. The only CDM connection is through JSCC clearing membership, where JSCC deployed CDM production infrastructure in June 2025. This creates passive exposure to CDM but does not indicate internal CDM capabilities or strategic commitment.
+
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | Sumitomo Mitsui Banking Corporation |
+| Headquarters | Tokyo, Japan |
+| Region | Asia |
+| Phase | 3 - Japanese |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | OBSERVER |
+| Sub-Classification | Ecosystem |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Knowledge Gaps
+
+**Critical Gaps:**
+
+1. **Internal JSCC Connectivity Implementation**
+   - How does SMBC interface with JSCC's CDM infrastructure?
+   - Vendor solution (SWIFT, vendor-provided CDM layer) or custom integration?
+   - **Impact:** Affects precision of sub-classification but not primary OBSERVER classification
+
+2. **Strategic Planning for CDM Beyond JSCC Compliance**
+   - Is CDM adoption limited to JSCC regulatory requirement, or does SMBC plan broader internal adoption?
+   - Multi-year CDM roadmap or reactive compliance?
+   - **Impact:** Would determine if reclassification to PRAGMATIST is warranted
+
+3. **Vendor Relationships for Derivatives Reporting**
+   - Which vendors provide CDM solutions to SMBC for JSCC connectivity?
+   - Are these solutions white-glove or commoditized?
+   - **Impact:** Affects understanding of operational CDM exposure depth
+
+4. **Product-Level CDM Coverage**
+   - Which SMBC product lines use JSCC for clearing and thus interface with CDM?
+   - FX derivatives, interest rate swaps, credit derivatives?
+   - **Impact:** Refines estimate of CDM data volume SMBC processes
+
+5. **Future CDM Strategy for Non-JSCC Products**
+   - Will SMBC adopt CDM for bilateral derivatives reporting post-2025?
+   - OTC cleared vs. uncleared derivatives CDM strategy?
+   - **Impact:** Would suggest trajectory toward PRAGMATIST classification
+
+**Impact Assessment:**
+These gaps affect precision of sub-classification and future trajectory assessment but do not undermine the primary OBSERVER classification or 45% confidence score.
 
 ## Evidence Summary
 
@@ -116,38 +181,6 @@ None currently evident. SMBC, MUFG, and Mizuho are indistinguishable in CDM matu
 - Hiring initiatives for CDM expertise
 - Public participation in ISDA or FINOS CDM committees
 
-## Knowledge Gaps
-
-**Critical Gaps:**
-
-1. **Internal JSCC Connectivity Implementation**
-   - How does SMBC interface with JSCC's CDM infrastructure?
-   - Vendor solution (SWIFT, vendor-provided CDM layer) or custom integration?
-   - **Impact:** Affects precision of sub-classification but not primary OBSERVER classification
-
-2. **Strategic Planning for CDM Beyond JSCC Compliance**
-   - Is CDM adoption limited to JSCC regulatory requirement, or does SMBC plan broader internal adoption?
-   - Multi-year CDM roadmap or reactive compliance?
-   - **Impact:** Would determine if reclassification to PRAGMATIST is warranted
-
-3. **Vendor Relationships for Derivatives Reporting**
-   - Which vendors provide CDM solutions to SMBC for JSCC connectivity?
-   - Are these solutions white-glove or commoditized?
-   - **Impact:** Affects understanding of operational CDM exposure depth
-
-4. **Product-Level CDM Coverage**
-   - Which SMBC product lines use JSCC for clearing and thus interface with CDM?
-   - FX derivatives, interest rate swaps, credit derivatives?
-   - **Impact:** Refines estimate of CDM data volume SMBC processes
-
-5. **Future CDM Strategy for Non-JSCC Products**
-   - Will SMBC adopt CDM for bilateral derivatives reporting post-2025?
-   - OTC cleared vs. uncleared derivatives CDM strategy?
-   - **Impact:** Would suggest trajectory toward PRAGMATIST classification
-
-**Impact Assessment:**
-These gaps affect precision of sub-classification and future trajectory assessment but do not undermine the primary OBSERVER classification or 45% confidence score.
-
 ## Conclusion
 
 SMBC is an OBSERVER with infrastructure-mandated CDM exposure through JSCC clearing membership. No evidence of strategic CDM adoption, internal capability building, or vendor partnerships. The bank's CDM exposure is passive and reactive (JSCC regulatory requirement) rather than proactive and strategic.
@@ -204,3 +237,7 @@ SMBC's probability distribution reflects high uncertainty:
 **Assessment Completed:** 2025-12-21
 **Next Review Due:** 2026-06-21
 **Confidence Stability:** STABLE (unlikely to change without external announcements)
+
+---
+
+*Assessment complete. Classification: OBSERVER (Ecosystem) with 50% confidence.*

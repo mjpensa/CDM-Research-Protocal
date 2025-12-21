@@ -1,22 +1,25 @@
-# Tier 3 Evidence - Standard Chartered
+# Tier 3 Evidence: Standard Chartered PLC
 
-**Bank:** Standard Chartered
-**Classification:** ARCHITECT (Leader)
-**Confidence:** 80%
-**Last Updated:** 2025-12-21
+**Bank:** Standard Chartered PLC
+**Phase:** 6 - Deep Dives
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-No Tier 3 evidence was collected for Standard Chartered. The classification is based on Tier 1 and Tier 2 evidence only.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-**Rationale:**
-Given the strong Tier 1 production evidence and Tier 2 conference signals, additional Tier 3 sources (job postings, LinkedIn signals) were deemed unnecessary for classification purposes.
+## Evidence Inventory
 
-**Search Attempts:**
-- LinkedIn job postings for "CDM" + "Standard Chartered": No relevant results
-- Medium/blog articles mentioning Standard Chartered CDM: No relevant results
+No Tier 3 evidence found.
 
-**Impact on Confidence:**
-The absence of Tier 3 evidence does not negatively impact confidence, as Tier 1 and Tier 2 sources provide sufficient foundation for ARCHITECT classification at 80% confidence.
+## Informative Absences
+
+N/A
+
+---

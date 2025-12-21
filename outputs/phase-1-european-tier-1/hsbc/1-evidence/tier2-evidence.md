@@ -1,49 +1,67 @@
-# Tier 2 Evidence: HSBC Holdings plc
+# Tier 2 Evidence: HSBC Holdings PLC
+
+**Bank:** HSBC Holdings PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
+
+---
 
 ## Search Execution Summary
 
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 2
-- **Schema Version**: 4.3
-
----
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[HSBC-002] TIER 2 — NEUTRAL
+### HSBC-002: Evidence Item
 
-**Source**: https://www.risk.net/risk-quantum/7958481/hsbc-leads-global-uptick-in-otc-derivatives-clearing
-**Date**: 2023-12-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "HSBC cleared 59.6% of its €22.2 trillion of over-the-counter derivatives, adding €3.29 trillion in cleared notionals compared to the year prior."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Recent
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: derivatives_activity_no_cdm (LR = 0.9)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Strong derivatives clearing activity but no CDM mention in technology approach.
+**Caveats:** N/A
 
----
+### HSBC-003: Evidence Item
 
-[HSBC-003] TIER 2 — NEUTRAL
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.risk.net/technology/1501717/hsbc-usa-adopts-calypso-equity-derivatives
-**Date**: 2010-01-01
+**Excerpt:** N/A
 
-**Finding**: "HSBC USA has adopted Calypso for equity derivatives, with the bank already using the San Francisco-based technology provider's platform for credit derivatives trading."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Historical
-- Specificity: Specific
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `vendor_proxy_signal`
-**LR Mapping**: traditional_platform (LR = 0.85)
+**Caveats:** N/A
 
-**Caveats**: Very dated evidence (2010). Shows traditional platform approach. Calypso is not a CDM platform.
+## Informative Absences
+
+N/A
 
 ---

@@ -38,7 +38,10 @@ from config_loader import (
     load_bank_manifest,
     get_bank_relationships,
     get_entity_info,
-    load_regulatory_calendar
+    load_regulatory_calendar,
+    get_bank_vendor_depth,
+    get_depth_classification_impact,
+    get_bank_mandate_exposure
 )
 
 
@@ -128,7 +131,12 @@ class RelationshipAnalyzer:
             return (0.0, 0.0)
 
     def calculate_pressure_vector(self, bank_id: str) -> PressureVector:
-        """Calculate net pressure vector for a bank."""
+        """Calculate net pressure vector for a bank.
+
+        Incorporates:
+        - Relationship-based pressure (CCPs, vendors, peers)
+        - Vendor CDM depth taxonomy (L0-L4) pressure adjustments
+        """
         relationships = self.get_bank_relationships(bank_id)
 
         architect_total = 0.0
@@ -141,6 +149,45 @@ class RelationshipAnalyzer:
                 architect_total += arch
                 pragmatist_total += prag
                 contributing.append(rel.get('id', 'unknown'))
+
+        # Add vendor CDM depth pressure (Enhancement 2)
+        vendor_depth_info = get_bank_vendor_depth(bank_id)
+        if vendor_depth_info:
+            depth_level = vendor_depth_info.get('depth_level', 'L0_none')
+            depth_impact = get_depth_classification_impact(depth_level)
+
+            if depth_impact:
+                pressure_direction = depth_impact.get('pressure_direction', 'neutral')
+                pressure_strength = depth_impact.get('pressure_strength', 0.0)
+
+                # Apply vendor depth pressure (weighted by 0.5 to balance with relationship pressure)
+                vendor_pressure_weight = 0.5
+                adjusted_pressure = pressure_strength * vendor_pressure_weight
+
+                if pressure_direction == 'architect':
+                    architect_total += adjusted_pressure
+                    contributing.append(f"vendor_depth_{depth_level}")
+                elif pressure_direction == 'pragmatist':
+                    pragmatist_total += adjusted_pressure
+                    contributing.append(f"vendor_depth_{depth_level}")
+
+        # Add regulatory mandate pressure (Enhancement 3)
+        mandate_exposure = get_bank_mandate_exposure(bank_id)
+        if mandate_exposure.get('mandate_count', 0) > 0:
+            # Mandatory CDM = strong ARCHITECT pressure
+            if mandate_exposure.get('has_mandatory_cdm'):
+                architect_total += 0.8  # Strong mandatory pressure
+                contributing.append("mandatory_cdm_mandate")
+            else:
+                # Non-mandatory mandates still create moderate pressure toward CDM
+                total_mandate_pressure = mandate_exposure.get('total_pressure', 0.0)
+                # Apply at 0.4 weight relative to other factors
+                regulatory_pressure = total_mandate_pressure * 0.4
+                if regulatory_pressure > 0:
+                    architect_total += regulatory_pressure
+                    strongest = mandate_exposure.get('strongest_mandate')
+                    if strongest:
+                        contributing.append(f"regulatory_{strongest.get('mandate_id', 'unknown')}")
 
         # Normalize
         total = architect_total + pragmatist_total

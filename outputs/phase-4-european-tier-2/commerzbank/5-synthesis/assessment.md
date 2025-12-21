@@ -1,29 +1,14 @@
-# CDM Adoption Assessment: Commerzbank AG
+# CDM/DRR Assessment: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Assessment Date:** 2025-12-20
-**Researcher:** Claude Code (Opus 4.5)
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
 ## Executive Summary
 
 Commerzbank AG is classified as **PRAGMATIST (Vendor-Dependent)** with **50% confidence**. The bank completed migration to Murex MX.3 platform in May 2024 for FX, FX derivatives, equities, and commodities trading, indicating a traditional vendor-dependent approach. No evidence of CDM adoption was found across Tier 1, Tier 2, or Tier 3 sources.
-
----
-
-## Classification
-
-| Element | Value |
-|---------|-------|
-| **Final Classification** | PRAGMATIST |
-| **Sub-Classification** | Vendor-Dependent |
-| **Confidence Level** | 50% |
-| **Evidence Quality** | Tier 2 (vendor announcement) |
-| **Bayesian Probability** | P(PRAGMATIST) = 95% |
-
----
 
 ## Bank Profile
 
@@ -36,7 +21,141 @@ Commerzbank AG is classified as **PRAGMATIST (Vendor-Dependent)** with **50% con
 | **Primary Platform** | Murex MX.3 (migrated May 2024) |
 | **Technology Partners** | Murex, TeamTek, Infosys |
 
----
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | PRAGMATIST |
+| Sub-Classification | Vendor-Dependent |
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 95% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Knowledge Gaps
+
+### Critical Gaps
+
+**GAP-1: Murex CDM Usage**
+- **Question:** Is Commerzbank using Murex's CDM capabilities?
+- **Impact:** High - could change classification to ARCHITECT (Follower)
+- **Resolution Path:** Insider interview with Commerzbank technology team
+- **Suggested Target:** Head of Derivatives Technology, Trading Platform Manager
+
+**GAP-2: EMIR Refit Compliance Approach**
+- **Question:** How is Commerzbank meeting EMIR Refit requirements?
+- **Impact:** Medium - indicates regulatory reporting approach
+- **Resolution Path:** Regulatory compliance team interview
+- **Suggested Target:** Head of Regulatory Reporting, Compliance Officer
+
+**GAP-3: Future CDM Plans**
+- **Question:** Does Commerzbank have CDM adoption roadmap?
+- **Impact:** Medium - future state vs. current state
+- **Resolution Path:** Strategic technology roadmap review
+- **Suggested Target:** CTO, Head of Trading Technology Strategy
+
+### Public Research Exhausted
+
+All reasonable public sources have been searched:
+- Tier 1: ISDA, FINOS, regulatory filings, annual reports
+- Tier 2: Murex announcements, trade press, business press
+- Tier 3: Not executed (classification clear from Tier 2)
+
+**Recommendation:** Primary research (insider interviews) required to close knowledge gaps.
+
+## Recommendations
+
+### For Research Consumers
+
+1. **Classify Commerzbank as PRAGMATIST (Vendor-Dependent) at 50% confidence**
+2. **Note possibility of hidden CDM usage via Murex**
+3. **Flag knowledge gaps for product/jurisdiction coverage**
+4. **Consider re-assessment in 12 months**
+
+### For Future Research
+
+**Primary Research Targets:**
+
+1. **Insider Interview - Trading Technology**
+   - Role: Head of Derivatives Technology, Trading Platform Manager
+   - Key Questions:
+     - "Is Commerzbank using Murex's CDM capabilities?"
+     - "How is EMIR Refit compliance being addressed?"
+     - "What is the CDM adoption roadmap?"
+
+2. **Vendor Backdoor - Murex**
+   - Role: Murex Account Manager for Commerzbank
+   - Key Questions:
+     - "Which Murex modules did Commerzbank license?"
+     - "Is CDM module implemented?"
+     - "What is scope of CDM usage?"
+
+3. **Conference Networking**
+   - Events: ISDA conferences, Murex client events
+   - Target: Commerzbank representatives
+   - Questions: CDM strategy, regulatory reporting approach
+
+### Monitoring Triggers
+
+**Re-assess if:**
+- Commerzbank joins FINOS or ISDA CDM working groups
+- Trade press reports CDM adoption
+- Murex announces CDM case study featuring Commerzbank
+- Regulatory filings mention CDM compliance
+- Job postings for CDM roles appear
+
+## Confidence Calibration
+
+### Base Confidence: 50%
+
+**Protocol Constraint:** Tier 2 vendor proxy signal maximum = 50%
+
+### Confidence Factors
+
+| Factor | Impact | Adjustment |
+|--------|--------|------------|
+| Single Tier 2 evidence item | Limits confidence | 0% (already at cap) |
+| Vendor announcement (not bank confirmation) | Increases uncertainty | 0% (reflected in cap) |
+| Recent evidence (May 2024) | High freshness | +0% (quality good) |
+| Null results across all tiers | Reinforces classification | +0% (increases certainty but can't exceed cap) |
+| Hidden CDM possibility | Residual uncertainty | 0% (appropriate) |
+
+**Net Confidence:** 50%
+
+### Confidence Interpretation
+
+**50% means:**
+- More likely than not that classification is correct
+- Significant residual uncertainty acknowledged
+- Evidence tier limitation is real constraint
+- Hidden CDM usage cannot be ruled out definitively
+
+**50% does not mean:**
+- Equal probability of all classifications
+- Evidence is weak or contradictory
+- Classification is arbitrary guess
+
+**Bayesian Probability Context:**
+- P(PRAGMATIST|Evidence) = 95%
+- Confidence reflects evidence tier, not probability
+- 50% confidence with 95% probability is internally consistent
+
+## Classification
+
+| Element | Value |
+|---------|-------|
+| **Final Classification** | PRAGMATIST |
+| **Sub-Classification** | Vendor-Dependent |
+| **Confidence Level** | 50% |
+| **Evidence Quality** | Tier 2 (vendor announcement) |
+| **Bayesian Probability** | P(PRAGMATIST) = 95% |
 
 ## Evidence Summary
 
@@ -53,8 +172,6 @@ Commerzbank AG is classified as **PRAGMATIST (Vendor-Dependent)** with **50% con
 | CBK-NULL-001 | CDM/ISDA adoption | No CDM evidence |
 | CBK-NULL-002 | FINOS membership | Not a member |
 | CBK-NULL-003 | ISDA working groups | No participation |
-
----
 
 ## Key Finding: Murex MX.3 Migration
 
@@ -86,8 +203,6 @@ The Murex MX.3 migration represents a major technology investment and strategic 
 - LR = 0.3 (strongly supports PRAGMATIST over ARCHITECT)
 - Traditional platform migrations are rare among ARCHITECT banks
 - Common among PRAGMATIST banks seeking vendor solutions
-
----
 
 ## Classification Rationale
 
@@ -138,46 +253,6 @@ The Murex MX.3 migration represents a major technology investment and strategic 
 - Active vendor platform usage (beyond observation)
 - Operational commitment to current approach
 
----
-
-## Confidence Calibration
-
-### Base Confidence: 50%
-
-**Protocol Constraint:** Tier 2 vendor proxy signal maximum = 50%
-
-### Confidence Factors
-
-| Factor | Impact | Adjustment |
-|--------|--------|------------|
-| Single Tier 2 evidence item | Limits confidence | 0% (already at cap) |
-| Vendor announcement (not bank confirmation) | Increases uncertainty | 0% (reflected in cap) |
-| Recent evidence (May 2024) | High freshness | +0% (quality good) |
-| Null results across all tiers | Reinforces classification | +0% (increases certainty but can't exceed cap) |
-| Hidden CDM possibility | Residual uncertainty | 0% (appropriate) |
-
-**Net Confidence:** 50%
-
-### Confidence Interpretation
-
-**50% means:**
-- More likely than not that classification is correct
-- Significant residual uncertainty acknowledged
-- Evidence tier limitation is real constraint
-- Hidden CDM usage cannot be ruled out definitively
-
-**50% does not mean:**
-- Equal probability of all classifications
-- Evidence is weak or contradictory
-- Classification is arbitrary guess
-
-**Bayesian Probability Context:**
-- P(PRAGMATIST|Evidence) = 95%
-- Confidence reflects evidence tier, not probability
-- 50% confidence with 95% probability is internally consistent
-
----
-
 ## Comparison to Peers
 
 ### Phase 4 European Tier 2 Banks
@@ -200,41 +275,6 @@ The Murex MX.3 migration represents a major technology investment and strategic 
 | SocGen | MX.3 | Unknown | [To be researched] |
 
 **Pattern:** Murex MX.3 is common among European tier 1-2 banks, but CDM usage varies.
-
----
-
-## Knowledge Gaps
-
-### Critical Gaps
-
-**GAP-1: Murex CDM Usage**
-- **Question:** Is Commerzbank using Murex's CDM capabilities?
-- **Impact:** High - could change classification to ARCHITECT (Follower)
-- **Resolution Path:** Insider interview with Commerzbank technology team
-- **Suggested Target:** Head of Derivatives Technology, Trading Platform Manager
-
-**GAP-2: EMIR Refit Compliance Approach**
-- **Question:** How is Commerzbank meeting EMIR Refit requirements?
-- **Impact:** Medium - indicates regulatory reporting approach
-- **Resolution Path:** Regulatory compliance team interview
-- **Suggested Target:** Head of Regulatory Reporting, Compliance Officer
-
-**GAP-3: Future CDM Plans**
-- **Question:** Does Commerzbank have CDM adoption roadmap?
-- **Impact:** Medium - future state vs. current state
-- **Resolution Path:** Strategic technology roadmap review
-- **Suggested Target:** CTO, Head of Trading Technology Strategy
-
-### Public Research Exhausted
-
-All reasonable public sources have been searched:
-- Tier 1: ISDA, FINOS, regulatory filings, annual reports
-- Tier 2: Murex announcements, trade press, business press
-- Tier 3: Not executed (classification clear from Tier 2)
-
-**Recommendation:** Primary research (insider interviews) required to close knowledge gaps.
-
----
 
 ## Vendor Analysis
 
@@ -275,8 +315,6 @@ All reasonable public sources have been searched:
 
 **Classification Impact:** Strongly supports PRAGMATIST (Vendor-Dependent)
 
----
-
 ## Regulatory Context
 
 ### EMIR Refit Compliance
@@ -297,8 +335,6 @@ All reasonable public sources have been searched:
 **CDM Adoption:** No evidence
 **Alternative Compliance:** Murex platform regulatory reporting modules
 
----
-
 ## Counterparty Network
 
 ### CCP Relationships
@@ -314,8 +350,6 @@ All reasonable public sources have been searched:
 **Evidence:** None
 
 **Knowledge Gap:** Cannot assess network effects or counterparty CDM pressure without insider knowledge.
-
----
 
 ## Pre-Mortem Failure Modes
 
@@ -349,8 +383,6 @@ All reasonable public sources have been searched:
 
 **Confidence Validation:** 50% confidence appropriately reflects 25% probability of hidden CDM usage.
 
----
-
 ## Disconfirming Evidence Search
 
 ### Searches Executed to Challenge PRAGMATIST Classification
@@ -377,51 +409,6 @@ All reasonable public sources have been searched:
 
 **Conclusion:** Disconfirming searches support PRAGMATIST classification. No evidence contradicts vendor-dependent hypothesis.
 
----
-
-## Recommendations
-
-### For Research Consumers
-
-1. **Classify Commerzbank as PRAGMATIST (Vendor-Dependent) at 50% confidence**
-2. **Note possibility of hidden CDM usage via Murex**
-3. **Flag knowledge gaps for product/jurisdiction coverage**
-4. **Consider re-assessment in 12 months**
-
-### For Future Research
-
-**Primary Research Targets:**
-
-1. **Insider Interview - Trading Technology**
-   - Role: Head of Derivatives Technology, Trading Platform Manager
-   - Key Questions:
-     - "Is Commerzbank using Murex's CDM capabilities?"
-     - "How is EMIR Refit compliance being addressed?"
-     - "What is the CDM adoption roadmap?"
-
-2. **Vendor Backdoor - Murex**
-   - Role: Murex Account Manager for Commerzbank
-   - Key Questions:
-     - "Which Murex modules did Commerzbank license?"
-     - "Is CDM module implemented?"
-     - "What is scope of CDM usage?"
-
-3. **Conference Networking**
-   - Events: ISDA conferences, Murex client events
-   - Target: Commerzbank representatives
-   - Questions: CDM strategy, regulatory reporting approach
-
-### Monitoring Triggers
-
-**Re-assess if:**
-- Commerzbank joins FINOS or ISDA CDM working groups
-- Trade press reports CDM adoption
-- Murex announces CDM case study featuring Commerzbank
-- Regulatory filings mention CDM compliance
-- Job postings for CDM roles appear
-
----
-
 ## Appendix: Evidence Inventory
 
 ### Tier 1 Evidence
@@ -447,8 +434,6 @@ All reasonable public sources have been searched:
 **CBK-NULL-002:** FINOS membership searches
 **CBK-NULL-003:** ISDA working group searches
 
----
-
 ## Document Metadata
 
 | Field | Value |
@@ -462,10 +447,12 @@ All reasonable public sources have been searched:
 | Knowledge Gaps | 3 critical |
 | Recommended Action | Accept classification, flag for primary research |
 
----
-
 ## Final Classification
 
 **PRAGMATIST (Vendor-Dependent)** at **50% confidence**
 
 Commerzbank's completed migration to Murex MX.3 platform in May 2024, combined with absence of CDM signals across all evidence tiers, indicates a traditional vendor-dependent approach to derivatives technology. While the possibility of hidden CDM usage via Murex cannot be ruled out, the absence of corroborating evidence and Murex's marketing incentives make this unlikely. The 50% confidence level appropriately reflects the evidence tier limitation and residual uncertainty about CDM implementation details.
+
+---
+
+*Assessment complete. Classification: PRAGMATIST (Vendor-Dependent) with 50% confidence.*

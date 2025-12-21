@@ -1,20 +1,16 @@
-# Pre-Mortem: Commerzbank AG
+# Pre-Mortem Analysis: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Date:** 2025-12-20
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Research Question
+## Research Objective
 
-What is Commerzbank's CDM adoption maturity level?
+Assess Commerzbank AG's CDM/DRR adoption maturity.
 
-## Pre-Mortem Scenario
-
-"Six months from now, we discover our Commerzbank assessment was completely wrong. What happened?"
-
-## Failure Modes
+## Potential Failure Modes
 
 ### 1. Hidden CDM Adoption Behind Murex
 
@@ -77,27 +73,35 @@ What is Commerzbank's CDM adoption maturity level?
 - Flag German-language search limitation
 - Document confidence bounds clearly
 
-## Null Hypothesis Defense
+## Search Strategy
 
-**Assumption:** Commerzbank is PRAGMATIST (Vendor-Dependent)
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
 
-**Evidence Supporting:**
-- Murex MX.3 migration (traditional platform)
-- No FINOS membership
-- No ISDA CDM working group participation
-- No CDM-related announcements
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
 
-**Evidence Needed to Overturn:**
-- Tier 1: Official CDM adoption announcement
-- Tier 1: FINOS membership or contribution
-- Tier 1: ISDA working group participation
-- Tier 2: Trade press coverage of CDM initiative
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
 
-## Confidence Calibration
+## Key Hypotheses to Test
 
-Given the pre-mortem analysis:
-- **Base Confidence:** 50% (Tier 2 maximum)
-- **Adjustment:** -5% for hidden CDM possibility
-- **Final Confidence:** 45-50% range
+N/A
 
-**Recommendation:** Classify as PRAGMATIST (Vendor-Dependent) at 50% confidence, noting possible hidden CDM usage as caveat.
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume Commerzbank AG is PRAGMATIST until evidence proves otherwise.
+
+---

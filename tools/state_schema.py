@@ -118,27 +118,45 @@ class ProbabilityUpdate:
         return cls(**filtered_data)
 
     @classmethod
-    def generate_idempotency_key(cls, stage: str, bank_id: str, timestamp: str = None) -> str:
+    def generate_idempotency_key(
+        cls,
+        stage: str,
+        bank_id: str,
+        timestamp: str = None,
+        sequence: int = None
+    ) -> str:
         """
         Generate a unique idempotency key for duplicate detection.
 
-        Format: {stage}_{bank_id}_{timestamp_truncated}
+        Uses seconds precision and 24-char hash for reduced collision risk.
+        Optional sequence number handles multiple legitimate updates within
+        the same second.
 
         Args:
             stage: Stage name (e.g., "bayesian_1")
             bank_id: Bank identifier
             timestamp: Optional timestamp (defaults to current time)
+            sequence: Optional sequence number for same-second updates
 
         Returns:
-            Idempotency key string
+            Idempotency key string (24 chars, or 27 with sequence suffix)
+
+        Note:
+            Previous implementation used minute precision and 16-char hash.
+            New implementation uses seconds precision and 24-char hash
+            (96 bits entropy) for significantly reduced collision probability.
         """
         import hashlib
         if timestamp is None:
             timestamp = datetime.now(timezone.utc).isoformat()
-        # Truncate timestamp to minute precision for near-duplicate detection
-        ts_minute = timestamp[:16]  # "2025-12-21T10:30"
-        raw = f"{stage}_{bank_id}_{ts_minute}"
-        return hashlib.sha256(raw.encode()).hexdigest()[:16]
+        # Use seconds precision (not minutes) for better collision avoidance
+        ts_second = timestamp[:19]  # "2025-12-21T10:30:45"
+        raw = f"{stage}_{bank_id}_{ts_second}"
+        base_hash = hashlib.sha256(raw.encode()).hexdigest()[:24]  # 24 chars = 96 bits
+
+        if sequence is not None:
+            return f"{base_hash}_{sequence:02d}"
+        return base_hash
 
 
 @dataclass

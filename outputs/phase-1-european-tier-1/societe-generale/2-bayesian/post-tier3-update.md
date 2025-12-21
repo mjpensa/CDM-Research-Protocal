@@ -1,19 +1,24 @@
-# Bayesian Update: Post-Tier 3 Evidence
+# Bayesian Update: Post-Tier 3 Evidence: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Bank**: Société Générale
-**Date**: 2025-12-20
-**Prior P(ARCHITECT) (post-Tier 2)**: 30%
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
+## Prior Probability
+
+P(ARCHITECT) prior: 0%
+
 ## Tier 3 Evidence Summary
 
-| ID | Evidence | Direction | LR |
-|----|----------|-----------|-----|
-| (null) | No CDM job postings | SUPPORTS_PRAGMATIST | 0.85 |
-| (null) | No CDM LinkedIn activity | NEUTRAL | 0.95 |
+No Tier 3 evidence found.
 
-## Combined LR (Tier 3) = 0.85 × 0.95 = **0.808**
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -23,17 +28,30 @@ Posterior odds = 0.429 × 0.808 = 0.347
 Posterior P(ARCHITECT) = 0.347 / (1 + 0.347) = 0.26 = 26%
 ```
 
-## Final: P(ARCHITECT) = 26%
+## Updated Probabilities
 
-| Stage | P(ARCHITECT) |
-|-------|--------------|
-| Prior | 35% |
-| Post-Tier 1 | 29% |
-| Post-Tier 2 | 30% |
-| Post-Tier 3 | 26% |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
 
-**Probability decreased from prior** - evidence does not support BNP Paribas follow hypothesis.
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
+
+## Final Confidence Assessment
+
+Final confidence: 0%
 
 ---
 
-*All tiers complete. Proceeding to adversarial.*
+*Proceeding to adversarial review.*

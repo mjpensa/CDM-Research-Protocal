@@ -1,49 +1,67 @@
 # Tier 1 Evidence: UBS Group AG
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 2
-- **Schema Version**: 4.3
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
+
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[UBS-001] TIER 1 — SUPPORTS ARCHITECT
+### UBS-001: Evidence Item
 
-**Source**: https://www.isda.org/2020/10/06/isda-and-digital-asset-launch-cdm-clearing-pilot-using-daml/
-**Date**: 2020-10-06
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "ASX and UBS have been providing input to validate additional functionality of the CDM alongside ISDA and Digital Asset. Vinay Srinivas, UBS: 'ISDA is driving an important industry wide initiative... I am confident that the initiative will provide clarity on to what extent the CDM in DAML can be leveraged for cleared derivatives.'"
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Historical
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `pilot_or_poc`
-**LR Mapping**: pilot_participation_historical (LR = 1.8)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Evidence is from October 2020 (over 4 years old). Pilot was for DLT/DAML integration specifically. No follow-up evidence of continued engagement or production progression.
+**Caveats:** N/A
 
----
+### UBS-003: Evidence Item
 
-[UBS-003] TIER 1 — SUPPORTS PRAGMATIST
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://money.usnews.com/investing/news/articles/2024-10-10/ubs-bang-on-target-with-credit-suisse-integration-it-chief-says
-**Date**: 2024-10-10
+**Excerpt:** N/A
 
-**Finding**: "UBS expects to migrate 1.3 million clients overall, described as 'the largest migration of data as part of an M&A transaction in financial services, if not the biggest overall.' CEO flagged IT integration as one of the biggest risks."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Current
-- Specificity: Specific
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: integration_capacity_constraint (LR = 0.5)
+**Caveats:** N/A
 
-**Caveats**: Confirms integration-constrained hypothesis. All technology capacity consumed by migration through 2026.
+## Informative Absences
+
+N/A
 
 ---

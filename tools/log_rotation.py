@@ -481,17 +481,82 @@ class LogRotationManager:
 
         return status
 
+    def _config_fingerprint(self, config: Dict[str, Any] = None) -> str:
+        """
+        Generate fingerprint of config for change detection.
+
+        Args:
+            config: Config dict to fingerprint. Uses current config if None.
+
+        Returns:
+            8-character hash string uniquely identifying the config
+        """
+        import hashlib
+        config_to_hash = config if config is not None else self.config
+        config_str = json.dumps(config_to_hash, sort_keys=True)
+        return hashlib.md5(config_str.encode()).hexdigest()[:8]
+
+    def check_and_reload_config(self) -> bool:
+        """
+        Check if config has changed and reload if so.
+
+        Compares current config fingerprint with fresh load from file.
+        If different, reinitializes the manager with new config.
+
+        Returns:
+            True if config was reloaded, False if unchanged
+        """
+        new_config = self._load_config()
+        old_fingerprint = self._config_fingerprint(self.config)
+        new_fingerprint = self._config_fingerprint(new_config)
+
+        if new_fingerprint != old_fingerprint:
+            self.config = new_config
+            # Update archive directory if changed
+            self.archive_dir = self.state_dir / self.config.get("archive_directory", "archives")
+            self.archive_dir.mkdir(parents=True, exist_ok=True)
+            logger.info(
+                f"LogRotationManager config reloaded "
+                f"(fingerprint: {old_fingerprint} -> {new_fingerprint})"
+            )
+            return True
+        return False
+
 
 # Module-level convenience functions
 
 _manager_instance: Optional[LogRotationManager] = None
+_last_config_check: float = 0
+_CONFIG_CHECK_INTERVAL: float = 60.0  # Check every 60 seconds
 
 
 def get_manager(state_dir: Path = None) -> LogRotationManager:
-    """Get or create the global LogRotationManager instance."""
-    global _manager_instance
+    """
+    Get or create the global LogRotationManager instance with periodic config check.
+
+    Args:
+        state_dir: Optional state directory path (used only on first initialization)
+
+    Returns:
+        LogRotationManager singleton instance
+
+    Note:
+        Config is automatically checked for changes every 60 seconds.
+        If config has changed, the manager is reinitialized with new settings.
+    """
+    global _manager_instance, _last_config_check
+    import time
+
+    now = time.time()
+
     if _manager_instance is None:
         _manager_instance = LogRotationManager(state_dir)
+        _last_config_check = now
+    elif now - _last_config_check > _CONFIG_CHECK_INTERVAL:
+        # Periodic config freshness check
+        _manager_instance.check_and_reload_config()
+        _last_config_check = now
+
     return _manager_instance
 
 

@@ -1,35 +1,24 @@
-# Bayesian Update: Post-Tier 3 - ING Group
+# Bayesian Update: Post-Tier 3 Evidence: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Prior Probability (Post-Tier 2)
+## Prior Probability
 
-| Parameter | Value |
-|-----------|-------|
-| P(ARCHITECT) | 0.026 |
-| P(PRAGMATIST) | 0.974 |
+P(ARCHITECT) prior: 0%
 
 ## Tier 3 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| *None* | No Tier 3 evidence found | N/A | N/A |
+No Tier 3 evidence found.
 
-## Null Result Impact
+## Likelihood Ratio Calculation
 
-**Final Informative Absence:**
-
-- No CDM-related job postings at ING
-- No LinkedIn profiles indicating CDM work at ING
-- No hiring signals for ISDA/FINOS expertise
-
-**Likelihood Ratio for Tier 3 Null Result:** 0.85
-- Hiring signals would indicate intent even without production
-- Absence confirms non-adoption trajectory
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -42,32 +31,30 @@ Posterior odds = 0.027 × 0.56 = 0.015
 P(ARCHITECT|E) = 0.015 / (1 + 0.015) = 0.015 ≈ 1.5%
 ```
 
-## Final Probabilities
+## Updated Probabilities
 
-| Parameter | Prior | Post-T1 | Post-T2 | Post-T3 |
-|-----------|-------|---------|---------|---------|
-| P(ARCHITECT) | 0.15 | 0.055 | 0.026 | 0.015 |
-| P(PRAGMATIST) | 0.85 | 0.945 | 0.974 | 0.985 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Evidence Trajectory
+## Key Insights
 
-```
-ARCHITECT Probability: 15% → 5.5% → 2.6% → 1.5%
-                        ↓       ↓       ↓
-                      -63%    -53%    -42%
-```
+N/A
 
-The probability of ARCHITECT classification has declined 90% from prior through evidence collection.
+## Cumulative Evidence Summary
 
-## Classification Threshold Check
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
 
-Per `config/decision-thresholds.json`:
-- ARCHITECT threshold: P > 0.65
-- PRAGMATIST threshold: P > 0.65
-- Current P(PRAGMATIST): 0.985 ✓ Exceeds threshold
+## Final Confidence Assessment
 
-## Decision
+Final confidence: 0%
 
-**Proceed to Adversarial Challenge** - Strong evidence for PRAGMATIST, but must validate with adversarial review.
+---
 
-However, given complete absence of evidence, classification may be **UNKNOWN** rather than PRAGMATIST, as we cannot positively confirm pragmatist behaviors (vendor usage, traditional platforms, etc.) - only the absence of architect behaviors.
+*Proceeding to adversarial review.*

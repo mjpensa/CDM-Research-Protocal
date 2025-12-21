@@ -1,20 +1,24 @@
-# Bayesian Update: Post-Tier 1 Evidence
+# Bayesian Update: Post-Tier 1 Evidence: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Bank**: Société Générale
-**Date**: 2025-12-20
-**Prior P(ARCHITECT)**: 35%
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
+## Prior Probability
+
+P(ARCHITECT) prior: 25%
+
 ## Tier 1 Evidence Summary
 
-| ID | Evidence | Direction | LR |
-|----|----------|-----------|-----|
-| SG-002 | EMIR Refit compliance page (standard regulatory info) | NEUTRAL | 1.0 |
-| (null) | No FINOS CDM contribution | NEUTRAL/NEG | 0.85 |
-| (null) | No ISDA CDM contributor listing | NEUTRAL/NEG | 0.90 |
+No Tier 1 evidence found.
 
-## Combined LR (Tier 1) = 1.0 × 0.85 × 0.90 = **0.765**
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -24,9 +28,17 @@ Posterior odds = 0.538 × 0.765 = 0.412
 Posterior P(ARCHITECT) = 0.412 / (1 + 0.412) = 0.29 = 29%
 ```
 
-## Updated: P(ARCHITECT) = 29%
+## Updated Probabilities
 
-Tier 1 informative absences decrease probability - no FINOS/ISDA CDM involvement despite BNP Paribas peer being in production.
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
+
+## Key Insights
+
+N/A
 
 ---
 

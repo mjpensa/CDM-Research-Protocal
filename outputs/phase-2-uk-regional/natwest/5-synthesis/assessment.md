@@ -1,9 +1,8 @@
-# CDM/DRR Assessment: NatWest Group plc
+# CDM/DRR Assessment: NatWest Group PLC
 
-**Classification**: OBSERVER (Historical-Engagement)
-**Confidence**: 55%
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -15,9 +14,7 @@ Notably, NatWest demonstrates significant open-source capability through co-main
 
 **Key Finding**: NatWest engaged with CDM historically (2019 pilot) but has not continued that engagement. The bank's technology focus appears directed toward infrastructure (Fluxnova) rather than derivatives standards (CDM).
 
----
-
-## 1. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -29,9 +26,7 @@ Notably, NatWest demonstrates significant open-source capability through co-main
 | G-SIB Status | No |
 | Phase | 2 (UK Regional) |
 
----
-
-## 2. Classification Summary
+## Classification Summary
 
 | Metric | Value |
 |--------|-------|
@@ -40,11 +35,8 @@ Notably, NatWest demonstrates significant open-source capability through co-main
 | P(ARCHITECT) | 14% |
 | P(PRAGMATIST) | 86% |
 | Confidence | 55% |
-| Maturity Score | 1/5 |
 
----
-
-## 3. Evidence Inventory
+## Evidence Inventory
 
 ### Tier 1 Evidence (Official Sources)
 
@@ -63,15 +55,7 @@ Notably, NatWest demonstrates significant open-source capability through co-main
 
 **No Tier 3 evidence found.**
 
----
-
-## 4. The FINOS Paradox (Critical Finding)
-
-NatWest has demonstrated capability for FINOS open-source collaboration (Fluxnova co-maintainer) but deliberately chooses not to apply it to CDM. This is not a capability gap; it is a strategic decision.
-
----
-
-## 5. Probability Trajectory
+## Probability Trajectory
 
 ```
 Prior:        20%
@@ -80,9 +64,11 @@ Post-Tier 2:  22%
 Post-Tier 3:  14%
 ```
 
----
+## The FINOS Paradox (Critical Finding)
 
-## 6. Classification Rationale
+NatWest has demonstrated capability for FINOS open-source collaboration (Fluxnova co-maintainer) but deliberately chooses not to apply it to CDM. This is not a capability gap; it is a strategic decision.
+
+## Classification Rationale
 
 **Why OBSERVER (Historical-Engagement)?**
 

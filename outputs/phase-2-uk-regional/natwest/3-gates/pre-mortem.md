@@ -1,12 +1,12 @@
-# Pre-Mortem Analysis: NatWest Group plc
+# Pre-Mortem Analysis: NatWest Group PLC
 
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
-**Prior Probability**: P(ARCHITECT) = 20%
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
-## 1. Research Objective
+## Research Objective
 
 **Primary Goal**: Assess NatWest Group's CDM adoption status for UK Regional bank classification
 
@@ -17,9 +17,7 @@
 4. What is NatWest's derivatives technology strategy?
 5. Does NatWest's retail focus reduce CDM priority?
 
----
-
-## 2. Potential Failure Modes
+## Potential Failure Modes
 
 ### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
 
@@ -45,9 +43,7 @@
 | **Stale Evidence** | 2019 pilot evidence is 5+ years old | Require recent corroboration |
 | **Retail Focus Bias** | Coverage may focus on retail operations | Target CIB/derivatives searches |
 
----
-
-## 3. Search Strategy
+## Search Strategy
 
 ### Tier 1 (Official Sources)
 - NatWest official news/press releases
@@ -67,43 +63,19 @@
 - LinkedIn profiles of NatWest Markets employees
 - Blog posts from employees
 
----
+## Key Hypotheses to Test
 
-## 4. Key Hypotheses to Test
+N/A
 
-### H1: NatWest continued CDM work after 2019 pilot
-- **Evidence needed**: Recent announcements, vendor partnerships, or hiring signals
-- **Disconfirming evidence**: Complete absence of post-2019 CDM activity
-
-### H2: NatWest is using FINOS capability for CDM
-- **Evidence needed**: GitHub CDM contributions, FINOS CDM member
-- **Disconfirming evidence**: Fluxnova participation WITHOUT CDM contribution
-
-### H3: Retail focus reduces CDM priority
-- **Evidence needed**: Small derivatives book, limited CIB operations
-- **Disconfirming evidence**: Significant derivatives business requiring CDM
-
-### H4: NatWest is using traditional compliance approach
-- **Evidence needed**: DTCC/vendor-only approach, no CDM signals
-- **Disconfirming evidence**: CDM implementation evidence
-
----
-
-## 5. Decision Points
+## Decision Points
 
 After each evidence tier, evaluate:
 1. **Probability Update**: How does evidence change P(ARCHITECT)?
 2. **Confidence Level**: Is evidence sufficient for classification?
 3. **Continue/Skip**: Does probability exceed 80% in either direction?
 
----
+## Null Hypothesis Reminder
 
-## 6. Null Hypothesis Reminder
-
-**Default assumption**: NatWest is PRAGMATIST until evidence proves otherwise.
-
-UK Regional banks are expected to have lower CDM adoption rates than European Tier 1 banks.
+Assume NatWest Group PLC is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-*Pre-mortem complete. Proceeding to Tier 1 evidence gathering.*

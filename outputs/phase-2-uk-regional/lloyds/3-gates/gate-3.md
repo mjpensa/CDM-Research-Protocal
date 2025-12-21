@@ -1,7 +1,8 @@
-# Reasoning Gate 3: Post-Tier 3 Assessment
+# Reasoning Gate 3: Pre-Adversarial Assessment: Lloyds Banking Group PLC
 
-**Bank**: Lloyds Banking Group plc
-**Date**: 2025-12-20
+**Bank:** Lloyds Banking Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -13,10 +14,28 @@
 | P(PRAGMATIST) | 92% |
 | Confidence | 50% |
 
-## Decision: PROCEED TO ADVERSARIAL CHALLENGE
+## Gate Decision Criteria
 
-**Rationale**: P(ARCHITECT) well below 20% threshold. Strong OBSERVER (Historical-Engagement) evidence pattern.
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 8% → **Below 20% threshold**
+
+## Decision: PROCEED TO TIER ADVERSARIAL
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
 
 ---
 
-*Gate 3 passed. Proceeding to adversarial challenge.*
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

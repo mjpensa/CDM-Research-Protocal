@@ -1,12 +1,12 @@
 # Pre-Mortem Analysis: Barclays PLC
 
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
-**Prior Probability**: P(ARCHITECT) = 30%
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## 1. Research Objective
+## Research Objective
 
 **Primary Goal**: Validate or refute Barclays' ARCHITECT classification for CDM adoption
 
@@ -17,9 +17,7 @@
 4. Are DerivHack hackathons evidence of genuine CDM commitment vs marketing?
 5. What is the current status of CCP prototype mentioned in 2021?
 
----
-
-## 2. Potential Failure Modes
+## Potential Failure Modes
 
 ### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
 
@@ -44,9 +42,7 @@
 | **Stale Prototypes** | 2021 CCP prototype may have been abandoned | Require evidence that prototype evolved to pilot or production |
 | **FINOS Platform Bias** | FINOS hosting doesn't guarantee production deployment | Require independent production evidence |
 
----
-
-## 3. Search Strategy
+## Search Strategy
 
 ### Tier 1 (Official Sources)
 - Barclays official news/press releases
@@ -69,43 +65,19 @@
 - Patent filings related to CDM
 - Blog posts from Barclays employees
 
----
+## Key Hypotheses to Test
 
-## 4. Key Hypotheses to Test
+N/A
 
-### H1: Barclays is a CDM ARCHITECT (internal capability)
-- **Evidence needed**: Technical demonstration, FINOS contribution, or production announcement
-- **Disconfirming evidence**: All CDM work via vendors only
-
-### H2: CDM work is strategic priority for Barclays
-- **Evidence needed**: Sustained investment over time, production timeline announced
-- **Disconfirming evidence**: 2021 prototype abandoned with no follow-up
-
-### H3: Lee Braine is driving genuine CDM technical program
-- **Evidence needed**: Named team members, technical articles, FINOS contributions
-- **Disconfirming evidence**: Advocacy without corresponding technical outputs
-
-### H4: DerivHack represents serious R&D initiative
-- **Evidence needed**: Outputs documented, talent recruited, code released
-- **Disconfirming evidence**: One-off event with no follow-through
-
----
-
-## 5. Decision Points
+## Decision Points
 
 After each evidence tier, evaluate:
 1. **Probability Update**: How does evidence change P(ARCHITECT)?
 2. **Confidence Level**: Is evidence sufficient for classification?
 3. **Sub-Classification**: Is Barclays ARCHITECT-Native (production) or ARCHITECT-Follower (pilot)?
 
----
+## Null Hypothesis Reminder
 
-## 6. Null Hypothesis Reminder
-
-**Default assumption**: Barclays is PRAGMATIST until evidence proves otherwise.
-
-ARCHITECT classification requires evidence of active CDM adoption or development.
+Assume Barclays PLC is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-*Pre-mortem complete. Proceeding to Tier 1 evidence gathering.*

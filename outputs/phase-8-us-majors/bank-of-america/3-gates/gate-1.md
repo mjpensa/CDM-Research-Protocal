@@ -1,32 +1,37 @@
-# Reasoning Gate 1: Post-Tier 1 Analysis - Bank of America Corporation
+# Reasoning Gate 1: Post-Tier 1 Assessment: Bank of America Corporation
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Bank of America Corporation
-**Date**: 2025-12-21
-
----
-
-## Evidence Summary
-
-**Tier 1 Count**: 0 items
-**Sources Searched**: BofA investor relations, SEC filings, ISDA.org, FINOS.org
+**Bank:** Bank of America Corporation
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Reasoning Quality
+## Current Probability State
 
-**What We Know**: Major G16 dealer with no official CDM announcements
-**What We Infer**: Traditional platform usage or very quiet vendor adoption
-**Bayesian Update**: P(ARCHITECT) dropped from 25% to 3%
+N/A
 
----
+## Gate Decision Criteria
 
-## Decision
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-**PASS** - Proceed to Tier 2 research
+## Decision: **PASS** - Proceed to Tier 2 research
+
 
 Focus: Trade press coverage, vendor partnerships, ISDA engagement beyond protocols
 
 ---
 
 **Methodology**: Reasoning gate per cognitive bias mitigation protocol
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 2
+
+N/A
+
+---
+
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

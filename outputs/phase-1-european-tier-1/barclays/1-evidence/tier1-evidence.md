@@ -1,68 +1,89 @@
 # Tier 1 Evidence: Barclays PLC
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 3
-- **Schema Version**: 4.3
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
+
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 3 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[BARC-001] TIER 1 — SUPPORTS ARCHITECT
+### BARC-001: Evidence Item
 
-**Source**: https://resources.finos.org/content/barclays-demonstration-of-interest-rate-swap-processing-using-common-domain-model-cdm/
-**Date**: 2023-01-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "Barclays has demonstrated interest rate swap processing using the Common Domain Model (CDM) open standard. This demonstration was introduced by Lee Braine, Managing Director."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Recent
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `pilot_or_poc`
-**LR Mapping**: prototype_demonstration (LR = 3.5)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Demonstration/prototype level, not confirmed production deployment.
+**Caveats:** N/A
 
----
+### BARC-002: Evidence Item
 
-[BARC-002] TIER 1 — SUPPORTS ARCHITECT
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.risk.net/risk-management/7886321/barclays-looks-to-woo-ccps-with-cdm-prototype
-**Date**: 2021-10-01
+**Excerpt:** N/A
 
-**Finding**: "Barclays has released a blueprint showing how the derivatives industry could implement a common data standard for interest rate swaps – a potentially big step towards reducing post-trade costs."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Dated
-- Specificity: Specific
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `pilot_or_poc`
-**LR Mapping**: prototype_release (LR = 3.0)
+**Caveats:** N/A
 
-**Caveats**: Blueprint/prototype level. Would require new utility to maintain golden record of trades.
+### BARC-004: Evidence Item
 
----
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-[BARC-004] TIER 1 — SUPPORTS ARCHITECT
+**Excerpt:** N/A
 
-**Source**: https://www.risk.net/journal-of-financial-market-infrastructures/7914891/industry-adoption-scenarios-for-authoritative-data-stores-using-the-international-swaps-and-derivatives-association-common-domain-model
-**Date**: 2019-11-01
+**Analysis:** N/A
 
-**Finding**: "Barclays (in collaboration with ISDA and REGnosys) hosted the Barclays DerivHack 2018 coding hackathon for market participants to explore the CDM for derivatives as well as the Barclays DerivHack 2019 for securities."
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Historical
-- Specificity: Specific
+**Caveats:** N/A
 
-**Claim Type**: `open_source_contribution`
-**LR Mapping**: ecosystem_leadership (LR = 2.5)
+## Informative Absences
 
-**Caveats**: Hackathons from 2018-2019. Shows early leadership but dated.
+N/A
 
 ---

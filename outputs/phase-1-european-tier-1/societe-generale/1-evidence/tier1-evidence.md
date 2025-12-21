@@ -1,30 +1,45 @@
-# Tier 1 Evidence: Société Générale
+# Tier 1 Evidence: SociÃ©tÃ© GÃ©nÃ©rale
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 1
-- **Schema Version**: 4.3
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 1 |
+| Schema Version | 4.3 |
+
 ## Evidence Inventory
 
-[SG-002] TIER 1 — NEUTRAL
+### SG-002: Evidence Item
 
-**Source**: https://wholesale.banking.societegenerale.com/en/compliance-regulatory-information/market-regulation/emir/
-**Date**: 2024-04-29
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "EU EMIR Refit revised transaction reporting standards apply from 29 April 2024, while UK EMIR Refit revised reporting requirements apply from 30 September 2024."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Current
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: regulatory_compliance_page (LR = 1.0)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Standard regulatory compliance information. Does not indicate CDM usage - could be traditional or CDM-based approach. No evidence of CDM/DRR implementation.
+**Caveats:** N/A
+
+## Informative Absences
+
+N/A
 
 ---

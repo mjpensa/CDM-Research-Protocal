@@ -1,20 +1,24 @@
-# Bayesian Update: Post-Tier 2 Evidence
+# Bayesian Update: Post-Tier 2 Evidence: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Bank**: Société Générale
-**Date**: 2025-12-20
-**Prior P(ARCHITECT) (post-Tier 1)**: 29%
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
+## Prior Probability
+
+P(ARCHITECT) prior: 0%
+
 ## Tier 2 Evidence Summary
 
-| ID | Evidence | Direction | LR |
-|----|----------|-----------|-----|
-| SG-001 | Miki Cheung at Informa Trade Reporting Summit | SUPPORTS_ARCHITECT | 1.4 |
-| SG-003 | Risk.net Derivatives Clearer award (no CDM) | NEUTRAL | 0.9 |
-| (null) | No BNP Paribas follow pattern | SUPPORTS_PRAGMATIST | 0.85 |
+No Tier 2 evidence found.
 
-## Combined LR (Tier 2) = 1.4 × 0.9 × 0.85 = **1.07**
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -24,9 +28,24 @@ Posterior odds = 0.408 × 1.07 = 0.437
 Posterior P(ARCHITECT) = 0.437 / (1 + 0.437) = 0.30 = 30%
 ```
 
-## Updated: P(ARCHITECT) = 30%
+## Updated Probabilities
 
-Conference participation (SG-001) slightly offsets negative signals. Hypothesis of following BNP Paribas not supported.
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
+
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
 
 ---
 

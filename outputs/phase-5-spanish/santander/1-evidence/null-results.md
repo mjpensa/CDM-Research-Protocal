@@ -1,18 +1,16 @@
-# Null Results: Banco Santander S.A.
+# Null Results Registry: Banco Santander S.A.
 
 **Bank:** Banco Santander S.A.
-**Research Date:** 2025-12-21
-**Total Null Searches:** 4
+**Phase:** 5 - Spanish
+**Date:** 2025-12-21
 
 ---
 
-## Purpose
+## Summary
 
-This document records exhaustive searches that yielded NO evidence. Per CLAUDE.md Section 6 (Temporal Thresholds), the absence of evidence after thorough searching is itself informative and contributes to classification confidence.
+Null results documented from exhaustive search.
 
----
-
-## Tier 1 Null Searches
+## Tier 1 Null Results
 
 ### Search 1: Recent CDM Adoption Evidence
 
@@ -45,9 +43,7 @@ This document records exhaustive searches that yielded NO evidence. Per CLAUDE.m
 
 **Significance:** Not participating in open-source CDM ecosystem development.
 
----
-
-## Tier 2 Null Searches
+## Tier 2 Null Results
 
 ### Search 3: Trade Press Coverage
 
@@ -64,9 +60,7 @@ This document records exhaustive searches that yielded NO evidence. Per CLAUDE.m
 
 **Significance:** Major CDM implementations typically receive trade press coverage. Absence suggests no significant initiatives underway.
 
----
-
-## Tier 3 Null Searches
+## Tier 3 Null Results
 
 ### Search 4: Hiring Signals
 
@@ -82,17 +76,8 @@ This document records exhaustive searches that yielded NO evidence. Per CLAUDE.m
 
 **Significance:** Absence of CDM-related hiring suggests no active project requiring specialized talent.
 
+## Implications for Classification
+
+Informative absence supports PRAGMATIST classification.
+
 ---
-
-## Interpretation
-
-The comprehensive absence of recent evidence across all tiers, combined with only historical (2018-2019) DRR pilot participation, suggests:
-
-1. **Historical Awareness:** Santander UK demonstrated early interest in regulatory reporting standardization
-2. **No Sustained Adoption:** No evidence of pilot outcomes translating into production systems
-3. **Current Posture Unknown:** Gap between historical pilot and present suggests either:
-   - Internal adoption without public disclosure (unlikely given thorough search)
-   - Pilot did not progress to production implementation
-   - Strategic pivot away from CDM approach
-
-**Confidence Impact:** These null results, when combined with dated Tier 1 evidence, support an OBSERVER (Historical-Engagement) classification at 50% confidence rather than UNKNOWN, as the historical pilot participation is documented fact.

@@ -1,9 +1,8 @@
-# CDM/DRR Assessment: Lloyds Banking Group plc
+# CDM/DRR Assessment: Lloyds Banking Group PLC
 
-**Classification**: OBSERVER (Historical-Engagement)
-**Confidence**: 50%
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
+**Bank:** Lloyds Banking Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -15,9 +14,7 @@ Unlike NatWest (which demonstrates FINOS capability through Fluxnova), Lloyds ha
 
 **Key Finding**: Lloyds engaged with CDM historically (2019 pilot) but has not continued. As a retail/commercial-focused bank with limited derivatives exposure, CDM adoption appears deprioritized.
 
----
-
-## 1. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -29,9 +26,7 @@ Unlike NatWest (which demonstrates FINOS capability through Fluxnova), Lloyds ha
 | G-SIB Status | No |
 | Phase | 2 (UK Regional) |
 
----
-
-## 2. Classification Summary
+## Classification Summary
 
 | Metric | Value |
 |--------|-------|
@@ -40,11 +35,8 @@ Unlike NatWest (which demonstrates FINOS capability through Fluxnova), Lloyds ha
 | P(ARCHITECT) | 8% |
 | P(PRAGMATIST) | 92% |
 | Confidence | 50% |
-| Maturity Score | 1/5 |
 
----
-
-## 3. Evidence Inventory
+## Evidence Inventory
 
 ### Tier 1 Evidence (Official Sources)
 
@@ -62,9 +54,45 @@ Unlike NatWest (which demonstrates FINOS capability through Fluxnova), Lloyds ha
 
 **No Tier 3 evidence found.**
 
----
+## Probability Trajectory
 
-## 4. Null Results (Informative Absences)
+```
+Prior:        15%
+Post-Tier 1:  20%
+Post-Tier 2:  13%
+Post-Tier 3:   8%
+```
+
+**Trajectory Analysis**: Brief increase from pilot (15% → 20%) reversed by comprehensive absence of follow-through (20% → 8%).
+
+## Recommendations
+
+### Re-Classification Triggers
+
+**Upgrade to ARCHITECT**:
+- Evidence of current pilot or production
+- CDM-specific hiring signals
+- Vendor partnership announcements
+
+**Maintain OBSERVER**:
+- Continued absence of CDM signals
+
+## Confidence Calibration
+
+### Confidence: 50% (Moderate)
+
+**Factors Reducing Confidence** (-50%):
+- **Single Evidence Item**: Only one Tier 1 evidence piece
+- **Reliance on Absences**: Classification based on lack of evidence
+- **No Direct Disconfirmation**: No statement of non-adoption
+
+**Factors Supporting Confidence** (+50%):
+- **Consistent Pattern**: Null results across all tiers
+- **Temporal Decay**: 5-year gap undermines historical evidence
+- **Business Model Fit**: Retail focus aligns with low CDM priority
+- **Simpler Explanation**: Pilot abandonment explains evidence
+
+## Null Results (Informative Absences)
 
 | Category | Implication | Tier |
 |----------|-------------|------|
@@ -76,22 +104,7 @@ Unlike NatWest (which demonstrates FINOS capability through Fluxnova), Lloyds ha
 
 **Pattern**: Complete absence of CDM activity since 2019 pilot.
 
----
-
-## 5. Probability Trajectory
-
-```
-Prior:        15%
-Post-Tier 1:  20%
-Post-Tier 2:  13%
-Post-Tier 3:   8%
-```
-
-**Trajectory Analysis**: Brief increase from pilot (15% → 20%) reversed by comprehensive absence of follow-through (20% → 8%).
-
----
-
-## 6. Classification Rationale
+## Classification Rationale
 
 ### Why OBSERVER (Historical-Engagement)?
 
@@ -110,26 +123,7 @@ Post-Tier 3:   8%
 **Not ARCHITECT**:
 - No production or current pilot evidence
 
----
-
-## 7. Confidence Calibration
-
-### Confidence: 50% (Moderate)
-
-**Factors Reducing Confidence** (-50%):
-- **Single Evidence Item**: Only one Tier 1 evidence piece
-- **Reliance on Absences**: Classification based on lack of evidence
-- **No Direct Disconfirmation**: No statement of non-adoption
-
-**Factors Supporting Confidence** (+50%):
-- **Consistent Pattern**: Null results across all tiers
-- **Temporal Decay**: 5-year gap undermines historical evidence
-- **Business Model Fit**: Retail focus aligns with low CDM priority
-- **Simpler Explanation**: Pilot abandonment explains evidence
-
----
-
-## 8. Business Context
+## Business Context
 
 ### Why OBSERVER Makes Sense
 
@@ -147,9 +141,7 @@ Post-Tier 3:   8%
 
 **CDM Relevance**: Low-Medium. Limited derivatives operations reduce CDM strategic priority.
 
----
-
-## 9. Alternative Hypotheses
+## Alternative Hypotheses
 
 ### H1: Silent Internal Build
 
@@ -163,9 +155,7 @@ Post-Tier 3:   8%
 
 **Why Likely**: Explains all evidence, aligns with business model, 5-year silence
 
----
-
-## 10. Comparison to NatWest
+## Comparison to NatWest
 
 | Dimension | NatWest | Lloyds |
 |-----------|---------|--------|
@@ -177,23 +167,7 @@ Post-Tier 3:   8%
 
 **Key Difference**: NatWest demonstrates open-source capability (Fluxnova) but chooses not to apply it to CDM. Lloyds has no FINOS engagement at all.
 
----
-
-## 11. Recommendations
-
-### Re-Classification Triggers
-
-**Upgrade to ARCHITECT**:
-- Evidence of current pilot or production
-- CDM-specific hiring signals
-- Vendor partnership announcements
-
-**Maintain OBSERVER**:
-- Continued absence of CDM signals
-
----
-
-## 12. Final Verdict
+## Final Verdict
 
 **Classification**: OBSERVER (Historical-Engagement)
 

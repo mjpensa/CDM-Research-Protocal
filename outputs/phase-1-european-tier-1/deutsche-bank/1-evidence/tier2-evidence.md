@@ -1,49 +1,67 @@
 # Tier 2 Evidence: Deutsche Bank AG
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 2
-- **Schema Version**: 4.3
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
+
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[DB-001] TIER 2 — SUPPORTS ARCHITECT
+### DB-001: Evidence Item
 
-**Source**: https://jwg-it.eu/regcasts/digitizing-derivative-reporting-with-drr/
-**Date**: 2022-11-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "Dawd Haque from Deutsche Bank participated in a discussion about 'Digitizing derivative reporting with DRR,' alongside PJ Di Giammarino from JWG and Leo Labeis from REGnosys"
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Dated
-- Specificity: Moderate
+**Analysis:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: conference_panel_participation (LR = 1.5)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Evidence is from November 2022 (over 2 years old). Conference participation does not imply CDM implementation. No follow-up evidence of continued engagement.
+**Caveats:** N/A
 
----
+### DB-004: Evidence Item
 
-[DB-004] TIER 2 — NEUTRAL
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.risk.net/risk-management/6512226/patchy-response-to-isdas-back-office-of-the-future
-**Date**: 2023-08-01
+**Excerpt:** N/A
 
-**Finding**: "Some banks are said to be having trouble making a case internally for a project that promises to produce savings of up to $3 billion a year on post-trade processes. It can cost banks in the tens or even hundreds of millions to upgrade their infrastructure for CDM."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Dated
-- Specificity: Moderate
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: industry_context (LR = 1.0)
+**Caveats:** N/A
 
-**Caveats**: General industry context, not Deutsche Bank specific. Explains potential hesitation factors.
+## Informative Absences
+
+N/A
 
 ---

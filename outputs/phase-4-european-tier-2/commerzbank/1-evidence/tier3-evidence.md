@@ -1,32 +1,25 @@
 # Tier 3 Evidence: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Research Date:** 2025-12-20
-**Researcher:** Claude Code (Opus 4.5)
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-Tier 3 searches not executed. Classification determined from Tier 2 evidence (Murex MX.3 migration indicates PRAGMATIST Vendor-Dependent approach).
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-## Sources Searched
+## Evidence Inventory
 
-*Not applicable - Tier 3 searches skipped*
+No Tier 3 evidence found.
 
-## Evidence Items
+## Informative Absences
 
-*None - Tier 3 not executed*
+N/A
 
-## Analysis
-
-Tier 3 searches (job postings, LinkedIn, blogs) were not necessary because:
-1. Murex MX.3 migration provides clear vendor-dependent classification
-2. Absence of CDM evidence in Tier 1 and Tier 2 is conclusive
-3. Traditional platform migration contradicts CDM adoption hypothesis
-
-## Confidence Assessment
-
-- **Tier 3 Evidence Count:** 0 (not executed)
-- **Classification Confidence:** 50% (Tier 2 maximum for vendor proxy signal)
+---

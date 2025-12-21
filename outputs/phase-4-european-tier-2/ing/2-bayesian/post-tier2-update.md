@@ -1,36 +1,24 @@
-# Bayesian Update: Post-Tier 2 - ING Group
+# Bayesian Update: Post-Tier 2 Evidence: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Prior Probability (Post-Tier 1)
+## Prior Probability
 
-| Parameter | Value |
-|-----------|-------|
-| P(ARCHITECT) | 0.055 |
-| P(PRAGMATIST) | 0.945 |
+P(ARCHITECT) prior: 0%
 
 ## Tier 2 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| *None* | No Tier 2 evidence found | N/A | N/A |
+No Tier 2 evidence found.
 
-## Null Result Impact
+## Likelihood Ratio Calculation
 
-**Continued Informative Absence:**
-
-- No Risk.net coverage of ING CDM initiatives
-- No Waters Technology articles on ING derivatives modernization
-- No conference presentations by ING on CDM topics
-- No vendor press releases mentioning ING CDM adoption
-
-**Likelihood Ratio for Tier 2 Null Result:** 0.8
-- Trade press would cover significant CDM initiatives
-- Absence moderately supports PRAGMATIST hypothesis
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -45,12 +33,17 @@ P(ARCHITECT|E) = 0.027 / (1 + 0.027) = 0.026 ≈ 2.6%
 
 ## Updated Probabilities
 
-| Parameter | Post-Tier 1 | Post-Tier 2 | Change |
-|-----------|-------------|-------------|--------|
-| P(ARCHITECT) | 0.055 | 0.026 | -0.029 |
-| P(PRAGMATIST) | 0.945 | 0.974 | +0.029 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Cumulative Null Results
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
 
 | Tier | Null Results | Cumulative Impact |
 |------|--------------|-------------------|
@@ -58,6 +51,6 @@ P(ARCHITECT|E) = 0.027 / (1 + 0.027) = 0.026 ≈ 2.6%
 | Tier 2 | 2 searches | Reinforces negative signal |
 | **Total** | 4 searches | Pattern of non-adoption clear |
 
-## Decision
+---
 
-**Continue to Tier 3 search** - Complete all tiers per protocol requirements.
+*Proceeding to Tier 3.*

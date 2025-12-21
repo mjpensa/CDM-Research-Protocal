@@ -1,24 +1,12 @@
-# Steelman Argument: State Street Corporation
+# Steelman: Strongest Counter-Argument: State Street Corporation
 
-**Bank**: State Street Corporation
-**Proposed Classification**: UNKNOWN (Insufficient-Evidence) at 30%
-**Date**: 2025-12-21
-
----
-
-## Purpose
-
-Present the strongest possible argument against the UNKNOWN classification, using the most charitable interpretation of all available evidence and context.
+**Bank:** State Street Corporation
+**Phase:** 9 - US Custody Banks
+**Date:** 2025-12-21
 
 ---
 
-## Steelman Thesis
-
-**State Street should be classified as OBSERVER at 35% confidence, not UNKNOWN at 30%.**
-
----
-
-## Strongest Argument Against UNKNOWN
+## Strongest Counter-Hypothesis
 
 ### Premise 1: Scale Implies Engagement
 
@@ -89,110 +77,16 @@ Even if State Street is not currently engaged, regulatory trajectory makes futur
 
 **Implication**: Classifying as OBSERVER acknowledges likely near-term engagement, while UNKNOWN suggests complete disengagement that is implausible given regulatory environment.
 
----
+## Supporting Logic
 
-## Integrated Steelman Argument
+N/A
 
-### The Strongest Case for OBSERVER
+## Why This Argument Fails
 
-Combining all premises:
+N/A
 
-**State Street is most likely a passive OBSERVER conducting private due diligence on CDM:**
+## Steelman Assessment
 
-1. **Scale and sophistication** make complete disengagement implausible
-2. **Private engagement channels** not captured by public research methods
-3. **Custodian business model** predicts low public profile even if engaged
-4. **Regulatory trajectory** makes future engagement highly probable
-
-**Classification**: OBSERVER (Passive Monitoring)
-**Confidence**: 35% (maximum for Tier 4 inference per protocol)
-
-**Rationale**:
-- Business context inference (Tier 4) supports OBSERVER over UNKNOWN
-- 35% confidence acknowledges lack of direct evidence while giving weight to contextual likelihood
-- More defensible than UNKNOWN given implausibility of complete disengagement for institution of this scale
+**Grade**: 2/5 (Weak)
 
 ---
-
-## Why This Steelman Matters
-
-This argument represents the **most charitable interpretation** of State Street's position:
-
-- **Acknowledges genuine uncertainty** about private engagement
-- **Gives weight to business context** (scale, regulatory pressure, business model)
-- **Challenges over-reliance on public signals** for custodian business model
-- **Recognizes protocol flexibility** (Tier 4 inference permitted in synthesis stage)
-
-If this steelman argument is rejected, the UNKNOWN classification becomes very robust.
-
----
-
-## Critical Evaluation of Steelman
-
-### Steelman Strengths
-
-1. **Logically Coherent**: Premises build on each other systematically
-2. **Contextually Grounded**: Uses real business model and regulatory context
-3. **Addresses Search Bias**: Recognizes methodology may miss private engagement
-4. **Calibrates Confidence**: 35% appropriately reflects inference-based reasoning
-
-### Steelman Weaknesses
-
-1. **Violates Evidence-First Mandate**: Entire argument is Tier 4 inference without citation
-2. **Speculative Scenarios**: Private engagement scenarios are plausible but unverified
-3. **Circular Reasoning**: "Scale implies engagement" assumes what it seeks to prove
-4. **Ignores Null Results**: Dismisses informative absence across 17 source types
-5. **Weak OBSERVER Definition**: Protocol defines OBSERVER as requiring participation signals, not mere awareness
-
-### Fatal Flaw
-
-**Protocol Section 3 defines OBSERVER as**:
-> "Working group member without technical artifacts"
-
-**Required Evidence**:
-- Membership signal OR
-- Participation signal (conference, job posting, etc.)
-
-**State Street Evidence**: None
-
-**Conclusion**: Steelman argument conflates "probable awareness" with "verified participation." OBSERVER requires evidence of participation, not inference of awareness.
-
----
-
-## Verdict
-
-**Is the Steelman Argument Persuasive?** Partially
-
-**Valid Insights**:
-- Custodian business model may predict lower public profile
-- Private engagement channels may exist
-- Complete disengagement is somewhat implausible for institution of this scale
-
-**Insufficient to Overcome**:
-- Evidence-First mandate violation
-- Lack of any participation signals across 17 source types
-- Protocol definition of OBSERVER requiring verifiable participation
-
-**Impact on Classification**: The steelman argument does not justify upgrading to OBSERVER, but it does support setting confidence at **30%** (acknowledging uncertainty) rather than higher.
-
----
-
-## Final Determination
-
-**Steelman Argument**: REJECTED
-
-**Reasoning**:
-1. Protocol requires evidence-based classification
-2. Business model inference (Tier 4) cannot override null results across Tier 1-3
-3. OBSERVER classification requires participation signal, not scale inference
-4. 30% confidence already accounts for uncertainty about private engagement
-
-**Classification Stands**: UNKNOWN (Insufficient-Evidence) at 30% confidence
-
----
-
-## Key Takeaway
-
-The steelman argument highlights that **30% confidence is appropriate** - high enough to reflect strong null results, but low enough to acknowledge the genuine possibility of private exploration not captured by public sources.
-
-This calibrated confidence is the main contribution of the adversarial testing process.

@@ -1,36 +1,46 @@
-# Post-Tier 2 Bayesian Update
+# Bayesian Update: Post-Tier 2 Evidence: Agricultural Bank of China Limited
 
-**Research Date**: 2025-12-21
-
----
-
-## Prior (Post-Tier 1)
-
-- PRAGMATIST: 99.5%
-- OBSERVER: 0.2%
-- ARCHITECT: 0.3%
+**Bank:** Agricultural Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Tier 2 Evidence Review
+## Prior Probability
 
-**Evidence Found**: None
+P(ARCHITECT) prior: 20%
 
-**Sources Checked**: Risk.net, Waters Technology, Reuters, Bloomberg, Chinese financial media
+## Tier 2 Evidence Summary
 
-**Result**: No trade press coverage or analyst reports mentioning CDM.
+No Tier 2 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
+
+## Posterior Calculation
+
+```
+Posterior = Prior (no update)
+```
+
+## Updated Probabilities
+
+N/A
+
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
 
 ---
 
-## Bayesian Update
-
-Null Tier 2 result maintains high PRAGMATIST probability: 99.8%
-
-**Updated Probabilities**:
-- PRAGMATIST: 99.8%
-- OBSERVER: 0.1%
-- ARCHITECT: 0.1%
-
----
-
-**Decision**: Proceed to Tier 3 for completeness.
+*Proceeding to Tier 3.*

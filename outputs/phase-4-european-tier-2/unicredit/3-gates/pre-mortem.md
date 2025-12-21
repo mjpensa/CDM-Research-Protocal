@@ -1,16 +1,14 @@
-# Pre-Mortem: UniCredit CDM Research
+# Pre-Mortem Analysis: UniCredit S.p.A.
 
-**Bank:** UniCredit
-**Phase:** 4 - European Tier 2
-**Pre-Mortem Date:** 2025-12-20
-
----
-
-## Scenario: Research Yields Inconclusive Results
-
-Imagine it is 2 hours from now. The UniCredit CDM research has concluded with inconclusive or contradictory results. What went wrong?
+**Bank:** UniCredit S.p.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
+
+## Research Objective
+
+Assess UniCredit S.p.A.'s CDM/DRR adoption maturity.
 
 ## Potential Failure Modes
 
@@ -98,64 +96,35 @@ Imagine it is 2 hours from now. The UniCredit CDM research has concluded with in
 - Historical board membership shows ISDA ecosystem engagement, not CDM engagement
 - Clearly note temporal mismatch in analysis
 
----
+## Search Strategy
 
-## Success Criteria
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
 
-Research will be considered successful if it:
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
 
-1. Accurately classifies UniCredit based on available evidence
-2. Clearly distinguishes historical from current engagement
-3. Applies appropriate confidence levels to dated evidence
-4. Exhaustively searches Tier 1-3 sources
-5. Acknowledges limitations of historical evidence
-6. Provides clear rationale for OBSERVER (Historical-Engagement) classification
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
 
----
+## Key Hypotheses to Test
 
-## Key Questions to Answer
+N/A
 
-1. When did TJ Lim's ISDA Board tenure end? (2016)
-2. When did ISDA CDM development begin? (~2017)
-3. Are there any current UniCredit representatives in ISDA roles? (No)
-4. Has UniCredit engaged with CDM since 2016? (No evidence found)
-5. What is the appropriate confidence level for 9-year-old evidence? (40% per temporal thresholds)
+## Decision Points
 
----
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
 
-## Risk Mitigation Checklist
+## Null Hypothesis Reminder
 
-- [ ] Verify TJ Lim's board tenure dates
-- [ ] Confirm no current UniCredit ISDA Board representation
-- [ ] Search multiple Tier 2 sources (Risk.net, Waters, DerivSource)
-- [ ] Check FINOS member directory
-- [ ] Apply 0.3 temporal weight multiplier for historical evidence
-- [ ] Distinguish OBSERVER (Historical) from OBSERVER (Ecosystem-Engaged)
-- [ ] Set confidence at 40% maximum for historical-only evidence
-- [ ] Document all null results as informative absence
+Assume UniCredit S.p.A. is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-## Expected Outcome
-
-**Most Likely:** OBSERVER (Historical-Engagement) at 40% confidence
-
-**Rationale:**
-- Single historical evidence item (TJ Lim board membership 2011-2016)
-- Evidence predates CDM development
-- No current engagement signals found
-- Comprehensive null results across Tier 2-3
-- Historical evidence warrants OBSERVER classification, not UNKNOWN
-- Temporal decay limits confidence to 40%
-
----
-
-## Red Flags
-
-If research concludes with any of these, reassess:
-
-1. Confidence >50% with only historical evidence
-2. ARCHITECT classification without technical evidence
-3. UNKNOWN classification despite ISDA Board evidence
-4. Failure to distinguish historical vs. current engagement
-5. Missing Tier 2 searches (Risk.net, Waters)

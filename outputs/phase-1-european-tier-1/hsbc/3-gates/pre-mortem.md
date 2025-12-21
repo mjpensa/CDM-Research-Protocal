@@ -1,12 +1,12 @@
-# Pre-Mortem Analysis: HSBC Holdings plc
+# Pre-Mortem Analysis: HSBC Holdings PLC
 
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
-**Prior Probability**: P(ARCHITECT) = 25%
+**Bank:** HSBC Holdings PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## 1. Research Objective
+## Research Objective
 
 **Primary Goal**: Validate DRR pilot participation and assess current CDM adoption status
 
@@ -17,9 +17,7 @@
 4. What is HSBC's technology strategy for derivatives reporting given €22.2T clearing volume?
 5. Are there hidden CDM investments given HSBC's scale and DRR history?
 
----
-
-## 2. Potential Failure Modes
+## Potential Failure Modes
 
 ### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
 
@@ -47,9 +45,7 @@
 | **Official Website Staleness** | EMIR page may not represent current technology decisions | Cross-check with recent annual reports, SEC filings |
 | **Vendor Marketing Inflation** | Vendor press releases may overstate HSBC relationships | Require HSBC confirmation for claimed partnerships |
 
----
-
-## 3. Search Strategy
+## Search Strategy
 
 ### Tier 1 (Official Sources)
 - HSBC official news/press releases on DRR, CDM, regulatory reporting
@@ -74,43 +70,19 @@
 - GitHub activity from HSBC contributors
 - Patent filings related to CDM or regulatory reporting
 
----
+## Key Hypotheses to Test
 
-## 4. Key Hypotheses to Test
+N/A
 
-### H1: HSBC continues CDM development post-pilot
-- **Evidence needed**: Post-2019 announcement, hiring, or production evidence
-- **Disconfirming evidence**: Complete absence of post-2019 CDM signals
-
-### H2: HSBC is using traditional DTCC approach for EMIR
-- **Evidence needed**: Official documentation of DTCC Trade Repository usage
-- **Disconfirming evidence**: Evidence of CDM-based EMIR reporting
-
-### H3: HSBC is building internal CDM capability
-- **Evidence needed**: Hiring for CDM roles, FINOS contributions, internal team references
-- **Disconfirming evidence**: All regulatory technology via traditional vendors only
-
-### H4: DRR pilot was exploratory, not strategic commitment
-- **Evidence needed**: Pilot concluded in 2019 with no follow-up projects
-- **Disconfirming evidence**: Clear transition from pilot to production phase
-
----
-
-## 5. Decision Points
+## Decision Points
 
 After each evidence tier, evaluate:
 1. **Probability Update**: How does evidence change P(ARCHITECT)?
 2. **Confidence Level**: Is evidence sufficient for classification?
 3. **Continue/Skip**: Does probability exceed 80% in either direction?
 
----
+## Null Hypothesis Reminder
 
-## 6. Null Hypothesis Reminder
-
-**Default assumption**: HSBC is PRAGMATIST until evidence proves otherwise.
-
-DRR pilot participation does not automatically indicate ongoing CDM architecture - it may have been regulatory experimentation that did not graduate to production.
+Assume HSBC Holdings PLC is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-*Pre-mortem complete. Proceeding to Tier 1 evidence gathering.*

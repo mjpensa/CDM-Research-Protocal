@@ -1,7 +1,8 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment
+# Reasoning Gate 2: Post-Tier 2 Assessment: UBS Group AG
 
-**Bank**: UBS Group AG
-**Date**: 2025-12-20
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -21,26 +22,19 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 3
 
-**Rationale**: Per instructions to process all 3 tiers for every bank, and given the unique UBS pattern (integration-constrained but historically engaged), we proceed to Tier 3 to complete the evidence picture before moving to adversarial challenge.
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Trajectory Analysis
 
-| Stage | P(ARCHITECT) | Direction |
-|-------|--------------|-----------|
+| Stage | P(ARCHITECT) | Change |
+|-------|--------------|--------|
 | Prior | 10% | - |
-| Post-Tier 1 | 9% | Flat/slight decrease |
-| Post-Tier 2 | 10% | Slight increase |
 
-**Pattern**: Tier 1 integration constraint pushed probability down; Tier 2 inherited capability signal (Credit Suisse) slightly recovers it. Net effect is negligible - probability remains in the 9-10% range, firmly PRAGMATIST territory.
+## Evidence Quality Assessment
 
-## Key Insights from Tier 2
+N/A
 
-1. **Inherited vs Organic**: Credit Suisse's CDM engagement is not evidence of UBS's own initiative - it's evidence of what UBS acquired
-2. **Post-Merger Silence**: No evidence that UBS has continued Credit Suisse's CDM work or publicly acknowledged CDM as part of the integration
-3. **Derivatives Award Context**: Risk.net 2024 award celebrates derivatives strength but mentions ZERO CDM involvement despite covering current tech
-4. **Signal Absence**: If UBS were planning to leverage Credit Suisse CDM capability, we would expect some signal (vendor announcement, hiring, conference presence)
-
-## Remaining Questions for Tier 3
+## Key Questions for Tier 3
 
 1. Are there CDM-related job postings at UBS (hiring for post-2026 capability building)?
 2. Do any LinkedIn profiles suggest UBS CDM work or planning?
@@ -59,4 +53,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 2 passed. Proceeding to Tier 3 evidence gathering.*
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

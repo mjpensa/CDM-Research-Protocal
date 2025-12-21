@@ -293,6 +293,62 @@ def calculate_freshness(date_str: str | None) -> dict:
         }
 
 
+def calculate_freshness_with_type_decay(
+    date_str: str | None,
+    claim_type: str | None = None,
+    tier: int = 2
+) -> dict:
+    """
+    Calculate temporal freshness with type-specific decay (Enhancement 5).
+
+    Different evidence types decay at different rates:
+    - production_usage: 36-month half-life (very sticky)
+    - hiring_signal: 6-month half-life (transient)
+    - etc.
+
+    Args:
+        date_str: Evidence date string
+        claim_type: Type of claim (e.g., 'production_usage', 'hiring_signal')
+        tier: Evidence tier (1, 2, or 3)
+
+    Returns:
+        dict with age_days, category, weight_multiplier, decay_model
+    """
+    # Get base freshness
+    base_freshness = calculate_freshness(date_str)
+
+    if not claim_type or base_freshness.get('age_days') is None:
+        return base_freshness
+
+    # Import decay calculator
+    try:
+        from config_loader import calculate_evidence_weight, get_evidence_decay_rate
+
+        age_days = base_freshness['age_days']
+        age_months = age_days / 30.44  # Average days per month
+
+        # Calculate type-specific weight
+        type_weight = calculate_evidence_weight(claim_type, age_months, tier)
+
+        # Get decay parameters for reference
+        decay_params = get_evidence_decay_rate(claim_type, tier)
+
+        return {
+            "age_days": age_days,
+            "age_months": round(age_months, 1),
+            "category": base_freshness['category'],
+            "weight_multiplier": round(type_weight, 3),
+            "decay_model": {
+                "claim_type": claim_type,
+                "tier": tier,
+                "half_life_months": decay_params.get('effective_half_life'),
+                "minimum_weight": decay_params.get('minimum_weight')
+            }
+        }
+    except ImportError:
+        return base_freshness
+
+
 def extract_domain(url: str) -> str:
     """Extract domain from URL for diversity checking."""
     try:
@@ -1056,6 +1112,113 @@ def check_product_coverage(items: list[dict]) -> tuple[dict, list[str]]:
     }
 
     return metrics, warnings
+
+
+def check_cohort_pressure(bank_id: str) -> tuple[dict, list[str]]:
+    """
+    Check peer cohort pressure for a bank (Enhancement 4).
+
+    Analyzes the bank's position relative to peer cohorts and calculates
+    network adoption pressure based on how many peers are ARCHITECT.
+
+    Args:
+        bank_id: Bank identifier
+
+    Returns:
+        tuple of (metrics_dict, warnings_list)
+    """
+    warnings = []
+
+    try:
+        # Import dynamically to avoid circular imports
+        from cohort_threshold_calculator import CohortThresholdCalculator
+
+        calculator = CohortThresholdCalculator()
+        pressure_metrics = calculator.calculate_peer_pressure(bank_id)
+
+        # Generate warnings based on pressure level
+        if pressure_metrics.pressure_intensity == 'CRITICAL':
+            warnings.append(
+                f"HIGH_COHORT_PRESSURE: Critical mass of peers ({len(pressure_metrics.peer_architects)}) "
+                f"are ARCHITECT - strong pressure to adopt CDM"
+            )
+        elif pressure_metrics.pressure_intensity == 'HIGH':
+            warnings.append(
+                f"MODERATE_COHORT_PRESSURE: Above tipping point - "
+                f"{pressure_metrics.architect_peer_rate:.0%} of peers are ARCHITECT"
+            )
+
+        # Return metrics
+        metrics = {
+            "bank_id": bank_id,
+            "cohorts": pressure_metrics.cohorts,
+            "total_peers": pressure_metrics.total_peers,
+            "architect_peers": len(pressure_metrics.peer_architects),
+            "architect_peer_rate": round(pressure_metrics.architect_peer_rate, 3),
+            "pressure_intensity": pressure_metrics.pressure_intensity,
+            "estimated_pressure": round(pressure_metrics.estimated_pressure, 3),
+            "recommended_adjustment": round(pressure_metrics.recommended_classification_adjustment, 3)
+        }
+
+        return metrics, warnings
+
+    except ImportError:
+        # Calculator not available
+        return {"error": "cohort_threshold_calculator not available"}, []
+    except Exception as e:
+        return {"error": str(e)}, []
+
+
+def check_expert_presence(bank_id: str) -> tuple[dict, list[str]]:
+    """
+    Check for known CDM experts at a bank (Enhancement 6).
+
+    Having architect-level CDM experts is a strong ARCHITECT signal.
+
+    Args:
+        bank_id: Bank identifier
+
+    Returns:
+        tuple of (metrics_dict, warnings_list)
+    """
+    warnings = []
+
+    try:
+        # Import dynamically to avoid circular imports
+        from expert_tracker import ExpertTracker
+
+        tracker = ExpertTracker()
+        metrics = tracker.get_bank_experts(bank_id)
+
+        # Generate warnings based on expert presence
+        if metrics.architect_count >= 2:
+            warnings.append(
+                f"STRONG_EXPERT_SIGNAL: {metrics.architect_count} architect-level CDM experts - "
+                f"strong ARCHITECT indicator (LR adj: {metrics.recommended_lr_adjustment:.2f}x)"
+            )
+        elif metrics.architect_count == 1:
+            warnings.append(
+                f"EXPERT_SIGNAL: Architect-level CDM expert present - "
+                f"ARCHITECT indicator (LR adj: {metrics.recommended_lr_adjustment:.2f}x)"
+            )
+        elif metrics.total_experts > 0:
+            warnings.append(
+                f"MODERATE_EXPERT_SIGNAL: {metrics.total_experts} CDM practitioner(s) present"
+            )
+
+        return {
+            "bank_id": bank_id,
+            "total_experts": metrics.total_experts,
+            "architect_count": metrics.architect_count,
+            "contributor_count": metrics.contributor_count,
+            "expertise_score": metrics.expertise_score,
+            "recommended_lr_adjustment": metrics.recommended_lr_adjustment
+        }, warnings
+
+    except ImportError:
+        return {"error": "expert_tracker not available"}, []
+    except Exception as e:
+        return {"error": str(e)}, []
 
 
 def run_trust_audit(json_path: str) -> dict:

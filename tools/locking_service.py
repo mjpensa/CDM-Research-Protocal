@@ -21,6 +21,8 @@ Usage:
 """
 
 import sys
+import json
+import time
 import logging
 from pathlib import Path
 from typing import Optional, Callable, Dict, Any
@@ -321,18 +323,33 @@ class LockingService:
 # Module-level singleton accessor
 
 _service_instance: Optional[LockingService] = None
+_last_config_check: float = 0
+_CONFIG_CHECK_INTERVAL: float = 60.0  # Check every 60 seconds
 
 
 def get_locking_service() -> LockingService:
     """
-    Get the global LockingService singleton.
+    Get the global LockingService singleton with periodic config freshness check.
 
     Returns:
         LockingService instance with configuration from decision-thresholds.json
+
+    Note:
+        Config is automatically checked for changes every 60 seconds.
+        If config has changed, the service is reinitialized with new settings.
     """
-    global _service_instance
+    global _service_instance, _last_config_check
+
+    now = time.time()
+
     if _service_instance is None:
         _service_instance = LockingService()
+        _last_config_check = now
+    elif now - _last_config_check > _CONFIG_CHECK_INTERVAL:
+        # Periodic config freshness check
+        _service_instance.check_and_reload_config()
+        _last_config_check = now
+
     return _service_instance
 
 

@@ -1,21 +1,25 @@
-# Tier 3 Evidence
+# Tier 3 Evidence: China Construction Bank Corporation
 
-**Research Date**: 2025-12-21
-**Protocol Version**: 2.3
+**Bank:** China Construction Bank Corporation
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
+
+## Evidence Inventory
 
 No Tier 3 evidence found.
 
-## Sources Checked
-- LinkedIn Jobs (English + Chinese queries)
-- Chinese job boards (zhipin.com, 51job.com, liepin.com)
-- LinkedIn profiles of derivatives staff
+## Informative Absences
 
-**Result**: No job postings mentioning ISDA CDM or Common Domain Model.
+N/A
 
 ---
-
-**Conclusion**: Zero hiring signals. Proceed to synthesis with null results across all tiers.

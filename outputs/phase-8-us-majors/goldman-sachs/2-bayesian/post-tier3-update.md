@@ -1,27 +1,51 @@
-# Post-Tier 3 Bayesian Update: Goldman Sachs Group, Inc.
+# Bayesian Update: Post-Tier 3 Evidence: Goldman Sachs Group, Inc.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Goldman Sachs Group, Inc.
-**Date**: 2025-12-21
-
----
-
-## Prior Probability (Post-Tier 2)
-
-*Carried forward from post-tier2-update.md*
+**Bank:** Goldman Sachs Group, Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Tier 3 Evidence Impact
+## Prior Probability
 
-*Bayesian probability update will be calculated after Tier 3 research*
+P(ARCHITECT) prior: 20%
+
+## Tier 3 Evidence Summary
+
+No Tier 3 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
+
+## Posterior Calculation
+
+```
+Posterior = Prior (no update)
+```
+
+## Updated Probabilities
+
+N/A
+
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
+
+## Final Confidence Assessment
+
+Final confidence: 50%
 
 ---
 
-## Final Posterior Probability
-
-*Final probabilities will be documented here*
-
----
-
-**Methodology**: Bayesian inference following Tetlock superforecasting principles
+*Proceeding to adversarial review.*

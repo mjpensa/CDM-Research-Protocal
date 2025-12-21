@@ -1,4 +1,10 @@
-# CDM/DRR Research Assessment: Mitsubishi UFJ Financial Group
+# CDM/DRR Assessment: Mitsubishi UFJ Financial Group
+
+**Bank:** Mitsubishi UFJ Financial Group
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
 
 ## Executive Summary
 
@@ -10,23 +16,7 @@
 
 Mitsubishi UFJ Financial Group shows no evidence of direct CDM strategic adoption. The only CDM connection is through JSCC clearing membership, where JSCC deployed CDM production infrastructure in June 2025. This creates passive exposure to CDM but does not indicate internal CDM capabilities or strategic commitment.
 
----
-
-## 1. Classification Summary Table
-
-| Metric | Value |
-|--------|-------|
-| **Final Classification** | OBSERVER |
-| **Sub-Classification** | CCP-Connected |
-| **Confidence Level** | 45% |
-| **Evidence Quality** | Indirect/Infrastructure-based |
-| **Bayesian P(ARCHITECT)** | 25% |
-| **Bayesian P(PRAGMATIST)** | 75% |
-| **Maturity Score** | 1/5 |
-
----
-
-## 2. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -38,9 +28,77 @@ Mitsubishi UFJ Financial Group shows no evidence of direct CDM strategic adoptio
 | **G-SIB Status** | Yes |
 | **Market Position** | Japan's largest bank by assets |
 
----
+## Classification Summary
 
-## 3. Evidence Summary
+| Metric | Value |
+|--------|-------|
+| Classification | OBSERVER |
+| Sub-Classification | Vendor-Dependent |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Knowledge Gaps
+
+### Critical Gaps (Priority: High)
+1. **Internal JSCC Connectivity Implementation**
+   - Is MUFG using a vendor solution (e.g., REGnosys, Delta Capita)?
+   - Has MUFG built internal CDM adapters?
+   - Is this leveraging existing infrastructure or new development?
+   - Impact: Would clarify whether "CCP-Connected" means active engagement or passive infrastructure use
+
+2. **Strategic Planning for CDM Beyond JSCC**
+   - Has MUFG evaluated CDM for non-JSCC products (USD IRS, non-cleared derivatives)?
+   - Are there any CDM working groups within MUFG?
+   - What is the strategic posture on CDM adoption timeline?
+   - Impact: Would change classification if strategic interest exists
+
+3. **Vendor Relationships for Derivatives Reporting**
+   - Which vendors does MUFG use for regulatory reporting?
+   - Do any current vendors offer CDM capabilities?
+   - Has MUFG evaluated CDM-enabled reporting platforms?
+   - Impact: Medium - could indicate readiness for future adoption
+
+### Impact Summary
+These gaps affect precision of sub-classification and future trajectory assessment but do not invalidate the primary OBSERVER classification, which is well-supported by consistent null results.
+
+## Confidence Calibration
+
+45% confidence reflects:
+
+| Factor | Impact |
+|--------|--------|
+| No Tier 1 evidence | Caps confidence per protocol |
+| Single indirect Tier 2 connection | Provides context but limited signal |
+| Consistent null results | Increases certainty about "not ARCHITECT" |
+| Infrastructure mandate without strategy | Moderate uncertainty about future intent |
+
+**Confidence Formula:**
+- Maximum for Tier 2-only evidence: 75%
+- Reduced for infrastructure-only signal: 45%
+- Not a high-confidence classification due to informative absences
+
+## Classification Summary Table
+
+| Metric | Value |
+|--------|-------|
+| **Final Classification** | OBSERVER |
+| **Sub-Classification** | CCP-Connected |
+| **Confidence Level** | 45% |
+| **Evidence Quality** | Indirect/Infrastructure-based |
+| **Bayesian P(ARCHITECT)** | 25% |
+| **Bayesian P(PRAGMATIST)** | 75% |
+| **Maturity Score** | 1/5 |
+
+## Evidence Summary
 
 ### Tier 1 Evidence: 0 items
 No official announcements, FINOS contributions, or regulatory filing mentions.
@@ -57,9 +115,7 @@ Consistent pattern across multiple search categories indicating no CDM program:
 - Official CDM announcements (50 queries reviewed, no results)
 - FINOS CDM contributions (20 queries reviewed, no results)
 
----
-
-## 4. Classification Rationale
+## Classification Rationale
 
 Mitsubishi UFJ Financial Group is classified as **OBSERVER (CCP-Connected)** based on:
 
@@ -75,27 +131,7 @@ Mitsubishi UFJ Financial Group is classified as **OBSERVER (CCP-Connected)** bas
 
 The **CCP-Connected** sub-classification acknowledges infrastructure exposure while distinguishing it from strategic adoption. MUFG must interface with JSCC's CDM infrastructure for clearing, but this is a regulatory/operational requirement rather than evidence of internal CDM strategy.
 
----
-
-## 5. Confidence Calibration
-
-45% confidence reflects:
-
-| Factor | Impact |
-|--------|--------|
-| No Tier 1 evidence | Caps confidence per protocol |
-| Single indirect Tier 2 connection | Provides context but limited signal |
-| Consistent null results | Increases certainty about "not ARCHITECT" |
-| Infrastructure mandate without strategy | Moderate uncertainty about future intent |
-
-**Confidence Formula:**
-- Maximum for Tier 2-only evidence: 75%
-- Reduced for infrastructure-only signal: 45%
-- Not a high-confidence classification due to informative absences
-
----
-
-## 6. Business Context
+## Business Context
 
 ### Organization Profile
 MUFG is Japan's largest financial institution with:
@@ -122,9 +158,7 @@ MUFG is Japan's largest financial institution with:
 
 **Net Assessment:** Hesitations outweigh pressures for direct CDM investment.
 
----
-
-## 7. JSCC Infrastructure Analysis
+## JSCC Infrastructure Analysis
 
 MUFG's relationship to CDM is entirely mediated through JSCC:
 
@@ -143,35 +177,7 @@ MUFG's relationship to CDM is entirely mediated through JSCC:
 
 None of these scenarios require internal CDM development.
 
----
-
-## 8. Knowledge Gaps
-
-### Critical Gaps (Priority: High)
-1. **Internal JSCC Connectivity Implementation**
-   - Is MUFG using a vendor solution (e.g., REGnosys, Delta Capita)?
-   - Has MUFG built internal CDM adapters?
-   - Is this leveraging existing infrastructure or new development?
-   - Impact: Would clarify whether "CCP-Connected" means active engagement or passive infrastructure use
-
-2. **Strategic Planning for CDM Beyond JSCC**
-   - Has MUFG evaluated CDM for non-JSCC products (USD IRS, non-cleared derivatives)?
-   - Are there any CDM working groups within MUFG?
-   - What is the strategic posture on CDM adoption timeline?
-   - Impact: Would change classification if strategic interest exists
-
-3. **Vendor Relationships for Derivatives Reporting**
-   - Which vendors does MUFG use for regulatory reporting?
-   - Do any current vendors offer CDM capabilities?
-   - Has MUFG evaluated CDM-enabled reporting platforms?
-   - Impact: Medium - could indicate readiness for future adoption
-
-### Impact Summary
-These gaps affect precision of sub-classification and future trajectory assessment but do not invalidate the primary OBSERVER classification, which is well-supported by consistent null results.
-
----
-
-## 9. Comparison to Peers (Japanese Banks)
+## Comparison to Peers (Japanese Banks)
 
 | Bank | Classification | CDM Status | Evidence Quality |
 |------|----------------|-----------|------------------|
@@ -188,9 +194,7 @@ These gaps affect precision of sub-classification and future trajectory assessme
 - Domestic market focus reducing global CDM demand
 - Sufficient traditional infrastructure for existing regulatory mandates
 
----
-
-## 10. Conclusion
+## Conclusion
 
 Mitsubishi UFJ Financial Group is an **OBSERVER** with infrastructure-mandated CDM exposure through JSCC. There is no evidence of strategic CDM adoption, internal capability building, or commitment to CDM-based digital regulatory reporting.
 
@@ -200,9 +204,7 @@ The **CCP-Connected** sub-classification appropriately distinguishes between:
 
 Classification is stable and well-supported by consistent null results across all evidence tiers.
 
----
-
-## 11. Recommended Follow-Up
+## Recommended Follow-Up
 
 ### Monitoring Activities
 1. **Monitor JSCC Maturation:** Track JSCC CDM platform adoption curve and interconnectivity announcements
@@ -224,3 +226,7 @@ Classification is stable and well-supported by consistent null results across al
 ---
 
 _Assessment complete. Classification: OBSERVER (CCP-Connected) with 45% confidence._
+
+---
+
+*Assessment complete. Classification: OBSERVER (Vendor-Dependent) with 50% confidence.*

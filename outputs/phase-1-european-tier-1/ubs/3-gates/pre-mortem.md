@@ -1,12 +1,12 @@
 # Pre-Mortem Analysis: UBS Group AG
 
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
-**Prior Probability**: P(ARCHITECT) = 10%
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## 1. Research Objective
+## Research Objective
 
 **Primary Goal**: Determine whether UBS is adopting CDM despite being in the midst of the largest M&A integration in financial services history
 
@@ -17,9 +17,7 @@
 4. Will UBS restart CDM initiatives post-integration, or pivot to traditional approaches?
 5. Are there hidden signals of CDM planning within integration project work?
 
----
-
-## 2. Potential Failure Modes
+## Potential Failure Modes
 
 ### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
 
@@ -48,9 +46,7 @@
 | **Integration Timeline Assumption** | "Through 2026" estimate may shift based on progress | Check for updated integration timelines (Q4 2024+) |
 | **Suint Evidence Gaps** | Credit Suisse CDM status unclear - did it pause or cease? | Search for Credit Suisse CDM continuity evidence |
 
----
-
-## 3. Search Strategy
+## Search Strategy
 
 ### Tier 1 (Official Sources)
 - UBS investor relations for CDM/DRR mentions
@@ -75,59 +71,19 @@
 - Patent filings related to CDM or regulatory reporting
 - Substack/blogs from UBS technology staff on CDM
 
----
+## Key Hypotheses to Test
 
-## 4. Key Hypotheses to Test
+N/A
 
-### H1: Integration Is Genuinely All-Consuming for CDM
-- **Evidence needed**: Official statements quantifying tech capacity allocation
-- **Disconfirming evidence**: Evidence of CDM work happening in parallel with integration
-
-### H2: Credit Suisse CDM Capability Was Binned (Preserved for Later)
-- **Evidence needed**: Sunil Challa or team retained at UBS; infrastructure preserved
-- **Disconfirming evidence**: CDM team dispersed or integrated into general tech function
-
-### H3: UBS Will Restart CDM Post-Integration
-- **Evidence needed**: Q1 2027 hiring plans; strategic document references; leadership statements
-- **Disconfirming evidence**: Post-integration technology strategy focuses on traditional platforms
-
-### H4: Historical 2020 Pilot Indicates Dormant Interest
-- **Evidence needed**: Vinay Srinivas or team members still engaged with CDM thinking
-- **Disconfirming evidence**: No evidence of continued interest from 2020 participants
-
----
-
-## 5. Decision Points
+## Decision Points
 
 After each evidence tier, evaluate:
 1. **Probability Update**: Does evidence change P(ARCHITECT)?
 2. **Integration Constraint Confirmation**: Is the constraint genuinely binding, or can some CDM work proceed?
 3. **Continue/Skip**: Can we classify UBS as PRAGMATIST (Integration-Constrained) and move to synthesis, or does probability exceed thresholds?
 
----
+## Null Hypothesis Reminder
 
-## 6. Null Hypothesis Reminder
-
-**Default assumption**: UBS is PRAGMATIST until evidence proves otherwise.
-
-However, UBS differs from typical PRAGMATIST profile:
-- Has historical CDM engagement (2020 pilot - not typical of non-adopters)
-- Acquired CDM-aware talent (Credit Suisse)
-- Integration is time-bound; constraint may be temporary
-
-**Revised Null**: UBS is PRAGMATIST (Integration-Constrained), with re-assessment needed Q1 2027.
+Assume UBS Group AG is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-## 7. Special Consideration: M&A Timing
-
-The Credit Suisse acquisition (March 2023) creates unique challenge:
-- **Pre-Acquisition (2020-2023)**: UBS engagement and Credit Suisse capability both present
-- **Acquisition Period (March 2023 - Dec 2024)**: Integration chaos; capacity consumed
-- **Post-Integration (2026+)**: Potential for restart if strategic alignment exists
-
-Search strategy must account for this timeline.
-
----
-
-*Pre-mortem complete. Proceeding to Tier 1 evidence gathering.*

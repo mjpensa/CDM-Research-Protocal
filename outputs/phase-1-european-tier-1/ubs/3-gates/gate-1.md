@@ -1,7 +1,8 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment
+# Reasoning Gate 1: Post-Tier 1 Assessment: UBS Group AG
 
-**Bank**: UBS Group AG
-**Date**: 2025-12-20
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -21,7 +22,7 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 2
 
-**Rationale**: Although P(ARCHITECT) is below 20% (which could allow skipping to adversarial), the UBS case is unusual: it has HISTORICAL CDM engagement (2020 pilot) and INHERITED capability (Credit Suisse acquisition). Per user instructions to process all tiers for every bank, we proceed to Tier 2 to fully investigate the post-integration CDM continuity question.
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Quality Assessment
 
@@ -45,15 +46,6 @@ Per `config/decision-thresholds.json`:
 4. Has UBS made any public statements about post-integration CDM strategy?
 5. Any indication whether integration timeline affects CDM specifically, or just general tech?
 
-## Unique UBS Pattern
-
-UBS does NOT fit the simple "no engagement" pattern of typical PRAGMATIST:
-- **Historical Engagement**: 2020 pilot shows capability and interest
-- **Acquired Capability**: Credit Suisse brought CDM expertise
-- **Time-Bound Constraint**: Integration is temporary (through 2026), not permanent
-
-This may be better classified as "PRAGMATIST (Integration-Constrained)" - distinct from "PRAGMATIST (Regulatory-Driven)" or "PRAGMATIST (Vendor-Dependent)".
-
 ---
 
-*Gate 1 passed. Proceeding to Tier 2 evidence gathering.*
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

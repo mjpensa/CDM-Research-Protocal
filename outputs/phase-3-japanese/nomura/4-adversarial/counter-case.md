@@ -1,35 +1,23 @@
-# Counter-Case: Nomura Holdings, Inc.
+# Counter-Case: Devil's Advocate Analysis: Nomura Holdings, Inc.
 
-## Thesis
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
+
+## Thesis Under Challenge
+
 Nomura is actually a PRAGMATIST (Vendor-Dependent) rather than OBSERVER, and has an active but unpublicized CDM program.
 
-## Supporting Arguments
+## Counter-Arguments
 
-### 1. JSCC Connectivity Implies Active Preparation
-- JSCC launched CDM production in June 2025
-- Clearing members must interface with CDM infrastructure
-- Nomura likely has vendor partnerships to enable JSCC connectivity
-- This represents active CDM engagement, not passive observation
+1. N/A
 
-### 2. Japanese Cultural Discretion
-- Japanese banks traditionally maintain lower public profiles than Western peers
-- Absence of public announcements does not mean absence of internal programs
-- Nomura may be developing CDM capabilities privately before public disclosure
+## Counter-Case Strength Assessment
 
-### 3. Strategic Timing
-- JSCC deployment is recent (June 2025)
-- Nomura may be in evaluation/planning phase
-- Public evidence of CDM programs typically lags internal decision-making by 12-18 months
+**Strength**: WEAK
 
-### 4. Vendor Solutions Enable Silent Adoption
-- Major vendors offer turnkey CDM solutions
-- Nomura could be implementing CDM through vendor platforms without need for extensive hiring or public announcements
-- Vendor NDAs might prevent public disclosure
+Counter-arguments do not warrant reclassification.
 
-## Probability Assessment
-If this counter-case were true, we would expect:
-- Recent vendor partnerships (possibly confidential)
-- JSCC connectivity working through vendor solutions
-- Future announcements as implementation progresses
-
-Probability this counter-case is correct: 25%
+---

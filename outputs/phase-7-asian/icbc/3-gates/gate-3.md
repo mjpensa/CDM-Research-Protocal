@@ -1,30 +1,36 @@
-# Gate 3: Post-Tier 3 (FINAL)
+# Reasoning Gate 3: Pre-Adversarial Assessment: Industrial and Commercial Bank of China
 
-**Research Date**: 2025-12-21
-
----
-
-## Full Evidence Summary
-
-**Tier 1**: 0 items
-**Tier 2**: 0 items
-**Tier 3**: 0 items
-**Total**: 0 items
+**Bank:** Industrial and Commercial Bank of China
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Final Classification
+## Current Probability State
 
-**Bayesian**: PRAGMATIST at 99.9%
-**Protocol**: UNKNOWN at 30%
+N/A
 
-**Rationale for UNKNOWN**:
-- Acknowledges possible disclosure gap in Chinese banking sector
-- Chinese regulatory divergence from ISDA standards
-- Epistemic humility about conclusions from absence of evidence
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+
+## Decision: PROCEED TO TIER ADVERSARIAL
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
 
 ---
 
-**Decision**: PROCEED TO SYNTHESIS
-
-Classification: UNKNOWN (Insufficient-Evidence) at 30% confidence.
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

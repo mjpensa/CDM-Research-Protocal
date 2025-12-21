@@ -1,40 +1,25 @@
-# Tier 3 Evidence: ING Group
+# Tier 3 Evidence: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Research Date:** 2025-12-20
-**Researcher:** Claude Code (Opus 4.5)
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-No Tier 3 evidence found for ING Group's CDM adoption or participation.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-## Sources Searched
+## Evidence Inventory
 
-| Source | Type | URL | Result |
-|--------|------|-----|--------|
-| LinkedIn | Social | linkedin.com | No CDM job postings found |
-| Indeed | Job Board | indeed.com | No CDM-specific roles |
-| ING Careers | Official | ing.com/careers | No CDM mentions in job descriptions |
+No Tier 3 evidence found.
 
-## Evidence Items
+## Informative Absences
 
-*None found*
+N/A
 
-## Hiring Signal Analysis
-
-ING's job postings in derivatives technology and regulatory reporting do not reference:
-- Common Domain Model (CDM)
-- ISDA Digital Regulatory Reporting (DRR)
-- FINOS or open source derivatives infrastructure
-- Rune/Rosetta DSL experience
-
-This suggests ING is not building internal CDM capabilities or hiring for CDM-related initiatives.
-
-## Confidence Assessment
-
-- **Tier 3 Evidence Count:** 0
-- **Maximum Confidence from Tier 3:** N/A (no evidence)
-- **Proceed to Adversarial:** Yes
+---

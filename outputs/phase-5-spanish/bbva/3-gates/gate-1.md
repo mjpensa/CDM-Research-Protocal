@@ -1,39 +1,29 @@
-# Reasoning Gate 1: Post-Tier 1 Analysis
-## Banco Bilbao Vizcaya Argentaria S.A. (BBVA)
+# Reasoning Gate 1: Post-Tier 1 Assessment: Banco Bilbao Vizcaya Argentaria S.A.
 
+**Bank:** Banco Bilbao Vizcaya Argentaria S.A.
+**Phase:** 5 - Spanish
 **Date:** 2025-12-21
-**Stage:** Post-Tier 1 Research
 
 ---
 
-## Gate Purpose
+## Current Probability State
 
-Before proceeding to Tier 2, verify that Tier 1 research was thorough and our interpretation of null results is sound.
+N/A
 
----
+## Gate Decision Criteria
 
-## Evidence Review
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-### Tier 1 Items Found: 0
+## Decision: PROCEED TO TIER 2
 
-**Sources Checked:**
-- ✅ isda.org (standards body)
-- ✅ finos.org (open source foundation)
-- ✅ github.com/finos (code repositories)
-- ✅ esma.europa.eu (EU regulator)
-- ✅ cnmv.es (Spanish regulator)
-- ✅ bbva.com (official bank domain, EN + ES)
-- ✅ fca.org.uk (UK regulator - DRR pilot check)
+**Rationale**: Per protocol to process all tiers.
 
-**Key Findings:**
-- BBVA is standard ISDA member (baseline, not CDM-specific)
-- No FINOS membership
-- No CDM working group participation
-- Not in FCA DRR pilot participants
+## Evidence Quality Assessment
 
----
+N/A
 
-## Critical Questions
+## Key Questions for Tier 2
 
 ### Q1: Did we search all relevant Tier 1 sources?
 
@@ -105,21 +95,4 @@ Before proceeding to Tier 2, verify that Tier 1 research was thorough and our in
 
 ---
 
-## Decision: Proceed to Tier 2?
-
-**Recommendation:** ✅ PROCEED
-
-**Rationale:**
-- Tier 1 search was comprehensive
-- Null results are correctly interpreted
-- Tier 2 will corroborate (expected) or challenge (unlikely) Tier 1 findings
-
-**Tier 2 Focus:**
-- Trade press (Risk.net, Waters Tech)
-- Spanish business press (Expansión, Cinco Días)
-- Vendor announcements
-- Conference proceedings
-
-**Expected Outcome:** Null results corroborating Tier 1 assessment
-
-**Next:** Execute Tier 2 research.
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

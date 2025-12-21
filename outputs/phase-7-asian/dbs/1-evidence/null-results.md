@@ -1,8 +1,8 @@
-# Null Results: DBS Bank
+# Null Results Registry: DBS Bank Ltd.
 
-**Research Date**: 2025-12-21
-**Researcher**: Claude Code (Opus 4.5)
-**Protocol Version**: 2.3
+**Bank:** DBS Bank Ltd.
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
@@ -10,9 +10,7 @@
 
 Comprehensive search across all tiers yielded **no technical evidence** of CDM adoption at DBS Bank. Only governance-level participation found through executive board membership.
 
----
-
-## Tier 1: Official Sources
+## Tier 1 Null Results
 
 ### Search 1: DBS Bank CDM ISDA Common Domain Model
 **Sources Checked**: dbs.com, isda.org, finos.org
@@ -36,9 +34,7 @@ Comprehensive search across all tiers yielded **no technical evidence** of CDM a
 - Searched finos/rune-dsl repository: No DBS contributions
 - FINOS member directory: DBS not listed
 
----
-
-## Tier 2: Trade Press & Business Media
+## Tier 2 Null Results
 
 ### Search 3: DBS derivatives reporting CDM
 **Sources Checked**: risk.net, waterstechnology.com, reuters.com
@@ -50,9 +46,7 @@ Comprehensive search across all tiers yielded **no technical evidence** of CDM a
 - **Waters Technology**: No articles on DBS data standardization or CDM
 - **Reuters/Bloomberg**: No press releases announcing CDM implementations
 
----
-
-## Tier 3: Hiring & Social Signals
+## Tier 3 Null Results
 
 ### Search 4: DBS ISDA CDM job postings LinkedIn
 **Sources Checked**: linkedin.com/jobs, indeed.com
@@ -64,58 +58,8 @@ Comprehensive search across all tiers yielded **no technical evidence** of CDM a
 - DBS Careers Portal: No positions requiring CDM experience
 - Indeed Singapore: No DBS roles mentioning derivatives data standards
 
----
+## Implications for Classification
 
-## Informative Absences
-
-### What We Did NOT Find
-
-1. **No FINOS Membership**: Unlike regional peers (e.g., Standard Chartered), DBS is not a FINOS member
-2. **No Working Group Participation**: No evidence of DBS staff on ISDA CDM technical working groups
-3. **No Vendor Announcements**: Major CDM vendors (Bloomberg, Refinitiv, MarkitWire) have not announced DBS implementations
-4. **No Conference Presentations**: No DBS speakers at ISDA, FINOS, or Sibos presenting on CDM
-5. **No Regulatory Disclosures**: MAS filings do not mention CDM usage for compliance
-
-### Contextual Significance
-
-DBS's absence from CDM ecosystem is notable because:
-
-- **Market Position**: DBS is Southeast Asia's largest bank by assets (~$600B USD)
-- **Derivatives Volume**: Significant FX and rates derivatives trading in Singapore hub
-- **Technology Leadership**: DBS markets itself as "world's best digital bank" (Euromoney 2024)
-- **Regulatory Environment**: Singapore MAS has not mandated CDM (unlike EU EMIR Refit)
-
-**Inference**: Lack of regulatory pressure in Singapore may reduce DBS's urgency for CDM adoption compared to European peers.
+Informative absence supports PRAGMATIST classification.
 
 ---
-
-## Evidence Found (Governance Level Only)
-
-Despite comprehensive technical searches yielding null results, we did find:
-
-- **E001**: Andrew Ng serves on ISDA Board of Directors (Tier 2, governance)
-- **E002**: Andrew Ng is Deputy Co-chair of MAS SFEMC (Tier 2, governance)
-
-These governance signals indicate **institutional awareness** but not **technical implementation**.
-
----
-
-## Research Quality Assurance
-
-**Search Coverage**:
-- ✅ Tier 1 official sources exhaustively checked
-- ✅ Tier 2 trade press and business media reviewed
-- ✅ Tier 3 job boards and social media searched
-- ✅ Negative fact registry consulted
-
-**Confidence in Null Results**: High (90%)
-
-The absence of evidence is unlikely to be a search failure given:
-1. Comprehensive multi-tier search protocol followed
-2. Positive governance signals found (proving DBS is not invisible)
-3. Consistent null results across independent sources
-4. No regional regulatory drivers for CDM adoption
-
----
-
-**Conclusion**: The null technical results, combined with Tier 2 governance signals, support an **OBSERVER (Ecosystem-Engaged)** classification at 55% confidence.

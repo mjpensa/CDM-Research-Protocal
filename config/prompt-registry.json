@@ -1,0 +1,346 @@
+{
+  "$schema": "CDM/DRR Prompt Registry v1.0",
+  "registry_version": "1.0-20251221",
+  "description": "Central registry for all agent prompts with versioning, dependencies, and changelog",
+  "last_updated": "2025-12-21",
+
+  "prompts": {
+    "evidence-gatherer": {
+      "current_version": "2.0-20251221",
+      "path": "config/agent-prompts/evidence-gatherer.md",
+      "type": "agent",
+      "description": "Evidence gathering and documentation for CDM/DRR research",
+      "dependencies": [
+        "config/search-templates.json",
+        "templates/evidence-schema.json",
+        "config/bayesian-lr-tables.json"
+      ],
+      "sections": [
+        "role", "core_principles", "tier_hierarchy", "tier1_searches", "tier2_searches",
+        "tier3_searches", "product_intelligence", "jurisdiction_intelligence",
+        "adoption_drivers", "counterparty_intelligence", "vendor_analysis",
+        "output_format", "quality_checklist"
+      ],
+      "changelog": [
+        {
+          "version": "2.0-20251221",
+          "date": "2025-12-21",
+          "type": "major",
+          "changes": [
+            "Externalized search templates to config/search-templates.json",
+            "Externalized evidence formats to references/evidence-formats.md",
+            "Added section tags for selective loading",
+            "Reduced core prompt from 1197 to ~200 lines",
+            "Added YAML frontmatter with version and dependencies"
+          ],
+          "migration": "Search templates now loaded dynamically from JSON"
+        },
+        {
+          "version": "1.5-20251218",
+          "date": "2025-12-18",
+          "type": "minor",
+          "changes": [
+            "Added v4.2 counterparty intelligence gathering",
+            "Added v4.2 vendor analysis intelligence gathering"
+          ]
+        },
+        {
+          "version": "1.4-20251215",
+          "date": "2025-12-15",
+          "type": "minor",
+          "changes": [
+            "Added v4.1 adoption driver intelligence",
+            "Added v4.1 knowledge gap documentation"
+          ]
+        },
+        {
+          "version": "1.3-20251210",
+          "date": "2025-12-10",
+          "type": "minor",
+          "changes": [
+            "Added v4.0 product-specific intelligence",
+            "Added v4.0 jurisdiction-specific intelligence"
+          ]
+        }
+      ]
+    },
+
+    "bayesian-analyst": {
+      "current_version": "1.2-20251221",
+      "path": "config/agent-prompts/bayesian-analyst.md",
+      "type": "agent",
+      "description": "Bayesian probability updates for evidence interpretation",
+      "dependencies": [
+        "config/bayesian-lr-tables.json",
+        "config/decision-thresholds.json"
+      ],
+      "sections": [
+        "role", "core_principle", "thinking_mode", "input_specification",
+        "eight_step_process", "output_template", "confidence_caps",
+        "calibration_checks", "quality_checklist"
+      ],
+      "changelog": [
+        {
+          "version": "1.2-20251221",
+          "date": "2025-12-21",
+          "type": "minor",
+          "changes": [
+            "Added YAML frontmatter with version and dependencies",
+            "Added section tags for selective loading"
+          ]
+        },
+        {
+          "version": "1.1-20251215",
+          "date": "2025-12-15",
+          "type": "minor",
+          "changes": [
+            "Added v2.0 operational evidence LR tables",
+            "Enhanced calibration checks"
+          ]
+        }
+      ]
+    },
+
+    "reasoning-gate": {
+      "current_version": "1.2-20251221",
+      "path": "config/agent-prompts/reasoning-gate.md",
+      "type": "agent",
+      "description": "Quality checkpoint gates at each research stage",
+      "dependencies": [
+        "config/decision-thresholds.json",
+        "config/checkpoint-rules.json"
+      ],
+      "sections": [
+        "role", "core_principle", "thinking_mode", "pre_mortem_template",
+        "gate1_template", "gate2_template", "gate3_template",
+        "contradiction_resolution", "quality_checklist"
+      ],
+      "changelog": [
+        {
+          "version": "1.2-20251221",
+          "date": "2025-12-21",
+          "type": "minor",
+          "changes": [
+            "Added YAML frontmatter",
+            "Added section tags",
+            "Added worked example references"
+          ]
+        }
+      ]
+    },
+
+    "adversarial-challenger": {
+      "current_version": "1.1-20251221",
+      "path": "config/agent-prompts/adversarial-challenger.md",
+      "type": "agent",
+      "description": "Counter-argument construction and classification stress-testing",
+      "dependencies": [
+        "config/decision-thresholds.json"
+      ],
+      "sections": [
+        "role", "core_principle", "thinking_mode", "counter_case",
+        "disconfirming_searches", "steelman", "verdict", "quality_checklist"
+      ],
+      "changelog": [
+        {
+          "version": "1.1-20251221",
+          "date": "2025-12-21",
+          "type": "minor",
+          "changes": [
+            "Added YAML frontmatter",
+            "Added section tags",
+            "Added worked example references"
+          ]
+        }
+      ]
+    },
+
+    "synthesis": {
+      "current_version": "1.1-20251221",
+      "path": "config/agent-prompts/synthesis.md",
+      "type": "agent",
+      "description": "Final comprehensive assessment production",
+      "dependencies": [
+        "templates/per-bank-output.md",
+        "templates/confidence-calibration-output.md",
+        "config/decision-thresholds.json"
+      ],
+      "sections": [
+        "role", "core_principles", "thinking_mode", "confidence_calibration",
+        "assessment_template", "framework_integration", "quality_checklist"
+      ],
+      "changelog": [
+        {
+          "version": "1.1-20251221",
+          "date": "2025-12-21",
+          "type": "minor",
+          "changes": [
+            "Added YAML frontmatter",
+            "Added section tags"
+          ]
+        }
+      ]
+    },
+
+    "orchestrator": {
+      "current_version": "1.6-20251221",
+      "path": "config/agent-prompts/orchestrator.md",
+      "type": "controller",
+      "description": "Master workflow controller for multi-bank research",
+      "dependencies": [
+        "config/decision-thresholds.json",
+        "config/checkpoint-rules.json",
+        "config/bayesian-lr-tables.json",
+        "config/classification-taxonomy.json",
+        "config/bank-manifest.json"
+      ],
+      "sections": [
+        "role", "core_responsibilities", "configuration_references",
+        "core_principles", "state_management", "workflow_sequence",
+        "agent_invocation", "checkpoint_logic", "validation_checks",
+        "phase_orchestration", "error_handling", "execution_modes"
+      ],
+      "changelog": [
+        {
+          "version": "1.6-20251221",
+          "date": "2025-12-21",
+          "type": "minor",
+          "changes": [
+            "Added YAML frontmatter",
+            "Added section tags for selective loading",
+            "Optimized for context efficiency"
+          ]
+        },
+        {
+          "version": "1.5-20251218",
+          "date": "2025-12-18",
+          "type": "minor",
+          "changes": [
+            "Added stage timeout mechanism",
+            "Enhanced error handling"
+          ]
+        }
+      ]
+    },
+
+    "qa-validator": {
+      "current_version": "1.1-20251221",
+      "path": "config/agent-prompts/qa-validator.md",
+      "type": "agent",
+      "description": "Cross-bank consistency validation and phase synthesis",
+      "dependencies": [
+        "config/decision-thresholds.json",
+        "config/bank-manifest.json"
+      ],
+      "sections": [
+        "role", "core_principle", "thinking_mode", "consistency_tests",
+        "phase_synthesis", "cross_bank_analysis", "quality_checklist"
+      ],
+      "changelog": [
+        {
+          "version": "1.1-20251221",
+          "date": "2025-12-21",
+          "type": "minor",
+          "changes": [
+            "Added YAML frontmatter",
+            "Added section tags",
+            "Added worked example references"
+          ]
+        }
+      ]
+    }
+  },
+
+  "config_files": {
+    "decision-thresholds.json": {
+      "current_version": "1.0",
+      "path": "config/decision-thresholds.json",
+      "description": "Centralized probability and confidence thresholds"
+    },
+    "bayesian-lr-tables.json": {
+      "current_version": "2.0",
+      "path": "config/bayesian-lr-tables.json",
+      "description": "Likelihood ratio lookup tables for evidence updating"
+    },
+    "search-templates.json": {
+      "current_version": "1.0-20251221",
+      "path": "config/search-templates.json",
+      "description": "Externalized search query templates",
+      "new_in": "2.0-20251221"
+    },
+    "checkpoint-rules.json": {
+      "current_version": "1.0",
+      "path": "config/checkpoint-rules.json",
+      "description": "BLOCK vs AUTO-PROCEED checkpoint rules"
+    },
+    "classification-taxonomy.json": {
+      "current_version": "1.0",
+      "path": "config/classification-taxonomy.json",
+      "description": "Valid classification values and hierarchy"
+    },
+    "bank-manifest.json": {
+      "current_version": "1.0",
+      "path": "config/bank-manifest.json",
+      "description": "Bank configurations and research objectives"
+    }
+  },
+
+  "reference_files": {
+    "evidence-formats.md": {
+      "current_version": "1.0-20251221",
+      "path": "config/agent-prompts/references/evidence-formats.md",
+      "description": "Evidence block and null result formatting templates",
+      "new_in": "2.0-20251221"
+    },
+    "lr-quick-reference.md": {
+      "current_version": "1.0-20251221",
+      "path": "config/agent-prompts/references/lr-quick-reference.md",
+      "description": "Quick reference for likelihood ratio assignments",
+      "new_in": "2.0-20251221",
+      "status": "planned"
+    }
+  },
+
+  "example_files": {
+    "example-index.json": {
+      "path": "config/agent-prompts/example-index.json",
+      "description": "Index of worked examples with trigger mappings",
+      "new_in": "2.0-20251221"
+    }
+  },
+
+  "compatibility_matrix": {
+    "2.0-20251221": {
+      "description": "Major version with externalized search templates",
+      "minimum_orchestrator": "1.6-20251221",
+      "minimum_python": "3.10",
+      "breaking_changes": true,
+      "migration_notes": [
+        "Search templates now loaded from config/search-templates.json",
+        "Evidence formats now reference external file",
+        "Prompts require YAML frontmatter parsing"
+      ]
+    },
+    "1.5-20251218": {
+      "description": "Added counterparty and vendor intelligence",
+      "minimum_orchestrator": "1.5-20251218",
+      "minimum_python": "3.10",
+      "breaking_changes": false
+    }
+  },
+
+  "versioning_scheme": {
+    "format": "X.Y-YYYYMMDD",
+    "description": "Hybrid versioning: Major.Minor with date suffix",
+    "major_increment": "Breaking changes, externalization, structural changes",
+    "minor_increment": "New features, enhancements, non-breaking additions",
+    "date_suffix": "Always reflects last modification date"
+  },
+
+  "validation_rules": {
+    "frontmatter_required": true,
+    "version_must_match_registry": true,
+    "dependencies_must_exist": true,
+    "sections_must_be_tagged": true
+  }
+}

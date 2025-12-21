@@ -1,7 +1,8 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment
+# Reasoning Gate 2: Post-Tier 2 Assessment: HSBC Holdings PLC
 
-**Bank**: HSBC Holdings plc
-**Date**: 2025-12-20
+**Bank:** HSBC Holdings PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -21,19 +22,19 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 3
 
-**Rationale**: Per instructions to process all 3 tiers for every bank, we proceed to Tier 3 despite P(ARCHITECT) not hitting extreme thresholds.
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Trajectory Analysis
 
-| Stage | P(ARCHITECT) | Direction |
-|-------|--------------|-----------|
+| Stage | P(ARCHITECT) | Change |
+|-------|--------------|--------|
 | Prior | 25% | - |
-| Post-Tier 1 | 32% | Increased (DRR pilot boost) |
-| Post-Tier 2 | 27% | Decreased (traditional platform signals) |
 
-**Pattern**: Initial boost from DRR pilot offset by evidence of traditional platform commitment (Calypso) and absence of CDM in derivatives coverage.
+## Evidence Quality Assessment
 
-## Remaining Questions for Tier 3
+N/A
+
+## Key Questions for Tier 3
 
 1. Are there CDM-related job postings at HSBC?
 2. Do LinkedIn profiles of HSBC derivatives technology staff mention CDM work?
@@ -52,4 +53,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 2 passed. Proceeding to Tier 3 evidence gathering.*
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

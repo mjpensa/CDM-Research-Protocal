@@ -1,43 +1,33 @@
-# Reasoning Gate 2: Post-Tier 2 Analysis
-## Banco Santander S.A.
+# Reasoning Gate 2: Post-Tier 2 Assessment: Banco Santander S.A.
 
+**Bank:** Banco Santander S.A.
+**Phase:** 5 - Spanish
 **Date:** 2025-12-21
-**Stage:** Post-Tier 2 Research
 
 ---
 
-## Gate Purpose
+## Current Probability State
 
-After Tier 2 research, assess whether we have sufficient evidence for classification or need to proceed to Tier 3. Verify that ecosystem sources were thoroughly searched and absence of evidence is correctly interpreted.
+N/A
 
----
+## Gate Decision Criteria
 
-## Evidence Review
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-### Tier 2 Items Found: 0
+## Decision: PROCEED TO TIER 3
 
-**Trade Press:**
-- Risk.net: No results
-- Waters Technology: No results
-- Financial News London: No results
+**Rationale**: Per protocol to process all tiers.
 
-**Business Press:**
-- Financial Times: No results
-- Bloomberg: No results
-- Reuters: No results
-- Wall Street Journal: No results
+## Evidence Trajectory Analysis
 
-**Analyst/Consulting:**
-- McKinsey: No results
-- Oliver Wyman: No results
+N/A
 
-**Vendor Announcements:**
-- Regnosys: No mentions of Santander
-- Other CDM vendors: No announcements
+## Evidence Quality Assessment
 
----
+N/A
 
-## Critical Questions
+## Key Questions for Tier 3
 
 ### Q1: Were Tier 2 sources comprehensively searched?
 
@@ -152,114 +142,4 @@ For a major European Tier 1 bank, the complete absence of Tier 2 coverage is hig
 
 ---
 
-## Bayesian Reality Check
-
-**Current Position:**
-- Prior: 15%
-- Post-Tier 1: 9.1% (historical evidence, no follow-up)
-- Post-Tier 2: 1.6% (complete absence of ecosystem signals)
-
-**Question:** Does 1.6% probability align with our qualitative assessment?
-
-**Analysis:**
-- 1.6% suggests "extremely unlikely current adoption"
-- But we have documented historical engagement
-- Disconnect: Bayesian measures current adoption, classification measures engagement level
-
-**Resolution:**
-- OBSERVER classification captures historical engagement (fact)
-- Low Bayesian probability reflects current adoption (unlikely)
-- These are compatible: "Engaged historically, not adopting currently"
-
-**Assessment:** ✅ PASS - Bayesian and qualitative assessments are consistent
-
----
-
-## Classification Checkpoint
-
-**Current Trajectory:** OBSERVER (Historical-Engagement) at 50% confidence
-
-### Supporting Factors:
-1. ✅ Verified historical pilot participation (Tier 1)
-2. ✅ No evidence of sustained adoption (Tier 2 null)
-3. ✅ Temporal gap (5+ years) without activity
-4. ✅ Distinguishes from zero-engagement banks
-
-### Challenges:
-1. ⚠️ DRR pilot may not have directly involved ISDA CDM
-2. ⚠️ "Historical engagement" implies past intent, but pilot was exploratory
-3. ⚠️ Alternative: UNKNOWN (if DRR pilot not CDM-relevant)
-
-### Confidence Calibration:
-- 50% reflects moderate certainty
-- Historical pilot is fact (95% certain)
-- Relevance to CDM specifically is uncertain (50%)
-- Weighted average: ~50% for "historical engagement" classification
-
-**Assessment:** ✅ PASS - Classification trajectory is sound
-
----
-
-## Decision: Proceed to Tier 3?
-
-**Recommendation:** ⚠️ CONDITIONAL PROCEED
-
-### Rationale:
-
-**Case for Tier 3:**
-- Quick check for hiring signals (low effort)
-- Could find LinkedIn posts revealing context
-- Completes exhaustive search requirement
-
-**Case Against Tier 3:**
-- Tier 1 + Tier 2 already highly diagnostic
-- Tier 3 unlikely to materially change assessment
-- Classification is already well-supported
-
-**Compromise:** Light Tier 3 search
-
-### Tier 3 Scope (Minimal):
-
-1. LinkedIn job search: "Santander ISDA CDM" (2023-2025)
-2. LinkedIn posts: Santander employees mentioning DRR/CDM
-3. Technology blogs: Santander engineering blog for CDM mentions
-
-**Expected Outcome:** Null results confirming assessment
-
----
-
-## Outstanding Actions from Gate 1
-
-**Required Additions:**
-1. ❌ Spanish-language trade press (Expansión, Cinco Días)
-2. ❌ Conference presentation databases
-3. ❌ Consulting firm case studies
-
-**Decision:**
-- Complete these as part of final Tier 2 sweep
-- If null (expected), proceed to Tier 3
-- If found evidence, re-evaluate classification
-
----
-
-## Gate 2 Verdict
-
-**Status:** ⚠️ CONDITIONAL PASS
-
-**Required Before Tier 3:**
-1. Search Spanish business press (Expansión, Cinco Días)
-2. Check ISDA/SIFMA conference speaker lists (2019-2025)
-3. Review consulting firm publications for Santander case studies
-
-**If all null (expected):**
-- Proceed to light Tier 3 search
-- High confidence in OBSERVER (Historical-Engagement) classification
-
-**If evidence found:**
-- Re-assess classification based on new evidence
-- Update Bayesian probabilities
-- May shift to PRAGMATIST or increase confidence
-
-**Confidence in Current Assessment:** 75%
-
-**Next:** Complete Tier 2 sweep, then proceed to Tier 3 gate.
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

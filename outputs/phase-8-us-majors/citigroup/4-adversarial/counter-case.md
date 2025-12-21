@@ -1,26 +1,14 @@
-# Counter-Case Analysis: Citigroup Inc.
+# Counter-Case: Devil's Advocate Analysis: Citigroup Inc.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Citigroup Inc.
-**Date**: 2025-12-21
-
----
-
-## Overview
-
-This file presents the strongest case AGAINST the preliminary classification.
-
-**Preliminary Classification**: OBSERVER (Ecosystem-Engaged) at 50% confidence
+**Bank:** Citigroup Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Devil's Advocate Position
+## Thesis Under Challenge
 
-**Thesis**: Citigroup should be classified as PRAGMATIST (Vendor-Dependent), not OBSERVER.
-
-The evidence absence does not prove non-adoption. Citigroup may be implementing CDM through vendor platforms (Murex, Calypso) without public disclosure due to competitive strategy.
-
----
+Preliminary classification: OBSERVER
 
 ## Counter-Arguments
 
@@ -102,49 +90,10 @@ The evidence absence does not prove non-adoption. Citigroup may be implementing 
 
 **Implication**: Tier 3 absence is expected even for active CDM adopters using vendor-led implementations.
 
----
+## Counter-Case Strength Assessment
 
-## Disconfirming Evidence for OBSERVER Classification
+**Strength**: WEAK
 
-### Evidence That OBSERVER Does Not Fit
-
-1. FINOS Hackathon Host: Observers do not typically invest in community events
-2. G16 Dealer Status: Observers are typically smaller banks
-3. Derivatives Volume: High-volume dealers benefit significantly from standardization
-4. Peer Comparison: Competitive pressure from JPMorgan and Goldman suggests Citigroup should adopt
+Counter-arguments do not warrant reclassification.
 
 ---
-
-## Alternative Explanations
-
-### Explanation 1: Early-Stage PRAGMATIST
-
-Citigroup is evaluating CDM via vendor platforms but has not committed to production.
-
-### Explanation 2: Regional Adoption (Europe First)
-
-Citigroup Europe uses CDM for EMIR Refit, but US operations do not.
-
-### Explanation 3: Vendor Proxy Adoption
-
-CDM is embedded in vendor platforms without proactive bank adoption.
-
----
-
-## Steelman Arguments
-
-**Strongest Argument Against OBSERVER**:
-
-Citigroup is a major G16 dealer using vendor platforms with CDM capabilities. Recent FINOS membership signals emerging interest. Absence of announcements is consistent with vendor-led implementation and strategic confidentiality.
-
-**Alternative Classification**: PRAGMATIST (Vendor-Dependent) at 45% confidence
-
----
-
-## Recommendation
-
-Acknowledge uncertainty. Maintain OBSERVER classification at 50% confidence, but increase PRAGMATIST alternative to 35%.
-
----
-
-**Purpose**: Red team analysis to test classification robustness

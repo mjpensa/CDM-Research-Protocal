@@ -1,26 +1,33 @@
-# Reasoning Gate 2: Post-Tier 2 Analysis
-## Banco Bilbao Vizcaya Argentaria S.A. (BBVA)
+# Reasoning Gate 2: Post-Tier 2 Assessment: Banco Bilbao Vizcaya Argentaria S.A.
 
+**Bank:** Banco Bilbao Vizcaya Argentaria S.A.
+**Phase:** 5 - Spanish
 **Date:** 2025-12-21
-**Stage:** Post-Tier 2 Research
 
 ---
 
-## Evidence Review
+## Current Probability State
 
-### Tier 2 Items Found: 0
+N/A
 
-**Sources Checked:**
-- Risk.net, Waters Technology, FN London
-- FT, Bloomberg, Reuters, WSJ
-- Vendor announcements (Regnosys, consultants)
-- Conference proceedings (ISDA, SIFMA)
+## Gate Decision Criteria
 
-**Result:** Comprehensive null across all Tier 2 sources
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
----
+## Decision: PROCEED TO TIER 3
 
-## Critical Questions
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 3
 
 ### Q1: Were Tier 2 sources comprehensively searched?
 
@@ -57,13 +64,4 @@ For a Spanish Tier 1 bank, complete absence of Tier 2 coverage is highly diagnos
 
 ---
 
-## Decision: Proceed to Tier 3?
-
-**Recommendation:** ✅ PROCEED (Brief Search)
-
-**Rationale:**
-- Complete protocol execution
-- Quick Tier 3 check for hiring signals
-- Then proceed to adversarial stage
-
-**Next:** Minimal Tier 3 search, then Gate 3.
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

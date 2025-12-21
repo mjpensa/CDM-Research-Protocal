@@ -1,28 +1,67 @@
-# Tier 2 Evidence: Sumitomo Mitsui Financial Group
+# Tier 2 Evidence: Sumitomo Mitsui Banking Corporation
+
+**Bank:** Sumitomo Mitsui Banking Corporation
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
 
 ## Search Execution Summary
-- Evidence Blocks Found: 2
-- Key Finding: JSCC clearing membership (indirect CDM exposure)
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-### [SMBC-001] TIER 2 — SUPPORTS PRAGMATIST
-**Claim:** Sumitomo Mitsui Financial Group is a clearing member of JSCC, which launched CDM production in June 2025
+### SMBC-001: Evidence Item
 
-**Source:** JSCC Official Website
-**URL:** https://www.jpx.co.jp/jscc/en/index.html
-**Date:** 2025-06-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 2 |
+| Claim Type | N/A |
+| Direction | SUPPORTS PRAGMATIST |
+| LR | 1.0 |
 
-**Finding:** JSCC is the first CCP globally to deploy CDM in production. Sumitomo Mitsui Financial Group as a major clearing member is connected to this CDM infrastructure through clearing operations.
+**Excerpt:** N/A
+
+**Analysis:** N/A
 
 **Quality Assessment:**
-- Authority: MEDIUM
-- Recency: CURRENT
-- Specificity: MODERATE
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats:** Infrastructure connectivity does not prove internal CDM capabilities. Clearing members can interface through vendor solutions.
+**Caveats:** N/A
 
-### [SMBC-002] TIER 2 — NEUTRAL  
-**Claim:** Sumitomo Mitsui Financial Group sponsors ISDA events
+### SMBC-002: Evidence Item
 
-**Finding:** General industry engagement, not CDM-specific evidence.
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 2 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
+
+**Excerpt:** N/A
+
+**Analysis:** N/A
+
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
+
+**Caveats:** N/A
+
+## Informative Absences
+
+N/A
+
+---

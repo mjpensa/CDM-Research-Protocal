@@ -1,36 +1,36 @@
-# Gate 3 (Post-Tier 3): Morgan Stanley
+# Reasoning Gate 3: Pre-Adversarial Assessment: Morgan Stanley
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Morgan Stanley
-**Date**: 2025-12-21
-
----
-
-## Decision Point
-
-After completing Tier 3 research, should we proceed to synthesis?
+**Bank:** Morgan Stanley
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Complete Evidence Summary
+## Current Probability State
 
-*Summary of Tier 1 + Tier 2 + Tier 3 findings will be documented here*
+N/A
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+
+## Decision: PROCEED TO TIER ADVERSARIAL
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
 
 ---
 
-## Gate Decision
-
-**Status**: [PROCEED TO SYNTHESIS / ESCALATE]
-
-**Reasoning**:
-*Decision rationale will be documented here*
-
----
-
-## Final Red Flags
-
-*Any remaining concerns or contradictions will be noted here*
-
----
-
-**Purpose**: Final checkpoint before synthesis and classification
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

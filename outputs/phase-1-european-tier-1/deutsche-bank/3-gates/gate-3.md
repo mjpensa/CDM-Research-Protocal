@@ -1,45 +1,40 @@
-# Reasoning Gate 3: Pre-Adversarial Assessment
+# Reasoning Gate 3: Pre-Adversarial Assessment: Deutsche Bank AG
 
-**Bank**: Deutsche Bank AG
-**Date**: 2025-12-20
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## Final Probability State (All Tiers Complete)
+## Current Probability State
 
 | Metric | Value |
 |--------|-------|
 | P(ARCHITECT) | 17% |
 | P(PRAGMATIST) | 83% |
 | Confidence | 55% |
-| Highest Evidence Tier | 2 |
 
-## Probability Trajectory
+## Gate Decision Criteria
 
-```
-Prior:       25% ████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-Post-Tier1:  14% ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-Post-Tier2:  20% ████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-Post-Tier3:  17% █████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-```
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 17% → **Below 20% threshold**
 
-## Evidence Summary
+## Decision: PROCEED TO TIER ADVERSARIAL
 
-### Positive Signals (ARCHITECT)
-1. Conference participation on DRR (Nov 2022) - shows awareness and engagement
+**Rationale**: Per protocol to process all tiers.
 
-### Negative Signals (PRAGMATIST)
-1. FINOS contributor to OTHER projects but NOT CDM - deliberate choice
-2. Traditional DTCC EMIR reporting approach
-3. No CDM mentions in annual reports
-4. No CDM job postings
-5. No LinkedIn CDM activity
-6. No vendor announcements
+## Evidence Trajectory Analysis
 
-### Informative Absences
-- **5 null result categories** documented
-- If DB were implementing CDM, we would expect hiring signals
-- FINOS capability demonstrates they COULD contribute if prioritizing CDM
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
 
 ## Framework Claim Validation
 
@@ -49,20 +44,6 @@ Post-Tier3:  17% █████████████████░░░░
 
 **No evidence supports the framework v20 pilot claim.**
 
-## Pre-Adversarial Classification Hypothesis
-
-**Preliminary Classification**: PRAGMATIST (Regulatory-Driven)
-
-**Rationale**:
-- P(ARCHITECT) = 17% is significantly below 50% threshold
-- Evidence pattern suggests compliance-focused, traditional approach
-- No evidence of internal CDM build or significant investment
-- Conference participation was 2+ years ago with no follow-through
-
-## Gate 3 Decision: PROCEED TO ADVERSARIAL
-
-The evidence is sufficiently developed to proceed to adversarial challenge.
-
 ---
 
-*Gate 3 passed. Proceeding to adversarial challenge.*
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

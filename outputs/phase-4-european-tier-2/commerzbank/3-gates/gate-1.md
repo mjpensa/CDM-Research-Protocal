@@ -1,41 +1,32 @@
-# Gate 1 Decision: Commerzbank AG
+# Reasoning Gate 1: Post-Tier 1 Assessment: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Evidence Summary
+## Current Probability State
 
-| Metric | Value |
-|--------|-------|
-| Tier 1 Evidence Items | 0 |
-| Tier 1 Null Results | 3 |
-| P(ARCHITECT) Post-Tier 1 | 15% (unchanged) |
-| P(PRAGMATIST) Post-Tier 1 | 85% (unchanged) |
+N/A
 
-## Gate 1 Decision
+## Gate Decision Criteria
 
-| Decision | Rationale |
-|----------|-----------|
-| **PROCEED TO TIER 2** | No official CDM evidence found. Need to check trade press and vendor sources. |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-## Analysis
+## Decision: PROCEED TO TIER 2
 
-Tier 1 searches yielded no positive evidence but produced meaningful null results:
-- Not a FINOS member
-- No ISDA CDM working group participation
-- No official CDM announcements from Commerzbank
+**Rationale**: Per protocol to process all tiers.
 
-These absences are informative but not conclusive. Tier 2 search required to check for:
-- Vendor announcements (Murex, other platform providers)
-- Trade press coverage of derivatives platform strategy
-- Analyst reports on European tier 2 banks
+## Evidence Quality Assessment
 
-## Next Steps
+N/A
 
-Execute Tier 2 searches focusing on:
-1. Murex/vendor announcements
-2. Risk.net, Waters Technology coverage
-3. European banking technology press
+## Key Questions for Tier 2
+
+N/A
+
+---
+
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

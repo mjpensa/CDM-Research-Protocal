@@ -1,26 +1,25 @@
-# Tier 2 Evidence: Bank of China
+# Tier 2 Evidence: Bank of China Limited
 
-**Research Date**: 2025-12-21
-**Protocol Version**: 2.3
+**Bank:** Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-**Evidence Count**: 0 items
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
+
+## Evidence Inventory
 
 No Tier 2 evidence found.
 
-## Sources Checked
+## Informative Absences
 
-- Risk.net, Waters Technology, Reuters, Bloomberg: No coverage
-- Chinese financial media (Caixin, SCMP): Focus on Belt & Road, retail banking
-- Analyst reports: No CDM mentions
-
-## Context
-
-Despite Bank of China's significant international presence and derivatives operations, no trade press or analyst coverage of CDM adoption found. Consistent with Chinese regulatory environment lacking CDM mandate.
+N/A
 
 ---
-
-**Conclusion**: No Tier 2 evidence. Proceed to Tier 3.

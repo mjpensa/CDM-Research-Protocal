@@ -1,34 +1,36 @@
-# Gate 3 Decision: Credit Agricole CIB
+# Reasoning Gate 3: Pre-Adversarial Assessment: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Final Evidence Summary
+## Current Probability State
 
-| Tier | Evidence Items | Null Results | Key Finding |
-|------|----------------|--------------|-------------|
-| Tier 1 | 1 | 0 | ISDA Board membership |
-| Tier 2 | 0 | 1 | No trade press coverage |
-| Tier 3 | 0 | 1 | No hiring signals |
-| **Total** | **1** | **2** | Ecosystem engagement only |
+N/A
 
-## Classification Recommendation
+## Gate Decision Criteria
 
-| Classification | Sub-Classification | Confidence |
-|----------------|-------------------|------------|
-| **OBSERVER** | Ecosystem-Engaged | 55% |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-**Rationale:**
-- ISDA Board membership demonstrates ecosystem awareness and engagement
-- Absence of CDM technical evidence prevents ARCHITECT classification
-- Absence of vendor evidence prevents PRAGMATIST confirmation
-- OBSERVER accurately captures "watching but not building" posture
+## Decision: PROCEED TO TIER ADVERSARIAL
 
-## Gate 3 Decision
+**Rationale**: Per protocol to process all tiers.
 
-| Decision | Rationale |
-|----------|-----------|
-| **PROCEED TO ADVERSARIAL** | Classification ready for challenge. OBSERVER (Ecosystem-Engaged) at 55% confidence. |
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
+
+---
+
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

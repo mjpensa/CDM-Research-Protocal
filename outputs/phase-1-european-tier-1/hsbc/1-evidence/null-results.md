@@ -1,4 +1,10 @@
-# Null Results: HSBC Holdings plc
+# Null Results Registry: HSBC Holdings PLC
+
+**Bank:** HSBC Holdings PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
+
+---
 
 ## Summary
 
@@ -6,68 +12,20 @@
 - **Categories with Null Results**: 4
 - **Informative Absences**: 4
 
----
+## Tier 1 Null Results
 
-## Null Result Blocks
+N/A
 
-### FINOS CDM Contributor
+## Tier 2 Null Results
 
-**Queries Executed**:
-- `site:finos.org HSBC CDM contributor`
+N/A
 
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
+## Tier 3 Null Results
 
-**Informative Absence**: YES
+N/A
 
-**Implication**: HSBC not listed as FINOS CDM contributor
+## Implications for Classification
 
----
-
-### ISDA CDM Involvement
-
-**Queries Executed**:
-- `HSBC CDM Common Domain Model ISDA 2024 2025`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No evidence of CDM involvement in general searches
+Informative absence supports PRAGMATIST classification.
 
 ---
-
-### CDM Job Postings
-
-**Queries Executed**:
-- `HSBC CDM ISDA job careers 2024 2025`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No CDM-specific hiring signals
-
----
-
-### Risk.net CDM Coverage
-
-**Queries Executed**:
-- `site:risk.net HSBC CDM derivatives`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No Risk.net coverage of HSBC CDM activity (unlike Barclays)
-
----
-
-## Null Results Summary
-
-- Total null searches: 4
-- Informative absences supporting Pragmatist: 4
-- Search exhaustiveness: Basic

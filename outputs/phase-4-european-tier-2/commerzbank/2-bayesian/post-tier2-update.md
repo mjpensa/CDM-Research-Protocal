@@ -1,23 +1,24 @@
-# Bayesian Update: Post-Tier 2 - Commerzbank AG
+# Bayesian Update: Post-Tier 2 Evidence: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Prior Probability (Post-Tier 1)
+## Prior Probability
 
-| Parameter | Value | Rationale |
-|-----------|-------|-----------|
-| P(ARCHITECT) | 0.15 | No Tier 1 evidence found |
-| P(PRAGMATIST) | 0.85 | Default assumption maintained |
+P(ARCHITECT) prior: 0%
 
 ## Tier 2 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| CBK-001 | Murex MX.3 platform migration (May 2024) | SUPPORTS_PRAGMATIST | 0.3 |
+No Tier 2 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -38,23 +39,23 @@ P(PRAGMATIST|E) = 0.95 ≈ 95.0%
 
 ## Updated Probabilities
 
-| Parameter | Prior | Posterior | Change |
-|-----------|-------|-----------|--------|
-| P(ARCHITECT) | 0.15 | 0.05 | -0.10 |
-| P(PRAGMATIST) | 0.85 | 0.95 | +0.10 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Analysis
+## Key Insights
 
-The Murex MX.3 migration is strong evidence for PRAGMATIST classification:
-- Traditional vendor platform migration
-- No CDM layer mentioned despite Murex having CDM capabilities
-- Partnership with Murex, TeamTek, and Infosys (full outsource model)
-- Covers FX, FX derivatives, equities, commodities
+N/A
 
-Key insight: Murex MX.3 **has** CDM capabilities, but Commerzbank announcement makes no mention of CDM adoption, suggesting traditional platform usage.
+## Cumulative Evidence Summary
 
-## Decision
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
 
-**Classification determined: PRAGMATIST (Vendor-Dependent)** at 50% confidence (Tier 2 maximum for vendor proxy signal).
+---
 
-Tier 3 searches not necessary - classification is clear from vendor migration evidence.
+*Proceeding to Tier 3.*

@@ -1,27 +1,36 @@
-# Gate 2 Decision: Credit Agricole CIB
+# Reasoning Gate 2: Post-Tier 2 Assessment: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Evidence Summary
+## Current Probability State
 
-| Metric | Value |
-|--------|-------|
-| Tier 1 Evidence Items | 1 |
-| Tier 2 Evidence Items | 0 |
-| Cumulative Null Results | 2 |
-| P(ARCHITECT) Post-Tier 2 | 19.1% |
-| P(PRAGMATIST) Post-Tier 2 | 80.9% |
+N/A
 
-## Gate 2 Decision
+## Gate Decision Criteria
 
-| Decision | Rationale |
-|----------|-----------|
-| **PROCEED TO TIER 3** | Pattern emerging: Board membership without active CDM engagement. Complete all tiers per protocol. |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-## Emerging Classification
+## Decision: PROCEED TO TIER 3
 
-OBSERVER (Ecosystem-Engaged) - engaged via Board but no technical CDM work.
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 3
+
+N/A
+
+---
+
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

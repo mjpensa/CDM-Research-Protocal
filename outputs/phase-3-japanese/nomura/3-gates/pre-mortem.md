@@ -1,32 +1,52 @@
-# Pre-Mortem: Nomura Holdings, Inc.
+# Pre-Mortem Analysis: Nomura Holdings, Inc.
 
-## Purpose
-Before conducting research, identify potential failure modes in classification to avoid predictable errors.
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
 
-## Hypothetical Failure Scenarios
+---
 
-### Scenario 1: Missed Hidden CDM Program
-Failure: Classified Nomura as OBSERVER, but they actually have an active CDM program that is unpublicized
+## Research Objective
 
-How this could happen:
-- Nomura keeps CDM work confidential for competitive reasons
-- CDM program is in early stages and not yet externally communicated
-- Japanese cultural preference for low public profile on strategic initiatives
+Assess Nomura Holdings, Inc.'s CDM/DRR adoption maturity.
 
-How to avoid:
-- Search Japanese-language sources in addition to English
-- Check for indirect signals (vendor partnerships, technology modernization announcements)
-- Look for JSCC-specific CDM connectivity requirements
+## Potential Failure Modes
 
-### Scenario 2: Overweighting JSCC Connection
-Failure: Classified Nomura as PRAGMATIST based solely on JSCC clearing membership
+| Risk | Description | Mitigation |
+|------|-------------|------------|
+| False Positive | Overstating CDM engagement | Require Tier 1 corroboration |
+| False Negative | Missing silent implementation | Check job postings, LinkedIn |
+| Stale Evidence | Outdated information | Apply temporal weighting |
 
-How to avoid:
-- Research JSCC CDM implementation model for clearing members
-- Distinguish between required connectivity vs voluntary adoption
-- Look for evidence of Nomura-specific CDM investment beyond JSCC compliance
+## Search Strategy
 
-## Success Criteria
-Research will be considered successful if we definitively determine whether Nomura has any CDM program and understand the nature of JSCC connectivity requirements for clearing members.
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
 
-Expected Outcome: OBSERVER (CCP-Connected) with 45% confidence
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
+
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
+
+## Key Hypotheses to Test
+
+N/A
+
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume Nomura Holdings, Inc. is PRAGMATIST until evidence proves otherwise.
+
+---

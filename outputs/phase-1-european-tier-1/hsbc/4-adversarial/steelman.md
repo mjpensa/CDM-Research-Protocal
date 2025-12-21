@@ -1,11 +1,12 @@
-# Steelman: Strongest Counter-Argument
+# Steelman: Strongest Counter-Argument: HSBC Holdings PLC
 
-**Bank**: HSBC Holdings plc
-**Date**: 2025-12-20
+**Bank:** HSBC Holdings PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## The Strongest Possible Case for ARCHITECT
+## Strongest Counter-Hypothesis
 
 If forced to argue that HSBC IS an ARCHITECT, the strongest argument would be:
 
@@ -67,7 +68,13 @@ Banks with actual CDM work (BNP Paribas, JPMorgan, Barclays) generate visible si
 
 HSBC generates signals in ALL OTHER CATEGORIES (DTC clearing leadership, risk management, regulatory technology) but precisely ZERO in CDM categories. This pattern is inconsistent with silent CDM implementation.
 
----
+## Supporting Logic
+
+N/A
+
+## Why This Argument Fails
+
+
 
 ## Steelman Assessment
 
@@ -87,5 +94,3 @@ The strongest counter-argument relies entirely on:
 The most damaging fact: HSBC could have written their official EMIR REFIT page to say "CDM-based reporting" if it were true. They chose not to. This is not an inference - it's the bank's own stated regulatory approach.
 
 ---
-
-*Proceeding to final verdict.*

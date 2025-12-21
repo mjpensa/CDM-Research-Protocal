@@ -1,4 +1,10 @@
-# CDM/DRR Research Assessment: Nomura Holdings, Inc.
+# CDM/DRR Assessment: Nomura Holdings, Inc.
+
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
 
 ## Executive Summary
 
@@ -9,6 +15,43 @@
 **Phase:** 3 (Japanese Banks)
 
 Nomura shows no evidence of direct CDM strategic adoption. The only CDM connection is through JSCC clearing membership, where JSCC deployed CDM production infrastructure in June 2025. This creates passive exposure to CDM but does not indicate internal CDM capabilities or strategic commitment.
+
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | Nomura Holdings, Inc. |
+| Headquarters | Tokyo, Japan |
+| Region | Asia |
+| Phase | 3 - Japanese |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | OBSERVER |
+| Sub-Classification | N/A |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Knowledge Gaps
+
+**Critical Gaps:**
+1. Internal JSCC connectivity implementation (vendor solution vs internal build?)
+2. Strategic planning for CDM beyond JSCC compliance
+3. Vendor relationships for derivatives reporting
+4. Product-level CDM coverage (which products use JSCC?)
+
+**Impact:** These gaps affect precision of sub-classification but not primary classification
 
 ## Evidence Summary
 
@@ -66,16 +109,6 @@ The CCP-Connected sub-classification acknowledges infrastructure exposure while 
 - Sufficient traditional infrastructure
 - Wait-and-see approach common among Japanese banks
 
-## Knowledge Gaps
-
-**Critical Gaps:**
-1. Internal JSCC connectivity implementation (vendor solution vs internal build?)
-2. Strategic planning for CDM beyond JSCC compliance
-3. Vendor relationships for derivatives reporting
-4. Product-level CDM coverage (which products use JSCC?)
-
-**Impact:** These gaps affect precision of sub-classification but not primary classification
-
 ## Conclusion
 
 Nomura is an OBSERVER with infrastructure-mandated CDM exposure through JSCC. No evidence of strategic CDM adoption or internal capability building. Classification is stable and well-supported by consistent null results across all evidence tiers.
@@ -85,3 +118,7 @@ Nomura is an OBSERVER with infrastructure-mandated CDM exposure through JSCC. No
 - Watch for vendor partnership disclosures
 - Track hiring signals for CDM expertise
 - Review classification in 12 months as JSCC ecosystem develops
+
+---
+
+*Assessment complete. Classification: OBSERVER (N/A) with 50% confidence.*

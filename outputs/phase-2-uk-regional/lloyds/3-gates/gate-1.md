@@ -1,7 +1,8 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment
+# Reasoning Gate 1: Post-Tier 1 Assessment: Lloyds Banking Group PLC
 
-**Bank**: Lloyds Banking Group plc
-**Date**: 2025-12-20
+**Bank:** Lloyds Banking Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -13,10 +14,24 @@
 | P(PRAGMATIST) | 80% |
 | Confidence | 35% |
 
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 20% → **Within 20-80% range**
+
 ## Decision: PROCEED TO TIER 2
 
-**Rationale**: Single historical evidence item insufficient for classification. Need to search for continuation signals.
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 2
+
+N/A
 
 ---
 
-*Gate 1 passed. Proceeding to Tier 2.*
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

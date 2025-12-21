@@ -1,26 +1,25 @@
-# Tier 2 Evidence: Agricultural Bank of China (ABC)
+# Tier 2 Evidence: Agricultural Bank of China Limited
 
-**Research Date**: 2025-12-21
-**Protocol Version**: 2.3
+**Bank:** Agricultural Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-**Evidence Count**: 0 items
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
+
+## Evidence Inventory
 
 No Tier 2 evidence found.
 
-## Sources Checked
+## Informative Absences
 
-- Risk.net, Waters Technology, Reuters: No coverage
-- Chinese financial media: Focus on agricultural lending, rural banking
-- Analyst reports: No CDM mentions
-
-## Context
-
-ABC has smallest international derivatives operations among Big Four. Focus on domestic agricultural commodity hedging. No Western trade press coverage of CDM.
+N/A
 
 ---
-
-**Conclusion**: No Tier 2 evidence. Proceed to Tier 3.

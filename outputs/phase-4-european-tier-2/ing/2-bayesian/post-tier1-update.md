@@ -1,8 +1,8 @@
-# Bayesian Update: Post-Tier 1 - ING Group
+# Bayesian Update: Post-Tier 1 Evidence: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
@@ -15,22 +15,13 @@
 
 ## Tier 1 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| *None* | No Tier 1 evidence found | N/A | N/A |
+No Tier 1 evidence found.
 
-## Null Result Impact
+## Likelihood Ratio Calculation
 
-**Informative Absence:** The lack of Tier 1 evidence is itself informative.
-
-- ING is not listed as FINOS member
-- No CDM contributors from ING on GitHub
-- No ISDA CDM working group participation
-- No official CDM announcements
-
-**Likelihood Ratio for Null Result:** 0.7
-- Banks pursuing CDM would likely have Tier 1 signals
-- Absence weakly supports PRAGMATIST hypothesis
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -56,11 +47,16 @@ P(ARCHITECT|E) = 0.058 / (1 + 0.058) = 0.055 ≈ 5.5%
 
 ## Updated Probabilities
 
-| Parameter | Prior | Posterior | Change |
-|-----------|-------|-----------|--------|
-| P(ARCHITECT) | 0.15 | 0.055 | -0.095 |
-| P(PRAGMATIST) | 0.85 | 0.945 | +0.095 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Decision
+## Key Insights
 
-**Continue to Tier 2 search** - Null results from Tier 1 do not preclude Tier 2 evidence.
+N/A
+
+---
+
+*Proceeding to Tier 2.*

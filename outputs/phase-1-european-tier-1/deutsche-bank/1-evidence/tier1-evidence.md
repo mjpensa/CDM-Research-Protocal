@@ -1,68 +1,89 @@
 # Tier 1 Evidence: Deutsche Bank AG
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 3
-- **Schema Version**: 4.3
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
+
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 3 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[DB-002] TIER 1 — NEUTRAL
+### DB-002: Evidence Item
 
-**Source**: https://www.finos.org/common-domain-model
-**Date**: 2025-12-20
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "Fluxnova is co-maintained by Fidelity, NatWest Group, Deutsche Bank, Capital One and BMO. Rob Moffat built Spring Bot while at Deutsche Bank. David Watkins from Deutsche Bank is Waltz Lead Maintainer."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Current
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `open_source_contribution`
-**LR Mapping**: finos_contributor_non_cdm (LR = 0.8)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Deutsche Bank has clear FINOS open source capability but is NOT contributing to CDM. This is informative absence - they are choosing not to prioritize CDM despite having the capability.
+**Caveats:** N/A
 
----
+### DB-003: Evidence Item
 
-[DB-003] TIER 1 — SUPPORTS PRAGMATIST
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.db.com/legal-resources/european-market-infrastructure-regulation/transaction-reporting
-**Date**: 2024-04-29
+**Excerpt:** N/A
 
-**Finding**: "Deutsche Bank is offering a reporting service to the DTCC Data Repository (Ireland) Plc, an EU TR, to help NFC+ and FC clients comply with their EMIR reporting obligations."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Current
-- Specificity: Specific
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `vendor_proxy_signal`
-**LR Mapping**: traditional_vendor_approach (LR = 0.7)
+**Caveats:** N/A
 
-**Caveats**: Uses DTCC for EMIR reporting which is traditional infrastructure. No mention of CDM or DRR in their EMIR compliance approach.
+### DB-005: Evidence Item
 
----
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-[DB-005] TIER 1 — NEUTRAL
+**Excerpt:** N/A
 
-**Source**: https://investor-relations.db.com/files/documents/annual-reports/2024/Annual-Report-2023.pdf
-**Date**: 2024-03-14
+**Analysis:** N/A
 
-**Finding**: "Work on their most important regulatory programmes is now nearing completion. Investments in technology, processes and controls will increasingly translate into savings."
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Current
-- Specificity: Vague
+**Caveats:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: annual_report_no_cdm (LR = 0.9)
+## Informative Absences
 
-**Caveats**: Generic regulatory technology investment language. No CDM/DRR mentioned in 2023 or 2024 annual reports - informative absence.
+N/A
 
 ---

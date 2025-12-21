@@ -1,18 +1,14 @@
-# Pre-Mortem Analysis: ING Group
+# Pre-Mortem Analysis: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Analysis Date:** 2025-12-20
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Purpose
+## Research Objective
 
-Identify potential failure modes before beginning research. Per Tetlock superforecasting methodology, pre-mortems improve accuracy by surfacing blind spots.
-
-## Hypothetical Failure Scenario
-
-*"It is 30 days from now. The ING classification has been proven wrong. What happened?"*
+Assess ING Group N.V.'s CDM/DRR adoption maturity.
 
 ## Potential Failure Modes
 
@@ -46,29 +42,35 @@ Identify potential failure modes before beginning research. Per Tetlock superfor
 **Mitigation:** None available - confidential by definition
 **Residual Risk:** Cannot mitigate
 
-## Pre-Mortem Checklist
+## Search Strategy
 
-| Check | Completed | Finding |
-|-------|-----------|---------|
-| ING official newsroom search | ✓ | No CDM announcements |
-| ING annual report CDM search | ✓ | No CDM mentions |
-| FINOS member list check | ✓ | ING not listed |
-| GitHub contributor search | ✓ | No ING contributors |
-| ISDA working group check | ✓ | No ING representatives |
-| Vendor partnership search | ✓ | No CDM vendor announcements |
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
 
-## Risk Assessment
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
 
-| Failure Mode | Probability | Impact | Priority |
-|--------------|-------------|--------|----------|
-| Hidden adoption | 15% | High | Monitor |
-| Recent announcement | 5% | Medium | Low |
-| Subsidiary adoption | 20% | Medium | Search completed |
-| Vendor proxy | 15% | Medium | Search completed |
-| Confidential pilot | 10% | Low | Accept risk |
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
 
-## Conclusion
+## Key Hypotheses to Test
 
-The most likely failure mode is **hidden internal adoption** or **subsidiary-level adoption** that has not been publicly disclosed. These risks are acknowledged but cannot be fully mitigated with public sources.
+N/A
 
-Research may proceed with awareness of these limitations.
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume ING Group N.V. is PRAGMATIST until evidence proves otherwise.
+
+---

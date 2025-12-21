@@ -1,19 +1,20 @@
-# Adversarial Verdict: Société Générale
+# Adversarial Verdict: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Date**: 2025-12-20
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
 ## Final Classification
 
-| Metric | Value |
-|--------|-------|
-| **Classification** | PRAGMATIST |
-| **Sub-Classification** | Regulatory-Driven |
-| **Confidence** | 50% |
-| **P(ARCHITECT)** | 26% |
-
----
+| Element | Value |
+|---------|-------|
+| Classification | PRAGMATIST |
+| Sub-Classification | Regulatory-Driven |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
 
 ## Verdict Rationale
 
@@ -40,12 +41,24 @@ The strongest counter-argument (silent implementation) is undermined by:
 - BNP Paribas DID announce their CDM work (French banks do publicize)
 - 3+ years since BNP production with no SocGen follow evidence
 
+## Sub-Classification Justification
+
+N/A
+
+## Why Not Other Classifications
+
+| Alternative | Reason Rejected |
+|-------------|-----------------|
+| N/A | N/A |
+
+## Confidence Assessment
+
+N/A
+
+## Adversarial Challenge Status
+
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
+
 ---
-
-## Classification: PRAGMATIST (Regulatory-Driven)
-
-Société Générale is meeting regulatory requirements (EMIR Refit) through traditional means. Despite peer BNP Paribas being in CDM production since 2022, no evidence of following this path.
-
----
-
-*Adversarial challenge complete.*

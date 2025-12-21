@@ -1,32 +1,25 @@
 # Tier 3 Evidence: The Bank of New York Mellon Corporation
 
-**Bank**: The Bank of New York Mellon Corporation
-**Classification**: UNKNOWN (Insufficient-Evidence)
-**Confidence**: 35%
-**Date**: 2025-12-21
+**Bank:** The Bank of New York Mellon Corporation
+**Phase:** 9 - US Custody Banks
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-No Tier 3 evidence found for BNY Mellon's CDM adoption.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
----
+## Evidence Inventory
 
-## Evidence Items
+No Tier 3 evidence found.
 
-*No Tier 3 evidence items found.*
+## Informative Absences
 
----
-
-## Search Coverage
-
-The following Tier 3 sources were searched:
-
-- **Job Postings**: No LinkedIn or BNY Mellon career portal postings mentioning CDM/ISDA/DRR
-- **LinkedIn Profiles**: No BNY Mellon employee profiles highlighting CDM expertise
-- **Blog Posts**: No Medium or Substack articles discussing BNY Mellon CDM work
+N/A
 
 ---
-
-**Conclusion**: No signal sources indicate BNY Mellon CDM activity or hiring intent.

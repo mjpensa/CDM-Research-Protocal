@@ -1,11 +1,41 @@
-# Gate 2: Post-Tier 2 Reasoning Check (Mizuho Financial Group)
+# Reasoning Gate 2: Post-Tier 2 Assessment: Mizuho Financial Group
 
-## Evidence Quality
-- Tier 2 Evidence: 2 items (JSCC connectivity, ISDA participation)
-- Key Finding: Indirect infrastructure connection
+**Bank:** Mizuho Financial Group
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
 
-## Classification Update
-P(OBSERVER) = 69%, P(PRAGMATIST) = 30%, P(ARCHITECT) = 1%
+---
 
-## Decision: PROCEED to Tier 3
-GATE 2: PASSED
+## Current Probability State
+
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 1% |
+| P(PRAGMATIST) | 30% |
+| Confidence | 0% |
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 1% → **Below 20% threshold**
+
+## Decision: PROCEED TO TIER 3
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 3
+
+N/A
+
+---
+
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

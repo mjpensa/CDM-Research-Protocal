@@ -1,49 +1,36 @@
-# Gate 2 Decision: Commerzbank AG
+# Reasoning Gate 2: Post-Tier 2 Assessment: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Evidence Summary
+## Current Probability State
 
-| Metric | Value |
-|--------|-------|
-| Tier 1 Evidence Items | 0 |
-| Tier 2 Evidence Items | 1 (CBK-001: Murex MX.3 migration) |
-| Tier 2 Null Results | 0 (trade press searches yielded Murex finding) |
-| P(ARCHITECT) Post-Tier 2 | 5% |
-| P(PRAGMATIST) Post-Tier 2 | 95% |
+N/A
 
-## Gate 2 Decision
+## Gate Decision Criteria
 
-| Decision | Rationale |
-|----------|-----------|
-| **CLASSIFICATION DETERMINED** | Murex MX.3 migration provides clear PRAGMATIST (Vendor-Dependent) evidence. Tier 3 not needed. |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-## Analysis
+## Decision: PROCEED TO TIER 3
 
-Tier 2 search produced decisive evidence:
+**Rationale**: Per protocol to process all tiers.
 
-**Key Finding:** Commerzbank completed migration to Murex MX.3 platform in May 2024
-- Covers FX, FX derivatives, equities, commodities
-- Partnership with Murex, TeamTek, Infosys
-- Traditional platform migration (not CDM-native)
-- No CDM layer mentioned despite Murex having CDM capabilities
+## Evidence Trajectory Analysis
 
-**Classification Impact:**
-- Strong evidence for vendor-dependent pragmatist approach
-- LR = 0.3 (strongly supports PRAGMATIST over ARCHITECT)
-- Posterior probability: 95% PRAGMATIST
+N/A
 
-**Confidence Calibration:**
-- Maximum confidence for Tier 2 vendor proxy signal: 50%
-- Evidence quality: Medium (vendor announcement)
-- Corroboration: None needed (Murex is authoritative for own migrations)
+## Evidence Quality Assessment
 
-## Next Steps
+N/A
 
-Skip Tier 3 searches. Proceed to adversarial review and synthesis with:
-- **Classification:** PRAGMATIST (Vendor-Dependent)
-- **Confidence:** 50%
+## Key Questions for Tier 3
+
+N/A
+
+---
+
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

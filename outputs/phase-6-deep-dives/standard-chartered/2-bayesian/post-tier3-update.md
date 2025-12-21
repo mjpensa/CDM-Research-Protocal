@@ -1,102 +1,51 @@
-# Post-Tier 3 Bayesian Update - Standard Chartered
+# Bayesian Update: Post-Tier 3 Evidence: Standard Chartered PLC
 
-**Bank:** Standard Chartered
-**Phase:** 6 (Deep Dive)
+**Bank:** Standard Chartered PLC
+**Phase:** 6 - Deep Dives
 **Date:** 2025-12-21
 
 ---
 
-## Prior (from Tier 2)
+## Prior Probability
 
-**Classification:** ARCHITECT (Leader)
-**Confidence:** 80%
-
----
+P(ARCHITECT) prior: 20%
 
 ## Tier 3 Evidence Summary
 
-**Evidence Items Collected:** 0
+No Tier 3 evidence found.
 
-**Searches Conducted:**
-- LinkedIn job postings: "CDM" + "Standard Chartered"
-- Medium/blog articles: "Standard Chartered CDM implementation"
-- Regional news: "Standard Chartered derivatives technology Asia"
+## Likelihood Ratio Calculation
 
-**Results:** No relevant Tier 3 evidence found
+```
+Combined LR = 1.0 (no evidence)
+```
 
----
+## Posterior Calculation
 
-## Bayesian Update Calculation
+```
+Posterior = Prior (no update)
+```
 
-**No update required** - no new evidence collected.
+## Updated Probabilities
 
----
+N/A
 
-## Informative Absence Analysis
+## Key Insights
 
-**What the Absence of Tier 3 Evidence Tells Us:**
+N/A
 
-1. **No Job Posting Signals:**
-   - Interpretation: Implementation may be complete (no active hiring)
-   - Alternative: CDM skills developed internally or via existing staff
-   - Impact on confidence: Neutral
+## Cumulative Evidence Summary
 
-2. **No LinkedIn/Blog Activity:**
-   - Interpretation: Possible non-disclosure culture
-   - Alternative: Focus on execution over publicity
-   - Impact on confidence: Neutral to slightly positive (no premature announcements)
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
 
-3. **Limited Regional Press Coverage:**
-   - Interpretation: Asia-Pacific media less focused on technical standards
-   - Alternative: Competitive sensitivity in regional markets
-   - Impact on confidence: Neutral
+## Final Confidence Assessment
 
-**Net Impact:** Absence of Tier 3 evidence is **neutral** given strong Tier 1 foundation.
+Final confidence: 50%
 
 ---
 
-## Classification After Tier 3
-
-**Classification:** ARCHITECT (Leader)
-**Confidence:** 80% (unchanged)
-
-**Rationale:**
-The absence of Tier 3 evidence does not contradict or undermine the strong Tier 1 and Tier 2 evidence base. Classification remains stable.
-
----
-
-## Final Evidence Summary
-
-**Total Evidence Items:** 5
-- Tier 1: 4 items
-- Tier 2: 1 item
-- Tier 3: 0 items
-
-**Highest Claim Type:** production_usage (Tier 1)
-**Maturity Score:** 5 (ARCHITECT)
-
-**Confidence Drivers:**
-1. Multiple Tier 1 production usage confirmations
-2. Technical and governance-level engagement
-3. Senior leadership presenting implementation experience
-4. Consortium participation indicating industry leadership
-
-**Confidence Limiters:**
-1. Source concentration (all ISDA-related)
-2. Evidence age (18-24 months, no recent updates)
-3. Absence of open source contributions
-4. Limited independent corroboration
-
-**Final Assessment:** 80% confidence in ARCHITECT (Leader) classification is well-calibrated given evidence quality and limitations.
-
----
-
-## Proceed to Adversarial Review
-
-**Next Stage:** Gate 3 → Adversarial Review → Synthesis
-
-**Key Questions for Adversarial Review:**
-1. Could Standard Chartered be a PRAGMATIST using vendor-led CDM solutions?
-2. Is the absence of GitHub activity a red flag for vendor dependency?
-3. How recent is the production usage - could it have been discontinued?
-4. Are we over-weighting ISDA sources and under-weighting absence of trade press coverage?
+*Proceeding to adversarial review.*

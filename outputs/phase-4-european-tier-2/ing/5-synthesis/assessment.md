@@ -1,28 +1,14 @@
-# CDM Adoption Assessment: ING Group
+# CDM/DRR Assessment: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Assessment Date:** 2025-12-20
-**Researcher:** Claude Code (Opus 4.5)
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
 ## Executive Summary
 
 ING Group is classified as **UNKNOWN (Insufficient-Evidence)** with **30% confidence**. Comprehensive research across all three evidence tiers yielded zero positive evidence items and four null results. The bank shows no public engagement with the ISDA Common Domain Model (CDM) ecosystem, FINOS membership, or Digital Regulatory Reporting (DRR) adoption.
-
----
-
-## Classification
-
-| Element | Value |
-|---------|-------|
-| **Final Classification** | UNKNOWN |
-| **Sub-Classification** | Insufficient-Evidence |
-| **Confidence Level** | 30% |
-| **Evidence Quality** | Tier 4 (inference only) |
-
----
 
 ## Bank Profile
 
@@ -34,7 +20,66 @@ ING Group is classified as **UNKNOWN (Insufficient-Evidence)** with **30% confid
 | **Derivatives Activity** | Significant - major European dealer |
 | **Regulatory Jurisdiction** | ECB (primary), DNB (Netherlands) |
 
----
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | UNKNOWN |
+| Sub-Classification | N/A |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+| Stage | P(ARCHITECT) | Change |
+|-------|--------------|--------|
+| Prior | 15% | 85.0% |
+| Post-Tier 1 | 6% | 94.5% |
+| Post-Tier 2 | 3% | 97.4% |
+| Post-Tier 3 | 2% | 98.5% |
+
+## Recommendations
+
+### For Research Consumers
+1. Treat ING classification as provisional
+2. Do not assume CDM non-adoption without further inquiry
+3. Direct engagement with ING would resolve uncertainty
+
+### For Future Research
+1. Monitor ING announcements for CDM references
+2. Check FINOS membership updates quarterly
+3. Search for vendor announcements (Murex, Calypso) mentioning ING
+
+### For ING (Hypothetical)
+If seeking CDM engagement, ING could:
+- Join FINOS as a member
+- Participate in ISDA CDM working groups
+- Announce DRR pilot or adoption
+- Contribute to CDM repository on GitHub
+
+## Confidence Calibration
+
+| Factor | Impact on Confidence |
+|--------|---------------------|
+| Zero positive evidence | -30% (caps at Tier 4) |
+| Consistent null results | +5% (pattern is clear) |
+| Complete tier coverage | +5% (thorough search) |
+| Adversarial validation | +5% (classification challenged) |
+| **Net Confidence** | **30%** |
+
+## Classification
+
+| Element | Value |
+|---------|-------|
+| **Final Classification** | UNKNOWN |
+| **Sub-Classification** | Insufficient-Evidence |
+| **Confidence Level** | 30% |
+| **Evidence Quality** | Tier 4 (inference only) |
 
 ## Evidence Summary
 
@@ -67,8 +112,6 @@ ING Group is classified as **UNKNOWN (Insufficient-Evidence)** with **30% confid
 | Tier 3 | 0 | 0 | 0 |
 | **Total** | **0** | **4** | **4** |
 
----
-
 ## Bayesian Analysis
 
 ### Probability Evolution
@@ -82,8 +125,6 @@ ING Group is classified as **UNKNOWN (Insufficient-Evidence)** with **30% confid
 ### Interpretation
 The probability of ARCHITECT classification declined 90% through evidence collection. However, the high P(PRAGMATIST) reflects behavioral probability, not classification confidence - we infer ING is likely not an ARCHITECT, but cannot confirm what they ARE.
 
----
-
 ## Adversarial Review
 
 ### Counter-Case
@@ -95,8 +136,6 @@ The UNKNOWN classification was defended on epistemic grounds: without positive e
 ### Verdict
 UNKNOWN (Insufficient-Evidence) confirmed at 30% confidence.
 
----
-
 ## Key Findings
 
 1. **No FINOS Engagement:** ING is not listed as a FINOS member and has no CDM contributors
@@ -104,8 +143,6 @@ UNKNOWN (Insufficient-Evidence) confirmed at 30% confidence.
 3. **No Public CDM Announcements:** ING has not announced any CDM or DRR initiatives
 4. **No Hiring Signals:** No CDM-related job postings identified
 5. **Complete Absence:** Pattern of non-participation across all evidence sources
-
----
 
 ## Informative Absences
 
@@ -115,20 +152,6 @@ The null results are informative:
 - **Peer Divergence:** Unlike JPMorgan, Barclays, or Goldman Sachs, ING has no CDM footprint
 - **Traditional Path Likely:** Absence of CDM signals suggests traditional vendor approaches
 - **No Innovation Signal:** ING's fintech activities do not extend to CDM/DRR
-
----
-
-## Confidence Calibration
-
-| Factor | Impact on Confidence |
-|--------|---------------------|
-| Zero positive evidence | -30% (caps at Tier 4) |
-| Consistent null results | +5% (pattern is clear) |
-| Complete tier coverage | +5% (thorough search) |
-| Adversarial validation | +5% (classification challenged) |
-| **Net Confidence** | **30%** |
-
----
 
 ## Comparison to Peers
 
@@ -140,29 +163,6 @@ The null results are informative:
 | UniCredit | OBSERVER | 40% | Historical ISDA engagement |
 
 ING has the weakest evidence base of the Phase 4 cohort.
-
----
-
-## Recommendations
-
-### For Research Consumers
-1. Treat ING classification as provisional
-2. Do not assume CDM non-adoption without further inquiry
-3. Direct engagement with ING would resolve uncertainty
-
-### For Future Research
-1. Monitor ING announcements for CDM references
-2. Check FINOS membership updates quarterly
-3. Search for vendor announcements (Murex, Calypso) mentioning ING
-
-### For ING (Hypothetical)
-If seeking CDM engagement, ING could:
-- Join FINOS as a member
-- Participate in ISDA CDM working groups
-- Announce DRR pilot or adoption
-- Contribute to CDM repository on GitHub
-
----
 
 ## Appendices
 
@@ -185,8 +185,6 @@ If seeking CDM engagement, ING could:
 - [Pre-Mortem](../3-gates/pre-mortem.md)
 - [Adversarial Verdict](../4-adversarial/verdict.md)
 
----
-
 ## Document Metadata
 
 | Field | Value |
@@ -197,3 +195,7 @@ If seeking CDM engagement, ING could:
 | Schema Version | 3.1 |
 | Classification | UNKNOWN (Insufficient-Evidence) |
 | Confidence | 30% |
+
+---
+
+*Assessment complete. Classification: UNKNOWN (N/A) with 50% confidence.*

@@ -1,8 +1,26 @@
 {
-  "$schema": "CDM/DRR Regulatory Calendar v1.0",
+  "$schema": "CDM/DRR Regulatory Calendar v1.1",
   "description": "Regulatory deadlines affecting CDM adoption timelines and evidence weighting",
-  "version": "1.0",
+  "version": "1.1",
   "last_updated": "2025-12-21",
+
+  "mandate_type_definitions": {
+    "bank_wide": {
+      "description": "Applies to all bank operations in jurisdiction",
+      "pressure_strength_range": [0.8, 1.0],
+      "classification_impact": "Strong pressure toward adoption"
+    },
+    "product_specific": {
+      "description": "Applies only to specific product lines (IRS, CDS, etc.)",
+      "pressure_strength_range": [0.5, 0.7],
+      "classification_impact": "Moderate pressure for affected products only"
+    },
+    "pathway_option": {
+      "description": "CDM is one compliance pathway among several alternatives",
+      "pressure_strength_range": [0.2, 0.4],
+      "classification_impact": "Weak pressure - adoption is choice not requirement"
+    }
+  },
 
   "active_mandates": [
     {
@@ -13,6 +31,13 @@
       "go_live_date": "2024-04-29",
       "status": "active",
       "description": "Enhanced EMIR reporting requirements including ISO 20022/XML format",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.6,
+        "rationale": "CDM/DRR is preferred but not mandated; traditional reporting still valid"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": false,
@@ -45,6 +70,13 @@
       "go_live_date": "2024-09-30",
       "status": "active",
       "description": "UK EMIR reporting requirements post-Brexit",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.55,
+        "rationale": "CDM/DRR pathway available; FCA flexible on implementation approach"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": false,
@@ -72,6 +104,13 @@
       "go_live_date": "2025-01-01",
       "status": "active",
       "description": "CFTC Part 43/45 rewrite with ISO 20022 alignment",
+      "mandate_clarity": {
+        "mandate_type": "pathway_option",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.35,
+        "rationale": "ISDA/DRR provides CDM pathway; CFTC agnostic on implementation method"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": false,
@@ -99,6 +138,13 @@
       "go_live_date": "2025-06-30",
       "status": "pending",
       "description": "JSCC requiring CDM connectivity for clearing members",
+      "mandate_clarity": {
+        "mandate_type": "bank_wide",
+        "cdm_alternative_allowed": false,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.95,
+        "rationale": "CDM connectivity is MANDATORY for clearing members - no alternative"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": true,
@@ -131,6 +177,13 @@
       "go_live_date": "2025-10-01",
       "status": "pending",
       "description": "Singapore derivatives reporting requirements update",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": false,
+        "pressure_strength": 0.45,
+        "rationale": "Derivatives-specific; CDM pathway available but not emphasized"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": false,
@@ -154,6 +207,13 @@
       "jurisdiction": "Hong_Kong",
       "expected_go_live": "2026-Q2",
       "status": "proposed",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": false,
+        "pressure_strength": 0.4,
+        "rationale": "Following Singapore pattern; CDM pathway available"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": false,
@@ -168,6 +228,13 @@
       "jurisdiction": "Australia",
       "expected_go_live": "2026-Q4",
       "status": "proposed",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": false,
+        "pressure_strength": 0.4,
+        "rationale": "APAC regulatory alignment; standard pathway option"
+      },
       "cdm_relevance": {
         "creates_adoption_pressure": true,
         "cdm_mandated": false,

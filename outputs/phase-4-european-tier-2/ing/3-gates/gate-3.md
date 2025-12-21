@@ -1,32 +1,38 @@
-# Gate 3 Decision: ING Group
+# Reasoning Gate 3: Pre-Adversarial Assessment: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Gate 3 Criteria
+## Current Probability State
 
-Final pre-adversarial assessment. Confirm evidence completeness and classification readiness.
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 2% |
+| P(PRAGMATIST) | 98% |
+| Confidence | 0% |
 
-## Final Evidence Summary
+## Gate Decision Criteria
 
-| Tier | Evidence Items | Null Results | Key Finding |
-|------|----------------|--------------|-------------|
-| Tier 1 | 0 | 2 | No official CDM signals |
-| Tier 2 | 0 | 2 | No industry coverage |
-| Tier 3 | 0 | 0 | No hiring signals |
-| **Total** | **0** | **4** | Complete absence of CDM evidence |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 2% → **Below 20% threshold**
 
-## Final Probabilities
+## Decision: PROCEED TO TIER ADVERSARIAL
 
-| Parameter | Value |
-|-----------|-------|
-| P(ARCHITECT) | 1.5% |
-| P(PRAGMATIST) | 98.5% |
+**Rationale**: Per protocol to process all tiers.
 
-## Gate 3 Questions
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
 
 ### 1. Have all required searches been completed?
 **Answer:** Yes
@@ -56,25 +62,6 @@ Final pre-adversarial assessment. Confirm evidence completeness and classificati
 - All obvious sources checked
 - Residual risk acknowledged in pre-mortem
 
-## Classification Recommendation
+---
 
-| Classification | Sub-Classification | Confidence |
-|----------------|-------------------|------------|
-| **UNKNOWN** | Insufficient-Evidence | 30% |
-
-**Rationale:**
-- Cannot classify as ARCHITECT (no evidence of adoption)
-- Cannot classify as PRAGMATIST (no evidence of traditional approaches either)
-- UNKNOWN with "Insufficient-Evidence" accurately reflects complete absence of data
-
-## Gate 3 Decision
-
-| Decision | Rationale |
-|----------|-----------|
-| **PROCEED TO ADVERSARIAL** | Classification ready for challenge. UNKNOWN (Insufficient-Evidence) at 30% confidence. |
-
-## Adversarial Focus Areas
-
-1. Challenge whether PRAGMATIST is more appropriate than UNKNOWN
-2. Examine if vendor relationships imply traditional approach
-3. Consider if European regulatory compliance implies any classification
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

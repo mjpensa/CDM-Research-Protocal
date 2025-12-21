@@ -1,31 +1,25 @@
 # Tier 1 Evidence: JPMorgan Chase & Co.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: JPMorgan Chase & Co.
-**Date**: 2025-12-21
+**Bank:** JPMorgan Chase & Co.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Overview
+## Search Execution Summary
 
-This file contains Tier 1 evidence (official sources with highest authority) for JPMorgan's CDM/DRR adoption.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-**Expected Classification**: ARCHITECT (Native) at 90% confidence
+## Evidence Inventory
 
-**Key Evidence Summary**:
-- Nick Moger is FINOS CDM maintainer (first sell-side maintainer, 2025)
-- First major US bank to implement CDM/DRR as primary reporting mechanism
-- Production usage (Tier 1)
+No Tier 1 evidence found.
+
+## Informative Absences
+
+N/A
 
 ---
-
-## Evidence Items
-
-*Evidence items will be populated during research phase*
-
----
-
-**Notes**:
-- Maximum confidence for Tier 1 evidence: 95%
-- All evidence must include source URLs from official domains
-- Evidence older than 12 months requires corroboration

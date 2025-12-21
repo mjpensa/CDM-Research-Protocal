@@ -1,33 +1,25 @@
 # Tier 2 Evidence: The Bank of New York Mellon Corporation
 
-**Bank**: The Bank of New York Mellon Corporation
-**Classification**: UNKNOWN (Insufficient-Evidence)
-**Confidence**: 35%
-**Date**: 2025-12-21
+**Bank:** The Bank of New York Mellon Corporation
+**Phase:** 9 - US Custody Banks
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-No Tier 2 evidence found for BNY Mellon's CDM adoption.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
----
+## Evidence Inventory
 
-## Evidence Items
+No Tier 2 evidence found.
 
-*No Tier 2 evidence items found.*
+## Informative Absences
 
----
-
-## Search Coverage
-
-The following Tier 2 sources were searched:
-
-- **Trade Press**: No coverage in Risk.net, Waters Technology, or Financial News London
-- **Business Press**: No mentions in FT, Bloomberg, Reuters, or WSJ
-- **Conference Presentations**: No BNY Mellon speakers on CDM topics
-- **Vendor Press Releases**: No vendor announcements involving BNY Mellon and CDM
+N/A
 
 ---
-
-**Conclusion**: No trade or business press coverage of BNY Mellon CDM initiatives.

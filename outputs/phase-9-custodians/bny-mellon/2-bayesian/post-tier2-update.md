@@ -1,86 +1,52 @@
-# Bayesian Update: Post-Tier 2 (BNY Mellon)
+# Bayesian Update: Post-Tier 2 Evidence: The Bank of New York Mellon Corporation
 
-**Bank**: The Bank of New York Mellon Corporation
-**Date**: 2025-12-21
-**Stage**: Post-Tier 2 Evidence Collection
-
----
-
-## Prior Probability (Post-Tier 1)
-
-**P(ARCHITECT) = 1.4%**
-**P(PRAGMATIST) = 30.8%**
-**P(OBSERVER) = 40.4%**
-**P(UNKNOWN) = 27.4%**
+**Bank:** The Bank of New York Mellon Corporation
+**Phase:** 9 - US Custody Banks
+**Date:** 2025-12-21
 
 ---
 
-## Tier 2 Evidence Observed
+## Prior Probability
 
-**Finding**: No Tier 2 evidence found
+P(ARCHITECT) prior: 1%
 
-### Specific Null Results:
-1. No coverage in Risk.net, Waters Technology, or Financial News London
-2. No mentions in FT, Bloomberg, Reuters, or WSJ regarding CDM
-3. No conference presentations on CDM topics
-4. No vendor press releases linking BNY Mellon to CDM solutions
+## Tier 2 Evidence Summary
 
----
+No Tier 2 evidence found.
 
-## Likelihood Ratios
+## Likelihood Ratio Calculation
 
-### P(No Tier 2 Evidence | ARCHITECT)
-**Likelihood**: 2%
+```
+Combined LR = 1.0 (no evidence)
+```
 
-ARCHITECT would almost certainly be covered by trade press. Highly unlikely to have zero coverage.
+## Posterior Calculation
 
-### P(No Tier 2 Evidence | PRAGMATIST)
-**Likelihood**: 30%
+```
+Posterior = Prior (no update)
+```
 
-PRAGMATIST might avoid coverage if using vendor quietly, but still somewhat unlikely given BNY Mellon's market profile.
+## Updated Probabilities
 
-### P(No Tier 2 Evidence | OBSERVER)
-**Likelihood**: 60%
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 1% |
+| P(PRAGMATIST) | 31% |
+| Confidence | 0% |
 
-OBSERVER might not generate trade press coverage if passively monitoring. Plausible.
-
-### P(No Tier 2 Evidence | UNKNOWN)
-**Likelihood**: 98%
-
-UNKNOWN expects no trade press coverage. Highly consistent.
-
----
-
-## Bayesian Calculation
-
-**P(No T2) = (0.02 × 0.014) + (0.30 × 0.308) + (0.60 × 0.404) + (0.98 × 0.274)**
-= 0.00028 + 0.0924 + 0.2424 + 0.26852
-= 0.6036
-
-**Posterior Probabilities**:
-- P(ARCHITECT | No T2) = (0.02 × 0.014) / 0.6036 = **0.05%**
-- P(PRAGMATIST | No T2) = (0.30 × 0.308) / 0.6036 = **15.3%**
-- P(OBSERVER | No T2) = (0.60 × 0.404) / 0.6036 = **40.2%**
-- P(UNKNOWN | No T2) = (0.98 × 0.274) / 0.6036 = **44.5%**
-
----
-
-## Updated Classification
-
-**Leading Hypothesis**: UNKNOWN (44.5%)
-**Secondary Hypothesis**: OBSERVER (40.2%)
-**Tertiary Hypothesis**: PRAGMATIST (15.3%)
-
----
-
-## Interpretation
+## Key Insights
 
 Absence of Tier 2 evidence shifts probability toward UNKNOWN (44.5%), narrowly ahead of OBSERVER (40.2%). The close margin reflects genuine uncertainty about whether BNY Mellon is passively monitoring (OBSERVER) or not engaged at all (UNKNOWN).
 
 PRAGMATIST has dropped to 15.3%, making vendor-led adoption increasingly unlikely.
 
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+
 ---
 
-## Next Steps
-
-Proceed to Tier 3 to check for weak signals (job postings, LinkedIn). Tier 3 will help discriminate between UNKNOWN (44.5%) and OBSERVER (40.2%).
+*Proceeding to Tier 3.*

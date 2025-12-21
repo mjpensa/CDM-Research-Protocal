@@ -1,6 +1,8 @@
-# Post-Tier 1 Bayesian Update
+# Bayesian Update: Post-Tier 1 Evidence: China Construction Bank Corporation
 
-**Research Date**: 2025-12-21
+**Bank:** China Construction Bank Corporation
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
@@ -11,27 +13,30 @@
 
 **Rationale**: Chinese banks operate under PBOC/CBIRC framework with no CDM mandate. Base rate for CDM adoption globally is ~15%; for Chinese banks likely <5%.
 
+## Tier 1 Evidence Summary
+
+No Tier 1 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
+
+## Posterior Calculation
+
+```
+Posterior = Prior (no update)
+```
+
+## Updated Probabilities
+
+N/A
+
+## Key Insights
+
+N/A
+
 ---
 
-## Tier 1 Evidence Review
-
-**Evidence Found**: None
-
-**Sources Checked**: Bank website, isda.org, finos.org, github.com/finos
-
-**Result**: No official announcements, FINOS membership, or code contributions.
-
----
-
-## Bayesian Update
-
-Null Tier 1 result increases PRAGMATIST probability from 95% to 99.5%.
-
-**Updated Probabilities**:
-- PRAGMATIST: 99.5%
-- ARCHITECT: 0.3%
-- OBSERVER: 0.2%
-
----
-
-**Decision**: Proceed to Tier 2 for completeness, but low expectation of evidence.
+*Proceeding to Tier 2.*

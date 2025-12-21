@@ -114,6 +114,90 @@ def load_regulatory_calendar() -> dict:
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+@lru_cache(maxsize=1)
+def load_evidence_decay_rates() -> dict:
+    """Load evidence-decay-rates.json with caching (Enhancement 5)."""
+    path = CONFIG_DIR / "evidence-decay-rates.json"
+    if not path.exists():
+        # Return sensible defaults if file doesn't exist
+        return {
+            "decay_rates": {
+                "production_usage": {"half_life_months": 36, "minimum_weight": 0.5},
+                "pilot_or_poc": {"half_life_months": 18, "minimum_weight": 0.3},
+                "open_source_contribution": {"half_life_months": 24, "minimum_weight": 0.4},
+                "membership_or_participation": {"half_life_months": 18, "minimum_weight": 0.25},
+                "vendor_proxy_signal": {"half_life_months": 24, "minimum_weight": 0.35},
+                "hiring_signal": {"half_life_months": 6, "minimum_weight": 0.1}
+            },
+            "tier_decay_modifiers": {
+                "tier1": {"half_life_multiplier": 1.25},
+                "tier2": {"half_life_multiplier": 1.0},
+                "tier3": {"half_life_multiplier": 0.75}
+            }
+        }
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def get_evidence_decay_rate(claim_type: str, tier: int = 2) -> dict:
+    """
+    Get decay rate parameters for a specific evidence claim type and tier.
+
+    Args:
+        claim_type: One of the valid claim types (e.g., 'production_usage', 'hiring_signal')
+        tier: Evidence tier (1, 2, or 3)
+
+    Returns:
+        dict with 'half_life_months', 'minimum_weight', and 'half_life_multiplier'
+    """
+    decay_config = load_evidence_decay_rates()
+    decay_rates = decay_config.get('decay_rates', {})
+    tier_modifiers = decay_config.get('tier_decay_modifiers', {})
+
+    # Get base decay rate for claim type
+    base_rate = decay_rates.get(claim_type, {
+        "half_life_months": 18,
+        "minimum_weight": 0.3
+    })
+
+    # Get tier modifier
+    tier_key = f"tier{tier}"
+    tier_modifier = tier_modifiers.get(tier_key, {"half_life_multiplier": 1.0})
+
+    return {
+        "half_life_months": base_rate.get("half_life_months", 18),
+        "minimum_weight": base_rate.get("minimum_weight", 0.3),
+        "half_life_multiplier": tier_modifier.get("half_life_multiplier", 1.0),
+        "effective_half_life": base_rate.get("half_life_months", 18) * tier_modifier.get("half_life_multiplier", 1.0)
+    }
+
+
+def calculate_evidence_weight(claim_type: str, age_months: float, tier: int = 2) -> float:
+    """
+    Calculate temporal weight for evidence based on claim type and age.
+
+    Uses exponential decay with type-specific half-life and minimum floor.
+
+    Args:
+        claim_type: Evidence claim type
+        age_months: Age of evidence in months
+        tier: Evidence tier (1, 2, or 3)
+
+    Returns:
+        Weight between minimum_weight and 1.0
+    """
+    import math
+
+    decay_params = get_evidence_decay_rate(claim_type, tier)
+    half_life = decay_params.get("effective_half_life", 18)
+    minimum_weight = decay_params.get("minimum_weight", 0.3)
+
+    # Exponential decay: weight = 2^(-age/half_life)
+    decay_weight = math.pow(2, -age_months / half_life)
+
+    # Apply floor
+    return max(minimum_weight, decay_weight)
+
+
 def get_default_validation_rules() -> dict:
     """Return default validation rules if config file is missing."""
     return {
@@ -912,6 +996,194 @@ def load_source_credibility() -> dict:
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+@lru_cache(maxsize=1)
+def load_non_english_sources() -> dict:
+    """Load non_english_sources.json from knowledge base (Enhancement 9)."""
+    path = KB_DIR / "non_english_sources.json"
+    if not path.exists():
+        return {"jurisdictions": {}, "search_strategy": {}}
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+@lru_cache(maxsize=1)
+def load_silence_rules() -> dict:
+    """Load jurisdiction-silence-rules.json (Enhancement 10)."""
+    path = CONFIG_DIR / "jurisdiction-silence-rules.json"
+    if not path.exists():
+        return {"silence_interpretations": {}, "time_sensitive_rules": {}}
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def get_silence_interpretation(jurisdiction: str) -> dict:
+    """
+    Get silence interpretation rules for a jurisdiction.
+
+    Args:
+        jurisdiction: Jurisdiction code (e.g., 'US', 'UK', 'Japan')
+
+    Returns:
+        dict with lr_for_silence, interpretation, and search_strategy
+    """
+    rules = load_silence_rules()
+    interpretations = rules.get('silence_interpretations', {})
+
+    # Direct match
+    if jurisdiction in interpretations:
+        return interpretations[jurisdiction]
+
+    # Try EU as fallback for European countries
+    eu_countries = ['Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium']
+    if jurisdiction in eu_countries and 'EU' in interpretations:
+        return interpretations['EU']
+
+    # Default neutral interpretation
+    return {
+        "announcement_culture": "unknown",
+        "lr_for_silence": 1.0,
+        "interpretation": "Neutral - insufficient data on announcement culture",
+        "rationale": "No specific rules for this jurisdiction"
+    }
+
+
+def get_bank_silence_context(bank_id: str) -> dict:
+    """
+    Get silence interpretation context for a specific bank.
+
+    Args:
+        bank_id: Bank identifier
+
+    Returns:
+        dict with jurisdiction, silence_interpretation, and guidance
+    """
+    # Get bank jurisdiction
+    bank_config = get_bank_config(bank_id)
+    if not bank_config:
+        return {
+            "bank_id": bank_id,
+            "jurisdiction": None,
+            "silence_lr": 1.0,
+            "guidance": "No jurisdiction context available"
+        }
+
+    # Determine jurisdiction
+    jurisdiction = bank_config.get('primary_jurisdiction')
+
+    # Infer if not specified
+    if not jurisdiction:
+        jurisdiction_map = {
+            'deutsche-bank': 'Germany',
+            'commerzbank': 'Germany',
+            'barclays': 'UK',
+            'hsbc': 'UK',
+            'standard-chartered': 'UK',
+            'lloyds': 'UK',
+            'natwest': 'UK',
+            'bnp-paribas': 'France',
+            'societe-generale': 'France',
+            'credit-agricole': 'France',
+            'ubs': 'Switzerland',
+            'credit-suisse': 'Switzerland',
+            'nomura': 'Japan',
+            'mufg': 'Japan',
+            'mizuho': 'Japan',
+            'smbc': 'Japan',
+            'daiwa': 'Japan',
+            'jpmorgan': 'US',
+            'goldman-sachs': 'US',
+            'morgan-stanley': 'US',
+            'citigroup': 'US',
+            'bank-of-america': 'US'
+        }
+        jurisdiction = jurisdiction_map.get(bank_id)
+
+    silence_rules = get_silence_interpretation(jurisdiction or 'unknown')
+
+    return {
+        "bank_id": bank_id,
+        "jurisdiction": jurisdiction,
+        "silence_lr": silence_rules.get('lr_for_silence', 1.0),
+        "announcement_culture": silence_rules.get('announcement_culture', 'unknown'),
+        "interpretation": silence_rules.get('interpretation', 'Neutral'),
+        "search_strategy": silence_rules.get('search_strategy', {}),
+        "guidance": f"For {jurisdiction or 'unknown'}: {silence_rules.get('rationale', 'No specific guidance')}"
+    }
+
+
+def get_jurisdiction_sources(jurisdiction: str) -> Optional[dict]:
+    """
+    Get non-English sources for a specific jurisdiction.
+
+    Args:
+        jurisdiction: Jurisdiction name (e.g., 'Japan', 'Germany')
+
+    Returns:
+        dict with priority_sources, bank_ir_domains, and search guidance
+    """
+    sources = load_non_english_sources()
+    return sources.get('jurisdictions', {}).get(jurisdiction)
+
+
+def get_bank_jurisdiction_hints(bank_id: str) -> dict:
+    """
+    Get jurisdiction-specific source hints for a bank.
+
+    Args:
+        bank_id: Bank identifier
+
+    Returns:
+        dict with jurisdiction, priority_sources, and search_terms
+    """
+    # Get bank config to determine jurisdiction
+    bank_config = get_bank_config(bank_id)
+    if not bank_config:
+        return {"jurisdiction": None, "sources": []}
+
+    # Try to determine jurisdiction from bank config
+    jurisdiction = bank_config.get('primary_jurisdiction')
+
+    # If not in config, infer from bank_id patterns
+    if not jurisdiction:
+        japanese_banks = ['nomura', 'mufg', 'mizuho', 'smbc', 'daiwa']
+        german_banks = ['deutsche-bank', 'commerzbank']
+        french_banks = ['bnp-paribas', 'societe-generale', 'credit-agricole']
+        swiss_banks = ['ubs', 'credit-suisse']
+
+        if bank_id in japanese_banks:
+            jurisdiction = 'Japan'
+        elif bank_id in german_banks:
+            jurisdiction = 'Germany'
+        elif bank_id in french_banks:
+            jurisdiction = 'France'
+        elif bank_id in swiss_banks:
+            jurisdiction = 'Switzerland'
+
+    if not jurisdiction:
+        return {"jurisdiction": None, "sources": []}
+
+    # Get jurisdiction sources
+    sources_config = load_non_english_sources()
+    jurisdiction_config = sources_config.get('jurisdictions', {}).get(jurisdiction, {})
+
+    priority_sources = jurisdiction_config.get('priority_sources', [])
+    search_strategy = sources_config.get('search_strategy', {})
+    translations = search_strategy.get('common_cdm_translations', {}).get(
+        jurisdiction_config.get('primary_language', ''), {}
+    )
+
+    return {
+        "jurisdiction": jurisdiction,
+        "primary_language": jurisdiction_config.get('primary_language'),
+        "importance": jurisdiction_config.get('importance'),
+        "priority_sources": priority_sources,
+        "local_search_terms": translations,
+        "bank_ir_domain": next(
+            (d['ir_domain'] for d in jurisdiction_config.get('bank_ir_domains', [])
+             if d['bank_id'] == bank_id),
+            None
+        )
+    }
+
+
 def get_bank_relationships(bank_id: str) -> list[dict]:
     """
     Get all relationships for a specific bank.
@@ -996,6 +1268,171 @@ def get_author_credibility(author_name: str) -> Optional[dict]:
     return None
 
 
+# --- REGULATORY MANDATE CLARITY (Enhancement 3) ---
+
+def get_mandate_pressure(mandate_id: str) -> Optional[dict]:
+    """
+    Get pressure information for a specific regulatory mandate.
+
+    Args:
+        mandate_id: Mandate identifier (e.g., 'EMIR_REFIT_EU', 'JSCC_CDM')
+
+    Returns:
+        dict with mandate_type, pressure_strength, cdm_alternative_allowed,
+        cdm_explicitly_endorsed, and rationale, or None if not found
+    """
+    try:
+        calendar = load_regulatory_calendar()
+
+        # Search active mandates
+        for mandate in calendar.get('active_mandates', []):
+            if mandate.get('mandate_id') == mandate_id:
+                clarity = mandate.get('mandate_clarity', {})
+                return {
+                    'mandate_id': mandate_id,
+                    'name': mandate.get('name'),
+                    'mandate_type': clarity.get('mandate_type', 'pathway_option'),
+                    'pressure_strength': clarity.get('pressure_strength', 0.3),
+                    'cdm_alternative_allowed': clarity.get('cdm_alternative_allowed', True),
+                    'cdm_explicitly_endorsed': clarity.get('cdm_explicitly_endorsed', False),
+                    'jurisdiction': mandate.get('jurisdiction'),
+                    'go_live_date': mandate.get('go_live_date'),
+                    'status': mandate.get('status'),
+                    'rationale': clarity.get('rationale', '')
+                }
+
+        # Search upcoming mandates
+        for mandate in calendar.get('upcoming_mandates', []):
+            if mandate.get('mandate_id') == mandate_id:
+                clarity = mandate.get('mandate_clarity', {})
+                return {
+                    'mandate_id': mandate_id,
+                    'name': mandate.get('name'),
+                    'mandate_type': clarity.get('mandate_type', 'pathway_option'),
+                    'pressure_strength': clarity.get('pressure_strength', 0.3),
+                    'cdm_alternative_allowed': clarity.get('cdm_alternative_allowed', True),
+                    'cdm_explicitly_endorsed': clarity.get('cdm_explicitly_endorsed', False),
+                    'jurisdiction': mandate.get('jurisdiction'),
+                    'expected_go_live': mandate.get('expected_go_live'),
+                    'status': mandate.get('status'),
+                    'rationale': clarity.get('rationale', '')
+                }
+
+        return None
+    except FileNotFoundError:
+        return None
+
+
+def get_bank_mandate_exposure(bank_id: str) -> dict:
+    """
+    Calculate total regulatory mandate pressure exposure for a bank.
+
+    Aggregates pressure from all mandates affecting the bank's jurisdiction(s).
+
+    Args:
+        bank_id: Bank identifier
+
+    Returns:
+        dict with:
+        - total_pressure: Weighted sum of applicable mandate pressures
+        - mandate_count: Number of applicable mandates
+        - mandates: List of applicable mandate details
+        - strongest_mandate: The mandate with highest pressure_strength
+        - has_mandatory_cdm: Whether any mandate makes CDM mandatory
+    """
+    try:
+        calendar = load_regulatory_calendar()
+        jurisdiction_mapping = calendar.get('jurisdiction_bank_mapping', {})
+
+        # Find bank's jurisdiction(s)
+        bank_jurisdictions = []
+        for jurisdiction, banks in jurisdiction_mapping.items():
+            if bank_id in banks:
+                bank_jurisdictions.append(jurisdiction)
+
+        # If bank not in mapping, try to infer from bank manifest
+        if not bank_jurisdictions:
+            bank_config = get_bank_config(bank_id)
+            if bank_config:
+                primary = bank_config.get('primary_jurisdiction')
+                if primary:
+                    bank_jurisdictions.append(primary)
+
+        # Collect applicable mandates
+        applicable_mandates = []
+        total_pressure = 0.0
+        has_mandatory_cdm = False
+        strongest_mandate = None
+        max_pressure = 0.0
+
+        # Check active mandates
+        for mandate in calendar.get('active_mandates', []):
+            jurisdiction = mandate.get('jurisdiction')
+            if jurisdiction in bank_jurisdictions:
+                clarity = mandate.get('mandate_clarity', {})
+                pressure = clarity.get('pressure_strength', 0.3)
+
+                mandate_info = {
+                    'mandate_id': mandate.get('mandate_id'),
+                    'name': mandate.get('name'),
+                    'jurisdiction': jurisdiction,
+                    'mandate_type': clarity.get('mandate_type', 'pathway_option'),
+                    'pressure_strength': pressure,
+                    'cdm_alternative_allowed': clarity.get('cdm_alternative_allowed', True),
+                    'status': mandate.get('status')
+                }
+                applicable_mandates.append(mandate_info)
+                total_pressure += pressure
+
+                # Check for mandatory CDM
+                if not clarity.get('cdm_alternative_allowed', True):
+                    has_mandatory_cdm = True
+
+                # Track strongest mandate
+                if pressure > max_pressure:
+                    max_pressure = pressure
+                    strongest_mandate = mandate_info
+
+        # Check upcoming mandates (with 50% weight for pressure calculation)
+        for mandate in calendar.get('upcoming_mandates', []):
+            jurisdiction = mandate.get('jurisdiction')
+            if jurisdiction in bank_jurisdictions:
+                clarity = mandate.get('mandate_clarity', {})
+                pressure = clarity.get('pressure_strength', 0.3) * 0.5  # 50% weight
+
+                mandate_info = {
+                    'mandate_id': mandate.get('mandate_id'),
+                    'name': mandate.get('name'),
+                    'jurisdiction': jurisdiction,
+                    'mandate_type': clarity.get('mandate_type', 'pathway_option'),
+                    'pressure_strength': clarity.get('pressure_strength', 0.3),
+                    'upcoming_pressure_weight': 0.5,
+                    'status': mandate.get('status')
+                }
+                applicable_mandates.append(mandate_info)
+                total_pressure += pressure
+
+        return {
+            'bank_id': bank_id,
+            'jurisdictions': bank_jurisdictions,
+            'total_pressure': min(total_pressure, 1.0),  # Cap at 1.0
+            'mandate_count': len(applicable_mandates),
+            'mandates': applicable_mandates,
+            'strongest_mandate': strongest_mandate,
+            'has_mandatory_cdm': has_mandatory_cdm
+        }
+    except FileNotFoundError:
+        return {
+            'bank_id': bank_id,
+            'jurisdictions': [],
+            'total_pressure': 0.0,
+            'mandate_count': 0,
+            'mandates': [],
+            'strongest_mandate': None,
+            'has_mandatory_cdm': False
+        }
+
+
 # --- CACHE MANAGEMENT ---
 
 def clear_config_cache():
@@ -1013,8 +1450,11 @@ def clear_config_cache():
     load_validation_rules.cache_clear()
     load_ground_truth.cache_clear()
     load_regulatory_calendar.cache_clear()
+    load_evidence_decay_rates.cache_clear()
     load_relationships.cache_clear()
     load_source_credibility.cache_clear()
+    load_non_english_sources.cache_clear()
+    load_silence_rules.cache_clear()
     # NOTE: load_api_config removed in v2.0
 
 

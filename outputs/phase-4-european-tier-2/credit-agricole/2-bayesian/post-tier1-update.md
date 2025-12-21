@@ -1,8 +1,8 @@
-# Bayesian Update: Post-Tier 1 - Credit Agricole CIB
+# Bayesian Update: Post-Tier 1 Evidence: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
@@ -15,9 +15,13 @@
 
 ## Tier 1 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| CA-001 | Christine Cremel - ISDA Board Member | SUPPORTS_ARCHITECT (weak) | 2.0 |
+No Tier 1 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -37,19 +41,16 @@ P(ARCHITECT|E) = 0.353 / (1 + 0.353) = 0.261 ≈ 26.1%
 
 ## Updated Probabilities
 
-| Parameter | Prior | Posterior | Change |
-|-----------|-------|-----------|--------|
-| P(ARCHITECT) | 0.15 | 0.261 | +0.111 |
-| P(PRAGMATIST) | 0.85 | 0.739 | -0.111 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Analysis
+## Key Insights
 
-ISDA Board membership is a positive signal but:
-- Board membership ≠ CDM adoption
-- Christine Cremel's role is transactional (onboarding, clearing) not technical
-- No evidence of CDM working group participation
-- Suggests OBSERVER rather than ARCHITECT
+N/A
 
-## Decision
+---
 
-**Continue to Tier 2 search** - Single membership evidence insufficient for classification.
+*Proceeding to Tier 2.*

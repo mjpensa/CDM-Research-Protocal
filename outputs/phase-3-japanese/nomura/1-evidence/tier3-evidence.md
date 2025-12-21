@@ -1,12 +1,18 @@
 # Tier 3 Evidence: Nomura Holdings, Inc.
 
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
+
 ## Search Execution Summary
-- Execution Date: 2025-12-21
-- Bank: Nomura Holdings, Inc.
-- Phase: 3 (Japanese Banks)
-- Searches Executed: 10
-- Evidence Blocks Found: 0
-- Null Results: 4
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
@@ -28,9 +34,8 @@ No job postings mentioning CDM, ISDA CDM, or Digital Regulatory Reporting were f
 **Informative Absence:**
 The absence of Tier 3 signals is informative. In contrast to banks with active CDM programs (which typically show hiring signals, employee expertise, and technical discussions), Nomura shows no public indicators of CDM capability building. This supports the assessment that Nomura is not pursuing internal CDM development.
 
-## Assessment
+## Informative Absences
 
-Tier 3 search phase complete with no positive evidence. The lack of hiring signals and expertise indicators strengthens the OBSERVER classification, suggesting Nomura is not building internal CDM capabilities.
+N/A
 
-**Classification Implication:** 
-The absence of both Tier 1 and Tier 3 evidence, combined with limited indirect Tier 2 evidence, confirms OBSERVER (CCP-Connected) status. Nomura is exposed to CDM through JSCC but shows no signs of native adoption or strategic commitment.
+---

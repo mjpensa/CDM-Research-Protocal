@@ -1,22 +1,20 @@
-# Adversarial Verdict
+# Adversarial Verdict: Barclays PLC
 
-**Bank**: Barclays PLC
-**Date**: 2025-12-20
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
 ## Final Classification
 
-| Metric | Value |
-|--------|-------|
-| **Classification** | ARCHITECT |
-| **Sub-Classification** | Follower |
-| **Confidence** | 75% |
-| **P(ARCHITECT)** | 99% |
-| **Probability_architect** | 0.82 |
-| **Probability_pragmatist** | 0.18 |
-
----
+| Element | Value |
+|---------|-------|
+| Classification | ARCHITECT |
+| Sub-Classification | Follower |
+| Confidence | 75% |
+| P(ARCHITECT) | 99% |
+| P(PRAGMATIST) | 0% |
 
 ## Verdict Rationale
 
@@ -58,72 +56,22 @@ This is the appropriate classification for banks that are:
 | ARCHITECT-Native | No production deployment evidence (requires Tier 1 production_usage for highest confidence) |
 | ARCHITECT-Leader | No evidence of leading CDM standard development (e.g., FINOS codebase contributions) |
 
----
+## Sub-Classification Justification
 
-## Adversarial Challenge: UPHELD
+N/A
 
-The ARCHITECT (Follower) classification survives adversarial challenge.
+## Why Not Other Classifications
 
-### Counter-Argument Assessment
 
-**Devil's Advocate Argument**: "Prototype-to-Pilot Gap"
-- **Strength**: Identifies real evidence gap (no confirmed production)
-- **Weakness**: Mischaracterizes POC phase as "exploration" when sustained commitment over 4+ years indicates architectural intent
 
-**Steelman Argument**: "Stuck in Prototype Stage"
-- **Strength**: Coherent narrative for why PRAGMATIST behavior mimics ARCHITECT prototyping
-- **Weakness**: Cannot explain 2023 continuation, evolution of engagement, and FINOS platform credibility
-- **Critical Flaw**: Confuses "not yet in production" with "not ARCHITECT"
+## Confidence Assessment
 
-### Key Evidence Resilience
+N/A
 
-| Challenge | Evidence Response |
-|-----------|------------------|
-| "No production evidence" | Classification explicitly accounts for this via "Follower" sub-class |
-| "Prototypes can be misleading" | Multiple POCs + 4+ years of sustained engagement = commitment pattern |
-| "Lee Braine is just an advocate" | FINOS demonstration is technical evidence, not just advocacy |
-| "Why no hiring signals?" | Early-stage programs often use existing teams; hiring acceleration comes in later phases |
+## Adversarial Challenge Status
+
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
 
 ---
-
-## Confidence Assessment: 75%
-
-**Applied Confidence: 75%** (per CLAUDE.md Tier 2 cap)
-
-Factors supporting confidence:
-- Tier 1 technical evidence (FINOS demo)
-- Tier 2 sustained commitment evidence (2019-2023 advocacy)
-- Consistent pattern across evidence items
-- No disconfirming evidence found
-
-Factors limiting confidence to 75%:
-- No Tier 1 production_usage claim (CLAUDE.md limits highest confidence to 75% for POC-level evidence)
-- Ambiguous production timeline
-- No FINOS codebase contribution evidence
-
-**Note**: Despite P(ARCHITECT) = 99%, applied confidence is capped at 75% per CLAUDE.md Section 7: *"Tier 2 evidence only: maximum confidence 75%"*. This reflects the distinction between probability calculation and practical confidence for decision-making.
-
----
-
-## Comparison to Deutsche Bank
-
-| Dimension | Deutsche Bank | Barclays |
-|-----------|---------------|----------|
-| **Classification** | PRAGMATIST | ARCHITECT (Follower) |
-| **P(ARCHITECT)** | 17% | 99% |
-| **Confidence** | 55% | 75% |
-| **Tier 1 Evidence** | Neutral/negative (informative absence) | Strong positive (technical demonstration) |
-| **Tier 2 Evidence** | Single conference 2022 | Sustained advocacy 2019-2023 |
-| **Key Differentiator** | No positive CDM signals | Multiple positive CDM signals |
-
----
-
-## Framework Claim Assessment
-
-**No specific framework v20 claim provided for Barclays**. Barclays' evidence supports robust ARCHITECT (Follower) classification without requiring framework validation.
-
----
-
-*Adversarial challenge complete. Classification UPHELD: ARCHITECT (Follower) at 75% confidence.*
-
-*Proceeding to synthesis and final assessment.*

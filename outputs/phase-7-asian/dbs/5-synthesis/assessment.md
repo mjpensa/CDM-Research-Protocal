@@ -1,9 +1,8 @@
-# Final Assessment: DBS Bank CDM Adoption
+# CDM/DRR Assessment: DBS Bank Ltd.
 
-**Research Date**: 2025-12-21
-**Bank**: DBS Bank (Singapore)
-**Researcher**: Claude Code (Opus 4.5)
-**Protocol Version**: 2.3
+**Bank:** DBS Bank Ltd.
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
@@ -15,7 +14,49 @@
 
 DBS Bank demonstrates minimal ecosystem engagement through Andrew Ng's ISDA Board membership and MAS SFEMC Deputy Co-chair role. However, zero technical or organizational evidence limits confidence. Classification rests on narrow governance signals that may reflect individual expertise rather than institutional CDM strategy.
 
----
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | DBS Bank Ltd. |
+| Headquarters | Singapore |
+| Region | Asia |
+| Phase | 7 - Emerging Markets |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | OBSERVER |
+| Sub-Classification | N/A |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Recommendations
+
+### For Researchers
+1. **Monitor**: Andrew Ng's continued ISDA Board role and any public statements on CDM
+2. **Watch For**: DBS joining FINOS, hiring for CDM roles, or vendor announcements
+3. **Reassess If**: Singapore MAS issues CDM-related regulatory guidance
+
+### For Stakeholders
+1. **Interpret Conservatively**: DBS shows governance awareness, not implementation
+2. **Assume PRAGMATIST**: For practical planning, treat DBS as non-adopter
+3. **Regional Pattern**: DBS consistent with Asian bank behavior (low CDM adoption)
+
+### For Protocol Improvement
+1. **Clarify Claim Types**: Define whether Board-level roles qualify for `membership_or_participation`
+2. **Bayesian Confidence Caps**: When posterior contradicts classification, cap confidence at 40%
+3. **Organizational Verification**: Require corroboration for individual-only signals
 
 ## Classification Matrix
 
@@ -27,8 +68,6 @@ DBS Bank demonstrates minimal ecosystem engagement through Andrew Ng's ISDA Boar
 | **Working Group Participation** | ISDA Board only (general, not CDM-specific) | 75% |
 | **Vendor Relationships** | No CDM vendor announcements | 85% |
 | **Hiring Signals** | No job postings mentioning CDM | 80% |
-
----
 
 ## Evidence Summary
 
@@ -53,8 +92,6 @@ No official sources found.
 ### Tier 3 Evidence: 0 items
 No hiring signals found.
 
----
-
 ## Confidence Calculation
 
 ### Base Confidence (Tier 2 Maximum): 75%
@@ -77,8 +114,6 @@ No hiring signals found.
 **Adjudicated Final Confidence**: **40%**
 (Slight upward adjustment recognizing ISDA Board membership significance)
 
----
-
 ## Maturity Assessment
 
 **Level**: OBSERVER
@@ -90,8 +125,6 @@ No hiring signals found.
 - No technical implementation or working group participation
 - Individual roles, not organizational programs
 - Minimum threshold for OBSERVER classification
-
----
 
 ## Regional Context
 
@@ -108,8 +141,6 @@ No hiring signals found.
 - Absence of regulatory driver reduces adoption urgency
 - Governance engagement may be awareness/influence without implementation intent
 - Regional pattern supports PRAGMATIST hypothesis more than OBSERVER
-
----
 
 ## Alternative Interpretations
 
@@ -137,8 +168,6 @@ No hiring signals found.
 
 **Rebuttal**: Bayesian analysis contradicts. Confidence must be reduced to acknowledge weakness.
 
----
-
 ## Risk Analysis
 
 ### Type I Error Risk (False Positive): 60%
@@ -159,8 +188,6 @@ Probability we're wrong to not classify as ARCHITECT (should be higher)
 
 **Risk Asymmetry**: False positive is 12x more likely than false negative.
 
----
-
 ## Key Uncertainties
 
 1. **Individual vs. Institutional** (High Impact)
@@ -179,8 +206,6 @@ Probability we're wrong to not classify as ARCHITECT (should be higher)
    - No evidence of plans, but absence may not be diagnostic
    - Confidence: 15%
 
----
-
 ## Comparative Analysis
 
 ### vs. Standard Chartered (OBSERVER)
@@ -198,8 +223,6 @@ Probability we're wrong to not classify as ARCHITECT (should be higher)
 - **DBS**: One executive, non-CDM-specific roles
 - **Assessment**: DBS is outlier in weakness
 
----
-
 ## Bayesian vs. Protocol Classification
 
 ### Bayesian Posterior Probabilities
@@ -216,8 +239,6 @@ Probability we're wrong to not classify as ARCHITECT (should be higher)
 
 **Practical Guidance**: Treat DBS as PRAGMATIST for stakeholder purposes. OBSERVER classification is formal/technical only.
 
----
-
 ## Trust Flags (Final)
 
 | Flag | Status | Impact |
@@ -227,27 +248,6 @@ Probability we're wrong to not classify as ARCHITECT (should be higher)
 | `SINGLE_INDIVIDUAL_SIGNAL` | Active | Reduced confidence 10% |
 | `NARROW_ENGAGEMENT_SCOPE` | Active | Limited to OBSERVER max, sublevel Ecosystem-Engaged |
 | `BAYESIAN_PROTOCOL_TENSION` | Active | Reduced confidence 5% |
-
----
-
-## Recommendations
-
-### For Researchers
-1. **Monitor**: Andrew Ng's continued ISDA Board role and any public statements on CDM
-2. **Watch For**: DBS joining FINOS, hiring for CDM roles, or vendor announcements
-3. **Reassess If**: Singapore MAS issues CDM-related regulatory guidance
-
-### For Stakeholders
-1. **Interpret Conservatively**: DBS shows governance awareness, not implementation
-2. **Assume PRAGMATIST**: For practical planning, treat DBS as non-adopter
-3. **Regional Pattern**: DBS consistent with Asian bank behavior (low CDM adoption)
-
-### For Protocol Improvement
-1. **Clarify Claim Types**: Define whether Board-level roles qualify for `membership_or_participation`
-2. **Bayesian Confidence Caps**: When posterior contradicts classification, cap confidence at 40%
-3. **Organizational Verification**: Require corroboration for individual-only signals
-
----
 
 ## Final Verdict
 
@@ -263,8 +263,6 @@ DBS Bank demonstrates minimal CDM ecosystem engagement through executive board m
 
 ### Stakeholder Guidance
 Treat DBS as **non-adopter** for practical purposes. OBSERVER classification reflects technical protocol application, not substantive CDM engagement.
-
----
 
 ## Appendices
 
@@ -298,3 +296,7 @@ _Assessment completed: 2025-12-21_
 _Protocol version: 2.3_
 _Evidence items: 2 (Tier 2 only)_
 _Total search coverage: 15+ sources across 3 tiers_
+
+---
+
+*Assessment complete. Classification: OBSERVER (N/A) with 50% confidence.*

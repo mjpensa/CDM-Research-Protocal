@@ -1,19 +1,36 @@
-# Gate 3: Post-Tier 3 Final Reasoning Check (Nomura)
+# Reasoning Gate 3: Pre-Adversarial Assessment: Nomura Holdings, Inc.
 
-## Evidence Quality Check
-- Tier 3 Evidence Found: 0 items
-- Null Results: 4 (highly informative - no hiring, no expertise signals)
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
 
-## Final Classification
-Primary: OBSERVER
-Sub-Classification: CCP-Connected
-Confidence: 45%
+---
 
-## Reasoning Verification
-- No evidence of internal CDM capability building
-- No hiring for CDM roles
-- Only connection is through JSCC infrastructure
-- Classification is well-supported by consistent null results across all tiers
+## Current Probability State
 
-## Decision: PROCEED to Adversarial Review
-GATE 3: PASSED
+N/A
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+
+## Decision: PROCEED TO TIER ADVERSARIAL
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
+
+---
+
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

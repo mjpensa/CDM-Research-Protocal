@@ -1,7 +1,8 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment
+# Reasoning Gate 2: Post-Tier 2 Assessment: NatWest Group PLC
 
-**Bank**: NatWest Group plc
-**Date**: 2025-12-20
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -21,7 +22,11 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 3
 
-**Rationale**: While P(ARCHITECT) is close to the 20% threshold, proceeding to Tier 3 ensures comprehensive evidence gathering. The complete absence of Tier 2 evidence is informative but should be corroborated with signal source searches.
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
 
 ## Evidence Quality Assessment
 
@@ -42,4 +47,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 2 passed. Proceeding to Tier 3 evidence gathering.*
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

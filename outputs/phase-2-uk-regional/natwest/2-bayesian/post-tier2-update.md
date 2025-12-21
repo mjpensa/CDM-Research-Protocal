@@ -1,22 +1,24 @@
-# Bayesian Update: Post-Tier 2 Evidence
+# Bayesian Update: Post-Tier 2 Evidence: NatWest Group PLC
 
-**Bank**: NatWest Group plc
-**Date**: 2025-12-20
-**Prior P(ARCHITECT)**: 30%
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
+## Prior Probability
+
+P(ARCHITECT) prior: 0%
+
 ## Tier 2 Evidence Summary
 
-| ID | Evidence | Direction | LR |
-|----|----------|-----------|-----|
-| -- | No trade press coverage (Risk.net, Waters Tech) | SUPPORTS_PRAGMATIST | 0.8 |
-| -- | No vendor CDM announcements | SUPPORTS_PRAGMATIST | 0.9 |
-| -- | No ISDA conference participation | SUPPORTS_PRAGMATIST | 0.9 |
+No Tier 2 evidence found.
 
 ## Likelihood Ratio Calculation
 
-**Combined LR (Tier 2)** = 0.8 × 0.9 × 0.9 = **0.648**
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -26,13 +28,13 @@ Posterior odds = 0.429 × 0.648 = 0.278
 Posterior P(ARCHITECT) = 0.278 / (1 + 0.278) = 0.218 = 21.8%
 ```
 
-## Updated Probability
+## Updated Probabilities
 
 | Metric | Value |
 |--------|-------|
-| **P(ARCHITECT)** | 22% |
-| **P(PRAGMATIST)** | 78% |
-| **Direction of Movement** | Decreased (30% → 22%) |
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
 
 ## Key Insights
 
@@ -41,12 +43,13 @@ Posterior P(ARCHITECT) = 0.278 / (1 + 0.278) = 0.218 = 21.8%
 3. **No Thought Leadership**: No conference participation indicates lack of CDM expertise to share
 4. **Pilot Abandonment Pattern**: Evidence suggests 2019 pilot was not continued
 
-## Confidence Assessment
+## Cumulative Evidence Summary
 
-- **Tier 2 Evidence Quality**: Moderate (informative absences from authoritative sources)
-- **Highest Tier Cap**: 95% (Tier 1 present)
-- **Applied Confidence**: 45% (pattern of informative absences)
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
 
 ---
 
-*Proceeding to Tier 3 evidence gathering.*
+*Proceeding to Tier 3.*

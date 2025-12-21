@@ -80,6 +80,44 @@
     "min_members_for_comparison": 3
   },
 
+  "network_adoption_thresholds": {
+    "description": "Thresholds for network effect pressure calculation (Enhancement 4)",
+    "tipping_point": {
+      "threshold": 0.40,
+      "description": "When 40% of cohort adopts, remaining banks face intense pressure",
+      "pressure_multiplier": 1.5,
+      "rationale": "Based on network effect research - adoption accelerates above this point"
+    },
+    "critical_mass": {
+      "threshold": 0.60,
+      "description": "When 60% of cohort adopts, non-adopters face very high pressure",
+      "pressure_multiplier": 2.0,
+      "rationale": "Industry standard is effectively established"
+    },
+    "pressure_intensity_levels": {
+      "LOW": {
+        "range": [0.0, 0.25],
+        "description": "Few adopters - minimal peer pressure",
+        "pressure_adjustment": 0.0
+      },
+      "MEDIUM": {
+        "range": [0.25, 0.40],
+        "description": "Some adopters - moderate peer pressure emerging",
+        "pressure_adjustment": 0.1
+      },
+      "HIGH": {
+        "range": [0.40, 0.60],
+        "description": "Above tipping point - significant peer pressure",
+        "pressure_adjustment": 0.25
+      },
+      "CRITICAL": {
+        "range": [0.60, 1.0],
+        "description": "Critical mass reached - very high pressure to conform",
+        "pressure_adjustment": 0.4
+      }
+    }
+  },
+
   "usage_notes": [
     "Cohorts are used for peer calibration in consistency checking",
     "A bank can belong to multiple cohorts",

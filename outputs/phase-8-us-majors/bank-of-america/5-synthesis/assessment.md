@@ -1,8 +1,8 @@
-# Final Assessment: Bank of America Corporation
+# CDM/DRR Assessment: Bank of America Corporation
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Bank of America Corporation
-**Date**: 2025-12-21
+**Bank:** Bank of America Corporation
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
@@ -10,7 +10,45 @@
 
 Bank of America Corporation, a major G16 derivatives dealer and G-SIB, demonstrates minimal evidence of ISDA Common Domain Model adoption. Research across three evidence tiers reveals only standard ISDA protocol adherence with no CDM-specific signals. The bank is classified as PRAGMATIST (Traditional) with moderate-low confidence, reflecting conventional derivatives platform usage without CDM layer.
 
----
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | Bank of America Corporation |
+| Headquarters | Charlotte, USA |
+| Region | North America |
+| Phase | 8 - US Investment Banks |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | PRAGMATIST |
+| Sub-Classification | Traditional |
+| P(ARCHITECT) | 10% |
+| P(PRAGMATIST) | 90% |
+| Confidence | 45% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+| Stage | P(ARCHITECT) | Change |
+|-------|--------------|--------|
+| Prior | 25% | 70% |
+| Post-Tier 1 | 3% | 85% |
+| Post-Tier 2 | 2% | 88% |
+
+## Confidence Calibration
+
+**Base**: 75% (Tier 2 maximum)
+**Penalties**: -20% (single generic source), -10% (no corroboration)
+**Adjustments**: +0% (no differentiating evidence)
+**Final**: 45%
+
+Low confidence reflects minimal evidence and high uncertainty between PRAGMATIST and OBSERVER.
 
 ## Classification
 
@@ -19,8 +57,6 @@ Bank of America Corporation, a major G16 derivatives dealer and G-SIB, demonstra
 **Confidence**: 45%
 
 **Sub-Classification Rationale**: Standard ISDA protocol usage indicates established derivatives operations using traditional platforms. No evidence of CDM adoption or exploration found.
-
----
 
 ## Evidence Summary
 
@@ -36,8 +72,6 @@ No CDM hiring signals, LinkedIn mentions, or conference presentations found.
 ### Null Results: 3 documented searches
 Comprehensive negative results for FINOS membership, CDM pilots, vendor partnerships, and job postings.
 
----
-
 ## Key Findings
 
 1. **Standard ISDA Protocol Usage**: Confirmed adherence to ISDA master agreements, but no CDM-specific engagement
@@ -49,8 +83,6 @@ Comprehensive negative results for FINOS membership, CDM pilots, vendor partners
 4. **No CDM Vendor Signals**: No announced partnerships with CDM-capable vendors (Murex, Calypso, SimCorp)
 
 5. **G16 Dealer Without CDM**: Major derivatives dealer operating without visible CDM adoption, similar to Citigroup pattern
-
----
 
 ## Bayesian Analysis
 
@@ -64,8 +96,6 @@ Comprehensive negative results for FINOS membership, CDM pilots, vendor partners
 
 **Analysis**: Standard ISDA protocol evidence supported PRAGMATIST classification over OBSERVER. Absence of CDM signals eliminated ARCHITECT possibility.
 
----
-
 ## Adversarial Testing
 
 ### Counter-Case Findings
@@ -76,19 +106,6 @@ Strongest counter-claim: Evidence base too weak for PRAGMATIST. Single non-diffe
 
 ### Verdict
 Maintained PRAGMATIST classification at 45% confidence, acknowledging OBSERVER alternative at 30%. G16 dealer profile tips balance toward PRAGMATIST despite weak evidence.
-
----
-
-## Confidence Calibration
-
-**Base**: 75% (Tier 2 maximum)
-**Penalties**: -20% (single generic source), -10% (no corroboration)
-**Adjustments**: +0% (no differentiating evidence)
-**Final**: 45%
-
-Low confidence reflects minimal evidence and high uncertainty between PRAGMATIST and OBSERVER.
-
----
 
 ## Peer Comparison
 
@@ -101,21 +118,15 @@ Low confidence reflects minimal evidence and high uncertainty between PRAGMATIST
 
 **Insight**: Among major US banks, BofA shows lowest CDM engagement. Minimal evidence differentiation from Citigroup.
 
----
-
 ## Trust Flags
 
 - SINGLE_SOURCE_CLAIM
 - LOW_TIER_ONLY  
 - MISSING_CORROBORATION
 
----
-
 ## Recommendation
 
 Classify as PRAGMATIST (Traditional) at 45% confidence with explicit OBSERVER alternative at 30%. Re-research in Q2 2025 after annual report. Monitor for vendor announcements and FINOS engagement.
-
----
 
 ## Conclusion
 
@@ -125,3 +136,7 @@ Bank of America demonstrates conventional derivatives dealer profile without CDM
 
 **Research Date**: 2025-12-21
 **Next Review**: 2025-06-21
+
+---
+
+*Assessment complete. Classification: PRAGMATIST (Traditional) with 45% confidence.*

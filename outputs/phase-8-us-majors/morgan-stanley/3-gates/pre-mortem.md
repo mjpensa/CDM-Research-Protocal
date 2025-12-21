@@ -1,18 +1,14 @@
 # Pre-Mortem Analysis: Morgan Stanley
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Morgan Stanley
-**Date**: 2025-12-21
+**Bank:** Morgan Stanley
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Scenario: Research Failure
+## Research Objective
 
-Imagine it is 6 months from now. The research protocol has failed to accurately classify Morgan Stanley's CDM/DRR maturity.
-
-**What went wrong?**
-
----
+Assess Morgan Stanley's CDM/DRR adoption maturity.
 
 ## Potential Failure Modes
 
@@ -30,12 +26,35 @@ Imagine it is 6 months from now. The research protocol has failed to accurately 
 ### 4. Source Authority Errors
 - [To be identified]
 
+## Search Strategy
+
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
+
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
+
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
+
+## Key Hypotheses to Test
+
+N/A
+
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume Morgan Stanley is PRAGMATIST until evidence proves otherwise.
+
 ---
-
-## Mitigation Strategies
-
-*Preventive measures will be documented here*
-
----
-
-**Purpose**: Identify potential research failures before they occur (Kahneman/Klein pre-mortem technique)

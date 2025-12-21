@@ -1,31 +1,24 @@
-# Bayesian Update: Post-Tier 2 - Credit Agricole CIB
+# Bayesian Update: Post-Tier 2 Evidence: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Prior Probability (Post-Tier 1)
+## Prior Probability
 
-| Parameter | Value |
-|-----------|-------|
-| P(ARCHITECT) | 0.261 |
-| P(PRAGMATIST) | 0.739 |
+P(ARCHITECT) prior: 0%
 
 ## Tier 2 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| *None* | No Tier 2 evidence found | N/A | N/A |
+No Tier 2 evidence found.
 
-## Null Result Impact
+## Likelihood Ratio Calculation
 
-Absence of Tier 2 evidence (trade press coverage) is mildly negative:
-- If Credit Agricole had active CDM initiatives, trade press would likely cover
-- Null result suggests Board membership is passive rather than active engagement
-
-**Likelihood Ratio for Null Result:** 0.7
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -40,11 +33,23 @@ P(ARCHITECT|E) = 0.237 / (1 + 0.237) = 0.191 ≈ 19.1%
 
 ## Updated Probabilities
 
-| Parameter | Post-Tier 1 | Post-Tier 2 | Change |
-|-----------|-------------|-------------|--------|
-| P(ARCHITECT) | 0.261 | 0.191 | -0.070 |
-| P(PRAGMATIST) | 0.739 | 0.809 | +0.070 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Decision
+## Key Insights
 
-**Continue to Tier 3 search** - Probability declining but not conclusive.
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+
+---
+
+*Proceeding to Tier 3.*

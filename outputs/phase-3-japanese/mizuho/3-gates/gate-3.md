@@ -1,15 +1,36 @@
-# Gate 3: Final Reasoning Check (Mizuho Financial Group)
+# Reasoning Gate 3: Pre-Adversarial Assessment: Mizuho Financial Group
 
-## Evidence Quality
-- Tier 3 Evidence: 0 items (no hiring signals)
+**Bank:** Mizuho Financial Group
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
 
-## Final Classification
-Primary: OBSERVER
-Sub-Classification: CCP-Connected
-Confidence: 45%
+---
 
-## Reasoning Verification
-Consistent null results across all tiers support OBSERVER classification. No internal CDM capability building.
+## Current Probability State
 
-## Decision: PROCEED to Adversarial Review
-GATE 3: PASSED
+N/A
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+
+## Decision: PROCEED TO TIER ADVERSARIAL
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
+
+---
+
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

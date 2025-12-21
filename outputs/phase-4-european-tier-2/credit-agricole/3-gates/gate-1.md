@@ -1,26 +1,32 @@
-# Gate 1 Decision: Credit Agricole CIB
+# Reasoning Gate 1: Post-Tier 1 Assessment: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Evidence Summary
+## Current Probability State
 
-| Metric | Value |
-|--------|-------|
-| Tier 1 Evidence Items | 1 (CA-001: ISDA Board) |
-| Tier 1 Null Results | 0 |
-| P(ARCHITECT) Post-Tier 1 | 26.1% |
-| P(PRAGMATIST) Post-Tier 1 | 73.9% |
+N/A
 
-## Gate 1 Decision
+## Gate Decision Criteria
 
-| Decision | Rationale |
-|----------|-----------|
-| **PROCEED TO TIER 2** | Single membership evidence insufficient. Need to confirm whether engagement is active or passive. |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-## Next Steps
+## Decision: PROCEED TO TIER 2
 
-Search for trade press coverage of Credit Agricole CDM initiatives.
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 2
+
+N/A
+
+---
+
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

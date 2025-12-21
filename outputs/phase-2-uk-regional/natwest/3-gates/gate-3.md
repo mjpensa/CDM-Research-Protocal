@@ -1,7 +1,8 @@
-# Reasoning Gate 3: Post-Tier 3 Assessment
+# Reasoning Gate 3: Pre-Adversarial Assessment: NatWest Group PLC
 
-**Bank**: NatWest Group plc
-**Date**: 2025-12-20
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -19,9 +20,13 @@ Per `config/decision-thresholds.json`:
 - Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 - Current P(ARCHITECT) = 14% → **Below 20% threshold**
 
-## Decision: PROCEED TO ADVERSARIAL CHALLENGE
+## Decision: PROCEED TO TIER ADVERSARIAL
 
-**Rationale**: P(ARCHITECT) has dropped below 20%, indicating strong PRAGMATIST evidence. Proceeding to adversarial challenge to test the classification robustness.
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
 
 ## Evidence Quality Assessment
 
@@ -36,15 +41,7 @@ Per `config/decision-thresholds.json`:
 - No direct "we are not doing CDM" statement
 - Possibility of silent implementation (though increasingly unlikely)
 
-## Classification Indicators
-
-**OBSERVER (Historical-Engagement)** is most likely:
-- Historical pilot participation (2018-2019)
-- No continuation after pilot
-- FINOS ecosystem participation (Fluxnova) without CDM
-- No CDM-specific hiring, advocacy, or implementation signals
-
-## Adversarial Challenge Questions
+## Key Questions for Adversarial
 
 1. Could NatWest be implementing CDM silently despite Fluxnova publicity?
 2. Is the FINOS Paradox actually evidence of strategic CDM avoidance?
@@ -53,4 +50,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 3 passed. Proceeding to adversarial challenge.*
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

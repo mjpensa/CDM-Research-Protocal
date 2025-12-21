@@ -1,48 +1,51 @@
-# Post-Tier 3 Bayesian Update (FINAL)
+# Bayesian Update: Post-Tier 3 Evidence: Bank of China Limited
 
-**Research Date**: 2025-12-21
-
----
-
-## Prior (Post-Tier 2)
-
-- PRAGMATIST: 99.8%
-- OBSERVER: 0.1%
-- ARCHITECT: 0.1%
+**Bank:** Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Tier 3 Evidence Review
+## Prior Probability
 
-**Evidence Found**: None
+P(ARCHITECT) prior: 20%
 
-**Sources Checked**: LinkedIn Jobs, Chinese job boards, employee profiles
+## Tier 3 Evidence Summary
 
-**Result**: No hiring signals or job postings mentioning CDM.
+No Tier 3 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
+
+## Posterior Calculation
+
+```
+Posterior = Prior (no update)
+```
+
+## Updated Probabilities
+
+N/A
+
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
+
+## Final Confidence Assessment
+
+Final confidence: 50%
 
 ---
 
-## Final Bayesian Probabilities
-
-**Posterior**:
-- PRAGMATIST: 99.9%
-- OBSERVER: 0.05%
-- ARCHITECT: 0.05%
-
----
-
-## Classification Decision
-
-**Bayesian Logic**: Classify as PRAGMATIST at 99.9% confidence
-
-**Protocol Override**: Classify as UNKNOWN at 30% confidence
-
-**Rationale for Override**:
-- Bayesian analysis assumes search completeness
-- Possible disclosure gap in Chinese banking sector
-- UNKNOWN reflects epistemic humility, not engagement signal
-- 30% confidence = high certainty of null results + low certainty of conclusion
-
----
-
-**Final Classification**: UNKNOWN (Insufficient-Evidence) at 30%
+*Proceeding to adversarial review.*

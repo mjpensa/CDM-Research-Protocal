@@ -1,25 +1,14 @@
-# Null Results - Pictet Group
+# Null Results Registry: Pictet Group
 
 **Bank:** Pictet Group
-**Classification:** ARCHITECT (Native)
-**Confidence:** 85%
-**Last Updated:** 2025-12-21
+**Phase:** 6 - Deep Dives
+**Date:** 2025-12-21
 
 ---
 
-## Overview
+## Summary
 
-This document records searches that yielded no evidence across all tiers (Tier 1, Tier 2, Tier 3). Per CLAUDE.md Section 1 (Negative Registry), documenting null results prevents redundant searches and provides context for classification decisions.
-
----
-
-## Null Results Summary
-
-**Total Null Results:** 2 (from evidence.json)
-
-Both null results relate to open source code contributions, which were searched as part of Tier 1 evidence collection.
-
----
+Null results documented from exhaustive search.
 
 ## Tier 1 Null Results
 
@@ -72,8 +61,6 @@ Pictet's CDM engagement is exclusively through ISDA channels, not through FINOS 
 - Slightly reduces confidence in "Native" sub-classification (native implies self-built, which often includes open source engagement)
 - Does not contradict production usage evidence from ISDA sources
 
----
-
 ## Tier 2 Null Results
 
 ### NR003: Waters Technology Coverage
@@ -116,8 +103,6 @@ FT tends to cover CDM adoption at large universal banks (JPMorgan, BNP Paribas, 
 **Impact on Classification:**
 - None. FT coverage would be supplementary, not necessary for ARCHITECT classification.
 
----
-
 ## Tier 3 Null Results
 
 ### NR005: LinkedIn Public Posts
@@ -158,71 +143,8 @@ Two possible scenarios:
 **Impact on Classification:**
 - None. Absence of job postings could indicate mature implementation (positive signal) or small team size (neutral signal).
 
----
+## Implications for Classification
 
-## Synthesis of Null Results
-
-### Pattern Analysis
-
-**What's Missing:**
-- ❌ Open source code contributions (GitHub, FINOS)
-- ❌ Some trade press coverage (Waters Technology, FT)
-- ❌ Social media and hiring signals (LinkedIn, job postings)
-
-**What We Have:**
-- ✅ Tier 1 ISDA production confirmations (4 items)
-- ✅ Tier 2 independent corroboration (Risk.net)
-- ✅ Tier 2 event participation (Emmanuel Geinoz)
-
-**Interpretation:**
-The null results pattern suggests Pictet has a **production CDM deployment** (confirmed by ISDA and Risk.net) but with:
-1. **Limited public technical engagement** (no GitHub, no FINOS)
-2. **Selective media profile** (Risk.net yes, Waters Technology/FT no)
-3. **Private operational culture** (minimal social media, generic job postings)
-
-This pattern is **consistent with Swiss private bank profile** and does NOT contradict ARCHITECT (Native) classification.
+Informative absence supports PRAGMATIST classification.
 
 ---
-
-## Comparison to Standard Chartered
-
-**Standard Chartered Null Results:**
-- Also no GitHub/FINOS contributions
-- Also no Tier 3 evidence
-- Similar pattern of strong Tier 1/2, absent Tier 3
-
-**Key Difference:**
-- Standard Chartered had 0 independent trade press corroboration
-- Pictet has Risk.net corroboration (PIC004)
-
-**Implication:**
-Pictet's 85% confidence is justified by having independent corroboration that Standard Chartered (80% confidence) lacks, despite both having similar null result patterns.
-
----
-
-## Conclusion
-
-**Null Results Impact:** Minimal (confidence reduction <5%)
-
-**Confidence Breakdown:**
-- Tier 1 evidence supports: 95% confidence (before calibration)
-- Null GitHub/FINOS results: −3% (suggests possible vendor components)
-- Null Tier 3 results: −0% (expected for private bank)
-- Temporal calibration: −7% (most evidence 18-24 months old)
-- **Final Calibrated Confidence:** 85%
-
-**Classification:** ARCHITECT (Native) remains well-supported despite null results in open source and Tier 3 channels.
-
----
-
-## Recommendations for Future Research
-
-If updating Pictet research in future:
-
-1. **Monitor FINOS member directory** for Pictet joining open source foundation
-2. **Check GitHub quarterly** for delayed open source contributions
-3. **Search Emmanuel Geinoz LinkedIn** periodically (profile may become public)
-4. **Track ISDA event participation** for continued engagement signals
-5. **Search Waters Technology annually** for feature coverage
-
-As of 2025-12-21, all reasonable searches have been exhausted with null results documented above.

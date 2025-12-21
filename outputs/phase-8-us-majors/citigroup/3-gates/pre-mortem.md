@@ -1,18 +1,14 @@
 # Pre-Mortem Analysis: Citigroup Inc.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Citigroup Inc.
-**Date**: 2025-12-21
+**Bank:** Citigroup Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Scenario: Research Failure
+## Research Objective
 
-Imagine it is 6 months from now. The research protocol has classified Citigroup as OBSERVER with 50% confidence, but this classification has proven incorrect.
-
-**What went wrong?**
-
----
+Assess Citigroup Inc.'s CDM/DRR adoption maturity.
 
 ## Potential Failure Modes
 
@@ -101,53 +97,35 @@ Imagine it is 6 months from now. The research protocol has classified Citigroup 
 - Internal blogs/knowledge bases not accessible
 - Intranet job postings more specific than external postings
 
----
+## Search Strategy
 
-## Mitigation Strategies
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
 
-### Pre-Research Actions
-1. **Expand Vendor Search**: Query Murex, Calypso, SimCorp for "Citigroup" + "CDM" case studies
-2. **Regional Deep Dive**: Search EMIR Refit compliance specifically for Citi Europe
-3. **Regulatory Filing Review**: Check recent SEC 10-K/10-Q for "standardized data" or "derivatives reporting modernization"
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
 
-### During Research
-1. **Terminology Variants**: Search for "enterprise data model," "standardized derivatives model," "ISDA standards implementation"
-2. **Indirect Signals**: Look for Citi attendance at CDM-focused conferences, even without speaking slots
-3. **Vendor Proxy**: Check for Citi employees on LinkedIn mentioning vendor tools with CDM capabilities
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
 
-### Post-Research Validation
-1. **Peer Comparison**: If JPMorgan and Goldman have CDM but Citi doesn't, investigate why (competitive disadvantage would be surprising)
-2. **Temporal Follow-up**: Flag for re-research in Q1 2025 after annual report publication
-3. **Expert Consultation**: Consider reaching out to ISDA or FINOS for non-public member engagement data
+## Key Hypotheses to Test
 
----
+N/A
 
-## High-Risk Assumptions to Challenge
+## Decision Points
 
-1. **Assumption**: "No Tier 1 evidence = No CDM usage"
-   - **Challenge**: Citigroup might have strategic reasons to avoid publicity
-   
-2. **Assumption**: "FINOS membership without CDM contribution = Observer only"
-   - **Challenge**: Contribution might be planned for future, or happening via proxy
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
 
-3. **Assumption**: "G16 dealer without CDM is implausible"
-   - **Challenge**: Traditional platforms might still be sufficient for current needs
+## Null Hypothesis Reminder
 
-4. **Assumption**: "Exhaustive search = Complete evidence"
-   - **Challenge**: Proprietary systems and private agreements inherently invisible
+Assume Citigroup Inc. is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-## Success Criteria for Validation
-
-Within 6 months, check:
-1. **Q1 2025 Earnings Call**: Any mention of derivatives reporting technology
-2. **Annual Report (March 2025)**: Technology investments section
-3. **ISDA AGM (April 2025)**: Citigroup speaker participation or announcements
-4. **FINOS GitHub**: Any new Citigroup contributor activity on CDM repos
-
-If none of these reveal CDM evidence, OBSERVER classification is likely correct.
-
----
-
-**Purpose**: Identify potential research failures before they occur (Kahneman/Klein pre-mortem technique)

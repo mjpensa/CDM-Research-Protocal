@@ -1,25 +1,20 @@
-# Adversarial Verdict: Credit Agricole CIB
+# Adversarial Verdict: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Verdict Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Adversarial Review Summary
-
-| Document | Conclusion |
-|----------|------------|
-| Counter-Case | ARCHITECT and PRAGMATIST alternatives considered but rejected |
-| Steelman | OBSERVER classification matches evidence and definitions |
-
-## Final Verdict
+## Final Classification
 
 | Element | Value |
 |---------|-------|
-| **Classification** | OBSERVER |
-| **Sub-Classification** | Ecosystem-Engaged |
-| **Confidence** | 55% |
+| Classification | OBSERVER |
+| Sub-Classification | N/A |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
 
 ## Verdict Rationale
 
@@ -30,6 +25,24 @@ Credit Agricole CIB is classified as **OBSERVER (Ecosystem-Engaged)** because:
 3. **Active ongoing engagement** (2024 continuing term) justifies "Ecosystem-Engaged" vs historical
 4. **55% confidence** is appropriately calibrated for single membership evidence
 
-## Classification Confirmed
+## Sub-Classification Justification
 
-OBSERVER (Ecosystem-Engaged) at 55% confidence.
+N/A
+
+## Why Not Other Classifications
+
+| Alternative | Reason Rejected |
+|-------------|-----------------|
+| N/A | N/A |
+
+## Confidence Assessment
+
+N/A
+
+## Adversarial Challenge Status
+
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
+
+---

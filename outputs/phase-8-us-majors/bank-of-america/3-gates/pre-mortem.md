@@ -1,18 +1,14 @@
 # Pre-Mortem Analysis: Bank of America Corporation
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Bank of America Corporation
-**Date**: 2025-12-21
+**Bank:** Bank of America Corporation
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Scenario: Research Failure
+## Research Objective
 
-Classification as PRAGMATIST (Traditional) proves incorrect in 6 months.
-
-**What went wrong?**
-
----
+Assess Bank of America Corporation's CDM/DRR adoption maturity.
 
 ## Potential Failure Modes
 
@@ -34,15 +30,35 @@ Classification as PRAGMATIST (Traditional) proves incorrect in 6 months.
 - Regulatory compliance projects in planning stage
 - Announcement timing delays
 
+## Search Strategy
+
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
+
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
+
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
+
+## Key Hypotheses to Test
+
+N/A
+
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume Bank of America Corporation is PRAGMATIST until evidence proves otherwise.
+
 ---
-
-## Mitigation Strategies
-
-1. Search vendor announcements (Murex, Calypso, SimCorp)
-2. Check European regulatory filings for EMIR Refit
-3. Monitor FINOS community for BofA engagement
-4. Review annual reports for technology investments
-
----
-
-**Purpose**: Identify potential research failures before they occur

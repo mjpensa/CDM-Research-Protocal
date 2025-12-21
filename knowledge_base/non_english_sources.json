@@ -1,0 +1,287 @@
+{
+  "$schema": "CDM/DRR Non-English Source Index v1.0",
+  "description": "Priority non-English sources by jurisdiction for comprehensive research (Enhancement 9)",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "jurisdictions": {
+    "Japan": {
+      "primary_language": "Japanese",
+      "importance": "high",
+      "rationale": "JSCC CDM mandate makes Japan critical; Japanese banks publish in Japanese first",
+      "priority_sources": [
+        {
+          "domain": "nikkei.com",
+          "name": "Nikkei",
+          "type": "business_press",
+          "tier": 2,
+          "language": "Japanese",
+          "search_terms": ["JSCC", "デリバティブ", "CDM", "ISDA", "金融派生商品"],
+          "translation_notes": "Google Translate works well for headlines; verify technical terms"
+        },
+        {
+          "domain": "fsa.go.jp",
+          "name": "Financial Services Agency Japan",
+          "type": "regulator",
+          "tier": 1,
+          "language": "Japanese (some English)",
+          "search_terms": ["derivatives", "報告", "規制"],
+          "english_section": "https://www.fsa.go.jp/en/"
+        },
+        {
+          "domain": "jpx.co.jp",
+          "name": "Japan Exchange Group",
+          "type": "exchange",
+          "tier": 1,
+          "language": "Japanese (English available)",
+          "search_terms": ["JSCC", "CDM", "clearing"],
+          "english_section": "https://www.jpx.co.jp/english/"
+        },
+        {
+          "domain": "boj.or.jp",
+          "name": "Bank of Japan",
+          "type": "central_bank",
+          "tier": 1,
+          "language": "Japanese (English available)",
+          "english_section": "https://www.boj.or.jp/en/"
+        }
+      ],
+      "bank_ir_domains": [
+        {"bank_id": "nomura", "ir_domain": "nomuraholdings.com", "language": "English/Japanese"},
+        {"bank_id": "mufg", "ir_domain": "mufg.jp", "language": "English/Japanese"},
+        {"bank_id": "mizuho", "ir_domain": "mizuhogroup.com", "language": "English/Japanese"},
+        {"bank_id": "smbc", "ir_domain": "smfg.co.jp", "language": "English/Japanese"},
+        {"bank_id": "daiwa", "ir_domain": "daiwa-grp.jp", "language": "English/Japanese"}
+      ]
+    },
+
+    "Germany": {
+      "primary_language": "German",
+      "importance": "high",
+      "rationale": "EMIR Refit compliance; German banks often publish in German first",
+      "priority_sources": [
+        {
+          "domain": "handelsblatt.com",
+          "name": "Handelsblatt",
+          "type": "business_press",
+          "tier": 2,
+          "language": "German",
+          "search_terms": ["Derivate", "EMIR", "Regulierung", "CDM", "Finanzmarkt"]
+        },
+        {
+          "domain": "bafin.de",
+          "name": "BaFin",
+          "type": "regulator",
+          "tier": 1,
+          "language": "German (English available)",
+          "search_terms": ["EMIR", "Meldepflichten", "derivatives"],
+          "english_section": "https://www.bafin.de/EN/"
+        },
+        {
+          "domain": "bundesbank.de",
+          "name": "Deutsche Bundesbank",
+          "type": "central_bank",
+          "tier": 1,
+          "language": "German (English available)",
+          "english_section": "https://www.bundesbank.de/en/"
+        },
+        {
+          "domain": "boerse-frankfurt.de",
+          "name": "Deutsche Boerse",
+          "type": "exchange",
+          "tier": 1,
+          "language": "German (English available)",
+          "search_terms": ["Eurex", "clearing", "derivatives"]
+        }
+      ],
+      "bank_ir_domains": [
+        {"bank_id": "deutsche-bank", "ir_domain": "db.com", "language": "English/German"},
+        {"bank_id": "commerzbank", "ir_domain": "commerzbank.com", "language": "English/German"}
+      ]
+    },
+
+    "France": {
+      "primary_language": "French",
+      "importance": "medium",
+      "rationale": "EMIR Refit compliance; BNP is known CDM adopter",
+      "priority_sources": [
+        {
+          "domain": "lesechos.fr",
+          "name": "Les Echos",
+          "type": "business_press",
+          "tier": 2,
+          "language": "French",
+          "search_terms": ["dérivés", "EMIR", "réglementation", "banque"]
+        },
+        {
+          "domain": "amf-france.org",
+          "name": "AMF France",
+          "type": "regulator",
+          "tier": 1,
+          "language": "French (English available)",
+          "english_section": "https://www.amf-france.org/en"
+        },
+        {
+          "domain": "banque-france.fr",
+          "name": "Banque de France",
+          "type": "central_bank",
+          "tier": 1,
+          "language": "French (English available)"
+        }
+      ],
+      "bank_ir_domains": [
+        {"bank_id": "bnp-paribas", "ir_domain": "bnpparibas.com", "language": "English/French"},
+        {"bank_id": "societe-generale", "ir_domain": "societegenerale.com", "language": "English/French"},
+        {"bank_id": "credit-agricole", "ir_domain": "credit-agricole.com", "language": "English/French"}
+      ]
+    },
+
+    "Switzerland": {
+      "primary_language": "German/French/English",
+      "importance": "medium",
+      "rationale": "Swiss banks are globally significant; publish in multiple languages",
+      "priority_sources": [
+        {
+          "domain": "finma.ch",
+          "name": "FINMA",
+          "type": "regulator",
+          "tier": 1,
+          "language": "German/French/English",
+          "english_section": "https://www.finma.ch/en/"
+        },
+        {
+          "domain": "snb.ch",
+          "name": "Swiss National Bank",
+          "type": "central_bank",
+          "tier": 1,
+          "language": "German/French/English"
+        },
+        {
+          "domain": "nzz.ch",
+          "name": "Neue Zurcher Zeitung",
+          "type": "business_press",
+          "tier": 2,
+          "language": "German",
+          "search_terms": ["Derivate", "Finanzmarkt", "UBS", "Credit Suisse"]
+        }
+      ],
+      "bank_ir_domains": [
+        {"bank_id": "ubs", "ir_domain": "ubs.com", "language": "English"},
+        {"bank_id": "credit-suisse", "ir_domain": "credit-suisse.com", "language": "English"}
+      ]
+    },
+
+    "Spain": {
+      "primary_language": "Spanish",
+      "importance": "low",
+      "rationale": "EMIR Refit compliance; Spanish banks less prominent in CDM",
+      "priority_sources": [
+        {
+          "domain": "expansion.com",
+          "name": "Expansion",
+          "type": "business_press",
+          "tier": 2,
+          "language": "Spanish",
+          "search_terms": ["derivados", "EMIR", "regulación"]
+        },
+        {
+          "domain": "cnmv.es",
+          "name": "CNMV",
+          "type": "regulator",
+          "tier": 1,
+          "language": "Spanish (some English)"
+        },
+        {
+          "domain": "bde.es",
+          "name": "Bank of Spain",
+          "type": "central_bank",
+          "tier": 1,
+          "language": "Spanish (English available)",
+          "english_section": "https://www.bde.es/bde/en/"
+        }
+      ],
+      "bank_ir_domains": [
+        {"bank_id": "santander", "ir_domain": "santander.com", "language": "English/Spanish"},
+        {"bank_id": "bbva", "ir_domain": "bbva.com", "language": "English/Spanish"}
+      ]
+    },
+
+    "Italy": {
+      "primary_language": "Italian",
+      "importance": "low",
+      "rationale": "EMIR Refit compliance",
+      "priority_sources": [
+        {
+          "domain": "ilsole24ore.com",
+          "name": "Il Sole 24 Ore",
+          "type": "business_press",
+          "tier": 2,
+          "language": "Italian",
+          "search_terms": ["derivati", "EMIR", "regolamentazione"]
+        },
+        {
+          "domain": "consob.it",
+          "name": "CONSOB",
+          "type": "regulator",
+          "tier": 1,
+          "language": "Italian (some English)"
+        }
+      ],
+      "bank_ir_domains": [
+        {"bank_id": "unicredit", "ir_domain": "unicreditgroup.eu", "language": "English/Italian"},
+        {"bank_id": "intesa", "ir_domain": "group.intesasanpaolo.com", "language": "English/Italian"}
+      ]
+    }
+  },
+
+  "translation_guidance": {
+    "recommended_tools": [
+      "Google Translate for initial pass",
+      "DeepL for more accurate translations",
+      "Native speaker verification for critical claims"
+    ],
+    "verification_rules": [
+      "Translate headlines and first paragraphs first",
+      "Verify technical terms (CDM, derivatives, etc.) aren't mistranslated",
+      "Cross-reference with English-language versions if available",
+      "Quote original language in evidence.json, provide translation in notes"
+    ]
+  },
+
+  "search_strategy": {
+    "description": "How to search non-English sources",
+    "steps": [
+      "Start with English version of site if available",
+      "Use local-language search terms for deeper coverage",
+      "Search bank name in local script (e.g., 野村 for Nomura)",
+      "Search regulatory terms in local language"
+    ],
+    "common_cdm_translations": {
+      "Japanese": {
+        "derivatives": "デリバティブ",
+        "reporting": "報告",
+        "regulatory": "規制",
+        "clearing": "クリアリング"
+      },
+      "German": {
+        "derivatives": "Derivate",
+        "reporting": "Meldung",
+        "regulatory": "Regulierung",
+        "clearing": "Clearing"
+      },
+      "French": {
+        "derivatives": "dérivés",
+        "reporting": "déclaration",
+        "regulatory": "réglementation",
+        "clearing": "compensation"
+      }
+    }
+  },
+
+  "usage_notes": [
+    "Japanese sources critical for JSCC-connected banks",
+    "German sources important for Deutsche Bank, Commerzbank",
+    "Most bank IR sites have English versions - use those first",
+    "Non-English sources are Tier 2 unless from regulators (Tier 1)"
+  ]
+}

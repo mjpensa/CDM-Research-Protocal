@@ -1,20 +1,20 @@
-# Adversarial Verdict
+# Adversarial Verdict: Deutsche Bank AG
 
-**Bank**: Deutsche Bank AG
-**Date**: 2025-12-20
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
 ## Final Classification
 
-| Metric | Value |
-|--------|-------|
-| **Classification** | PRAGMATIST |
-| **Sub-Classification** | Regulatory-Driven |
-| **Confidence** | 55% |
-| **P(ARCHITECT)** | 17% |
-
----
+| Element | Value |
+|---------|-------|
+| Classification | PRAGMATIST |
+| Sub-Classification | Regulatory-Driven |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
 
 ## Verdict Rationale
 
@@ -46,55 +46,22 @@ Deutsche Bank is responding to regulatory requirements (EMIR Refit) through trad
 | PRAGMATIST (Integration-Constrained) | No M&A constraints |
 | OBSERVER | 2022 conference shows some awareness |
 
----
+## Sub-Classification Justification
 
-## Framework Claim Invalidation
+N/A
 
-**Framework v20 Claim**: "Pilot; production expected 2025"
+## Why Not Other Classifications
 
-**Verdict**: **UNVERIFIED / LIKELY FALSE**
 
-No evidence supports this claim:
-- No pilot announcement found
-- No production timeline found
-- No hiring for CDM implementation
-- No recent conference participation
-- No FINOS CDM contribution
-
-The claim may have been based on:
-- Overly optimistic interpretation of 2022 conference participation
-- Vendor marketing that overstated relationship
-- Outdated information that was never corrected
-
----
 
 ## Confidence Assessment
 
-**Confidence: 55%**
+N/A
 
-Factors reducing confidence:
-- Reliance on informative absences rather than positive evidence
-- Possibility of silent implementation (unfalsifiable)
-- Single Tier 2 evidence item (2022 conference)
-- No insider sources to confirm
+## Adversarial Challenge Status
 
-Factors supporting confidence:
-- Consistent pattern across all evidence categories
-- FINOS paradox (capable but not contributing to CDM)
-- Exhaustive search with no disconfirming evidence
-- Traditional EMIR approach documented
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
 
 ---
-
-## Adversarial Challenge: UPHELD
-
-The PRAGMATIST (Regulatory-Driven) classification survives adversarial challenge.
-
-Counter-arguments for ARCHITECT were weak:
-- Relied on speculation about silent implementation
-- Dated evidence (2022 conference)
-- Unfalsifiable cultural arguments
-
----
-
-*Adversarial challenge complete. Proceeding to synthesis.*

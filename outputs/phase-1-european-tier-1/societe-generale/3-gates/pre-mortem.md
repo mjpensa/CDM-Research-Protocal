@@ -1,12 +1,12 @@
-# Pre-Mortem Analysis: Société Générale
+# Pre-Mortem Analysis: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
-**Prior Probability**: P(ARCHITECT) = 35%
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## 1. Research Objective
+## Research Objective
 
 **Primary Goal**: Assess whether SocGen is following BNP Paribas CDM path
 
@@ -19,9 +19,7 @@
 
 **Hypothesis to Test**: Société Générale is following BNP Paribas CDM path with 12-24 month lag
 
----
-
-## 2. Potential Failure Modes
+## Potential Failure Modes
 
 ### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
 
@@ -39,9 +37,7 @@
 | **BNP Shadow** | SocGen work overshadowed by BNP coverage | Search SocGen specifically |
 | **Silent Following** | Following BNP quietly without announcements | Look for hiring signals |
 
----
-
-## 3. Search Strategy
+## Search Strategy
 
 ### Tier 1 (Official Sources)
 - Société Générale official CDM/DRR announcements
@@ -60,6 +56,18 @@
 - LinkedIn job postings
 - CDM/ISDA hiring signals
 
----
+## Key Hypotheses to Test
 
-*Pre-mortem complete. Proceeding to Tier 1 evidence gathering.*
+N/A
+
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume SociÃ©tÃ© GÃ©nÃ©rale is PRAGMATIST until evidence proves otherwise.
+
+---

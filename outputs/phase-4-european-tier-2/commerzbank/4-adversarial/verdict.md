@@ -1,25 +1,20 @@
 # Adversarial Verdict: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Verdict Date:** 2025-12-20
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Adversarial Review Summary
-
-| Document | Conclusion |
-|----------|------------|
-| Counter-Case | Five alternative hypotheses considered; none warrant reclassification |
-| Steelman | Strongest alternative (hidden CDM via Murex) is plausible but unproven |
-
-## Final Verdict
+## Final Classification
 
 | Element | Value |
 |---------|-------|
-| **Classification** | PRAGMATIST |
-| **Sub-Classification** | Vendor-Dependent |
-| **Confidence** | 50% |
+| Classification | PRAGMATIST |
+| Sub-Classification | Vendor-Dependent |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
 
 ## Verdict Rationale
 
@@ -65,25 +60,24 @@ Commerzbank AG is classified as **PRAGMATIST (Vendor-Dependent)** because:
 - Hidden adoption possibility is legitimate uncertainty
 - Protocol-mandated cap prevents overconfidence
 
-## Classification Confirmed
+## Sub-Classification Justification
 
-After adversarial review, classification stands:
+N/A
 
-**PRAGMATIST (Vendor-Dependent)** at 50% confidence.
+## Why Not Other Classifications
 
-## Key Insights
+| Alternative | Reason Rejected |
+|-------------|-----------------|
+| N/A | N/A |
 
-1. **Murex migration is decisive:** Traditional platform migration is strong pragmatist signal
-2. **Silence on CDM is meaningful:** Vendor marketing incentives make CDM silence informative
-3. **Pattern consistency matters:** Absence across all evidence tiers reinforces classification
-4. **Confidence calibration is sound:** 50% appropriately balances evidence with uncertainty
+## Confidence Assessment
 
-## Recommendation
+N/A
 
-Classify Commerzbank as PRAGMATIST (Vendor-Dependent) at 50% confidence in final assessment.
+## Adversarial Challenge Status
 
-Consider re-assessment in 12 months if:
-- Commerzbank joins FINOS or ISDA CDM working groups
-- Trade press reports CDM adoption
-- Murex announces CDM usage by Commerzbank
-- Regulatory filings mention CDM compliance
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
+
+---

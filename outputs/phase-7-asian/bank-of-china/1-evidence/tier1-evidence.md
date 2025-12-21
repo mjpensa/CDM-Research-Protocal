@@ -1,25 +1,25 @@
-# Tier 1 Evidence: Bank of China
+# Tier 1 Evidence: Bank of China Limited
 
-**Research Date**: 2025-12-21
-**Protocol Version**: 2.3
+**Bank:** Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
+
+## Evidence Inventory
 
 No Tier 1 evidence found.
 
-## Sources Checked
+## Informative Absences
 
-- **boc.cn** / **bankofchina.com**: No CDM mentions
-- **isda.org**: No Bank of China case studies
-- **finos.org**: Not a FINOS member
-- **github.com/finos**: No code contributions
-
-## Context
-
-Bank of China has extensive international presence (London, New York, Hong Kong, Singapore, Tokyo) but shows no CDM adoption signals in any jurisdiction. Chinese regulatory framework (PBOC/CBIRC) does not mandate CDM.
+N/A
 
 ---
-
-**Conclusion**: No Tier 1 evidence. Proceed to Tier 2.

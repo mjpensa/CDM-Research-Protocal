@@ -1,4 +1,10 @@
-# Null Results: Société Générale
+# Null Results Registry: SociÃ©tÃ© GÃ©nÃ©rale
+
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
+
+---
 
 ## Summary
 
@@ -6,69 +12,20 @@
 - **Categories with Null Results**: 4
 - **Informative Absences**: 4
 
----
+## Tier 1 Null Results
 
-## Null Result Blocks
+N/A
 
-### ISDA CDM Contributor
+## Tier 2 Null Results
 
-**Queries Executed**:
-- `site:isda.org Societe Generale CDM`
-- `ISDA CDM contributors Societe Generale`
+N/A
 
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
+## Tier 3 Null Results
 
-**Informative Absence**: YES
+N/A
 
-**Implication**: Société Générale not listed as ISDA CDM contributor despite being major French G-SIB
+## Implications for Classification
 
----
-
-### FINOS CDM Contributor
-
-**Queries Executed**:
-- `site:finos.org Societe Generale CDM contributor`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: Not contributing to FINOS CDM despite peer BNP Paribas in production
+Informative absence supports PRAGMATIST classification.
 
 ---
-
-### CDM Job Postings
-
-**Queries Executed**:
-- `Societe Generale CDM job careers ISDA`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No CDM-specific hiring signals - not actively building CDM capability
-
----
-
-### BNP Follow Pattern
-
-**Queries Executed**:
-- `Societe Generale BNP Paribas CDM following`
-
-**Results Reviewed**: 10
-**Null Classification**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No evidence of following BNP Paribas CDM path despite hypothesis
-
----
-
-## Null Results Summary
-
-- Total null searches: 4
-- Informative absences supporting Pragmatist: 4
-- Search exhaustiveness: Basic

@@ -1,49 +1,67 @@
-# Tier 1 Evidence: HSBC Holdings plc
+# Tier 1 Evidence: HSBC Holdings PLC
+
+**Bank:** HSBC Holdings PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
+
+---
 
 ## Search Execution Summary
 
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 2
-- **Schema Version**: 4.3
-
----
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[HSBC-000] TIER 1 — SUPPORTS ARCHITECT
+### HSBC-000: Evidence Item
 
-**Source**: https://www.regulationasia.com/isda-cdm-deployed-in-uk-digital-regulatory-reporting-pilot/
-**Date**: 2019-02-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "In 2018 and 2019, the 2 UK regulators collaborated with 7 banks to complete 2 pilots. The banks were Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, NatWest and Santander. ISDA CDM 2.0 was deployed to support testing."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Historical
-- Specificity: Specific
+**Analysis:** N/A
 
-**Claim Type**: `pilot_or_poc`
-**LR Mapping**: regulatory_pilot_historical (LR = 2.0)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Pilot from 2018-2019 (5+ years old). Phase 2 concluded that 'an appropriate solution for producing machine-executable regulation has not yet been identified.' No evidence of continued CDM work since.
+**Caveats:** N/A
 
----
+### HSBC-001: Evidence Item
 
-[HSBC-001] TIER 1 — NEUTRAL
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.gbm.hsbc.com/financial-regulations/emir/refit-reporting
-**Date**: 2024-04-29
+**Excerpt:** N/A
 
-**Finding**: "From 18 June 2020, HSBC has been responsible for the reporting of in-scope OTC contracts where clients are trading directly with HSBC. For clients who have been reporting trades to a different Trade Repository, DTCC must transfer all reportable trades."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: HIGH
-- Recency: Current
-- Specificity: Specific
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: regulatory_compliance_traditional (LR = 0.8)
+**Caveats:** N/A
 
-**Caveats**: Standard EMIR compliance using DTCC. No mention of CDM or DRR on the page - traditional reporting approach.
+## Informative Absences
+
+N/A
 
 ---

@@ -1,31 +1,24 @@
-# Bayesian Update: Post-Tier 3 Evidence
+# Bayesian Update: Post-Tier 3 Evidence: Deutsche Bank AG
 
-**Bank**: Deutsche Bank AG
-**Date**: 2025-12-20
-**Prior P(ARCHITECT) (post-Tier 2)**: 20%
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
+## Prior Probability
+
+P(ARCHITECT) prior: 0%
+
 ## Tier 3 Evidence Summary
 
-| ID | Evidence | Direction | LR |
-|----|----------|-----------|-----|
-| (null) | No CDM job postings found | SUPPORTS_PRAGMATIST | 0.85 |
-| (null) | No CDM LinkedIn profiles/posts found | NEUTRAL | 0.95 |
-| (null) | No CDM patents found | NEUTRAL | 1.0 |
-
-## Null Results Analysis
-
-All Tier 3 searches returned null results:
-- **Job Postings**: No CDM, ISDA model, or DRR positions advertised
-- **LinkedIn**: No profiles mentioning CDM implementation work at DB
-- **Patents**: No CDM-related patent filings
-
-These are **informative absences** - if Deutsche Bank were actively building CDM capability, we would expect hiring signals.
+No Tier 3 evidence found.
 
 ## Likelihood Ratio Calculation
 
-**Combined LR (Tier 3)** = 0.85 × 0.95 × 1.0 = **0.808**
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -35,13 +28,17 @@ Posterior odds = 0.25 × 0.808 = 0.202
 Posterior P(ARCHITECT) = 0.202 / (1 + 0.202) = 0.168 = 16.8%
 ```
 
-## Final Probability
+## Updated Probabilities
 
 | Metric | Value |
 |--------|-------|
-| **P(ARCHITECT)** | 17% |
-| **P(PRAGMATIST)** | 83% |
-| **Direction of Movement** | Decreased (20% → 17%) |
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
+
+## Key Insights
+
+N/A
 
 ## Cumulative Evidence Summary
 
@@ -55,23 +52,10 @@ Posterior P(ARCHITECT) = 0.202 / (1 + 0.202) = 0.168 = 16.8%
 **Final Odds**: 0.204
 **Final P(ARCHITECT)**: 17%
 
-## Evidence Quality Summary
+## Final Confidence Assessment
 
-| Tier | Positive Evidence | Negative/Absent Evidence |
-|------|-------------------|-------------------------|
-| Tier 1 | None | FINOS non-CDM, DTCC traditional, no annual report mentions |
-| Tier 2 | Conference panel 2022 | No vendor announcements, no press coverage |
-| Tier 3 | None | No jobs, no LinkedIn, no patents |
-
-## Confidence Assessment
-
-- **Final Confidence**: 55%
-- **Confidence Cap Applied**: 75% (highest tier is Tier 2 conference)
-- **Limiting Factors**:
-  - Single positive evidence item (2022 conference)
-  - Evidence is dated (>2 years old)
-  - Multiple informative absences but no direct negative evidence
+Final confidence: 0%
 
 ---
 
-*All tiers complete. Proceeding to adversarial challenge.*
+*Proceeding to adversarial review.*

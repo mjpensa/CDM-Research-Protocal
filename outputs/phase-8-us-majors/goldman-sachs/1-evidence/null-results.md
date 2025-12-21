@@ -1,21 +1,29 @@
-# Null Results: Goldman Sachs Group, Inc.
+# Null Results Registry: Goldman Sachs Group, Inc.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Goldman Sachs Group, Inc.
-**Date**: 2025-12-21
-
----
-
-## Overview
-
-This file documents search queries that yielded no relevant evidence (negative facts).
+**Bank:** Goldman Sachs Group, Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Null Search Queries
+## Summary
 
-*Null results will be documented during research phase*
+Null results documented from exhaustive search.
+
+## Tier 1 Null Results
+
+N/A
+
+## Tier 2 Null Results
+
+N/A
+
+## Tier 3 Null Results
+
+N/A
+
+## Implications for Classification
+
+Informative absence supports PRAGMATIST classification.
 
 ---
-
-**Purpose**: Prevent redundant searches and inform Bayesian updates when evidence is absent.

@@ -1,7 +1,8 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment
+# Reasoning Gate 1: Post-Tier 1 Assessment: NatWest Group PLC
 
-**Bank**: NatWest Group plc
-**Date**: 2025-12-20
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
@@ -21,7 +22,7 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 2
 
-**Rationale**: While the historical pilot participation increased P(ARCHITECT) from 20% to 30%, this is insufficient for classification. The FINOS Paradox (capability without CDM application) creates uncertainty that requires Tier 2 investigation.
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Quality Assessment
 
@@ -45,4 +46,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 1 passed. Proceeding to Tier 2 evidence gathering.*
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

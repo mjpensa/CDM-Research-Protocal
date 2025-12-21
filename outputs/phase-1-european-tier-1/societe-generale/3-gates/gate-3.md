@@ -1,7 +1,41 @@
-# Gate 3: Pre-Adversarial Assessment
+# Reasoning Gate 3: Pre-Adversarial Assessment: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Bank**: Société Générale | P(ARCHITECT) = 26% | **PROCEED TO ADVERSARIAL**
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
-All tiers complete. No CDM hiring signals. Hypothesis of 12-24 month BNP Paribas lag not verified.
+---
 
-**Preliminary Classification**: PRAGMATIST (Regulatory-Driven)
+## Current Probability State
+
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 26% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 26% → **Within 20-80% range**
+
+## Decision: PROCEED TO TIER ADVERSARIAL
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Adversarial
+
+N/A
+
+---
+
+*Gate 3 passed. Proceeding to adversarial evidence gathering.*

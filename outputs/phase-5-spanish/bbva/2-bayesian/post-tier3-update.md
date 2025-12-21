@@ -1,91 +1,36 @@
-# Bayesian Update: Post-Tier 3 Evidence (Final)
-## Banco Bilbao Vizcaya Argentaria S.A. (BBVA)
+# Bayesian Update: Post-Tier 3 Evidence: Banco Bilbao Vizcaya Argentaria S.A.
 
+**Bank:** Banco Bilbao Vizcaya Argentaria S.A.
+**Phase:** 5 - Spanish
 **Date:** 2025-12-21
-**Stage:** Post-Tier 3 Research (Final)
 
 ---
 
-## Prior (Post-Tier 2)
+## Prior Probability
 
-**P(CDM Adoption | Tier 1 + Tier 2) = 0.09%**
-
-After finding zero evidence across Tier 1 (official sources) and Tier 2 (ecosystem sources).
-
----
+P(ARCHITECT) prior: 20%
 
 ## Tier 3 Evidence Summary
 
-**Evidence Items Found:** 0
+No Tier 3 evidence found.
 
-**Sources Checked:**
+## Likelihood Ratio Calculation
 
-**Job Postings:**
-- LinkedIn Jobs: "BBVA ISDA CDM developer" (2023-2025)
-- BBVA Careers Portal: CDM-related positions
-- Result: No relevant postings
+```
+Combined LR = 1.0 (no evidence)
+```
 
-**Social Media:**
-- LinkedIn company page: No CDM posts
-- Employee LinkedIn activity: No CDM project mentions
-- Result: No social signals
+## Posterior Calculation
 
-**Technology Blogs:**
-- BBVA Innovation Blog (bbva.com/innovation)
-- Medium articles by BBVA technologists
-- GitHub BBVA organization
-- Result: No CDM mentions
+```
+Posterior = Prior (no update)
+```
 
----
+## Updated Probabilities
 
-## Likelihood Analysis
+N/A
 
-### Null Evidence Interpretation
-
-**L(No Tier 3 Evidence|H):** Likelihood of finding NO Tier 3 evidence IF bank has adopted CDM
-
-- **Moderate: L = 0.35**
-  - Banks can implement CDM without public hiring signals
-  - Social media activity varies by organization
-  - Less diagnostic than Tier 1/2
-
-**L(No Tier 3 Evidence|¬H):** Likelihood of finding NO Tier 3 evidence IF bank has NOT adopted CDM
-
-- **Very High: L = 0.95**
-  - Expected for non-adopters
-  - No need for specialized talent or communications
-
----
-
-## Bayesian Calculation
-
-**Bayes Factor = L(E|H) / L(E|¬H) = 0.35 / 0.95 = 0.368**
-
-**Posterior Odds = Prior Odds × Bayes Factor**
-
-Prior Odds = 0.0009 / 0.9991 = 0.000901
-Posterior Odds = 0.000901 × 0.368 = 0.000332
-
-**P(Adoption | All Evidence) = 0.000332 / (1 + 0.000332) = 0.03%**
-
----
-
-## Final Bayesian Summary
-
-| Stage | Probability | Direction | Bayes Factor | Key Finding |
-|-------|-------------|-----------|--------------|-------------|
-| Prior | 15.0% | - | - | Base rate for EU Tier 1 |
-| Post-Tier 1 | 0.9% | ↓↓ | 0.051 | Zero official evidence |
-| Post-Tier 2 | 0.09% | ↓ | 0.102 | Zero ecosystem evidence |
-| Post-Tier 3 | 0.03% | ↓ | 0.368 | Zero signal evidence |
-
-**Total Bayesian Adjustment:** 15% → 0.03% (factor of 500 decrease)
-
-**Cumulative Bayes Factor:** 0.051 × 0.102 × 0.368 = 0.00191
-
----
-
-## Interpretation
+## Key Insights
 
 **Final Probability:** 0.03% (effectively zero)
 
@@ -109,109 +54,12 @@ The comprehensive null results across all three evidence tiers provide extremely
    - Finding zero evidence is extremely unlikely for adopters
    - Null results are highly diagnostic
 
----
+## Cumulative Evidence Summary
 
-## Classification Decision
+## Final Confidence Assessment
 
-**Mathematical Assessment:** 0.03% probability strongly indicates no CDM adoption
-
-**Classification:** UNKNOWN (Insufficient-Evidence)
-
-**Confidence:** 30%
-
-### Why UNKNOWN (Not "NO ADOPTION"):
-
-The classification framework doesn't include "NO ADOPTION" category. UNKNOWN is appropriate when evidence is insufficient to classify current posture.
-
-**BBVA Case:**
-- Zero evidence found (fact)
-- Insufficient to determine current state (technically)
-- UNKNOWN reflects epistemic humility
-
-### Why 30% Confidence:
-
-Despite 0.03% Bayesian probability of adoption, classification confidence is lower because:
-
-1. **UNKNOWN is about evidence sufficiency, not adoption probability:**
-   - 99.97% certain no adoption exists
-   - But 70% certain UNKNOWN is the right classification label
-   - Could argue for "NO-ADOPTION" category if it existed
-
-2. **Confidence reflects classification certainty:**
-   - HIGH certainty (90%): No CDM program
-   - MODERATE uncertainty (30%): Is UNKNOWN the right label?
-   - Alternative labels: "NO-EVIDENCE" (not in framework)
-
-3. **Conservative calibration:**
-   - Acknowledges theoretical possibility of stealth implementation (<1%)
-   - Admits search may have gaps (unlikely but possible)
-   - Epistemic humility about null results
+Final confidence: 50%
 
 ---
 
-## Comparison to Santander
-
-**Santander:**
-- Evidence: 2 items (historical DRR pilot)
-- Bayesian: 0.5% (current adoption)
-- Classification: UNKNOWN (Historical-DRR-Only)
-- Confidence: 40%
-
-**BBVA:**
-- Evidence: 0 items (zero engagement)
-- Bayesian: 0.03% (current adoption)
-- Classification: UNKNOWN (Insufficient-Evidence)
-- Confidence: 30%
-
-**Key Differences:**
-
-| Aspect | Santander | BBVA |
-|--------|-----------|------|
-| **Evidence** | Historical pilot (2019) | None |
-| **Bayesian** | 0.5% | 0.03% |
-| **Engagement** | Past exploration | Zero signals |
-| **Confidence** | 40% | 30% |
-
-**Why BBVA Lower Confidence:**
-- Santander has documented historical fact (pilot)
-- BBVA has only null results (absence)
-- Null results slightly less certain than positive facts
-- Hence 30% vs 40% confidence
-
----
-
-## Confidence in "No Adoption" vs. Confidence in "UNKNOWN Classification"
-
-**Important Distinction:**
-
-**Confidence in No Adoption:** 90%
-- Very high certainty BBVA is not adopting CDM
-- Three-tier null results strongly diagnostic
-- Bayesian 0.03% confirms
-
-**Confidence in UNKNOWN Classification:** 30%
-- Lower because UNKNOWN may not be optimal label
-- "NO-EVIDENCE" or "NO-ADOPTION" might be more precise
-- But framework only provides UNKNOWN for this case
-
-**The 30% reflects:** "Is UNKNOWN the right label for comprehensive null results?"
-
----
-
-## Next Steps
-
-**Recommendation:** Proceed to Gate 3 and Adversarial Stage
-
-**Classification for Review:**
-- **Classification:** UNKNOWN (Insufficient-Evidence)
-- **Confidence:** 30%
-- **Key Message:** Comprehensive null results across all tiers; no CDM engagement found
-
-**Adversarial Stage Focus:**
-
-1. **Counter-Case:** Could null results be false negatives?
-2. **Steelman:** Is there any plausible way BBVA could be adopting CDM without ANY signals?
-3. **Disconfirming Searches:** Look for evidence of BBVA explicitly rejecting CDM or choosing alternative approaches
-4. **Verdict:** Confirm UNKNOWN classification or adjust based on adversarial findings
-
-**Expected Outcome:** UNKNOWN classification maintained at 30% confidence after adversarial review.
+*Proceeding to adversarial review.*

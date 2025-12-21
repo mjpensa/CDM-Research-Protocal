@@ -1,11 +1,12 @@
-# Counter-Case: NatWest as ARCHITECT
+# Counter-Case: Devil's Advocate Analysis: NatWest Group PLC
 
-**Bank**: NatWest Group plc
-**Date**: 2025-12-20
+**Bank:** NatWest Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
-## Thesis
+## Thesis Under Challenge
 
 NatWest Group should be classified as **ARCHITECT (Active)** based on:
 1. Historical pilot participation demonstrating CDM capability
@@ -13,10 +14,9 @@ NatWest Group should be classified as **ARCHITECT (Active)** based on:
 3. UK regulatory pressure favoring DRR adoption
 4. Strategic positioning for future CDM adoption
 
----
+## Counter-Arguments
 
-## Argument 1: Pilot Participation Demonstrates Capability
-
+### Argument 1: Pilot Participation Demonstrates Capability
 **Claim**: NatWest's participation in the UK FCA/BoE DRR pilot (2018-2019) using ISDA CDM 2.0 demonstrates technical capability and regulatory alignment.
 
 **Supporting Evidence**:
@@ -31,10 +31,7 @@ NatWest Group should be classified as **ARCHITECT (Active)** based on:
 
 **Strength**: WEAK (temporal decay undermines argument)
 
----
-
-## Argument 2: FINOS Capability Transfers to CDM
-
+### Argument 2: FINOS Capability Transfers to CDM
 **Claim**: NatWest's demonstrated FINOS open-source capability (Fluxnova co-maintainer) proves the bank CAN contribute to CDM if desired.
 
 **Supporting Evidence**:
@@ -49,10 +46,7 @@ NatWest Group should be classified as **ARCHITECT (Active)** based on:
 
 **Strength**: VERY WEAK (actually supports PRAGMATIST classification)
 
----
-
-## Argument 3: UK Regulatory Pressure Favors DRR
-
+### Argument 3: UK Regulatory Pressure Favors DRR
 **Claim**: FCA/BoE support for digital regulatory reporting creates incentives for NatWest to adopt CDM.
 
 **Supporting Evidence**:
@@ -67,10 +61,7 @@ NatWest Group should be classified as **ARCHITECT (Active)** based on:
 
 **Strength**: WEAK (regulatory pressure ≠ CDM adoption)
 
----
-
-## Argument 4: Silent Implementation Hypothesis
-
+### Argument 4: Silent Implementation Hypothesis
 **Claim**: NatWest may be implementing CDM silently without public announcements.
 
 **Supporting Evidence**:
@@ -85,10 +76,7 @@ NatWest Group should be classified as **ARCHITECT (Active)** based on:
 
 **Strength**: VERY WEAK (contradicted by Fluxnova publicity)
 
----
-
-## Argument 5: Future Strategic Positioning
-
+### Argument 5: Future Strategic Positioning
 **Claim**: NatWest may be positioning for future CDM adoption even if not currently implementing.
 
 **Supporting Evidence**:
@@ -102,26 +90,10 @@ NatWest Group should be classified as **ARCHITECT (Active)** based on:
 
 **Strength**: WEAK (speculative, not evidence-based)
 
----
+## Counter-Case Strength Assessment
 
-## Cumulative Counter-Case Assessment
+**Strength**: WEAK
 
-### Best Arguments FOR ARCHITECT
-1. Historical pilot participation (2018-2019)
-2. FINOS open-source capability
-
-### Fatal Weaknesses
-1. 5+ years of silence since pilot (temporal decay)
-2. FINOS Paradox (capability without CDM application)
-3. No hiring signals, employee advocacy, or vendor partnerships
-4. Complete absence of Tier 2 and Tier 3 evidence
-
-### Verdict
-
-The counter-case for ARCHITECT classification is **WEAK**. The strongest evidence (pilot participation) is undermined by temporal decay and lack of continuation. The FINOS capability actually SUPPORTS the PRAGMATIST case through the paradox of deliberate non-application to CDM.
-
-**Recommended Classification**: OBSERVER (Historical-Engagement)
+Counter-arguments do not warrant reclassification.
 
 ---
-
-*Proceeding to steelman analysis.*

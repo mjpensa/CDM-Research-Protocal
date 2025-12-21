@@ -1,36 +1,36 @@
-# Gate 2 (Post-Tier 2): JPMorgan Chase & Co.
+# Reasoning Gate 2: Post-Tier 2 Assessment: JPMorgan Chase & Co.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: JPMorgan Chase & Co.
-**Date**: 2025-12-21
-
----
-
-## Decision Point
-
-After completing Tier 2 research, should we proceed to Tier 3?
+**Bank:** JPMorgan Chase & Co.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Cumulative Evidence Summary
+## Current Probability State
 
-*Summary of Tier 1 + Tier 2 findings will be documented here*
+N/A
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+
+## Decision: PROCEED TO TIER 3
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Trajectory Analysis
+
+N/A
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 3
+
+N/A
 
 ---
 
-## Gate Decision
-
-**Status**: [PROCEED / STOP / ESCALATE]
-
-**Reasoning**:
-*Decision rationale will be documented here*
-
----
-
-## Red Flags Identified
-
-*Any concerns or contradictions will be noted here*
-
----
-
-**Purpose**: Prevent premature classification and ensure sufficient evidence before proceeding
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

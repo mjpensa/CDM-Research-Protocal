@@ -1,121 +1,55 @@
-# Post-Tier 3 Bayesian Update: Citigroup Inc.
+# Bayesian Update: Post-Tier 3 Evidence: Citigroup Inc.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Citigroup Inc.
-**Date**: 2025-12-21
-
----
-
-## Prior Probability (Post-Tier 2)
-
-- P(ARCHITECT) = 0.01
-- P(PRAGMATIST) = 0.72
-- P(OBSERVER) = 0.26
+**Bank:** Citigroup Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Tier 3 Evidence Impact
+## Prior Probability
 
-### Evidence Collected
-- **Count**: 0 Tier 3 evidence items
-- **Sources Checked**: LinkedIn (profiles, posts), job boards (Citigroup careers, Indeed, Glassdoor), conference speaker lists
-- **Result**: No CDM-specific hiring signals or LinkedIn mentions found
+P(ARCHITECT) prior: 0%
 
-### Search Coverage
-1. **LinkedIn Profile Search**: "Citigroup" AND "Common Domain Model"
-2. **Job Posting Search**: Citigroup careers site for "ISDA CDM" OR "Common Domain Model"
-3. **Conference Speaker Search**: Recent fintech/derivatives conferences
-4. **GitHub Personal Profiles**: Citigroup employees with FINOS activity
+## Tier 3 Evidence Summary
 
-### Likelihood Ratios
-Given absence of even Tier 3 signals:
-- **P(No Tier 3 | ARCHITECT)** = 0.02 (extremely unlikely)
-- **P(No Tier 3 | PRAGMATIST)** = 0.50 (moderate - could be quiet vendor implementation)
-- **P(No Tier 3 | OBSERVER)** = 0.80 (likely - passive members don't generate hiring signals)
+No Tier 3 evidence found.
 
-### Bayesian Update Calculation
+## Likelihood Ratio Calculation
 
-- **P(ARCHITECT | No T3)** = (0.01 × 0.02) / [(0.01 × 0.02) + (0.72 × 0.50) + (0.26 × 0.80)]
-- **P(ARCHITECT | No T3)** = 0.0002 / [0.0002 + 0.36 + 0.208] = 0.0002 / 0.5682 = 0.0004 (~0%)
+```
+Combined LR = 1.0 (no evidence)
+```
 
-- **P(PRAGMATIST | No T3)** = (0.72 × 0.50) / 0.5682 = 0.36 / 0.5682 = 0.634 (63.4%)
+## Posterior Calculation
 
-- **P(OBSERVER | No T3)** = (0.26 × 0.80) / 0.5682 = 0.208 / 0.5682 = 0.366 (36.6%)
+```
+Posterior = Prior (no update)
+```
 
----
+## Updated Probabilities
 
-## Final Posterior Probability
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 50% |
 
-After all three tiers of research:
-- **P(ARCHITECT)** = 0.00 (effectively zero)
-- **P(PRAGMATIST)** = 0.63
-- **P(OBSERVER)** = 0.37
+## Key Insights
 
-**Final Classification**: OBSERVER (Ecosystem-Engaged)
-- **Rationale**: FINOS membership without CDM contribution, no technical signals
-- **Sub-classification**: Ecosystem-Engaged (active in FINOS community via hackathon)
+N/A
 
----
+## Cumulative Evidence Summary
 
-## Confidence Calibration
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
 
-### Evidence Base
-- Tier 1: 0 items
-- Tier 2: 1 item (FINOS membership)
-- Tier 3: 0 items
-- Null results: 2 documented
+## Final Confidence Assessment
 
-### Confidence Calculation
-- **Base**: 50% (Tier 2 only evidence, per protocol max 75%)
-- **Single source penalty**: -10% (FINOS membership from one source)
-- **Corroboration bonus**: 0% (no independent confirmation)
-- **Freshness**: +0% (evidence is current, Oct-Nov 2024)
-- **Exhaustive search bonus**: +10% (thorough null result documentation)
-
-**Final Confidence**: 50%
+Final confidence: 50%
 
 ---
 
-## Evidence Quality Assessment
-
-### Strengths
-1. Clear FINOS membership evidence (recent, verified)
-2. Exhaustive negative search documented
-3. Consistent absence pattern across all tiers
-
-### Weaknesses
-1. Single positive evidence source
-2. No CDM-specific signals at any tier
-3. Low total evidence count
-
-### Trust Flags
-- **SINGLE_SOURCE_CLAIM**: FINOS membership from one source
-- **LOW_TIER_ONLY**: No Tier 1 evidence
-- **MISSING_CORROBORATION**: Need second source for FINOS membership
-
----
-
-## Comparison to Peer Banks
-
-| Bank | Classification | Confidence | CDM Evidence |
-|------|---------------|------------|--------------|
-| JPMorgan | ARCHITECT (Native) | 90% | Production usage, code contribution |
-| Goldman Sachs | ARCHITECT (Active) | 85% | Pilot programs, FINOS leadership |
-| **Citigroup** | **OBSERVER** | **50%** | **FINOS member only** |
-| Bank of America | TBD | TBD | TBD |
-
-**Insight**: Among G16 dealers, Citigroup shows notably lower CDM maturity than JPMorgan and Goldman Sachs.
-
----
-
-## Final Assessment
-
-**Classification**: OBSERVER (Ecosystem-Engaged)
-**Confidence**: 50%
-**Maturity Score**: 1 (membership/participation)
-
-The complete absence of CDM-specific evidence across all three tiers, combined with single FINOS membership signal, supports OBSERVER classification. Citigroup appears engaged in broader fintech open source community but not actively pursuing CDM adoption.
-
----
-
-**Methodology**: Bayesian inference following Tetlock superforecasting principles
+*Proceeding to adversarial review.*

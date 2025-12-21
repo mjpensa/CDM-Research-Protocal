@@ -1,17 +1,18 @@
-# Counter-Case: Should Be PRAGMATIST, Not UNKNOWN
+# Counter-Case: Devil's Advocate Analysis: Bank of China Limited
 
-**Research Date**: 2025-12-21
+**Bank:** Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Thesis
+## Thesis Under Challenge
 
 The bank should be classified as **PRAGMATIST (No Engagement)** at 70% confidence, not UNKNOWN at 30%.
 
----
+## Counter-Arguments
 
-## Argument 1: Absence of Evidence IS Evidence of Absence
-
+### Argument 1: Absence of Evidence IS Evidence of Absence
 ### Claim
 Comprehensive multi-tier search with zero results is strong evidence of non-adoption, not insufficient evidence.
 
@@ -24,10 +25,7 @@ Comprehensive multi-tier search with zero results is strong evidence of non-adop
 ### Implication
 UNKNOWN classification is overly conservative. Should classify as PRAGMATIST.
 
----
-
-## Argument 2: Disclosure Gap is Unlikely for CDM
-
+### Argument 2: Disclosure Gap is Unlikely for CDM
 ### Claim
 If bank had CDM adoption, we'd find signals even with disclosure gaps.
 
@@ -40,10 +38,7 @@ If bank had CDM adoption, we'd find signals even with disclosure gaps.
 ### Implication
 Disclosure gap argument is theoretical, not supported by evidence.
 
----
-
-## Argument 3: Chinese Regulatory Context Confirms Non-Adoption
-
+### Argument 3: Chinese Regulatory Context Confirms Non-Adoption
 ### Claim
 PBOC/CBIRC have not mandated CDM, making adoption irrational without regulatory driver.
 
@@ -55,11 +50,10 @@ PBOC/CBIRC have not mandated CDM, making adoption irrational without regulatory 
 ### Implication
 Non-adoption is expected and rational given context.
 
+## Counter-Case Strength Assessment
+
+**Strength**: WEAK
+
+Counter-arguments do not warrant reclassification.
+
 ---
-
-## Recommended Classification
-
-**Classification**: PRAGMATIST (No Engagement)
-**Confidence**: 70%
-
-**Rationale**: High-quality null results with Chinese regulatory context support confident PRAGMATIST classification. UNKNOWN is unnecessarily cautious.

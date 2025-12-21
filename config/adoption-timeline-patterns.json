@@ -1,0 +1,122 @@
+{
+  "$schema": "CDM/DRR Adoption Timeline Patterns v1.0",
+  "description": "Stage progression patterns to detect stalled initiatives (Enhancement 7)",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "stage_progression": {
+    "description": "Expected timeline between adoption stages",
+    "announcement_to_pilot": {
+      "typical_months": 9,
+      "fast_months": 3,
+      "slow_months": 18,
+      "stall_threshold_months": 24,
+      "description": "From initial announcement to pilot/PoC start"
+    },
+    "pilot_to_production": {
+      "typical_months": 18,
+      "fast_months": 9,
+      "slow_months": 36,
+      "stall_threshold_months": 48,
+      "description": "From pilot/PoC to production deployment"
+    },
+    "announcement_to_production": {
+      "typical_months": 27,
+      "fast_months": 12,
+      "slow_months": 48,
+      "stall_threshold_months": 60,
+      "description": "Complete journey from announcement to production"
+    }
+  },
+
+  "stall_indicators": {
+    "description": "Signals that initiative may have stalled",
+    "no_progression": {
+      "condition": "Announcement with no follow-up evidence for > stall_threshold",
+      "lr_penalty": 0.6,
+      "classification_impact": "PRAGMATIST",
+      "rationale": "Strategic announcements without follow-through suggest limited commitment"
+    },
+    "pilot_stall": {
+      "condition": "Pilot announced but no production evidence after threshold",
+      "lr_penalty": 0.7,
+      "classification_impact": "PRAGMATIST",
+      "rationale": "Stalled pilots indicate implementation challenges or deprioritization"
+    },
+    "repeated_announcements": {
+      "condition": "Multiple announcements without progression",
+      "lr_penalty": 0.5,
+      "classification_impact": "PRAGMATIST",
+      "rationale": "Re-announcing same initiative suggests restart/failure"
+    },
+    "vendor_only_progress": {
+      "condition": "Progress only visible through vendor announcements",
+      "lr_penalty": 0.75,
+      "classification_impact": "PRAGMATIST (Vendor-dependent)",
+      "rationale": "Bank silence while vendor announces suggests outsourcing"
+    }
+  },
+
+  "acceleration_indicators": {
+    "description": "Signals of faster-than-typical adoption",
+    "fast_pilot": {
+      "condition": "Pilot within fast_months of announcement",
+      "lr_bonus": 1.3,
+      "classification_impact": "Potential ARCHITECT",
+      "rationale": "Fast progression indicates strong organizational commitment"
+    },
+    "fast_production": {
+      "condition": "Production within fast_months of pilot",
+      "lr_bonus": 1.5,
+      "classification_impact": "Strong ARCHITECT signal",
+      "rationale": "Rapid production deployment shows mature capability"
+    },
+    "regulatory_catalyst": {
+      "condition": "Production aligns with regulatory deadline",
+      "lr_adjustment": 1.0,
+      "classification_impact": "Neutral (deadline-driven)",
+      "rationale": "Deadline-driven adoption doesn't indicate strategic commitment"
+    }
+  },
+
+  "stage_evidence_mapping": {
+    "description": "Map evidence types to adoption stages",
+    "announcement": {
+      "claim_types": ["strategic_intent", "membership_or_participation"],
+      "typical_sources": ["press releases", "conference presentations", "annual reports"]
+    },
+    "pilot": {
+      "claim_types": ["pilot_or_poc"],
+      "typical_sources": ["trade press", "vendor announcements", "conference talks"]
+    },
+    "production": {
+      "claim_types": ["production_usage", "open_source_contribution"],
+      "typical_sources": ["official announcements", "github activity", "regulatory filings"]
+    }
+  },
+
+  "timeline_validation": {
+    "description": "Rules for validating timeline coherence",
+    "rules": [
+      {
+        "rule": "Production date cannot precede pilot date",
+        "action": "Flag for review; may indicate missing evidence"
+      },
+      {
+        "rule": "Pilot date cannot precede announcement date",
+        "action": "Accept (stealth development is possible)"
+      },
+      {
+        "rule": "Multiple productions without prior pilot",
+        "action": "Flag; suggests incremental rollout or vendor solution"
+      }
+    ]
+  },
+
+  "usage_notes": [
+    "Use timeline_analyzer.py to detect stalled initiatives",
+    "Stall detection is a PRAGMATIST signal (not ARCHITECT)",
+    "Fast progression is an ARCHITECT signal",
+    "Always check for vendor-only evidence pattern"
+  ]
+}

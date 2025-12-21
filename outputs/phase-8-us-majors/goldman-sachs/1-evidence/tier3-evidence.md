@@ -1,23 +1,25 @@
 # Tier 3 Evidence: Goldman Sachs Group, Inc.
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Goldman Sachs Group, Inc.
-**Date**: 2025-12-21
+**Bank:** Goldman Sachs Group, Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Overview
+## Search Execution Summary
 
-This file contains Tier 3 evidence (signal sources) for Goldman Sachs's CDM/DRR adoption.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-**Maximum Confidence**: 50%
+## Evidence Inventory
+
+No Tier 3 evidence found.
+
+## Informative Absences
+
+N/A
 
 ---
-
-## Evidence Items
-
-*Evidence items will be populated during research phase*
-
----
-
-**Sources**: Job postings, LinkedIn profiles, blogs, newsletters

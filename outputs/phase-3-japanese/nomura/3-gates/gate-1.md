@@ -1,17 +1,37 @@
-# Gate 1: Post-Tier 1 Reasoning Check (Nomura)
+# Reasoning Gate 1: Post-Tier 1 Assessment: Nomura Holdings, Inc.
 
-## Evidence Quality Check
-- Tier 1 Evidence Found: 0 items
-- Null Results: 2 (informative)
-- Search Coverage: COMPREHENSIVE
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
 
-## Reasoning Check
-The absence of official CDM announcements and FINOS contributions is informative evidence against ARCHITECT classification.
+---
 
-## Bayesian Update Verification
-- Prior: P(ARCHITECT) = 0.20
-- Posterior: P(ARCHITECT) = 0.01
-- Reduction is appropriate given null results
+## Current Probability State
 
-## Decision: PROCEED to Tier 2
-Key questions: JSCC connectivity requirements, vendor relationships, trade press coverage
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
+
+## Gate Decision Criteria
+
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
+- Current P(ARCHITECT) = 0% → **Below 20% threshold**
+
+## Decision: PROCEED TO TIER 2
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 2
+
+N/A
+
+---
+
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

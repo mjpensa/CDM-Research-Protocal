@@ -1,25 +1,29 @@
-# Gate 1 Decision: ING Group
+# Reasoning Gate 1: Post-Tier 1 Assessment: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Gate Date:** 2025-12-20
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Gate 1 Criteria
+## Current Probability State
 
-Post-Tier 1 evidence assessment to determine if sufficient evidence exists for early classification or if Tier 2 search is required.
+N/A
 
-## Evidence Summary
+## Gate Decision Criteria
 
-| Metric | Value |
-|--------|-------|
-| Tier 1 Evidence Items | 0 |
-| Tier 1 Null Results | 2 |
-| P(ARCHITECT) Post-Tier 1 | 5.5% |
-| P(PRAGMATIST) Post-Tier 1 | 94.5% |
+Per `config/decision-thresholds.json`:
+- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
 
-## Gate 1 Questions
+## Decision: PROCEED TO TIER 2
+
+**Rationale**: Per protocol to process all tiers.
+
+## Evidence Quality Assessment
+
+N/A
+
+## Key Questions for Tier 2
 
 ### 1. Is there sufficient Tier 1 evidence for confident classification?
 **Answer:** No
@@ -46,20 +50,6 @@ Post-Tier 1 evidence assessment to determine if sufficient evidence exists for e
 - Per protocol, all tiers must be searched
 - Null results in Tier 1 do not preclude Tier 2/3 findings
 
-## Gate 1 Decision
+---
 
-| Decision | Rationale |
-|----------|-----------|
-| **PROCEED TO TIER 2** | Insufficient evidence for classification. Null results are informative but not conclusive. |
-
-## Confidence Check
-
-- Current confidence in UNKNOWN/PRAGMATIST: 60%
-- Reason for uncertainty: Tier 2/3 may reveal vendor relationships or conference participation
-- Required for 80% confidence: Continued null results across all tiers
-
-## Next Steps
-
-1. Execute Tier 2 searches (trade press, business press, conferences)
-2. Document any vendor relationships
-3. Search for conference presentations by ING derivatives team
+*Gate 1 passed. Proceeding to tier 2 evidence gathering.*

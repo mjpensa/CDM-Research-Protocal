@@ -64,10 +64,12 @@ if _file_lock_path.exists():
     _spec.loader.exec_module(_file_lock_module)
     _shared_process_exists = _file_lock_module.process_exists
     _shared_file_lock = _file_lock_module.file_lock
+    _shared_handle_stale_lock = _file_lock_module.handle_stale_lock
     SHARED_LOCK_AVAILABLE = True
 else:
     SHARED_LOCK_AVAILABLE = False
     _shared_file_lock = None
+    _shared_handle_stale_lock = None
 
 # Import LockingService for centralized locking configuration
 try:
@@ -142,6 +144,9 @@ def _determine_validation_mode() -> str:
 
     Returns:
         Validation mode string (strict, warn, or off)
+
+    Note:
+        Non-strict modes are logged as security audit events.
     """
     import os
 
@@ -150,16 +155,32 @@ def _determine_validation_mode() -> str:
     env_var = config.get("mode_override_env_var", "CDM_VALIDATION_MODE")
     env_mode = os.environ.get(env_var, "").lower()
 
+    effective_mode = None
+    source = None
+
     if env_mode in (ValidationMode.STRICT, ValidationMode.WARN, ValidationMode.OFF):
-        return env_mode
+        effective_mode = env_mode
+        source = f"environment variable {env_var}"
+    else:
+        # Fall back to config file
+        config_mode = config.get("mode", ValidationMode.STRICT).lower()
+        if config_mode in (ValidationMode.STRICT, ValidationMode.WARN, ValidationMode.OFF):
+            effective_mode = config_mode
+            source = "config file"
+        else:
+            effective_mode = ValidationMode.STRICT
+            source = "default"
 
-    # Fall back to config file
-    config_mode = config.get("mode", ValidationMode.STRICT).lower()
-    if config_mode in (ValidationMode.STRICT, ValidationMode.WARN, ValidationMode.OFF):
-        return config_mode
+    # SECURITY AUDIT: Log when using non-strict validation mode
+    if effective_mode != ValidationMode.STRICT:
+        severity = "disabled" if effective_mode == ValidationMode.OFF else "weakened"
+        logger.warning(
+            f"SECURITY AUDIT: Validation mode set to '{effective_mode}' via {source}. "
+            f"Data integrity checks {severity}. This should only be used for "
+            f"debugging or emergency recovery."
+        )
 
-    # Default to STRICT for safety
-    return ValidationMode.STRICT
+    return effective_mode
 
 
 class StateTransaction:
@@ -250,8 +271,11 @@ class StateTransaction:
                 return fd
 
             except FileExistsError:
-                if self.manager._handle_stale_lock(lock_path):
-                    continue  # Stale lock removed, try again
+                # Use shared stale lock handler if available
+                if SHARED_LOCK_AVAILABLE and _shared_handle_stale_lock is not None:
+                    if _shared_handle_stale_lock(lock_path, self.manager.stale_lock_age):
+                        continue  # Stale lock removed, try again
+                # No stale lock handler - just wait and retry
 
                 if time.time() - start_time > self.manager.lock_timeout:
                     raise StateLockError(f"Timeout acquiring lock: {path}")
@@ -304,6 +328,54 @@ class StateTransaction:
 
         finally:
             self._release_all_locks()
+
+    def commit_with_versioning(self, triggers: Dict[Path, str] = None) -> None:
+        """
+        Commit all staged writes with automatic versioning.
+
+        Creates version backups of all modified status.json files BEFORE
+        committing, enabling rollback of entire transactions via the
+        versioning system.
+
+        Args:
+            triggers: Optional mapping of path -> trigger name for version metadata
+                     e.g., {bank_path: "complete", workflow_path: "workflow_update"}
+
+        Raises:
+            ValueError: If transaction already committed
+            TransactionRollbackError: If rollback fails after write error
+        """
+        if self._committed:
+            raise ValueError("Transaction already committed")
+
+        triggers = triggers or {}
+        versioned_paths = []
+
+        try:
+            # Step 1: Create version backups for all existing status.json files
+            versioning_config = get_state_versioning_config()
+            if versioning_config.get('enabled', True):
+                for path in self._pending_writes.keys():
+                    if path.exists() and path.name == 'status.json':
+                        trigger = triggers.get(path, 'transaction')
+                        try:
+                            self.manager._create_version_backup(path, trigger=trigger)
+                            versioned_paths.append(path)
+                        except Exception as e:
+                            logger.warning(f"Could not create version backup for {path}: {e}")
+
+            # Step 2: Perform normal commit
+            self.commit()
+
+            logger.debug(
+                f"Transaction committed with versioning: "
+                f"{len(self._pending_writes)} files, {len(versioned_paths)} versions"
+            )
+
+        except Exception as e:
+            # Versions were created before failure - they serve as recovery point
+            logger.error(f"Transaction failed after creating {len(versioned_paths)} versions: {e}")
+            raise
 
     def _rollback(self, written_paths: List[Path]) -> None:
         """Restore original state for all written paths."""
@@ -397,6 +469,53 @@ class UnifiedStateManager:
         # Phase 5: Auto-sync workflow state from bank states on startup
         if auto_sync:
             self._auto_sync_if_needed()
+
+        # Phase 5 Gap 7: Check for ambiguous phase directories on startup
+        self._check_phase_ambiguity_startup()
+
+    def _check_phase_ambiguity_startup(self) -> None:
+        """
+        Check for ambiguous phase directories at startup and log warnings.
+
+        This helps catch configuration issues early rather than failing
+        when a specific bank is accessed.
+        """
+        phase_config = self._timing_config.get('phase_resolution', {})
+        if not phase_config.get('warn_on_ambiguity', True):
+            return
+
+        ambiguities = []
+        for phase in range(self.phase_min, self.phase_max + 1):
+            phase_dirs = list(self.outputs_dir.glob(f"phase-{phase}-*"))
+            if len(phase_dirs) > 1:
+                # Check each bank for presence in multiple directories
+                all_banks = {}
+                for pdir in phase_dirs:
+                    if pdir.is_dir():
+                        for bank_dir in pdir.iterdir():
+                            if bank_dir.is_dir() and (bank_dir / "status.json").exists():
+                                bank_name = bank_dir.name
+                                if bank_name not in all_banks:
+                                    all_banks[bank_name] = []
+                                all_banks[bank_name].append(pdir.name)
+
+                # Report banks in multiple directories
+                for bank, dirs in all_banks.items():
+                    if len(dirs) > 1:
+                        ambiguities.append(
+                            f"AMBIGUITY: Bank '{bank}' exists in multiple phase-{phase} "
+                            f"directories: {dirs}"
+                        )
+
+        if ambiguities:
+            for warning in ambiguities:
+                logger.warning(warning)
+            if not phase_config.get('legacy_fallback', False):
+                logger.warning(
+                    f"Found {len(ambiguities)} ambiguous bank location(s). "
+                    f"Set state_management.phase_resolution.legacy_fallback=true to "
+                    f"use first match instead of failing."
+                )
 
     def _load_timing_config(self) -> Dict[str, Any]:
         """Load timing configuration from decision-thresholds.json (Gap 10 fix)."""
@@ -539,11 +658,22 @@ class UnifiedStateManager:
                     bank_dir = matches[0] / bank_id
                 else:
                     # Bank exists in multiple directories - ambiguous!
-                    raise PhaseResolutionError(
-                        f"Ambiguous phase {phase} resolution for {bank_id}. "
-                        f"Bank found in multiple directories: {[d.name for d in matches]}. "
-                        f"Fix bank-manifest.json or remove duplicate directories."
-                    )
+                    # Check for legacy fallback mode
+                    phase_config = self._timing_config.get('phase_resolution', {})
+                    if phase_config.get('legacy_fallback', False):
+                        logger.warning(
+                            f"AMBIGUITY: Bank '{bank_id}' exists in multiple phase-{phase} "
+                            f"directories: {[d.name for d in matches]}. Using first match "
+                            f"(legacy mode). Set phase_resolution.legacy_fallback=false to "
+                            f"enable strict mode."
+                        )
+                        bank_dir = matches[0] / bank_id
+                    else:
+                        raise PhaseResolutionError(
+                            f"Ambiguous phase {phase} resolution for {bank_id}. "
+                            f"Bank found in multiple directories: {[d.name for d in matches]}. "
+                            f"Fix bank-manifest.json or remove duplicate directories."
+                        )
 
         bank_dir.mkdir(parents=True, exist_ok=True)
         return bank_dir / "status.json"

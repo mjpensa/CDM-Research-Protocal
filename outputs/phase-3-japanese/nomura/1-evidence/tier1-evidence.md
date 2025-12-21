@@ -1,12 +1,18 @@
 # Tier 1 Evidence: Nomura Holdings, Inc.
 
+**Bank:** Nomura Holdings, Inc.
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
+
 ## Search Execution Summary
-- Execution Date: 2025-12-21
-- Bank: Nomura Holdings, Inc.
-- Phase: 3 (Japanese Banks)
-- Searches Executed: 8
-- Evidence Blocks Found: 0
-- Null Results: 2
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
@@ -30,6 +36,8 @@ The absence of Tier 1 evidence is informative. Nomura has not made public announ
 2. CDM work is highly confidential and unpublicized (unlikely for major strategic initiatives)
 3. Relying entirely on vendor/infrastructure providers for CDM connectivity (possible, given JSCC connection)
 
-## Assessment
+## Informative Absences
 
-Tier 1 search phase complete with no positive evidence. Classification proceeds based on Tier 2 evidence (indirect CCP connectivity) and null results.
+N/A
+
+---

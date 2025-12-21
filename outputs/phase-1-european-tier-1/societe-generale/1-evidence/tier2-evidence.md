@@ -1,49 +1,67 @@
-# Tier 2 Evidence: Société Générale
+# Tier 2 Evidence: SociÃ©tÃ© GÃ©nÃ©rale
+
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
+
+---
 
 ## Search Execution Summary
 
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 2
-- **Schema Version**: 4.3
-
----
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[SG-001] TIER 2 — SUPPORTS ARCHITECT
+### SG-001: Evidence Item
 
-**Source**: https://regnosys.com/insights/regnosys-at-the-informa-trade-and-transaction-reporting-summit-key-reflections/
-**Date**: 2024-11-01
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "A session featured Miki Cheung (Regulatory Program Manager, Societe Generale) alongside other industry professionals. The discussion centred on updating control frameworks and evaluating reporting processes effectiveness."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Current
-- Specificity: Moderate
+**Analysis:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: conference_panel_participation (LR = 1.4)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Conference participation shows awareness of CDM/DRR trends but does not confirm implementation. Panel focused on regulatory reporting generally, not CDM specifically.
+**Caveats:** N/A
 
----
+### SG-003: Evidence Item
 
-[SG-003] TIER 2 — NEUTRAL
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.risk.net/awards/7960372/derivatives-client-clearer-of-the-year-societe-generale
-**Date**: 2024-11-01
+**Excerpt:** N/A
 
-**Finding**: "Societe Generale's edge comes from a post-trade platform and clearing capability expansion. Globally, the firm boasts an 11.8% market share for exchange-traded derivatives clearing."
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Current
-- Specificity: Vague
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: industry_award_no_cdm (LR = 0.9)
+**Caveats:** N/A
 
-**Caveats**: Award for derivatives clearing excellence. No mention of CDM in post-trade platform - suggests traditional infrastructure.
+## Informative Absences
+
+N/A
 
 ---

@@ -1,18 +1,14 @@
-# Pre-Mortem Analysis: Credit Agricole CIB
+# Pre-Mortem Analysis: CrÃ©dit Agricole S.A.
 
-**Bank:** Credit Agricole CIB
-**Phase:** 4 - European Tier 2
-**Analysis Date:** 2025-12-20
+**Bank:** CrÃ©dit Agricole S.A.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Purpose
+## Research Objective
 
-Identify potential failure modes before finalizing research.
-
-## Hypothetical Failure Scenario
-
-*"It is 30 days from now. The Credit Agricole classification has been proven wrong. What happened?"*
+Assess CrÃ©dit Agricole S.A.'s CDM/DRR adoption maturity.
 
 ## Potential Failure Modes
 
@@ -40,16 +36,35 @@ Identify potential failure modes before finalizing research.
 **Mitigation:** Search included Credit Agricole CIB (main derivatives entity)
 **Residual Risk:** Small regional entities not covered
 
-## Pre-Mortem Checklist
+## Search Strategy
 
-| Check | Completed | Finding |
-|-------|-----------|---------|
-| ISDA Board role confirmed | ✓ | Christine Cremel - continuing term 2024 |
-| CDM WG participation | ✓ | Not found |
-| FINOS membership | ✓ | Not a member |
-| Trade press coverage | ✓ | No CDM articles |
-| Job postings | ✓ | No CDM roles |
+### Tier 1 (Official Sources)
+- Bank official website, annual reports
+- ISDA.org, FINOS.org
+- Regulatory filings
 
-## Conclusion
+### Tier 2 (Industry Sources)
+- Risk.net, Waters Technology
+- Trade press coverage
+- Vendor announcements
 
-Research may proceed. Main risk is undervaluing ecosystem engagement through Board membership.
+### Tier 3 (Signal Sources)
+- Job postings
+- LinkedIn profiles
+- Conference presentations
+
+## Key Hypotheses to Test
+
+N/A
+
+## Decision Points
+
+1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
+2. After Tier 2: Assess if Tier 3 signals will add value
+3. After Tier 3: Proceed to adversarial challenge
+
+## Null Hypothesis Reminder
+
+Assume CrÃ©dit Agricole S.A. is PRAGMATIST until evidence proves otherwise.
+
+---

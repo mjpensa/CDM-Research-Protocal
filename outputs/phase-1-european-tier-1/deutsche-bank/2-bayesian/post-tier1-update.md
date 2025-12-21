@@ -1,22 +1,24 @@
-# Bayesian Update: Post-Tier 1 Evidence
+# Bayesian Update: Post-Tier 1 Evidence: Deutsche Bank AG
 
-**Bank**: Deutsche Bank AG
-**Date**: 2025-12-20
-**Prior P(ARCHITECT)**: 25%
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
+## Prior Probability
+
+P(ARCHITECT) prior: 25%
+
 ## Tier 1 Evidence Summary
 
-| ID | Evidence | Direction | LR |
-|----|----------|-----------|-----|
-| DB-002 | FINOS contributor to Fluxnova, Waltz, Spring Bot - NOT CDM | NEUTRAL | 0.8 |
-| DB-003 | EMIR reporting via DTCC traditional approach | SUPPORTS_PRAGMATIST | 0.7 |
-| DB-005 | Annual reports 2023-2024 no CDM mentions | NEUTRAL | 0.9 |
+No Tier 1 evidence found.
 
 ## Likelihood Ratio Calculation
 
-**Combined LR (Tier 1)** = 0.8 × 0.7 × 0.9 = **0.504**
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -26,13 +28,13 @@ Posterior odds = 0.333 × 0.504 = 0.168
 Posterior P(ARCHITECT) = 0.168 / (1 + 0.168) = 0.144 = 14.4%
 ```
 
-## Updated Probability
+## Updated Probabilities
 
 | Metric | Value |
 |--------|-------|
-| **P(ARCHITECT)** | 14% |
-| **P(PRAGMATIST)** | 86% |
-| **Direction of Movement** | Decreased (25% → 14%) |
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 0% |
 
 ## Key Insights
 
@@ -40,12 +42,6 @@ Posterior P(ARCHITECT) = 0.168 / (1 + 0.168) = 0.144 = 14.4%
 2. **Traditional Path**: Using DTCC for EMIR reporting suggests traditional compliance approach
 3. **No Official Signals**: Annual reports and official websites have zero CDM content
 
-## Confidence Assessment
-
-- **Tier 1 Evidence Quality**: Moderate (informative absence pattern)
-- **Highest Tier Cap**: 95% (Tier 1 present)
-- **Applied Confidence**: 45% (informative absences are weaker than positive evidence)
-
 ---
 
-*Proceeding to Tier 2 evidence gathering.*
+*Proceeding to Tier 2.*

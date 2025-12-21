@@ -1,9 +1,8 @@
 # CDM/DRR Assessment: Citigroup Inc.
 
-**Classification**: OBSERVER (Ecosystem-Engaged)
-**Confidence**: 50%
-**Date**: 2025-12-21
-**Analyst**: Claude Code Research Protocol
+**Bank:** Citigroup Inc.
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
@@ -13,9 +12,7 @@ Citigroup Inc. is classified as an **OBSERVER (Ecosystem-Engaged)** with 50% con
 
 **Key Finding**: Citigroup's FINOS engagement (hackathon hosting) signals organizational interest in open-source financial infrastructure, but absence of CDM-specific activity suggests CDM is not a strategic priority despite the bank's massive derivatives operations.
 
----
-
-## 1. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -28,9 +25,7 @@ Citigroup Inc. is classified as an **OBSERVER (Ecosystem-Engaged)** with 50% con
 | Phase | 8 (US Major Banks) |
 | Derivative Products | IRS, CDS, FX derivatives, equity derivatives, commodity derivatives |
 
----
-
-## 2. Classification Summary
+## Classification Summary
 
 | Metric | Value |
 |--------|-------|
@@ -39,11 +34,8 @@ Citigroup Inc. is classified as an **OBSERVER (Ecosystem-Engaged)** with 50% con
 | P(ARCHITECT) | 35% |
 | P(PRAGMATIST) | 65% |
 | Confidence | 50% |
-| Maturity Score | 1/5 |
 
----
-
-## 3. Evidence Inventory
+## Evidence Inventory
 
 ### Tier 1 Evidence (Official Sources)
 **No Tier 1 evidence found.**
@@ -73,25 +65,7 @@ Citigroup Inc. is classified as an **OBSERVER (Ecosystem-Engaged)** with 50% con
 | LinkedIn profile mentions | No CDM references | HIGH |
 | Employee presentations | No conference CDM talks | MEDIUM |
 
----
-
-## 4. Null Results (Informative Absences)
-
-| Category | Implication | Tier |
-|----------|-------------|------|
-| ISDA CDM Contributor List | Not listed despite G16 status | Tier 1 |
-| Official CDM Announcements | No pilot, production, or participation claims | Tier 1 |
-| FINOS CDM Contributors | FINOS member but not CDM maintainer | Tier 2 |
-| Trade Press Coverage | No Risk.net, Waters, or FT coverage of CDM efforts | Tier 2 |
-| Vendor Partnerships | No CDM-vendor announcements | Tier 2 |
-| Job Postings | Zero "CDM" or "DRR" mentions in career pages | Tier 3 |
-| LinkedIn Signals | No derivative technologist posts about CDM | Tier 3 |
-
-**Pattern**: Complete absence of CDM-specific activity despite massive derivatives operations and FINOS membership.
-
----
-
-## 5. Probability Trajectory
+## Probability Trajectory
 
 ```
 Prior:       30% ███████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -106,9 +80,7 @@ Post-Tier3:  35% █████████████████████
 - Post-Tier2 rebounds to 35% due to FINOS membership signal suggesting infrastructure interest
 - Post-Tier3 remains at 35% (null results don't substantially reduce from Tier 2)
 
----
-
-## 6. Bayesian Analysis Summary
+## Bayesian Analysis Summary
 
 | Evidence | Likelihood Ratio | Cumulative Effect | Interpretation |
 |----------|-----------------|-------------------|-----------------|
@@ -121,9 +93,101 @@ Post-Tier3:  35% █████████████████████
 
 **Bayesian Conclusion**: Evidence pattern suggests deliberate non-adoption of CDM despite ecosystem awareness. OBSERVER classification more appropriate than PRAGMATIST (which implies acceptance of CDM via vendor or traditional path).
 
----
+## Vendor Relationship Analysis
 
-## 7. FINOS Engagement Analysis
+### Known CDM-Capable Vendors
+
+| Vendor | Murex | Calypso | SimCorp | OpenGamma | Acadia |
+|--------|-------|---------|---------|-----------|--------|
+| **CDM Capability** | Yes | Yes | Yes | CDM developer | Yes |
+| **Citigroup Signal** | None found | None found | None found | None found | None found |
+
+**Assessment**: No announced vendor partnerships for CDM. If Citigroup were pursuing CDM via vendor proxy, would expect at least announcement. Complete absence suggests non-pursuit.
+
+## Knowledge Gaps
+
+### GAP-001: Vendor Infrastructure Strategy (Priority: 82/100)
+
+- **Question**: Does Citigroup use CDM-capable vendor platforms (DTCC, Murex, Calypso)?
+- **Impact**: High - could shift classification to PRAGMATIST if vendor-enabled CDM used
+- **Suggested Source**: Derivatives Technology SVP interview
+
+### GAP-002: FINOS Engagement Roadmap (Priority: 71/100)
+
+- **Question**: Is hackathon hosting prelude to deeper technical CDM involvement?
+- **Impact**: Medium - could indicate evolution from OBSERVER to PRAGMATIST
+- **Suggested Source**: FINOS member relations or Citigroup innovation officer
+
+### GAP-003: Internal Modernization Plans (Priority: 65/100)
+
+- **Question**: Does Citigroup have internal derivatives platform modernization program?
+- **Impact**: Medium - could reveal hidden CDM evaluation
+- **Suggested Source**: Technology strategy documents, annual report
+
+## Recommendations
+
+### For Framework Updates
+
+1. **Verify FINOS Membership**: Confirm Citigroup listed on FINOS.org member directory
+2. **Benchmark Hackathon**: Assess if India hackathon is FINOS-standard vs. custom initiative
+3. **Monitor Trade Press**: Flag next 6 months for any Citigroup CDM announcements
+
+### For Re-Research (Q2 2025)
+
+1. **Check 2024 Annual Report**: Published Q1 2025 - look for derivatives modernization mentions
+2. **FINOS Summit 2025**: Monitor for Citigroup speakers or booth presence
+3. **Vendor Announcements**: Track Murex, Calypso, SimCorp for Citigroup partnerships
+
+### For Discovery Calls
+
+1. **Target**: Head of Derivatives Technology, Citigroup
+2. **Key Questions**:
+   - What is Citigroup's derivatives infrastructure modernization strategy?
+   - What was the strategic rationale for FINOS hackathon hosting?
+   - Is DTCC/vendor platform sufficient for current regulatory requirements?
+   - Any evaluation of CDM or similar standards?
+
+## Confidence Calibration
+
+### Base Confidence by Tier
+
+| Tier | Maximum | Actual | Adjustment |
+|------|---------|--------|------------|
+| Tier 1 (None) | N/A | - | -25% |
+| Tier 2 (1 item, FINOS) | 75% | 75% | 0% |
+| Tier 3 (None) | 50% | - | -15% |
+
+### Penalty Analysis
+
+| Factor | Penalty | Justification |
+|--------|---------|---------------|
+| Single source | -10% | One Tier 2 item only |
+| Absence of Tier 1 | -15% | G-SIB without official CDM stance |
+| Null results | 0% | Expected for OBSERVER |
+| No corroboration | -10% | FINOS signal unconfirmed as CDM-directed |
+
+### Final Calculation
+
+- **Base**: 75% (Tier 2 maximum)
+- **Penalties**: -10% (single source) -15% (no Tier 1) -10% (no corroboration)
+- **Adjustments**: +10% (G-SIB status reduces likelihood of truly unknown status)
+- **Final Confidence**: 50%
+
+## Null Results (Informative Absences)
+
+| Category | Implication | Tier |
+|----------|-------------|------|
+| ISDA CDM Contributor List | Not listed despite G16 status | Tier 1 |
+| Official CDM Announcements | No pilot, production, or participation claims | Tier 1 |
+| FINOS CDM Contributors | FINOS member but not CDM maintainer | Tier 2 |
+| Trade Press Coverage | No Risk.net, Waters, or FT coverage of CDM efforts | Tier 2 |
+| Vendor Partnerships | No CDM-vendor announcements | Tier 2 |
+| Job Postings | Zero "CDM" or "DRR" mentions in career pages | Tier 3 |
+| LinkedIn Signals | No derivative technologist posts about CDM | Tier 3 |
+
+**Pattern**: Complete absence of CDM-specific activity despite massive derivatives operations and FINOS membership.
+
+## FINOS Engagement Analysis
 
 ### Citigroup FINOS Activity Pattern
 
@@ -136,9 +200,7 @@ Post-Tier3:  35% █████████████████████
 
 **FINOS Paradox**: Unlike Deutsche Bank (contributes to Fluxnova/Waltz but not CDM), Citigroup doesn't even have visible FINOS project contributions beyond membership. The hackathon hosting suggests marketing/HR engagement rather than technical infrastructure investment.
 
----
-
-## 8. Regulatory Compliance Context
+## Regulatory Compliance Context
 
 ### US Derivatives Regulatory Framework
 
@@ -152,9 +214,7 @@ Post-Tier3:  35% █████████████████████
 
 **Compliance Assessment**: No regulatory pressure for CDM adoption at Citigroup. Traditional ISDA protocol compliance sufficient. CFTC Rewrite may eventually create CDM-adjacent pressure, but not imminent.
 
----
-
-## 9. Competitor Benchmarking
+## Competitor Benchmarking
 
 ### US G16 Derivatives Dealers - CDM Maturity
 
@@ -168,22 +228,7 @@ Post-Tier3:  35% █████████████████████
 
 **Key Insight**: Citigroup stands out among peers for ecosystem membership without technical CDM engagement. Lowest maturity evidence among major G16 dealers researched.
 
----
-
-## 10. Vendor Relationship Analysis
-
-### Known CDM-Capable Vendors
-
-| Vendor | Murex | Calypso | SimCorp | OpenGamma | Acadia |
-|--------|-------|---------|---------|-----------|--------|
-| **CDM Capability** | Yes | Yes | Yes | CDM developer | Yes |
-| **Citigroup Signal** | None found | None found | None found | None found | None found |
-
-**Assessment**: No announced vendor partnerships for CDM. If Citigroup were pursuing CDM via vendor proxy, would expect at least announcement. Complete absence suggests non-pursuit.
-
----
-
-## 11. G16 Dealer Derivatives Book Analysis
+## G16 Dealer Derivatives Book Analysis
 
 ### Citigroup Derivatives Operations Scope
 
@@ -203,9 +248,7 @@ Post-Tier3:  35% █████████████████████
 2. Internal legacy system preference
 3. Cost-benefit assessment favoring status quo
 
----
-
-## 12. Alternative Hypotheses
+## Alternative Hypotheses
 
 ### H1: Silent Internal CDM Build (ARCHITECT Hidden)
 
@@ -250,59 +293,7 @@ Post-Tier3:  35% █████████████████████
 - Consistent with traditional bank IT approach (legacy systems sufficient)
 - No regulatory mandate for CDM adoption in US market
 
----
-
-## 13. Knowledge Gaps
-
-### GAP-001: Vendor Infrastructure Strategy (Priority: 82/100)
-
-- **Question**: Does Citigroup use CDM-capable vendor platforms (DTCC, Murex, Calypso)?
-- **Impact**: High - could shift classification to PRAGMATIST if vendor-enabled CDM used
-- **Suggested Source**: Derivatives Technology SVP interview
-
-### GAP-002: FINOS Engagement Roadmap (Priority: 71/100)
-
-- **Question**: Is hackathon hosting prelude to deeper technical CDM involvement?
-- **Impact**: Medium - could indicate evolution from OBSERVER to PRAGMATIST
-- **Suggested Source**: FINOS member relations or Citigroup innovation officer
-
-### GAP-003: Internal Modernization Plans (Priority: 65/100)
-
-- **Question**: Does Citigroup have internal derivatives platform modernization program?
-- **Impact**: Medium - could reveal hidden CDM evaluation
-- **Suggested Source**: Technology strategy documents, annual report
-
----
-
-## 14. Confidence Calibration
-
-### Base Confidence by Tier
-
-| Tier | Maximum | Actual | Adjustment |
-|------|---------|--------|------------|
-| Tier 1 (None) | N/A | - | -25% |
-| Tier 2 (1 item, FINOS) | 75% | 75% | 0% |
-| Tier 3 (None) | 50% | - | -15% |
-
-### Penalty Analysis
-
-| Factor | Penalty | Justification |
-|--------|---------|---------------|
-| Single source | -10% | One Tier 2 item only |
-| Absence of Tier 1 | -15% | G-SIB without official CDM stance |
-| Null results | 0% | Expected for OBSERVER |
-| No corroboration | -10% | FINOS signal unconfirmed as CDM-directed |
-
-### Final Calculation
-
-- **Base**: 75% (Tier 2 maximum)
-- **Penalties**: -10% (single source) -15% (no Tier 1) -10% (no corroboration)
-- **Adjustments**: +10% (G-SIB status reduces likelihood of truly unknown status)
-- **Final Confidence**: 50%
-
----
-
-## 15. Classification Rationale
+## Classification Rationale
 
 ### Why OBSERVER, Not ARCHITECT?
 
@@ -336,9 +327,7 @@ Post-Tier3:  35% █████████████████████
 
 **Verdict**: FINOS engagement exceeds typical OBSERVER baseline, placing Citigroup in "Ecosystem-Engaged" subtype - aware of and participating in ecosystem, but not yet adopting CDM specifically.
 
----
-
-## 16. Risks to Classification
+## Risks to Classification
 
 ### Risk: Silent Internal CDM Program Emerges
 
@@ -358,9 +347,7 @@ Post-Tier3:  35% █████████████████████
 |-------------|--------|-----------|
 | 20% | Medium (suggest evolution) | Flag next hackathon for focused research |
 
----
-
-## 17. Forward-Looking Scenarios
+## Forward-Looking Scenarios
 
 ### Scenario A: Status Quo (55% probability)
 
@@ -387,9 +374,7 @@ Post-Tier3:  35% █████████████████████
 - Forced migration 2027-2028
 - **Outcome**: Shifts to PRAGMATIST (Regulatory)
 
----
-
-## 18. Peer Context: US Major Banks
+## Peer Context: US Major Banks
 
 ### Research Status Summary
 
@@ -403,9 +388,7 @@ Post-Tier3:  35% █████████████████████
 
 **Comparative Insight**: Citigroup and Bank of America complete Phase 8 with lowest maturity scores, suggesting US regional diversity not just in regulatory approach but also in derivatives modernization strategy.
 
----
-
-## 19. Trust Flags & Resolution
+## Trust Flags & Resolution
 
 ### SINGLE_SOURCE_CLAIM
 **Status**: FLAGGED
@@ -428,34 +411,7 @@ Post-Tier3:  35% █████████████████████
 
 **Outcome**: FINOS membership confirmed, but CDM-specific engagement not found.
 
----
-
-## 20. Recommendations
-
-### For Framework Updates
-
-1. **Verify FINOS Membership**: Confirm Citigroup listed on FINOS.org member directory
-2. **Benchmark Hackathon**: Assess if India hackathon is FINOS-standard vs. custom initiative
-3. **Monitor Trade Press**: Flag next 6 months for any Citigroup CDM announcements
-
-### For Re-Research (Q2 2025)
-
-1. **Check 2024 Annual Report**: Published Q1 2025 - look for derivatives modernization mentions
-2. **FINOS Summit 2025**: Monitor for Citigroup speakers or booth presence
-3. **Vendor Announcements**: Track Murex, Calypso, SimCorp for Citigroup partnerships
-
-### For Discovery Calls
-
-1. **Target**: Head of Derivatives Technology, Citigroup
-2. **Key Questions**:
-   - What is Citigroup's derivatives infrastructure modernization strategy?
-   - What was the strategic rationale for FINOS hackathon hosting?
-   - Is DTCC/vendor platform sufficient for current regulatory requirements?
-   - Any evaluation of CDM or similar standards?
-
----
-
-## 21. Final Verdict
+## Final Verdict
 
 **Classification**: OBSERVER (Ecosystem-Engaged)
 
@@ -474,9 +430,7 @@ Post-Tier3:  35% █████████████████████
 
 **Evidence Quality**: Moderate confidence reflects single Tier 2 source and absence of corroboration. G-SIB status and massive derivatives operations make the official silence (no Tier 1 evidence) meaningful, not merely coincidental.
 
----
-
-## 22. Sources & References
+## Sources & References
 
 ### Tier 1 Sources (None found)
 - ISDA CDM Contributor Directory: No Citigroup listing
@@ -498,3 +452,7 @@ Post-Tier3:  35% █████████████████████
 **Assessment complete. Classification: OBSERVER (Ecosystem-Engaged) with 50% confidence.**
 
 *Next Review: Q2 2025 (June 21, 2025)*
+
+---
+
+*Assessment complete. Classification: OBSERVER (Ecosystem-Engaged) with 50% confidence.*

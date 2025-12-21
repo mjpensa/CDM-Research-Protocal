@@ -1,21 +1,43 @@
-# Adversarial Verdict: Sumitomo Mitsui Financial Group
+# Adversarial Verdict: Sumitomo Mitsui Banking Corporation
 
-## Classification Under Challenge
-Primary: OBSERVER
-Sub-Classification: CCP-Connected
-Confidence: 45%
+**Bank:** Sumitomo Mitsui Banking Corporation
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
 
-## Adversarial Review Result
-**Verdict:** Classification UPHELD
-
-## Key Challenges Reviewed
-1. JSCC connectivity implies active engagement (addressed by sub-classification)
-2. Cultural discretion masks programs (comprehensive null results counter this)
-3. Vendor solutions enable silent adoption (no vendor signals detected)
+---
 
 ## Final Classification
-Primary: OBSERVER
-Sub-Classification: CCP-Connected
-Confidence: 45% (unchanged)
 
-Classification is robust to adversarial challenges.
+| Element | Value |
+|---------|-------|
+| Classification | PRAGMATIST |
+| Sub-Classification | N/A |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+
+## Verdict Rationale
+
+N/A
+
+## Sub-Classification Justification
+
+N/A
+
+## Why Not Other Classifications
+
+| Alternative | Reason Rejected |
+|-------------|-----------------|
+| N/A | N/A |
+
+## Confidence Assessment
+
+N/A
+
+## Adversarial Challenge Status
+
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
+
+---

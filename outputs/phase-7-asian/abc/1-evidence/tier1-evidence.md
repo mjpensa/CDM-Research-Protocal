@@ -1,25 +1,25 @@
-# Tier 1 Evidence: Agricultural Bank of China (ABC)
+# Tier 1 Evidence: Agricultural Bank of China Limited
 
-**Research Date**: 2025-12-21
-**Protocol Version**: 2.3
+**Bank:** Agricultural Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
+
+## Evidence Inventory
 
 No Tier 1 evidence found.
 
-## Sources Checked
+## Informative Absences
 
-- **abchina.com**: No CDM mentions
-- **isda.org**: No ABC case studies
-- **finos.org**: Not a FINOS member
-- **github.com/finos**: No code contributions
-
-## Context
-
-ABC focuses on agricultural and rural banking with smallest international footprint among Big Four. Derivatives operations primarily domestic, serving agricultural commodity hedging. No CDM signals found.
+N/A
 
 ---
-
-**Conclusion**: No Tier 1 evidence. Proceed to Tier 2.

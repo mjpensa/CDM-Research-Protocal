@@ -1,11 +1,51 @@
-# Post-Tier 3 Bayesian Update: Sumitomo Mitsui Financial Group
+# Bayesian Update: Post-Tier 3 Evidence: Sumitomo Mitsui Banking Corporation
 
-## Tier 3 Evidence
+**Bank:** Sumitomo Mitsui Banking Corporation
+**Phase:** 3 - Japanese
+**Date:** 2025-12-21
+
+---
+
+## Prior Probability
+
+P(ARCHITECT) prior: 20%
+
+## Tier 3 Evidence Summary
+
 Evidence Found: 0 (no hiring signals, no expertise indicators)
 
-## Final Posterior
-P(ARCHITECT) = <0.01
-P(PRAGMATIST) = <0.01
-P(OBSERVER) = 0.99 (99%)
+## Likelihood Ratio Calculation
 
-Null hiring signals decisively rule out capability building. Classification: OBSERVER (CCP-Connected), Confidence: 45%
+```
+Combined LR = 1.0 (no evidence)
+```
+
+## Posterior Calculation
+
+```
+Posterior = Prior (no update)
+```
+
+## Updated Probabilities
+
+N/A
+
+## Key Insights
+
+N/A
+
+## Cumulative Evidence Summary
+
+| Tier | Combined LR | Cumulative LR |
+|------|-------------|---------------|
+| Tier 1 | 1.0 | 1.0 |
+| Tier 2 | 1.0 | 1.0 |
+| Tier 3 | 1.0 | 1.0 |
+
+## Final Confidence Assessment
+
+Final confidence: 50%
+
+---
+
+*Proceeding to adversarial review.*

@@ -1,11 +1,12 @@
-# Steelman: Strongest Counter-Argument
+# Steelman: Strongest Counter-Argument: Barclays PLC
 
-**Bank**: Barclays PLC
-**Date**: 2025-12-20
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## The Strongest Possible Case for PRAGMATIST
+## Strongest Counter-Hypothesis
 
 If forced to argue that Barclays IS a PRAGMATIST, the strongest argument would be:
 
@@ -59,9 +60,11 @@ This is textbook PRAGMATIST behavior: exploring options, maintaining visibility,
 4. **Testable Hypothesis**: Predicts: (a) no production announcement 2024-2025, (b) continued hackathons, (c) no hiring acceleration
 5. **Resolves Ambiguity**: Makes the gap between prototype and production the key classification distinction
 
----
+## Supporting Logic
 
-## Why This Argument Still Fails
+N/A
+
+## Why This Argument Fails
 
 ### Problem 1: The Authority and Specificity of Tier 1 Evidence
 
@@ -106,8 +109,6 @@ Barclays clearly qualifies as **pilot_or_poc** (FINOS demo, CCP prototype are ex
 
 And yes - multiple POCs + sustained thought leadership + evolution over time = ARCHITECT intent.
 
----
-
 ## Steelman Assessment
 
 **Grade**: 3.5/5 (Moderate)
@@ -121,5 +122,3 @@ The strongest counter-argument acknowledges real evidence but argues it represen
 The steelman is stronger than Deutsche Bank's because it acknowledges the real evidence gap (production). But it still fails to overcome the weight of Tier 1 + Tier 2 evidence combined.
 
 ---
-
-*Proceeding to final verdict.*

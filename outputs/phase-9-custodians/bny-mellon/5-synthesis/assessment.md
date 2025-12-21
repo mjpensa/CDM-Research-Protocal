@@ -1,9 +1,8 @@
 # CDM/DRR Assessment: The Bank of New York Mellon Corporation
 
-**Classification**: UNKNOWN (Insufficient-Evidence)
-**Confidence**: 35%
-**Date**: 2025-12-21
-**Analyst**: Claude Code Research Protocol
+**Bank:** The Bank of New York Mellon Corporation
+**Phase:** 9 - US Custody Banks
+**Date:** 2025-12-21
 
 ---
 
@@ -15,9 +14,7 @@ BNY Mellon's active fintech innovation programs (Ascent Program, Dublin Digital 
 
 **Key Finding**: The lack of CDM signals despite custodian status and fintech investment represents either (1) private CDM exploration unpublicized, (2) deliberate strategy choice favoring traditional platforms, or (3) deferral pending clearer regulatory requirements.
 
----
-
-## 1. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -30,9 +27,7 @@ BNY Mellon's active fintech innovation programs (Ascent Program, Dublin Digital 
 | Derivatives Relevance | High (collateral management, custody of derivatives portfolios) |
 | Key Programs | Ascent Program (fintech), Dublin Digital R&D Hub, BNY Mellon Cloud |
 
----
-
-## 2. Classification Summary
+## Classification Summary
 
 | Metric | Value |
 |--------|-------|
@@ -41,11 +36,8 @@ BNY Mellon's active fintech innovation programs (Ascent Program, Dublin Digital 
 | P(ARCHITECT) | 20% |
 | P(PRAGMATIST) | 80% |
 | Confidence | 35% |
-| Maturity Score | 0/5 |
 
----
-
-## 3. Evidence Inventory
+## Evidence Inventory
 
 ### Tier 1 Evidence (Official Sources)
 No positive Tier 1 evidence found.
@@ -64,24 +56,7 @@ No positive Tier 3 evidence found.
 | Tier 3 | 0 | No evidence |
 | Null Results | 6 | All negative |
 
----
-
-## 4. Null Results (Informative Absences)
-
-| Category | Search Method | Conclusion | Implication |
-|----------|--------------|-----------|-------------|
-| FINOS Membership | FINOS member list, landscape.finos.org | Not listed | No public ecosystem participation |
-| ISDA CDM Working Group | ISDA CDM page, GitHub contributors list | No participation found | No visible working group engagement |
-| Official Announcements | BNY Mellon newsroom, investor relations | No CDM-related announcements | No public adoption signals |
-| Trade Press Coverage | Risk.net, Waters Technology, FN London | No CDM coverage mentioning BNY Mellon | Industry awareness not documented |
-| GitHub Contributions | FINOS CDM repository, org search | No contributions found | No open-source CDM work |
-| Job Postings | LinkedIn, BNY Mellon careers portal | No CDM-related hiring signals | No visible talent acquisition for CDM |
-
-**Interpretation**: The consistent absence of CDM signals across all six search categories is informative. However, this pattern is insufficient to classify as PRAGMATIST because it does not distinguish between (a) non-adoption, (b) private implementation, or (c) deferred evaluation.
-
----
-
-## 5. Probability Trajectory
+## Probability Trajectory
 
 ```
 Prior:       25% ████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -93,9 +68,7 @@ Final:       20% ████████████████████░
 
 **Note**: Probability remained stable at prior throughout the evidence process, then declined slightly to 20% post-analysis due to the informative nature of consistent absences. The PRAGMATIST probability of 80% reflects baseline expectation for custodian banks in regulatory environment, not evidence-driven updating.
 
----
-
-## 6. Bayesian Analysis Summary
+## Bayesian Analysis Summary
 
 | Evidence Category | Likelihood Ratio | Rationale | Effect |
 |------------------|-----------------|-----------|--------|
@@ -108,51 +81,7 @@ Final:       20% ████████████████████░
 
 **Net Combined LR**: 0.67 (supports PRAGMATIST slightly over ARCHITECT, but insufficient for classification)
 
----
-
-## 7. Custodian Bank Strategic Context
-
-BNY Mellon's custodian business model has different CDM incentives than universal banks:
-
-| Factor | Universal Banks | Custodians |
-|--------|-----------------|-----------|
-| Direct derivatives exposure | High | Low (held in custody) |
-| EMIR/DRR compliance pressure | Direct | Indirect (clients responsible) |
-| CDM benefit (direct reporting) | High | Medium (value in client servicing) |
-| Technology investment appetite | Medium | High (services-driven) |
-| Peer pressure (peers adopting) | High (BNP, Barclays, etc.) | Low (limited custodian peer set) |
-
-**Assessment**: Custodian CDM adoption drivers differ from universal banks. BNY Mellon may have deferred CDM investment pending clearer industry consensus.
-
----
-
-## 8. Fintech Innovation Programs Analysis
-
-BNY Mellon operates active fintech innovation programs that signal technology sophistication:
-
-### Ascent Program
-- **Scope**: Fintech incubator and partnership program
-- **Status**: Active, multiple partnerships
-- **CDM Connection**: None found
-- **Implication**: Sophistication exists but not directed toward CDM
-
-### Dublin Digital R&D Hub
-- **Scope**: European innovation center
-- **Status**: Active, hiring engineers
-- **CDM Connection**: None found
-- **Implication**: Geographic positioning on EMIR Refit issues but no CDM signal
-
-### BNY Mellon Cloud Platform
-- **Scope**: Custody and asset servicing cloud infrastructure
-- **Status**: Active development
-- **CDM Connection**: Unknown
-- **Implication**: Could be CDM-integrated but no public evidence
-
-**Conclusion**: The fintech programs demonstrate BNY Mellon's capability and willingness to invest in new platforms. The absence of CDM signals is not a capability limitation but a strategic choice (so far unexplained).
-
----
-
-## 9. Regulatory Compliance Assessment
+## Regulatory Compliance Assessment
 
 ### EMIR Refit (EU) - Deadline: April 29, 2024
 | Aspect | Assessment |
@@ -178,9 +107,7 @@ BNY Mellon operates active fintech innovation programs that signal technology so
 
 **Conclusion**: BNY Mellon meets all regulatory deadlines through non-CDM methods, reducing urgency for CDM adoption.
 
----
-
-## 10. Vendor Relationship Analysis
+## Vendor Relationship Analysis
 
 | Vendor | Relationship | Known Status | CDM Component |
 |--------|--------------|--------------|---------------|
@@ -193,9 +120,7 @@ BNY Mellon operates active fintech innovation programs that signal technology so
 
 **Assessment**: Major vendor relationships exist but CDM components are unconfirmed. BNY Mellon could be implementing CDM through vendor relationships without public signal.
 
----
-
-## 11. Counterparty Network Analysis
+## Counterparty Network Analysis
 
 | CCP | Likely Membership | CDM Status | Impact |
 |-----|-----------------|-----------|--------|
@@ -206,9 +131,7 @@ BNY Mellon operates active fintech innovation programs that signal technology so
 
 **Assessment**: Major CCP relationships exist but no evidence of CDM-driven collaboration.
 
----
-
-## 12. Product Coverage Assessment
+## Product Coverage Assessment
 
 As a custodian, BNY Mellon holds and services derivatives rather than principals. CDM relevance differs:
 
@@ -220,9 +143,7 @@ As a custodian, BNY Mellon holds and services derivatives rather than principals
 | Equity Derivatives | Settle and service | Low (market data) | Unknown |
 | Exotic Derivatives | Settle and service | High (collateral) | Unknown |
 
----
-
-## 13. Knowledge Gaps
+## Knowledge Gaps
 
 ### GAP-001: CDM Strategy (Priority: 82/100)
 - **Question**: What is BNY Mellon's official CDM strategy?
@@ -254,9 +175,7 @@ As a custodian, BNY Mellon holds and services derivatives rather than principals
 - **Suggested Source**: Derivatives Operations, JSCC compliance officer
 - **Current State**: Unknown
 
----
-
-## 14. Competitive Positioning
+## Competitive Positioning
 
 ### Custodian Bank Peer Comparison
 | Bank | CDM Status | Evidence Quality | Notes |
@@ -275,56 +194,7 @@ As a custodian, BNY Mellon holds and services derivatives rather than principals
 | Goldman Sachs | Unknown | Not assessed |
 | JPMorgan | Unknown | Not assessed |
 
----
-
-## 15. Classification Rationale: Why UNKNOWN, Not PRAGMATIST?
-
-BNY Mellon is classified as **UNKNOWN** rather than **PRAGMATIST** because:
-
-1. **Insufficient Evidence Threshold**: Tier 4 inference (regulatory compliance pressure) alone cannot drive PRAGMATIST classification. PRAGMATIST requires positive evidence of technology adoption or regulatory response (Tiers 1-3).
-
-2. **Custodian Deferral Pattern**: Custodian banks may rationally defer CDM adoption pending universal bank consensus. This is a strategic pause, not non-adoption.
-
-3. **Fintech Investment Ambiguity**: BNY Mellon's active fintech programs demonstrate capability but create uncertainty: the bank could be (a) exploring CDM privately, (b) investing in alternative platforms, or (c) both.
-
-4. **Vendor Intermediation**: Unlike universal banks, custodians may implement CDM through vendors without direct public signals. This makes informative absence less reliable.
-
-5. **Regulatory Timeline Mismatch**: BNY Mellon met all EMIR Refit deadlines (April 2024) and UK EMIR deadlines (Sept 2024) through traditional methods. Near-term pressure is absent.
-
-**Conclusion**: The evidence supports a probability distribution (80% PRAGMATIST, 20% ARCHITECT) but lacks the specific positive evidence required to move from UNKNOWN to classified status.
-
----
-
-## 16. Confidence Calibration
-
-### 6-Step Confidence Calculation
-
-| Factor | Effect | Magnitude |
-|--------|--------|-----------|
-| **Evidence Completeness** | Null results across all tiers | -20% |
-| **Search Depth** | 6 separate search categories | +5% |
-| **Informative Absences** | Consistent pattern suggests real signal | +10% |
-| **Regulatory Precedent** | EMIR/DRR deadlines passed without CDM | +5% |
-| **Peer Absence** | No custodian peer signals CDM | +5% |
-| **Domain Expertise** | Protocol-driven methodology | +5% |
-| **Prior Probability** | Base rate for Tier-1 banks | +25% |
-
-**Calculation**:
-```
-Prior probability (25%)
-+ Nil evidence in all tiers (baseline)
-+ Search methodology strength (+5%)
-+ Informative absence pattern (+10%)
-+ Regulatory compliance via non-CDM methods (+5%)
-+ Peer/custodian dynamics (+5%)
-= 35% confidence
-```
-
-**Confidence Interpretation**: 35% reflects the baseline expectation for a PRAGMATIST trajectory adjusted downward for knowledge gaps. This is the "informative absence" confidence level—evidence of absence without proof of non-adoption.
-
----
-
-## 17. Risk Factors
+## Risk Factors
 
 ### Risks to Classification (UNKNOWN)
 
@@ -335,9 +205,7 @@ Prior probability (25%)
 | Vendor CDM partnership announced | 20% | Would shift to PRAGMATIST (Vendor) | Monitor vendor partnerships |
 | Fintech R&D generates CDM announcement | 15% | Would shift to PRAGMATIST | Monitor Ascent Program updates |
 
----
-
-## 18. Forward-Looking Assessment
+## Forward-Looking Assessment
 
 ### Possible Trajectory Scenarios
 
@@ -365,9 +233,7 @@ Prior probability (25%)
 - Shifts to ARCHITECT-Follower or -Native
 - Timeline: Unlikely, low probability
 
----
-
-## 19. Recommendations
+## Recommendations
 
 ### For Framework Updates
 1. **Classify as UNKNOWN** (Insufficient-Evidence) with 35% confidence
@@ -392,22 +258,34 @@ Prior probability (25%)
 3. **Peer Moves**: Monitor State Street and Euroclear strategies
 4. **Regulatory Signals**: Watch for CFTC or Fed guidance on CDM
 
----
+## Confidence Calibration
 
-## 20. Confidence Calibration Summary
+### 6-Step Confidence Calculation
 
-| Dimension | Assessment |
-|-----------|------------|
-| Evidence Quality | No positive evidence (0 tiers confirmed) |
-| Search Completeness | Comprehensive (6 categories, all negative) |
-| Informative Content | Moderate (absence is suggestive, not conclusive) |
-| Classification Reliability | Low (UNKNOWN appropriate, not PRAGMATIST) |
-| Forward Confidence | 35% (reflects knowledge gap, not disconfirmation) |
-| Re-assessment Needed | Yes (within 6 months, monitor JSCC deadline) |
+| Factor | Effect | Magnitude |
+|--------|--------|-----------|
+| **Evidence Completeness** | Null results across all tiers | -20% |
+| **Search Depth** | 6 separate search categories | +5% |
+| **Informative Absences** | Consistent pattern suggests real signal | +10% |
+| **Regulatory Precedent** | EMIR/DRR deadlines passed without CDM | +5% |
+| **Peer Absence** | No custodian peer signals CDM | +5% |
+| **Domain Expertise** | Protocol-driven methodology | +5% |
+| **Prior Probability** | Base rate for Tier-1 banks | +25% |
 
----
+**Calculation**:
+```
+Prior probability (25%)
++ Nil evidence in all tiers (baseline)
++ Search methodology strength (+5%)
++ Informative absence pattern (+10%)
++ Regulatory compliance via non-CDM methods (+5%)
++ Peer/custodian dynamics (+5%)
+= 35% confidence
+```
 
-## 21. Appendix: Source URLs
+**Confidence Interpretation**: 35% reflects the baseline expectation for a PRAGMATIST trajectory adjusted downward for knowledge gaps. This is the "informative absence" confidence level—evidence of absence without proof of non-adoption.
+
+## Appendix: Source URLs
 
 ### FINOS and Standards Bodies
 1. [FINOS Members List](https://finos.org/members)
@@ -431,6 +309,84 @@ Prior probability (25%)
 13. [SEC Derivatives Regulation](https://www.sec.gov)
 14. [FCA EMIR Resources](https://www.fca.org.uk)
 
+## Null Results (Informative Absences)
+
+| Category | Search Method | Conclusion | Implication |
+|----------|--------------|-----------|-------------|
+| FINOS Membership | FINOS member list, landscape.finos.org | Not listed | No public ecosystem participation |
+| ISDA CDM Working Group | ISDA CDM page, GitHub contributors list | No participation found | No visible working group engagement |
+| Official Announcements | BNY Mellon newsroom, investor relations | No CDM-related announcements | No public adoption signals |
+| Trade Press Coverage | Risk.net, Waters Technology, FN London | No CDM coverage mentioning BNY Mellon | Industry awareness not documented |
+| GitHub Contributions | FINOS CDM repository, org search | No contributions found | No open-source CDM work |
+| Job Postings | LinkedIn, BNY Mellon careers portal | No CDM-related hiring signals | No visible talent acquisition for CDM |
+
+**Interpretation**: The consistent absence of CDM signals across all six search categories is informative. However, this pattern is insufficient to classify as PRAGMATIST because it does not distinguish between (a) non-adoption, (b) private implementation, or (c) deferred evaluation.
+
+## Custodian Bank Strategic Context
+
+BNY Mellon's custodian business model has different CDM incentives than universal banks:
+
+| Factor | Universal Banks | Custodians |
+|--------|-----------------|-----------|
+| Direct derivatives exposure | High | Low (held in custody) |
+| EMIR/DRR compliance pressure | Direct | Indirect (clients responsible) |
+| CDM benefit (direct reporting) | High | Medium (value in client servicing) |
+| Technology investment appetite | Medium | High (services-driven) |
+| Peer pressure (peers adopting) | High (BNP, Barclays, etc.) | Low (limited custodian peer set) |
+
+**Assessment**: Custodian CDM adoption drivers differ from universal banks. BNY Mellon may have deferred CDM investment pending clearer industry consensus.
+
+## Fintech Innovation Programs Analysis
+
+BNY Mellon operates active fintech innovation programs that signal technology sophistication:
+
+### Ascent Program
+- **Scope**: Fintech incubator and partnership program
+- **Status**: Active, multiple partnerships
+- **CDM Connection**: None found
+- **Implication**: Sophistication exists but not directed toward CDM
+
+### Dublin Digital R&D Hub
+- **Scope**: European innovation center
+- **Status**: Active, hiring engineers
+- **CDM Connection**: None found
+- **Implication**: Geographic positioning on EMIR Refit issues but no CDM signal
+
+### BNY Mellon Cloud Platform
+- **Scope**: Custody and asset servicing cloud infrastructure
+- **Status**: Active development
+- **CDM Connection**: Unknown
+- **Implication**: Could be CDM-integrated but no public evidence
+
+**Conclusion**: The fintech programs demonstrate BNY Mellon's capability and willingness to invest in new platforms. The absence of CDM signals is not a capability limitation but a strategic choice (so far unexplained).
+
+## Classification Rationale: Why UNKNOWN, Not PRAGMATIST?
+
+BNY Mellon is classified as **UNKNOWN** rather than **PRAGMATIST** because:
+
+1. **Insufficient Evidence Threshold**: Tier 4 inference (regulatory compliance pressure) alone cannot drive PRAGMATIST classification. PRAGMATIST requires positive evidence of technology adoption or regulatory response (Tiers 1-3).
+
+2. **Custodian Deferral Pattern**: Custodian banks may rationally defer CDM adoption pending universal bank consensus. This is a strategic pause, not non-adoption.
+
+3. **Fintech Investment Ambiguity**: BNY Mellon's active fintech programs demonstrate capability but create uncertainty: the bank could be (a) exploring CDM privately, (b) investing in alternative platforms, or (c) both.
+
+4. **Vendor Intermediation**: Unlike universal banks, custodians may implement CDM through vendors without direct public signals. This makes informative absence less reliable.
+
+5. **Regulatory Timeline Mismatch**: BNY Mellon met all EMIR Refit deadlines (April 2024) and UK EMIR deadlines (Sept 2024) through traditional methods. Near-term pressure is absent.
+
+**Conclusion**: The evidence supports a probability distribution (80% PRAGMATIST, 20% ARCHITECT) but lacks the specific positive evidence required to move from UNKNOWN to classified status.
+
+## Confidence Calibration Summary
+
+| Dimension | Assessment |
+|-----------|------------|
+| Evidence Quality | No positive evidence (0 tiers confirmed) |
+| Search Completeness | Comprehensive (6 categories, all negative) |
+| Informative Content | Moderate (absence is suggestive, not conclusive) |
+| Classification Reliability | Low (UNKNOWN appropriate, not PRAGMATIST) |
+| Forward Confidence | 35% (reflects knowledge gap, not disconfirmation) |
+| Re-assessment Needed | Yes (within 6 months, monitor JSCC deadline) |
+
 ---
 
-*Assessment complete. Classification: UNKNOWN (Insufficient-Evidence) with 35% confidence. Recommend re-assessment in Q2 2025 following JSCC deadline.*
+*Assessment complete. Classification: UNKNOWN (Insufficient-Evidence) with 35% confidence.*

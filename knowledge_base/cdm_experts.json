@@ -1,0 +1,196 @@
+{
+  "$schema": "CDM/DRR Expert Registry v1.0",
+  "description": "Registry of named CDM experts for tracking movement signals (Enhancement 6)",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "expertise_levels": {
+    "architect": {
+      "description": "Deep CDM implementation experience; led major CDM initiatives",
+      "lr_multiplier_joining": 2.0,
+      "lr_multiplier_leaving": 0.7,
+      "rationale": "Architect-level experts bring institutional CDM capability"
+    },
+    "contributor": {
+      "description": "Active CDM contributor; working group participant",
+      "lr_multiplier_joining": 1.5,
+      "lr_multiplier_leaving": 0.85,
+      "rationale": "Contributors indicate organizational commitment"
+    },
+    "practitioner": {
+      "description": "Has worked with CDM in production or POC",
+      "lr_multiplier_joining": 1.3,
+      "lr_multiplier_leaving": 0.9,
+      "rationale": "Practitioners bring hands-on experience"
+    },
+    "advocate": {
+      "description": "Promotes CDM adoption; may lack deep technical implementation",
+      "lr_multiplier_joining": 1.15,
+      "lr_multiplier_leaving": 0.95,
+      "rationale": "Advocates signal organizational interest"
+    }
+  },
+
+  "experts": [
+    {
+      "id": "EXPERT-001",
+      "name": "Nick Moger",
+      "expertise_level": "architect",
+      "expertise_areas": ["cdm_implementation", "derivatives_processing", "isda_cdm"],
+      "known_affiliations": [
+        {
+          "organization_type": "bank",
+          "organization_id": "jpmorgan",
+          "organization_name": "JP Morgan",
+          "role": "CDM Lead",
+          "start_date": "2020-01-01",
+          "end_date": null,
+          "status": "current"
+        }
+      ],
+      "public_contributions": [
+        "FINOS CDM contributor",
+        "Conference speaker on CDM implementation"
+      ],
+      "verification_sources": ["linkedin.com", "finos.org"],
+      "notes": "Key figure in JPM's CDM initiative"
+    },
+    {
+      "id": "EXPERT-002",
+      "name": "Minesh Patel",
+      "expertise_level": "architect",
+      "expertise_areas": ["drr", "regulatory_reporting", "cdm_implementation"],
+      "known_affiliations": [
+        {
+          "organization_type": "vendor",
+          "organization_id": "regnosys",
+          "organization_name": "REGnosys",
+          "role": "Co-Founder / CEO",
+          "start_date": "2017-01-01",
+          "end_date": null,
+          "status": "current"
+        }
+      ],
+      "public_contributions": [
+        "Rosetta DSL creator",
+        "ISDA CDM steering committee"
+      ],
+      "verification_sources": ["regnosys.com", "linkedin.com"],
+      "notes": "Founder of REGnosys; key CDM tooling architect"
+    },
+    {
+      "id": "EXPERT-003",
+      "name": "Ian Sloyan",
+      "expertise_level": "architect",
+      "expertise_areas": ["isda", "cdm_specification", "derivatives_standards"],
+      "known_affiliations": [
+        {
+          "organization_type": "standards_body",
+          "organization_id": "isda",
+          "organization_name": "ISDA",
+          "role": "Director, Regulatory Affairs",
+          "start_date": "2018-01-01",
+          "end_date": null,
+          "status": "current"
+        }
+      ],
+      "public_contributions": [
+        "CDM specification author",
+        "Regulatory alignment lead"
+      ],
+      "verification_sources": ["isda.org", "linkedin.com"],
+      "notes": "ISDA CDM specification leadership"
+    },
+    {
+      "id": "EXPERT-004",
+      "name": "Vernon Sherlock",
+      "expertise_level": "contributor",
+      "expertise_areas": ["cdm_testing", "derivatives_operations"],
+      "known_affiliations": [
+        {
+          "organization_type": "bank",
+          "organization_id": "bnp-paribas",
+          "organization_name": "BNP Paribas",
+          "role": "CDM Implementation",
+          "start_date": "2021-01-01",
+          "end_date": null,
+          "status": "current"
+        }
+      ],
+      "public_contributions": [
+        "FINOS CDM working group participant"
+      ],
+      "verification_sources": ["linkedin.com", "finos.org"],
+      "notes": "BNP implementation team"
+    },
+    {
+      "id": "EXPERT-005",
+      "name": "Leo Sherlock",
+      "expertise_level": "architect",
+      "expertise_areas": ["rosetta_dsl", "cdm_implementation", "model_driven_development"],
+      "known_affiliations": [
+        {
+          "organization_type": "vendor",
+          "organization_id": "regnosys",
+          "organization_name": "REGnosys",
+          "role": "Technical Lead",
+          "start_date": "2018-01-01",
+          "end_date": null,
+          "status": "current"
+        }
+      ],
+      "public_contributions": [
+        "Rosetta DSL development",
+        "CDM implementation consulting"
+      ],
+      "verification_sources": ["regnosys.com", "github.com"],
+      "notes": "REGnosys technical leadership"
+    }
+  ],
+
+  "movement_signals": {
+    "description": "How expert movements affect classification",
+    "architect_joins_bank": {
+      "signal_type": "strong_architect",
+      "lr_multiplier": 2.0,
+      "rationale": "Architect-level expert joining indicates serious CDM investment"
+    },
+    "architect_leaves_bank": {
+      "signal_type": "potential_pragmatist",
+      "lr_multiplier": 0.7,
+      "rationale": "Losing CDM expertise may indicate reduced commitment"
+    },
+    "contributor_joins_bank": {
+      "signal_type": "moderate_architect",
+      "lr_multiplier": 1.5,
+      "rationale": "Contributor hiring shows growing CDM team"
+    },
+    "multiple_experts_same_bank": {
+      "signal_type": "strong_architect",
+      "lr_multiplier": 2.5,
+      "rationale": "Multiple CDM experts indicates serious investment"
+    }
+  },
+
+  "tracking_sources": {
+    "description": "Where to look for expert movements",
+    "primary": [
+      "linkedin.com/in/",
+      "linkedin.com/posts/"
+    ],
+    "secondary": [
+      "finos.org/cdm-working-group",
+      "isda.org/working-groups",
+      "Conference speaker lists"
+    ],
+    "verification_required": true,
+    "notes": "Cross-reference multiple sources before updating affiliations"
+  },
+
+  "usage_notes": [
+    "Expert movements are Tier 3 signals requiring corroboration",
+    "Update affiliations when verified through multiple sources",
+    "Use movement signals in synthesis stage for classification adjustment",
+    "Expert presence at bank boosts confidence in ARCHITECT classification"
+  ]
+}

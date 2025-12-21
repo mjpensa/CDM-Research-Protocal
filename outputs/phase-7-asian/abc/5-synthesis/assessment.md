@@ -1,7 +1,8 @@
-# Final Assessment
+# CDM/DRR Assessment: Agricultural Bank of China Limited
 
-**Research Date**: 2025-12-21
-**Protocol Version**: 2.3
+**Bank:** Agricultural Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
@@ -13,7 +14,44 @@
 
 Comprehensive multi-tier research yielded zero evidence of CDM adoption. Classification as UNKNOWN (rather than PRAGMATIST) reflects possible disclosure gap between Chinese and Western banking systems.
 
----
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | Agricultural Bank of China Limited |
+| Headquarters | Beijing, China |
+| Region | Asia |
+| Phase | 7 - Emerging Markets |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | UNKNOWN |
+| Sub-Classification | N/A |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Recommendations
+
+### For Researchers
+- Monitor PBOC/CBIRC regulatory consultations for any CDM signals
+- Check if Chinese banks' international subsidiaries (e.g., London, New York branches) adopt CDM independently
+- Watch for China joining ISDA CDM working groups
+
+### For Stakeholders
+- Assume no CDM adoption for planning purposes
+- Recognize Chinese banks operate in separate regulatory ecosystem
+- Do not expect CDM interoperability with Chinese counterparties
 
 ## Evidence Summary
 
@@ -21,8 +59,6 @@ Comprehensive multi-tier research yielded zero evidence of CDM adoption. Classif
 **Tier 2**: 0 items
 **Tier 3**: 0 items
 **Total**: 0 items
-
----
 
 ## Classification Rationale
 
@@ -39,8 +75,6 @@ Comprehensive multi-tier research yielded zero evidence of CDM adoption. Classif
 - Low confidence in conclusion (possible internal initiatives not disclosed)
 - Acknowledges epistemic humility about Chinese banking sector
 
----
-
 ## Regional Context
 
 ### Chinese Derivatives Regulatory Framework
@@ -51,29 +85,11 @@ Comprehensive multi-tier research yielded zero evidence of CDM adoption. Classif
 
 **Implication**: Chinese banks have no regulatory incentive to adopt ISDA CDM.
 
----
-
 ## Key Uncertainties
 
 1. **Internal Initiatives** (Medium probability): Bank may have internal data standardization projects using CDM-like approaches
 2. **Pilot Programs** (Low probability): Possible small-scale experiments not disclosed
 3. **Future Adoption** (Low probability): No signals of planned CDM implementation
-
----
-
-## Recommendations
-
-### For Researchers
-- Monitor PBOC/CBIRC regulatory consultations for any CDM signals
-- Check if Chinese banks' international subsidiaries (e.g., London, New York branches) adopt CDM independently
-- Watch for China joining ISDA CDM working groups
-
-### For Stakeholders
-- Assume no CDM adoption for planning purposes
-- Recognize Chinese banks operate in separate regulatory ecosystem
-- Do not expect CDM interoperability with Chinese counterparties
-
----
 
 ## Final Verdict
 
@@ -81,3 +97,7 @@ Comprehensive multi-tier research yielded zero evidence of CDM adoption. Classif
 **Confidence**: 30%
 
 Zero evidence across all tiers. Chinese regulatory context explains non-adoption. Classification reflects epistemic caution, not engagement signal.
+
+---
+
+*Assessment complete. Classification: UNKNOWN (N/A) with 50% confidence.*

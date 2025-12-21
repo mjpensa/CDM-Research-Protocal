@@ -1,20 +1,20 @@
-# Adversarial Verdict
+# Adversarial Verdict: Lloyds Banking Group PLC
 
-**Bank**: Lloyds Banking Group plc
-**Date**: 2025-12-20
+**Bank:** Lloyds Banking Group PLC
+**Phase:** 2 - UK Regional
+**Date:** 2025-12-21
 
 ---
 
 ## Final Classification
 
-| Metric | Value |
-|--------|-------|
-| **Classification** | OBSERVER |
-| **Sub-Classification** | Historical-Engagement |
-| **Confidence** | 50% |
-| **P(ARCHITECT)** | 8% |
-
----
+| Element | Value |
+|---------|-------|
+| Classification | OBSERVER |
+| Sub-Classification | N/A |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
 
 ## Verdict Rationale
 
@@ -35,33 +35,24 @@ Lloyds engaged with CDM through the 2019 pilot but has NOT continued. This place
 - No current activity
 - Watching but not participating
 
----
+## Sub-Classification Justification
+
+N/A
+
+## Why Not Other Classifications
+
+| Alternative | Reason Rejected |
+|-------------|-----------------|
+| N/A | N/A |
 
 ## Confidence Assessment
 
-**Confidence: 50%**
+N/A
 
-**Factors Reducing Confidence**:
-- Single evidence item (historical pilot only)
-- Reliance on informative absences
-- No direct disconfirmation
+## Adversarial Challenge Status
 
-**Factors Supporting Confidence**:
-- Consistent null results across all tiers
-- 5-year temporal decay
-- Retail banking focus aligns with low CDM priority
-- Simpler explanation (abandonment) fits evidence
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
 
 ---
-
-## Business Context
-
-**Why OBSERVER Makes Sense**:
-1. **Retail/Commercial Focus**: Primarily retail banking, limited derivatives
-2. **Small Derivatives Book**: Lower CDM priority than investment banks
-3. **UK Regional Profile**: Phase 2 classification reflects regional scope
-4. **Pilot Learning**: May have deemed CDM cost disproportionate to benefit
-
----
-
-*Adversarial challenge complete. Proceeding to synthesis.*

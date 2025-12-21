@@ -1,12 +1,12 @@
 # Pre-Mortem Analysis: Deutsche Bank AG
 
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
-**Prior Probability**: P(ARCHITECT) = 25%
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
-## 1. Research Objective
+## Research Objective
 
 **Primary Goal**: Validate 'Pilot; production expected 2025' claim from framework v20
 
@@ -17,9 +17,7 @@
 4. Are regulatory enforcement priorities consuming technology capacity?
 5. What do named individuals say about derivatives technology direction?
 
----
-
-## 2. Potential Failure Modes
+## Potential Failure Modes
 
 ### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
 
@@ -48,9 +46,7 @@
 | **Single Source Dependency** | Relying on one vendor or press source | Require corroboration from multiple sources |
 | **Paywall Barriers** | Risk.net, Waters Tech may block access | Use archive.org, public summaries |
 
----
-
-## 3. Search Strategy
+## Search Strategy
 
 ### Tier 1 (Official Sources)
 - Deutsche Bank official news/press releases
@@ -73,43 +69,19 @@
 - Patent filings related to CDM
 - Blog posts from Deutsche Bank employees
 
----
+## Key Hypotheses to Test
 
-## 4. Key Hypotheses to Test
+N/A
 
-### H1: Deutsche Bank is in CDM pilot (framework claim)
-- **Evidence needed**: Official announcement, conference presentation, or credible trade press confirmation
-- **Disconfirming evidence**: Exhaustive search yields no pilot evidence
-
-### H2: Deutsche Bank is building internal CDM capability
-- **Evidence needed**: Hiring for CDM roles, FINOS contributions, internal team references
-- **Disconfirming evidence**: All CDM activity via vendors only
-
-### H3: Deutsche Bank is using vendor-only approach
-- **Evidence needed**: Vendor announcements (Regnology, AxiomSL, Delta Capita) without internal build evidence
-- **Disconfirming evidence**: Clear internal CDM team or FINOS contribution
-
-### H4: Regulatory remediation is consuming CDM capacity
-- **Evidence needed**: Continued AML/sanctions investment dominating tech budget
-- **Disconfirming evidence**: Evidence of CDM investment despite regulatory work
-
----
-
-## 5. Decision Points
+## Decision Points
 
 After each evidence tier, evaluate:
 1. **Probability Update**: How does evidence change P(ARCHITECT)?
 2. **Confidence Level**: Is evidence sufficient for classification?
 3. **Continue/Skip**: Does probability exceed 80% in either direction?
 
----
+## Null Hypothesis Reminder
 
-## 6. Null Hypothesis Reminder
-
-**Default assumption**: Deutsche Bank is PRAGMATIST until evidence proves otherwise.
-
-Extraordinary claims (ARCHITECT-Native, production deployment) require extraordinary evidence.
+Assume Deutsche Bank AG is PRAGMATIST until evidence proves otherwise.
 
 ---
-
-*Pre-mortem complete. Proceeding to Tier 1 evidence gathering.*

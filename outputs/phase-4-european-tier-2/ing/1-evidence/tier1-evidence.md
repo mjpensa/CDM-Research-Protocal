@@ -1,39 +1,25 @@
-# Tier 1 Evidence: ING Group
+# Tier 1 Evidence: ING Group N.V.
 
-**Bank:** ING Group
-**Phase:** 4 - European Tier 2
-**Research Date:** 2025-12-20
-**Researcher:** Claude Code (Opus 4.5)
+**Bank:** ING Group N.V.
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-No Tier 1 evidence found for ING Group's CDM adoption or participation.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-## Sources Searched
+## Evidence Inventory
 
-| Source | URL | Result |
-|--------|-----|--------|
-| ISDA CDM Page | isda.org/cdm | No ING mention |
-| FINOS CDM Repository | github.com/finos/common-domain-model | No ING contributors |
-| FINOS Members | finos.org | ING not listed as member |
-| ING Official News | ing.com/newsroom | No CDM announcements |
+No Tier 1 evidence found.
 
-## Evidence Items
+## Informative Absences
 
-*None found*
+N/A
 
-## Analysis
-
-ING Group, despite being a major European bank with significant derivatives operations, has no visible Tier 1 evidence of CDM adoption. The bank is not listed as:
-- A FINOS member organization
-- A CDM contributor on GitHub
-- A participant in ISDA CDM working groups
-- An adopter of ISDA Digital Regulatory Reporting (DRR)
-
-## Confidence Assessment
-
-- **Tier 1 Evidence Count:** 0
-- **Maximum Confidence from Tier 1:** N/A (no evidence)
-- **Proceed to Tier 2:** Yes
+---

@@ -1,9 +1,8 @@
 # CDM/DRR Assessment: Deutsche Bank AG
 
-**Classification**: PRAGMATIST (Regulatory-Driven)
-**Confidence**: 55%
-**Date**: 2025-12-20
-**Analyst**: Claude Code Research Protocol
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -13,9 +12,7 @@ Deutsche Bank AG is classified as a **PRAGMATIST (Regulatory-Driven)** with 55% 
 
 **Key Finding**: The framework v20 claim of "Pilot; production expected 2025" cannot be verified and appears to be inaccurate.
 
----
-
-## 1. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -26,9 +23,7 @@ Deutsche Bank AG is classified as a **PRAGMATIST (Regulatory-Driven)** with 55% 
 | Business Model | Global universal bank with significant investment banking |
 | G-SIB Status | Yes |
 
----
-
-## 2. Classification Summary
+## Classification Summary
 
 | Metric | Value |
 |--------|-------|
@@ -37,11 +32,8 @@ Deutsche Bank AG is classified as a **PRAGMATIST (Regulatory-Driven)** with 55% 
 | P(ARCHITECT) | 17% |
 | P(PRAGMATIST) | 83% |
 | Confidence | 55% |
-| Maturity Score | 1/5 |
 
----
-
-## 3. Evidence Inventory
+## Evidence Inventory
 
 ### Tier 1 Evidence (Official Sources)
 | ID | Finding | Direction | Quality |
@@ -59,21 +51,7 @@ Deutsche Bank AG is classified as a **PRAGMATIST (Regulatory-Driven)** with 55% 
 ### Tier 3 Evidence (Signal Sources)
 No positive evidence found. All searches returned null results.
 
----
-
-## 4. Null Results (Informative Absences)
-
-| Category | Implication |
-|----------|-------------|
-| ISDA CDM Contributor List | Not listed as contributor despite G-SIB status |
-| FINOS CDM Contributor | Contributes to other FINOS projects, NOT CDM |
-| CDM Job Postings | No hiring signals for CDM implementation |
-| Official CDM Announcements | No CDM content on official websites |
-| Production/Pilot Announcements | Framework claim unverified |
-
----
-
-## 5. Probability Trajectory
+## Probability Trajectory
 
 ```
 Prior:       25% ████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -82,9 +60,7 @@ Post-Tier2:  20% ████████████████████░
 Post-Tier3:  17% █████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ```
 
----
-
-## 6. Bayesian Analysis Summary
+## Bayesian Analysis Summary
 
 | Evidence | Likelihood Ratio | Cumulative Effect |
 |----------|-----------------|-------------------|
@@ -97,9 +73,7 @@ Post-Tier3:  17% █████████████████░░░░
 
 **Net Combined LR**: 0.61 (supports PRAGMATIST)
 
----
-
-## 7. FINOS Paradox Analysis
+## FINOS Paradox Analysis
 
 Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choice**:
 
@@ -112,9 +86,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 
 **Interpretation**: Deutsche Bank has the capability and willingness to contribute to FINOS open-source projects. Their absence from CDM is a revealed preference, not a capability limitation.
 
----
-
-## 8. Regulatory Compliance Assessment
+## Regulatory Compliance Assessment
 
 ### EMIR Refit (EU) - Deadline: April 29, 2024
 | Aspect | Assessment |
@@ -130,9 +102,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 | Applicability | Yes (Deutsche Bank London Branch) |
 | Evidence | None found |
 
----
-
-## 9. Vendor Relationship Analysis
+## Vendor Relationship Analysis
 
 | Vendor | Relationship | CDM Component |
 |--------|--------------|---------------|
@@ -141,9 +111,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 | REGnosys | No evidence | N/A |
 | Delta Capita | No evidence | N/A |
 
----
-
-## 10. Counterparty Network Analysis
+## Counterparty Network Analysis
 
 | CCP | Membership | CDM Status |
 |-----|------------|------------|
@@ -152,9 +120,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 | CME | Presumed member | Unknown |
 | JSCC | Unknown | Not applicable (June 2025 deadline) |
 
----
-
-## 11. Product Coverage Assessment
+## Product Coverage Assessment
 
 | Product | CDM Status | Confidence |
 |---------|------------|------------|
@@ -164,9 +130,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 | FX Options | Unknown | 30% |
 | Equity Derivatives | Unknown | 30% |
 
----
-
-## 12. Knowledge Gaps
+## Knowledge Gaps
 
 ### GAP-001: CDM Strategy (Priority: 78/100)
 - **Question**: What is Deutsche Bank's official CDM strategy?
@@ -178,9 +142,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 - **Impact**: Medium - could shift classification if CDM is embedded in DTCC
 - **Suggested Source**: DTCC relationship manager
 
----
-
-## 13. Framework Claim Validation
+## Framework Claim Validation
 
 | Claim | Source | Status | Evidence |
 |-------|--------|--------|----------|
@@ -188,9 +150,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 
 **Assessment**: The framework claim appears to be inaccurate. No evidence of pilot or production timeline found across all evidence tiers.
 
----
-
-## 14. Competitive Positioning
+## Competitive Positioning
 
 ### Peer Comparison (European G-SIBs)
 | Bank | CDM Status | Evidence Quality |
@@ -200,9 +160,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 | HSBC | Under assessment | - |
 | Deutsche Bank | PRAGMATIST (Regulatory-Driven) | This assessment |
 
----
-
-## 15. Adoption Drivers Analysis
+## Adoption Drivers Analysis
 
 ### Pressures TO Adopt CDM
 | Driver | Strength | Status |
@@ -220,9 +178,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 
 **Net Assessment**: Hesitations outweigh pressures
 
----
-
-## 16. Risk Factors
+## Risk Factors
 
 ### Risks to Classification
 | Risk | Probability | Impact |
@@ -231,9 +187,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 | Vendor CDM partnership announced | Medium | Would shift to PRAGMATIST (Vendor-Dependent) |
 | JSCC connectivity requirement | Low | Would create 2025 pressure |
 
----
-
-## 17. Forward-Looking Assessment
+## Forward-Looking Assessment
 
 ### Possible Trajectory Scenarios
 
@@ -252,9 +206,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 - Classification incorrect - actually ARCHITECT
 - Would require significant evidence emergence
 
----
-
-## 18. Recommendations
+## Recommendations
 
 ### For Framework Updates
 1. **Remove** "Pilot; production expected 2025" claim - cannot be verified
@@ -268,9 +220,7 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
    - Did the 2022 DRR conference lead to any internal initiatives?
    - Is DTCC relationship including any CDM components?
 
----
-
-## 19. Confidence Calibration
+## Confidence Calibration
 
 | Factor | Effect on Confidence |
 |--------|---------------------|
@@ -282,15 +232,23 @@ Deutsche Bank's FINOS contribution pattern reveals a **deliberate strategic choi
 
 **Final Confidence**: 55%
 
----
-
-## 20. Appendix: Source URLs
+## Appendix: Source URLs
 
 1. [FINOS CDM Resources](https://www.finos.org/common-domain-model)
 2. [JWG DRR Regcast](https://jwg-it.eu/regcasts/digitizing-derivative-reporting-with-drr/)
 3. [Deutsche Bank EMIR Transaction Reporting](https://www.db.com/legal-resources/european-market-infrastructure-regulation/transaction-reporting)
 4. [Deutsche Bank Annual Report 2023](https://investor-relations.db.com/files/documents/annual-reports/2024/Annual-Report-2023.pdf)
 5. [Risk.net CDM Coverage](https://www.risk.net/risk-management/6512226/patchy-response-to-isdas-back-office-of-the-future)
+
+## Null Results (Informative Absences)
+
+| Category | Implication |
+|----------|-------------|
+| ISDA CDM Contributor List | Not listed as contributor despite G-SIB status |
+| FINOS CDM Contributor | Contributes to other FINOS projects, NOT CDM |
+| CDM Job Postings | No hiring signals for CDM implementation |
+| Official CDM Announcements | No CDM content on official websites |
+| Production/Pilot Announcements | Framework claim unverified |
 
 ---
 

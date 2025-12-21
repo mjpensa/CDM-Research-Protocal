@@ -1,7 +1,8 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment
+# Reasoning Gate 2: Post-Tier 2 Assessment: Deutsche Bank AG
 
-**Bank**: Deutsche Bank AG
-**Date**: 2025-12-20
+**Bank:** Deutsche Bank AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -21,19 +22,19 @@ Per `config/decision-thresholds.json`:
 
 ## Decision: PROCEED TO TIER 3
 
-**Rationale**: Per instructions to process all 3 tiers for every bank, we proceed to Tier 3.
+**Rationale**: Per protocol to process all tiers.
 
 ## Evidence Trajectory Analysis
 
-| Stage | P(ARCHITECT) | Direction |
-|-------|--------------|-----------|
+| Stage | P(ARCHITECT) | Change |
+|-------|--------------|--------|
 | Prior | 25% | - |
-| Post-Tier 1 | 14% | Decreased |
-| Post-Tier 2 | 20% | Increased |
 
-**Pattern**: Initial Tier 1 informative absences pushed probability down; Tier 2 conference evidence partially recovered.
+## Evidence Quality Assessment
 
-## Remaining Questions for Tier 3
+N/A
+
+## Key Questions for Tier 3
 
 1. Are there CDM-related job postings at Deutsche Bank?
 2. Do LinkedIn profiles of DB derivatives tech staff mention CDM work?
@@ -51,4 +52,4 @@ Per `config/decision-thresholds.json`:
 
 ---
 
-*Gate 2 passed. Proceeding to Tier 3 evidence gathering.*
+*Gate 2 passed. Proceeding to tier 3 evidence gathering.*

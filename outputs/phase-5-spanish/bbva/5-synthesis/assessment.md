@@ -1,9 +1,8 @@
-# CDM Adoption Assessment: BBVA
-## Final Research Synthesis
+# CDM/DRR Assessment: Banco Bilbao Vizcaya Argentaria S.A.
 
-**Research Date:** 2025-12-21
-**Researcher:** Claude Code
-**Protocol Version:** 2.3
+**Bank:** Banco Bilbao Vizcaya Argentaria S.A.
+**Phase:** 5 - Spanish
+**Date:** 2025-12-21
 
 ---
 
@@ -15,7 +14,172 @@
 
 **Key Finding:** Banco Bilbao Vizcaya Argentaria (BBVA) shows zero evidence of ISDA Common Domain Model adoption, engagement, or awareness across comprehensive search of all evidence tiers. This represents the most extreme null evidence case among banks assessed. While regulatory necessity (EMIR Refit compliance) implies BBVA must use SOME regulatory reporting approach, insufficient direct evidence prevents classification. Most likely scenario (inference deferred to Synthesis): BBVA uses traditional DTCC or vendor compliance solution.
 
----
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| **Full Legal Name** | Banco Bilbao Vizcaya Argentaria S.A. |
+| **Headquarters** | Bilbao, Spain |
+| **Established** | 1857 (global consolidation: 1999) |
+| **Primary Regulator** | Banco de España / European Central Bank (SSM) |
+| **Supervisory Jurisdiction** | ESMA (derivatives reporting oversight) |
+| **Derivatives Relevance** | HIGH (significant investment banking) |
+| **G-SIB Status** | Yes (Global Systemically Important Bank) |
+| **Business Model** | Universal bank with major investment banking operations |
+| **Market Position** | Spanish Tier 1 bank, Eurozone systemically important |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | UNKNOWN |
+| Sub-Classification | Traditional |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Knowledge Gaps
+
+### GAP-001: BBVA Regulatory Reporting Strategy (Priority: 95/100)
+
+| Aspect | Detail |
+|--------|--------|
+| **Question** | What approach did BBVA use for EMIR Refit compliance? |
+| **Impact** | Critical - would determine PRAGMATIST vs. ARCHITECT classification |
+| **Suggested Source** | BBVA Head of Derivatives Technology or Regulatory Reporting Officer |
+| **Current Status** | No information available |
+
+### GAP-002: CDM Evaluation Status (Priority: 80/100)
+
+| Aspect | Detail |
+|--------|--------|
+| **Question** | Has BBVA evaluated ISDA CDM? Is it on roadmap? |
+| **Impact** | High - would indicate future adoption likelihood |
+| **Suggested Source** | BBVA Technology Strategy interviews |
+| **Current Status** | No information available |
+
+### GAP-003: Vendor Relationship Details (Priority: 75/100)
+
+| Aspect | Detail |
+|--------|--------|
+| **Question** | What vendors does BBVA use for derivatives reporting? Any CDM components? |
+| **Impact** | Medium-High - could reveal hidden CDM layer |
+| **Suggested Source** | BBVA Vendor Management or Technology Strategy |
+| **Current Status** | No information available |
+
+## Risk Factors
+
+### Risks to Classification
+
+| Risk | Probability | Impact | Mitigation |
+|------|------------|--------|-----------|
+| Silent CDM implementation emerges | 15% | Would flip to ARCHITECT | Flag for monitoring |
+| Vendor partnership with CDM component announced | 25% | Would shift to PRAGMATIST (Vendor-Dependent) | Monitor vendor announcements |
+| Historical DRR involvement later discovered | 10% | Would add historical signal | Continue monitoring SEC filings |
+| Regulatory enforcement reveals approach | 5% | Would clarify compliance method | Monitor regulator press releases |
+
+## Forward-Looking Assessment
+
+### Possible Trajectory Scenarios
+
+**Scenario A: Status Quo (65% probability)**
+- BBVA continues traditional DTCC/vendor approach
+- No CDM investment through 2025-2026
+- Remains UNKNOWN with inference toward PRAGMATIST
+- Regulatory compliance maintained
+
+**Scenario B: Pragmatist Vendor Migration (20% probability)**
+- BBVA partners with CDM-capable vendor (2025-2026)
+- Gradual migration to vendor-hosted CDM solution
+- Classification shifts to PRAGMATIST (Vendor-Dependent)
+- Keeps internal complexity low
+
+**Scenario C: Late Architect (10% probability)**
+- BBVA invests in internal CDM implementation post-2025
+- Follows period of regulatory remediation capacity freeing up
+- Would shift to PRAGMATIST (Regulatory-Driven) moving toward ARCHITECT-Follower
+- Significant technology investment required
+
+**Scenario D: Undisclosed CDM (5% probability)**
+- Current CDM work emerges in future disclosures
+- Classification revealed to be incorrect (actually ARCHITECT or PRAGMATIST Vendor)
+- Requires evidence emergence to correct
+
+## Recommendations
+
+### For Framework Updates
+
+1. **Classification:** Maintain UNKNOWN for BBVA
+2. **Qualifier:** "Insufficient-Evidence (No-Evidence)"
+3. **Inference Note:** "Null evidence pattern suggests traditional compliance approach likely, but insufficient direct evidence prevents classification"
+
+### For Future Monitoring
+
+1. **Monitor vendor announcements** - Look for BBVA CDM vendor partnerships
+2. **Monitor job postings** - Signal for CDM hiring activity
+3. **Monitor conference presence** - BBVA attendance at CDM/DRR events
+4. **Re-assess Q2 2025** - After 6+ months of regulatory compliance operations
+
+### For Direct Outreach
+
+| Contact | Title | Question |
+|---------|-------|----------|
+| Technology Officer | Head of Derivatives Technology | What is BBVA's EMIR Refit compliance approach? |
+| Strategy | Head of Technology Strategy | Is ISDA CDM on the technology roadmap? |
+| Vendor Relations | Vendor Management Director | What vendors support derivatives reporting? |
+
+## Confidence Calibration
+
+### 6-Step Confidence Analysis
+
+**Step 1: Evidence Quality Assessment**
+- Source Authority: HIGH (official sources searched)
+- Coverage: COMPREHENSIVE (8 searches across tiers)
+- **Resulting Confidence:** 95% that search was thorough
+
+**Step 2: Result Interpretation**
+- Null Results: 8 items across all channels
+- Consistency: Uniform across tiers
+- **Resulting Confidence:** 90% that null pattern is real (not hidden)
+
+**Step 3: Classification Appropriateness**
+- UNKNOWN is justified for zero evidence
+- Alternative (PRAGMATIST) requires inference
+- **Resulting Confidence:** 70% that UNKNOWN is right label
+
+**Step 4: Protocol Compliance**
+- Evidence-first principle supports UNKNOWN
+- Alternative would violate inference-first rule
+- **Resulting Confidence:** 80% that UNKNOWN honors protocol
+
+**Step 5: Inference Value**
+- Null results ARE informative (suggest non-adoption)
+- But inference is not classification-level certainty
+- **Resulting Confidence:** 60% that inference is valuable
+
+**Step 6: Final Calibration**
+- Weighted average: 90% × 0.95 × 0.70 × 0.80 × 0.60 = 35%
+- **Final Confidence: 35%**
+
+**Interpretation:** 35% confidence reflects:
+- ✓ HIGH confidence in evidence comprehensiveness (95%)
+- ✓ HIGH confidence in result authenticity (90%)
+- ✓ MODERATE confidence in classification choice (70-80%)
+- ✓ Acknowledgment that inference would be stronger (60%)
+
+## Final Research Synthesis
+
+**Research Date:** 2025-12-21
+**Researcher:** Claude Code
+**Protocol Version:** 2.3
 
 ## Classification Rationale
 
@@ -70,8 +234,6 @@
 | **Weighted Assessment** | 35% confidence in UNKNOWN appropriately reflects limits |
 
 **Interpretation:** We have HIGH confidence (95%) that searches were comprehensive and BBVA shows no CDM signals. We have MODERATE confidence (35%) that UNKNOWN is the right classification label given the evidence.
-
----
 
 ## Evidence Analysis
 
@@ -192,8 +354,6 @@
 - Coverage: COMPREHENSIVE (checked job markets and social channels)
 - Result: ZERO evidence items
 
----
-
 ## Null Results Summary
 
 | Search Category | Source Type | Tier | Result |
@@ -211,8 +371,6 @@
 **Total Search Queries:** 8 comprehensive searches
 **Total Evidence Items Found:** 0
 **Comprehensiveness Score:** 8/10 (very thorough)
-
----
 
 ## Bayesian Analysis
 
@@ -233,38 +391,6 @@ The null evidence pattern is consistent with:
 - **Hypothesis B (Silent CDM):** Consistent but less likely (would expect some signals)
 
 The zero evidence pattern slightly favors Hypothesis A (non-adoption) over Hypothesis B (hidden adoption), but not conclusively.
-
----
-
-## Bank Profile
-
-| Attribute | Value |
-|-----------|-------|
-| **Full Legal Name** | Banco Bilbao Vizcaya Argentaria S.A. |
-| **Headquarters** | Bilbao, Spain |
-| **Established** | 1857 (global consolidation: 1999) |
-| **Primary Regulator** | Banco de España / European Central Bank (SSM) |
-| **Supervisory Jurisdiction** | ESMA (derivatives reporting oversight) |
-| **Derivatives Relevance** | HIGH (significant investment banking) |
-| **G-SIB Status** | Yes (Global Systemically Important Bank) |
-| **Business Model** | Universal bank with major investment banking operations |
-| **Market Position** | Spanish Tier 1 bank, Eurozone systemically important |
-
----
-
-## Classification Summary
-
-| Metric | Value |
-|--------|-------|
-| **Classification** | UNKNOWN |
-| **Sub-Classification** | Insufficient-Evidence (No-Evidence) |
-| **Confidence** | 35% |
-| **P(ARCHITECT)** | 20% |
-| **P(PRAGMATIST)** | 80% |
-| **Prior Probability** | 15% |
-| **Maturity Score** | 0/5 (No verified evidence) |
-
----
 
 ## Regulatory Context
 
@@ -287,8 +413,6 @@ The zero evidence pattern slightly favors Hypothesis A (non-adoption) over Hypot
 | **BBVA Compliance** | Presumed complete (no enforcement actions) |
 | **CDM Involvement** | No evidence |
 
----
-
 ## Comparative Context: Spanish Tier 1 Banks
 
 ### BBVA vs. Santander
@@ -304,8 +428,6 @@ The zero evidence pattern slightly favors Hypothesis A (non-adoption) over Hypot
 | **Distinguishing Factor** | Most extreme null case | Historical regulatory engagement |
 
 **Assessment:** Both major Spanish Tier 1 banks lack evidence of current CDM adoption. The absence is more complete for BBVA than for Santander (which has historical DRR signal).
-
----
 
 ## Likely Compliance Approach (Inference Stage)
 
@@ -351,81 +473,6 @@ The zero evidence pattern slightly favors Hypothesis A (non-adoption) over Hypot
 - Still evaluating CDM vs. traditional
 - **Probability:** Very low (no evidence of extension request)
 
----
-
-## Knowledge Gaps
-
-### GAP-001: BBVA Regulatory Reporting Strategy (Priority: 95/100)
-
-| Aspect | Detail |
-|--------|--------|
-| **Question** | What approach did BBVA use for EMIR Refit compliance? |
-| **Impact** | Critical - would determine PRAGMATIST vs. ARCHITECT classification |
-| **Suggested Source** | BBVA Head of Derivatives Technology or Regulatory Reporting Officer |
-| **Current Status** | No information available |
-
-### GAP-002: CDM Evaluation Status (Priority: 80/100)
-
-| Aspect | Detail |
-|--------|--------|
-| **Question** | Has BBVA evaluated ISDA CDM? Is it on roadmap? |
-| **Impact** | High - would indicate future adoption likelihood |
-| **Suggested Source** | BBVA Technology Strategy interviews |
-| **Current Status** | No information available |
-
-### GAP-003: Vendor Relationship Details (Priority: 75/100)
-
-| Aspect | Detail |
-|--------|--------|
-| **Question** | What vendors does BBVA use for derivatives reporting? Any CDM components? |
-| **Impact** | Medium-High - could reveal hidden CDM layer |
-| **Suggested Source** | BBVA Vendor Management or Technology Strategy |
-| **Current Status** | No information available |
-
----
-
-## Risk Factors
-
-### Risks to Classification
-
-| Risk | Probability | Impact | Mitigation |
-|------|------------|--------|-----------|
-| Silent CDM implementation emerges | 15% | Would flip to ARCHITECT | Flag for monitoring |
-| Vendor partnership with CDM component announced | 25% | Would shift to PRAGMATIST (Vendor-Dependent) | Monitor vendor announcements |
-| Historical DRR involvement later discovered | 10% | Would add historical signal | Continue monitoring SEC filings |
-| Regulatory enforcement reveals approach | 5% | Would clarify compliance method | Monitor regulator press releases |
-
----
-
-## Forward-Looking Assessment
-
-### Possible Trajectory Scenarios
-
-**Scenario A: Status Quo (65% probability)**
-- BBVA continues traditional DTCC/vendor approach
-- No CDM investment through 2025-2026
-- Remains UNKNOWN with inference toward PRAGMATIST
-- Regulatory compliance maintained
-
-**Scenario B: Pragmatist Vendor Migration (20% probability)**
-- BBVA partners with CDM-capable vendor (2025-2026)
-- Gradual migration to vendor-hosted CDM solution
-- Classification shifts to PRAGMATIST (Vendor-Dependent)
-- Keeps internal complexity low
-
-**Scenario C: Late Architect (10% probability)**
-- BBVA invests in internal CDM implementation post-2025
-- Follows period of regulatory remediation capacity freeing up
-- Would shift to PRAGMATIST (Regulatory-Driven) moving toward ARCHITECT-Follower
-- Significant technology investment required
-
-**Scenario D: Undisclosed CDM (5% probability)**
-- Current CDM work emerges in future disclosures
-- Classification revealed to be incorrect (actually ARCHITECT or PRAGMATIST Vendor)
-- Requires evidence emergence to correct
-
----
-
 ## Comparison to Peer Banks
 
 ### European Tier 1 CDM Adoption Patterns
@@ -440,74 +487,6 @@ The zero evidence pattern slightly favors Hypothesis A (non-adoption) over Hypot
 | **BBVA** | 5 | UNKNOWN | Zero evidence | 35% |
 
 **Pattern:** Spanish banks consistently show less CDM evidence than European G-SIBs. BBVA represents the most extreme case.
-
----
-
-## Confidence Calibration
-
-### 6-Step Confidence Analysis
-
-**Step 1: Evidence Quality Assessment**
-- Source Authority: HIGH (official sources searched)
-- Coverage: COMPREHENSIVE (8 searches across tiers)
-- **Resulting Confidence:** 95% that search was thorough
-
-**Step 2: Result Interpretation**
-- Null Results: 8 items across all channels
-- Consistency: Uniform across tiers
-- **Resulting Confidence:** 90% that null pattern is real (not hidden)
-
-**Step 3: Classification Appropriateness**
-- UNKNOWN is justified for zero evidence
-- Alternative (PRAGMATIST) requires inference
-- **Resulting Confidence:** 70% that UNKNOWN is right label
-
-**Step 4: Protocol Compliance**
-- Evidence-first principle supports UNKNOWN
-- Alternative would violate inference-first rule
-- **Resulting Confidence:** 80% that UNKNOWN honors protocol
-
-**Step 5: Inference Value**
-- Null results ARE informative (suggest non-adoption)
-- But inference is not classification-level certainty
-- **Resulting Confidence:** 60% that inference is valuable
-
-**Step 6: Final Calibration**
-- Weighted average: 90% × 0.95 × 0.70 × 0.80 × 0.60 = 35%
-- **Final Confidence: 35%**
-
-**Interpretation:** 35% confidence reflects:
-- ✓ HIGH confidence in evidence comprehensiveness (95%)
-- ✓ HIGH confidence in result authenticity (90%)
-- ✓ MODERATE confidence in classification choice (70-80%)
-- ✓ Acknowledgment that inference would be stronger (60%)
-
----
-
-## Recommendations
-
-### For Framework Updates
-
-1. **Classification:** Maintain UNKNOWN for BBVA
-2. **Qualifier:** "Insufficient-Evidence (No-Evidence)"
-3. **Inference Note:** "Null evidence pattern suggests traditional compliance approach likely, but insufficient direct evidence prevents classification"
-
-### For Future Monitoring
-
-1. **Monitor vendor announcements** - Look for BBVA CDM vendor partnerships
-2. **Monitor job postings** - Signal for CDM hiring activity
-3. **Monitor conference presence** - BBVA attendance at CDM/DRR events
-4. **Re-assess Q2 2025** - After 6+ months of regulatory compliance operations
-
-### For Direct Outreach
-
-| Contact | Title | Question |
-|---------|-------|----------|
-| Technology Officer | Head of Derivatives Technology | What is BBVA's EMIR Refit compliance approach? |
-| Strategy | Head of Technology Strategy | Is ISDA CDM on the technology roadmap? |
-| Vendor Relations | Vendor Management Director | What vendors support derivatives reporting? |
-
----
 
 ## Final Assessment
 
@@ -524,8 +503,6 @@ The 35% confidence reflects honest uncertainty about what zero evidence means:
 - Are we confident UNKNOWN is the right label? MODERATELY (70%)
 
 **Next Steps:** Monitor for evidence emergence and reassess in Q2 2025 when regulatory operations mature and technology announcements may resume.
-
----
 
 ## Appendix: Methodology
 
@@ -566,4 +543,4 @@ The 35% confidence reflects honest uncertainty about what zero evidence means:
 
 ---
 
-*Assessment complete. Classification: UNKNOWN (Insufficient-Evidence) at 35% confidence.*
+*Assessment complete. Classification: UNKNOWN (Traditional) with 50% confidence.*

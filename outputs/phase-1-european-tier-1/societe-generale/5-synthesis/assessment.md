@@ -1,8 +1,8 @@
-# CDM/DRR Assessment: Société Générale
+# CDM/DRR Assessment: SociÃ©tÃ© GÃ©nÃ©rale
 
-**Classification**: PRAGMATIST (Regulatory-Driven)
-**Confidence**: 50%
-**Date**: 2025-12-20
+**Bank:** SociÃ©tÃ© GÃ©nÃ©rale
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -10,9 +10,7 @@
 
 Société Générale is classified as a **PRAGMATIST (Regulatory-Driven)** with 50% confidence. Despite French peer BNP Paribas being in CDM production since Q3 2022, no evidence supports the hypothesis that Société Générale is following this path. Conference participation shows awareness but not implementation.
 
----
-
-## 1. Bank Profile
+## Bank Profile
 
 | Attribute | Value |
 |-----------|-------|
@@ -22,21 +20,36 @@ Société Générale is classified as a **PRAGMATIST (Regulatory-Driven)** with 
 | Derivatives Relevance | High |
 | Business Model | Universal bank with strong investment banking |
 
----
-
-## 2. Classification Summary
+## Classification Summary
 
 | Metric | Value |
 |--------|-------|
 | Classification | PRAGMATIST |
 | Sub-Classification | Regulatory-Driven |
 | P(ARCHITECT) | 26% |
+| P(PRAGMATIST) | 0% |
 | Confidence | 50% |
-| Maturity Score | 1/5 |
 
----
+## Evidence Inventory
 
-## 3. Key Evidence
+N/A
+
+## Probability Trajectory
+
+| Stage | P(ARCHITECT) |
+|-------|--------------|
+| Prior | 35% |
+| Post-Tier 1 | 29% |
+| Post-Tier 2 | 30% |
+| Post-Tier 3 | 26% |
+
+## Recommendations
+
+1. **Hypothesis Update**: Remove "following BNP Paribas" assumption from framework
+2. **Classification**: PRAGMATIST (Regulatory-Driven)
+3. **Re-assessment**: Q2 2025
+
+## Key Evidence
 
 ### Positive Signals
 - Miki Cheung (Regulatory Program Manager) at Informa Trade Reporting Summit (2024)
@@ -47,9 +60,7 @@ Société Générale is classified as a **PRAGMATIST (Regulatory-Driven)** with 
 - No CDM job postings
 - No BNP Paribas follow pattern evidence
 
----
-
-## 4. Hypothesis Validation
+## Hypothesis Validation
 
 | Hypothesis | Status |
 |------------|--------|
@@ -57,20 +68,7 @@ Société Générale is classified as a **PRAGMATIST (Regulatory-Driven)** with 
 
 BNP Paribas entered production Q3 2022. After 3+ years, no evidence of Société Générale following.
 
----
-
-## 5. Probability Trajectory
-
-| Stage | P(ARCHITECT) |
-|-------|--------------|
-| Prior | 35% |
-| Post-Tier 1 | 29% |
-| Post-Tier 2 | 30% |
-| Post-Tier 3 | 26% |
-
----
-
-## 6. Peer Comparison
+## Peer Comparison
 
 | Bank | CDM Status | Classification |
 |------|------------|----------------|
@@ -78,17 +76,7 @@ BNP Paribas entered production Q3 2022. After 3+ years, no evidence of Société
 | Crédit Agricole | TBD | TBD |
 | Société Générale | No evidence | PRAGMATIST |
 
----
-
-## 7. Recommendations
-
-1. **Hypothesis Update**: Remove "following BNP Paribas" assumption from framework
-2. **Classification**: PRAGMATIST (Regulatory-Driven)
-3. **Re-assessment**: Q2 2025
-
----
-
-## 8. Source URLs
+## Source URLs
 
 1. [REGnosys Informa Summit](https://regnosys.com/insights/regnosys-at-the-informa-trade-and-transaction-reporting-summit-key-reflections/)
 2. [SocGen EMIR Page](https://wholesale.banking.societegenerale.com/en/compliance-regulatory-information/market-regulation/emir/)
@@ -96,4 +84,4 @@ BNP Paribas entered production Q3 2022. After 3+ years, no evidence of Société
 
 ---
 
-*Assessment complete.*
+*Assessment complete. Classification: PRAGMATIST (Regulatory-Driven) with 50% confidence.*

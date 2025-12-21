@@ -1,32 +1,25 @@
 # Tier 1 Evidence: Morgan Stanley
 
-**Research Phase**: 8 (US Major Banks)
-**Bank**: Morgan Stanley
-**Date**: 2025-12-21
+**Bank:** Morgan Stanley
+**Phase:** 8 - US Investment Banks
+**Date:** 2025-12-21
 
 ---
 
-## Overview
+## Search Execution Summary
 
-This file contains Tier 1 evidence (official sources with highest authority) for Morgan Stanley's CDM/DRR adoption.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
-**Expected Classification**: ARCHITECT (Active) at 70% confidence
+## Evidence Inventory
 
-**Key Evidence Summary**:
-- Participated in FINOS Legend pilot (2020)
-- Used Legend to prototype FX option extensions to CDM
-- Chris Lipscomb (MD, Global Head of Rates) speaks at ISDA AGM 2024
-- Pilot or POC (Tier 1)
+No Tier 1 evidence found.
 
----
+## Informative Absences
 
-## Evidence Items
-
-*Evidence items will be populated during research phase*
+N/A
 
 ---
-
-**Notes**:
-- Maximum confidence for Tier 1 evidence: 95%
-- All evidence must include source URLs from official domains
-- Evidence older than 12 months requires corroboration

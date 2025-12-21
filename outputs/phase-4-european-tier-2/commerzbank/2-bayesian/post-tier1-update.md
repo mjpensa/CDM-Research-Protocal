@@ -1,8 +1,8 @@
-# Bayesian Update: Post-Tier 1 - Commerzbank AG
+# Bayesian Update: Post-Tier 1 Evidence: Commerzbank AG
 
 **Bank:** Commerzbank AG
-**Phase:** 4 - European Tier 2
-**Update Date:** 2025-12-20
+**Phase:** 4 - Other European
+**Date:** 2025-12-21
 
 ---
 
@@ -15,9 +15,13 @@
 
 ## Tier 1 Evidence Summary
 
-| Evidence ID | Description | Direction | Likelihood Ratio |
-|-------------|-------------|-----------|------------------|
-| *None* | No Tier 1 evidence found | NEUTRAL | 1.0 |
+No Tier 1 evidence found.
+
+## Likelihood Ratio Calculation
+
+```
+Combined LR = 1.0 (no evidence)
+```
 
 ## Posterior Calculation
 
@@ -31,19 +35,16 @@ P(PRAGMATIST) = 0.85
 
 ## Updated Probabilities
 
-| Parameter | Prior | Posterior | Change |
-|-----------|-------|-----------|--------|
-| P(ARCHITECT) | 0.15 | 0.15 | 0.0 |
-| P(PRAGMATIST) | 0.85 | 0.85 | 0.0 |
+| Metric | Value |
+|--------|-------|
+| P(ARCHITECT) | 0% |
+| P(PRAGMATIST) | 1% |
+| Confidence | 0% |
 
-## Analysis
+## Key Insights
 
-Tier 1 searches revealed no CDM adoption evidence:
-- No ISDA CDM participation
-- No FINOS membership or contribution
-- No regulatory filings mentioning CDM
-- No official bank announcements
+N/A
 
-## Decision
+---
 
-**Continue to Tier 2 search** - Tier 1 absence is informative but not conclusive.
+*Proceeding to Tier 2.*

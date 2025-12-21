@@ -1,0 +1,101 @@
+{
+  "$schema": "CDM/DRR Evidence Decay Rates v1.0",
+  "description": "Type-specific evidence decay rates for temporal stickiness (Enhancement 5)",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "decay_model": {
+    "formula": "weight = max(minimum_weight, 2^(-age_months / half_life_months))",
+    "description": "Exponential decay with type-specific half-life and floor",
+    "rationale": "Different evidence types have different persistence characteristics"
+  },
+
+  "decay_rates": {
+    "production_usage": {
+      "half_life_months": 36,
+      "minimum_weight": 0.5,
+      "description": "Production usage is very sticky - once in production, likely to remain",
+      "rationale": "Production systems rarely get decommissioned quickly"
+    },
+    "pilot_or_poc": {
+      "half_life_months": 18,
+      "minimum_weight": 0.3,
+      "description": "PoCs can stall or be cancelled; moderate decay",
+      "rationale": "Many pilots don't progress to production"
+    },
+    "open_source_contribution": {
+      "half_life_months": 24,
+      "minimum_weight": 0.4,
+      "description": "Code contributions show sustained commitment",
+      "rationale": "OSS participation indicates ongoing technical investment"
+    },
+    "membership_or_participation": {
+      "half_life_months": 18,
+      "minimum_weight": 0.25,
+      "description": "Working group membership can lapse",
+      "rationale": "Membership alone doesn't guarantee ongoing commitment"
+    },
+    "vendor_proxy_signal": {
+      "half_life_months": 24,
+      "minimum_weight": 0.35,
+      "description": "Vendor relationships tend to be multi-year contracts",
+      "rationale": "Enterprise vendor relationships are sticky"
+    },
+    "hiring_signal": {
+      "half_life_months": 6,
+      "minimum_weight": 0.1,
+      "description": "Job postings are highly transient signals",
+      "rationale": "Positions get filled; priorities change quickly"
+    },
+    "strategic_intent": {
+      "half_life_months": 12,
+      "minimum_weight": 0.2,
+      "description": "Strategic announcements without follow-through decay",
+      "rationale": "Strategy can change; requires validation through action"
+    }
+  },
+
+  "tier_decay_modifiers": {
+    "description": "Tier-based adjustments to decay rates",
+    "tier1": {
+      "half_life_multiplier": 1.25,
+      "rationale": "Official sources more reliable over time"
+    },
+    "tier2": {
+      "half_life_multiplier": 1.0,
+      "rationale": "Standard decay for trade press"
+    },
+    "tier3": {
+      "half_life_multiplier": 0.75,
+      "rationale": "Low-authority sources decay faster"
+    }
+  },
+
+  "freshness_categories": {
+    "description": "Age category thresholds (aligned with CLAUDE.md)",
+    "current": {
+      "max_days": 365,
+      "base_weight": 1.0
+    },
+    "recent": {
+      "max_days": 548,
+      "base_weight": 0.8
+    },
+    "dated": {
+      "max_days": 1095,
+      "base_weight": 0.5
+    },
+    "historical": {
+      "max_days": null,
+      "base_weight": 0.3,
+      "note": "Can provide context but cannot drive classification"
+    }
+  },
+
+  "usage_notes": [
+    "Apply decay formula when calculating evidence weights",
+    "Combine with tier modifiers for final weight",
+    "Evidence older than historical threshold provides context only",
+    "For high-confidence claims, require at least one 'current' source"
+  ]
+}

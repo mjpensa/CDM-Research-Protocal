@@ -1,8 +1,8 @@
 # CDM/DRR Assessment: Barclays PLC
 
-**Classification**: ARCHITECT (Follower)
-**Confidence**: 75%
-**Date**: 2025-12-20
+**Bank:** Barclays PLC
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
 
@@ -10,9 +10,45 @@
 
 Barclays PLC is classified as an **ARCHITECT (Follower)** with 75% confidence. Barclays has been one of the most vocal CDM advocates in the industry, with Lee Braine (Managing Director, Research & Engineering) leading thought leadership efforts. Evidence includes CDM prototype releases, FINOS demonstrations, DerivHack hackathons (2018, 2019), and consistent public advocacy for CDM adoption.
 
----
+## Bank Profile
 
-## 1. Key Evidence
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | Barclays PLC |
+| Headquarters | London, United Kingdom |
+| Region | Europe |
+| Phase | 1 - European Tier 1 |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | ARCHITECT |
+| Sub-Classification | Follower |
+| P(ARCHITECT) | 82% |
+| P(PRAGMATIST) | 0% |
+| Confidence | 75% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+| Stage | P(ARCHITECT) |
+|-------|--------------|
+| Prior | 30% |
+| Post-Tier 1 | 75% |
+| Post-Tier 2 | 82% |
+| Final | 82% |
+
+## Recommendations
+
+1. **Classification**: ARCHITECT (Follower)
+2. **Watch for**: Production announcement, FINOS maintainer status
+3. **Re-assessment trigger**: Any production deployment confirmation
+
+## Key Evidence
 
 | ID | Finding | Tier | Type | Quality |
 |----|---------|------|------|---------|
@@ -23,21 +59,7 @@ Barclays PLC is classified as an **ARCHITECT (Follower)** with 75% confidence. B
 | BARC-005 | Infrastructure push paper (Mar 2021) | 2 | membership | MEDIUM |
 | BARC-006 | Repo clearing CDM advocacy (Dec 2023) | 2 | membership | MEDIUM |
 
----
-
-## 2. Classification Summary
-
-| Metric | Value |
-|--------|-------|
-| Classification | ARCHITECT |
-| Sub-Classification | Follower |
-| P(ARCHITECT) | 82% |
-| Confidence | 75% |
-| Maturity Score | 3/5 |
-
----
-
-## 3. Key Individual: Lee Braine
+## Key Individual: Lee Braine
 
 **Lee Braine** - Managing Director, Research and Engineering at Barclays
 
@@ -48,9 +70,7 @@ Barclays PLC is classified as an **ARCHITECT (Follower)** with 75% confidence. B
 
 Lee Braine's sustained multi-year advocacy and prototyping work indicates strategic commitment to CDM at senior level.
 
----
-
-## 4. Why ARCHITECT-Follower (not Native or Leader)?
+## Why ARCHITECT-Follower (not Native or Leader)?
 
 | Classification | Requirement | Status |
 |---------------|-------------|--------|
@@ -60,20 +80,7 @@ Lee Braine's sustained multi-year advocacy and prototyping work indicates strate
 
 Barclays has strong prototype/demonstration evidence but no confirmed production deployment. Hence Follower, not Native.
 
----
-
-## 5. Probability Trajectory
-
-| Stage | P(ARCHITECT) |
-|-------|--------------|
-| Prior | 30% |
-| Post-Tier 1 | 75% |
-| Post-Tier 2 | 82% |
-| Final | 82% |
-
----
-
-## 6. Product Coverage
+## Product Coverage
 
 | Product | Evidence | Status |
 |---------|----------|--------|
@@ -81,9 +88,7 @@ Barclays has strong prototype/demonstration evidence but no confirmed production
 | Repo | Dec 2023 advocacy | Exploration |
 | Securities | DerivHack 2019 | Historical |
 
----
-
-## 7. Comparison with Peers
+## Comparison with Peers
 
 | Bank | Classification | Confidence | Key Differentiator |
 |------|---------------|------------|-------------------|
@@ -94,17 +99,7 @@ Barclays has strong prototype/demonstration evidence but no confirmed production
 
 Barclays is ahead of Deutsche Bank, Société Générale, and UBS in CDM maturity but behind BNP Paribas and JP Morgan.
 
----
-
-## 8. Recommendations
-
-1. **Classification**: ARCHITECT (Follower)
-2. **Watch for**: Production announcement, FINOS maintainer status
-3. **Re-assessment trigger**: Any production deployment confirmation
-
----
-
-## 9. Source URLs
+## Source URLs
 
 1. [FINOS Barclays CDM Demo](https://resources.finos.org/content/barclays-demonstration-of-interest-rate-swap-processing-using-common-domain-model-cdm/)
 2. [Risk.net: Barclays CCP Prototype](https://www.risk.net/risk-management/7886321/barclays-looks-to-woo-ccps-with-cdm-prototype)
@@ -114,4 +109,4 @@ Barclays is ahead of Deutsche Bank, Société Générale, and UBS in CDM maturit
 
 ---
 
-*Assessment complete.*
+*Assessment complete. Classification: ARCHITECT (Follower) with 75% confidence.*

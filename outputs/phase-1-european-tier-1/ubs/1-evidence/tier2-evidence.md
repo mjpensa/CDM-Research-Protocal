@@ -1,49 +1,67 @@
 # Tier 2 Evidence: UBS Group AG
 
-## Search Execution Summary
-
-- **Date**: 2025-12-20
-- **Evidence Blocks Found**: 2
-- **Schema Version**: 4.3
+**Bank:** UBS Group AG
+**Phase:** 1 - European Tier 1
+**Date:** 2025-12-21
 
 ---
+
+## Search Execution Summary
+
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 2 |
+| Schema Version | 4.3 |
 
 ## Evidence Inventory
 
-[UBS-002] TIER 2 — SUPPORTS ARCHITECT
+### UBS-002: Evidence Item
 
-**Source**: https://cdm.finos.org/docs/cdm-materials/
-**Date**: 2022-09-08
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Finding**: "Sunil Challa of Credit Suisse participated in a panel of experts at OSFF New York alongside Jon Nance of Axoni, Dianne Boyle of Symbiont, and Eleonora Acuna of ISDA, to delve into the possibilities of CDM in the real world."
+**Excerpt:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Dated
-- Specificity: Moderate
+**Analysis:** N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: acquired_capability (LR = 1.3)
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Caveats**: Credit Suisse capability may or may not be retained post-merger. No evidence of UBS continuing Credit Suisse CDM work. Integration consuming all capacity.
+**Caveats:** N/A
 
----
+### UBS-004: Evidence Item
 
-[UBS-004] TIER 2 — NEUTRAL
+| Field | Value |
+|-------|-------|
+| Source | N/A |
+| Date | N/A |
+| Tier | 1 |
+| Claim Type | N/A |
+| Direction | NEUTRAL |
+| LR | 1.0 |
 
-**Source**: https://www.risk.net/awards/7960355/derivatives-house-of-the-year-ubs
-**Date**: 2024-11-01
+**Excerpt:** N/A
 
-**Finding**: "Derivatives and solutions ahead 43% year-over-year. 'I would say, without reservation, at this moment in time, I think we have the strongest platform we have ever had.' - Dushyant Chadha, global head of derivatives and solutions"
+**Analysis:** N/A
 
-**Quality Assessment**:
-- Authority: MEDIUM
-- Recency: Current
-- Specificity: Vague
+**Quality Assessment:**
+- Authority: N/A
+- Recency: N/A
+- Specificity: N/A
 
-**Claim Type**: `membership_or_participation`
-**LR Mapping**: derivatives_award_no_cdm (LR = 0.9)
+**Caveats:** N/A
 
-**Caveats**: Strong derivatives performance but technology focus is on integration, not CDM. No CDM mentioned in coverage.
+## Informative Absences
+
+N/A
 
 ---

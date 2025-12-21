@@ -1,34 +1,25 @@
 # Tier 1 Evidence: State Street Corporation
 
-**Bank**: State Street Corporation
-**Classification**: UNKNOWN (Insufficient-Evidence)
-**Confidence**: 30%
-**Date**: 2025-12-21
+**Bank:** State Street Corporation
+**Phase:** 9 - US Custody Banks
+**Date:** 2025-12-21
 
 ---
 
-## Summary
+## Search Execution Summary
 
-No Tier 1 evidence found for State Street's CDM adoption.
+| Metric | Value |
+|--------|-------|
+| Date | 2025-12-21 |
+| Evidence Items Found | 0 |
+| Schema Version | 4.3 |
 
----
+## Evidence Inventory
 
-## Evidence Items
+No Tier 1 evidence found.
 
-*No Tier 1 evidence items found.*
+## Informative Absences
 
----
-
-## Search Coverage
-
-The following Tier 1 sources were searched:
-
-- **FINOS Membership**: State Street not listed as member
-- **ISDA CDM Working Groups**: No participation found
-- **Official State Street Announcements**: No CDM-related press releases
-- **Regulatory Filings**: No CDM references in SEC filings
-- **GitHub Repositories**: No contributions to finos/common-domain-model
+N/A
 
 ---
-
-**Conclusion**: No official sources confirm State Street's CDM adoption or exploration.

@@ -1,9 +1,8 @@
-# Final Assessment - Standard Chartered
+# CDM/DRR Assessment: Standard Chartered PLC
 
-**Bank:** Standard Chartered
-**Phase:** 6 (Deep Dive)
+**Bank:** Standard Chartered PLC
+**Phase:** 6 - Deep Dives
 **Date:** 2025-12-21
-**Research Version:** CDM Protocol v2.3
 
 ---
 
@@ -13,7 +12,78 @@ Standard Chartered is classified as **ARCHITECT (Leader)** with **80% confidence
 
 **Key Finding:** Standard Chartered demonstrates clear production-level CDM adoption with industry leadership characteristics, tempered by source concentration and temporal staleness concerns that cap confidence at 80%.
 
+## Bank Profile
+
+| Attribute | Value |
+|-----------|-------|
+| Legal Name | Standard Chartered PLC |
+| Headquarters | London, United Kingdom |
+| Region | Asia |
+| Phase | 6 - Deep Dives |
+
+## Classification Summary
+
+| Metric | Value |
+|--------|-------|
+| Classification | ARCHITECT |
+| Sub-Classification | Leader |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
+| Confidence | 50% |
+
+## Evidence Inventory
+
+N/A
+
+## Probability Trajectory
+
+N/A
+
+## Recommendations
+
+### For Future Research
+
+**To Increase Confidence to 85-90%:**
+1. Search Standard Chartered annual reports (2023-2024) for CDM mentions
+2. Verify 2025 ISDA event participation (recent evidence)
+3. Check trade press archives (Risk.net, Waters Technology) for independent corroboration
+4. Confirm Emmanuel Ramambason still on ISDA Board (continuity signal)
+
+**To Validate Production Scope:**
+1. Search Asia-Pacific regulatory filings (MAS, HKMA)
+2. Look for region-specific CDM deployment evidence
+3. Seek scale/volume indicators in investor presentations
+
+**To Address Temporal Staleness:**
+1. Monitor for 2025-2026 ISDA participation
+2. Search for recent job postings (CDM, Rune, DRR keywords)
+3. Track LinkedIn activity from Standard Chartered CDM team members
+
 ---
+
+### For Protocol Refinement
+
+**Lessons Learned:**
+
+1. **Source Diversity Matters:**
+   - Future research should prioritize independent corroboration
+   - ISDA sources are authoritative but concentration creates risk
+   - Trade press and regulatory filings add valuable triangulation
+
+2. **Temporal Thresholds Work:**
+   - Evidence >12 months should trigger recency search
+   - Absence of recent updates is notable flag
+   - Consider adding "evidence freshness" as explicit confidence factor
+
+3. **Production Scope Metrics Needed:**
+   - "Production usage" claims should be qualified with scale indicators where available
+   - Absence of metrics creates ambiguity
+   - Consider adding "production scope" as classification sub-dimension
+
+4. **Adversarial Review Validates Calibration:**
+   - Counter-case identified real limitations (not spurious)
+   - Steelman defense demonstrated classification robustness
+   - Final confidence (80%) appropriately reflects evidence quality
 
 ## Classification
 
@@ -27,8 +97,6 @@ Standard Chartered is classified as **ARCHITECT (Leader)** with **80% confidence
 
 ### Maturity Score
 **5/5** (Highest tier per CLAUDE.md Section 9)
-
----
 
 ## Confidence Assessment
 
@@ -50,8 +118,6 @@ Standard Chartered is classified as **ARCHITECT (Leader)** with **80% confidence
 Per CLAUDE.md Section 7: **Tier 1 Evidence Maximum** = 95%
 
 Actual confidence (80%) is appropriately below maximum due to evidentiary limitations.
-
----
 
 ## Evidence Summary
 
@@ -111,8 +177,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 
 **Temporal Risk:** High - All evidence in "Dated" category, none in "Current"
 
----
-
 ## Key Evidence Analysis
 
 ### Production Usage Evidence
@@ -152,8 +216,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 
 **Combined Assessment:** Governance signals are strong and consistent with ARCHITECT profile. SIMM Analytics role directly benefits from CDM standardization, suggesting genuine technical implementation.
 
----
-
 ## Null Results Analysis
 
 ### Significant Absences
@@ -181,8 +243,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 - Result: No vendor claiming Standard Chartered as CDM client
 - Interpretation: Suggests native capability rather than vendor dependency
 - Impact: **Positive** - supports ARCHITECT over PRAGMATIST classification
-
----
 
 ## Risk Factors & Limitations
 
@@ -221,8 +281,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 - **Risk:** Could indicate vendor dependency
 - **Mitigation:** Common among Tier 1 banks; Rune deployment requires technical capability
 - **Residual Risk:** Very Low
-
----
 
 ## Alternative Hypotheses Evaluation
 
@@ -274,8 +332,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 
 **Verdict:** Highly implausible; production usage claims disqualify OBSERVER classification.
 
----
-
 ## Adversarial Review Impact
 
 ### Counter-Case Summary
@@ -312,8 +368,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 
 **Changes:** None - adversarial review confirmed initial assessment was well-calibrated
 
----
-
 ## Strategic Implications
 
 ### For Standard Chartered
@@ -347,8 +401,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 - Asia-Pacific representation (vs. US/European dominated ecosystem)
 - SIMM use case validation (standardized margin calculations)
 
----
-
 ## Comparison to Peer Banks
 
 ### Confirmed ARCHITECT Banks
@@ -369,56 +421,6 @@ Actual confidence (80%) is appropriately below maximum due to evidentiary limita
 - **Confidence:** 90% (strong technical signals)
 
 **Standard Chartered's Position:** Lower confidence than peers due to source concentration and limited public visibility, but core ARCHITECT classification is comparable.
-
----
-
-## Recommendations
-
-### For Future Research
-
-**To Increase Confidence to 85-90%:**
-1. Search Standard Chartered annual reports (2023-2024) for CDM mentions
-2. Verify 2025 ISDA event participation (recent evidence)
-3. Check trade press archives (Risk.net, Waters Technology) for independent corroboration
-4. Confirm Emmanuel Ramambason still on ISDA Board (continuity signal)
-
-**To Validate Production Scope:**
-1. Search Asia-Pacific regulatory filings (MAS, HKMA)
-2. Look for region-specific CDM deployment evidence
-3. Seek scale/volume indicators in investor presentations
-
-**To Address Temporal Staleness:**
-1. Monitor for 2025-2026 ISDA participation
-2. Search for recent job postings (CDM, Rune, DRR keywords)
-3. Track LinkedIn activity from Standard Chartered CDM team members
-
----
-
-### For Protocol Refinement
-
-**Lessons Learned:**
-
-1. **Source Diversity Matters:**
-   - Future research should prioritize independent corroboration
-   - ISDA sources are authoritative but concentration creates risk
-   - Trade press and regulatory filings add valuable triangulation
-
-2. **Temporal Thresholds Work:**
-   - Evidence >12 months should trigger recency search
-   - Absence of recent updates is notable flag
-   - Consider adding "evidence freshness" as explicit confidence factor
-
-3. **Production Scope Metrics Needed:**
-   - "Production usage" claims should be qualified with scale indicators where available
-   - Absence of metrics creates ambiguity
-   - Consider adding "production scope" as classification sub-dimension
-
-4. **Adversarial Review Validates Calibration:**
-   - Counter-case identified real limitations (not spurious)
-   - Steelman defense demonstrated classification robustness
-   - Final confidence (80%) appropriately reflects evidence quality
-
----
 
 ## Conclusion
 
@@ -446,3 +448,7 @@ Standard Chartered is classified as **ARCHITECT (Leader)** with **80% confidence
 **Evidence Quality:** 38/60 (63%)
 **Last Updated:** 2025-12-21
 **Status:** Final (Adversarially Validated)
+
+---
+
+*Assessment complete. Classification: ARCHITECT (Leader) with 50% confidence.*

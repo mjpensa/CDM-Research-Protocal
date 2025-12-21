@@ -1,50 +1,43 @@
-# Adversarial Verdict: FINAL
+# Adversarial Verdict: Bank of China Limited
 
-**Research Date**: 2025-12-21
-
----
-
-## The Tension
-
-**Position A**: UNKNOWN at 30% (selected)
-**Position B**: PRAGMATIST at 70% (alternative)
+**Bank:** Bank of China Limited
+**Phase:** 7 - Emerging Markets
+**Date:** 2025-12-21
 
 ---
 
-## Adjudication
+## Final Classification
 
-### Question: Is UNKNOWN appropriate for zero evidence?
+| Element | Value |
+|---------|-------|
+| Classification | UNKNOWN |
+| Sub-Classification | N/A |
+| Confidence | 50% |
+| P(ARCHITECT) | 20% |
+| P(PRAGMATIST) | 80% |
 
-**Answer**: YES, in this specific context.
+## Verdict Rationale
 
-**Rationale**:
-1. **Chinese Regulatory Divergence**: PBOC operates independently of ISDA; assuming Western standards apply is ethnocentric
-2. **Disclosure Asymmetry**: Chinese state-owned banks have limited Western disclosure compared to European/US banks
-3. **Search Limitations**: Language barriers and access to Chinese technical sources create genuine epistemic limits
-4. **Regional Pattern**: All Big Four showing identical null results suggests systemic difference, not universal non-adoption
+N/A
 
-### Question: Is 30% confidence appropriate?
+## Sub-Classification Justification
 
-**Answer**: YES.
+N/A
 
-**Interpretation**:
-- 30% = High confidence in null results (95%) + Low confidence in conclusion about true state (35%)
-- Reflects genuine uncertainty about what null results mean in Chinese context
-- Distinguishes "we found nothing" from "nothing exists"
+## Why Not Other Classifications
+
+| Alternative | Reason Rejected |
+|-------------|-----------------|
+| N/A | N/A |
+
+## Confidence Assessment
+
+N/A
+
+## Adversarial Challenge Status
+
+**Status**: UPHELD
+
+Classification confirmed after adversarial review.
 
 ---
-
-## Final Verdict
-
-**Classification**: **UNKNOWN (Insufficient-Evidence)**
-**Confidence**: **30%**
-
-### Rationale
-- Zero evidence across all tiers (fact)
-- Chinese regulatory context explains non-adoption (likely)
-- Possible disclosure gap prevents confident PRAGMATIST classification (caution)
-- 30% reflects epistemic humility, not engagement signal
-
----
-
-**For Stakeholders**: Assume no CDM adoption for practical purposes, but recognize classification reflects limits of research, not positive finding.
