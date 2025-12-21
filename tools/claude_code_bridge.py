@@ -321,6 +321,38 @@ class ClaudeCodeBridge:
             details=details
         )
 
+    def validate_evidence_before_write(self, new_evidence: Dict[str, Any]) -> List[str]:
+        """
+        Phase 4: Validate new evidence item before writing to evidence.json.
+
+        Args:
+            new_evidence: Dict with at least 'id' key
+
+        Returns:
+            List of error messages (empty if valid)
+        """
+        errors = []
+
+        # Check ID format
+        item_id = new_evidence.get('id', '')
+        if not item_id:
+            errors.append("Evidence item missing 'id' field")
+        elif not re.match(r'^[A-Za-z0-9_-]+$', item_id):
+            errors.append(f"Invalid ID format: {item_id} (must be alphanumeric with _ and -)")
+
+        # Check for duplicate against existing evidence
+        evidence_file = self.bank_dir / "evidence.json"
+        if evidence_file.exists() and item_id:
+            try:
+                existing = json.loads(evidence_file.read_text(encoding='utf-8'))
+                existing_ids = {e.get('id') for e in existing.get('evidence_items', [])}
+                if item_id in existing_ids:
+                    errors.append(f"Duplicate ID would be created: {item_id}")
+            except Exception as e:
+                logger.warning(f"Could not check for duplicates: {e}")
+
+        return errors
+
     def _validate_tier_evidence(self, tier: int) -> Dict[str, Any]:
         """Validate tier evidence output."""
         errors = []
@@ -347,6 +379,15 @@ class ClaudeCodeBridge:
 
             if len(tier_items) == 0:
                 warnings.append(f"No Tier {tier} evidence items found")
+
+            # Phase 4: Check for duplicate IDs across ALL items
+            seen_ids = set()
+            for item in items:
+                item_id = item.get('id')
+                if item_id:
+                    if item_id in seen_ids:
+                        errors.append(f"Duplicate evidence ID: {item_id}")
+                    seen_ids.add(item_id)
 
             # Validate each item
             required_fields = ['id', 'claim', 'source_url', 'tier', 'claim_type']
