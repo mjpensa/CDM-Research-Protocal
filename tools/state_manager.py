@@ -94,7 +94,7 @@ class UnifiedStateManager:
 
         # Lock configuration
         self.lock_timeout = 30  # seconds
-        self.stale_lock_age = 600  # 10 minutes
+        self.stale_lock_age = 300  # 5 minutes - Phase 7: reduced for faster recovery
 
         # Phase 5: Auto-sync workflow state from bank states on startup
         if auto_sync:
