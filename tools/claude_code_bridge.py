@@ -661,6 +661,8 @@ def main():
     parser.add_argument("--checkpoint", nargs="*", metavar="FILE", help="Record checkpoint with optional files written")
     parser.add_argument("--reviews", action="store_true", help="Show pending review items for this bank (Phase 8)")
     parser.add_argument("--resolve", type=str, metavar="RESOLUTION", help="Resolve pending review with given resolution (Phase 8)")
+    parser.add_argument("--check-timeouts", action="store_true",
+                        help="Check all banks in phase for stage timeouts and auto-block")
 
     args = parser.parse_args()
 
@@ -765,6 +767,25 @@ def main():
                 else:
                     print("Failed to resolve review")
             return 0 if success else 1
+
+        # Stage timeout check handler (operates on all banks in phase)
+        if getattr(args, 'check_timeouts', False):
+            stage_timeouts, default_timeout = bridge.state_manager.get_stage_timeouts_from_config()
+            timed_out = bridge.state_manager.check_and_handle_timeouts(
+                phase=args.phase,
+                stage_timeouts=stage_timeouts,
+                default_timeout=default_timeout
+            )
+            if args.json:
+                print(json.dumps({"timed_out": timed_out, "count": len(timed_out)}))
+            else:
+                if timed_out:
+                    print(f"\nTimed out banks ({len(timed_out)}):")
+                    for t in timed_out:
+                        print(f"  - {t['bank_id']}: {t['stage']} ({t['elapsed_minutes']:.1f} min)")
+                else:
+                    print("No timed-out banks found")
+            return 0
 
         # Default: show status
         context = bridge.load_bank_context()

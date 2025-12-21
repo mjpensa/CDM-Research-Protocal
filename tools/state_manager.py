@@ -31,7 +31,7 @@ import logging
 import platform
 from pathlib import Path
 from datetime import datetime, timezone
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Tuple
 from contextlib import contextmanager
 
 # Cross-platform file locking
@@ -553,6 +553,82 @@ class UnifiedStateManager:
             workflow = self.load_workflow_state()
             workflow.mark_bank_unblocked(bank_id)
             self.save_workflow_state(workflow)
+
+    def check_and_handle_timeouts(self, phase: int,
+                                   stage_timeouts: Dict[str, int] = None,
+                                   default_timeout: int = 30) -> List[Dict[str, Any]]:
+        """
+        Check all in-progress banks for stage timeouts and auto-block if exceeded.
+
+        Args:
+            phase: Phase number to check
+            stage_timeouts: Dict mapping stage name to timeout in minutes
+            default_timeout: Default timeout if stage not in dict (30 min)
+
+        Returns:
+            List of dicts describing timed-out banks that were blocked
+        """
+        timed_out = []
+
+        # Get all in-progress banks
+        workflow = self.load_workflow_state()
+        for bank_id in workflow.banks_in_progress:
+            try:
+                state = self.load_bank_state(bank_id, phase)
+                if not state:
+                    continue
+
+                # Skip if already blocked or complete
+                if state.is_blocked() or state.current_stage == "complete":
+                    continue
+
+                # Get timeout for this stage
+                timeout = default_timeout
+                if stage_timeouts and state.current_stage in stage_timeouts:
+                    timeout = stage_timeouts[state.current_stage]
+
+                # Check if timed out
+                if state.is_stage_timed_out(timeout):
+                    elapsed = state.get_stage_elapsed_minutes() or 0
+                    reason = f"Stage '{state.current_stage}' exceeded {timeout} minute timeout (elapsed: {elapsed:.1f} min)"
+
+                    # Block the bank
+                    self.set_bank_blocked(
+                        bank_id=bank_id,
+                        phase=phase,
+                        checkpoint=f"timeout_{state.current_stage}",
+                        reason=reason
+                    )
+
+                    timed_out.append({
+                        "bank_id": bank_id,
+                        "stage": state.current_stage,
+                        "timeout_minutes": timeout,
+                        "elapsed_minutes": elapsed,
+                        "reason": reason
+                    })
+
+                    logger.warning(f"Bank {bank_id} timed out: {reason}")
+
+            except Exception as e:
+                logger.error(f"Error checking timeout for {bank_id}: {e}")
+
+        return timed_out
+
+    def get_stage_timeouts_from_config(self) -> Tuple[Dict[str, int], int]:
+        """Load stage timeout configuration from decision-thresholds.json."""
+        try:
+            config_path = self.outputs_dir.parent / "config" / "decision-thresholds.json"
+            if config_path.exists():
+                data = json.loads(config_path.read_text(encoding='utf-8'))
+                timeouts_config = data.get('stage_timeouts', {})
+                return (
+                    timeouts_config.get('per_stage', {}),
+                    timeouts_config.get('default_timeout', 30)
+                )
+        except Exception as e:
+            logger.warning(f"Could not load stage timeouts from config: {e}")
+        return ({}, 30)
 
     # ========== Workflow State Management ==========
 
