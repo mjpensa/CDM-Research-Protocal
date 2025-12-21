@@ -248,8 +248,8 @@ def parse_md_evidence_block(block_text: str, block_num: int, bank_id: str = '') 
                 from datetime import datetime as dt
                 parsed = dt.strptime(date_str, "%B %Y")
                 item['date'] = parsed.strftime("%Y-%m-15")
-            except:
-                pass
+            except ValueError:
+                pass  # Leave date unparsed if format doesn't match
 
     return item
 

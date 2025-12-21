@@ -339,6 +339,8 @@ if __name__ == "__main__":
     parser.add_argument('--stats', action='store_true', help="Show registry statistics")
     parser.add_argument('--clear', action='store_true', help="Clear all entries")
     parser.add_argument('--remove-bank', type=str, help="Remove entries for specific bank")
+    parser.add_argument('--yes', '-y', action='store_true',
+                        help="Skip confirmation prompts (for batch/automated use)")
 
     args = parser.parse_args()
 
@@ -357,7 +359,11 @@ if __name__ == "__main__":
             print(f"  Tier {tier}: {count}")
 
     elif args.clear:
-        confirm = input("Are you sure you want to clear the registry? (yes/no): ")
+        # Skip confirmation if --yes flag is provided (batch/automated mode)
+        if args.yes:
+            confirm = 'yes'
+        else:
+            confirm = input("Are you sure you want to clear the registry? (yes/no): ")
         if confirm.lower() == 'yes':
             registry.clear()
             print("Registry cleared.")

@@ -494,6 +494,14 @@ class WorkflowState:
             self.banks_blocked.append(bank_id)
         self.log_event("bank_blocked", f"Bank {bank_id} blocked at checkpoint")
 
+    def mark_bank_unblocked(self, bank_id: str) -> None:
+        """Mark a bank as unblocked and return it to in-progress state."""
+        if bank_id in self.banks_blocked:
+            self.banks_blocked.remove(bank_id)
+        if bank_id not in self.banks_in_progress:
+            self.banks_in_progress.append(bank_id)
+        self.log_event("bank_unblocked", f"Bank {bank_id} unblocked and resumed")
+
 
 # Utility functions for JSON serialization
 def state_to_json(state: BankState) -> str:

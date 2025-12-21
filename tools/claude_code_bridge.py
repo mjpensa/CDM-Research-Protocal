@@ -164,7 +164,8 @@ class ClaudeCodeBridge:
         if not state:
             return StageStatus.PENDING
 
-        if state.blocked:
+        # Fix: Use is_blocked() method instead of non-existent .blocked attribute
+        if state.is_blocked():
             return StageStatus.BLOCKED
 
         current_stage = state.current_stage

@@ -91,12 +91,12 @@ def check_probability_sanity(statuses: dict) -> list:
         if isinstance(architect, str):
             try:
                 architect = float(architect.rstrip('%')) / 100
-            except:
+            except (ValueError, AttributeError):
                 architect = 0
         if isinstance(pragmatist, str):
             try:
                 pragmatist = float(pragmatist.rstrip('%')) / 100
-            except:
+            except (ValueError, AttributeError):
                 pragmatist = 0
 
         total = architect + pragmatist
@@ -185,7 +185,7 @@ def check_alignment(statuses: dict) -> list:
         if isinstance(architect_prob, str):
             try:
                 architect_prob = float(architect_prob.rstrip('%')) / 100
-            except:
+            except (ValueError, AttributeError):
                 architect_prob = 0
 
         # Check alignment
@@ -227,7 +227,7 @@ def check_confidence_bounds(statuses: dict) -> list:
         if isinstance(confidence, str):
             try:
                 confidence = float(confidence.rstrip('%'))
-            except:
+            except (ValueError, AttributeError):
                 confidence = 0
 
         if confidence > 95:

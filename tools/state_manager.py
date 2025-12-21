@@ -540,13 +540,19 @@ class UnifiedStateManager:
             self.save_workflow_state(workflow)
 
     def clear_bank_block(self, bank_id: str, phase: int) -> None:
-        """Clear the blocked status for a bank."""
+        """Clear the blocked status for a bank and sync workflow state."""
         state = self.load_bank_state(bank_id, phase)
         if state is None:
             raise ValueError(f"No state found for {bank_id}")
 
         state.clear_block()
         self.save_bank_state(state)
+
+        # Sync workflow state to reflect unblocked status
+        with self._file_lock(self.workflow_state_path):
+            workflow = self.load_workflow_state()
+            workflow.mark_bank_unblocked(bank_id)
+            self.save_workflow_state(workflow)
 
     # ========== Workflow State Management ==========
 
