@@ -72,12 +72,13 @@ class UnifiedStateManager:
     - Review queue (outputs/state/review-queue.json)
     """
 
-    def __init__(self, outputs_dir: Path):
+    def __init__(self, outputs_dir: Path, auto_sync: bool = True):
         """
         Initialize the state manager.
 
         Args:
             outputs_dir: Path to the outputs directory
+            auto_sync: If True, auto-sync workflow state from bank states on startup
         """
         self.outputs_dir = Path(outputs_dir)
         self.state_dir = self.outputs_dir / "state"
@@ -94,6 +95,56 @@ class UnifiedStateManager:
         # Lock configuration
         self.lock_timeout = 30  # seconds
         self.stale_lock_age = 600  # 10 minutes
+
+        # Phase 5: Auto-sync workflow state from bank states on startup
+        if auto_sync:
+            self._auto_sync_if_needed()
+
+    def _auto_sync_if_needed(self) -> None:
+        """
+        Phase 5: Sync workflow state if it appears stale or empty.
+
+        Automatically detects if workflow state needs refresh by checking:
+        1. If no banks are tracked (fresh start or stale state)
+        2. If last update was > 1 hour ago (stale state)
+        """
+        try:
+            workflow = self.load_workflow_state()
+        except Exception:
+            workflow = None
+
+        if not workflow:
+            # No workflow state exists - create fresh
+            logger.info("No workflow state found, scanning for existing bank states...")
+            self._scan_and_sync_all_phases()
+            return
+
+        # Check if workflow state tracks any banks
+        total_tracked = (len(workflow.banks_completed) + len(workflow.banks_in_progress) +
+                         len(workflow.banks_pending) + len(workflow.banks_blocked))
+
+        if total_tracked == 0:
+            # No banks tracked - scan for existing bank states
+            logger.info("Workflow state empty, scanning for existing bank states...")
+            self._scan_and_sync_all_phases()
+        else:
+            # Check for stale state (last update > 1 hour ago)
+            try:
+                last = datetime.fromisoformat(workflow.last_updated.replace('Z', '+00:00'))
+                age = (datetime.now(timezone.utc) - last).total_seconds()
+                if age > 3600:  # 1 hour
+                    logger.info(f"Workflow state is stale ({age/3600:.1f}h old), syncing from bank states...")
+                    self._scan_and_sync_all_phases()
+            except Exception as e:
+                logger.debug(f"Could not check workflow state age: {e}")
+
+    def _scan_and_sync_all_phases(self) -> None:
+        """Phase 5: Scan all phase directories and sync workflow state."""
+        for phase in range(1, 10):
+            try:
+                self.sync_workflow_state_from_bank_states(phase)
+            except Exception as e:
+                logger.debug(f"Could not sync phase {phase}: {e}")
 
     def _get_phase_name(self, phase: int) -> Optional[str]:
         """
