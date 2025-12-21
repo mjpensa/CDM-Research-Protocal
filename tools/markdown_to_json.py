@@ -37,7 +37,11 @@ import sys
 import logging
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+
+# Type hint for optional EvidenceRegistry import
+if TYPE_CHECKING:
+    from evidence_dedup import EvidenceRegistry
 
 # --- LOGGING ---
 logging.basicConfig(
@@ -376,11 +380,16 @@ def parse_markdown_file(md_path: Path, bank_id: str = '') -> list[dict]:
     return items
 
 
-def merge_into_evidence_json(evidence_items: list, json_path: Path) -> dict:
+def merge_into_evidence_json(
+    evidence_items: list,
+    json_path: Path,
+    registry: 'EvidenceRegistry' = None
+) -> dict:
     """
     Merge new items into existing evidence.json or create new.
 
     Merging strategy:
+    - If registry provided, filter duplicates first (Category 6 fix)
     - If item ID exists, update the existing item
     - If item ID is new, append to the list
     - Preserves verification/content data from existing items
@@ -388,10 +397,21 @@ def merge_into_evidence_json(evidence_items: list, json_path: Path) -> dict:
     Args:
         evidence_items: List of new evidence items
         json_path: Path to evidence.json
+        registry: Optional EvidenceRegistry for deduplication
 
     Returns:
         Updated evidence data dict
     """
+    # Apply deduplication if registry provided (Category 6 fix)
+    if registry is not None:
+        bank_id = json_path.parent.name
+        original_count = len(evidence_items)
+        evidence_items = registry.dedup_list(evidence_items, bank_id)
+        if len(evidence_items) < original_count:
+            logger.info(
+                f"Deduplication removed {original_count - len(evidence_items)} items, "
+                f"{len(evidence_items)} remaining"
+            )
     if json_path.exists():
         try:
             data = json.loads(json_path.read_text(encoding='utf-8'))
@@ -505,25 +525,84 @@ def convert_bank_directory(bank_dir: Path) -> dict:
     }
 
 
+def convert_with_dedup(
+    bank_dir: Path,
+    registry: 'EvidenceRegistry' = None
+) -> dict:
+    """
+    Convert bank directory with optional deduplication.
+
+    Convenience function that combines convert_bank_directory with dedup.
+
+    Args:
+        bank_dir: Path to bank directory
+        registry: Optional EvidenceRegistry for deduplication
+
+    Returns:
+        Evidence data dict (deduplicated if registry provided)
+    """
+    data = convert_bank_directory(bank_dir)
+
+    if registry is not None:
+        bank_id = data.get('bank_id', bank_dir.name)
+        original_count = len(data['evidence_items'])
+        data['evidence_items'] = registry.dedup_list(
+            data['evidence_items'],
+            bank_id
+        )
+        dedup_count = original_count - len(data['evidence_items'])
+        if dedup_count > 0:
+            logger.info(f"Deduplication removed {dedup_count} items")
+        data['item_count'] = len(data['evidence_items'])
+
+    return data
+
+
 def main():
     """CLI entry point."""
     if len(sys.argv) < 2:
         print("Usage: python markdown_to_json.py <bank_directory>")
         print("       python markdown_to_json.py <tier1-evidence.md> [tier2.md ...] <output/evidence.json>")
         print("       python markdown_to_json.py --dry-run <bank_directory>")
+        print("       python markdown_to_json.py --dedup <bank_directory>")
+        print("\nOptions:")
+        print("  --dry-run    Preview output without writing files")
+        print("  --dedup      Enable global deduplication registry")
         print("\nExamples:")
         print("  python markdown_to_json.py outputs/phase-1-european-tier1/deutsche-bank/")
+        print("  python markdown_to_json.py --dedup outputs/phase-1-european-tier1/deutsche-bank/")
         print("  python markdown_to_json.py outputs/bank/1-evidence/*.md outputs/bank/evidence.json")
         sys.exit(1)
 
-    # Handle --dry-run flag
+    # Handle flags
     dry_run = False
+    use_dedup = False
     args = sys.argv[1:]
 
-    if args[0] == '--dry-run':
-        dry_run = True
-        args = args[1:]
-        logger.info("DRY RUN MODE - no files will be modified")
+    while args and args[0].startswith('--'):
+        if args[0] == '--dry-run':
+            dry_run = True
+            args = args[1:]
+            logger.info("DRY RUN MODE - no files will be modified")
+        elif args[0] == '--dedup':
+            use_dedup = True
+            args = args[1:]
+            logger.info("DEDUP MODE - using global evidence registry")
+        else:
+            print(f"Unknown flag: {args[0]}")
+            sys.exit(1)
+
+    # Initialize dedup registry if enabled
+    registry = None
+    if use_dedup:
+        try:
+            from evidence_dedup import get_default_registry
+            registry = get_default_registry()
+            logger.info(f"Loaded evidence registry with {len(registry.registry)} existing items")
+        except ImportError as e:
+            logger.error(f"Could not import evidence_dedup: {e}")
+            logger.error("Continuing without deduplication")
+            registry = None
 
     if len(args) < 1:
         print("Error: Need at least one argument (bank directory or markdown files)")
@@ -539,7 +618,11 @@ def main():
         logger.info(f"Converting bank directory: {bank_dir}")
 
         try:
-            data = convert_bank_directory(bank_dir)
+            # Use dedup-enabled conversion if registry available
+            if registry is not None:
+                data = convert_with_dedup(bank_dir, registry)
+            else:
+                data = convert_bank_directory(bank_dir)
         except FileNotFoundError as e:
             logger.error(str(e))
             sys.exit(1)

@@ -1,0 +1,31 @@
+{
+  "bank_id": "deutsche-bank",
+  "bank_name": "Deutsche Bank AG",
+  "phase": 1,
+  "execution_tier": "A",
+  "prior_probability": 0.3,
+  "current_probability": 0.3,
+  "probability_history": [],
+  "stages_completed": [],
+  "current_stage": "initialize",
+  "skipped_stages": [],
+  "classification": null,
+  "classification_variant": null,
+  "confidence": null,
+  "adversarial_verdict": null,
+  "started_at": "2025-12-20T23:58:32.757133+00:00",
+  "last_updated": "2025-12-20T23:58:32.759643+00:00",
+  "completed_at": null,
+  "blocked_at": null,
+  "blocked_reason": null,
+  "blocked_checkpoint": null,
+  "evidence_counts": {
+    "tier1": 0,
+    "tier2": 0,
+    "tier3": 0,
+    "null": 0
+  },
+  "highest_tier": 0,
+  "trust_flags": [],
+  "errors": []
+}

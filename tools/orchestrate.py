@@ -42,6 +42,15 @@ except ImportError:
     def get_low_confidence_block_threshold(): return 50
     def get_confidence_caps(): return {1: 95, 2: 75, 3: 50, 4: 35, None: 35}
 
+# Import unified state management (Phase 5 consolidation)
+try:
+    from state_manager import UnifiedStateManager
+    from state_adapter import convert_orchestrate_state_to_bank_state
+    from state_schema import BankState, normalize_stage
+    STATE_MANAGER_AVAILABLE = True
+except ImportError:
+    STATE_MANAGER_AVAILABLE = False
+
 # --- LOGGING ---
 logging.basicConfig(
     level=logging.INFO,
@@ -112,10 +121,18 @@ def compute_stage_hash(bank_dir: Path, stage: str) -> str:
 
 @dataclass
 class WorkflowState:
-    """State of the research workflow for a bank."""
+    """
+    State of the research workflow for a bank.
+
+    DEPRECATED: This class is being migrated to state_schema.BankState.
+    New code should use UnifiedStateManager for state operations.
+    This class is retained for backward compatibility.
+
+    NOTE: As of v1.1, probabilities use 0-1 scale (not 0-100).
+    """
     bank_id: str
     current_stage: str = "init"
-    probability_architect: float = 30.0  # Default prior (30%)
+    probability_architect: float = 0.30  # Default prior (30%) - 0-1 scale
     classification: Optional[str] = None
     sub_classification: Optional[str] = None
     confidence: float = 0.0
@@ -133,10 +150,16 @@ class WorkflowState:
         if not state_path.exists():
             raise FileNotFoundError(f"No state file at {state_path}")
         data = json.loads(state_path.read_text(encoding='utf-8'))
+
+        # Handle legacy 0-100 scale (convert to 0-1)
+        prob = data.get('probability_architect', 0.30)
+        if prob > 1.0:
+            prob = prob / 100.0
+
         return cls(
             bank_id=data.get('bank_id', state_path.parent.name),
             current_stage=data.get('current_stage', 'init'),
-            probability_architect=data.get('probability_architect', 30.0),
+            probability_architect=prob,
             classification=data.get('classification'),
             sub_classification=data.get('sub_classification'),
             confidence=data.get('confidence', 0.0),
@@ -188,8 +211,14 @@ class WorkflowState:
 
         return drift
 
-    def save(self, state_path: Path):
-        """Save state to JSON file."""
+    def save(self, state_path: Path, phase: int = 1):
+        """
+        Save state to JSON file and sync to UnifiedStateManager.
+
+        Args:
+            state_path: Path to status.json file
+            phase: Phase number for state manager sync (default 1)
+        """
         self.updated_at = datetime.utcnow().isoformat()
         if not self.created_at:
             self.created_at = self.updated_at
@@ -197,6 +226,24 @@ class WorkflowState:
         data = asdict(self)
         state_path.write_text(json.dumps(data, indent=2), encoding='utf-8')
         logger.info(f"Saved state to {state_path}")
+
+        # Sync to unified state manager (Phase 5 consolidation)
+        if STATE_MANAGER_AVAILABLE:
+            try:
+                outputs_dir = state_path.parent.parent.parent
+                sm = UnifiedStateManager(outputs_dir)
+
+                # Get bank name from path
+                bank_name = self.bank_id.replace('-', ' ').title()
+
+                # Convert and save
+                bank_state = convert_orchestrate_state_to_bank_state(
+                    self, bank_name=bank_name, phase=phase
+                )
+                sm.save_bank_state(bank_state, validate=True)
+                logger.debug(f"Synced state to UnifiedStateManager")
+            except Exception as e:
+                logger.warning(f"Could not sync to state manager: {e}")
 
 
 class Orchestrator:
@@ -252,7 +299,8 @@ class Orchestrator:
         self.bank_dir = Path(bank_dir)
         self.state_path = self.bank_dir / "status.json"
         self.state = self._load_or_init_state()
-        self.skip_threshold = get_skip_threshold()
+        # Convert thresholds from percentage (0-100) to decimal (0-1)
+        self.skip_threshold = get_skip_threshold() / 100.0
         self.low_confidence_threshold = get_low_confidence_block_threshold()
 
     def _load_or_init_state(self) -> WorkflowState:
@@ -279,7 +327,7 @@ class Orchestrator:
         state = WorkflowState(
             bank_id=self.bank_dir.name,
             current_stage=Stage.INIT.value,
-            probability_architect=30.0,  # Default prior
+            probability_architect=0.30,  # Default prior (0-1 scale)
             created_at=datetime.utcnow().isoformat()
         )
         return state
@@ -308,9 +356,9 @@ class Orchestrator:
         # Check skip conditions at gates
         if current in self.SKIPPABLE_FROM_GATES:
             p = self.state.probability_architect
-            # Skip if probability is decisive (> 80% or < 20%)
-            if p > self.skip_threshold or p < (100 - self.skip_threshold):
-                logger.info(f"P(Architect) = {p}% exceeds threshold. Skipping to ADVERSARIAL.")
+            # Skip if probability is decisive (> 80% or < 20%) - using 0-1 scale
+            if p > self.skip_threshold or p < (1.0 - self.skip_threshold):
+                logger.info(f"P(Architect) = {p * 100:.1f}% exceeds threshold. Skipping to ADVERSARIAL.")
                 return Stage.ADVERSARIAL
 
         # Normal progression
@@ -528,13 +576,13 @@ class Orchestrator:
         Update the P(Architect) probability.
 
         Args:
-            probability: New probability (0-100)
+            probability: New probability (0-1 scale)
             source: What triggered the update
         """
         old_p = self.state.probability_architect
         self.state.probability_architect = probability
 
-        logger.info(f"P(Architect) updated: {old_p}% -> {probability}% (source: {source})")
+        logger.info(f"P(Architect) updated: {old_p * 100:.1f}% -> {probability * 100:.1f}% (source: {source})")
         self.state.save(self.state_path)
 
     def set_classification(self, classification: str, sub_classification: str,
@@ -583,7 +631,9 @@ def print_status(status: dict):
     print(f"{'='*60}")
     print(f"Current Stage:     {status['current_stage']}")
     print(f"Next Stage:        {status['next_stage'] or 'N/A'}")
-    print(f"P(Architect):      {status['probability_architect']}%")
+    # Display probability as percentage (values are 0-1 internally)
+    prob = status['probability_architect']
+    print(f"P(Architect):      {prob * 100:.1f}%")
 
     if status['classification']:
         print(f"\nClassification:    {status['classification']}")

@@ -226,7 +226,8 @@ Caveats: [Any limitations, alternative interpretations, or uncertainty]
 - LOW: Vendor marketing, unverified claims, old sources
 
 **Recency Assessment**:
-- Current: Published <18 months ago
+- Current: Published <12 months ago
+- Recent: 12-18 months ago
 - Dated: 18 months - 3 years ago
 - Historical: >3 years ago (context only, don't classify on this)
 

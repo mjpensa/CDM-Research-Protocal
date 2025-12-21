@@ -1,23 +1,30 @@
 """
 CDM Research Protocol - Research Executor v2.1
 
-Executes live research by calling Claude API with web search capabilities.
-All research is executed live - no simulation mode.
-Designed for overnight batch processing with no human intervention.
+IMPORTANT: This tool requires an external Anthropic API key.
+For Claude Code extension users (VS Code with Max subscription), use
+claude_code_executor.py instead - it works with Claude Code's built-in
+WebSearch without needing a separate API key.
+
+This module executes live research by calling the Anthropic API directly.
+Designed for automated batch processing scenarios where Claude Code
+extension is not available.
 
 Usage:
-    # Called by batch_orchestrate.py
+    # Called by batch_orchestrate.py for external API batch runs
     from research_executor import execute_research
 
-    # Or run standalone
+    # Or run standalone (requires ANTHROPIC_API_KEY)
     python tools/research_executor.py --bank deutsche-bank --phase 1
     python tools/research_executor.py --bank deutsche-bank --phase 1 --show-prompts
 
 Requirements:
     pip install anthropic
+    ANTHROPIC_API_KEY environment variable
 
-Environment:
-    ANTHROPIC_API_KEY=your_key_here
+For Claude Code Extension Users:
+    Use claude_code_executor.py or run research interactively via Claude Code.
+    Claude Code has built-in WebSearch - no external API needed.
 """
 
 import os
@@ -39,6 +46,10 @@ from config_loader import (
     load_bayesian_tables, get_api_model, get_api_retry_config,
     get_api_timeout, load_api_config
 )
+
+# State management integration (Phase 3 fix for Issue #2)
+from state_manager import UnifiedStateManager
+from state_adapter import sync_research_state_to_bank_state, convert_research_state_to_bank_state
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -80,12 +91,17 @@ class ResearchStageResult:
 
 @dataclass
 class ResearchState:
-    """Complete state of research for a bank."""
+    """
+    Complete state of research for a bank.
+
+    NOTE: All probability values use 0-1 scale (not 0-100).
+    For display, format as: f"{prob * 100:.1f}%"
+    """
     bank_id: str
     bank_name: str
     phase: int
-    probability_architect: float
-    probability_pragmatist: float
+    probability_architect: float  # 0-1 scale
+    probability_pragmatist: float  # 0-1 scale (= 1 - probability_architect)
     classification: Optional[str] = None
     sub_classification: Optional[str] = None
     confidence: Optional[int] = None
@@ -98,6 +114,224 @@ class ResearchState:
     errors: List[str] = field(default_factory=list)
     started_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     completed_at: Optional[str] = None
+
+
+class IncrementalEvidenceCheckpointer:
+    """
+    Saves evidence incrementally during tier collection.
+
+    Category 3 fix: Intra-Stage Checkpointing
+    - Uses staging files that survive crashes
+    - Checkpoints after EVERY evidence item (per-item granularity)
+    - Supports crash recovery to resume from last checkpoint
+
+    Usage:
+        checkpointer = IncrementalEvidenceCheckpointer(bank_dir, bank_id, tier)
+        checkpointer.add_evidence({"claim": "...", "source_url": "..."})
+        checkpointer.finalize()  # After successful tier completion
+        checkpointer.cleanup()   # Remove staging file
+    """
+
+    def __init__(self, bank_dir: Path, bank_id: str, tier: int):
+        """
+        Initialize checkpointer for a specific tier.
+
+        Args:
+            bank_dir: Bank output directory
+            bank_id: Bank identifier
+            tier: Evidence tier (1, 2, or 3)
+        """
+        self.bank_dir = bank_dir
+        self.bank_id = bank_id
+        self.tier = tier
+        self.staging_path = bank_dir / f"evidence.staging.tier{tier}.json"
+        self.evidence_items: List[Dict[str, Any]] = []
+        self.raw_response: Optional[str] = None
+
+    def add_evidence(self, item: Dict[str, Any]) -> None:
+        """
+        Add item and checkpoint immediately (per-item granularity).
+
+        Args:
+            item: Evidence item dictionary
+        """
+        self.evidence_items.append(item)
+        self._checkpoint()  # Checkpoint after EVERY item
+
+    def set_raw_response(self, response: str) -> None:
+        """
+        Store raw response and checkpoint.
+
+        Args:
+            response: Raw response from Claude API
+        """
+        self.raw_response = response
+        self._checkpoint()
+
+    def _checkpoint(self) -> None:
+        """Atomically save current evidence to staging file."""
+        data = {
+            "bank_id": self.bank_id,
+            "tier": self.tier,
+            "checkpoint_time": datetime.now(timezone.utc).isoformat(),
+            "evidence_items": self.evidence_items,
+            "raw_response": self.raw_response,
+            "status": "in_progress",
+            "item_count": len(self.evidence_items)
+        }
+
+        # Atomic write: write to temp, then rename
+        temp_path = self.staging_path.with_suffix('.tmp')
+        try:
+            temp_path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+            temp_path.replace(self.staging_path)
+        except Exception as e:
+            logger.warning(f"Checkpoint write failed: {e}")
+            # Don't raise - checkpointing failure shouldn't stop research
+
+    def finalize(self) -> List[Dict[str, Any]]:
+        """
+        Mark checkpoint as complete and return items.
+
+        Returns:
+            List of evidence items collected
+        """
+        data = {
+            "bank_id": self.bank_id,
+            "tier": self.tier,
+            "checkpoint_time": datetime.now(timezone.utc).isoformat(),
+            "evidence_items": self.evidence_items,
+            "raw_response": self.raw_response,
+            "status": "complete",
+            "item_count": len(self.evidence_items)
+        }
+
+        temp_path = self.staging_path.with_suffix('.tmp')
+        try:
+            temp_path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+            temp_path.replace(self.staging_path)
+        except Exception as e:
+            logger.warning(f"Finalize checkpoint failed: {e}")
+
+        return self.evidence_items
+
+    def cleanup(self) -> None:
+        """Remove staging file after successful merge to main evidence file."""
+        try:
+            if self.staging_path.exists():
+                self.staging_path.unlink()
+                logger.debug(f"Cleaned up staging file: {self.staging_path.name}")
+        except Exception as e:
+            logger.warning(f"Cleanup failed: {e}")
+
+    @classmethod
+    def recover_from_crash(cls, bank_dir: Path) -> Dict[int, Dict[str, Any]]:
+        """
+        Recover evidence from any staging files after a crash.
+
+        Args:
+            bank_dir: Bank output directory
+
+        Returns:
+            Dict mapping tier -> recovered data (evidence_items, raw_response)
+        """
+        recovered = {}
+
+        for staging_file in bank_dir.glob("evidence.staging.tier*.json"):
+            try:
+                data = json.loads(staging_file.read_text(encoding='utf-8'))
+                tier = data.get("tier")
+                status = data.get("status")
+
+                if tier is not None:
+                    item_count = len(data.get("evidence_items", []))
+                    logger.info(
+                        f"Recovered tier {tier} checkpoint: {item_count} items, "
+                        f"status={status}"
+                    )
+                    recovered[tier] = {
+                        "evidence_items": data.get("evidence_items", []),
+                        "raw_response": data.get("raw_response"),
+                        "status": status,
+                        "checkpoint_time": data.get("checkpoint_time")
+                    }
+
+            except Exception as e:
+                logger.warning(f"Recovery failed for {staging_file.name}: {e}")
+
+        return recovered
+
+    @classmethod
+    def get_last_completed_tier(cls, bank_dir: Path) -> int:
+        """
+        Determine which tier to resume from based on staging files.
+
+        Args:
+            bank_dir: Bank output directory
+
+        Returns:
+            Last completed tier (0 if none completed, 1-3 if completed)
+        """
+        recovered = cls.recover_from_crash(bank_dir)
+
+        # Find highest tier with "complete" status
+        completed_tiers = [
+            tier for tier, data in recovered.items()
+            if data.get("status") == "complete"
+        ]
+
+        return max(completed_tiers) if completed_tiers else 0
+
+
+# Global state manager instance (initialized per execution)
+_state_manager: Optional[UnifiedStateManager] = None
+
+
+def _get_state_manager() -> UnifiedStateManager:
+    """Get or initialize the global state manager."""
+    global _state_manager
+    if _state_manager is None:
+        _state_manager = UnifiedStateManager(PROJECT_ROOT / "outputs")
+    return _state_manager
+
+
+def _sync_to_state_manager(
+    state: ResearchState,
+    stage: str,
+    validate: bool = True
+) -> None:
+    """
+    Sync ResearchState to UnifiedStateManager.
+
+    Converts ResearchState fields to BankState and saves via state manager.
+    This ensures all state changes are validated and atomically written.
+
+    Args:
+        state: Current ResearchState from research execution
+        stage: Current stage name for probability history tracking
+        validate: Whether to run validation (default True)
+    """
+    try:
+        sm = _get_state_manager()
+
+        # Try to load existing BankState to preserve history
+        existing = sm.load_bank_state(state.bank_id, state.phase)
+
+        # Sync fields from ResearchState to BankState
+        bank_state = sync_research_state_to_bank_state(
+            state,
+            existing_bank_state=existing,
+            stage=stage
+        )
+
+        # Save with validation
+        sm.save_bank_state(bank_state, validate=validate)
+
+        logger.debug(f"State synced to state manager at stage: {stage}")
+
+    except Exception as e:
+        # Log but don't fail - state manager issues shouldn't break research
+        logger.warning(f"State manager sync failed: {e}")
 
 
 class ClaudeResearcher:
@@ -333,12 +567,16 @@ def generate_bayesian_prompt(state: ResearchState, new_evidence: str, tier: int)
 
     lr_tables = load_bayesian_tables()
 
+    # Convert 0-1 probabilities to percentages for display
+    p_arch = state.probability_architect * 100
+    p_prag = state.probability_pragmatist * 100
+
     prompt = f"""# Bayesian Probability Update - Post Tier {tier}
 
 ## Current State
 - **Bank**: {state.bank_name}
-- **Prior P(ARCHITECT)**: {state.probability_architect:.1f}%
-- **Prior P(PRAGMATIST)**: {state.probability_pragmatist:.1f}%
+- **Prior P(ARCHITECT)**: {p_arch:.1f}%
+- **Prior P(PRAGMATIST)**: {p_prag:.1f}%
 - **Evidence items so far**: {len(state.evidence_items)}
 
 ## New Evidence from Tier {tier}
@@ -369,7 +607,7 @@ Use these likelihood ratios based on evidence type:
    - If items from same source, don't double-count (use max LR)
 
 3. **Apply Bayes' Rule**:
-   - Prior Odds = P(A) / P(P) = {state.probability_architect:.1f} / {state.probability_pragmatist:.1f}
+   - Prior Odds = P(A) / P(P) = {p_arch:.1f} / {p_prag:.1f}
    - Posterior Odds = Prior Odds x Combined LR
    - Posterior P(A) = Posterior Odds / (1 + Posterior Odds)
 
@@ -386,7 +624,7 @@ Use these likelihood ratios based on evidence type:
 | 1 | ... | ... | ... | ... |
 
 ### Calculation
-- Prior Odds: {state.probability_architect:.1f} / {state.probability_pragmatist:.1f} = {state.probability_architect / max(state.probability_pragmatist, 0.1):.2f}
+- Prior Odds: {p_arch:.1f} / {p_prag:.1f} = {state.probability_architect / max(state.probability_pragmatist, 0.01):.2f}
 - Combined LR: [your calculation]
 - Posterior Odds: [calculation]
 - **Posterior P(ARCHITECT)**: [X]%
@@ -404,6 +642,9 @@ Use these likelihood ratios based on evidence type:
 def generate_adversarial_prompt(state: ResearchState, all_evidence: str) -> str:
     """Generate prompt for adversarial challenge."""
 
+    # Convert 0-1 probability to percentage for display
+    p_arch = state.probability_architect * 100
+
     prompt = f"""# Adversarial Challenge
 
 ## Your Role
@@ -413,7 +654,7 @@ You are a skeptical reviewer. Your job is to find weaknesses in the current clas
 - **Bank**: {state.bank_name}
 - **Provisional Classification**: {state.classification} ({state.sub_classification})
 - **Confidence**: {state.confidence}%
-- **P(ARCHITECT)**: {state.probability_architect:.1f}%
+- **P(ARCHITECT)**: {p_arch:.1f}%
 - **Evidence Items**: {len(state.evidence_items)}
 
 ## Evidence Gathered
@@ -554,6 +795,16 @@ def execute_research(bank_id: str, phase: int,
 
     create_output_structure(bank_dir)
 
+    # Check for crashed/interrupted research to recover (Category 3 fix)
+    recovered_data = IncrementalEvidenceCheckpointer.recover_from_crash(bank_dir)
+    resume_from_tier = 0
+
+    if recovered_data:
+        logger.info(f"Found {len(recovered_data)} staging files from previous run")
+        resume_from_tier = IncrementalEvidenceCheckpointer.get_last_completed_tier(bank_dir)
+        if resume_from_tier > 0:
+            logger.info(f"Resuming from tier {resume_from_tier + 1} (tier {resume_from_tier} completed)")
+
     # Calculate initial prior
     prior_adj = bank_config.get('prior_adjustments', {})
     base_prior = 30  # Default PRAGMATIST assumption
@@ -567,17 +818,18 @@ def execute_research(bank_id: str, phase: int,
 
     base_prior = min(base_prior, 90)
 
+    # Convert to 0-1 scale for internal representation
     state = ResearchState(
         bank_id=bank_id,
         bank_name=bank_name,
         phase=phase,
-        probability_architect=base_prior,
-        probability_pragmatist=100 - base_prior
+        probability_architect=base_prior / 100.0,  # 0-1 scale
+        probability_pragmatist=(100 - base_prior) / 100.0  # 0-1 scale
     )
 
     logger.info(f"\n{'='*60}")
     logger.info(f"RESEARCH: {bank_name}")
-    logger.info(f"Prior P(ARCHITECT): {state.probability_architect:.1f}%")
+    logger.info(f"Prior P(ARCHITECT): {state.probability_architect * 100:.1f}%")
     logger.info(f"{'='*60}")
 
     # Initialize Claude researcher
@@ -589,23 +841,49 @@ def execute_research(bank_id: str, phase: int,
         state.errors.append(f"API initialization failed: {e}")
         return state
 
-    # Get skip threshold
+    # Get skip threshold (convert from percentage to 0-1)
     thresholds = load_decision_thresholds()
-    skip_threshold = thresholds.get('skip_threshold_pct', 80)
+    skip_threshold = thresholds.get('skip_threshold_pct', 80) / 100.0
 
     all_evidence_text = ""
 
+    # Restore evidence from completed tiers (for resume scenarios)
+    for tier in range(1, resume_from_tier + 1):
+        if tier in recovered_data:
+            raw_response = recovered_data[tier].get("raw_response", "")
+            if raw_response:
+                all_evidence_text += f"\n\n## Tier {tier} Evidence (recovered)\n{raw_response}"
+                state.highest_tier = tier
+                state.stages_completed.append(f'tier{tier}_evidence')
+                state.stages_completed.append(f'bayesian_t{tier}')
+                logger.info(f"  Restored tier {tier} evidence from checkpoint")
+
     # Process each tier
     for tier in [1, 2, 3]:
+        # Skip already-completed tiers (from recovery)
+        if tier <= resume_from_tier:
+            logger.info(f"\n[TIER {tier}] Skipped (already completed)")
+            continue
+
         logger.info(f"\n[TIER {tier}] Evidence Gathering")
 
-        # Check for early exit
+        # Check for early exit (0-1 scale comparison)
         if state.probability_architect > skip_threshold:
-            logger.info(f"  -> P(ARCHITECT) > {skip_threshold}%, skipping remaining tiers")
+            logger.info(f"  -> P(ARCHITECT) > {skip_threshold * 100:.0f}%, skipping remaining tiers")
             break
         if state.probability_pragmatist > skip_threshold:
-            logger.info(f"  -> P(PRAGMATIST) > {skip_threshold}%, skipping remaining tiers")
+            logger.info(f"  -> P(PRAGMATIST) > {skip_threshold * 100:.0f}%, skipping remaining tiers")
             break
+
+        # Create checkpointer for this tier (Category 3 fix)
+        checkpointer = IncrementalEvidenceCheckpointer(bank_dir, bank_id, tier)
+
+        # Check if we have in-progress checkpoint for this tier
+        if tier in recovered_data and recovered_data[tier].get("status") == "in_progress":
+            previous_response = recovered_data[tier].get("raw_response")
+            if previous_response:
+                logger.info(f"  Found incomplete checkpoint, using recovered data")
+                checkpointer.set_raw_response(previous_response)
 
         # Generate evidence prompt
         evidence_prompt = generate_evidence_prompt(bank_config, tier, all_evidence_text)
@@ -615,7 +893,10 @@ def execute_research(bank_id: str, phase: int,
             logger.info(f"  Executing web search...")
             evidence_response = researcher.research_with_web_search(evidence_prompt)
 
-            # Save raw response
+            # Checkpoint the raw response immediately (survives crash)
+            checkpointer.set_raw_response(evidence_response)
+
+            # Save raw response to file
             evidence_file = bank_dir / "1-evidence" / f"tier{tier}-evidence.md"
             evidence_file.write_text(f"# Tier {tier} Evidence: {bank_name}\n\n{evidence_response}", encoding='utf-8')
             logger.info(f"  Saved to {evidence_file.name}")
@@ -623,12 +904,19 @@ def execute_research(bank_id: str, phase: int,
             all_evidence_text += f"\n\n## Tier {tier} Evidence\n{evidence_response}"
             state.highest_tier = tier
 
+            # Finalize checkpoint (marks tier as complete)
+            checkpointer.finalize()
+
         except Exception as e:
             logger.error(f"  Error in Tier {tier}: {e}")
             state.errors.append(f"Tier {tier} error: {e}")
+            # Note: checkpoint file is preserved for recovery on restart
             continue
 
         state.stages_completed.append(f'tier{tier}_evidence')
+
+        # Sync state after evidence gathering
+        _sync_to_state_manager(state, f'tier{tier}_evidence')
 
         # Bayesian update
         logger.info(f"\n[BAYESIAN] Post-Tier {tier} Update")
@@ -638,12 +926,12 @@ def execute_research(bank_id: str, phase: int,
         try:
             bayesian_response = researcher.analyze(bayesian_prompt)
 
-            # Parse probability
+            # Parse probability (returns 0-100, convert to 0-1)
             new_prob = parse_probability_from_response(bayesian_response)
             if new_prob is not None:
-                state.probability_architect = new_prob
-                state.probability_pragmatist = 100 - new_prob
-                logger.info(f"  Updated P(ARCHITECT): {new_prob:.1f}%")
+                state.probability_architect = new_prob / 100.0  # Convert to 0-1
+                state.probability_pragmatist = 1.0 - state.probability_architect
+                logger.info(f"  Updated P(ARCHITECT): {state.probability_architect * 100:.1f}%")
 
             # Save response
             bayesian_file = bank_dir / "2-bayesian" / f"post-tier{tier}-update.md"
@@ -655,18 +943,21 @@ def execute_research(bank_id: str, phase: int,
 
         state.stages_completed.append(f'bayesian_t{tier}')
 
-    # Determine provisional classification
-    if state.probability_architect > 50:
+        # Sync state after Bayesian update
+        _sync_to_state_manager(state, f'bayesian_t{tier}')
+
+    # Determine provisional classification (thresholds in 0-1 scale)
+    if state.probability_architect > 0.50:
         state.classification = "ARCHITECT"
-        if state.probability_architect > 80:
+        if state.probability_architect > 0.80:
             state.sub_classification = "Leader"
-        elif state.probability_architect > 65:
+        elif state.probability_architect > 0.65:
             state.sub_classification = "Follower"
         else:
             state.sub_classification = "Follower"
     else:
         state.classification = "PRAGMATIST"
-        if state.probability_pragmatist > 80:
+        if state.probability_pragmatist > 0.80:
             state.sub_classification = "Traditional"
         else:
             state.sub_classification = "Wait-and-See"
@@ -709,7 +1000,16 @@ def execute_research(bank_id: str, phase: int,
     state.stages_completed.append('adversarial')
     state.completed_at = datetime.now(timezone.utc).isoformat()
 
-    # Save final state
+    # Sync final state to state manager (Issue #2 fix)
+    _sync_to_state_manager(state, 'adversarial')
+
+    # Clean up staging files after successful completion (Category 3 fix)
+    for tier in [1, 2, 3]:
+        staging_cleanup = IncrementalEvidenceCheckpointer(bank_dir, bank_id, tier)
+        staging_cleanup.cleanup()
+    logger.debug("Cleaned up all evidence staging files")
+
+    # Also save legacy status.json for backward compatibility
     status_file = bank_dir / "status.json"
     status_file.write_text(json.dumps(asdict(state), indent=2, default=str), encoding='utf-8')
 
@@ -717,7 +1017,7 @@ def execute_research(bank_id: str, phase: int,
     logger.info(f"COMPLETE: {bank_name}")
     logger.info(f"Classification: {state.classification} ({state.sub_classification})")
     logger.info(f"Confidence: {state.confidence}%")
-    logger.info(f"P(ARCHITECT): {state.probability_architect:.1f}%")
+    logger.info(f"P(ARCHITECT): {state.probability_architect * 100:.1f}%")
     logger.info(f"Adversarial: {state.adversarial_verdict}")
     logger.info(f"{'='*60}\n")
 

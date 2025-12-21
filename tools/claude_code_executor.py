@@ -1,18 +1,32 @@
 """
-CDM Research Protocol - Claude Code Executor v1.0
+CDM Research Protocol - Claude Code Executor v1.1
+
+PRIMARY TOOL for VS Code Claude Code extension users.
 
 Executes research using Claude Code's built-in WebSearch capabilities.
-No API key required - uses Claude Code Max subscription.
+No external API key required - uses Claude Code Max subscription's
+built-in web search and analysis features.
+
+This is the RECOMMENDED approach for running research in VS Code with
+the Claude Code extension. For external API-based batch processing
+(without Claude Code), use research_executor.py instead.
 
 Usage:
-    # Generate prompt queue for Claude Code to process
-    python tools/claude_code_executor.py --bank deutsche-bank --phase 1 --generate
+    # Generate research instructions for Claude Code
+    python tools/claude_code_executor.py --bank deutsche-bank --phase 1 --generate-instructions
 
-    # Process next prompt in queue (run from Claude Code)
-    python tools/claude_code_executor.py --process-next
+    # Generate prompt queue for structured processing
+    python tools/claude_code_executor.py --bank deutsche-bank --phase 1 --generate
 
     # Check queue status
     python tools/claude_code_executor.py --status
+
+Interactive Usage (Preferred):
+    Simply ask Claude Code to research a bank:
+    "Research Deutsche Bank's CDM adoption following the protocol in CLAUDE.md"
+
+    Claude Code will use WebSearch, read/write files, and follow the workflow
+    automatically without needing external API calls.
 """
 
 import sys
@@ -169,13 +183,13 @@ def generate_bank_tasks(bank_id: str, phase: int) -> List[PromptTask]:
         base_prior += prior_adj.get('production_adjustment_pct', 30)
     base_prior = min(base_prior, 90)
 
-    # Create initial state for prompt generation
+    # Create initial state for prompt generation (0-1 scale)
     state = ResearchState(
         bank_id=bank_id,
         bank_name=bank_name,
         phase=phase,
-        probability_architect=base_prior,
-        probability_pragmatist=100 - base_prior
+        probability_architect=base_prior / 100.0,
+        probability_pragmatist=(100 - base_prior) / 100.0
     )
 
     # Generate evidence gathering tasks for each tier

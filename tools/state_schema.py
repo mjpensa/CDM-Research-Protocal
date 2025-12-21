@@ -1,18 +1,31 @@
 """
-CDM Research Protocol - Unified State Schema v1.0
+CDM Research Protocol - Unified State Schema v1.1
 
 Dataclasses defining the structure of all workflow state.
 Single source of truth for state across all orchestration tools.
 
+IMPORTANT: This is the canonical state format for the CDM Research Protocol.
+All probabilities use 0-1 scale internally. For display, format as percentage.
+
 Usage:
     from state_schema import BankState, ProbabilityUpdate, CheckpointEvent, ErrorEvent
+
+    # Probabilities are 0-1 scale
+    state.current_probability = 0.65  # 65%
+
+    # For display:
+    print(f"P(ARCHITECT): {state.current_probability * 100:.1f}%")
 """
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field, asdict, fields
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 from enum import Enum
 import json
+
+
+# Schema version for migration support
+SCHEMA_VERSION = "1.1"
 
 
 class StageStatus(Enum):
@@ -34,24 +47,49 @@ class CheckpointAction(Enum):
     MODIFIED = "modified"
 
 
-# Stage sequence for reference
+# Stage sequence for reference - canonical names matching orchestrate.py
 STAGE_SEQUENCE = [
     "initialize",
     "pre_mortem",
     "tier1_evidence",
-    "bayesian_t1",
+    "bayesian_1",
     "gate_1",
     "tier2_evidence",
-    "bayesian_t2",
+    "bayesian_2",
     "gate_2",
     "tier3_evidence",
-    "bayesian_t3",
+    "bayesian_3",
     "gate_3",
     "adversarial_challenge",
     "final_classification",
     "synthesis",
     "complete"
 ]
+
+# Aliases for backward compatibility with legacy stage names
+STAGE_ALIASES = {
+    # Old research_executor.py names -> canonical names
+    "bayesian_t1": "bayesian_1",
+    "bayesian_t2": "bayesian_2",
+    "bayesian_t3": "bayesian_3",
+    # Other legacy aliases
+    "initialized": "initialize",
+    "init": "initialize",
+    "adversarial": "adversarial_challenge",
+}
+
+
+def normalize_stage(stage: str) -> str:
+    """
+    Normalize a stage name to its canonical form.
+
+    Args:
+        stage: Stage name (may be legacy alias)
+
+    Returns:
+        Canonical stage name
+    """
+    return STAGE_ALIASES.get(stage, stage)
 
 
 @dataclass
@@ -69,7 +107,10 @@ class ProbabilityUpdate:
 
     @classmethod
     def from_dict(cls, data: dict) -> 'ProbabilityUpdate':
-        return cls(**data)
+        """Create from dictionary, filtering unknown fields for forward compatibility."""
+        valid_fields = {f.name for f in fields(cls)}
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+        return cls(**filtered_data)
 
 
 @dataclass
@@ -94,7 +135,10 @@ class CheckpointEvent:
 
     @classmethod
     def from_dict(cls, data: dict) -> 'CheckpointEvent':
-        return cls(**data)
+        """Create from dictionary, filtering unknown fields for forward compatibility."""
+        valid_fields = {f.name for f in fields(cls)}
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+        return cls(**filtered_data)
 
 
 @dataclass
@@ -115,7 +159,10 @@ class ErrorEvent:
 
     @classmethod
     def from_dict(cls, data: dict) -> 'ErrorEvent':
-        return cls(**data)
+        """Create from dictionary, filtering unknown fields for forward compatibility."""
+        valid_fields = {f.name for f in fields(cls)}
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+        return cls(**filtered_data)
 
 
 @dataclass
@@ -141,18 +188,27 @@ class ReviewItem:
 
     @classmethod
     def from_dict(cls, data: dict) -> 'ReviewItem':
-        return cls(**data)
+        """Create from dictionary, filtering unknown fields for forward compatibility."""
+        valid_fields = {f.name for f in fields(cls)}
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+        return cls(**filtered_data)
 
 
 @dataclass
 class BankState:
-    """Complete state of research for a bank."""
+    """
+    Complete state of research for a bank.
+
+    All probability values use 0-1 scale (not 0-100).
+    For display, multiply by 100: f"{prob * 100:.1f}%"
+    """
     bank_id: str
     bank_name: str
     phase: int
+    schema_version: str = SCHEMA_VERSION  # For migration support
     execution_tier: str = "B"  # A, B, or C
 
-    # Probability tracking
+    # Probability tracking (0-1 scale)
     prior_probability: float = 0.30  # Default 30% Architect
     current_probability: float = 0.30
     probability_history: List[ProbabilityUpdate] = field(default_factory=list)
@@ -202,14 +258,54 @@ class BankState:
 
     @classmethod
     def from_dict(cls, data: dict) -> 'BankState':
-        """Create from dictionary (e.g., loaded from JSON)."""
+        """
+        Create from dictionary (e.g., loaded from JSON).
+
+        Handles:
+        - Unknown fields (filtered out for forward compatibility)
+        - Legacy stage name aliases (normalized to canonical form)
+        - Legacy probability scales (0-100 converted to 0-1)
+        - Nested ProbabilityUpdate objects
+        - Missing schema_version (defaults to current)
+        """
+        # Get valid field names
+        valid_fields = {f.name for f in fields(cls)}
+
+        # Filter to only known fields
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+
+        # Ensure schema_version is set
+        if 'schema_version' not in filtered_data:
+            filtered_data['schema_version'] = SCHEMA_VERSION
+
+        # Handle legacy 0-100 probability scale (convert to 0-1)
+        for prob_field in ['prior_probability', 'current_probability']:
+            if prob_field in filtered_data and filtered_data[prob_field] is not None:
+                if filtered_data[prob_field] > 1.0:
+                    filtered_data[prob_field] = filtered_data[prob_field] / 100.0
+
         # Convert probability_history dicts to ProbabilityUpdate objects
-        if 'probability_history' in data:
-            data['probability_history'] = [
+        if 'probability_history' in filtered_data:
+            filtered_data['probability_history'] = [
                 ProbabilityUpdate.from_dict(p) if isinstance(p, dict) else p
-                for p in data['probability_history']
+                for p in filtered_data['probability_history']
             ]
-        return cls(**data)
+
+        # Normalize stage names for backward compatibility
+        if 'current_stage' in filtered_data:
+            filtered_data['current_stage'] = normalize_stage(filtered_data['current_stage'])
+
+        if 'stages_completed' in filtered_data:
+            filtered_data['stages_completed'] = [
+                normalize_stage(s) for s in filtered_data['stages_completed']
+            ]
+
+        if 'skipped_stages' in filtered_data:
+            filtered_data['skipped_stages'] = [
+                normalize_stage(s) for s in filtered_data['skipped_stages']
+            ]
+
+        return cls(**filtered_data)
 
     def update_probability(self, posterior: float, combined_lr: float,
                           evidence_count: int, stage: str) -> None:
@@ -282,6 +378,7 @@ class BankState:
 @dataclass
 class WorkflowState:
     """Master workflow state tracking all phases and banks."""
+    schema_version: str = SCHEMA_VERSION  # For migration support
     execution_mode: str = "full_rollout"  # single_bank_test, phase_pilot, full_rollout
     current_phase: int = 1
     current_bank: Optional[str] = None
@@ -306,12 +403,31 @@ class WorkflowState:
 
     @classmethod
     def from_dict(cls, data: dict) -> 'WorkflowState':
-        # Convert phase_status keys back to int
-        if 'phase_status' in data:
-            data['phase_status'] = {
-                int(k): v for k, v in data['phase_status'].items()
+        """
+        Create from dictionary, filtering unknown fields for forward compatibility.
+
+        Handles:
+        - Unknown fields (filtered out)
+        - phase_status key conversion (JSON stringifies int keys)
+        - Legacy stage name normalization
+        """
+        # Get valid field names
+        valid_fields = {f.name for f in fields(cls)}
+
+        # Filter to only known fields
+        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
+
+        # Convert phase_status keys back to int (JSON stringifies int keys)
+        if 'phase_status' in filtered_data:
+            filtered_data['phase_status'] = {
+                int(k): v for k, v in filtered_data['phase_status'].items()
             }
-        return cls(**data)
+
+        # Normalize current_stage if present
+        if 'current_stage' in filtered_data and filtered_data['current_stage']:
+            filtered_data['current_stage'] = normalize_stage(filtered_data['current_stage'])
+
+        return cls(**filtered_data)
 
     def log_event(self, event: str, details: str) -> None:
         """Log a workflow event."""

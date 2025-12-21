@@ -1,21 +1,25 @@
 """
-CDM Research Protocol - Unified State Manager v1.0
+CDM Research Protocol - Unified State Manager v1.1
 
 Single source of truth for all workflow state.
 Replaces disparate state management across orchestration tools.
+
+IMPORTANT: All probabilities use 0-1 scale (not 0-100).
+Legacy 0-100 values are automatically converted on load.
 
 Features:
 - Atomic writes (write to temp, rename)
 - Lock file for concurrent access
 - State validation on load/save
 - Provenance tracking
+- Schema versioning for migration support
 
 Usage:
     from state_manager import UnifiedStateManager
 
     manager = UnifiedStateManager(Path("outputs"))
     state = manager.load_bank_state("deutsche-bank", phase=1)
-    state.update_probability(0.65, combined_lr=2.5, evidence_count=5, stage="bayesian_t1")
+    state.update_probability(0.65, combined_lr=2.5, evidence_count=5, stage="bayesian_1")
     manager.save_bank_state(state)
 """
 
@@ -24,6 +28,7 @@ import os
 import sys
 import time
 import logging
+import platform
 from pathlib import Path
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
@@ -86,64 +91,217 @@ class UnifiedStateManager:
         self.error_log_path = self.state_dir / "error-log.json"
         self.review_queue_path = self.state_dir / "review-queue.json"
 
-        # Lock timeout
+        # Lock configuration
         self.lock_timeout = 30  # seconds
+        self.stale_lock_age = 600  # 10 minutes
+
+    def _get_phase_name(self, phase: int) -> Optional[str]:
+        """
+        Get the canonical phase name from bank manifest (Issue #8 fix).
+
+        Args:
+            phase: Phase number
+
+        Returns:
+            Phase name (e.g., "european-tier1") or None if not found
+        """
+        try:
+            manifest_path = self.outputs_dir.parent / "config" / "bank-manifest.json"
+            if manifest_path.exists():
+                with open(manifest_path, 'r', encoding='utf-8') as f:
+                    manifest = json.load(f)
+
+                phase_key = f"phase_{phase}"
+                phase_info = manifest.get("phase_summary", {}).get(phase_key, {})
+                name = phase_info.get("name", "")
+                if name:
+                    # Convert "European Tier 1" to "european-tier1"
+                    return name.lower().replace(" ", "-")
+        except Exception as e:
+            logger.debug(f"Could not load phase name from manifest: {e}")
+
+        return None
 
     def _get_bank_dir(self, bank_id: str, phase: int) -> Path:
         """Get the directory for a bank's outputs."""
-        return self.outputs_dir / f"phase-{phase}-*" / bank_id
+        phase_name = self._get_phase_name(phase)
+        if phase_name:
+            return self.outputs_dir / f"phase-{phase}-{phase_name}" / bank_id
+        return self.outputs_dir / f"phase-{phase}" / bank_id
 
     def _get_bank_status_path(self, bank_id: str, phase: int) -> Path:
-        """Get the path to a bank's status.json file."""
-        # Find the phase directory (could have suffix like "european-tier1")
-        phase_dirs = list(self.outputs_dir.glob(f"phase-{phase}-*"))
-        if phase_dirs:
-            bank_dir = phase_dirs[0] / bank_id
+        """
+        Get the path to a bank's status.json file.
+
+        Uses deterministic path resolution via bank manifest (Issue #8 fix).
+        """
+        # First try the canonical name from manifest
+        phase_name = self._get_phase_name(phase)
+
+        if phase_name:
+            bank_dir = self.outputs_dir / f"phase-{phase}-{phase_name}" / bank_id
         else:
-            # Create default phase directory
-            bank_dir = self.outputs_dir / f"phase-{phase}" / bank_id
+            # Fall back to glob if manifest not available
+            phase_dirs = sorted(self.outputs_dir.glob(f"phase-{phase}-*"))
+            if phase_dirs:
+                bank_dir = phase_dirs[0] / bank_id
+            else:
+                # Create default phase directory
+                bank_dir = self.outputs_dir / f"phase-{phase}" / bank_id
 
         bank_dir.mkdir(parents=True, exist_ok=True)
         return bank_dir / "status.json"
 
+    def _process_exists(self, pid: int) -> bool:
+        """
+        Check if a process with given PID exists.
+
+        Args:
+            pid: Process ID to check
+
+        Returns:
+            True if process exists, False otherwise
+        """
+        if WINDOWS:
+            try:
+                import ctypes
+                kernel32 = ctypes.windll.kernel32
+                PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+                handle = kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+                if handle:
+                    kernel32.CloseHandle(handle)
+                    return True
+                return False
+            except Exception:
+                return True  # Assume exists if we can't check
+        else:
+            try:
+                os.kill(pid, 0)
+                return True
+            except OSError:
+                return False
+
+    def _handle_stale_lock(self, lock_path: Path) -> bool:
+        """
+        Detect and handle stale locks using multiple signals.
+
+        Args:
+            lock_path: Path to the lock file
+
+        Returns:
+            True if stale lock was removed, False otherwise
+        """
+        if not lock_path.exists():
+            return False
+
+        try:
+            # Try to read lock info
+            lock_content = lock_path.read_text(encoding='utf-8')
+            try:
+                lock_info = json.loads(lock_content)
+            except json.JSONDecodeError:
+                # Corrupted lock file - safe to remove
+                logger.warning(f"Removing corrupted lock file: {lock_path}")
+                lock_path.unlink()
+                return True
+
+            # Check 1: Is the process still running?
+            lock_pid = lock_info.get('pid')
+            if lock_pid and not self._process_exists(lock_pid):
+                logger.warning(f"Removing stale lock - PID {lock_pid} no longer exists: {lock_path}")
+                lock_path.unlink()
+                return True
+
+            # Check 2: Is lock older than maximum allowed time?
+            acquired_str = lock_info.get('acquired')
+            if acquired_str:
+                try:
+                    acquired = datetime.fromisoformat(acquired_str.replace('Z', '+00:00'))
+                    age_seconds = (datetime.now(timezone.utc) - acquired).total_seconds()
+
+                    if age_seconds > self.stale_lock_age:
+                        logger.warning(f"Removing stale lock - held for {age_seconds:.0f}s: {lock_path}")
+                        lock_path.unlink()
+                        return True
+                except (ValueError, TypeError):
+                    pass
+
+            return False
+
+        except OSError as e:
+            logger.debug(f"Error checking stale lock: {e}")
+            return False
+
     @contextmanager
     def _file_lock(self, path: Path):
         """
-        Context manager for file locking.
+        Context manager for file locking with proper lock held during operations.
 
-        Uses exclusive lock file creation which works cross-platform.
+        Uses exclusive lock file creation with PID/timestamp tracking.
+        The lock is held for the duration of the context.
+
+        Args:
+            path: Path to the file being locked (lock file is path.lock)
+
+        Raises:
+            StateLockError: If lock cannot be acquired within timeout
         """
         lock_path = path.with_suffix('.lock')
+        fd = None
+        retries = 0
 
         try:
-            # Try to acquire lock
             start_time = time.time()
             while True:
                 try:
                     # Create lock file exclusively
-                    fd = os.open(str(lock_path), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-                    os.close(fd)
-                    break
-                except (FileExistsError, OSError) as e:
-                    # Check for stale lock (older than 5 minutes)
-                    if lock_path.exists():
-                        lock_age = time.time() - lock_path.stat().st_mtime
-                        if lock_age > 300:  # 5 minutes
-                            logger.warning(f"Removing stale lock file: {lock_path}")
-                            try:
-                                lock_path.unlink()
-                                continue
-                            except OSError:
-                                pass
+                    fd = os.open(str(lock_path), os.O_CREAT | os.O_EXCL | os.O_RDWR)
 
+                    # Write lock info for debugging and stale detection
+                    lock_info = json.dumps({
+                        "pid": os.getpid(),
+                        "acquired": datetime.now(timezone.utc).isoformat(),
+                        "host": platform.node(),
+                        "file": str(path),
+                    })
+                    os.write(fd, lock_info.encode('utf-8'))
+
+                    # Log contention if we had to retry
+                    if retries > 0:
+                        elapsed = time.time() - start_time
+                        logger.debug(f"Lock acquired after {retries} retries ({elapsed:.2f}s): {lock_path}")
+
+                    break
+
+                except FileExistsError:
+                    # Lock exists - check if stale
+                    if self._handle_stale_lock(lock_path):
+                        continue  # Stale lock removed, try again
+
+                    # Check timeout
                     if time.time() - start_time > self.lock_timeout:
-                        raise StateLockError(f"Timeout waiting for lock on {path}")
+                        raise StateLockError(
+                            f"Timeout ({self.lock_timeout}s) waiting for lock on {path}"
+                        )
+
+                    retries += 1
+                    time.sleep(0.1)
+
+                except OSError as e:
+                    if time.time() - start_time > self.lock_timeout:
+                        raise StateLockError(f"Error acquiring lock on {path}: {e}")
                     time.sleep(0.1)
 
             yield
 
         finally:
             # Release lock
+            if fd is not None:
+                try:
+                    os.close(fd)
+                except OSError:
+                    pass
+
             try:
                 lock_path.unlink()
             except (FileNotFoundError, OSError):
@@ -201,13 +359,20 @@ class UnifiedStateManager:
             logger.error(f"Error loading bank state for {bank_id}: {e}")
             return None
 
-    def save_bank_state(self, state: BankState) -> None:
+    def save_bank_state(self, state: BankState, validate: bool = True) -> None:
         """
         Save bank state with atomic write.
 
         Args:
             state: BankState to save
+            validate: If True, run validation and log warnings (default True)
         """
+        # Validate state before saving (Issue #6 fix)
+        if validate:
+            errors = self.validate_bank_state(state)
+            if errors:
+                logger.warning(f"Validation warnings for {state.bank_id}: {errors}")
+
         path = self._get_bank_status_path(state.bank_id, state.phase)
 
         # Update timestamp
@@ -292,18 +457,28 @@ class UnifiedStateManager:
 
     def set_bank_blocked(self, bank_id: str, phase: int,
                          checkpoint: str, reason: str) -> None:
-        """Set a bank as blocked at a checkpoint."""
-        state = self.load_bank_state(bank_id, phase)
-        if state is None:
-            raise ValueError(f"No state found for {bank_id}")
+        """
+        Set a bank as blocked at a checkpoint.
 
-        state.set_blocked(checkpoint, reason)
-        self.save_bank_state(state)
+        Uses proper locking to prevent race conditions when multiple
+        processes update state simultaneously.
+        """
+        bank_path = self._get_bank_status_path(bank_id, phase)
 
-        # Also update workflow state
-        workflow = self.load_workflow_state()
-        workflow.mark_bank_blocked(bank_id)
-        self.save_workflow_state(workflow)
+        # Lock and update bank state
+        with self._file_lock(bank_path):
+            state = self.load_bank_state(bank_id, phase)
+            if state is None:
+                raise ValueError(f"No state found for {bank_id}")
+
+            state.set_blocked(checkpoint, reason)
+            self.save_bank_state(state)
+
+        # Lock and update workflow state (separate lock to avoid deadlock)
+        with self._file_lock(self.workflow_state_path):
+            workflow = self.load_workflow_state()
+            workflow.mark_bank_blocked(bank_id)
+            self.save_workflow_state(workflow)
 
     def clear_bank_block(self, bank_id: str, phase: int) -> None:
         """Clear the blocked status for a bank."""
@@ -355,23 +530,29 @@ class UnifiedStateManager:
     # ========== Checkpoint Logging ==========
 
     def log_checkpoint(self, event: CheckpointEvent) -> None:
-        """Log a checkpoint event."""
-        data = self._load_json(self.checkpoint_log_path, {"checkpoints": [], "summary": {}})
+        """
+        Log a checkpoint event with atomic read-modify-write.
 
-        data["checkpoints"].append(event.to_dict())
+        Uses file locking to prevent concurrent appends from losing data.
+        """
+        with self._file_lock(self.checkpoint_log_path):
+            data = self._load_json(self.checkpoint_log_path, {"checkpoints": [], "summary": {}})
 
-        # Update summary
-        summary = data.get("summary", {})
-        summary["total_checkpoints"] = len(data["checkpoints"])
-        summary["auto_proceed_count"] = sum(
-            1 for c in data["checkpoints"] if c.get("action") == "auto_proceed"
-        )
-        summary["blocked_count"] = sum(
-            1 for c in data["checkpoints"] if c.get("action") == "block"
-        )
-        data["summary"] = summary
+            data["checkpoints"].append(event.to_dict())
 
-        self._atomic_write(self.checkpoint_log_path, data)
+            # Update summary
+            summary = data.get("summary", {})
+            summary["total_checkpoints"] = len(data["checkpoints"])
+            summary["auto_proceed_count"] = sum(
+                1 for c in data["checkpoints"] if c.get("action") == "auto_proceed"
+            )
+            summary["blocked_count"] = sum(
+                1 for c in data["checkpoints"] if c.get("action") == "block"
+            )
+            summary["last_updated"] = datetime.now(timezone.utc).isoformat()
+            data["summary"] = summary
+
+            self._atomic_write(self.checkpoint_log_path, data)
 
     def get_checkpoints_for_bank(self, bank_id: str) -> List[CheckpointEvent]:
         """Get all checkpoint events for a bank."""
@@ -385,17 +566,23 @@ class UnifiedStateManager:
     # ========== Error Logging ==========
 
     def log_error(self, event: ErrorEvent) -> None:
-        """Log an error event."""
-        data = self._load_json(self.error_log_path, {"errors": [], "summary": {}})
+        """
+        Log an error event with atomic read-modify-write.
 
-        data["errors"].append(event.to_dict())
+        Uses file locking to prevent concurrent appends from losing data.
+        """
+        with self._file_lock(self.error_log_path):
+            data = self._load_json(self.error_log_path, {"errors": [], "summary": {}})
 
-        # Update summary
-        summary = data.get("summary", {})
-        summary["total_errors"] = len(data["errors"])
-        data["summary"] = summary
+            data["errors"].append(event.to_dict())
 
-        self._atomic_write(self.error_log_path, data)
+            # Update summary
+            summary = data.get("summary", {})
+            summary["total_errors"] = len(data["errors"])
+            summary["last_updated"] = datetime.now(timezone.utc).isoformat()
+            data["summary"] = summary
+
+            self._atomic_write(self.error_log_path, data)
 
         # Also add to bank state
         try:
@@ -412,16 +599,37 @@ class UnifiedStateManager:
         except Exception as e:
             logger.warning(f"Could not update bank state with error: {e}")
 
-    def clear_errors(self, bank_id: str) -> None:
-        """Clear errors for a bank."""
-        data = self._load_json(self.error_log_path, {"errors": [], "summary": {}})
+    def clear_errors(self, bank_id: str, phase: Optional[int] = None) -> None:
+        """
+        Clear errors for a bank (Issue #10 fix).
 
-        data["errors"] = [
-            e for e in data["errors"]
-            if e.get("bank_id") != bank_id
-        ]
+        Clears errors from both the global error log AND the bank state.
 
-        self._atomic_write(self.error_log_path, data)
+        Args:
+            bank_id: Bank identifier
+            phase: Optional phase number. If provided, also clears bank state errors.
+        """
+        # Clear from global error log
+        with self._file_lock(self.error_log_path):
+            data = self._load_json(self.error_log_path, {"errors": [], "summary": {}})
+
+            data["errors"] = [
+                e for e in data["errors"]
+                if e.get("bank_id") != bank_id
+            ]
+
+            self._atomic_write(self.error_log_path, data)
+
+        # Also clear from bank state if phase provided
+        if phase is not None:
+            try:
+                state = self.load_bank_state(bank_id, phase)
+                if state and state.errors:
+                    state.errors = []
+                    self.save_bank_state(state, validate=False)
+                    logger.debug(f"Cleared errors from bank state for {bank_id}")
+            except Exception as e:
+                logger.warning(f"Could not clear bank state errors: {e}")
 
     # ========== Review Queue ==========
 
@@ -485,6 +693,128 @@ class UnifiedStateManager:
             "pending": len(workflow.banks_pending)
         }
 
+    # ========== Authoritative Completion Methods ==========
+
+    def is_bank_complete(self, bank_id: str, phase: int) -> bool:
+        """
+        AUTHORITATIVE completion check - single source of truth.
+
+        This is the ONLY method that should be used to check if a bank
+        has completed research. Uses BankState.is_complete() which checks
+        completed_at timestamp or "complete" in stages_completed.
+
+        Args:
+            bank_id: Bank identifier
+            phase: Phase number
+
+        Returns:
+            True if bank research is complete, False otherwise
+        """
+        bank_state = self.load_bank_state(bank_id, phase)
+        if bank_state is None:
+            return False
+        return bank_state.is_complete()
+
+    def mark_bank_complete(self, bank_id: str, phase: int) -> None:
+        """
+        Mark a bank as complete in BOTH BankState AND WorkflowState.
+
+        This ensures state consistency between the authoritative per-bank
+        state (status.json) and the workflow index (workflow-state.json).
+
+        Args:
+            bank_id: Bank identifier
+            phase: Phase number
+
+        Raises:
+            ValueError: If no state found for bank
+        """
+        # Update BankState (authoritative source)
+        bank_state = self.load_bank_state(bank_id, phase)
+        if bank_state is None:
+            raise ValueError(f"No state found for {bank_id}")
+
+        bank_state.completed_at = datetime.now(timezone.utc).isoformat()
+        bank_state.mark_stage_complete("complete")
+        self.save_bank_state(bank_state)
+
+        # Sync to WorkflowState (index/cache)
+        with self._file_lock(self.workflow_state_path):
+            workflow = self.load_workflow_state()
+            workflow.mark_bank_completed(bank_id)
+            self.save_workflow_state(workflow)
+
+        logger.info(f"Marked {bank_id} as complete (both states synchronized)")
+
+    def sync_workflow_state_from_bank_states(self, phase: int) -> 'WorkflowState':
+        """
+        Rebuild WorkflowState by scanning all BankState files.
+
+        Use this for recovery or initialization to ensure workflow-state.json
+        accurately reflects the actual per-bank status.json files.
+
+        Args:
+            phase: Phase number to sync
+
+        Returns:
+            Updated WorkflowState
+        """
+        # Load bank manifest for the phase
+        manifest_path = self.outputs_dir.parent / "config" / "bank-manifest.json"
+        banks_in_phase = []
+
+        if manifest_path.exists():
+            try:
+                with open(manifest_path, 'r', encoding='utf-8') as f:
+                    manifest = json.load(f)
+                banks_in_phase = [
+                    b['bank_id'] for b in manifest.get('banks', [])
+                    if b.get('phase') == phase
+                ]
+            except Exception as e:
+                logger.warning(f"Could not load bank manifest: {e}")
+
+        # Lock and rebuild workflow state
+        with self._file_lock(self.workflow_state_path):
+            workflow = self.load_workflow_state()
+
+            # Clear existing lists for this rebuild
+            workflow.banks_completed = []
+            workflow.banks_in_progress = []
+            workflow.banks_pending = []
+            workflow.banks_blocked = []
+
+            for bank_id in banks_in_phase:
+                bank_state = self.load_bank_state(bank_id, phase)
+
+                if bank_state is None:
+                    workflow.banks_pending.append(bank_id)
+                elif bank_state.is_complete():
+                    workflow.banks_completed.append(bank_id)
+                elif bank_state.is_blocked():
+                    workflow.banks_blocked.append(bank_id)
+                else:
+                    workflow.banks_in_progress.append(bank_id)
+
+            workflow.log_event(
+                "workflow_synced",
+                f"Rebuilt from {len(banks_in_phase)} bank states: "
+                f"{len(workflow.banks_completed)} complete, "
+                f"{len(workflow.banks_in_progress)} in progress, "
+                f"{len(workflow.banks_blocked)} blocked, "
+                f"{len(workflow.banks_pending)} pending"
+            )
+
+            self.save_workflow_state(workflow)
+
+        logger.info(
+            f"Synced workflow state from bank states: "
+            f"{len(workflow.banks_completed)} complete, "
+            f"{len(workflow.banks_in_progress)} in progress"
+        )
+
+        return workflow
+
     # ========== Validation ==========
 
     def validate_bank_state(self, state: BankState) -> List[str]:
@@ -499,17 +829,22 @@ class UnifiedStateManager:
         if not 0.0 <= state.current_probability <= 1.0:
             errors.append(f"Invalid probability: {state.current_probability}")
 
-        # Check probability sum (should be ~1.0 for binary classification)
-        p_pragmatist = 1.0 - state.current_probability
-        if abs(state.current_probability + p_pragmatist - 1.0) > 0.02:
-            errors.append("Probability sum not equal to 1.0")
+        # Check probability history consistency
+        if state.probability_history:
+            last_update = state.probability_history[-1]
+            if hasattr(last_update, 'posterior'):
+                if abs(last_update.posterior - state.current_probability) > 0.001:
+                    errors.append(
+                        f"Current probability {state.current_probability:.4f} doesn't match "
+                        f"last update posterior {last_update.posterior:.4f}"
+                    )
 
         # Check stage is valid
         if state.current_stage not in STAGE_SEQUENCE:
             errors.append(f"Invalid stage: {state.current_stage}")
 
         # Check completed stages are in sequence
-        for i, stage in enumerate(state.stages_completed):
+        for stage in state.stages_completed:
             if stage not in STAGE_SEQUENCE:
                 errors.append(f"Invalid completed stage: {stage}")
 
@@ -522,6 +857,19 @@ class UnifiedStateManager:
         if state.confidence is not None:
             if not 0 <= state.confidence <= 100:
                 errors.append(f"Invalid confidence: {state.confidence}")
+
+        # Check blocked state consistency
+        if state.blocked_at is not None:
+            if state.blocked_checkpoint is None:
+                errors.append("Bank is blocked but blocked_checkpoint is None")
+            if state.blocked_reason is None:
+                errors.append("Bank is blocked but blocked_reason is None")
+
+        # Check classification consistency
+        if state.classification is not None:
+            valid_classifications = {"ARCHITECT", "PRAGMATIST", "OBSERVER", "UNKNOWN"}
+            if state.classification not in valid_classifications:
+                errors.append(f"Invalid classification: {state.classification}")
 
         return errors
 

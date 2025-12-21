@@ -29,6 +29,7 @@ import sys
 import json
 import logging
 import argparse
+import time
 from pathlib import Path
 from datetime import datetime
 from dataclasses import dataclass, field, asdict
@@ -41,6 +42,14 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 from config_loader import load_bank_manifest, get_bank_config
+
+# Import unified state management (Phase 5 consolidation)
+try:
+    from state_manager import UnifiedStateManager
+    from state_schema import ReviewItem as UnifiedReviewItem
+    STATE_MANAGER_AVAILABLE = True
+except ImportError:
+    STATE_MANAGER_AVAILABLE = False
 
 logging.basicConfig(
     level=logging.INFO,
@@ -60,7 +69,13 @@ class ReviewStatus(Enum):
 
 @dataclass
 class ReviewItem:
-    """A single item requiring human review."""
+    """
+    A single item requiring human review.
+
+    DEPRECATED: This class is being migrated to state_schema.ReviewItem.
+    New code should use UnifiedStateManager for review queue operations.
+    This class is retained for backward compatibility.
+    """
     bank_id: str
     bank_name: str
     phase: int
@@ -91,6 +106,58 @@ class BatchResult:
     review_items: List[ReviewItem] = field(default_factory=list)
     errors: List[str] = field(default_factory=list)
     duration_seconds: float = 0
+
+
+@dataclass
+class BatchExecutionContext:
+    """
+    Tracks batch execution state for circuit breaker pattern.
+
+    Category 2 fix: Silent Error Propagation
+    - Tracks consecutive failures to halt batch if threshold exceeded
+    - Records success/failure for each bank processed
+    """
+    consecutive_failures: int = 0
+    total_failures: int = 0
+    total_processed: int = 0
+    failure_threshold: int = 10  # Halt after N consecutive failures
+    halt_requested: bool = False
+    last_failure_reason: Optional[str] = None
+
+    def record_success(self) -> None:
+        """Record successful bank processing. Resets consecutive failure count."""
+        self.consecutive_failures = 0
+        self.total_processed += 1
+
+    def record_failure(self, reason: str) -> bool:
+        """
+        Record failed bank processing.
+
+        Args:
+            reason: Description of failure
+
+        Returns:
+            True if batch should halt (threshold exceeded)
+        """
+        self.consecutive_failures += 1
+        self.total_failures += 1
+        self.total_processed += 1
+        self.last_failure_reason = reason
+        return self.consecutive_failures >= self.failure_threshold
+
+    def should_halt(self) -> bool:
+        """Check if batch should stop processing."""
+        return self.halt_requested or self.consecutive_failures >= self.failure_threshold
+
+    def get_summary(self) -> Dict[str, Any]:
+        """Get execution summary for logging."""
+        return {
+            "total_processed": self.total_processed,
+            "total_failures": self.total_failures,
+            "consecutive_failures": self.consecutive_failures,
+            "halted": self.halt_requested,
+            "last_failure": self.last_failure_reason
+        }
 
 
 class ReviewQueue:
@@ -187,8 +254,8 @@ REVIEW_TRIGGERS = {
         'severity': 'high'
     },
     'uncertain_probability': {
-        'condition': lambda state: 30 <= state.get('probability_architect', 50) <= 70,
-        'description': 'Uncertain probability (P={probability_architect}%) - could go either way',
+        'condition': lambda state: 0.30 <= state.get('probability_architect', 0.50) <= 0.70,
+        'description': 'Uncertain probability (P={probability_architect:.1%}) - could go either way',
         'severity': 'medium'
     },
     'adversarial_revised': {
@@ -360,20 +427,119 @@ def execute_bank_research(bank_id: str, phase: int, queue: ReviewQueue) -> Batch
         return result
 
 
+# Error types that are eligible for retry (transient errors)
+TRANSIENT_ERRORS = (
+    'RateLimitError',
+    'TimeoutError',
+    'APIConnectionError',
+    'InternalServerError',
+    'ServiceUnavailableError',
+)
+
+
+def execute_bank_research_with_retry(
+    bank_id: str,
+    phase: int,
+    queue: ReviewQueue,
+    context: BatchExecutionContext,
+    max_retries: int = 2
+) -> BatchResult:
+    """
+    Execute research with retry for transient errors and circuit breaker tracking.
+
+    Category 2 fix: Silent Error Propagation
+    - Retries transient errors (rate limits, timeouts) with exponential backoff
+    - Records success/failure in BatchExecutionContext for circuit breaker
+    - Halts batch if consecutive failure threshold exceeded
+
+    Args:
+        bank_id: Bank identifier
+        phase: Phase number
+        queue: Review queue for results
+        context: Batch execution context for tracking
+        max_retries: Maximum retry attempts for transient errors
+
+    Returns:
+        BatchResult from research execution
+    """
+    for attempt in range(max_retries + 1):
+        try:
+            result = execute_bank_research(bank_id, phase, queue)
+
+            if result.status == 'complete':
+                context.record_success()
+            else:
+                # Non-exception error (validation failure, etc.)
+                error_reason = result.errors[0] if result.errors else "Unknown error"
+                if context.record_failure(error_reason):
+                    logger.error(
+                        f"HALTING BATCH: {context.consecutive_failures} consecutive failures"
+                    )
+                    context.halt_requested = True
+
+            return result
+
+        except Exception as e:
+            error_type = type(e).__name__
+
+            # Check if error is retry-eligible
+            if error_type in TRANSIENT_ERRORS and attempt < max_retries:
+                wait_time = (2 ** attempt) * 5  # Exponential backoff: 5s, 10s, 20s
+                logger.warning(
+                    f"Transient error ({error_type}) for {bank_id}, "
+                    f"retrying in {wait_time}s... (attempt {attempt + 1}/{max_retries})"
+                )
+                time.sleep(wait_time)
+                continue
+
+            # Non-retryable or exhausted retries
+            if context.record_failure(str(e)):
+                logger.error(
+                    f"HALTING BATCH: {context.consecutive_failures} consecutive failures"
+                )
+                context.halt_requested = True
+
+            return BatchResult(
+                bank_id=bank_id,
+                phase=phase,
+                status='error',
+                review_status=ReviewStatus.NEEDS_REVIEW,
+                errors=[f"[{error_type}] {e} (attempts: {attempt + 1})"]
+            )
+
+    # Should not reach here, but safety fallback
+    return BatchResult(
+        bank_id=bank_id,
+        phase=phase,
+        status='error',
+        review_status=ReviewStatus.NEEDS_REVIEW,
+        errors=["Exhausted all retry attempts"]
+    )
+
+
 def run_batch(phases: List[int] = None, parallel: int = 3,
-              fresh: bool = False) -> ReviewQueue:
+              fresh: bool = False,
+              failure_threshold: int = 10) -> tuple:
     """
     Run batch processing for all banks with live research.
+
+    Supports:
+    - Resumability: already-completed banks are automatically skipped
+    - Circuit breaker: halts after N consecutive failures
+    - Retry: transient errors are retried with exponential backoff
 
     Args:
         phases: List of phase numbers to process (None = all)
         parallel: Number of parallel workers
-        fresh: If True, clear existing queue
+        fresh: If True, clear existing queue and reprocess all banks
+        failure_threshold: Halt after this many consecutive failures
 
     Returns:
-        ReviewQueue with all results
+        Tuple of (ReviewQueue, BatchExecutionContext)
     """
     queue = ReviewQueue()
+    context = BatchExecutionContext(failure_threshold=failure_threshold)
+
     if fresh:
         queue.clear()
 
@@ -383,33 +549,76 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
     if phases:
         banks = [b for b in banks if b.get('phase') in phases]
 
+    # Filter out already-completed banks (Category 1 fix: Batch Resumability)
+    banks_to_process = []
+    skipped_count = 0
+
+    if STATE_MANAGER_AVAILABLE and not fresh:
+        state_manager = UnifiedStateManager(PROJECT_ROOT / "outputs")
+
+        for bank in banks:
+            bank_id = bank['bank_id']
+            phase = bank['phase']
+
+            if state_manager.is_bank_complete(bank_id, phase):
+                logger.info(f"[SKIP] {bank_id} already complete")
+                skipped_count += 1
+                continue
+
+            banks_to_process.append(bank)
+    else:
+        # No state manager or fresh run - process all
+        banks_to_process = banks
+
     logger.info(f"\n{'='*70}")
-    logger.info(f"BATCH ORCHESTRATOR - Processing {len(banks)} banks")
+    logger.info(f"BATCH ORCHESTRATOR - Processing {len(banks_to_process)} banks")
+    if skipped_count > 0:
+        logger.info(f"Skipped {skipped_count} already-completed banks")
     logger.info(f"Parallel workers: {parallel}")
     logger.info(f"{'='*70}\n")
 
     start_time = datetime.utcnow()
 
     if parallel == 1:
-        # Sequential
-        for bank in banks:
-            execute_bank_research(
+        # Sequential processing with circuit breaker
+        for bank in banks_to_process:
+            # Check circuit breaker before each bank
+            if context.should_halt():
+                logger.warning(
+                    f"BATCH HALTED: {context.consecutive_failures} consecutive failures. "
+                    f"Last error: {context.last_failure_reason}"
+                )
+                break
+
+            execute_bank_research_with_retry(
                 bank['bank_id'],
                 bank['phase'],
-                queue
+                queue,
+                context
             )
     else:
-        # Parallel
+        # Parallel processing with circuit breaker
+        # Note: Circuit breaker checks happen inside retry wrapper
+        # For true parallel halt, we'd need more complex coordination
         with ThreadPoolExecutor(max_workers=parallel) as executor:
-            futures = {
-                executor.submit(
-                    execute_bank_research,
+            futures = {}
+            for bank in banks_to_process:
+                # Check circuit breaker before submitting new work
+                if context.should_halt():
+                    logger.warning(
+                        f"BATCH HALTED: {context.consecutive_failures} consecutive failures. "
+                        f"Last error: {context.last_failure_reason}"
+                    )
+                    break
+
+                future = executor.submit(
+                    execute_bank_research_with_retry,
                     bank['bank_id'],
                     bank['phase'],
-                    queue
-                ): bank
-                for bank in banks
-            }
+                    queue,
+                    context
+                )
+                futures[future] = bank
 
             for future in as_completed(futures):
                 try:
@@ -422,9 +631,16 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
 
     # Print summary
     summary = queue.get_summary()
+    exec_summary = context.get_summary()
+
+    # Determine completion status
+    if context.should_halt():
+        status_msg = f"BATCH HALTED (circuit breaker triggered) - {duration:.1f} seconds"
+    else:
+        status_msg = f"BATCH COMPLETE - {duration:.1f} seconds"
 
     print(f"\n{'='*70}")
-    print(f"BATCH COMPLETE - {duration:.1f} seconds")
+    print(status_msg)
     print(f"{'='*70}")
     print(f"")
     print(f"  Total banks processed: {summary['total_banks']}")
@@ -432,6 +648,20 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
     print(f"  [!!] Needs review:           {summary['needs_review']}")
     print(f"  [XX] Errors:                 {summary['errors']}")
     print(f"")
+
+    # Circuit breaker status
+    if exec_summary['total_failures'] > 0:
+        print(f"  Circuit Breaker Status:")
+        print(f"    Total failures:       {exec_summary['total_failures']}")
+        print(f"    Consecutive failures: {exec_summary['consecutive_failures']}")
+        if exec_summary['halted']:
+            print(f"    Status:               HALTED")
+            print(f"    Last error:           {exec_summary['last_failure']}")
+        print(f"")
+
+    if skipped_count > 0:
+        print(f"  Already complete (skipped): {skipped_count}")
+        print(f"")
 
     if summary['pending_review_items'] > 0:
         print(f"  Review items by type:")
@@ -445,7 +675,7 @@ def run_batch(phases: List[int] = None, parallel: int = 3,
     print(f"{'='*70}\n")
 
     queue.save()
-    return queue
+    return queue, context
 
 
 def generate_review_report(queue: ReviewQueue) -> str:
