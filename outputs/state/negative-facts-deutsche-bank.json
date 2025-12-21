@@ -1,0 +1,38 @@
+{
+  "generated_at": "2025-12-21T11:10:11.536134",
+  "suggestion_count": 4,
+  "suggestions": [
+    {
+      "section": "A",
+      "content": "| `Deutsche Bank job CDM Common Domain Model derivatives 2024` | Tried 2x with no useful results; IRRELEVANT | Try more specific CDM-focused query or check official sources |",
+      "confidence": 0.7,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "deutsche bank job cdm common domain model derivatives"
+    },
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (db.com)\n\n- **Misleading Signal**: Vendor claim from db.com: Deutsche Bank uses DTCC Data Repository (Ireland) Plc for EU EMIR reporting and ...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: deutsche-bank\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from db.com: deutsche bank uses dtcc data repository (ireland) plc for eu emir reporting and ..."
+    },
+    {
+      "section": "A",
+      "content": "| **German banks** | `Site-restricted searches for German banks` | 2 null results from site-restricted searches | Include German terms; technical documentation often in German |",
+      "confidence": 0.6,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "jurisdiction_german"
+    },
+    {
+      "section": "F",
+      "content": "| Dead-end patterns for German banks | 1.2 hours |",
+      "confidence": 0.7,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "time_savings_German bank"
+    }
+  ]
+}

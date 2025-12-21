@@ -97,7 +97,8 @@ class CheckpointType(Enum):
     BLOCK = "block"
 
 
-# Stage files for provenance hashing
+# Stage files for provenance hashing and verification
+# NOTE: These are REQUIRED files for each stage to be considered complete
 STAGE_FILES = {
     'tier1_evidence': ['1-evidence/tier1-evidence.md'],
     'bayesian_1': ['2-bayesian/post-tier1-update.md'],
@@ -105,9 +106,66 @@ STAGE_FILES = {
     'tier2_evidence': ['1-evidence/tier2-evidence.md'],
     'bayesian_2': ['2-bayesian/post-tier2-update.md'],
     'gate_2': ['3-gates/gate-2.md'],
-    'adversarial': ['4-adversarial/verdict.md', '4-adversarial/steelman.md'],
+    'tier3_evidence': ['1-evidence/tier3-evidence.md'],
+    'bayesian_3': ['2-bayesian/post-tier3-update.md'],
+    'gate_3': ['3-gates/gate-3.md'],
+    'adversarial_challenge': ['4-adversarial/verdict.md'],
+    'adversarial': ['4-adversarial/verdict.md', '4-adversarial/steelman.md'],  # Legacy alias
     'synthesis': ['5-synthesis/assessment.md'],
 }
+
+# Files that are OPTIONAL (stage can complete without them)
+OPTIONAL_STAGE_FILES = {
+    'adversarial_challenge': ['4-adversarial/steelman.md', '4-adversarial/disconfirming-searches.md'],
+    'adversarial': ['4-adversarial/steelman.md', '4-adversarial/disconfirming-searches.md'],
+    'synthesis': ['5-synthesis/confidence-calibration.md', '5-synthesis/framework-integration.md'],
+}
+
+
+def verify_stage_files(bank_dir: Path, stage: str) -> tuple[bool, list[str]]:
+    """
+    Verify that required stage output files exist.
+
+    Args:
+        bank_dir: Path to bank directory
+        stage: Stage name to verify
+
+    Returns:
+        (all_present, missing_files) - True if all required files exist
+    """
+    required_files = STAGE_FILES.get(stage, [])
+    if not required_files:
+        return True, []
+
+    # Special handling for tier evidence - only required if evidence exists for that tier
+    if stage in ('tier2_evidence', 'tier3_evidence'):
+        tier_num = 2 if stage == 'tier2_evidence' else 3
+        evidence_json = bank_dir / "evidence.json"
+        if evidence_json.exists():
+            try:
+                import json
+                data = json.loads(evidence_json.read_text(encoding='utf-8'))
+                tier_evidence = [e for e in data.get('evidence', []) if e.get('tier') == tier_num]
+                tier_nulls = [n for n in data.get('null_results', []) if n.get('tier') == tier_num]
+                if not tier_evidence and not tier_nulls:
+                    # No tier evidence/nulls, so tier*-evidence.md not required
+                    return True, []
+            except Exception:
+                pass  # Fall through to standard check
+
+    # Get optional files for this stage
+    optional_files = set(OPTIONAL_STAGE_FILES.get(stage, []))
+
+    missing = []
+    for rel_path in required_files:
+        # Skip files that are optional
+        if rel_path in optional_files:
+            continue
+        file_path = bank_dir / rel_path
+        if not file_path.exists():
+            missing.append(rel_path)
+
+    return len(missing) == 0, missing
 
 
 def compute_stage_hash(bank_dir: Path, stage: str) -> str:
@@ -159,7 +217,12 @@ class WorkflowState:
 
     @classmethod
     def load(cls, state_path: Path) -> 'WorkflowState':
-        """Load state from JSON file."""
+        """Load state from JSON file.
+
+        Handles both:
+        1. WorkflowState format (orchestrate.py native)
+        2. BankState format (batch process / research_executor format)
+        """
         if not state_path.exists():
             raise FileNotFoundError(f"No state file at {state_path}")
         data = json.loads(state_path.read_text(encoding='utf-8'))
@@ -169,18 +232,40 @@ class WorkflowState:
         if prob > 1.0:
             prob = prob / 100.0
 
+        # Handle stages_completed - infer from current_stage if empty
+        stages_completed = data.get('stages_completed', [])
+        current_stage = data.get('current_stage', 'init')
+
+        # If stages_completed is empty but current_stage shows progress,
+        # infer completed stages from the stage sequence
+        if not stages_completed and current_stage not in ('init', 'initialize'):
+            from state_schema import STAGE_SEQUENCE
+            try:
+                current_idx = STAGE_SEQUENCE.index(current_stage)
+                # All stages before current are completed
+                stages_completed = STAGE_SEQUENCE[:current_idx]
+            except ValueError:
+                pass  # Unknown stage, leave empty
+
+        # Handle batch process status.json format differences
+        # The batch format uses 'status' whereas orchestrate uses 'current_stage'
+        if data.get('status') == 'completed' and current_stage == 'complete':
+            # Bank is fully complete - all stages are done
+            from state_schema import STAGE_SEQUENCE
+            stages_completed = [s for s in STAGE_SEQUENCE if s != 'complete']
+
         return cls(
             bank_id=data.get('bank_id', state_path.parent.name),
-            current_stage=data.get('current_stage', 'init'),
+            current_stage=current_stage,
             probability_architect=prob,
             classification=data.get('classification'),
             sub_classification=data.get('sub_classification'),
             confidence=data.get('confidence', 0.0),
-            stages_completed=data.get('stages_completed', []),
+            stages_completed=stages_completed,
             checkpoints_pending=data.get('checkpoints_pending', []),
             checkpoints_approved=data.get('checkpoints_approved', []),
-            created_at=data.get('created_at'),
-            updated_at=data.get('updated_at'),
+            created_at=data.get('created_at', data.get('last_updated')),
+            updated_at=data.get('updated_at', data.get('last_updated')),
             errors=data.get('errors', []),
             provenance=data.get('provenance', {})
         )
@@ -485,9 +570,12 @@ class Orchestrator:
         blocked, _, _ = self.should_block()
         return blocked
 
-    def advance(self) -> bool:
+    def advance(self, skip_file_check: bool = False) -> bool:
         """
         Advance to next stage and update state.
+
+        Args:
+            skip_file_check: If True, skip file existence verification (use with caution)
 
         Returns:
             True if advanced successfully, False if blocked
@@ -512,9 +600,24 @@ class Orchestrator:
             logger.info("Workflow complete!")
             return True
 
-        # Record completion
+        # CRITICAL: Verify required stage files exist before advancing
+        if not skip_file_check:
+            files_ok, missing = verify_stage_files(self.bank_dir, current.value)
+            if not files_ok:
+                checkpoint_id = f"missing_files_{current.value}"
+                if checkpoint_id not in self.state.checkpoints_pending:
+                    self.state.checkpoints_pending.append(checkpoint_id)
+                self.log_checkpoint(checkpoint_id, "BLOCK", f"Missing required files: {missing}")
+                logger.error(f"BLOCKED: Stage {current.value} missing required files: {missing}")
+                logger.error("Create the required files or use --skip-file-check to override")
+                self.state.save(self.state_path)
+                return False
+
+        # Record completion and provenance
         if current.value not in self.state.stages_completed:
             self.state.stages_completed.append(current.value)
+            # Record provenance hash for completed stage
+            self.state.add_provenance(self.bank_dir, current.value)
 
         # Advance
         self.state.current_stage = next_stage.value

@@ -1,0 +1,30 @@
+{
+  "generated_at": "2025-12-21T11:10:17.635070",
+  "suggestion_count": 3,
+  "suggestions": [
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (a-teaminsight.com)\n\n- **Misleading Signal**: Vendor claim from a-teaminsight.com: HSBC signed multiyear contract with Delta Capita (January 2025) for global OTC c...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: hsbc\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "hsbc",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from a-teaminsight.com: hsbc signed multiyear contract with delta capita (january ) for global otc c..."
+    },
+    {
+      "section": "B",
+      "content": "### Historical pilot without follow-through\n\n- **Misleading Signal**: Historical pilot: HSBC was one of 7 banks participating in the UK FCA/Bank of England Digital Regu...\n- **Reality**: Pilot participation did not lead to current production adoption\n- **Why It Confuses**: Historical pilot activity suggests momentum that may have stalled\n- **Lesson**: Check for sustained follow-through post-pilot; look for evidence within last 2 years\n- **Banks affected**: hsbc\n- **Time wasted**: ~45 minutes",
+      "confidence": 0.7,
+      "source_bank": "hsbc",
+      "source_evidence_ids": [],
+      "pattern_key": "historical pilot: hsbc was one of 7 banks participating in the uk fca/bank of england digital regu..."
+    },
+    {
+      "section": "F",
+      "content": "| Dead-end patterns for similar banks | 1.2 hours |",
+      "confidence": 0.7,
+      "source_bank": "hsbc",
+      "source_evidence_ids": [],
+      "pattern_key": "time_savings_similar bank"
+    }
+  ]
+}

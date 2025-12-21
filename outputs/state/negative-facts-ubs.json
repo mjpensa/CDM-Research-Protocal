@@ -1,0 +1,30 @@
+{
+  "generated_at": "2025-12-21T11:10:25.849941",
+  "suggestion_count": 3,
+  "suggestions": [
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (ubs.com)\n\n- **Misleading Signal**: Vendor claim from ubs.com: UBS has detailed EMIR Refit compliance information on their website showing trad...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: ubs\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "ubs",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from ubs.com: ubs has detailed emir refit compliance information on their website showing trad..."
+    },
+    {
+      "section": "B",
+      "content": "### Historical pilot without follow-through\n\n- **Misleading Signal**: Historical pilot: UBS participated in ISDA/ASX/Digital Asset CDM clearing pilot for interest rate ...\n- **Reality**: Pilot participation did not lead to current production adoption\n- **Why It Confuses**: Historical pilot activity suggests momentum that may have stalled\n- **Lesson**: Check for sustained follow-through post-pilot; look for evidence within last 2 years\n- **Banks affected**: ubs\n- **Time wasted**: ~45 minutes",
+      "confidence": 0.7,
+      "source_bank": "ubs",
+      "source_evidence_ids": [],
+      "pattern_key": "historical pilot: ubs participated in isda/asx/digital asset cdm clearing pilot for interest rate ..."
+    },
+    {
+      "section": "F",
+      "content": "| Dead-end patterns for Swiss banks | 1.2 hours |",
+      "confidence": 0.7,
+      "source_bank": "ubs",
+      "source_evidence_ids": [],
+      "pattern_key": "time_savings_Swiss bank"
+    }
+  ]
+}

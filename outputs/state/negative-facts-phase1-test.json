@@ -1,0 +1,86 @@
+{
+  "generated_at": "2025-12-21T10:57:03.916806",
+  "suggestion_count": 10,
+  "suggestions": [
+    {
+      "section": "A",
+      "content": "| `Deutsche Bank job CDM Common Domain Model derivatives 2024` | Tried 2x with no useful results; IRRELEVANT | Try more specific CDM-focused query or check official sources |",
+      "confidence": 0.7,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "deutsche bank job cdm common domain model derivatives"
+    },
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (db.com)\n\n- **Misleading Signal**: Vendor claim from db.com: Deutsche Bank uses DTCC Data Repository (Ireland) Plc for EU EMIR reporting and ...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: deutsche-bank\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from db.com: deutsche bank uses dtcc data repository (ireland) plc for eu emir reporting and ..."
+    },
+    {
+      "section": "A",
+      "content": "| **German banks** | `Site-restricted searches for German banks` | 2 null results from site-restricted searches | Include German terms; technical documentation often in German |",
+      "confidence": 0.6,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "jurisdiction_german"
+    },
+    {
+      "section": "F",
+      "content": "| Dead-end patterns for German banks | 1.2 hours |",
+      "confidence": 0.7,
+      "source_bank": "deutsche-bank",
+      "source_evidence_ids": [],
+      "pattern_key": "time_savings_German bank"
+    },
+    {
+      "section": "B",
+      "content": "### Historical pilot without follow-through\n\n- **Misleading Signal**: Historical pilot: HSBC was one of 7 banks participating in the UK FCA/Bank of England Digital Regu...\n- **Reality**: Pilot participation did not lead to current production adoption\n- **Why It Confuses**: Historical pilot activity suggests momentum that may have stalled\n- **Lesson**: Check for sustained follow-through post-pilot; look for evidence within last 2 years\n- **Banks affected**: hsbc\n- **Time wasted**: ~45 minutes",
+      "confidence": 0.7,
+      "source_bank": "hsbc",
+      "source_evidence_ids": [],
+      "pattern_key": "historical pilot: hsbc was one of 7 banks participating in the uk fca/bank of england digital regu..."
+    },
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (wholesale.banking.societegenerale.com)\n\n- **Misleading Signal**: Vendor claim from wholesale.banking.societegenerale.com: Soci\u00e9t\u00e9 G\u00e9n\u00e9rale provides detailed EMIR Refit information showing compliance via...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: societe-generale\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "societe-generale",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from wholesale.banking.societegenerale.com: soci\u00e9t\u00e9 g\u00e9n\u00e9rale provides detailed emir refit information showing compliance via..."
+    },
+    {
+      "section": "B",
+      "content": "### Vendor claim without confirmation (risk.net)\n\n- **Misleading Signal**: Vendor claim from risk.net: UBS explicitly decided NOT to integrate Credit Suisse technology systems. Jason ...\n- **Reality**: Vendor press release; bank has not confirmed CDM usage in this scope\n- **Why It Confuses**: Vendor marketing appears authoritative but may overstate bank's CDM adoption\n- **Lesson**: Require bank-side confirmation for vendor claims before classifying as production_usage\n- **Banks affected**: ubs\n- **Time wasted**: ~30 minutes",
+      "confidence": 0.7,
+      "source_bank": "ubs",
+      "source_evidence_ids": [],
+      "pattern_key": "vendor claim from risk.net: ubs explicitly decided not to integrate credit suisse technology systems. jason ..."
+    },
+    {
+      "section": "B",
+      "content": "### Historical pilot without follow-through\n\n- **Misleading Signal**: Historical pilot: UBS participated in ISDA/ASX/Digital Asset CDM clearing pilot for interest rate ...\n- **Reality**: Pilot participation did not lead to current production adoption\n- **Why It Confuses**: Historical pilot activity suggests momentum that may have stalled\n- **Lesson**: Check for sustained follow-through post-pilot; look for evidence within last 2 years\n- **Banks affected**: ubs\n- **Time wasted**: ~45 minutes",
+      "confidence": 0.7,
+      "source_bank": "ubs",
+      "source_evidence_ids": [],
+      "pattern_key": "historical pilot: ubs participated in isda/asx/digital asset cdm clearing pilot for interest rate ..."
+    },
+    {
+      "section": "F",
+      "content": "| Dead-end patterns for Swiss banks | 1.2 hours |",
+      "confidence": 0.7,
+      "source_bank": "ubs",
+      "source_evidence_ids": [],
+      "pattern_key": "time_savings_Swiss bank"
+    },
+    {
+      "section": "G",
+      "content": "- **Time Savings Similar Bank**: Pattern observed in hsbc, societe-generale\n  - Confidence: High (observed in 2 banks)\n  - Recommendation: Skip this search pattern for similar banks in future phases",
+      "confidence": 0.8,
+      "source_bank": "hsbc, societe-generale",
+      "source_evidence_ids": [],
+      "pattern_key": "crossbank_time_savings_similar bank"
+    }
+  ]
+}
