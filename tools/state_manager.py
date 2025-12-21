@@ -410,19 +410,27 @@ class UnifiedStateManager:
             logger.error(f"Error loading bank state for {bank_id}: {e}")
             return None
 
-    def save_bank_state(self, state: BankState, validate: bool = True) -> None:
+    def save_bank_state(self, state: BankState, validate: bool = True,
+                         strict: bool = False) -> None:
         """
         Save bank state with atomic write.
 
         Args:
             state: BankState to save
             validate: If True, run validation and log warnings (default True)
+            strict: If True, raise exception on validation errors (default False)
         """
         # Validate state before saving (Issue #6 fix)
         if validate:
             errors = self.validate_bank_state(state)
             if errors:
-                logger.warning(f"Validation warnings for {state.bank_id}: {errors}")
+                if strict:
+                    # Phase 6: Strict mode - fail on validation errors
+                    raise StateValidationError(
+                        f"Validation failed for {state.bank_id}: {errors}"
+                    )
+                else:
+                    logger.warning(f"Validation warnings for {state.bank_id}: {errors}")
 
         path = self._get_bank_status_path(state.bank_id, state.phase)
 

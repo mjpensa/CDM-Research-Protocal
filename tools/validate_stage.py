@@ -56,6 +56,8 @@ Examples:
                         help="Output results as JSON")
     parser.add_argument("--quiet", action="store_true",
                         help="Minimal output (exit code only)")
+    parser.add_argument("--strict", action="store_true",
+                        help="Exit with error on any validation failure (Phase 6)")
 
     args = parser.parse_args()
 
@@ -126,6 +128,9 @@ Examples:
             print(f"{'='*60}\n")
 
         # Exit code
+        # Phase 6: In strict mode, also fail on warnings
+        if args.strict and (result.errors or result.warnings):
+            return 1
         return 0 if result.success else 1
 
     except Exception as e:
