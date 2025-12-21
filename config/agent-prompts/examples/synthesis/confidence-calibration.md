@@ -211,7 +211,7 @@ Implied odds for 72% confidence:
 
 ## Output
 
-**File**: `outputs/phase-1-european-tier-1/hsbc/5-synthesis/confidence-calibration.md`
+**File**: `outputs/phase-1-european-tier1/hsbc/5-synthesis/confidence-calibration.md`
 
 ```markdown
 # Confidence Calibration: HSBC

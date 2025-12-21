@@ -336,7 +336,32 @@ python tools/render_evidence_md.py --batch outputs/phase-1-european-tier1/
 
 ---
 
-## 13. Output Files
+## 13. Canonical Phase Names (MANDATORY)
+
+**CRITICAL**: Always use the exact phase folder names from `config/bank-manifest.json`. NEVER create variant folder names.
+
+| Phase | Canonical Folder Name | Banks |
+|-------|----------------------|-------|
+| 1 | `phase-1-european-tier1` | deutsche-bank, societe-generale, ubs, barclays, hsbc |
+| 2 | `phase-2-uk-regional` | natwest, lloyds |
+| 3 | `phase-3-japanese` | nomura, mufg, mizuho, smbc |
+| 4 | `phase-4-other-european` | ing, credit-agricole, unicredit, commerzbank |
+| 5 | `phase-5-spanish` | santander, bbva |
+| 6 | `phase-6-deep-dives` | standard-chartered, pictet |
+| 7 | `phase-7-emerging-markets` | dbs, icbc, bank-of-china, ccb, abc |
+| 8 | `phase-8-us-investment-banks` | jpmorgan, goldman-sachs, morgan-stanley, citigroup, bank-of-america |
+| 9 | `phase-9-us-custody-banks` | state-street, bny-mellon |
+
+**Prohibited Variants** (NEVER use these):
+- `phase-1-european-tier-1` (wrong hyphenation - tier-1 vs tier1)
+- `phase-4-european-tier-2` (wrong name - should be other-european)
+- `phase-7-asian` (wrong name - should be emerging-markets)
+- `phase-8-us-majors` (wrong name - should be us-investment-banks)
+- `phase-9-custodians` (wrong name - should be us-custody-banks)
+
+---
+
+## 14. Output Files
 
 After successful processing, each bank folder contains:
 
