@@ -362,6 +362,39 @@ class BankState:
         self.last_updated = datetime.now(timezone.utc).isoformat()
         return self.retry_count <= self.max_retries
 
+    def is_stage_timed_out(self, timeout_minutes: int = 30) -> bool:
+        """
+        Check if current stage has exceeded timeout.
+
+        Args:
+            timeout_minutes: Maximum allowed time for stage (default 30 min)
+
+        Returns:
+            True if stage has timed out, False otherwise
+        """
+        if not self.stage_started_at:
+            return False
+
+        if self.current_stage == "complete":
+            return False
+
+        try:
+            started = datetime.fromisoformat(self.stage_started_at.replace('Z', '+00:00'))
+            elapsed = (datetime.now(timezone.utc) - started).total_seconds() / 60
+            return elapsed > timeout_minutes
+        except (ValueError, AttributeError):
+            return False
+
+    def get_stage_elapsed_minutes(self) -> Optional[float]:
+        """Get elapsed time for current stage in minutes."""
+        if not self.stage_started_at:
+            return None
+        try:
+            started = datetime.fromisoformat(self.stage_started_at.replace('Z', '+00:00'))
+            return (datetime.now(timezone.utc) - started).total_seconds() / 60
+        except (ValueError, AttributeError):
+            return None
+
     def set_blocked(self, checkpoint: str, reason: str) -> None:
         """Set the bank as blocked at a checkpoint."""
         self.blocked_at = datetime.now(timezone.utc).isoformat()

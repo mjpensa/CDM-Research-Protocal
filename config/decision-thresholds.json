@@ -148,6 +148,38 @@
     "hiring_signal": 1
   },
 
+  "stage_timeouts": {
+    "description": "Maximum allowed time per stage before auto-blocking (for overnight batch execution)",
+    "unit": "minutes",
+    "default_timeout": 30,
+    "per_stage": {
+      "initialize": 5,
+      "pre_mortem": 10,
+      "tier1_evidence": 45,
+      "bayesian_1": 10,
+      "gate_1": 10,
+      "tier2_evidence": 45,
+      "bayesian_2": 10,
+      "gate_2": 10,
+      "tier3_evidence": 30,
+      "bayesian_3": 10,
+      "gate_3": 10,
+      "adversarial_challenge": 30,
+      "final_classification": 15,
+      "synthesis": 20
+    },
+    "rationale": {
+      "evidence_stages": "Evidence gathering may require multiple web searches, allow 30-45 minutes",
+      "analysis_stages": "Bayesian/gate analysis should complete in 10-15 minutes",
+      "adversarial": "Devil's advocate requires thorough counter-argument, allow 30 minutes"
+    },
+    "on_timeout": {
+      "action": "block_for_review",
+      "reason_template": "Stage '{stage}' exceeded {timeout} minute timeout",
+      "auto_retry": false
+    }
+  },
+
   "usage_notes": [
     "All thresholds in this file should be referenced by agent prompts rather than hardcoded",
     "Changes to thresholds here will propagate to all agents on next execution",
