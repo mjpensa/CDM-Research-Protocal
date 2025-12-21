@@ -1,0 +1,163 @@
+{
+  "$schema": "CDM/DRR Technical Debt Proxies v1.0",
+  "description": "Proxies for technical debt that indicate PRAGMATIST likelihood (Enhancement 8)",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "job_posting_proxies": {
+    "description": "Keywords in job postings that indicate technical debt or cost pressure",
+    "legacy_system_keywords": {
+      "keywords": [
+        "COBOL",
+        "mainframe",
+        "AS400",
+        "legacy migration",
+        "legacy modernization",
+        "technical debt reduction",
+        "system consolidation",
+        "platform rationalization"
+      ],
+      "weight": 0.8,
+      "direction": "pragmatist",
+      "rationale": "Heavy legacy footprint limits ability to adopt new standards"
+    },
+    "cost_pressure_keywords": {
+      "keywords": [
+        "cost optimization",
+        "headcount reduction",
+        "efficiency program",
+        "operating expense reduction",
+        "cost transformation",
+        "simplification initiative"
+      ],
+      "weight": 0.6,
+      "direction": "pragmatist",
+      "rationale": "Cost pressure reduces discretionary technology investment"
+    },
+    "modernization_keywords": {
+      "keywords": [
+        "cloud migration",
+        "digital transformation",
+        "API modernization",
+        "microservices",
+        "DevOps transformation",
+        "data mesh",
+        "event-driven architecture"
+      ],
+      "weight": 0.7,
+      "direction": "architect",
+      "rationale": "Modernization initiatives create foundation for CDM adoption"
+    },
+    "cdm_direct_keywords": {
+      "keywords": [
+        "ISDA CDM",
+        "Common Domain Model",
+        "Rosetta DSL",
+        "FINOS CDM",
+        "DRR",
+        "Digital Regulatory Reporting"
+      ],
+      "weight": 0.9,
+      "direction": "architect",
+      "rationale": "Direct CDM hiring is strong ARCHITECT signal"
+    }
+  },
+
+  "organizational_proxies": {
+    "description": "Organizational signals that indicate technical debt",
+    "recent_ma_activity": {
+      "description": "Recent M&A creates integration debt",
+      "weight": 0.5,
+      "direction": "pragmatist",
+      "window_years": 3,
+      "rationale": "Post-merger integration consumes technology resources"
+    },
+    "executive_turnover": {
+      "description": "High CTO/CIO turnover indicates strategy instability",
+      "weight": 0.4,
+      "direction": "pragmatist",
+      "threshold_changes": 2,
+      "window_years": 3,
+      "rationale": "Strategy churn prevents long-term technology investment"
+    },
+    "restructuring_announcements": {
+      "keywords": [
+        "restructuring",
+        "reorganization",
+        "strategic review",
+        "turnaround",
+        "transformation program"
+      ],
+      "weight": 0.5,
+      "direction": "pragmatist",
+      "rationale": "Restructuring deprioritizes non-essential technology initiatives"
+    }
+  },
+
+  "financial_proxies": {
+    "description": "Financial indicators of technology investment capacity",
+    "it_spending_ratio": {
+      "description": "IT spending as percentage of revenue",
+      "low_threshold_pct": 5,
+      "high_threshold_pct": 10,
+      "low_impact": {
+        "weight": 0.4,
+        "direction": "pragmatist"
+      },
+      "high_impact": {
+        "weight": 0.3,
+        "direction": "architect"
+      },
+      "rationale": "Low IT spending limits technology adoption capacity"
+    },
+    "cost_income_ratio": {
+      "description": "Bank cost/income ratio",
+      "stress_threshold_pct": 70,
+      "weight": 0.4,
+      "direction": "pragmatist",
+      "rationale": "High cost/income ratio indicates cost pressure"
+    }
+  },
+
+  "technology_stack_proxies": {
+    "description": "Technology stack indicators",
+    "legacy_vendor_relationships": {
+      "vendors": [
+        "Murex 2.x",
+        "Summit",
+        "Kondor+",
+        "FrontArena (pre-Simcorp)"
+      ],
+      "weight": 0.5,
+      "direction": "pragmatist",
+      "rationale": "Older platform versions indicate upgrade backlog"
+    },
+    "modern_vendor_relationships": {
+      "vendors": [
+        "Cloud-native platforms",
+        "REGnosys",
+        "Delta Capita CDM"
+      ],
+      "weight": 0.6,
+      "direction": "architect",
+      "rationale": "Modern platforms enable CDM integration"
+    }
+  },
+
+  "signal_aggregation": {
+    "description": "How to combine multiple proxy signals",
+    "method": "weighted_average",
+    "pragmatist_threshold": 0.55,
+    "architect_threshold": 0.45,
+    "neutral_range": [0.45, 0.55],
+    "max_adjustment": 0.25,
+    "notes": "Combined score adjusts prior probability, not classification directly"
+  },
+
+  "usage_notes": [
+    "Use debt_proxy_analyzer.py to scan for technical debt signals",
+    "Signals are secondary to direct CDM evidence",
+    "Multiple pragmatist signals compound the effect",
+    "Modernization initiatives can offset legacy signals"
+  ]
+}

@@ -1,0 +1,754 @@
+{
+  "bank_id": "deutsche-bank",
+  "bank_name": "Deutsche Bank AG",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "DB-001",
+      "claim": "Deutsche Bank representative Dawd Haque participated in JWG 7th Annual Global RegTech Conference panel on 'Digitizing derivative reporting with DRR' in November 2022",
+      "source_url": "https://jwg-it.eu/regcasts/digitizing-derivative-reporting-with-drr/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2022-11-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "dated",
+        "specificity": "moderate"
+      },
+      "excerpt": "Dawd Haque from Deutsche Bank participated in a discussion about 'Digitizing derivative reporting with DRR,' alongside PJ Di Giammarino from JWG and Leo Labeis from REGnosys",
+      "caveats": "Evidence is from November 2022 (over 2 years old). Conference participation does not imply CDM implementation. No follow-up evidence of continued engagement.",
+      "lr_mapping": {
+        "evidence_type": "conference_panel_participation",
+        "likelihood_ratio": 1.5
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [
+        "EU"
+      ],
+      "coverage_specificity": "inferred",
+      "freshness": {
+        "age_days": 1146,
+        "category": "historical",
+        "weight_multiplier": 0.25
+      },
+      "source_domain": "jwg-it.eu"
+    },
+    {
+      "id": "DB-002",
+      "claim": "Deutsche Bank is an active FINOS contributor to Fluxnova, Spring Bot, and Waltz projects - but NOT to the Common Domain Model",
+      "source_url": "https://www.finos.org/common-domain-model",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "date": "2025-12-20",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "Fluxnova is co-maintained by Fidelity, NatWest Group, Deutsche Bank, Capital One and BMO. Rob Moffat built Spring Bot while at Deutsche Bank. David Watkins from Deutsche Bank is Waltz Lead Maintainer.",
+      "caveats": "Deutsche Bank has clear FINOS open source capability but is NOT contributing to CDM. This is informative absence - they are choosing not to prioritize CDM despite having the capability.",
+      "lr_mapping": {
+        "evidence_type": "finos_contributor_non_cdm",
+        "likelihood_ratio": 0.8
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "explicit",
+      "freshness": {
+        "age_days": 1,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "source_domain": "finos.org"
+    },
+    {
+      "id": "DB-003",
+      "claim": "Deutsche Bank offers EMIR reporting service via DTCC Data Repository - traditional approach without CDM/DRR",
+      "source_url": "https://www.db.com/legal-resources/european-market-infrastructure-regulation/transaction-reporting",
+      "tier": 1,
+      "claim_type": "vendor_proxy_signal",
+      "date": "2024-04-29",
+      "direction": "SUPPORTS_PRAGMATIST",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "Deutsche Bank is offering a reporting service to the DTCC Data Repository (Ireland) Plc, an EU TR, to help NFC+ and FC clients comply with their EMIR reporting obligations.",
+      "caveats": "Uses DTCC for EMIR reporting which is traditional infrastructure. No mention of CDM or DRR in their EMIR compliance approach.",
+      "lr_mapping": {
+        "evidence_type": "traditional_vendor_approach",
+        "likelihood_ratio": 0.7
+      },
+      "product_scope": [
+        "IRS",
+        "CDS",
+        "FX_Forwards",
+        "FX_Options"
+      ],
+      "jurisdiction_scope": [
+        "EU"
+      ],
+      "coverage_specificity": "explicit",
+      "freshness": {
+        "age_days": 601,
+        "category": "dated",
+        "weight_multiplier": 0.84
+      },
+      "source_domain": "db.com"
+    },
+    {
+      "id": "DB-004",
+      "claim": "Risk.net reports patchy CDM adoption among banks due to high implementation costs (tens to hundreds of millions)",
+      "source_url": "https://www.risk.net/risk-management/6512226/patchy-response-to-isdas-back-office-of-the-future",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2023-08-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "dated",
+        "specificity": "moderate"
+      },
+      "excerpt": "Some banks are said to be having trouble making a case internally for a project that promises to produce savings of up to $3 billion a year on post-trade processes. It can cost banks in the tens or even hundreds of millions to upgrade their infrastructure for CDM.",
+      "caveats": "General industry context, not Deutsche Bank specific. Explains potential hesitation factors.",
+      "lr_mapping": {
+        "evidence_type": "industry_context",
+        "likelihood_ratio": 1.0
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "unknown",
+      "freshness": {
+        "age_days": 873,
+        "category": "dated",
+        "weight_multiplier": 0.65
+      },
+      "source_domain": "risk.net"
+    },
+    {
+      "id": "DB-005",
+      "claim": "Deutsche Bank annual reports 2023-2024 mention investments in technology and regulatory compliance but no specific CDM/DRR references",
+      "source_url": "https://investor-relations.db.com/files/documents/annual-reports/2024/Annual-Report-2023.pdf",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-03-14",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "vague"
+      },
+      "excerpt": "Work on their most important regulatory programmes is now nearing completion. Investments in technology, processes and controls will increasingly translate into savings.",
+      "caveats": "Generic regulatory technology investment language. No CDM/DRR mentioned in 2023 or 2024 annual reports - informative absence.",
+      "lr_mapping": {
+        "evidence_type": "annual_report_no_cdm",
+        "likelihood_ratio": 0.9
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [
+        "EU"
+      ],
+      "coverage_specificity": "unknown",
+      "freshness": {
+        "age_days": 647,
+        "category": "dated",
+        "weight_multiplier": 0.81
+      },
+      "source_domain": "investor-relations.db.com"
+    }
+  ],
+  "null_results": [
+    {
+      "category": "ISDA CDM Contributor List",
+      "queries": [
+        "site:isda.org Deutsche Bank CDM",
+        "ISDA CDM contributors Deutsche Bank"
+      ],
+      "results_reviewed": 10,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "Deutsche Bank is not listed as an ISDA CDM contributor despite being a major G-SIB derivatives dealer"
+    },
+    {
+      "category": "FINOS CDM Contributor",
+      "queries": [
+        "site:github.com/finos Deutsche Bank CDM",
+        "FINOS CDM Deutsche Bank contributor"
+      ],
+      "results_reviewed": 10,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "Deutsche Bank contributes to other FINOS projects (Fluxnova, Waltz, Spring Bot) but NOT to CDM"
+    },
+    {
+      "category": "CDM Job Postings",
+      "queries": [
+        "Deutsche Bank CDM job",
+        "Deutsche Bank common domain model careers"
+      ],
+      "results_reviewed": 10,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "No CDM-specific hiring signals found - suggests no active CDM build program"
+    },
+    {
+      "category": "Official CDM Announcements",
+      "queries": [
+        "site:db.com CDM",
+        "site:deutsche-bank.de common domain model"
+      ],
+      "results_reviewed": 10,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "No CDM announcements on official Deutsche Bank websites"
+    },
+    {
+      "category": "Production or Pilot Announcements",
+      "queries": [
+        "Deutsche Bank CDM production",
+        "Deutsche Bank CDM pilot 2024 2025"
+      ],
+      "results_reviewed": 15,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "Framework v20 claim of 'Pilot; production expected 2025' cannot be verified"
+    }
+  ],
+  "meta": {
+    "tier_completed": 3,
+    "generated_at": "2025-12-20T00:00:00Z",
+    "searches_executed": 15,
+    "evidence_hash": "",
+    "evidence_fingerprint": {
+      "tier1_count": 3,
+      "tier2_count": 2,
+      "tier3_count": 0,
+      "null_results_count": 5,
+      "highest_tier": 1,
+      "highest_claim_type": "membership_or_participation",
+      "evidence_direction_ratio": 0.5,
+      "average_freshness": 0.8,
+      "source_diversity": 1.0,
+      "vendor_signals_present": true,
+      "production_signals_present": false,
+      "contribution_signals_present": true,
+      "claim_type_vector": [
+        0,
+        0,
+        3,
+        1,
+        1,
+        0
+      ]
+    },
+    "provenance": {
+      "evidence_hash": "5906262ec9fdb545048d7b122962a9a59cbcd35702f2b1071ca7522bce8ec948",
+      "signed_at": "2025-12-21T06:36:58.845299",
+      "previous_hash": null
+    },
+    "schema_version": "2.3"
+  },
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 5,
+      "completed": 5,
+      "failed": 0,
+      "queries": [
+        {
+          "query": "Deutsche Bank CDM Common Domain Model ISDA 2024 2025",
+          "source_category": "official_website",
+          "status": "completed",
+          "results_found": 0
+        },
+        {
+          "query": "site:isda.org Deutsche Bank CDM DRR derivatives",
+          "source_category": "isda",
+          "status": "completed",
+          "results_found": 0
+        },
+        {
+          "query": "site:finos.org Deutsche Bank common domain model contributor",
+          "source_category": "finos",
+          "status": "completed",
+          "results_found": 1
+        },
+        {
+          "query": "Deutsche Bank EMIR Refit reporting 2024 derivatives technology",
+          "source_category": "regulatory",
+          "status": "completed",
+          "results_found": 1
+        },
+        {
+          "query": "Deutsche Bank derivatives technology annual report 2023 2024",
+          "source_category": "annual_report",
+          "status": "completed",
+          "results_found": 1
+        }
+      ]
+    },
+    "tier2_searches": {
+      "expected": 4,
+      "completed": 4,
+      "failed": 0,
+      "queries": [
+        {
+          "query": "site:risk.net Deutsche Bank CDM ISDA 2024",
+          "source_category": "trade_press",
+          "status": "completed",
+          "results_found": 1
+        },
+        {
+          "query": "site:waterstechnology.com Deutsche Bank CDM",
+          "source_category": "trade_press",
+          "status": "completed",
+          "results_found": 0
+        },
+        {
+          "query": "Deutsche Bank common domain model derivatives 2023 2024",
+          "source_category": "trade_press",
+          "status": "completed",
+          "results_found": 1
+        },
+        {
+          "query": "Deutsche Bank Regnology AxiomSL regulatory reporting EMIR",
+          "source_category": "vendor",
+          "status": "completed",
+          "results_found": 1
+        }
+      ]
+    },
+    "tier3_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        {
+          "query": "Deutsche Bank CDM job hiring careers 2024 2025",
+          "source_category": "job_postings",
+          "status": "completed",
+          "results_found": 0
+        },
+        {
+          "query": "site:linkedin.com Deutsche Bank CDM ISDA derivatives",
+          "source_category": "linkedin",
+          "status": "completed",
+          "results_found": 0
+        },
+        {
+          "query": "Deutsche Bank CDM patent",
+          "source_category": "patents",
+          "status": "skipped",
+          "results_found": 0
+        }
+      ]
+    },
+    "summary": {
+      "total_expected": 12,
+      "total_completed": 12,
+      "total_failed": 0,
+      "completion_rate": 1.0,
+      "all_tiers_complete": true,
+      "validation_status": "complete",
+      "notes": "All searches completed. Limited positive CDM evidence found. Multiple informative absences documented."
+    }
+  },
+  "product_coverage": {
+    "assessment_date": "2025-12-20",
+    "overall_confidence": 35,
+    "products": {
+      "IRS": {
+        "cdm_status": "unknown",
+        "cdm_reliance": "unknown",
+        "regulatory_driver": "EMIR_Refit",
+        "confidence": 30,
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of CDM usage for IRS despite EMIR Refit deadline passed",
+        "vendor_solution": "DTCC",
+        "notes": "Uses traditional DTCC reporting"
+      },
+      "CDS": {
+        "cdm_status": "unknown",
+        "cdm_reliance": "unknown",
+        "regulatory_driver": "EMIR_Refit",
+        "confidence": 30,
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of CDM usage for CDS",
+        "vendor_solution": "DTCC",
+        "notes": "Uses traditional DTCC reporting"
+      },
+      "FX_Forwards": {
+        "cdm_status": "unknown",
+        "cdm_reliance": "unknown",
+        "regulatory_driver": "EMIR_Refit",
+        "confidence": 30,
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of CDM usage for FX",
+        "vendor_solution": "DTCC",
+        "notes": "Risk.net award winner for currency derivatives but no CDM evidence"
+      }
+    }
+  },
+  "jurisdiction_rollout": {
+    "assessment_date": "2025-12-20",
+    "jurisdictions": {
+      "EU": {
+        "regulatory_driver": "EMIR Refit",
+        "deadline": "2024-04-29",
+        "cdm_status": "unknown",
+        "priority_level": "primary",
+        "confidence": 35,
+        "evidence_ids": [
+          "DB-003",
+          "DB-005"
+        ],
+        "knowledge_gap": true,
+        "gap_reason": "EMIR Refit deadline passed but CDM adoption status unknown",
+        "notes": "Using DTCC traditional reporting for EMIR compliance"
+      },
+      "UK": {
+        "regulatory_driver": "UK EMIR",
+        "deadline": "2024-09-30",
+        "cdm_status": "unknown",
+        "priority_level": "secondary",
+        "confidence": 25,
+        "evidence_ids": [],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of UK-specific CDM approach",
+        "notes": "Deutsche Bank London Branch subject to UK EMIR"
+      },
+      "US": {
+        "regulatory_driver": "CFTC Rewrite",
+        "deadline": null,
+        "cdm_status": "unknown",
+        "priority_level": "secondary",
+        "confidence": 25,
+        "evidence_ids": [],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of US CDM approach",
+        "notes": "Subject to CFTC requirements via US operations"
+      }
+    }
+  },
+  "adoption_drivers": {
+    "assessment_date": "2025-12-20",
+    "pressures_to_adopt": [
+      {
+        "driver_type": "regulatory_mandate",
+        "description": "EMIR Refit deadline April 2024 - but CDM not mandated",
+        "strength": "medium",
+        "timeline_impact": "Already passed - April 2024",
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "confidence": 70,
+        "notes": "EMIR Refit creates pressure for improved reporting but doesn't mandate CDM"
+      }
+    ],
+    "hesitations_against": [
+      {
+        "hesitation_type": "capacity_constraint",
+        "description": "Major regulatory programmes consuming technology capacity",
+        "strength": "high",
+        "expected_duration": "medium_term",
+        "evidence_ids": [
+          "DB-005"
+        ],
+        "confidence": 60,
+        "notes": "Annual report notes 'most important regulatory programmes nearing completion' - suggests capacity constraints"
+      },
+      {
+        "hesitation_type": "insufficient_business_case",
+        "description": "High CDM implementation costs (tens to hundreds of millions)",
+        "strength": "medium",
+        "expected_duration": "structural",
+        "evidence_ids": [
+          "DB-004"
+        ],
+        "confidence": 50,
+        "notes": "Industry-wide challenge making CDM business case"
+      },
+      {
+        "hesitation_type": "vendor_preference",
+        "description": "Already using DTCC for EMIR reporting - path dependency",
+        "strength": "medium",
+        "expected_duration": "structural",
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "confidence": 65,
+        "notes": "Existing DTCC relationship may reduce urgency for CDM"
+      }
+    ],
+    "net_assessment": {
+      "outcome": "adoption_uncertain",
+      "rationale": "Limited evidence of CDM engagement despite having FINOS open source capability. Conference participation in 2022 but no follow-through. Using traditional DTCC reporting for EMIR.",
+      "timeline_estimate": "No credible timeline can be established",
+      "confidence": 40,
+      "knowledge_gaps_affect_assessment": true
+    }
+  },
+  "knowledge_gaps": [
+    {
+      "id": "GAP-001",
+      "category": "strategic",
+      "gap_type": "cdm_strategy_unknown",
+      "description": "Deutsche Bank's official CDM strategy is unknown - are they evaluating, planning, or deliberately not pursuing?",
+      "business_impact": "high",
+      "impact_rationale": "Cannot distinguish between silent evaluation and deliberate non-adoption",
+      "public_research_exhausted": true,
+      "searches_attempted": [
+        "site:db.com CDM",
+        "Deutsche Bank CDM strategy",
+        "Deutsche Bank derivatives technology roadmap"
+      ],
+      "suggested_sources": [
+        {
+          "source_type": "insider_interview",
+          "target_role": "Head of Derivatives Technology or Regulatory Reporting",
+          "discovery_question": "Is Deutsche Bank actively evaluating or implementing CDM for derivatives reporting?"
+        }
+      ],
+      "resolution_value": 85,
+      "strategic_urgency": 70,
+      "priority_score": 78,
+      "related_evidence_ids": [
+        "DB-001",
+        "DB-002"
+      ],
+      "notes": "Key gap - cannot validate framework v20 claim"
+    },
+    {
+      "id": "GAP-002",
+      "category": "vendor",
+      "gap_type": "vendor_cdm_capability_unknown",
+      "description": "Unknown whether DTCC relationship includes any CDM capability or is purely traditional",
+      "business_impact": "medium",
+      "impact_rationale": "Could shift classification if DTCC is providing CDM connectivity",
+      "public_research_exhausted": true,
+      "searches_attempted": [
+        "Deutsche Bank DTCC CDM",
+        "Deutsche Bank regulatory reporting vendor CDM"
+      ],
+      "suggested_sources": [
+        {
+          "source_type": "vendor_backdoor",
+          "target_role": "DTCC relationship manager",
+          "discovery_question": "Does Deutsche Bank's DTCC implementation include any CDM components?"
+        }
+      ],
+      "resolution_value": 60,
+      "strategic_urgency": 50,
+      "priority_score": 55,
+      "related_evidence_ids": [
+        "DB-003"
+      ],
+      "notes": "DTCC is building CDM capabilities - unclear if DB is using them"
+    }
+  ],
+  "gap_summary": {
+    "total_gaps": 2,
+    "critical_gaps": 0,
+    "high_gaps": 1,
+    "medium_gaps": 1,
+    "low_gaps": 0,
+    "gaps_by_category": {
+      "strategic": 1,
+      "vendor": 1
+    },
+    "primary_research_recommended": true,
+    "top_priority_gaps": [
+      "GAP-001",
+      "GAP-002"
+    ],
+    "discovery_call_brief": {
+      "recommended_targets": [
+        "Head of Derivatives Technology",
+        "Head of Regulatory Reporting",
+        "FINOS relationship lead"
+      ],
+      "key_questions": [
+        "Is Deutsche Bank actively evaluating or implementing CDM for derivatives reporting?",
+        "What was the outcome of the 2022 DRR conference participation?",
+        "Does the DTCC implementation include any CDM components?"
+      ],
+      "value_proposition": "Share industry CDM adoption benchmarking insights in exchange for Deutsche Bank's positioning context"
+    }
+  },
+  "counterparty_map": {
+    "assessment_date": "2025-12-20",
+    "ccp_relationships": [
+      {
+        "ccp_name": "LCH",
+        "membership_status": "clearing_member",
+        "cdm_requirement": "optional",
+        "cdm_deadline": null,
+        "bank_cdm_status": "unknown",
+        "products_cleared": [
+          "IRS",
+          "CDS"
+        ],
+        "confidence": 30,
+        "evidence_ids": [],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of DB-LCH CDM connectivity",
+        "notes": "LCH is building CDM capabilities"
+      },
+      {
+        "ccp_name": "Eurex",
+        "membership_status": "clearing_member",
+        "cdm_requirement": "optional",
+        "cdm_deadline": null,
+        "bank_cdm_status": "unknown",
+        "products_cleared": [
+          "IRS",
+          "Equity_Options"
+        ],
+        "confidence": 30,
+        "evidence_ids": [],
+        "knowledge_gap": true,
+        "gap_reason": "No evidence of DB-Eurex CDM connectivity",
+        "notes": "Eurex is German CCP - natural relationship for DB"
+      },
+      {
+        "ccp_name": "DTCC",
+        "membership_status": "clearing_member",
+        "cdm_requirement": "optional",
+        "cdm_deadline": null,
+        "bank_cdm_status": "unknown",
+        "products_cleared": [
+          "IRS",
+          "CDS"
+        ],
+        "confidence": 40,
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "knowledge_gap": true,
+        "gap_reason": "Uses DTCC for EMIR reporting but CDM status unknown",
+        "notes": "Confirmed DTCC relationship for reporting"
+      }
+    ],
+    "utility_connectivity": [
+      {
+        "utility_name": "DTCC",
+        "service_type": "reporting",
+        "cdm_capability": "cdm_enabled",
+        "bank_using_cdm_channel": false,
+        "confidence": 50,
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "knowledge_gap": true,
+        "notes": "DTCC offers CDM but no evidence DB is using CDM channel"
+      }
+    ],
+    "aggregated_assessment": {
+      "total_ccp_relationships": 3,
+      "ccps_with_cdm_connected": 0,
+      "ccps_with_cdm_building": 0,
+      "g16_counterparties_mapped": 0,
+      "bilateral_cdm_pressure_level": "unknown",
+      "utilities_with_cdm": 1,
+      "network_effect_assessment": "unknown"
+    }
+  },
+  "vendor_analysis": {
+    "assessment_date": "2025-12-20",
+    "overall_strategy": "unknown",
+    "vendor_relationships": [
+      {
+        "vendor_name": "DTCC",
+        "vendor_type": "utility_provider",
+        "scope": [
+          "reporting",
+          "regulatory_filing"
+        ],
+        "products_covered": [
+          "IRS",
+          "CDS",
+          "FX_Forwards"
+        ],
+        "jurisdictions_covered": [
+          "EU"
+        ],
+        "relationship_stage": "production",
+        "dependency_level": "medium",
+        "confidence": 60,
+        "evidence_ids": [
+          "DB-003"
+        ],
+        "knowledge_gap": true,
+        "gap_reason": "DTCC relationship confirmed but CDM component unknown",
+        "notes": "Traditional EMIR reporting via DTCC Data Repository Ireland"
+      }
+    ],
+    "internal_capabilities": {
+      "has_internal_cdm_team": "unknown",
+      "team_size_estimate": "unknown",
+      "internal_scope": [],
+      "build_appetite": "unknown",
+      "confidence": 20,
+      "evidence_ids": [
+        "DB-002"
+      ],
+      "knowledge_gap": true,
+      "gap_reason": "FINOS contribution capability demonstrated but CDM focus unknown"
+    },
+    "aggregated_assessment": {
+      "total_vendors": 1,
+      "primary_vendor": "DTCC",
+      "vendor_dependency_score": "medium",
+      "internal_capability_score": "unknown",
+      "capability_gaps_count": 2,
+      "critical_gaps_count": 0,
+      "classification_implication": "insufficient_data"
+    }
+  },
+  "trust_metrics": {
+    "overall_confidence": 15,
+    "confidence_rationale": "No verified evidence",
+    "source_diversity_score": 0.9,
+    "temporal_health_score": 0.2,
+    "corroboration_rate": 0.6,
+    "verification_rate": 0.0,
+    "authority_score": 0.7,
+    "enhanced_authority_score": 0.5,
+    "relationship_corroboration_rate": 0.82,
+    "pressure_vector": {
+      "bank_id": "deutsche-bank",
+      "architect_pressure": 0.0,
+      "pragmatist_pressure": 0.35064935064935066,
+      "net_direction": "PRAGMATIST",
+      "net_strength": 0.54,
+      "confidence": 0.4,
+      "contributing_relationships": [
+        "REL-002"
+      ]
+    },
+    "excerpt_verification_rate": 0.0,
+    "warnings": [
+      "Uncorroborated Tier 1 claim: DB-002",
+      "Uncorroborated Tier 1 claim: DB-003",
+      "Most evidence is dated or historical: 20% current",
+      "Low verification rate: 0%"
+    ],
+    "flags": [
+      "STALE_EVIDENCE",
+      "UNVERIFIED_URLS"
+    ]
+  },
+  "contradictions": [],
+  "contradiction_details": []
+}

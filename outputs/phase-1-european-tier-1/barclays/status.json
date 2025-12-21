@@ -1,0 +1,26 @@
+{
+  "bank_id": "barclays",
+  "bank_name": "Barclays PLC",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "ARCHITECT",
+  "sub_classification": "Follower",
+  "confidence": 75,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.82,
+  "probability_pragmatist": 0.18,
+  "prior_probability": 0.30,
+  "evidence_count": {"tier1": 3, "tier2": 3, "tier3": 0, "null_results": 0},
+  "stages_completed": ["initialize", "pre_mortem", "tier1_evidence", "bayesian_1", "gate_1", "tier2_evidence", "bayesian_2", "gate_2", "tier3_evidence", "bayesian_3", "gate_3", "adversarial_challenge", "final_classification", "synthesis"],
+  "last_updated": "2025-12-20T03:00:00Z",
+  "notes": "Strong ARCHITECT evidence: CDM prototypes, FINOS demo, DerivHack hackathons, Lee Braine thought leadership. No confirmed production = Follower not Native.",
+  "key_individual": "Lee Braine (MD, Research & Engineering) - CDM advocate",
+  "key_findings": [
+    "FINOS CDM demonstration for IRS processing",
+    "CDM prototype for CCPs (Oct 2021)",
+    "Hosted DerivHack 2018 and 2019 coding hackathons with ISDA/REGnosys",
+    "Lee Braine public advocacy: 'some business lines might die' without CDM",
+    "Continued advocacy Dec 2023 on repo clearing CDM potential"
+  ]
+}

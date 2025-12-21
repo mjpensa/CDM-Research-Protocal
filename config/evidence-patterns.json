@@ -1,0 +1,162 @@
+{
+  "$schema": "CDM/DRR Evidence Patterns v1.0",
+  "description": "Known evidence patterns and their expected outcomes for consistency checking",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "fingerprint_algorithm": "v1.0",
+  "match_threshold": 0.75,
+
+  "patterns": [
+    {
+      "pattern_id": "ARCH-NATIVE-001",
+      "name": "Confirmed Production Pattern",
+      "description": "Strong Tier 1 production evidence with official announcements",
+      "signature": {
+        "tier1_count_min": 2,
+        "production_signals_required": true,
+        "contribution_signals_required": true,
+        "evidence_direction_ratio_min": 0.8
+      },
+      "expected_outcome": {
+        "classification": "ARCHITECT",
+        "sub_classification": "Native",
+        "confidence_range": [85, 95],
+        "probability_range": [0.85, 0.98]
+      },
+      "exemplar_banks": ["jpmorgan", "bnp-paribas"],
+      "observations": 4
+    },
+    {
+      "pattern_id": "ARCH-ACTIVE-001",
+      "name": "Active Development Pattern",
+      "description": "Pilot or PoC with working group participation and contributions",
+      "signature": {
+        "tier1_count_min": 1,
+        "tier2_count_min": 2,
+        "contribution_signals_required": true,
+        "highest_claim_type": "pilot_or_poc",
+        "evidence_direction_ratio_min": 0.6
+      },
+      "expected_outcome": {
+        "classification": "ARCHITECT",
+        "sub_classification": "Active",
+        "confidence_range": [60, 80],
+        "probability_range": [0.55, 0.80]
+      },
+      "exemplar_banks": ["barclays", "deutsche-bank"],
+      "observations": 3
+    },
+    {
+      "pattern_id": "PRAG-VENDOR-001",
+      "name": "Vendor Dependency Pattern",
+      "description": "Confirmed vendor relationship without internal capability signals",
+      "signature": {
+        "vendor_signals_present": true,
+        "contribution_signals_required": false,
+        "production_signals_required": false,
+        "tier2_count_min": 1
+      },
+      "expected_outcome": {
+        "classification": "PRAGMATIST",
+        "sub_classification": "Vendor-Dependent",
+        "confidence_range": [55, 75],
+        "probability_range": [0.15, 0.35]
+      },
+      "exemplar_banks": ["hsbc"],
+      "observations": 2
+    },
+    {
+      "pattern_id": "PRAG-REG-001",
+      "name": "Regulatory Compliance Pattern",
+      "description": "Focus on compliance via utilities/vendors without CDM investment signals",
+      "signature": {
+        "tier1_count_max": 1,
+        "vendor_signals_present": true,
+        "production_signals_required": false,
+        "contribution_signals_required": false,
+        "evidence_direction_ratio_max": 0.4
+      },
+      "expected_outcome": {
+        "classification": "PRAGMATIST",
+        "sub_classification": "Regulatory-Driven",
+        "confidence_range": [50, 70],
+        "probability_range": [0.20, 0.40]
+      },
+      "exemplar_banks": [],
+      "observations": 1
+    },
+    {
+      "pattern_id": "OBS-WATCH-001",
+      "name": "Active Watcher Pattern",
+      "description": "Working group participation but no implementation signals",
+      "signature": {
+        "highest_claim_type": "membership_or_participation",
+        "production_signals_required": false,
+        "contribution_signals_required": false,
+        "tier3_count_min": 1
+      },
+      "expected_outcome": {
+        "classification": "OBSERVER",
+        "sub_classification": "Active-Watcher",
+        "confidence_range": [40, 60],
+        "probability_range": [0.25, 0.45]
+      },
+      "exemplar_banks": [],
+      "observations": 0
+    },
+    {
+      "pattern_id": "UNK-SPARSE-001",
+      "name": "Evidence Sparse Pattern",
+      "description": "Very limited evidence after exhaustive search",
+      "signature": {
+        "tier1_count_max": 0,
+        "tier2_count_max": 1,
+        "null_results_count_min": 10
+      },
+      "expected_outcome": {
+        "classification": "UNKNOWN",
+        "sub_classification": "Insufficient-Evidence",
+        "confidence_range": [20, 40],
+        "probability_range": [0.30, 0.50]
+      },
+      "exemplar_banks": [],
+      "observations": 0
+    }
+  ],
+
+  "pattern_matching_rules": {
+    "description": "Rules for matching a fingerprint to a pattern",
+    "all_required_conditions_must_match": true,
+    "min_conditions_for_match": 3,
+    "weight_adjustments": {
+      "production_signals": 1.5,
+      "contribution_signals": 1.3,
+      "vendor_signals": 1.2
+    }
+  },
+
+  "confidence_adjustment_by_pattern_match": {
+    "strong_match": {
+      "threshold": 0.90,
+      "adjustment": 5
+    },
+    "moderate_match": {
+      "threshold": 0.75,
+      "adjustment": 0
+    },
+    "weak_match": {
+      "threshold": 0.60,
+      "adjustment": -5
+    }
+  },
+
+  "pattern_update_history": [],
+
+  "usage_notes": [
+    "Patterns are used to check if bank classifications are consistent with evidence profiles",
+    "Pattern matching is not deterministic - provides guidance for consistency checking",
+    "Exemplar banks are used to seed pattern recognition",
+    "Observations count tracks how many times pattern has been seen"
+  ]
+}

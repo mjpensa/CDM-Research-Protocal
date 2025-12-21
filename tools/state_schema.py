@@ -25,7 +25,7 @@ import json
 
 
 # Schema version for migration support
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"  # Added prediction tracking fields
 
 
 class StageStatus(Enum):
@@ -94,13 +94,18 @@ def normalize_stage(stage: str) -> str:
 
 @dataclass
 class ProbabilityUpdate:
-    """Record of a probability update after evidence gathering."""
+    """
+    Record of a probability update after evidence gathering.
+
+    Includes idempotency_key for duplicate detection (Gap 7 fix).
+    """
     stage: str
     prior: float
     posterior: float
     combined_lr: float
     evidence_count: int
     timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    idempotency_key: Optional[str] = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -111,6 +116,47 @@ class ProbabilityUpdate:
         valid_fields = {f.name for f in fields(cls)}
         filtered_data = {k: v for k, v in data.items() if k in valid_fields}
         return cls(**filtered_data)
+
+    @classmethod
+    def generate_idempotency_key(
+        cls,
+        stage: str,
+        bank_id: str,
+        timestamp: str = None,
+        sequence: int = None
+    ) -> str:
+        """
+        Generate a unique idempotency key for duplicate detection.
+
+        Uses seconds precision and 24-char hash for reduced collision risk.
+        Optional sequence number handles multiple legitimate updates within
+        the same second.
+
+        Args:
+            stage: Stage name (e.g., "bayesian_1")
+            bank_id: Bank identifier
+            timestamp: Optional timestamp (defaults to current time)
+            sequence: Optional sequence number for same-second updates
+
+        Returns:
+            Idempotency key string (24 chars, or 27 with sequence suffix)
+
+        Note:
+            Previous implementation used minute precision and 16-char hash.
+            New implementation uses seconds precision and 24-char hash
+            (96 bits entropy) for significantly reduced collision probability.
+        """
+        import hashlib
+        if timestamp is None:
+            timestamp = datetime.now(timezone.utc).isoformat()
+        # Use seconds precision (not minutes) for better collision avoidance
+        ts_second = timestamp[:19]  # "2025-12-21T10:30:45"
+        raw = f"{stage}_{bank_id}_{ts_second}"
+        base_hash = hashlib.sha256(raw.encode()).hexdigest()[:24]  # 24 chars = 96 bits
+
+        if sequence is not None:
+            return f"{base_hash}_{sequence:02d}"
+        return base_hash
 
 
 @dataclass
@@ -246,6 +292,19 @@ class BankState:
     # Errors
     errors: List[str] = field(default_factory=list)
 
+    # Phase 3: Stage progress tracking for resumability
+    stage_started_at: Optional[str] = None  # When current stage began
+    stage_outputs_written: List[str] = field(default_factory=list)  # Files created this stage
+    last_checkpoint_at: Optional[str] = None  # Last successful checkpoint
+    retry_count: int = 0  # Number of retries for current stage
+    max_retries: int = 3  # Maximum retries before blocking
+
+    # Phase 4: Prediction tracking for calibration (v1.2)
+    prediction_id: Optional[str] = None  # Reference to prediction-log entry
+    validation_id: Optional[str] = None  # Reference to validation-log entry (if validated)
+    validation_status: str = "pending"  # pending | validated | stale
+    evidence_fingerprint: Optional[Dict[str, Any]] = None  # For cross-bank consistency
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         data = asdict(self)
@@ -305,21 +364,75 @@ class BankState:
                 normalize_stage(s) for s in filtered_data['skipped_stages']
             ]
 
-        return cls(**filtered_data)
+        # Create instance
+        instance = cls(**filtered_data)
+
+        # Phase 3 migration: Initialize stage timing if missing
+        # This ensures timeout detection works for migrated/resumed states
+        if instance.stage_started_at is None and instance.current_stage != "complete":
+            instance.stage_started_at = datetime.now(timezone.utc).isoformat()
+
+        return instance
 
     def update_probability(self, posterior: float, combined_lr: float,
-                          evidence_count: int, stage: str) -> None:
-        """Record a probability update."""
+                          evidence_count: int, stage: str,
+                          idempotency_key: str = None) -> bool:
+        """
+        Record a probability update with idempotency check.
+
+        If an idempotency_key is provided, checks for duplicate updates
+        to prevent double-processing (Gap 7 fix).
+
+        Args:
+            posterior: New probability value
+            combined_lr: Combined likelihood ratio
+            evidence_count: Number of evidence items
+            stage: Stage name (e.g., "bayesian_1")
+            idempotency_key: Optional key for duplicate detection
+
+        Returns:
+            True if update was applied, False if duplicate was detected
+        """
+        # Generate idempotency key if not provided
+        if idempotency_key is None:
+            idempotency_key = ProbabilityUpdate.generate_idempotency_key(
+                stage, self.bank_id
+            )
+
+        # Check for existing update with same idempotency key
+        for existing in self.probability_history:
+            if existing.idempotency_key == idempotency_key:
+                # Duplicate detected - skip update
+                return False
+
+        # Also check for near-duplicate by stage+timestamp (legacy compatibility)
+        # Same stage within 60 seconds is likely a duplicate
+        now = datetime.now(timezone.utc)
+        for existing in self.probability_history:
+            if existing.stage == stage:
+                try:
+                    existing_time = datetime.fromisoformat(
+                        existing.timestamp.replace('Z', '+00:00')
+                    )
+                    delta = abs((now - existing_time).total_seconds())
+                    if delta < 60:
+                        # Near-duplicate - skip
+                        return False
+                except (ValueError, TypeError):
+                    pass
+
         update = ProbabilityUpdate(
             stage=stage,
             prior=self.current_probability,
             posterior=posterior,
             combined_lr=combined_lr,
-            evidence_count=evidence_count
+            evidence_count=evidence_count,
+            idempotency_key=idempotency_key
         )
         self.probability_history.append(update)
         self.current_probability = posterior
         self.last_updated = datetime.now(timezone.utc).isoformat()
+        return True
 
     def mark_stage_complete(self, stage: str) -> None:
         """Mark a stage as completed."""
@@ -332,6 +445,61 @@ class BankState:
         if stage not in self.skipped_stages:
             self.skipped_stages.append(stage)
         self.last_updated = datetime.now(timezone.utc).isoformat()
+
+    # Phase 3: Checkpoint methods for resumability
+    def start_stage(self, stage: str) -> None:
+        """Mark the beginning of a new stage."""
+        self.current_stage = stage
+        self.stage_started_at = datetime.now(timezone.utc).isoformat()
+        self.stage_outputs_written = []
+        self.retry_count = 0
+        self.last_updated = self.stage_started_at
+
+    def checkpoint_stage_progress(self, files_written: List[str] = None) -> None:
+        """Record a checkpoint within the current stage."""
+        self.last_checkpoint_at = datetime.now(timezone.utc).isoformat()
+        if files_written:
+            self.stage_outputs_written.extend(files_written)
+        self.last_updated = self.last_checkpoint_at
+
+    def increment_retry(self) -> bool:
+        """Increment retry count. Returns False if max retries exceeded."""
+        self.retry_count += 1
+        self.last_updated = datetime.now(timezone.utc).isoformat()
+        return self.retry_count <= self.max_retries
+
+    def is_stage_timed_out(self, timeout_minutes: int = 30) -> bool:
+        """
+        Check if current stage has exceeded timeout.
+
+        Args:
+            timeout_minutes: Maximum allowed time for stage (default 30 min)
+
+        Returns:
+            True if stage has timed out, False otherwise
+        """
+        if not self.stage_started_at:
+            return False
+
+        if self.current_stage == "complete":
+            return False
+
+        try:
+            started = datetime.fromisoformat(self.stage_started_at.replace('Z', '+00:00'))
+            elapsed = (datetime.now(timezone.utc) - started).total_seconds() / 60
+            return elapsed > timeout_minutes
+        except (ValueError, AttributeError):
+            return False
+
+    def get_stage_elapsed_minutes(self) -> Optional[float]:
+        """Get elapsed time for current stage in minutes."""
+        if not self.stage_started_at:
+            return None
+        try:
+            started = datetime.fromisoformat(self.stage_started_at.replace('Z', '+00:00'))
+            return (datetime.now(timezone.utc) - started).total_seconds() / 60
+        except (ValueError, AttributeError):
+            return None
 
     def set_blocked(self, checkpoint: str, reason: str) -> None:
         """Set the bank as blocked at a checkpoint."""
@@ -464,6 +632,14 @@ class WorkflowState:
         if bank_id not in self.banks_blocked:
             self.banks_blocked.append(bank_id)
         self.log_event("bank_blocked", f"Bank {bank_id} blocked at checkpoint")
+
+    def mark_bank_unblocked(self, bank_id: str) -> None:
+        """Mark a bank as unblocked and return it to in-progress state."""
+        if bank_id in self.banks_blocked:
+            self.banks_blocked.remove(bank_id)
+        if bank_id not in self.banks_in_progress:
+            self.banks_in_progress.append(bank_id)
+        self.log_event("bank_unblocked", f"Bank {bank_id} unblocked and resumed")
 
 
 # Utility functions for JSON serialization

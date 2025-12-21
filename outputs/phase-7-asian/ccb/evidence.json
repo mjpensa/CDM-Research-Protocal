@@ -1,0 +1,65 @@
+{
+  "bank_id": "ccb",
+  "bank_name": "China Construction Bank (CCB)",
+  "research_date": "2025-12-21",
+  "researcher": "Claude Code (Opus 4.5)",
+  "protocol_version": "2.3",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_type": "Tier 1",
+      "query": "China Construction Bank CCB CDM ISDA",
+      "sources_checked": ["ccb.com", "asia.ccb.com", "isda.org", "finos.org"],
+      "date_searched": "2025-12-21",
+      "notes": "No official announcements or FINOS membership."
+    },
+    {
+      "search_type": "Tier 1",
+      "query": "CCB FINOS contribution",
+      "sources_checked": ["github.com/finos", "finos.org/members"],
+      "date_searched": "2025-12-21",
+      "notes": "Not a FINOS member. No code contributions."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "CCB derivatives reporting CDM",
+      "sources_checked": ["risk.net", "waterstechnology.com", "reuters.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No trade press coverage of CDM initiatives."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "China Construction Bank ISDA working group",
+      "sources_checked": ["isda.org"],
+      "date_searched": "2025-12-21",
+      "notes": "No working group participation found."
+    },
+    {
+      "search_type": "Tier 3",
+      "query": "CCB China Construction Bank CDM jobs",
+      "sources_checked": ["linkedin.com/jobs", "51job.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No CDM job postings."
+    }
+  ],
+  "classification": {
+    "maturity_level": "UNKNOWN",
+    "maturity_sublevel": "Insufficient-Evidence",
+    "confidence": 30,
+    "rationale": "Zero evidence across all tiers. CCB (world's 2nd largest bank by assets) operates under Chinese regulatory framework with no CDM mandate. Null results consistent with other Big Four Chinese banks. 30% confidence reflects high certainty of search results but epistemic caution about Chinese banking sector disclosure practices.",
+    "highest_claim_type": null,
+    "evidence_quality": "High-confidence null results"
+  },
+  "metadata": {
+    "total_evidence_items": 0,
+    "tier1_count": 0,
+    "tier2_count": 0,
+    "tier3_count": 0,
+    "null_searches": 5,
+    "trust_flags": [
+      "ZERO_EVIDENCE",
+      "DISCLOSURE_GAP_POSSIBLE",
+      "REGIONAL_REGULATORY_DIVERGENCE"
+    ]
+  }
+}

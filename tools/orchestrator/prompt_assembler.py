@@ -4,6 +4,12 @@ CDM Research Protocol - Prompt Assembler
 Assembles focused prompts for each research stage.
 Injects context, prior evidence, and output specifications.
 
+Supports:
+- Section loading from static prompts (single source of truth)
+- External search templates from search-templates.json
+- Worked example injection based on context
+- YAML frontmatter metadata extraction
+
 Usage:
     assembler = PromptAssembler()
     prompt = assembler.assemble(stage, bank_config, state)
@@ -11,9 +17,25 @@ Usage:
 
 import json
 import logging
+import sys
 from pathlib import Path
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
+
+# Add parent to path for config_loader access
+_SCRIPT_DIR = Path(__file__).parent.resolve()
+_TOOLS_DIR = _SCRIPT_DIR.parent
+if str(_TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(_TOOLS_DIR))
+
+from config_loader import get_confidence_caps
+
+# Optional: Import section loader for enhanced prompt assembly
+try:
+    from prompt_section_loader import PromptSectionLoader
+    SECTION_LOADER_AVAILABLE = True
+except ImportError:
+    SECTION_LOADER_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -54,6 +76,23 @@ class PromptAssembler:
         self.lr_tables = self._load_json(self.config_dir / "bayesian-lr-tables.json")
         self.checkpoint_rules = self._load_json(self.config_dir / "checkpoint-rules.json")
 
+        # Initialize section loader for static prompt loading (optional enhancement)
+        self.section_loader = None
+        if SECTION_LOADER_AVAILABLE:
+            try:
+                self.section_loader = PromptSectionLoader(
+                    self.prompts_dir,
+                    config_dir=self.config_dir
+                )
+                logger.debug("Section loader initialized successfully")
+            except Exception as e:
+                logger.warning(f"Section loader init failed, using fallback: {e}")
+
+        # Load example index for context-aware example injection
+        self.example_index = self._load_json(
+            self.prompts_dir / "example-index.json"
+        )
+
     def _load_json(self, path: Path) -> dict:
         """Load JSON file."""
         if not path.exists():
@@ -75,6 +114,102 @@ class PromptAssembler:
         pattern = rf'(?:^|\n)##\s+{re.escape(section_name)}\s*\n(.*?)(?=\n##|\Z)'
         match = re.search(pattern, content, re.DOTALL | re.IGNORECASE)
         return match.group(1).strip() if match else ""
+
+    def _get_search_templates_from_loader(self, tier: int, bank_name: str,
+                                           bank_domain: str = "",
+                                           regulator: str = "") -> str:
+        """Get tier-specific search templates from section loader."""
+        if self.section_loader:
+            try:
+                return self.section_loader.get_tier_searches(
+                    tier, bank_name, bank_domain, regulator
+                )
+            except Exception as e:
+                logger.warning(f"Section loader search templates failed: {e}")
+        return None  # Fall back to inline templates
+
+    def _inject_relevant_example(self, agent: str, triggers: List[str]) -> str:
+        """
+        Load contextually relevant worked example.
+
+        Args:
+            agent: Agent name (e.g., 'evidence-gatherer')
+            triggers: Context triggers (e.g., ['tier1', 'null_result'])
+
+        Returns:
+            Formatted example section or empty string
+        """
+        if not self.example_index:
+            return ""
+
+        examples = self.example_index.get("examples", {}).get(agent, [])
+
+        for example in examples:
+            # Check if example is complete and any trigger matches
+            if example.get("status") != "complete":
+                continue
+            example_triggers = example.get("triggers", [])
+            if any(t in example_triggers for t in triggers):
+                example_path = self.prompts_dir / "examples" / example.get("file", "")
+                if example_path.exists():
+                    try:
+                        content = self._load_text(example_path)
+                        return f'''
+---
+
+## Reference Example
+
+> See: `{example.get("file")}`
+> Context: {example.get("context", "")}
+
+{content}
+
+---
+'''
+                    except Exception as e:
+                        logger.warning(f"Failed to load example {example['id']}: {e}")
+
+        return ""
+
+    def _get_context_triggers(self, stage: str, ctx: StageContext) -> List[str]:
+        """Derive context triggers from stage and state."""
+        triggers = []
+
+        # Stage-based triggers
+        if "tier1" in stage:
+            triggers.append("tier1")
+        elif "tier2" in stage:
+            triggers.append("tier2")
+        elif "tier3" in stage:
+            triggers.append("tier3")
+
+        if "bayesian" in stage:
+            triggers.append("bayesian")
+        if "gate" in stage:
+            gate_num = stage.replace("gate_", "")
+            triggers.append(f"gate_{gate_num}")
+        if "adversarial" in stage:
+            triggers.append("adversarial")
+        if "synthesis" in stage:
+            triggers.append("synthesis")
+        if "pre_mortem" in stage:
+            triggers.append("pre_mortem")
+
+        # State-based triggers
+        if ctx.current_probability > 0.8:
+            triggers.append("high_probability")
+            triggers.append("skip_decision")
+        elif ctx.current_probability < 0.2:
+            triggers.append("low_probability")
+            triggers.append("skip_decision")
+
+        # Evidence-based triggers
+        if ctx.evidence_counts.get("null", 0) > 0:
+            triggers.append("null_result")
+        if ctx.highest_tier == 1 and ctx.evidence_counts.get("tier1", 0) > 2:
+            triggers.append("strong_architect")
+
+        return triggers
 
     def assemble(self, stage: str, ctx: StageContext) -> str:
         """
@@ -202,7 +337,11 @@ You are the Evidence Gatherer Agent. Execute web searches, retrieve evidence, an
 
 Execute at least 15-20 distinct searches. Use these templates:
 
-{self._get_search_templates(tier, ctx.bank_name)}
+{self._get_search_templates(
+    tier, ctx.bank_name,
+    ctx.bank_config.get("domain", ""),
+    ctx.bank_config.get("primary_regulator", "")
+)}
 
 ## Output Requirements
 
@@ -244,6 +383,11 @@ Before completing, verify:
 - [ ] No duplicate evidence
 - [ ] Tier assignment is correct for each source
 
+{self._inject_relevant_example(
+    "evidence-gatherer",
+    self._get_context_triggers(stage, ctx)
+)}
+
 Begin your Tier {tier} evidence gathering now.
 '''
 
@@ -280,8 +424,21 @@ Focus on:
 
 These are weak signals that can support but not establish a classification on their own.'''
 
-    def _get_search_templates(self, tier: int, bank_name: str) -> str:
-        """Get tier-specific search templates."""
+    def _get_search_templates(self, tier: int, bank_name: str,
+                               bank_domain: str = "", regulator: str = "") -> str:
+        """Get tier-specific search templates.
+
+        Uses section loader with search-templates.json when available,
+        falls back to inline templates for backward compatibility.
+        """
+        # Try section loader first (uses search-templates.json)
+        loader_templates = self._get_search_templates_from_loader(
+            tier, bank_name, bank_domain, regulator
+        )
+        if loader_templates:
+            return loader_templates
+
+        # Fallback: inline templates (preserved for backward compatibility)
         if tier == 1:
             return f'''```
 "{bank_name}" "Common Domain Model" site:[bank-domain]
@@ -377,6 +534,11 @@ Include:
 6. **Final P(Architect)**: X.X%
 7. **Final P(Pragmatist)**: X.X%
 
+{self._inject_relevant_example(
+    "bayesian-analyst",
+    self._get_context_triggers(stage, ctx)
+)}
+
 Begin your Bayesian analysis now.
 '''
 
@@ -431,6 +593,11 @@ Conclude with:
 - **Gate Decision**: [PROCEED / SKIP]
 - **Next Stage**: [tier{gate_num+1}_evidence / adversarial_challenge]
 - **Confidence in trajectory**: [Low / Medium / High]
+
+{self._inject_relevant_example(
+    "reasoning-gate",
+    self._get_context_triggers(stage, ctx)
+)}
 
 Begin your Gate {gate_num} analysis now.
 '''
@@ -654,13 +821,23 @@ Create all 3 files in order:
 2. `5-synthesis/assessment.md`
 3. `5-synthesis/framework-integration.md`
 
+{self._inject_relevant_example(
+    "synthesis",
+    self._get_context_triggers("synthesis", ctx)
+)}
+
 Begin your synthesis now.
 '''
 
     def _get_confidence_cap(self, highest_tier: int) -> int:
-        """Get confidence cap for tier."""
-        caps = {1: 95, 2: 75, 3: 50, 4: 35}
-        return caps.get(highest_tier, 35)
+        """Get confidence cap for tier from centralized config."""
+        try:
+            caps = get_confidence_caps()  # Returns {1: 95, 2: 75, 3: 50, 4: 35}
+            return caps.get(highest_tier, 35)
+        except Exception:
+            # Fallback if config loading fails
+            fallback_caps = {1: 95, 2: 75, 3: 50, 4: 35}
+            return fallback_caps.get(highest_tier, 35)
 
     def _assemble_default(self, stage: str, ctx: StageContext) -> str:
         """Assemble default prompt for unknown stages."""

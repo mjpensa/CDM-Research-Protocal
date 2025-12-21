@@ -1,0 +1,191 @@
+{
+  "$schema": "CDM/DRR Validation Rules v1.0",
+  "description": "Rules for automated logic validation of agent outputs",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "bayesian_validation": {
+    "description": "Tolerances for Bayesian calculation verification",
+    "posterior_tolerance_absolute": 0.05,
+    "lr_tolerance_relative": 0.15,
+    "extreme_lr_upper": 100,
+    "extreme_lr_lower": 0.01,
+    "prior_tolerance": 0.02,
+    "rationale": {
+      "posterior_tolerance": "5% absolute difference acceptable due to rounding",
+      "lr_tolerance": "15% relative difference acceptable for LR mapping variations",
+      "extreme_lr": "Flag combined LR outside 0.01-100 range for review"
+    },
+    "severity_escalation": {
+      "posterior_mismatch_warning": 0.05,
+      "posterior_mismatch_error": 0.10,
+      "lr_mismatch_warning": 0.15,
+      "lr_mismatch_error": 0.25
+    }
+  },
+
+  "protocol_compliance": {
+    "description": "Requirements for methodology compliance",
+    "min_disconfirming_searches": 3,
+    "min_observable_implications": 3,
+    "min_steelman_words": 150,
+    "min_robustness_questions": 5,
+    "required_gate_sections": [
+      "Evidence Delta Analysis",
+      "Probability Update",
+      "Evidence Sufficiency Check"
+    ],
+    "required_adversarial_sections": [
+      "Counter-Case",
+      "Disconfirming Searches",
+      "Steelman",
+      "Robustness Questions",
+      "Verdict"
+    ],
+    "steelman_dismissive_patterns": [
+      "there is no evidence",
+      "cannot be argued",
+      "impossible to steelman",
+      "no basis for",
+      "no case can be made"
+    ],
+    "section_aliases": {
+      "Evidence Delta Analysis": [
+        "Evidence Delta Analysis",
+        "Current Probability State",
+        "Evidence Summary",
+        "Probability Trajectory",
+        "Evidence Trajectory"
+      ],
+      "Probability Update": [
+        "Probability Update",
+        "Current Probability State",
+        "Final Probability State",
+        "Probability Trajectory",
+        "Final Probability"
+      ],
+      "Evidence Sufficiency Check": [
+        "Evidence Sufficiency Check",
+        "Gate Decision",
+        "Decision:",
+        "Gate Clearance",
+        "Readiness",
+        "Pre-Adversarial Classification"
+      ]
+    }
+  },
+
+  "observable_implications": {
+    "description": "Observable implications to verify at Gate 2",
+    "architect_implications": {
+      "A1": "Official Participation in ISDA/FINOS working groups",
+      "A2": "Named Individual Contributors in CDM repositories",
+      "A3": "Public Announcements of CDM pilots or production",
+      "A4": "Technical Investment signals (job postings, conference talks)",
+      "A5": "Industry Recognition as CDM adopter",
+      "A6": "Ecosystem Relationships with CDM vendors"
+    },
+    "pragmatist_implications": {
+      "P1": "Vendor Dependency for CDM/DRR reporting",
+      "P2": "Absence from CDM Forums and working groups",
+      "P3": "Traditional Technology Focus without CDM integration",
+      "P4": "Regulatory Compliance Focus via vendor solutions",
+      "P5": "Utility/Infrastructure Reliance over internal capability",
+      "P6": "Peer Differentiation from known CDM adopters"
+    },
+    "minimum_tested_per_hypothesis": 3
+  },
+
+  "adjustment_consistency": {
+    "description": "Rules for checking adjustment consistency across banks",
+    "std_threshold": 2.0,
+    "min_precedents_for_check": 3,
+    "tracked_adjustment_types": [
+      "contradiction_resolved_temporal",
+      "contradiction_resolved_factual",
+      "contradiction_resolved_definitional",
+      "adversarial_verdict_strengthened",
+      "adversarial_verdict_unchanged",
+      "adversarial_verdict_weakened",
+      "adversarial_verdict_revised"
+    ]
+  },
+
+  "stage_validation_mapping": {
+    "description": "Which validations apply to which stages",
+    "bayesian_1": ["bayesian"],
+    "bayesian_2": ["bayesian"],
+    "bayesian_3": ["bayesian"],
+    "gate_1": ["gate_sections"],
+    "gate_2": ["gate_sections", "observable_implications"],
+    "gate_3": ["gate_sections"],
+    "adversarial_challenge": ["disconfirmation", "steelman", "robustness"],
+    "synthesis": ["confidence_calibration"]
+  },
+
+  "violation_severity": {
+    "description": "Default severity levels for violation types",
+    "BAYESIAN_POSTERIOR_MISMATCH": "ERROR",
+    "BAYESIAN_LR_MISMATCH": "WARNING",
+    "MISSING_DISCONFIRMATION_SEARCHES": "ERROR",
+    "INCOMPLETE_DISCONFIRMATION_SEARCH": "WARNING",
+    "INSUFFICIENT_OBSERVABLE_IMPLICATIONS": "ERROR",
+    "ALTERNATIVE_HYPOTHESIS_NOT_TESTED": "WARNING",
+    "INSUFFICIENT_STEELMAN_DEPTH": "WARNING",
+    "STEELMAN_APPEARS_DISMISSIVE": "WARNING",
+    "INCONSISTENT_ADJUSTMENT": "WARNING",
+    "MISSING_GATE_SECTION": "WARNING",
+    "CONFIDENCE_CALIBRATION_MISSING": "ERROR"
+  },
+
+  "validation_settings": {
+    "description": "General validation behavior settings",
+    "enabled": true,
+    "blocking_mode": false,
+    "queue_violations": true,
+    "log_warnings": true,
+    "auto_fix_minor": false
+  },
+
+  "state_validation": {
+    "description": "Controls how state file validation failures are handled (Gap 5 fix)",
+    "mode": "strict",
+    "mode_override_env_var": "CDM_VALIDATION_MODE",
+    "modes": {
+      "strict": "Raise exception on validation errors (production default)",
+      "warn": "Log warning but save state anyway (development/debugging)",
+      "off": "Disable validation entirely (emergency override only)"
+    },
+    "fail_on_errors": {
+      "probability_out_of_range": true,
+      "history_mismatch": true,
+      "invalid_stage": true,
+      "schema_version_mismatch": false,
+      "missing_required_fields": true,
+      "duplicate_history_entries": true
+    },
+    "probability_config": {
+      "scale": "0-1",
+      "valid_range": {"min": 0.0, "max": 1.0},
+      "legacy_threshold": 1.0,
+      "precision_warning_threshold": 0.001
+    },
+    "history_config": {
+      "require_monotonic_timestamps": true,
+      "max_history_entries": 100,
+      "duplicate_window_seconds": 60
+    },
+    "rationale": {
+      "default_strict": "STRICT mode prevents silent data corruption in production",
+      "env_override": "Allows temporary mode switch without config changes",
+      "selective_failures": "Some checks are warnings, others are errors"
+    }
+  },
+
+  "usage_notes": [
+    "All validations are non-blocking by default; violations queue for review",
+    "Severity levels: ERROR (requires attention), WARNING (informational), INFO (logged only)",
+    "Tolerances may need adjustment based on observed false positive rates",
+    "Observable implications list should match templates/observable-implications.md"
+  ]
+}

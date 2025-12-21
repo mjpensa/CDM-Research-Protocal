@@ -232,6 +232,128 @@
     }
   },
 
+  "operational_evidence": {
+    "description": "v4.0: Likelihood ratios for product-level and jurisdiction-level evidence",
+    "product_level_evidence": {
+      "cdm_production_for_irs": {
+        "p_e_given_architect": 0.85,
+        "p_e_given_pragmatist": 0.05,
+        "lr": 17.0,
+        "interpretation": "Strong Architect for IRS product line",
+        "note": "IRS typically first product for CDM adoption"
+      },
+      "cdm_production_for_multiple_products": {
+        "p_e_given_architect": 0.90,
+        "p_e_given_pragmatist": 0.03,
+        "lr": 30.0,
+        "interpretation": "Very strong Architect - enterprise approach",
+        "note": "Multi-product production indicates deep commitment"
+      },
+      "cdm_pilot_for_single_product": {
+        "p_e_given_architect": 0.60,
+        "p_e_given_pragmatist": 0.10,
+        "lr": 6.0,
+        "interpretation": "Moderate Architect",
+        "note": "Single product pilot is common starting point"
+      },
+      "cdm_pilot_for_multiple_products": {
+        "p_e_given_architect": 0.70,
+        "p_e_given_pragmatist": 0.08,
+        "lr": 8.75,
+        "interpretation": "Moderate-to-Strong Architect",
+        "note": "Multi-product pilot indicates enterprise approach"
+      },
+      "vendor_handles_all_products": {
+        "p_e_given_architect": 0.10,
+        "p_e_given_pragmatist": 0.65,
+        "lr": 0.15,
+        "interpretation": "Strong Pragmatist - full outsource",
+        "note": "Complete vendor dependency indicates no internal build"
+      },
+      "vendor_handles_some_products_internal_others": {
+        "p_e_given_architect": 0.50,
+        "p_e_given_pragmatist": 0.20,
+        "lr": 2.5,
+        "interpretation": "Weak Architect - hybrid approach",
+        "note": "Hybrid suggests building capability with vendor acceleration"
+      },
+      "no_product_specific_evidence": {
+        "p_e_given_architect": 0.25,
+        "p_e_given_pragmatist": 0.55,
+        "lr": 0.45,
+        "interpretation": "Weak Pragmatist",
+        "note": "Would expect product details if truly in production"
+      }
+    },
+    "jurisdiction_level_evidence": {
+      "cdm_for_multiple_jurisdictions": {
+        "p_e_given_architect": 0.75,
+        "p_e_given_pragmatist": 0.10,
+        "lr": 7.5,
+        "interpretation": "Moderate Architect - global CDM strategy",
+        "note": "Multi-jurisdiction deployment indicates strategic commitment"
+      },
+      "cdm_for_primary_jurisdiction_only": {
+        "p_e_given_architect": 0.55,
+        "p_e_given_pragmatist": 0.20,
+        "lr": 2.75,
+        "interpretation": "Weak Architect - starting point",
+        "note": "Single jurisdiction may be pilot before expansion"
+      },
+      "traditional_approach_post_emir_refit_deadline": {
+        "p_e_given_architect": 0.15,
+        "p_e_given_pragmatist": 0.55,
+        "lr": 0.27,
+        "interpretation": "Moderate Pragmatist",
+        "note": "Met deadline without CDM suggests traditional approach"
+      },
+      "jscc_cdm_connectivity_building": {
+        "p_e_given_architect": 0.80,
+        "p_e_given_pragmatist": 0.20,
+        "lr": 4.0,
+        "interpretation": "Weak-to-Moderate Architect",
+        "note": "JSCC deadline forces minimum CDM connectivity"
+      },
+      "jscc_cdm_via_vendor": {
+        "p_e_given_architect": 0.30,
+        "p_e_given_pragmatist": 0.50,
+        "lr": 0.6,
+        "interpretation": "Weak Pragmatist",
+        "note": "Outsourcing JSCC connectivity indicates vendor reliance"
+      },
+      "no_jurisdiction_specific_evidence": {
+        "p_e_given_architect": 0.30,
+        "p_e_given_pragmatist": 0.50,
+        "lr": 0.6,
+        "interpretation": "Weak Pragmatist",
+        "note": "Would expect regulatory context if CDM-engaged"
+      }
+    },
+    "combined_operational_evidence": {
+      "internal_team_plus_vendor_tooling": {
+        "p_e_given_architect": 0.75,
+        "p_e_given_pragmatist": 0.12,
+        "lr": 6.25,
+        "interpretation": "Moderate Architect - acceleration pattern",
+        "note": "Building internal with vendor support indicates commitment"
+      },
+      "vendor_comprehensive_no_internal_signals": {
+        "p_e_given_architect": 0.08,
+        "p_e_given_pragmatist": 0.70,
+        "lr": 0.11,
+        "interpretation": "Strong Pragmatist - full outsource",
+        "note": "No internal capability building despite vendor relationship"
+      },
+      "multiple_products_multiple_jurisdictions": {
+        "p_e_given_architect": 0.85,
+        "p_e_given_pragmatist": 0.05,
+        "lr": 17.0,
+        "interpretation": "Strong Architect - enterprise scale",
+        "note": "Cross-product and cross-jurisdiction indicates full commitment"
+      }
+    }
+  },
+
   "calculation_instructions": {
     "step1_prior_odds": {
       "formula": "Prior Odds = P(Architect) / P(Pragmatist)",

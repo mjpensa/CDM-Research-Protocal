@@ -1,0 +1,83 @@
+{
+  "bank_id": "jpmorgan",
+  "bank_name": "JPMorgan Chase & Co.",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "JPM-001",
+      "claim": "Nick Moger of JPMorgan appointed as first sell-side CDM maintainer at FINOS confirming production",
+      "source_url": "https://www.finos.org/blog/cdm-new-horizons-welcoming-the-first-sell-side-maintainer",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date": "2025-01-15",
+      "direction": "SUPPORTS_ARCHITECT",
+      "excerpt": "Nick Moger of J.P. Morgan - a leading bank with the CDM in production"
+    },
+    {
+      "id": "JPM-002",
+      "claim": "First major US bank to implement CDM/DRR as primary reporting mechanism",
+      "source_url": "https://www.jpmorganchase.com/about/technology/blog/jpmc-launches-finos-open-source-solution",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date": "2024-12-13",
+      "direction": "SUPPORTS_ARCHITECT",
+      "excerpt": "First major U.S. bank to implement CDM/DRR"
+    },
+    {
+      "id": "JPM-003",
+      "claim": "Nick Moger is Executive Director at JPMorgan leading DRR adoption",
+      "source_url": "https://www.finos.org/blog/cdm-new-horizons-welcoming-the-first-sell-side-maintainer",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "date": "2025-01-15",
+      "direction": "SUPPORTS_ARCHITECT"
+    },
+    {
+      "id": "JPM-004",
+      "claim": "ISDA webinar Oct 2024 JPMorgan shared DRR journey",
+      "source_url": "https://lists.finos.org/g/cdm/topic/fw_isda_webinar_materials/109513424",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date": "2024-10-30",
+      "direction": "SUPPORTS_ARCHITECT"
+    },
+    {
+      "id": "JPM-005",
+      "claim": "JPMorgan DRR live for ASIC and MAS",
+      "source_url": "https://www.finos.org/blog/cdm-new-horizons-welcoming-the-first-sell-side-maintainer",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date": "2025-01-15",
+      "direction": "SUPPORTS_ARCHITECT"
+    },
+    {
+      "id": "JPM-006",
+      "claim": "JPMorgan listed in CDM maintainers",
+      "source_url": "https://cdm.finos.org/docs/maintainers/",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "date": "2025-01-15",
+      "direction": "SUPPORTS_ARCHITECT"
+    },
+    {
+      "id": "JPM-007",
+      "claim": "JPMorgan confirmed in production with BNP and Pictet",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
+      "tier": 2,
+      "claim_type": "production_usage",
+      "date": "2024-12-01",
+      "direction": "SUPPORTS_ARCHITECT"
+    }
+  ],
+  "meta": {
+    "tier_completed": 3,
+    "generated_at": "2025-12-21T04:00:00Z"
+  },
+  "key_individual": {
+    "name": "Nick Moger",
+    "title": "ED Regulatory Technology"
+  },
+  "trust_metrics": {
+    "overall_confidence": 95
+  }
+}

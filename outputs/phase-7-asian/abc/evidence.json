@@ -1,0 +1,65 @@
+{
+  "bank_id": "abc",
+  "bank_name": "Agricultural Bank of China (ABC)",
+  "research_date": "2025-12-21",
+  "researcher": "Claude Code (Opus 4.5)",
+  "protocol_version": "2.3",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_type": "Tier 1",
+      "query": "Agricultural Bank of China ABC CDM ISDA",
+      "sources_checked": ["abchina.com", "isda.org", "finos.org"],
+      "date_searched": "2025-12-21",
+      "notes": "No official announcements or FINOS membership."
+    },
+    {
+      "search_type": "Tier 1",
+      "query": "ABC FINOS derivatives",
+      "sources_checked": ["github.com/finos", "finos.org/members"],
+      "date_searched": "2025-12-21",
+      "notes": "Not a FINOS member. No code contributions."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "ABC Agricultural Bank China derivatives CDM",
+      "sources_checked": ["risk.net", "waterstechnology.com", "reuters.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No trade press coverage. ABC has smallest international footprint among Big Four."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "Agricultural Bank of China ISDA",
+      "sources_checked": ["isda.org"],
+      "date_searched": "2025-12-21",
+      "notes": "No working group participation."
+    },
+    {
+      "search_type": "Tier 3",
+      "query": "ABC CDM job postings China",
+      "sources_checked": ["linkedin.com/jobs", "zhipin.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No CDM-related hiring signals."
+    }
+  ],
+  "classification": {
+    "maturity_level": "UNKNOWN",
+    "maturity_sublevel": "Insufficient-Evidence",
+    "confidence": 30,
+    "rationale": "Zero evidence across all tiers. ABC has smallest international presence among Big Four, focusing primarily on domestic agricultural and rural banking. Operates under PBOC/CBIRC with no CDM mandate. 30% confidence reflects high certainty of null results but acknowledges possible disclosure gap in Chinese banking sector.",
+    "highest_claim_type": null,
+    "evidence_quality": "High-confidence null results"
+  },
+  "metadata": {
+    "total_evidence_items": 0,
+    "tier1_count": 0,
+    "tier2_count": 0,
+    "tier3_count": 0,
+    "null_searches": 5,
+    "trust_flags": [
+      "ZERO_EVIDENCE",
+      "DISCLOSURE_GAP_POSSIBLE",
+      "REGIONAL_REGULATORY_DIVERGENCE"
+    ]
+  }
+}

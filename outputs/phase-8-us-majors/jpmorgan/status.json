@@ -1,0 +1,46 @@
+{
+  "bank_id": "jpmorgan",
+  "bank_name": "JPMorgan Chase & Co.",
+  "phase": 8,
+  "phase_name": "US Investment Banks",
+  "classification": "ARCHITECT",
+  "sub_classification": "Native",
+  "confidence": 95,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.95,
+  "probability_pragmatist": 0.05,
+  "prior_probability": 0.8,
+  "evidence_count": {
+    "tier1": 6,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 1
+  },
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_evidence",
+    "bayesian_1",
+    "gate_1",
+    "tier2_evidence",
+    "bayesian_2",
+    "gate_2",
+    "tier3_evidence",
+    "bayesian_3",
+    "gate_3",
+    "adversarial_challenge",
+    "final_classification",
+    "synthesis"
+  ],
+  "last_updated": "2025-12-21T04:30:00Z",
+  "notes": "First major US bank in CDM/DRR production. Nick Moger is first sell-side FINOS CDM maintainer.",
+  "key_individual": "Nick Moger (Executive Director, Regulatory Technology Product Director)",
+  "key_findings": [
+    "First major US bank to implement CDM/DRR as primary reporting mechanism",
+    "Nick Moger appointed first sell-side FINOS CDM maintainer (Jan 2025)",
+    "Multi-jurisdiction deployment: US, EU, UK, Japan, Singapore, Australia",
+    "Already seeing reduced testing complexity and increased automation",
+    "Received FINOS Adoption Achiever award"
+  ]
+}

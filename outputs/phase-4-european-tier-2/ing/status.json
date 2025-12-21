@@ -1,0 +1,23 @@
+{
+  "bank_id": "ing",
+  "bank_name": "ING Group",
+  "phase": 4,
+  "phase_name": "European Tier 2",
+  "classification": "UNKNOWN",
+  "sub_classification": "Insufficient-Evidence",
+  "confidence": 30,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.15,
+  "probability_pragmatist": 0.85,
+  "prior_probability": 0.15,
+  "evidence_count": {"tier1": 0, "tier2": 0, "tier3": 0, "null_results": 4},
+  "last_updated": "2025-12-20T06:00:00Z",
+  "notes": "No CDM evidence found. Not a FINOS member or CDM contributor. UNKNOWN due to insufficient evidence.",
+  "key_findings": [
+    "No CDM/DRR evidence in official sources",
+    "Not in UK DRR pilot (2018-2019)",
+    "No FINOS CDM contribution identified",
+    "No ISDA CDM working group participation found"
+  ]
+}

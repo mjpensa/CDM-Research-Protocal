@@ -1,0 +1,69 @@
+{
+  "bank_id": "unicredit",
+  "bank_name": "UniCredit",
+  "phase": 4,
+  "phase_name": "European Tier 2",
+  "research_date": "2025-12-20",
+  "evidence_items": [
+    {
+      "id": "UC-001",
+      "claim": "TJ Lim served as ISDA Board Member 2011-2016 during tenure as Global Co-Head of Markets at UniCredit",
+      "source_url": "https://www.isda.org/about-isda/board-of-directors/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_type": "official",
+      "source_authority": "high",
+      "date_published": "2016-12-31",
+      "date_accessed": "2025-12-20",
+      "excerpt": "TJ Lim, Global Co-Head of Markets, UniCredit - ISDA Board Member 2011-2016",
+      "direction": "SUPPORTS_ARCHITECT",
+      "weight": 0.5,
+      "verification_status": "verified",
+      "freshness": {
+        "age_days": 3277,
+        "category": "historical",
+        "weight_multiplier": 0.3
+      },
+      "lr_mapping": {
+        "likelihood_ratio": 1.5,
+        "rationale": "Historical ISDA Board membership indicates past ecosystem engagement but not current CDM adoption"
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "id": "UC-NULL-001",
+      "search_query": "UniCredit CDM ISDA DRR Digital Regulatory Reporting 2024",
+      "search_date": "2025-12-20",
+      "sources_checked": ["isda.org", "finos.org"],
+      "finding": "No current CDM or DRR adoption evidence",
+      "interpretation": "Historical ISDA Board presence but no current technical CDM engagement",
+      "informative_absence": true
+    },
+    {
+      "id": "UC-NULL-002",
+      "search_query": "UniCredit FINOS member CDM contributor",
+      "search_date": "2025-12-20",
+      "sources_checked": ["finos.org", "github.com/finos"],
+      "finding": "UniCredit not a FINOS member",
+      "interpretation": "No open source CDM contribution",
+      "informative_absence": true
+    },
+    {
+      "id": "UC-NULL-003",
+      "search_query": "UniCredit ISDA Board member 2024 current",
+      "search_date": "2025-12-20",
+      "sources_checked": ["isda.org"],
+      "finding": "No current UniCredit representatives on ISDA Board",
+      "interpretation": "Board engagement ended in 2016",
+      "informative_absence": true
+    }
+  ],
+  "search_tracking": {
+    "tier1_searches": 3,
+    "tier2_searches": 2,
+    "tier3_searches": 0,
+    "total_evidence_found": 1,
+    "total_null_results": 3
+  }
+}

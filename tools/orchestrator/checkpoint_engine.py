@@ -18,6 +18,20 @@ from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 
+# File locking for concurrent access safety
+try:
+    from orchestrator.file_lock import file_lock, atomic_write, load_json
+    FILE_LOCK_AVAILABLE = True
+except ImportError:
+    FILE_LOCK_AVAILABLE = False
+
+# Logic validation integration
+try:
+    from orchestrator.logic_validator import LogicValidator
+    LOGIC_VALIDATOR_AVAILABLE = True
+except ImportError:
+    LOGIC_VALIDATOR_AVAILABLE = False
+
 logger = logging.getLogger(__name__)
 
 
@@ -72,7 +86,7 @@ class CheckpointEngine:
     - Apply conservative defaults when human judgment would be needed
     """
 
-    def __init__(self, config_dir: Path = None, outputs_dir: Path = None):
+    def __init__(self, config_dir: Path = None, outputs_dir: Path = None, enable_logic_validation: bool = True):
         self.config_dir = config_dir or Path(__file__).parent.parent.parent / "config"
         self.outputs_dir = outputs_dir or Path(__file__).parent.parent.parent / "outputs"
 
@@ -83,8 +97,24 @@ class CheckpointEngine:
         # Review queue file
         self.review_queue_path = self.outputs_dir / "state" / "deferred-review-queue.json"
 
+        # Logic validation integration
+        self.enable_logic_validation = enable_logic_validation and LOGIC_VALIDATOR_AVAILABLE
+        self.logic_validator = None
+        if self.enable_logic_validation:
+            try:
+                self.logic_validator = LogicValidator(
+                    queue_path=self.outputs_dir / "state" / "violation-queue.json"
+                )
+                logger.info("Logic validation enabled")
+            except Exception as e:
+                logger.warning(f"Could not initialize logic validator: {e}")
+                self.logic_validator = None
+
     def _load_json(self, path: Path) -> dict:
         """Load JSON file."""
+        if FILE_LOCK_AVAILABLE:
+            return load_json(path, {})
+        # Fallback if module not available
         if not path.exists():
             logger.warning(f"Config file not found: {path}")
             return {}
@@ -93,13 +123,17 @@ class CheckpointEngine:
 
     def _save_json(self, path: Path, data: dict) -> None:
         """Save JSON file atomically."""
-        path.parent.mkdir(parents=True, exist_ok=True)
-        temp_path = path.with_suffix('.tmp')
-        with open(temp_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2)
-        temp_path.replace(path)
+        if FILE_LOCK_AVAILABLE:
+            atomic_write(path, data)
+        else:
+            # Fallback if module not available
+            path.parent.mkdir(parents=True, exist_ok=True)
+            temp_path = path.with_suffix('.tmp')
+            with open(temp_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2)
+            temp_path.replace(path)
 
-    def evaluate(self, stage: str, state: Any, outputs: Dict[str, Any] = None) -> CheckpointDecision:
+    def evaluate(self, stage: str, state: Any, outputs: Dict[str, Any] = None, bank_dir: Path = None) -> CheckpointDecision:
         """
         Evaluate checkpoint for a stage.
 
@@ -107,6 +141,7 @@ class CheckpointEngine:
             stage: Current stage name
             state: BankState object
             outputs: Parsed outputs from the stage
+            bank_dir: Path to bank output directory (for logic validation)
 
         Returns:
             CheckpointDecision with action and any review needs
@@ -115,23 +150,97 @@ class CheckpointEngine:
 
         # Map stage to checkpoint type
         if stage == "pre_mortem":
-            return self._evaluate_pre_mortem(state, outputs)
+            decision = self._evaluate_pre_mortem(state, outputs)
         elif stage.startswith("gate_"):
-            return self._evaluate_reasoning_gate(stage, state, outputs)
+            decision = self._evaluate_reasoning_gate(stage, state, outputs)
         elif stage.startswith("bayesian_"):
-            return self._evaluate_bayesian(stage, state, outputs)
+            decision = self._evaluate_bayesian(stage, state, outputs)
         elif stage == "adversarial_challenge":
-            return self._evaluate_adversarial(state, outputs)
+            decision = self._evaluate_adversarial(state, outputs)
         elif stage == "synthesis":
-            return self._evaluate_synthesis(state, outputs)
+            decision = self._evaluate_synthesis(state, outputs)
         else:
             # Default: auto-proceed
-            return CheckpointDecision(
+            decision = CheckpointDecision(
                 checkpoint_id=f"{stage}_default",
                 checkpoint_name=f"{stage} Default",
                 action="AUTO_PROCEED",
                 rationale="No specific checkpoint rules for this stage"
             )
+
+        # Run logic validation if enabled
+        if self.logic_validator and bank_dir:
+            decision = self._run_logic_validation(decision, stage, state, bank_dir)
+
+        return decision
+
+    def _run_logic_validation(
+        self,
+        decision: CheckpointDecision,
+        stage: str,
+        state: Any,
+        bank_dir: Path
+    ) -> CheckpointDecision:
+        """
+        Run logic validation and add any violations to decision warnings.
+
+        Args:
+            decision: Current checkpoint decision
+            stage: Stage name
+            state: BankState object
+            bank_dir: Path to bank output directory
+
+        Returns:
+            Updated CheckpointDecision with validation warnings added
+        """
+        try:
+            # Determine priors for Bayesian validation
+            prior = getattr(state, 'prior_probability', 0.30)
+            current = getattr(state, 'current_probability', 0.50)
+
+            # If this is not the first tier, use previous posterior as prior
+            if stage.startswith("bayesian_"):
+                tier = int(stage.split("_")[1])
+                if tier > 1 and hasattr(state, 'probability_history') and state.probability_history:
+                    for update in reversed(state.probability_history):
+                        prev_stage = getattr(update, 'stage', '') if hasattr(update, 'stage') else update.get('stage', '')
+                        if f"bayesian_{tier-1}" in prev_stage or f"tier{tier-1}" in prev_stage:
+                            prior = getattr(update, 'posterior', prior) if hasattr(update, 'posterior') else update.get('posterior', prior)
+                            break
+
+            result = self.logic_validator.validate_stage(
+                bank_id=getattr(state, 'bank_id', 'unknown'),
+                phase=getattr(state, 'phase', 1),
+                stage=stage,
+                bank_dir=bank_dir,
+                prior_probability=prior,
+                current_probability=current
+            )
+
+            # Add violations to decision warnings
+            for violation in result.violations:
+                severity_prefix = f"[{violation.severity}]"
+                decision.validation_warnings.append(f"{severity_prefix} {violation.violation_type}: {violation.description}")
+
+            # If there are ERROR-level violations, flag for review
+            error_count = sum(1 for v in result.violations if v.severity == "ERROR")
+            if error_count > 0 and not decision.needs_review:
+                decision.needs_review = True
+                decision.review_reason = f"Logic validation found {error_count} error(s)"
+                if not decision.review_options:
+                    decision.review_options = [
+                        "Review and accept violations",
+                        "Regenerate stage outputs",
+                        "Dismiss as false positives"
+                    ]
+
+            logger.debug(f"Logic validation for {stage}: {len(result.violations)} violations")
+
+        except Exception as e:
+            logger.warning(f"Logic validation error for {stage}: {e}")
+            decision.validation_warnings.append(f"[WARNING] Logic validation error: {str(e)}")
+
+        return decision
 
     def _evaluate_pre_mortem(self, state: Any, outputs: Dict) -> CheckpointDecision:
         """Evaluate pre-mortem gate - always auto-proceed."""
@@ -324,6 +433,8 @@ class CheckpointEngine:
 
         Called when a checkpoint flags something for human review.
         The run continues, but the item is logged for batch review later.
+
+        Uses file locking to prevent data loss from concurrent access.
         """
         # Determine severity
         if "REVISED" in decision.rationale or "UNKNOWN" in (state.classification or ""):
@@ -350,29 +461,39 @@ class CheckpointEngine:
             auto_resolution=f"Proceeded automatically with {decision.action}"
         )
 
-        # Load existing queue
-        if self.review_queue_path.exists():
-            data = self._load_json(self.review_queue_path)
-        else:
-            data = {
-                "description": "Deferred review queue for overnight research runs",
-                "items": [],
-                "summary": {}
+        def _do_queue_update(data):
+            """Update queue data with new item."""
+            data["items"].append(item.to_dict())
+            data["summary"] = {
+                "total_items": len(data["items"]),
+                "critical_count": sum(1 for i in data["items"] if i.get("severity") == "CRITICAL"),
+                "warning_count": sum(1 for i in data["items"] if i.get("severity") == "WARNING"),
+                "info_count": sum(1 for i in data["items"] if i.get("severity") == "INFO"),
+                "last_updated": datetime.now(timezone.utc).isoformat()
             }
+            return data
 
-        # Add item
-        data["items"].append(item.to_dict())
-
-        # Update summary
-        data["summary"] = {
-            "total_items": len(data["items"]),
-            "critical_count": sum(1 for i in data["items"] if i.get("severity") == "CRITICAL"),
-            "warning_count": sum(1 for i in data["items"] if i.get("severity") == "WARNING"),
-            "info_count": sum(1 for i in data["items"] if i.get("severity") == "INFO"),
-            "last_updated": datetime.now(timezone.utc).isoformat()
+        default_data = {
+            "description": "Deferred review queue for overnight research runs",
+            "items": [],
+            "summary": {}
         }
 
-        self._save_json(self.review_queue_path, data)
+        # Use locked update to prevent concurrent access data loss
+        if FILE_LOCK_AVAILABLE:
+            with file_lock(self.review_queue_path, operation="queue_for_review"):
+                data = load_json(self.review_queue_path, default_data)
+                data = _do_queue_update(data)
+                atomic_write(self.review_queue_path, data)
+        else:
+            # Fallback without locking (legacy behavior)
+            if self.review_queue_path.exists():
+                data = self._load_json(self.review_queue_path)
+            else:
+                data = default_data.copy()
+            data = _do_queue_update(data)
+            self._save_json(self.review_queue_path, data)
+
         logger.info(f"Queued for review: {bank_id} - {decision.checkpoint_name} ({severity})")
 
     def get_review_queue(self, phase: int = None) -> List[DeferredReviewItem]:
@@ -400,6 +521,8 @@ class CheckpointEngine:
         """
         Clear review queue items.
 
+        Uses file locking to prevent concurrent access issues.
+
         Args:
             bank_id: If provided, only clear items for this bank
 
@@ -409,26 +532,37 @@ class CheckpointEngine:
         if not self.review_queue_path.exists():
             return 0
 
-        data = self._load_json(self.review_queue_path)
-        original_count = len(data.get("items", []))
+        def _do_clear(data):
+            """Clear items and update summary."""
+            original_count = len(data.get("items", []))
 
-        if bank_id:
-            data["items"] = [i for i in data["items"] if i.get("bank_id") != bank_id]
+            if bank_id:
+                data["items"] = [i for i in data["items"] if i.get("bank_id") != bank_id]
+            else:
+                data["items"] = []
+
+            data["summary"] = {
+                "total_items": len(data["items"]),
+                "critical_count": sum(1 for i in data["items"] if i.get("severity") == "CRITICAL"),
+                "warning_count": sum(1 for i in data["items"] if i.get("severity") == "WARNING"),
+                "info_count": sum(1 for i in data["items"] if i.get("severity") == "INFO"),
+                "last_updated": datetime.now(timezone.utc).isoformat()
+            }
+
+            return data, original_count - len(data["items"])
+
+        # Use locked update to prevent concurrent access issues
+        if FILE_LOCK_AVAILABLE:
+            with file_lock(self.review_queue_path, operation="clear_review_queue"):
+                data = load_json(self.review_queue_path, {"items": []})
+                data, cleared = _do_clear(data)
+                atomic_write(self.review_queue_path, data)
         else:
-            data["items"] = []
+            # Fallback without locking
+            data = self._load_json(self.review_queue_path)
+            data, cleared = _do_clear(data)
+            self._save_json(self.review_queue_path, data)
 
-        cleared = original_count - len(data["items"])
-
-        # Update summary
-        data["summary"] = {
-            "total_items": len(data["items"]),
-            "critical_count": sum(1 for i in data["items"] if i.get("severity") == "CRITICAL"),
-            "warning_count": sum(1 for i in data["items"] if i.get("severity") == "WARNING"),
-            "info_count": sum(1 for i in data["items"] if i.get("severity") == "INFO"),
-            "last_updated": datetime.now(timezone.utc).isoformat()
-        }
-
-        self._save_json(self.review_queue_path, data)
         return cleared
 
     def check_skip_condition(self, state: Any) -> Optional[str]:

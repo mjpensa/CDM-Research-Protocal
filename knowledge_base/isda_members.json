@@ -1,0 +1,71 @@
+{
+  "$schema": "CDM/DRR ISDA Members Registry v1.0",
+  "description": "ISDA CDM and DRR working group membership tracking",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "membership_types": {
+    "cdm_steering": {
+      "description": "CDM Steering Committee member - governance level",
+      "lr_signal": 8.0,
+      "tier": 1,
+      "requires_confirmation": true
+    },
+    "cdm_working_group": {
+      "description": "CDM Working Group participant",
+      "lr_signal": 3.5,
+      "tier": 2,
+      "requires_confirmation": true
+    },
+    "drr_working_group": {
+      "description": "Digital Regulatory Reporting working group participant",
+      "lr_signal": 4.0,
+      "tier": 2,
+      "requires_confirmation": true
+    },
+    "drr_pilot": {
+      "description": "DRR pilot program participant",
+      "lr_signal": 6.0,
+      "tier": 1,
+      "requires_confirmation": true
+    },
+    "isda_member_general": {
+      "description": "General ISDA membership (no CDM-specific signal)",
+      "lr_signal": 1.0,
+      "tier": 3,
+      "requires_confirmation": false
+    }
+  },
+
+  "organization_types": [
+    "bank",
+    "vendor",
+    "ccp",
+    "exchange",
+    "regulator",
+    "trade_repository",
+    "consulting",
+    "law_firm",
+    "other"
+  ],
+
+  "members": [],
+
+  "source_urls": [],
+
+  "statistics": {
+    "total_members": 0,
+    "banks_with_cdm_membership": 0,
+    "cdm_steering_count": 0,
+    "cdm_working_group_count": 0,
+    "drr_working_group_count": 0,
+    "drr_pilot_count": 0
+  },
+
+  "usage_notes": [
+    "Members are added via validate_isda_members.py --add-member",
+    "Source URLs are captured when members are added",
+    "Bank ID mapping uses fuzzy matching against bank-manifest.json",
+    "LR signals are used by trust_audit.py for evidence weighting"
+  ]
+}

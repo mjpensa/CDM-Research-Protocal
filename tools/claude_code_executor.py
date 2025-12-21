@@ -1,5 +1,5 @@
 """
-CDM Research Protocol - Claude Code Executor v1.1
+CDM Research Protocol - Claude Code Executor v2.0
 
 PRIMARY TOOL for VS Code Claude Code extension users.
 
@@ -8,8 +8,10 @@ No external API key required - uses Claude Code Max subscription's
 built-in web search and analysis features.
 
 This is the RECOMMENDED approach for running research in VS Code with
-the Claude Code extension. For external API-based batch processing
-(without Claude Code), use research_executor.py instead.
+the Claude Code extension.
+
+NOTE: v2.0 removes all dependencies on research_executor.py (API-based).
+      Uses prompt_generators.py and claude_code_bridge.py instead.
 
 Usage:
     # Generate research instructions for Claude Code
@@ -45,14 +47,26 @@ from config_loader import (
     load_bank_manifest, get_bank_config, load_decision_thresholds
 )
 
-# Import prompt generators from research_executor
-from research_executor import (
+# Import from new standalone modules (no API dependencies)
+from prompt_generators import (
     generate_evidence_prompt,
-    generate_bayesian_prompt,
-    generate_adversarial_prompt,
-    ResearchState,
-    create_output_structure
+    ResearchContext
 )
+
+
+def create_output_structure(bank_dir: Path) -> None:
+    """Create the required output directory structure for a bank."""
+    bank_dir.mkdir(parents=True, exist_ok=True)
+    subdirs = [
+        "1-evidence",
+        "2-bayesian",
+        "3-gates",
+        "4-adversarial",
+        "5-synthesis",
+        "snapshots"
+    ]
+    for subdir in subdirs:
+        (bank_dir / subdir).mkdir(exist_ok=True)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -183,8 +197,8 @@ def generate_bank_tasks(bank_id: str, phase: int) -> List[PromptTask]:
         base_prior += prior_adj.get('production_adjustment_pct', 30)
     base_prior = min(base_prior, 90)
 
-    # Create initial state for prompt generation (0-1 scale)
-    state = ResearchState(
+    # Create initial context for prompt generation (0-1 scale)
+    context = ResearchContext(
         bank_id=bank_id,
         bank_name=bank_name,
         phase=phase,
@@ -346,6 +360,76 @@ Save to: {bank_dir}/4-adversarial/verdict.md
 ### 11. Synthesis
 Generate final assessment following templates/per-bank-output.md.
 Save to: {bank_dir}/5-synthesis/assessment.md
+
+### 11a. Product Line CDM Intelligence (v4.0)
+For each product type (IRS, CDS, FX, Equity, Commodities), gather:
+
+**Search Patterns:**
+- "{bank_name}" CDM "interest rate swaps" OR IRS
+- "{bank_name}" CDM "credit derivatives" OR CDS
+- "{bank_name}" CDM FX OR "foreign exchange"
+- "{bank_name}" CDM equity derivatives
+- "{bank_name}" CDM commodities
+
+**For each product, document:**
+- CDM Status: production / pilot / planned / none / unknown
+- Regulatory Driver: EMIR_Refit / UK_EMIR / CFTC_Rewrite / JSCC / multiple / none
+- Approach: Internal build / Vendor solution / Hybrid / Unknown
+- Confidence: percentage
+- Knowledge Gap: Yes/No (if insider knowledge would be required)
+
+**Product Coverage Matrix:**
+| Product | CDM Status | Regulatory Driver | Approach | Confidence | Knowledge Gap |
+|---------|------------|-------------------|----------|------------|---------------|
+| IRS     | [status]   | [driver]          | [approach] | [X]%     | [Yes/No]     |
+| CDS     | [status]   | [driver]          | [approach] | [X]%     | [Yes/No]     |
+| FX      | [status]   | [driver]          | [approach] | [X]%     | [Yes/No]     |
+| Equity  | [status]   | [driver]          | [approach] | [X]%     | [Yes/No]     |
+| Commodities | [status] | [driver]       | [approach] | [X]%     | [Yes/No]     |
+
+### 11b. Jurisdiction CDM Intelligence (v4.0)
+For each jurisdiction where {bank_name} has derivatives operations:
+
+**Regulatory Calendar:**
+| Jurisdiction | Regulation | Deadline | Status |
+|--------------|------------|----------|--------|
+| EU | EMIR Refit | April 2024 | LIVE |
+| UK | UK EMIR | September 2024 | LIVE |
+| US | CFTC Rewrite | December 2024 | LIVE |
+| Japan | JSCC CDM | June 2025 | Pending |
+| Singapore | MAS | TBD | Following G7 |
+| Hong Kong | HKMA | TBD | Following G7 |
+
+**Search Patterns:**
+- "{bank_name}" "EMIR Refit" CDM OR technology
+- "{bank_name}" "CFTC Rewrite" OR "CFTC swap reporting"
+- "{bank_name}" JSCC CDM connectivity
+- "{bank_name}" UK EMIR derivatives reporting
+
+**For each jurisdiction, document:**
+- CDM Status: production / pilot / compliant_traditional / unknown
+- Priority Level: primary / secondary / tertiary / unknown
+- Approach: Internal / Vendor / Hybrid
+- Confidence: percentage
+- Knowledge Gap: Yes/No
+
+**Jurisdiction Rollout Matrix:**
+| Jurisdiction | CDM Status | Priority | Approach | Confidence | Knowledge Gap |
+|--------------|------------|----------|----------|------------|---------------|
+| EU | [status] | [priority] | [approach] | [X]% | [Yes/No] |
+| UK | [status] | [priority] | [approach] | [X]% | [Yes/No] |
+| US | [status] | [priority] | [approach] | [X]% | [Yes/No] |
+| Japan | [status] | [priority] | [approach] | [X]% | [Yes/No] |
+
+### 11c. Knowledge Gap Summary
+Document areas where public research is exhausted but insider knowledge would be valuable:
+
+| Gap ID | Category | Description | Impact | Suggested Source |
+|--------|----------|-------------|--------|------------------|
+| GAP-001 | product_coverage | [what's unknown] | [high/medium/low] | [interview target] |
+| GAP-002 | jurisdiction | [what's unknown] | [high/medium/low] | [interview target] |
+
+Include in assessment.md and update evidence.json with product_coverage and jurisdiction_rollout objects.
 
 ### 12. Status Update
 Create/update {bank_dir}/status.json with:

@@ -193,7 +193,8 @@ class BayesianCalculator:
                 if domain.startswith('www.'):
                     domain = domain[4:]
                 return domain
-            except:
+            except (ValueError, AttributeError) as e:
+                logger.debug(f"Could not extract domain from URL '{url}': {e}")
                 return 'unknown'
 
         domains = [extract_domain(item.get('source_url', '')) for item in evidence_items]

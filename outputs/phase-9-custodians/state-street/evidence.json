@@ -1,0 +1,81 @@
+{
+  "bank_id": "state-street",
+  "bank_name": "State Street Corporation",
+  "classification": "UNKNOWN",
+  "classification_rationale": "Insufficient-Evidence",
+  "confidence": 30,
+  "maturity_score": 0,
+  "last_updated": "2025-12-21",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_type": "FINOS membership verification",
+      "description": "State Street not listed as FINOS member",
+      "urls_checked": [
+        "https://finos.org/members",
+        "https://landscape.finos.org"
+      ],
+      "conclusion": "No FINOS membership found"
+    },
+    {
+      "search_type": "ISDA CDM working group participation",
+      "description": "No evidence of State Street participation in ISDA CDM working groups",
+      "urls_checked": [
+        "https://www.isda.org/category/infrastructure/common-domain-model/",
+        "https://github.com/finos/common-domain-model/graphs/contributors"
+      ],
+      "conclusion": "No ISDA CDM working group participation found"
+    },
+    {
+      "search_type": "Official announcements and press releases",
+      "description": "No CDM-related announcements from State Street",
+      "urls_checked": [
+        "https://www.statestreet.com/us/en/asset-manager/about/newsroom",
+        "https://investors.statestreet.com/news-and-events"
+      ],
+      "conclusion": "No public CDM adoption announcements"
+    },
+    {
+      "search_type": "Trade press coverage",
+      "description": "No State Street CDM coverage in Risk.net, Waters Technology, or other trade publications",
+      "urls_checked": [
+        "risk.net site:state street CDM",
+        "waterstechnology.com site:state street ISDA",
+        "fnlondon.com site:state street common domain model"
+      ],
+      "conclusion": "No trade press coverage of CDM initiatives"
+    },
+    {
+      "search_type": "GitHub repository search",
+      "description": "No State Street contributions to FINOS CDM repositories",
+      "urls_checked": [
+        "https://github.com/finos/common-domain-model",
+        "https://github.com/search?q=org%3Afinos+state+street"
+      ],
+      "conclusion": "No open source CDM contributions found"
+    },
+    {
+      "search_type": "Job postings",
+      "description": "No State Street job postings mentioning CDM, ISDA CDM, or DRR",
+      "urls_checked": [
+        "LinkedIn Jobs: State Street + CDM",
+        "LinkedIn Jobs: State Street + ISDA",
+        "State Street careers portal"
+      ],
+      "conclusion": "No hiring signals for CDM expertise"
+    }
+  ],
+  "metadata": {
+    "research_date": "2025-12-21",
+    "researcher": "Claude Code",
+    "protocol_version": "2.3",
+    "business_context": "Major global custodian with $43.7 trillion in assets under custody/administration. Provides custody, fund accounting, and asset servicing. Despite significant derivatives servicing business, no public CDM adoption signals found.",
+    "key_observations": [
+      "State Street is a major custodian bank with extensive derivatives servicing operations",
+      "No evidence of CDM adoption or exploration across all tiers",
+      "Not a FINOS member or ISDA CDM working group participant",
+      "Absence of evidence may reflect custodian business model focus on traditional platforms",
+      "Lower confidence than BNY Mellon due to less visible fintech innovation programs"
+    ]
+  }
+}

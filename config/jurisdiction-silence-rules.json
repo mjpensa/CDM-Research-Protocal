@@ -1,0 +1,177 @@
+{
+  "$schema": "CDM/DRR Jurisdiction Silence Rules v1.0",
+  "description": "How to interpret absence of evidence by jurisdiction (Enhancement 10)",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "silence_interpretations": {
+    "description": "Different jurisdictions have different announcement cultures",
+
+    "US": {
+      "announcement_culture": "quiet",
+      "lr_for_silence": 1.0,
+      "interpretation": "Silence is neutral",
+      "rationale": "US banks rarely announce technology initiatives publicly; silence doesn't indicate non-adoption",
+      "search_strategy": {
+        "prioritize": ["github_commits", "job_postings", "regulatory_filings"],
+        "deprioritize": ["press_releases", "conference_announcements"]
+      },
+      "notes": "US banks are secretive about competitive technology initiatives"
+    },
+
+    "UK": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.9,
+      "interpretation": "Slight negative signal",
+      "rationale": "UK banks announce major initiatives; silence may suggest no major CDM investment",
+      "search_strategy": {
+        "prioritize": ["risk.net", "fnlondon.com", "fca_announcements"],
+        "deprioritize": []
+      },
+      "notes": "UK trade press coverage is good; absence likely means no major initiative"
+    },
+
+    "Switzerland": {
+      "announcement_culture": "active",
+      "lr_for_silence": 0.6,
+      "interpretation": "Negative signal",
+      "rationale": "Swiss banks actively announce technology initiatives; silence suggests non-adoption",
+      "search_strategy": {
+        "prioritize": ["bank_ir_sites", "finma_announcements"],
+        "deprioritize": []
+      },
+      "notes": "UBS and Credit Suisse both have active technology communications"
+    },
+
+    "EU": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.85,
+      "interpretation": "Slight negative signal",
+      "rationale": "European banks announce regulatory compliance initiatives",
+      "search_strategy": {
+        "prioritize": ["esma_announcements", "local_regulator"],
+        "deprioritize": []
+      },
+      "notes": "EMIR Refit drove many announcements; post-deadline silence may indicate traditional approach"
+    },
+
+    "Germany": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.85,
+      "interpretation": "Slight negative signal",
+      "rationale": "German banks announce major technology initiatives",
+      "search_strategy": {
+        "prioritize": ["handelsblatt", "bafin", "bank_ir"],
+        "deprioritize": []
+      },
+      "notes": "Deutsche Bank particularly active in public communications"
+    },
+
+    "France": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.8,
+      "interpretation": "Slight negative signal",
+      "rationale": "French banks announce major initiatives; BNP is known CDM leader",
+      "search_strategy": {
+        "prioritize": ["lesechos", "amf", "bank_ir"],
+        "deprioritize": []
+      },
+      "notes": "BNP Paribas sets benchmark; other French banks expected to announce if adopting"
+    },
+
+    "Japan": {
+      "announcement_culture": "hierarchical",
+      "lr_for_silence": 0.8,
+      "time_sensitive": "2025-06-30",
+      "interpretation": "Context-dependent",
+      "rationale": "Japanese banks announce via JSCC/FSA channels; direct bank announcements rare",
+      "search_strategy": {
+        "prioritize": ["jscc_announcements", "fsa_japan", "jpx"],
+        "deprioritize": ["direct_bank_pr"]
+      },
+      "notes": "JSCC CDM mandate forces announcement by deadline; pre-deadline silence doesn't indicate non-adoption"
+    },
+
+    "Singapore": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.85,
+      "interpretation": "Slight negative signal",
+      "rationale": "Singapore banks follow MAS guidance closely; announcements expected for major initiatives",
+      "search_strategy": {
+        "prioritize": ["mas_announcements", "straits_times"],
+        "deprioritize": []
+      },
+      "notes": "DBS and OCBC are technology leaders; expected to announce CDM if adopting"
+    },
+
+    "Hong_Kong": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.85,
+      "interpretation": "Slight negative signal",
+      "rationale": "HKMA-regulated banks follow similar patterns to Singapore",
+      "search_strategy": {
+        "prioritize": ["hkma_announcements", "scmp"],
+        "deprioritize": []
+      },
+      "notes": "Hong Kong follows Singapore regulatory patterns"
+    },
+
+    "Australia": {
+      "announcement_culture": "moderate",
+      "lr_for_silence": 0.9,
+      "interpretation": "Slight negative signal",
+      "rationale": "Australian banks announce major technology initiatives",
+      "search_strategy": {
+        "prioritize": ["asic_announcements", "afr"],
+        "deprioritize": []
+      },
+      "notes": "Big Four Australian banks are active in technology communications"
+    }
+  },
+
+  "time_sensitive_rules": {
+    "description": "How silence interpretation changes around regulatory deadlines",
+    "rules": [
+      {
+        "condition": "Pre-deadline (>6 months)",
+        "adjustment": 0.0,
+        "rationale": "Still time to announce"
+      },
+      {
+        "condition": "Near-deadline (3-6 months)",
+        "adjustment": -0.1,
+        "rationale": "Expected to see preparation announcements"
+      },
+      {
+        "condition": "Post-deadline",
+        "adjustment": -0.15,
+        "rationale": "Silence post-deadline suggests traditional approach taken"
+      }
+    ]
+  },
+
+  "application_guidance": {
+    "when_to_apply": [
+      "During synthesis stage when weighing evidence",
+      "When calculating confidence for UNKNOWN classification",
+      "When comparing banks within same jurisdiction"
+    ],
+    "how_to_apply": [
+      "Multiply base LR by lr_for_silence when no evidence found",
+      "Consider time_sensitive rules for regulatory deadlines",
+      "Weight silence more heavily for 'active' announcement cultures"
+    ],
+    "cautions": [
+      "Silence is never definitive evidence",
+      "Always combine with other evidence types",
+      "Consider non-English sources before concluding silence"
+    ]
+  },
+
+  "usage_notes": [
+    "Applied during synthesis to adjust confidence when evidence is absent",
+    "lr_for_silence < 1.0 means silence is evidence against adoption",
+    "lr_for_silence = 1.0 means silence is neutral",
+    "time_sensitive jurisdictions have deadline-based interpretation"
+  ]
+}

@@ -2,30 +2,71 @@
   "bank_id": "deutsche-bank",
   "bank_name": "Deutsche Bank AG",
   "phase": 1,
-  "execution_tier": "A",
-  "prior_probability": 0.3,
-  "current_probability": 0.3,
-  "probability_history": [],
-  "stages_completed": [],
-  "current_stage": "initialize",
-  "skipped_stages": [],
-  "classification": null,
-  "classification_variant": null,
-  "confidence": null,
-  "adversarial_verdict": null,
-  "started_at": "2025-12-20T23:58:32.757133+00:00",
-  "last_updated": "2025-12-20T23:58:32.759643+00:00",
-  "completed_at": null,
-  "blocked_at": null,
-  "blocked_reason": null,
-  "blocked_checkpoint": null,
-  "evidence_counts": {
-    "tier1": 0,
-    "tier2": 0,
-    "tier3": 0,
-    "null": 0
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Regulatory-Driven",
+  "confidence": 55,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.17,
+  "probability_pragmatist": 0.83,
+  "prior_probability": 0.25,
+  "prior_calculation": {
+    "base_prior": 0.15,
+    "adjustments": {
+      "derivatives_dominant": {
+        "applied": true,
+        "adjustment": 0.10,
+        "rationale": "High derivatives relevance increases CDM likelihood"
+      },
+      "regulatory_enforcement_history": {
+        "applied": true,
+        "direction": "unclear",
+        "adjustment": 0.00,
+        "rationale": "Enforcement history may consume capacity OR drive compliance investment"
+      },
+      "european_regulatory_pressure": {
+        "applied": true,
+        "adjustment": 0.00,
+        "rationale": "EMIR Refit affects all European banks equally"
+      }
+    },
+    "final_prior": 0.25
   },
-  "highest_tier": 0,
-  "trust_flags": [],
-  "errors": []
+  "evidence_count": {
+    "tier1": 3,
+    "tier2": 2,
+    "tier3": 0,
+    "null_results": 5
+  },
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_evidence",
+    "bayesian_1",
+    "gate_1",
+    "tier2_evidence",
+    "bayesian_2",
+    "gate_2",
+    "tier3_evidence",
+    "bayesian_3",
+    "gate_3",
+    "adversarial_challenge",
+    "final_classification",
+    "synthesis"
+  ],
+  "last_updated": "2025-12-20T01:00:00Z",
+  "notes": "Framework v20 claim 'Pilot; production expected 2025' UNVERIFIED. Evidence suggests traditional DTCC-based EMIR compliance. Active FINOS contributor but NOT to CDM (informative absence).",
+  "framework_claim_status": {
+    "original_claim": "Pilot; production expected 2025",
+    "verification_status": "UNVERIFIED",
+    "recommendation": "REMOVE - no supporting evidence found"
+  },
+  "key_findings": [
+    "FINOS contributor to Fluxnova, Waltz, Spring Bot but NOT CDM",
+    "Using DTCC for traditional EMIR reporting",
+    "JWG RegTech Conference DRR panel participation Nov 2022 (dated)",
+    "No CDM job postings or hiring signals",
+    "Annual reports 2023-2024 contain no CDM references"
+  ]
 }

@@ -51,6 +51,13 @@ try:
 except ImportError:
     STATE_MANAGER_AVAILABLE = False
 
+# Import calibration tracking
+try:
+    from calibration_tracker import CalibrationTracker
+    CALIBRATION_AVAILABLE = True
+except ImportError:
+    CALIBRATION_AVAILABLE = False
+
 # --- LOGGING ---
 logging.basicConfig(
     level=logging.INFO,
@@ -60,8 +67,13 @@ logger = logging.getLogger(__name__)
 
 
 class Stage(Enum):
-    """Workflow stages in execution order."""
-    INIT = "init"
+    """Workflow stages in execution order.
+
+    Phase 2 fix: Aligned with canonical STAGE_SEQUENCE from state_schema.py.
+    Changed 'init' -> 'initialize', 'adversarial' -> 'adversarial_challenge',
+    added 'final_classification', removed 'verification'.
+    """
+    INIT = "initialize"  # Phase 2: Changed from "init"
     PRE_MORTEM = "pre_mortem"
     TIER1_EVIDENCE = "tier1_evidence"
     BAYESIAN_1 = "bayesian_1"
@@ -72,10 +84,11 @@ class Stage(Enum):
     TIER3_EVIDENCE = "tier3_evidence"
     BAYESIAN_3 = "bayesian_3"
     GATE_3 = "gate_3"
-    ADVERSARIAL = "adversarial"
+    ADVERSARIAL = "adversarial_challenge"  # Phase 2: Changed from "adversarial"
+    FINAL_CLASSIFICATION = "final_classification"  # Phase 2: Added
     SYNTHESIS = "synthesis"
-    VERIFICATION = "verification"
     COMPLETE = "complete"
+    # Note: VERIFICATION removed - not in canonical sequence
 
 
 class CheckpointType(Enum):
@@ -253,7 +266,7 @@ class Orchestrator:
     Manages stage progression, gate decisions, and checkpoint enforcement.
     """
 
-    # Stage execution order
+    # Stage execution order - Phase 2: Aligned with canonical state_schema.STAGE_SEQUENCE
     STAGE_SEQUENCE = [
         Stage.INIT,
         Stage.PRE_MORTEM,
@@ -267,8 +280,8 @@ class Orchestrator:
         Stage.BAYESIAN_3,
         Stage.GATE_3,
         Stage.ADVERSARIAL,
+        Stage.FINAL_CLASSIFICATION,  # Phase 2: Added
         Stage.SYNTHESIS,
-        Stage.VERIFICATION,
         Stage.COMPLETE
     ]
 
@@ -526,7 +539,11 @@ class Orchestrator:
         if log_path.exists():
             try:
                 existing = json.loads(log_path.read_text(encoding='utf-8'))
-            except Exception:
+            except json.JSONDecodeError as e:
+                logger.warning(f"Corrupt checkpoint log at {log_path}, starting fresh: {e}")
+                existing = []
+            except Exception as e:
+                logger.warning(f"Failed to read checkpoint log at {log_path}: {e}")
                 existing = []
 
         entry = {
@@ -601,6 +618,88 @@ class Orchestrator:
 
         logger.info(f"Classification set: {classification} ({sub_classification}) at {confidence}%")
         self.state.save(self.state_path)
+
+        # Capture prediction for calibration tracking
+        if CALIBRATION_AVAILABLE:
+            self._capture_prediction(classification, sub_classification, confidence)
+
+    def _capture_prediction(self, classification: str, variant: str, confidence: float):
+        """Capture prediction for calibration tracking."""
+        try:
+            tracker = CalibrationTracker()
+            evidence_summary = self._extract_evidence_summary()
+
+            # Extract phase from bank_dir path
+            phase = 1
+            for part in self.bank_dir.parts:
+                if 'phase-' in part:
+                    try:
+                        phase = int(part.split('phase-')[1].split('-')[0])
+                    except (ValueError, IndexError):
+                        pass
+                    break
+
+            pred_id = tracker.capture_prediction(
+                bank_id=self.state.bank_id,
+                phase=phase,
+                classification=classification,
+                variant=variant,
+                probability_architect=self.state.probability_architect,
+                confidence=int(confidence),
+                prior=0.30,
+                combined_lr=self._get_combined_lr(),
+                evidence_summary=evidence_summary,
+                key_evidence_ids=self._get_key_evidence_ids()
+            )
+            logger.info(f"Prediction captured: {pred_id}")
+        except Exception as e:
+            logger.warning(f"Could not capture prediction: {e}")
+
+    def _extract_evidence_summary(self) -> dict:
+        """Extract evidence summary from evidence.json."""
+        evidence_path = self.bank_dir / "evidence.json"
+        if not evidence_path.exists():
+            return {}
+        try:
+            data = json.loads(evidence_path.read_text(encoding='utf-8'))
+            evidence = data.get('evidence', [])
+            return {
+                'tier1_count': sum(1 for e in evidence if e.get('tier') == 1),
+                'tier2_count': sum(1 for e in evidence if e.get('tier') == 2),
+                'tier3_count': sum(1 for e in evidence if e.get('tier') == 3),
+                'null_count': len(data.get('null_results', []))
+            }
+        except Exception:
+            return {}
+
+    def _get_combined_lr(self) -> float:
+        """Get combined LR from probability history or calculate from odds."""
+        try:
+            prior = 0.30
+            current = self.state.probability_architect
+            if prior > 0 and prior < 1 and current > 0 and current < 1:
+                # LR = (posterior / (1 - posterior)) / (prior / (1 - prior))
+                prior_odds = prior / (1 - prior)
+                posterior_odds = current / (1 - current)
+                return posterior_odds / prior_odds if prior_odds > 0 else 1.0
+        except Exception:
+            pass
+        return 1.0
+
+    def _get_key_evidence_ids(self) -> list:
+        """Get key evidence IDs from evidence.json."""
+        evidence_path = self.bank_dir / "evidence.json"
+        if not evidence_path.exists():
+            return []
+        try:
+            data = json.loads(evidence_path.read_text(encoding='utf-8'))
+            evidence = data.get('evidence', [])
+            # Return IDs of tier 1 and production/pilot claims
+            key_types = ['production_usage', 'pilot_or_poc', 'open_source_contribution']
+            return [e['id'] for e in evidence
+                    if e.get('tier') == 1 or e.get('claim_type') in key_types][:10]
+        except Exception:
+            return []
 
     def get_status(self) -> dict:
         """Get current workflow status as dict."""

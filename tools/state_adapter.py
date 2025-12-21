@@ -22,11 +22,12 @@ from typing import Optional, Dict, Any, List
 from state_schema import (
     BankState, ProbabilityUpdate, normalize_stage, STAGE_SEQUENCE
 )
+from config_loader import get_prior_for_bank
 
 
 def convert_research_state_to_bank_state(
     research_state: Any,
-    prior_probability: float = 0.30,
+    prior_probability: Optional[float] = None,
     execution_tier: str = "B"
 ) -> BankState:
     """
@@ -34,7 +35,7 @@ def convert_research_state_to_bank_state(
 
     Args:
         research_state: ResearchState instance or dict from research_executor.py
-        prior_probability: Prior probability to use (default 30%)
+        prior_probability: Prior probability (if None, calculated from manifest)
         execution_tier: Execution tier A/B/C (default B)
 
     Returns:
@@ -105,9 +106,14 @@ def convert_research_state_to_bank_state(
             elif tier == 3:
                 evidence_counts["tier3"] += 1
 
+    # Calculate prior from manifest if not explicitly provided
+    bank_id = data.get('bank_id', 'unknown')
+    if prior_probability is None:
+        prior_probability = get_prior_for_bank(bank_id)
+
     # Create BankState
     bank_state = BankState(
-        bank_id=data.get('bank_id', 'unknown'),
+        bank_id=bank_id,
         bank_name=data.get('bank_name', data.get('bank_id', 'Unknown')),
         phase=data.get('phase', 1),
         execution_tier=execution_tier,
@@ -128,6 +134,10 @@ def convert_research_state_to_bank_state(
         trust_flags=data.get('trust_flags', []),
         errors=data.get('errors', []),
     )
+
+    # Initialize stage timing for timeout detection (Phase 3 migration)
+    if bank_state.current_stage != "complete":
+        bank_state.start_stage(bank_state.current_stage)
 
     return bank_state
 
@@ -198,13 +208,16 @@ def convert_orchestrate_state_to_bank_state(
         blocked_reason = "Pending checkpoint approval"
         blocked_at = datetime.now(timezone.utc).isoformat()
 
+    # Calculate prior from manifest
+    calculated_prior = get_prior_for_bank(bank_id)
+
     # Create BankState
     bank_state = BankState(
         bank_id=bank_id,
         bank_name=bank_name or bank_id.replace('-', ' ').title(),
         phase=phase,
         execution_tier="B",
-        prior_probability=0.30,
+        prior_probability=calculated_prior,
         current_probability=prob_architect,
         probability_history=[],
         stages_completed=stages_completed,
@@ -225,6 +238,10 @@ def convert_orchestrate_state_to_bank_state(
         trust_flags=[],
         errors=data.get('errors', []),
     )
+
+    # Initialize stage timing for timeout detection (Phase 3 migration)
+    if bank_state.current_stage != "complete":
+        bank_state.start_stage(bank_state.current_stage)
 
     return bank_state
 

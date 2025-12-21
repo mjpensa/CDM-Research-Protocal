@@ -125,6 +125,331 @@ Examples:
 
 ---
 
+## Product Line CDM Intelligence (v4.0)
+
+### Product Coverage Matrix
+
+| Product | CDM Status | Regulatory Driver | Approach | Confidence | Evidence |
+|---------|------------|-------------------|----------|------------|----------|
+| IRS (Interest Rate Swaps) | [Production/Pilot/Planned/None/Unknown] | [EMIR/UK EMIR/CFTC/JSCC/None] | [Internal/Vendor/Hybrid/Unknown] | [X]% | [BANK-###] |
+| CDS (Credit Default Swaps) | [Status] | [Driver] | [Approach] | [X]% | [Evidence] |
+| FX Options | [Status] | [Driver] | [Approach] | [X]% | [Evidence] |
+| Equity Derivatives | [Status] | [Driver] | [Approach] | [X]% | [Evidence] |
+| Commodities | [Status] | [Driver] | [Approach] | [X]% | [Evidence] |
+
+### Product Rollout Pattern
+
+**Observed Pattern:** [Enterprise-wide / Phased by product / Single product only / Unknown]
+
+**Rollout Logic:** [If phased, which products first and why?]
+- Example: "Starting with IRS (highest volume, EMIR Refit driver) before expanding to CDS"
+
+**Product Coverage Assessment:**
+- Products with explicit evidence: [Count]
+- Products inferred from context: [Count]
+- Products with no evidence (unknown): [Count]
+
+**Knowledge Gaps:**
+- [List products where insider knowledge would help]
+- GAP-XXX: [Brief description of what's unknown]
+
+---
+
+## Jurisdiction CDM Intelligence (v4.0)
+
+### Regulatory Response Matrix
+
+| Jurisdiction | Regulation | Deadline | Bank Status | CDM Used? | Approach | Confidence |
+|--------------|------------|----------|-------------|-----------|----------|------------|
+| EU | EMIR Refit | Apr 2024 | [Compliant/In Progress/Unknown] | [Yes/No/Unknown] | [Internal/Vendor] | [X]% |
+| UK | UK EMIR | Sep 2024 | [Status] | [Yes/No/Unknown] | [Approach] | [X]% |
+| US | CFTC Rewrite | Dec 2024 | [Status] | [Yes/No/Unknown] | [Approach] | [X]% |
+| Japan | JSCC CDM | Jun 2025 | [Status] | [Yes/No/Unknown] | [Approach] | [X]% |
+| Singapore | MAS | Ongoing | [Status] | [Yes/No/Unknown] | [Approach] | [X]% |
+| Hong Kong | HKMA | Ongoing | [Status] | [Yes/No/Unknown] | [Approach] | [X]% |
+
+### Jurisdiction Priority Assessment
+
+**Primary Jurisdiction Focus:** [Which regulation drives their CDM strategy most?]
+
+**Rollout Sequence (if known):**
+1. [First jurisdiction] - [Rationale/deadline]
+2. [Second jurisdiction] - [Rationale]
+3. [Subsequent] - [Rationale]
+
+**Cross-Border Complexity:**
+- Number of jurisdictions with derivatives operations: [Count]
+- Jurisdictions with explicit CDM evidence: [Count]
+- Jurisdictions with unknown CDM approach: [Count]
+
+**Regulatory Pressure Level:** [Critical / High / Medium / Low]
+
+**Knowledge Gaps:**
+- [List jurisdictions where insider knowledge would help]
+- GAP-XXX: [Brief description of what's unknown for specific jurisdiction]
+
+---
+
+## Adoption Pressures vs Hesitations (v4.1)
+
+### Pressures Pushing Toward CDM
+
+| Driver Type | Description | Strength | Timeline Impact | Evidence | Confidence |
+|-------------|-------------|----------|-----------------|----------|------------|
+| Regulatory Mandate | [EMIR Refit, CFTC, JSCC deadline pressure] | [High/Med/Low] | [When pressure peaks] | [BANK-###] | [X]% |
+| Infrastructure Mandate | [CCP CDM requirements, utility connectivity] | [High/Med/Low] | [Deadline] | [BANK-###] | [X]% |
+| Counterparty Pressure | [Dealer/client CDM requirements] | [High/Med/Low] | [Timeline] | [BANK-###] | [X]% |
+| Competitive Positioning | [Technology leadership, differentiation] | [High/Med/Low] | [Ongoing/specific] | [BANK-###] | [X]% |
+| Operational Efficiency | [STP, cost reduction, error reduction] | [High/Med/Low] | [ROI timeline] | [BANK-###] | [X]% |
+
+### Hesitations Holding Back CDM
+
+| Hesitation Type | Description | Strength | Expected Duration | Evidence | Confidence |
+|-----------------|-------------|----------|-------------------|----------|------------|
+| Capacity Constraint | [Resource/budget limitations] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+| Insufficient Business Case | [Low volume, existing systems adequate] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+| Vendor Preference | [Outsourcing strategy, buy over build] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+| Technology Debt | [Legacy systems, integration complexity] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+| Wait for Maturity | [Standard stability, ecosystem development] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+| Regulatory Remediation | [Enforcement consuming capacity] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+| M&A Integration | [Merger/acquisition consuming capacity] | [High/Med/Low] | [Temp/Med/Struct] | [BANK-###] | [X]% |
+
+### Net Adoption Assessment
+
+**Outcome:** [adoption_likely / adoption_possible / adoption_uncertain / adoption_unlikely]
+
+**Rationale:**
+[2-3 sentences explaining how pressures and hesitations balance out. Consider:
+- Which pressures are strongest and most imminent?
+- Which hesitations are structural vs temporary?
+- What would need to change for adoption to accelerate/decelerate?]
+
+**Timeline Estimate:** [If adoption likely/possible, when might it occur?]
+
+**Key Uncertainties:**
+- [What insider knowledge would clarify this assessment?]
+- [Which pressures/hesitations are inferred vs confirmed?]
+
+---
+
+## Knowledge Gap Inventory (v4.1)
+
+### Critical Gaps (Priority 80+)
+
+| Gap ID | Category | Description | Business Impact | Resolution Value | Suggested Source |
+|--------|----------|-------------|-----------------|------------------|------------------|
+| GAP-001 | [category] | [What's unknown] | [High/Med/Low] | [0-100] | [Target role/source type] |
+| GAP-002 | [category] | [What's unknown] | [High/Med/Low] | [0-100] | [Target role/source type] |
+
+### High Priority Gaps (Priority 60-79)
+
+| Gap ID | Category | Description | Business Impact | Suggested Source |
+|--------|----------|-------------|-----------------|------------------|
+| GAP-### | [category] | [What's unknown] | [High/Med/Low] | [Target] |
+
+### Medium/Low Priority Gaps (Priority <60)
+
+| Gap ID | Category | Description |
+|--------|----------|-------------|
+| GAP-### | [category] | [What's unknown] |
+
+### Gap Summary Statistics
+
+- **Total Gaps Identified:** [Count]
+- **Critical (80+):** [Count]
+- **High (60-79):** [Count]
+- **Medium (40-59):** [Count]
+- **Low (<40):** [Count]
+
+**Gaps by Category:**
+| Category | Count | % of Total |
+|----------|-------|------------|
+| Product Coverage | [X] | [Y]% |
+| Jurisdiction | [X] | [Y]% |
+| Vendor | [X] | [Y]% |
+| Driver | [X] | [Y]% |
+| Counterparty | [X] | [Y]% |
+| Strategic | [X] | [Y]% |
+| Technical | [X] | [Y]% |
+
+### Primary Research Recommendation
+
+**Recommend Primary Research:** [YES / NO]
+
+**Rationale:** [Why primary research is/isn't warranted based on gap count and priority]
+
+### Discovery Call Brief
+
+**If primary research is warranted, use this brief for discovery calls:**
+
+**Recommended Target Contacts:**
+1. [Role 1 - e.g., Head of Derivatives Technology]
+2. [Role 2 - e.g., CDM Program Lead]
+3. [Role 3 - e.g., Regulatory Reporting Director]
+
+**Top Priority Questions (from gap-taxonomy.json interview bank):**
+
+**Tier 1 (Opening/Rapport):**
+1. [Opening question to establish context]
+2. [Broad question about technology approach]
+
+**Tier 2 (Probing, if engagement continues):**
+1. [More specific question about CDM]
+2. [Question about product/jurisdiction coverage]
+
+**Tier 3 (Specific, if relationship established):**
+1. [Detailed question about implementation status]
+2. [Question about timeline/roadmap]
+
+**Value Exchange Proposition:**
+[What value can we offer in exchange for this information? E.g., peer benchmarking, industry insights, research access]
+
+---
+
+## Counterparty CDM Interoperability (v4.2)
+
+### CCP Clearing Relationships
+
+| CCP | Membership Status | CDM Requirement | CDM Deadline | Bank CDM Status | Products Cleared | Confidence | Evidence |
+|-----|-------------------|-----------------|--------------|-----------------|------------------|------------|----------|
+| LCH | [clearing_member/client_clearing/no_relationship/unknown] | [mandatory/preferred/optional/none/unknown] | [Date or N/A] | [connected/building/planned/not_started/unknown] | [IRS, CDS, etc.] | [X]% | [BANK-###] |
+| CME | [Status] | [Requirement] | [Deadline] | [Status] | [Products] | [X]% | [Evidence] |
+| Eurex | [Status] | [Requirement] | [Deadline] | [Status] | [Products] | [X]% | [Evidence] |
+| JSCC | [Status] | [Requirement] | [Deadline] | [Status] | [Products] | [X]% | [Evidence] |
+| ICE | [Status] | [Requirement] | [Deadline] | [Status] | [Products] | [X]% | [Evidence] |
+| Other | [Status] | [Requirement] | [Deadline] | [Status] | [Products] | [X]% | [Evidence] |
+
+**CCP CDM Pressure Summary:**
+- Total CCP relationships: [Count]
+- CCPs with CDM mandate: [Count]
+- CCPs where bank is CDM-connected: [Count]
+- CCPs where bank is building CDM: [Count]
+- Critical deadline: [e.g., JSCC June 2025]
+
+### G16 Dealer Exposure
+
+| Counterparty Bank | Relationship Type | Counterparty CDM Status | Bilateral CDM Connectivity | Interop Pressure | Confidence | Evidence |
+|-------------------|-------------------|-------------------------|----------------------------|------------------|------------|----------|
+| JPMorgan | [major/moderate/minor/unknown] | [cdm_native/cdm_enabled/traditional/unknown] | [operational/testing/planned/not_started/unknown] | [high/med/low/none] | [X]% | [BANK-###] |
+| Goldman Sachs | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+| Morgan Stanley | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+| Citigroup | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+| Bank of America | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+| Deutsche Bank | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+| Barclays | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+| UBS | [Type] | [Status] | [Connectivity] | [Pressure] | [X]% | [Evidence] |
+
+**G16 Interoperability Assessment:**
+- Major counterparties mapped: [Count]
+- Counterparties with known CDM capability: [Count]
+- Bilateral CDM connections (operational or testing): [Count]
+- Overall interoperability pressure: [high/medium/low/unknown]
+
+### Utility Connectivity
+
+| Utility | Service Type | Utility CDM Capability | Bank Using CDM Channel? | Confidence | Evidence |
+|---------|--------------|------------------------|-------------------------|------------|----------|
+| Delta Capita | [reporting/matching/confirmation/multiple] | [cdm_native/cdm_enabled/cdm_planned/traditional/unknown] | [Yes/No/Unknown] | [X]% | [BANK-###] |
+| DTCC | [Service] | [Capability] | [Using CDM?] | [X]% | [Evidence] |
+| MarkitServ | [Service] | [Capability] | [Using CDM?] | [X]% | [Evidence] |
+| Traiana | [Service] | [Capability] | [Using CDM?] | [X]% | [Evidence] |
+| AcadiaSoft | [Service] | [Capability] | [Using CDM?] | [X]% | [Evidence] |
+
+**Utility Connectivity Assessment:**
+- Total utility relationships: [Count]
+- Utilities with CDM capability: [Count]
+- Bank using CDM channel with utilities: [Count]
+
+### Network Effect Assessment
+
+**Overall Network Effect:** [strong_pull / moderate_pull / weak_pull / no_pull / unknown]
+
+**Rationale:**
+[2-3 sentences explaining how CCP mandates, counterparty status, and utility connectivity create (or don't create) network effects pulling this bank toward CDM adoption]
+
+**Key Network Drivers:**
+1. [Most significant network pressure and why]
+2. [Second most significant]
+3. [Third if relevant]
+
+**Knowledge Gaps:**
+- [List counterparty relationships where insider knowledge would help]
+- GAP-XXX: [Brief description of unknown counterparty/connectivity status]
+
+---
+
+## Vendor Gap Analysis (v4.2)
+
+### Overall Build vs Buy Strategy
+
+**Strategy:** [internal_build / hybrid_internal_lead / hybrid_vendor_lead / full_outsource / unknown]
+
+**Rationale:** [2-3 sentences explaining evidence basis for strategy assessment]
+
+### Vendor Relationships
+
+| Vendor | Vendor Type | Scope | Products | Jurisdictions | Stage | Dependency | Confirmed By | Confidence | Evidence |
+|--------|-------------|-------|----------|---------------|-------|------------|--------------|------------|----------|
+| [Name] | [platform_vendor/cdm_specialist/systems_integrator/consulting/utility_provider] | [cdm_core/translation/reporting/etc.] | [IRS, CDS] | [EU, UK] | [production/implementation/pilot/evaluation/planned/unknown] | [high/med/low] | [bank/vendor_only/inferred] | [X]% | [BANK-###] |
+| [Name] | [Type] | [Scope] | [Products] | [Jurisdictions] | [Stage] | [Dependency] | [Confirmation] | [X]% | [Evidence] |
+
+**Vendor Relationship Summary:**
+- Total vendors identified: [Count]
+- Vendors in production: [Count]
+- Primary vendor (if any): [Name or "None identified"]
+- Overall vendor dependency: [high/medium/low/none/unknown]
+
+### Internal Capabilities
+
+| Capability Dimension | Assessment | Evidence | Confidence |
+|---------------------|------------|----------|------------|
+| Has Internal CDM Team | [yes_dedicated/yes_shared/no/unknown] | [BANK-### or inference basis] | [X]% |
+| Team Size Estimate | [large_10plus/medium_5to10/small_under5/unknown] | [Evidence] | [X]% |
+| Internal Scope | [List: cdm_core_development, cdm_translation, integration, testing, operations, governance] | [Evidence] | [X]% |
+| Build Appetite | [high_prefers_build/balanced/low_prefers_buy/unknown] | [Evidence] | [X]% |
+
+**Internal Capability Assessment:**
+- Overall internal capability score: [strong/moderate/weak/none/unknown]
+- Evidence quality: [direct/inferred/weak_signals]
+
+### Capability Gap Matrix
+
+| Capability | Internal Coverage | Vendor Coverage | Gap Status | Gap Severity | Notes |
+|------------|------------------|-----------------|------------|--------------|-------|
+| CDM Core | [full/partial/none/unknown] | [full/partial/none/unknown] | [covered/gap/unknown] | [critical/significant/minor/N/A] | [Notes] |
+| CDM Translation | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| Regulatory Reporting | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| Trade Matching | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| CCP Connectivity | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| Regulatory Filing | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| Data Management | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| Operations | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+| Governance | [Coverage] | [Coverage] | [Status] | [Severity] | [Notes] |
+
+**Capability Gap Summary:**
+- Total capability areas assessed: [Count]
+- Capabilities with full coverage (internal or vendor): [Count]
+- Capabilities with gaps: [Count]
+- Critical gaps: [Count]
+
+### Classification Implication from Vendor Analysis
+
+**Implication:** [supports_architect / supports_pragmatist_vendor / supports_pragmatist_hybrid / neutral / insufficient_data]
+
+**Rationale:**
+[2-3 sentences explaining how the vendor/internal capability analysis informs classification]
+
+- If strong internal + vendor tooling: Supports ARCHITECT (acceleration pattern)
+- If vendor handles all CDM: Supports PRAGMATIST (vendor-dependent)
+- If internal builds everything: Supports ARCHITECT (native pattern)
+- If no vendor, weak internal: Neutral or insufficient data
+
+**Knowledge Gaps:**
+- [List vendor/capability areas where insider knowledge would help]
+- GAP-XXX: [Brief description of unknown vendor relationship or internal capability]
+
+---
+
 ## Reasoning Chain
 
 [Document the logical chain that led to classification. Each step should flow from the previous.]
@@ -273,22 +598,14 @@ Prior to adversarial: [X]% → Post-adversarial: [Y]%
 
 ---
 
-## Counterparty Relevance Assessment
+## Strategic Counterparty Implications
 
-### US Bank Counterparty Exposure
-
-| US Bank | Relevance | CDM Connectivity Implication |
-|---------|-----------|------------------------------|
-| JPMorgan | [H/M/L] | [Implication given JPM's CDM status] |
-| Goldman Sachs | [H/M/L] | [Implication] |
-| Morgan Stanley | [H/M/L] | [Implication] |
-| Citigroup | [H/M/L] | [Implication] |
-| Bank of America | [H/M/L] | [Implication] |
+> **Note:** Detailed counterparty data is captured in [Counterparty CDM Interoperability (v4.2)](#counterparty-cdm-interoperability-v42) above. This section focuses on strategic implications for client discussions.
 
 ### Connectivity Friction Assessment
 
-**Current State:**
-Given [Bank]'s [Classification] and US banks' CDM positioning:
+**Current State** (derived from v4.2 counterparty analysis):
+Given [Bank]'s [Classification] and counterparty CDM positioning:
 - Transaction processing friction: [High/Medium/Low/None]
 - Data reconciliation burden: [High/Medium/Low/None]
 - Regulatory reporting alignment: [Aligned/Partial/Misaligned]
@@ -297,62 +614,28 @@ Given [Bank]'s [Classification] and US banks' CDM positioning:
 Expected evolution: [Improving/Stable/Worsening/Unknown]
 
 ### Research/Validation Priority
-Based on counterparty relevance + strategic importance:
+Based on network effect assessment + strategic importance:
 - **Research Priority:** [Critical/High/Medium/Low]
 - **Validation Priority:** [Critical/High/Medium/Low]
 
 ---
 
-## Infrastructure Relationship Assessment
+## Strategic Vendor Implications
 
-### CCP Connectivity Requirements
-
-| CCP | Clearing Member? | CDM Requirement | Bank's Response |
-|-----|------------------|-----------------|-----------------|
-| JSCC | [Y/N] | Production (Jun 2025) | [Internal/Vendor/Unknown] |
-| LCH | [Y/N] | Pending | [Approach if known] |
-| CME | [Y/N] | Pending | [Approach if known] |
-| Eurex | [Y/N] | Pending | [Approach if known] |
-
-### Utility Relationships
-
-| Utility | Relationship | Evidence | Classification Impact |
-|---------|--------------|----------|----------------------|
-| Delta Capita | [Client/None/Unknown] | [Source] | [Impact] |
-| Fragmos | [Client/None/Unknown] | [Source] | [Impact] |
-| Other | [If any] | [Source] | [Impact] |
-
-### Infrastructure-Informed Classification
-
-- Required connectivity (based on CCP relationships): [What must bank have?]
-- Chosen approach: [Build/Buy/Unknown]
-- Infrastructure supports classification because: [Explanation]
-
----
-
-## Vendor Relationship Assessment
-
-### Known Vendor Relationships
-
-| Vendor | Relationship | Evidence | Date |
-|--------|--------------|----------|------|
-| [Vendor] | [Client/Evaluating/None found] | [Source] | [Date] |
-
-### Vendor Assessment (if applicable)
-
-| Criterion | [Vendor Name] |
-|-----------|---------------|
-| CDM Maturity | [Native/Integrated/Planned] |
-| Production Status | [Production/Pilot/Development] |
-| Geographic Fit | [Covers bank's jurisdictions?] |
-| Scale Fit | [Appropriate for bank's volume?] |
+> **Note:** Detailed vendor data and capability gaps are captured in [Vendor Gap Analysis (v4.2)](#vendor-gap-analysis-v42) above. This section focuses on classification implications.
 
 ### Vendor → Classification Implication
 
-[How does vendor relationship inform classification?]
-- If CDM-native vendor client: Supports PRAGMATIST-Vendor
-- If building alongside vendor: Supports ARCHITECT
-- If no vendor signals: Neither supports nor refutes
+**Classification Signal** (derived from v4.2 vendor analysis):
+- Overall strategy: [internal_build / hybrid_internal_lead / hybrid_vendor_lead / full_outsource]
+- Vendor dependency score: [high / medium / low / none]
+- Internal capability score: [strong / moderate / weak / none]
+
+**Implication:**
+- If CDM-native vendor client with no internal: Supports PRAGMATIST-Vendor
+- If building alongside vendor (hybrid): Supports ARCHITECT
+- If internal build with vendor tooling: Supports ARCHITECT (acceleration pattern)
+- If no vendor signals and weak internal: Neutral - insufficient data
 
 ---
 

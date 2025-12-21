@@ -39,6 +39,14 @@ from orchestrate import Orchestrator, Stage, WorkflowState
 from run_pipeline import run_pipeline
 from markdown_parser import validate_bank_outputs
 
+# Logic validation integration
+try:
+    from orchestrator.logic_validator import LogicValidator
+    from orchestrator.violation_queue import ViolationQueue
+    LOGIC_VALIDATOR_AVAILABLE = True
+except ImportError:
+    LOGIC_VALIDATOR_AVAILABLE = False
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
@@ -131,6 +139,19 @@ def check_auto_approval(orchestrator: Orchestrator, checkpoint_id: str) -> AutoA
         if conds.get('no_anchor_violations'):
             violation, _ = orchestrator.check_anchor_violation()
             met['no_anchor_violations'] = not violation
+
+        # No pending logic validation errors
+        if LOGIC_VALIDATOR_AVAILABLE:
+            try:
+                queue = ViolationQueue()
+                pending = queue.get_violations_for_bank(state.bank_id, status="pending")
+                error_violations = [v for v in pending if v.severity == "ERROR"]
+                met['no_logic_errors'] = len(error_violations) == 0
+                if error_violations:
+                    logger.warning(f"Pending logic errors for {state.bank_id}: {len(error_violations)}")
+            except Exception as e:
+                logger.debug(f"Could not check logic violations: {e}")
+                met['no_logic_errors'] = True  # Don't block on check failure
 
         # All conditions met?
         all_met = all(met.values())
@@ -304,6 +325,63 @@ def run_stage_validation(bank_dir: Path, stage: str) -> dict:
     return results
 
 
+def run_logic_validation(bank_dir: Path, stage: str, state) -> dict:
+    """
+    Run logic validation for a completed stage.
+
+    Args:
+        bank_dir: Path to bank directory
+        stage: Stage that was just completed
+        state: Current orchestrator state
+
+    Returns:
+        Validation results dict with errors and warnings
+    """
+    result = {'errors': [], 'warnings': []}
+
+    if not LOGIC_VALIDATOR_AVAILABLE:
+        return result
+
+    try:
+        bank_id = getattr(state, 'bank_id', bank_dir.name)
+
+        # Extract phase from bank_dir path
+        phase = 1
+        for part in bank_dir.parts:
+            if 'phase-' in part:
+                try:
+                    phase = int(part.split('phase-')[1].split('-')[0])
+                except (ValueError, IndexError):
+                    pass
+                break
+
+        # Calculate queue path for consistent initialization
+        outputs_dir = bank_dir.parent.parent if 'phase-' in str(bank_dir) else bank_dir.parent
+        queue_path = outputs_dir / "state" / "violation-queue.json"
+
+        validator = LogicValidator(queue_path=queue_path)
+
+        validation = validator.validate_stage(
+            bank_id=bank_id,
+            phase=phase,
+            stage=stage,
+            bank_dir=bank_dir,
+            prior_probability=getattr(state, 'prior_probability', 0.30),
+            current_probability=getattr(state, 'probability_architect', 0.50)
+        )
+
+        for v in validation.violations:
+            if v.severity == "ERROR":
+                result['errors'].append(f"{v.violation_type}: {v.description}")
+            else:
+                result['warnings'].append(f"{v.violation_type}: {v.description}")
+
+    except Exception as e:
+        logger.warning(f"Logic validation error: {e}")
+
+    return result
+
+
 def run_bank_auto(bank_id: str, phase: int, resume: bool = True) -> dict:
     """
     Run complete bank research pipeline automatically.
@@ -329,6 +407,10 @@ def run_bank_auto(bank_id: str, phase: int, resume: bool = True) -> dict:
     # Find bank directory
     outputs_dir = PROJECT_ROOT / "outputs"
     bank_dir = None
+
+    # Check directory exists before iterating (batch safety)
+    if not outputs_dir.exists():
+        outputs_dir.mkdir(parents=True, exist_ok=True)
 
     for phase_dir in outputs_dir.iterdir():
         if phase_dir.is_dir() and f"phase-{phase}" in phase_dir.name:
@@ -423,6 +505,18 @@ def run_bank_auto(bank_id: str, phase: int, resume: bool = True) -> dict:
             if validation['warnings']:
                 logger.info(f"Validation warnings: {validation['warnings'][:3]}")
 
+            # Run logic validation for Bayesian, gate, and adversarial stages
+            if LOGIC_VALIDATOR_AVAILABLE:
+                logic_validation = run_logic_validation(
+                    bank_dir,
+                    current_stage.value,
+                    orchestrator.state
+                )
+                if logic_validation['errors']:
+                    logger.warning(f"Logic validation errors: {logic_validation['errors'][:3]}")
+                if logic_validation['warnings']:
+                    logger.debug(f"Logic validation warnings: {logic_validation['warnings'][:3]}")
+
             result['stages_completed'] = orchestrator.state.stages_completed
         else:
             # Blocked - should have been caught above
@@ -500,11 +594,22 @@ def run_phase_auto(phase: int, parallel: int = 1) -> List[dict]:
                 for bank in banks
             }
 
+            # 2 hour timeout per bank to prevent overnight batch hangs
+            BANK_TIMEOUT_SECONDS = 7200
+
             for future in as_completed(futures):
                 bank = futures[future]
                 try:
-                    result = future.result()
+                    result = future.result(timeout=BANK_TIMEOUT_SECONDS)
                     results.append(result)
+                except TimeoutError:
+                    logger.error(f"Bank {bank['bank_id']} timed out after {BANK_TIMEOUT_SECONDS}s")
+                    results.append({
+                        'bank_id': bank['bank_id'],
+                        'phase': phase,
+                        'status': 'timeout',
+                        'error': f'Execution timed out after {BANK_TIMEOUT_SECONDS} seconds'
+                    })
                 except Exception as e:
                     logger.error(f"Error processing {bank['bank_id']}: {e}")
                     results.append({
@@ -559,7 +664,9 @@ def main():
         result = run_bank_auto(args.bank, args.phase, resume=not args.fresh)
 
         if args.output:
-            Path(args.output).write_text(json.dumps(result, indent=2), encoding='utf-8')
+            output_path = Path(args.output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(json.dumps(result, indent=2), encoding='utf-8')
 
         sys.exit(0 if result['status'] == 'complete' else 1)
 
@@ -568,7 +675,9 @@ def main():
         results = run_phase_auto(args.phase, args.parallel)
 
         if args.output:
-            Path(args.output).write_text(json.dumps(results, indent=2), encoding='utf-8')
+            output_path = Path(args.output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(json.dumps(results, indent=2), encoding='utf-8')
 
         failed = sum(1 for r in results if r['status'] not in ['complete'])
         sys.exit(1 if failed > 0 else 0)

@@ -1,0 +1,41 @@
+{
+  "bank_id": "lloyds",
+  "bank_name": "Lloyds Banking Group plc",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "LBG-001",
+      "claim": "Lloyds participated in UK FCA/Bank of England Digital Regulatory Reporting (DRR) Pilot Phase 1 and 2 (2018-2019) using ISDA CDM 2.0",
+      "source_url": "https://www.fca.org.uk/innovation/regtech/digital-regulatory-reporting",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2019-02-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {"authority": "HIGH", "recency": "historical", "specificity": "specific"},
+      "excerpt": "In 2018 and 2019, the 2 UK regulators collaborated with 7 banks to complete 2 pilots. The banks were Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, NatWest and Santander.",
+      "caveats": "Pilot from 2018-2019 (5+ years old). Phase 2 identified gaps but no continued evidence.",
+      "lr_mapping": {"evidence_type": "regulatory_pilot_historical", "likelihood_ratio": 2.0},
+      "product_scope": ["IRS", "CDS"],
+      "jurisdiction_scope": ["UK"]
+    }
+  ],
+  "null_results": [
+    {
+      "category": "FINOS CDM Contributor",
+      "queries": ["site:finos.org Lloyds CDM contributor"],
+      "results_reviewed": 10,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "Not listed as FINOS CDM contributor"
+    },
+    {
+      "category": "Recent CDM Activity",
+      "queries": ["Lloyds CDM 2023 2024 derivatives"],
+      "results_reviewed": 10,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "No recent CDM activity since 2019 pilot"
+    }
+  ],
+  "meta": {"tier_completed": 3, "generated_at": "2025-12-20T04:00:00Z"}
+}

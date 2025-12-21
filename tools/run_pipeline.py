@@ -39,6 +39,26 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Project root for state directory
+PROJECT_ROOT = SCRIPT_DIR.parent
+
+
+def ensure_state_directory() -> Path:
+    """
+    Ensure outputs/state directory exists for new validation modules.
+
+    This directory is used by:
+    - calibration_tracker.py (prediction-log.json)
+    - violation_queue.py (violation-queue.json)
+    - consistency_checker.py (evidence fingerprints)
+
+    Returns:
+        Path to state directory
+    """
+    state_dir = PROJECT_ROOT / "outputs" / "state"
+    state_dir.mkdir(parents=True, exist_ok=True)
+    return state_dir
+
 
 def check_negative_facts(bank_id: str) -> list:
     """
@@ -601,6 +621,9 @@ def main():
 
     args = parser.parse_args()
     path = Path(args.path)
+
+    # Ensure state directory exists for calibration/validation modules
+    ensure_state_directory()
 
     if args.watch:
         if not path.is_dir():

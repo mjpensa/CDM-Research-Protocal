@@ -223,6 +223,68 @@
     }
   },
 
+  "cdm_capability_depth": {
+    "description": "Granular depth taxonomy for vendor CDM capability (L0-L4)",
+    "version": "1.0",
+    "L0_none": {
+      "description": "No CDM capability whatsoever",
+      "classification_impact": "PRAGMATIST",
+      "pressure_direction": "pragmatist",
+      "pressure_strength": 0.0,
+      "evidence_implication": "Vendor relationship provides no CDM path; bank must build or find alternative",
+      "examples": ["Legacy platform vendors without CDM modules"]
+    },
+    "L1_export": {
+      "description": "Batch CDM file generation/export only",
+      "classification_impact": "PRAGMATIST",
+      "pressure_direction": "pragmatist",
+      "pressure_strength": 0.3,
+      "evidence_implication": "CDM used only for regulatory output; no internal workflow integration",
+      "examples": ["Platforms with CDM regulatory reporting export"]
+    },
+    "L2_translation": {
+      "description": "Bidirectional CDM mapping/translation layer",
+      "classification_impact": "PRAGMATIST_EVOLVING",
+      "pressure_direction": "neutral",
+      "pressure_strength": 0.5,
+      "evidence_implication": "CDM integration exists but as translation layer; not native architecture",
+      "examples": ["Murex CDM adapter", "Calypso CDM integration"]
+    },
+    "L3_api_native": {
+      "description": "Real-time CDM event processing via API",
+      "classification_impact": "POTENTIAL_ARCHITECT",
+      "pressure_direction": "architect",
+      "pressure_strength": 0.7,
+      "evidence_implication": "Architecture supports CDM natively; enables real-time CDM workflows",
+      "examples": ["REGnosys Rosetta", "Modern CDM-aware platforms"]
+    },
+    "L4_workflow_native": {
+      "description": "Business processes and workflows built entirely on CDM",
+      "classification_impact": "ARCHITECT",
+      "pressure_direction": "architect",
+      "pressure_strength": 0.9,
+      "evidence_implication": "Full CDM adoption; internal processes are CDM-native",
+      "examples": ["Delta Capita Elaris", "Fragmos Chain"]
+    }
+  },
+
+  "vendor_depth_mapping": {
+    "description": "Mapping of vendors to their CDM depth levels",
+    "mappings": {
+      "delta-capita": "L4_workflow_native",
+      "fragmos-chain": "L4_workflow_native",
+      "regnosys": "L3_api_native",
+      "murex": "L2_translation",
+      "calypso": "L2_translation",
+      "broadridge": "L2_translation",
+      "fis": "L2_translation",
+      "ion-group": "L1_export",
+      "finastra": "L1_export",
+      "refinitiv": "L0_none",
+      "ssc": "L0_none"
+    }
+  },
+
   "usage_notes": {
     "trust_audit_integration": "trust_audit.py VENDOR_DOMAINS list should be synchronized with this file",
     "pre_flight_check": "Read this file during Pre-Flight (Step 1) to understand known vendor relationships",

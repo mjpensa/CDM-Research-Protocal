@@ -1,0 +1,287 @@
+{
+  "$schema": "CDM/DRR Regulatory Calendar v1.1",
+  "description": "Regulatory deadlines affecting CDM adoption timelines and evidence weighting",
+  "version": "1.1",
+  "last_updated": "2025-12-21",
+
+  "mandate_type_definitions": {
+    "bank_wide": {
+      "description": "Applies to all bank operations in jurisdiction",
+      "pressure_strength_range": [0.8, 1.0],
+      "classification_impact": "Strong pressure toward adoption"
+    },
+    "product_specific": {
+      "description": "Applies only to specific product lines (IRS, CDS, etc.)",
+      "pressure_strength_range": [0.5, 0.7],
+      "classification_impact": "Moderate pressure for affected products only"
+    },
+    "pathway_option": {
+      "description": "CDM is one compliance pathway among several alternatives",
+      "pressure_strength_range": [0.2, 0.4],
+      "classification_impact": "Weak pressure - adoption is choice not requirement"
+    }
+  },
+
+  "active_mandates": [
+    {
+      "mandate_id": "EMIR_REFIT_EU",
+      "name": "EMIR Refit (EU)",
+      "regulatory_body": "ESMA",
+      "jurisdiction": "EU",
+      "go_live_date": "2024-04-29",
+      "status": "active",
+      "description": "Enhanced EMIR reporting requirements including ISO 20022/XML format",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.6,
+        "rationale": "CDM/DRR is preferred but not mandated; traditional reporting still valid"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": false,
+        "drr_enabled": true,
+        "pressure_level": "high",
+        "rationale": "DRR provides efficient EMIR Refit compliance path"
+      },
+      "affected_entities": {
+        "entity_types": ["FC", "NFC+", "CCP"],
+        "product_scope": ["OTC_derivatives", "ETD"]
+      },
+      "evidence_implications": {
+        "post_deadline_traditional_approach": {
+          "interpretation": "Suggests deliberate non-CDM choice",
+          "lr_adjustment": 0.85,
+          "rationale": "If bank met deadline without CDM, indicates traditional approach preference"
+        },
+        "post_deadline_cdm_announcement": {
+          "interpretation": "Strong ARCHITECT signal",
+          "lr_adjustment": 1.3,
+          "rationale": "Adopting CDM after meeting deadline via other means suggests strategic commitment"
+        }
+      }
+    },
+    {
+      "mandate_id": "EMIR_REFIT_UK",
+      "name": "EMIR Refit (UK)",
+      "regulatory_body": "FCA",
+      "jurisdiction": "UK",
+      "go_live_date": "2024-09-30",
+      "status": "active",
+      "description": "UK EMIR reporting requirements post-Brexit",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.55,
+        "rationale": "CDM/DRR pathway available; FCA flexible on implementation approach"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": false,
+        "drr_enabled": true,
+        "pressure_level": "medium",
+        "rationale": "Similar to EU EMIR Refit with UK-specific variations"
+      },
+      "affected_entities": {
+        "entity_types": ["FC", "NFC+"],
+        "product_scope": ["OTC_derivatives"]
+      },
+      "evidence_implications": {
+        "post_deadline_traditional_approach": {
+          "interpretation": "Suggests traditional approach for UK operations",
+          "lr_adjustment": 0.9,
+          "rationale": "UK deadline later than EU; some banks prioritized EU first"
+        }
+      }
+    },
+    {
+      "mandate_id": "CFTC_REWRITE",
+      "name": "CFTC Rewrite",
+      "regulatory_body": "CFTC",
+      "jurisdiction": "US",
+      "go_live_date": "2025-01-01",
+      "status": "active",
+      "description": "CFTC Part 43/45 rewrite with ISO 20022 alignment",
+      "mandate_clarity": {
+        "mandate_type": "pathway_option",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.35,
+        "rationale": "ISDA/DRR provides CDM pathway; CFTC agnostic on implementation method"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": false,
+        "drr_enabled": true,
+        "pressure_level": "high",
+        "rationale": "Major US reporting overhaul with CDM/DRR pathway"
+      },
+      "affected_entities": {
+        "entity_types": ["SD", "MSP", "DCO"],
+        "product_scope": ["swaps"]
+      },
+      "evidence_implications": {
+        "pre_deadline_cdm_investment": {
+          "interpretation": "Strong proactive ARCHITECT signal",
+          "lr_adjustment": 1.5,
+          "rationale": "Early CDM investment before CFTC deadline indicates strategic commitment"
+        }
+      }
+    },
+    {
+      "mandate_id": "JSCC_CDM",
+      "name": "JSCC CDM Mandate",
+      "regulatory_body": "JSCC/FSA Japan",
+      "jurisdiction": "Japan",
+      "go_live_date": "2025-06-30",
+      "status": "pending",
+      "description": "JSCC requiring CDM connectivity for clearing members",
+      "mandate_clarity": {
+        "mandate_type": "bank_wide",
+        "cdm_alternative_allowed": false,
+        "cdm_explicitly_endorsed": true,
+        "pressure_strength": 0.95,
+        "rationale": "CDM connectivity is MANDATORY for clearing members - no alternative"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": true,
+        "drr_enabled": false,
+        "pressure_level": "mandatory",
+        "rationale": "JSCC is first CCP to mandate CDM connectivity"
+      },
+      "affected_entities": {
+        "entity_types": ["clearing_members"],
+        "product_scope": ["IRS_JPY"]
+      },
+      "evidence_implications": {
+        "jscc_member_no_cdm_evidence": {
+          "interpretation": "Critical gap - must be building CDM connectivity",
+          "lr_adjustment": 1.2,
+          "rationale": "JSCC members have no choice - absence of evidence suggests building"
+        },
+        "jscc_member_vendor_approach": {
+          "interpretation": "PRAGMATIST signal - outsourcing mandatory connectivity",
+          "lr_adjustment": 0.7,
+          "rationale": "Using vendor for mandatory requirement indicates build vs buy preference"
+        }
+      }
+    },
+    {
+      "mandate_id": "MAS_REWRITE",
+      "name": "MAS Derivatives Reporting",
+      "regulatory_body": "MAS",
+      "jurisdiction": "Singapore",
+      "go_live_date": "2025-10-01",
+      "status": "pending",
+      "description": "Singapore derivatives reporting requirements update",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": false,
+        "pressure_strength": 0.45,
+        "rationale": "Derivatives-specific; CDM pathway available but not emphasized"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": false,
+        "drr_enabled": true,
+        "pressure_level": "medium",
+        "rationale": "APAC hub regulatory alignment"
+      },
+      "affected_entities": {
+        "entity_types": ["banks", "derivatives_traders"],
+        "product_scope": ["OTC_derivatives"]
+      },
+      "evidence_implications": {}
+    }
+  ],
+
+  "upcoming_mandates": [
+    {
+      "mandate_id": "HKMA_REWRITE",
+      "name": "HKMA Derivatives Reporting",
+      "regulatory_body": "HKMA",
+      "jurisdiction": "Hong_Kong",
+      "expected_go_live": "2026-Q2",
+      "status": "proposed",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": false,
+        "pressure_strength": 0.4,
+        "rationale": "Following Singapore pattern; CDM pathway available"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": false,
+        "pressure_level": "medium",
+        "rationale": "Following Singapore pattern"
+      }
+    },
+    {
+      "mandate_id": "ASIC_REWRITE",
+      "name": "ASIC Derivatives Reporting",
+      "regulatory_body": "ASIC",
+      "jurisdiction": "Australia",
+      "expected_go_live": "2026-Q4",
+      "status": "proposed",
+      "mandate_clarity": {
+        "mandate_type": "product_specific",
+        "cdm_alternative_allowed": true,
+        "cdm_explicitly_endorsed": false,
+        "pressure_strength": 0.4,
+        "rationale": "APAC regulatory alignment; standard pathway option"
+      },
+      "cdm_relevance": {
+        "creates_adoption_pressure": true,
+        "cdm_mandated": false,
+        "pressure_level": "medium",
+        "rationale": "APAC regulatory alignment"
+      }
+    }
+  ],
+
+  "temporal_weighting_rules": {
+    "description": "How regulatory deadlines affect evidence weighting",
+    "pre_deadline_window": {
+      "months_before": 12,
+      "evidence_weight_multiplier": 1.2,
+      "rationale": "Evidence within 12 months of deadline is more actionable"
+    },
+    "post_deadline_window": {
+      "months_after": 6,
+      "compliance_inference_enabled": true,
+      "rationale": "Post-deadline behavior reveals actual approach chosen"
+    },
+    "deadline_passed_no_cdm": {
+      "interpretation": "traditional_approach_inferred",
+      "confidence_modifier": -5,
+      "rationale": "Meeting deadline without CDM suggests deliberate choice"
+    }
+  },
+
+  "jurisdiction_priority_matrix": {
+    "description": "Priority ordering for multi-jurisdiction banks",
+    "priority_order": ["EU", "UK", "US", "Japan", "Singapore", "Hong_Kong", "Australia"],
+    "rationale": "EMIR Refit dates drove initial focus; JSCC mandate highest current pressure"
+  },
+
+  "jurisdiction_bank_mapping": {
+    "description": "Map banks to their primary regulatory jurisdictions",
+    "EU": ["deutsche-bank", "bnp-paribas", "societe-generale", "credit-agricole", "unicredit"],
+    "UK": ["barclays", "hsbc", "standard-chartered", "lloyds", "natwest"],
+    "US": ["jpmorgan", "goldman-sachs", "morgan-stanley", "citigroup", "bank-of-america"],
+    "Japan": ["nomura", "mufg", "mizuho", "smbc", "daiwa"],
+    "Switzerland": ["ubs", "credit-suisse"]
+  },
+
+  "usage_notes": [
+    "Used by backtest_lr_calibration.py for temporal context",
+    "Used by prompt_assembler.py for research guidance",
+    "evidence_implications provide LR modifiers based on deadline status",
+    "Banks in jurisdiction_bank_mapping subject to corresponding mandate pressures"
+  ]
+}

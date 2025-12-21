@@ -1,0 +1,267 @@
+{
+  "$schema": "CDM/DRR Entity Relationships v1.0",
+  "description": "Entity relationship graph for network effect analysis and pressure inference",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "relationship_types": {
+    "vendor_partnership": {
+      "description": "Bank uses vendor for CDM-related services",
+      "directionality": "bank_to_vendor",
+      "decay_months": 24,
+      "default_pressure": "pragmatist",
+      "pressure_strength": 0.7,
+      "rationale": "Vendor relationships often indicate outsourcing preference"
+    },
+    "ccp_connectivity": {
+      "description": "Bank has clearing relationship with CCP",
+      "directionality": "bank_to_ccp",
+      "decay_months": 36,
+      "default_pressure": "depends_on_ccp",
+      "pressure_strength": 0.9,
+      "rationale": "CCPs mandating CDM create strong ARCHITECT pressure"
+    },
+    "peer_adoption": {
+      "description": "Peer bank has adopted CDM",
+      "directionality": "bidirectional",
+      "decay_months": 18,
+      "default_pressure": "architect",
+      "pressure_strength": 0.4,
+      "rationale": "Peer pressure and follow-the-leader dynamics"
+    },
+    "counterparty_pressure": {
+      "description": "Major counterparty requires CDM compatibility",
+      "directionality": "counterparty_to_bank",
+      "decay_months": 12,
+      "default_pressure": "architect",
+      "pressure_strength": 0.6,
+      "rationale": "Business pressure from trading counterparties"
+    },
+    "consortium_member": {
+      "description": "Member of CDM-related consortium or working group",
+      "directionality": "bidirectional",
+      "decay_months": 24,
+      "default_pressure": "architect",
+      "pressure_strength": 0.3,
+      "rationale": "Indicates awareness and potential investment"
+    },
+    "finos_contributor": {
+      "description": "Active contributor to FINOS CDM repository",
+      "directionality": "bank_to_finos",
+      "decay_months": 36,
+      "default_pressure": "architect",
+      "pressure_strength": 0.8,
+      "rationale": "Code contributions indicate significant investment"
+    },
+    "regulatory_mandate": {
+      "description": "Bank subject to CDM-relevant regulatory mandate",
+      "directionality": "regulator_to_bank",
+      "decay_months": 48,
+      "default_pressure": "depends_on_mandate",
+      "pressure_strength": 0.85,
+      "rationale": "Regulatory deadlines create strong adoption pressure"
+    }
+  },
+
+  "entities": {
+    "banks": {
+      "description": "Banks being analyzed - loaded from bank-manifest.json",
+      "source": "config/bank-manifest.json"
+    },
+    "vendors": {
+      "delta-capita": {
+        "name": "Delta Capita",
+        "cdm_offering": true,
+        "offering_type": "managed_service",
+        "known_clients": ["hsbc"]
+      },
+      "regnosys": {
+        "name": "REGnosys",
+        "cdm_offering": true,
+        "offering_type": "tooling",
+        "known_clients": []
+      },
+      "murex": {
+        "name": "Murex",
+        "cdm_offering": true,
+        "offering_type": "platform_module",
+        "known_clients": []
+      },
+      "calypso": {
+        "name": "Calypso",
+        "cdm_offering": true,
+        "offering_type": "platform_module",
+        "known_clients": []
+      },
+      "finastra": {
+        "name": "Finastra",
+        "cdm_offering": true,
+        "offering_type": "platform_module",
+        "known_clients": []
+      },
+      "dtcc": {
+        "name": "DTCC",
+        "cdm_offering": false,
+        "offering_type": "trade_repository",
+        "known_clients": ["deutsche-bank"]
+      }
+    },
+    "ccps": {
+      "jscc": {
+        "name": "JSCC (Japan Securities Clearing Corporation)",
+        "cdm_mandate": true,
+        "mandate_date": "2025-06-30",
+        "jurisdiction": "Japan",
+        "product_scope": ["IRS_JPY"]
+      },
+      "lch": {
+        "name": "LCH",
+        "cdm_mandate": false,
+        "jurisdiction": "UK",
+        "product_scope": ["IRS", "CDS"]
+      },
+      "cme": {
+        "name": "CME Clearing",
+        "cdm_mandate": false,
+        "jurisdiction": "US",
+        "product_scope": ["futures", "options", "IRS"]
+      },
+      "eurex": {
+        "name": "Eurex Clearing",
+        "cdm_mandate": false,
+        "jurisdiction": "EU",
+        "product_scope": ["futures", "options", "IRS"]
+      }
+    },
+    "working_groups": {
+      "finos_cdm": {
+        "name": "FINOS CDM Contributors",
+        "members_source": "knowledge_base/github_contributors.json"
+      },
+      "isda_cdm_steering": {
+        "name": "ISDA CDM Steering Committee",
+        "members_source": "knowledge_base/isda_members.json"
+      },
+      "isda_cdm_working": {
+        "name": "ISDA CDM Working Group",
+        "members_source": "knowledge_base/isda_members.json"
+      },
+      "drr_working_group": {
+        "name": "Digital Regulatory Reporting Working Group",
+        "members_source": "knowledge_base/isda_members.json"
+      }
+    },
+    "regulators": {
+      "esma": {
+        "name": "ESMA",
+        "jurisdiction": "EU",
+        "active_mandates": ["EMIR_REFIT_EU"]
+      },
+      "fca": {
+        "name": "FCA",
+        "jurisdiction": "UK",
+        "active_mandates": ["EMIR_REFIT_UK"]
+      },
+      "cftc": {
+        "name": "CFTC",
+        "jurisdiction": "US",
+        "active_mandates": ["CFTC_REWRITE"]
+      },
+      "fsa_japan": {
+        "name": "FSA Japan",
+        "jurisdiction": "Japan",
+        "active_mandates": ["JSCC_CDM"]
+      }
+    }
+  },
+
+  "relationships": [
+    {
+      "id": "REL-001",
+      "source_entity": "hsbc",
+      "source_type": "bank",
+      "target_entity": "delta-capita",
+      "target_type": "vendor",
+      "relationship_type": "vendor_partnership",
+      "established_date": "2022-01-01",
+      "confidence": 0.85,
+      "evidence_ids": [],
+      "inferred_pressure": {
+        "direction": "pragmatist",
+        "strength": 0.7
+      },
+      "notes": "Known Delta Capita relationship per anchor-points.json"
+    },
+    {
+      "id": "REL-002",
+      "source_entity": "deutsche-bank",
+      "source_type": "bank",
+      "target_entity": "dtcc",
+      "target_type": "vendor",
+      "relationship_type": "vendor_partnership",
+      "established_date": "2024-04-01",
+      "confidence": 0.9,
+      "evidence_ids": ["DB-003"],
+      "inferred_pressure": {
+        "direction": "pragmatist",
+        "strength": 0.6
+      },
+      "notes": "EMIR reporting via DTCC Data Repository"
+    },
+    {
+      "id": "REL-003",
+      "source_entity": "nomura",
+      "source_type": "bank",
+      "target_entity": "jscc",
+      "target_type": "ccp",
+      "relationship_type": "ccp_connectivity",
+      "established_date": "2020-01-01",
+      "confidence": 0.95,
+      "evidence_ids": [],
+      "inferred_pressure": {
+        "direction": "architect",
+        "strength": 0.9
+      },
+      "notes": "JSCC clearing member - will be required to support CDM by June 2025"
+    },
+    {
+      "id": "REL-004",
+      "source_entity": "mufg",
+      "source_type": "bank",
+      "target_entity": "jscc",
+      "target_type": "ccp",
+      "relationship_type": "ccp_connectivity",
+      "established_date": "2020-01-01",
+      "confidence": 0.95,
+      "evidence_ids": [],
+      "inferred_pressure": {
+        "direction": "architect",
+        "strength": 0.9
+      },
+      "notes": "JSCC clearing member - will be required to support CDM by June 2025"
+    },
+    {
+      "id": "REL-005",
+      "source_entity": "ing",
+      "source_type": "bank",
+      "target_entity": "finos_cdm",
+      "target_type": "working_group",
+      "relationship_type": "finos_contributor",
+      "established_date": "2024-01-01",
+      "confidence": 0.9,
+      "evidence_ids": [],
+      "inferred_pressure": {
+        "direction": "architect",
+        "strength": 0.8
+      },
+      "notes": "ING contributor identified in GitHub extraction"
+    }
+  ],
+
+  "usage_notes": [
+    "Relationships are added manually or via relationship_analyzer.py",
+    "Evidence IDs link to specific evidence items in bank evidence.json files",
+    "Pressure inference is used by trust_audit.py for corroboration",
+    "Decay months determine how long a relationship remains relevant"
+  ]
+}

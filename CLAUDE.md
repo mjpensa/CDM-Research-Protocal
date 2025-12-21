@@ -217,7 +217,41 @@ See `config/vendor-matrix.json` for full mapping.
 
 ---
 
-## 11. Quick Commands
+## 11. Claude Code Execution (Recommended)
+
+This platform is optimized for execution via Claude Code extension in VS Code with Opus 4.5 and WebSearch enabled.
+
+### Interactive Research
+Simply tell Claude Code:
+```
+"Research Deutsche Bank's CDM adoption following the protocol in CLAUDE.md"
+```
+
+### Structured Research
+Generate instructions for a bank:
+```bash
+python tools/claude_code_executor.py --bank deutsche-bank --phase 1 --generate-instructions
+```
+
+Then tell Claude Code:
+```
+"Execute the research instructions in outputs/state/research-instructions-deutsche-bank.md"
+```
+
+### Validation Commands
+```bash
+# Validate current stage
+python tools/validate_stage.py --bank deutsche-bank --phase 1 --auto
+
+# Check research status
+python tools/claude_code_bridge.py --bank deutsche-bank --phase 1 --status
+```
+
+See `docs/claude-code-workflow.md` for complete workflow documentation.
+
+---
+
+## 12. Quick Commands
 
 ### Single Bank Processing
 ```bash

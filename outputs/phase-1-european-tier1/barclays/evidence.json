@@ -1,0 +1,30 @@
+{
+  "bank_id": "barclays",
+  "bank_name": "Barclays PLC",
+  "schema_version": "4.3",
+  "evidence_items": [],
+  "null_results": [],
+  "meta": {
+    "tier_completed": 0,
+    "generated_at": "2025-12-21T00:00:00Z",
+    "searches_executed": 0,
+    "evidence_hash": null
+  },
+  "search_tracking": {
+    "tier1_searches": {"expected": 8, "completed": 0, "failed": 0, "queries": []},
+    "tier2_searches": {"expected": 6, "completed": 0, "failed": 0, "queries": []},
+    "tier3_searches": {"expected": 4, "completed": 0, "failed": 0, "queries": []},
+    "summary": {
+      "total_expected": 18, "total_completed": 0, "total_failed": 0,
+      "completion_rate": 0, "all_tiers_complete": false,
+      "validation_status": "pending", "notes": "Initial evidence.json"
+    }
+  },
+  "product_coverage": {"assessment_date": null, "overall_confidence": 0, "products": {}, "aggregated_assessment": {}},
+  "jurisdiction_rollout": {"assessment_date": null, "jurisdictions": {}, "rollout_sequence": {}, "aggregated_assessment": {}},
+  "adoption_drivers": {"assessment_date": null, "pressures_to_adopt": [], "hesitations_against": [], "net_assessment": {}},
+  "knowledge_gaps": [],
+  "gap_summary": {"total_gaps": 0, "primary_research_recommended": false},
+  "counterparty_map": {"assessment_date": null, "ccp_relationships": [], "g16_exposure": [], "utility_connectivity": [], "aggregated_assessment": {}},
+  "vendor_analysis": {"assessment_date": null, "overall_strategy": "unknown", "vendor_relationships": [], "internal_capabilities": {}, "capability_gaps": [], "aggregated_assessment": {}}
+}

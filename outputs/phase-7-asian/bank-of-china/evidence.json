@@ -1,0 +1,65 @@
+{
+  "bank_id": "bank-of-china",
+  "bank_name": "Bank of China",
+  "research_date": "2025-12-21",
+  "researcher": "Claude Code (Opus 4.5)",
+  "protocol_version": "2.3",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_type": "Tier 1",
+      "query": "Bank of China CDM ISDA Common Domain Model",
+      "sources_checked": ["boc.cn", "bankofchina.com", "isda.org", "finos.org"],
+      "date_searched": "2025-12-21",
+      "notes": "No official announcements or FINOS membership. Bank of China has extensive international presence but no CDM signals found."
+    },
+    {
+      "search_type": "Tier 1",
+      "query": "Bank of China FINOS derivatives reporting",
+      "sources_checked": ["github.com/finos", "finos.org/members"],
+      "date_searched": "2025-12-21",
+      "notes": "Not a FINOS member. No code contributions."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "Bank of China derivatives data standardization",
+      "sources_checked": ["risk.net", "waterstechnology.com", "reuters.com", "scmp.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No trade press coverage of CDM adoption. Coverage focuses on Belt & Road financing and retail banking."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "Bank of China ISDA working group",
+      "sources_checked": ["isda.org", "risk.net"],
+      "date_searched": "2025-12-21",
+      "notes": "No evidence of staff in ISDA CDM working groups."
+    },
+    {
+      "search_type": "Tier 3",
+      "query": "Bank of China CDM jobs LinkedIn",
+      "sources_checked": ["linkedin.com/jobs", "zhipin.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No CDM-related job postings in English or Chinese."
+    }
+  ],
+  "classification": {
+    "maturity_level": "UNKNOWN",
+    "maturity_sublevel": "Insufficient-Evidence",
+    "confidence": 30,
+    "rationale": "Comprehensive search yielded zero evidence despite Bank of China's significant international operations (London, New York, Hong Kong, Singapore branches). Operating under Chinese regulatory framework (PBOC/CBIRC) with no CDM mandate. 30% confidence reflects high certainty of null results but acknowledges possible disclosure gap and regulatory divergence.",
+    "highest_claim_type": null,
+    "evidence_quality": "High-confidence null results"
+  },
+  "metadata": {
+    "total_evidence_items": 0,
+    "tier1_count": 0,
+    "tier2_count": 0,
+    "tier3_count": 0,
+    "null_searches": 5,
+    "trust_flags": [
+      "ZERO_EVIDENCE",
+      "DISCLOSURE_GAP_POSSIBLE",
+      "REGIONAL_REGULATORY_DIVERGENCE"
+    ]
+  }
+}

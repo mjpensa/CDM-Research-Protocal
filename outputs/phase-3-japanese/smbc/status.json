@@ -1,0 +1,21 @@
+{
+  "bank_id": "smbc",
+  "bank_name": "Sumitomo Mitsui Financial Group",
+  "phase": 3,
+  "phase_name": "Japanese Banks",
+  "classification": "OBSERVER",
+  "sub_classification": "CCP-Connected",
+  "confidence": 45,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.25,
+  "probability_pragmatist": 0.75,
+  "prior_probability": 0.20,
+  "evidence_count": {"tier1": 0, "tier2": 1, "tier3": 0, "null_results": 2},
+  "last_updated": "2025-12-20T04:30:00Z",
+  "notes": "No direct CDM evidence. Connected to JSCC. OBSERVER.",
+  "key_findings": [
+    "JSCC clearing member - JSCC in CDM production",
+    "No direct bank-level CDM evidence"
+  ]
+}

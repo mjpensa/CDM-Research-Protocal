@@ -1,0 +1,23 @@
+{
+  "bank_id": "commerzbank",
+  "bank_name": "Commerzbank AG",
+  "phase": 4,
+  "phase_name": "European Tier 2",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Vendor-Dependent",
+  "confidence": 50,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.05,
+  "probability_pragmatist": 0.95,
+  "prior_probability": 0.15,
+  "evidence_count": {"tier1": 0, "tier2": 1, "tier3": 0, "null_results": 3},
+  "last_updated": "2025-12-20T06:00:00Z",
+  "notes": "Migrated FX/derivatives to Murex MX.3 platform (May 2024). Traditional vendor approach with no CDM evidence.",
+  "key_findings": [
+    "Completed Murex MX.3 migration for FX, FX derivatives, equities, commodities (May 2024)",
+    "Partnership with Murex, TeamTek, and Infosys for trading platform modernization",
+    "No CDM or DRR adoption evidence",
+    "Using traditional vendor solution for derivatives processing"
+  ]
+}

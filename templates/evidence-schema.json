@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "CDM/DRR Evidence Documentation Schema v3.1",
-  "description": "Documents the structure of research outputs. Primary output format is JSON (Ledger-First principle); Markdown files are rendered views for human readability.",
-  "version": "3.1",
+  "title": "CDM/DRR Evidence Documentation Schema v4.3",
+  "description": "Documents the structure of research outputs. Primary output format is JSON (Ledger-First principle); Markdown files are rendered views for human readability. v4.0 adds product-level and jurisdiction-level operational intelligence. v4.1 adds adoption drivers and knowledge gap frameworks. v4.2 adds counterparty interoperability and vendor analysis. v4.3 adds WebSearch completion tracking for batch validation.",
+  "version": "4.3",
   "last_updated": "2025-12-20",
 
   "output_format": "json",
@@ -23,7 +23,7 @@
       },
       "schema_version": {
         "type": "string",
-        "default": "3.1"
+        "default": "4.2"
       },
       "evidence_items": {
         "type": "array",
@@ -91,6 +91,27 @@
                 "description": "LR value (>1 supports Architect, <1 supports Pragmatist)"
               }
             }
+          },
+          "product_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["IRS", "CDS", "FX_Forwards", "FX_Options", "Equity_Swaps", "Equity_Options", "Commodities", "Structured_Products", "Repo", "ETD"]
+            },
+            "description": "v4.0: Which product lines this evidence applies to (empty if not product-specific)"
+          },
+          "jurisdiction_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["EU", "UK", "US", "Japan", "Singapore", "Hong_Kong", "Australia", "Switzerland", "Canada", "Other"]
+            },
+            "description": "v4.0: Which regulatory jurisdictions this evidence applies to (empty if not jurisdiction-specific)"
+          },
+          "coverage_specificity": {
+            "type": "string",
+            "enum": ["explicit", "inferred", "unknown"],
+            "description": "v4.0: Whether product/jurisdiction scope was explicitly stated or inferred from context"
           }
         }
       },
@@ -112,6 +133,695 @@
           "generated_at": {"type": "string", "format": "date-time"},
           "searches_executed": {"type": "integer"},
           "evidence_hash": {"type": "string", "description": "SHA256 of evidence_items for integrity"}
+        }
+      },
+      "search_tracking": {
+        "type": "object",
+        "description": "v4.3: Track WebSearch completion status for overnight batch validation",
+        "properties": {
+          "tier1_searches": {
+            "type": "object",
+            "properties": {
+              "expected": {"type": "integer", "description": "Expected number of searches for Tier 1 sources"},
+              "completed": {"type": "integer", "description": "Number of searches successfully completed"},
+              "failed": {"type": "integer", "description": "Number of searches that failed or timed out"},
+              "queries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "query": {"type": "string"},
+                    "source_category": {"type": "string", "enum": ["official_website", "isda", "finos", "regulatory", "annual_report"]},
+                    "status": {"type": "string", "enum": ["completed", "failed", "timeout", "skipped"]},
+                    "results_found": {"type": "integer"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          },
+          "tier2_searches": {
+            "type": "object",
+            "properties": {
+              "expected": {"type": "integer"},
+              "completed": {"type": "integer"},
+              "failed": {"type": "integer"},
+              "queries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "query": {"type": "string"},
+                    "source_category": {"type": "string", "enum": ["trade_press", "business_press", "conference", "vendor", "analyst"]},
+                    "status": {"type": "string", "enum": ["completed", "failed", "timeout", "skipped"]},
+                    "results_found": {"type": "integer"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          },
+          "tier3_searches": {
+            "type": "object",
+            "properties": {
+              "expected": {"type": "integer"},
+              "completed": {"type": "integer"},
+              "failed": {"type": "integer"},
+              "queries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "query": {"type": "string"},
+                    "source_category": {"type": "string", "enum": ["job_postings", "linkedin", "patents", "blogs", "analyst"]},
+                    "status": {"type": "string", "enum": ["completed", "failed", "timeout", "skipped"]},
+                    "results_found": {"type": "integer"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "total_expected": {"type": "integer"},
+              "total_completed": {"type": "integer"},
+              "total_failed": {"type": "integer"},
+              "completion_rate": {"type": "number", "minimum": 0, "maximum": 1},
+              "all_tiers_complete": {"type": "boolean"},
+              "validation_status": {
+                "type": "string",
+                "enum": ["complete", "partial", "failed"],
+                "description": "Overall search completion status"
+              },
+              "notes": {"type": "string"}
+            }
+          }
+        }
+      },
+      "product_coverage": {
+        "type": "object",
+        "description": "v4.0: Product-line level CDM coverage assessment",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "overall_confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+          "products": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "cdm_status": {
+                  "type": "string",
+                  "enum": ["production", "pilot", "evaluation", "planned", "none", "unknown"],
+                  "description": "Current CDM adoption status for this product"
+                },
+                "cdm_reliance": {
+                  "type": "string",
+                  "enum": ["native", "partial", "minimal", "none", "unknown"],
+                  "description": "How much the product workflow relies on CDM"
+                },
+                "regulatory_driver": {
+                  "type": "string",
+                  "enum": ["EMIR_Refit", "UK_EMIR", "CFTC_Rewrite", "JSCC", "MAS", "HKMA", "multiple", "none", "unknown"],
+                  "description": "Primary regulatory driver for CDM adoption on this product"
+                },
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "knowledge_gap": {"type": "boolean", "description": "True if insider knowledge needed"},
+                "gap_reason": {"type": "string", "description": "Why this is a knowledge gap"},
+                "vendor_solution": {"type": ["string", "null"], "description": "Vendor providing CDM for this product, if any"},
+                "notes": {"type": "string"}
+              }
+            },
+            "description": "Per-product CDM status. Keys: IRS, CDS, FX_Options, Equity_Derivatives, Commodities, etc."
+          },
+          "aggregated_assessment": {
+            "type": "object",
+            "properties": {
+              "products_with_evidence": {"type": "integer"},
+              "products_inferred": {"type": "integer"},
+              "products_unknown": {"type": "integer"},
+              "highest_cdm_maturity": {"type": "string"},
+              "lowest_cdm_maturity": {"type": "string"}
+            }
+          }
+        }
+      },
+      "jurisdiction_rollout": {
+        "type": "object",
+        "description": "v4.0: Jurisdiction-specific CDM rollout priorities",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "jurisdictions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "regulatory_driver": {
+                  "type": "string",
+                  "description": "Primary regulation driving CDM in this jurisdiction (e.g., EMIR Refit)"
+                },
+                "deadline": {
+                  "type": ["string", "null"],
+                  "format": "date",
+                  "description": "Regulatory compliance deadline if applicable"
+                },
+                "cdm_status": {
+                  "type": "string",
+                  "enum": ["production", "pilot", "compliant_traditional", "non_compliant", "unknown"],
+                  "description": "Bank's CDM status in this jurisdiction"
+                },
+                "priority_level": {
+                  "type": "string",
+                  "enum": ["primary", "secondary", "tertiary", "unknown"],
+                  "description": "Bank's priority for this jurisdiction"
+                },
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "knowledge_gap": {"type": "boolean"},
+                "gap_reason": {"type": "string"},
+                "notes": {"type": "string"}
+              }
+            },
+            "description": "Per-jurisdiction status. Keys: EU, UK, US, Japan, Singapore, Hong_Kong, Australia"
+          },
+          "rollout_sequence": {
+            "type": "object",
+            "properties": {
+              "first_jurisdiction": {"type": "string"},
+              "subsequent_planned": {"type": "array", "items": {"type": "string"}},
+              "confidence": {"type": "integer"},
+              "evidence_ids": {"type": "array", "items": {"type": "string"}},
+              "knowledge_gap": {"type": "boolean"},
+              "gap_reason": {"type": "string"}
+            },
+            "description": "Inferred or confirmed rollout sequence across jurisdictions"
+          },
+          "aggregated_assessment": {
+            "type": "object",
+            "properties": {
+              "jurisdictions_with_evidence": {"type": "integer"},
+              "jurisdictions_unknown": {"type": "integer"},
+              "primary_regulatory_driver": {"type": "string"}
+            }
+          }
+        }
+      },
+      "adoption_drivers": {
+        "type": "object",
+        "description": "v4.1: Analysis of factors pushing toward or away from CDM adoption",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "pressures_to_adopt": {
+            "type": "array",
+            "description": "Factors pushing the bank toward CDM adoption",
+            "items": {
+              "type": "object",
+              "properties": {
+                "driver_type": {
+                  "type": "string",
+                  "enum": ["regulatory_mandate", "infrastructure_mandate", "counterparty_pressure", "competitive_positioning", "operational_efficiency"],
+                  "description": "Category of adoption pressure"
+                },
+                "description": {"type": "string", "description": "Specific description of this pressure"},
+                "strength": {
+                  "type": "string",
+                  "enum": ["high", "medium", "low"],
+                  "description": "How strong is this pressure?"
+                },
+                "timeline_impact": {"type": "string", "description": "When does this pressure peak?"},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "hesitations_against": {
+            "type": "array",
+            "description": "Factors holding the bank back from CDM adoption",
+            "items": {
+              "type": "object",
+              "properties": {
+                "hesitation_type": {
+                  "type": "string",
+                  "enum": ["capacity_constraint", "insufficient_business_case", "vendor_preference", "technology_debt", "wait_for_maturity", "regulatory_remediation", "ma_integration"],
+                  "description": "Category of adoption hesitation"
+                },
+                "description": {"type": "string", "description": "Specific description of this hesitation"},
+                "strength": {
+                  "type": "string",
+                  "enum": ["high", "medium", "low"],
+                  "description": "How strong is this hesitation?"
+                },
+                "expected_duration": {
+                  "type": "string",
+                  "enum": ["temporary", "medium_term", "structural"],
+                  "description": "How long will this hesitation last?"
+                },
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "net_assessment": {
+            "type": "object",
+            "properties": {
+              "outcome": {
+                "type": "string",
+                "enum": ["adoption_likely", "adoption_possible", "adoption_uncertain", "adoption_unlikely"],
+                "description": "Net assessment of adoption likelihood"
+              },
+              "rationale": {"type": "string"},
+              "timeline_estimate": {"type": "string", "description": "Estimated adoption timeline if applicable"},
+              "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+              "knowledge_gaps_affect_assessment": {"type": "boolean"}
+            }
+          }
+        }
+      },
+      "knowledge_gaps": {
+        "type": "array",
+        "description": "v4.1: Documented gaps where public research is exhausted and insider knowledge required",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^GAP-[0-9]+$",
+              "description": "Gap identifier (e.g., 'GAP-001')"
+            },
+            "category": {
+              "type": "string",
+              "enum": ["product_coverage", "jurisdiction", "vendor", "driver", "counterparty", "strategic", "technical"],
+              "description": "Gap category from config/gap-taxonomy.json"
+            },
+            "gap_type": {
+              "type": "string",
+              "description": "Specific gap type from category's gap_types array"
+            },
+            "description": {
+              "type": "string",
+              "description": "What specifically is unknown"
+            },
+            "business_impact": {
+              "type": "string",
+              "enum": ["high", "medium", "low"],
+              "description": "How much does this gap affect assessment usefulness?"
+            },
+            "impact_rationale": {
+              "type": "string",
+              "description": "Why this gap matters"
+            },
+            "public_research_exhausted": {
+              "type": "boolean",
+              "description": "Have all reasonable public sources been searched?"
+            },
+            "searches_attempted": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Search queries that yielded no results"
+            },
+            "suggested_sources": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_type": {
+                    "type": "string",
+                    "enum": ["insider_interview", "vendor_backdoor", "conference_networking", "analyst_report", "industry_contact"],
+                    "description": "Type of source that might resolve this gap"
+                  },
+                  "target_role": {"type": "string", "description": "Job title or role to target"},
+                  "discovery_question": {"type": "string", "description": "Question to ask from interview bank"}
+                }
+              }
+            },
+            "resolution_value": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "How much would resolving this improve the assessment?"
+            },
+            "strategic_urgency": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "How time-sensitive is resolving this gap?"
+            },
+            "priority_score": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Calculated priority from gap-taxonomy.json formula"
+            },
+            "related_evidence_ids": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Evidence items related to this gap"
+            },
+            "notes": {"type": "string"}
+          }
+        }
+      },
+      "gap_summary": {
+        "type": "object",
+        "description": "v4.1: Aggregated summary of all knowledge gaps",
+        "properties": {
+          "total_gaps": {"type": "integer"},
+          "critical_gaps": {"type": "integer", "description": "Gaps with priority >= 80"},
+          "high_gaps": {"type": "integer", "description": "Gaps with priority 60-79"},
+          "medium_gaps": {"type": "integer", "description": "Gaps with priority 40-59"},
+          "low_gaps": {"type": "integer", "description": "Gaps with priority < 40"},
+          "gaps_by_category": {
+            "type": "object",
+            "additionalProperties": {"type": "integer"},
+            "description": "Count of gaps per category"
+          },
+          "primary_research_recommended": {
+            "type": "boolean",
+            "description": "Are there enough critical gaps to warrant primary research?"
+          },
+          "top_priority_gaps": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "IDs of top 3 priority gaps"
+          },
+          "discovery_call_brief": {
+            "type": "object",
+            "properties": {
+              "recommended_targets": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Suggested contact roles"
+              },
+              "key_questions": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Top priority questions from gap bank"
+              },
+              "value_proposition": {
+                "type": "string",
+                "description": "What value exchange can be offered in discovery call"
+              }
+            }
+          }
+        }
+      },
+      "counterparty_map": {
+        "type": "object",
+        "description": "v4.2: Counterparty CDM interoperability and connectivity assessment",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "ccp_relationships": {
+            "type": "array",
+            "description": "CCP clearing memberships and CDM connectivity status",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ccp_name": {
+                  "type": "string",
+                  "enum": ["LCH", "CME", "Eurex", "JSCC", "ICE", "DTCC", "SGX", "HKEX", "ASX", "Other"],
+                  "description": "Name of the CCP"
+                },
+                "membership_status": {
+                  "type": "string",
+                  "enum": ["clearing_member", "client_clearing", "no_relationship", "unknown"],
+                  "description": "Bank's membership status with this CCP"
+                },
+                "cdm_requirement": {
+                  "type": "string",
+                  "enum": ["mandatory", "preferred", "optional", "none", "unknown"],
+                  "description": "CCP's CDM connectivity requirement"
+                },
+                "cdm_deadline": {
+                  "type": ["string", "null"],
+                  "format": "date",
+                  "description": "Deadline for CDM connectivity if applicable"
+                },
+                "bank_cdm_status": {
+                  "type": "string",
+                  "enum": ["connected", "building", "planned", "not_started", "unknown"],
+                  "description": "Bank's CDM connectivity status with this CCP"
+                },
+                "products_cleared": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "Products cleared through this CCP"
+                },
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "knowledge_gap": {"type": "boolean"},
+                "gap_reason": {"type": "string"},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "g16_exposure": {
+            "type": "array",
+            "description": "Bilateral CDM interoperability with G16 dealer banks",
+            "items": {
+              "type": "object",
+              "properties": {
+                "counterparty_bank": {
+                  "type": "string",
+                  "description": "Name of G16 bank counterparty"
+                },
+                "relationship_type": {
+                  "type": "string",
+                  "enum": ["major_counterparty", "moderate_counterparty", "minor_counterparty", "unknown"],
+                  "description": "Trading relationship significance"
+                },
+                "counterparty_cdm_status": {
+                  "type": "string",
+                  "enum": ["cdm_native", "cdm_enabled", "traditional", "unknown"],
+                  "description": "Counterparty's known CDM capability"
+                },
+                "bilateral_cdm_connectivity": {
+                  "type": "string",
+                  "enum": ["operational", "testing", "planned", "not_started", "not_applicable", "unknown"],
+                  "description": "Status of bilateral CDM connectivity"
+                },
+                "interoperability_pressure": {
+                  "type": "string",
+                  "enum": ["high", "medium", "low", "none", "unknown"],
+                  "description": "Pressure from this counterparty to adopt CDM"
+                },
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "knowledge_gap": {"type": "boolean"},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "utility_connectivity": {
+            "type": "array",
+            "description": "Connectivity with CDM-related market utilities",
+            "items": {
+              "type": "object",
+              "properties": {
+                "utility_name": {
+                  "type": "string",
+                  "enum": ["Delta_Capita", "DTCC", "MarkitServ", "Traiana", "AcadiaSoft", "Other"],
+                  "description": "Name of the utility"
+                },
+                "service_type": {
+                  "type": "string",
+                  "enum": ["reporting", "matching", "confirmation", "collateral", "compression", "multiple"],
+                  "description": "Type of service used"
+                },
+                "cdm_capability": {
+                  "type": "string",
+                  "enum": ["cdm_native", "cdm_enabled", "cdm_planned", "traditional", "unknown"],
+                  "description": "Utility's CDM capability"
+                },
+                "bank_using_cdm_channel": {
+                  "type": "boolean",
+                  "description": "Is the bank using CDM connectivity with this utility?"
+                },
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "knowledge_gap": {"type": "boolean"},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "aggregated_assessment": {
+            "type": "object",
+            "properties": {
+              "total_ccp_relationships": {"type": "integer"},
+              "ccps_with_cdm_connected": {"type": "integer"},
+              "ccps_with_cdm_building": {"type": "integer"},
+              "g16_counterparties_mapped": {"type": "integer"},
+              "bilateral_cdm_pressure_level": {
+                "type": "string",
+                "enum": ["high", "medium", "low", "unknown"],
+                "description": "Overall interoperability pressure from counterparties"
+              },
+              "utilities_with_cdm": {"type": "integer"},
+              "network_effect_assessment": {
+                "type": "string",
+                "enum": ["strong_pull", "moderate_pull", "weak_pull", "no_pull", "unknown"],
+                "description": "Overall network effect pulling toward CDM"
+              }
+            }
+          }
+        }
+      },
+      "vendor_analysis": {
+        "type": "object",
+        "description": "v4.2: Build vs buy analysis and vendor relationship mapping",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "overall_strategy": {
+            "type": "string",
+            "enum": ["internal_build", "hybrid_internal_lead", "hybrid_vendor_lead", "full_outsource", "unknown"],
+            "description": "Bank's overall CDM build vs buy approach"
+          },
+          "vendor_relationships": {
+            "type": "array",
+            "description": "Vendor relationships for CDM-related capabilities",
+            "items": {
+              "type": "object",
+              "properties": {
+                "vendor_name": {
+                  "type": "string",
+                  "description": "Name of the vendor"
+                },
+                "vendor_type": {
+                  "type": "string",
+                  "enum": ["platform_vendor", "cdm_specialist", "systems_integrator", "consulting", "utility_provider"],
+                  "description": "Category of vendor"
+                },
+                "scope": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["cdm_core", "cdm_translation", "reporting", "matching", "regulatory_filing", "ccp_connectivity", "data_management", "implementation_services", "training"]
+                  },
+                  "description": "Scope of vendor engagement"
+                },
+                "products_covered": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "Products covered by this vendor relationship"
+                },
+                "jurisdictions_covered": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "Jurisdictions covered by this vendor relationship"
+                },
+                "relationship_stage": {
+                  "type": "string",
+                  "enum": ["production", "implementation", "pilot", "evaluation", "planned", "unknown"],
+                  "description": "Stage of vendor engagement"
+                },
+                "dependency_level": {
+                  "type": "string",
+                  "enum": ["high", "medium", "low", "unknown"],
+                  "description": "How dependent is the bank on this vendor for CDM?"
+                },
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "knowledge_gap": {"type": "boolean"},
+                "gap_reason": {"type": "string"},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "internal_capabilities": {
+            "type": "object",
+            "description": "Internal CDM capabilities assessment",
+            "properties": {
+              "has_internal_cdm_team": {
+                "type": "string",
+                "enum": ["yes_dedicated", "yes_shared", "no", "unknown"],
+                "description": "Does the bank have an internal CDM team?"
+              },
+              "team_size_estimate": {
+                "type": "string",
+                "enum": ["large_10plus", "medium_5to10", "small_under5", "unknown"],
+                "description": "Estimated size of internal CDM capability"
+              },
+              "internal_scope": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["cdm_core_development", "cdm_translation", "integration", "testing", "operations", "governance"]
+                },
+                "description": "What CDM activities are handled internally?"
+              },
+              "build_appetite": {
+                "type": "string",
+                "enum": ["high_prefers_build", "balanced", "low_prefers_buy", "unknown"],
+                "description": "Bank's appetite for internal development vs buying"
+              },
+              "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+              "evidence_ids": {"type": "array", "items": {"type": "string"}},
+              "knowledge_gap": {"type": "boolean"},
+              "gap_reason": {"type": "string"}
+            }
+          },
+          "capability_gaps": {
+            "type": "array",
+            "description": "Identified gaps in CDM capability coverage",
+            "items": {
+              "type": "object",
+              "properties": {
+                "capability": {
+                  "type": "string",
+                  "enum": ["cdm_core", "cdm_translation", "reporting", "matching", "ccp_connectivity", "regulatory_filing", "data_management", "operations", "governance"],
+                  "description": "Capability area with gap"
+                },
+                "gap_type": {
+                  "type": "string",
+                  "enum": ["no_solution", "inadequate_solution", "unknown_solution", "transition_gap"],
+                  "description": "Type of gap"
+                },
+                "internal_coverage": {
+                  "type": "string",
+                  "enum": ["full", "partial", "none", "unknown"],
+                  "description": "Is this covered internally?"
+                },
+                "vendor_coverage": {
+                  "type": "string",
+                  "enum": ["full", "partial", "none", "unknown"],
+                  "description": "Is this covered by vendor?"
+                },
+                "gap_severity": {
+                  "type": "string",
+                  "enum": ["critical", "significant", "minor", "unknown"],
+                  "description": "How severe is this gap?"
+                },
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "aggregated_assessment": {
+            "type": "object",
+            "properties": {
+              "total_vendors": {"type": "integer"},
+              "primary_vendor": {"type": ["string", "null"]},
+              "vendor_dependency_score": {
+                "type": "string",
+                "enum": ["high", "medium", "low", "none", "unknown"],
+                "description": "Overall vendor dependency for CDM"
+              },
+              "internal_capability_score": {
+                "type": "string",
+                "enum": ["strong", "moderate", "weak", "none", "unknown"],
+                "description": "Overall internal CDM capability"
+              },
+              "capability_gaps_count": {"type": "integer"},
+              "critical_gaps_count": {"type": "integer"},
+              "classification_implication": {
+                "type": "string",
+                "enum": ["supports_architect", "supports_pragmatist_vendor", "supports_pragmatist_hybrid", "neutral", "insufficient_data"],
+                "description": "What does vendor analysis imply for classification?"
+              }
+            }
+          }
         }
       }
     }

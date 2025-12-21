@@ -248,8 +248,8 @@ def parse_md_evidence_block(block_text: str, block_num: int, bank_id: str = '') 
                 from datetime import datetime as dt
                 parsed = dt.strptime(date_str, "%B %Y")
                 item['date'] = parsed.strftime("%Y-%m-15")
-            except:
-                pass
+            except ValueError:
+                pass  # Leave date unparsed if format doesn't match
 
     return item
 
@@ -368,16 +368,34 @@ def parse_markdown_file(md_path: Path, bank_id: str = '') -> list[dict]:
         if items:
             logger.info(f"  Parsed {len(items)} items using legacy fenced format")
 
-    # Validate all items
+    # Validate all items and filter out invalid ones
+    valid_items = []
+    rejected_count = 0
+
     for item in items:
         is_valid, errors = validate_evidence_item(item)
         if not is_valid:
-            logger.warning(f"Item {item.get('id')} has validation errors:")
+            # Check if errors are critical (invalid claim_type, missing required fields)
+            critical_errors = [e for e in errors if 'claim_type' in e.lower() or 'missing required' in e.lower()]
+            if critical_errors:
+                # CRITICAL: Reject items with invalid claim_type or missing required fields
+                logger.error(f"REJECTED item {item.get('id', 'unknown')}: {critical_errors}")
+                rejected_count += 1
+                continue  # Skip this item entirely
+
+            # Non-critical validation warnings - keep item but flag it
+            logger.warning(f"Item {item.get('id')} has validation warnings:")
             for error in errors:
                 logger.warning(f"  - {error}")
-            item['_validation_errors'] = errors
+            item['_validation_warnings'] = errors
+            valid_items.append(item)
+        else:
+            valid_items.append(item)
 
-    return items
+    if rejected_count > 0:
+        logger.warning(f"Rejected {rejected_count} item(s) with critical validation errors")
+
+    return valid_items
 
 
 def merge_into_evidence_json(

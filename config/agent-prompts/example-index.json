@@ -1,0 +1,194 @@
+{
+  "$schema": "CDM/DRR Example Index v1.0",
+  "version": "1.0-20251221",
+  "description": "Index of worked examples with context-aware trigger mappings",
+  "last_updated": "2025-12-21",
+
+  "examples": {
+    "evidence-gatherer": [
+      {
+        "id": "eg-tier1-strong",
+        "file": "evidence-gatherer/tier1-strong-architect.md",
+        "title": "Tier 1 Strong Architect Evidence",
+        "context": "When bank has confirmed production usage",
+        "triggers": ["tier1", "official_production", "strong_architect", "production_usage"],
+        "status": "complete"
+      },
+      {
+        "id": "eg-null-informative",
+        "file": "evidence-gatherer/null-result-informative.md",
+        "title": "Informative Null Result Documentation",
+        "context": "When thorough search yields no results",
+        "triggers": ["null_result", "informative_absence", "no_evidence"],
+        "status": "complete"
+      }
+    ],
+
+    "bayesian-analyst": [
+      {
+        "id": "ba-full-trace",
+        "file": "bayesian-analyst/full-calculation-trace.md",
+        "title": "Complete Bayesian Update Trace",
+        "context": "Full 8-step probability calculation",
+        "triggers": ["bayesian", "full_calculation", "probability_update"],
+        "status": "complete"
+      }
+    ],
+
+    "reasoning-gate": [
+      {
+        "id": "rg-premortem",
+        "file": "reasoning-gate/pre-mortem.md",
+        "title": "Pre-Mortem Failure Mode Analysis",
+        "context": "Before starting research",
+        "triggers": ["pre_mortem", "failure_modes", "initialization"],
+        "status": "complete"
+      },
+      {
+        "id": "rg-gate1-skip",
+        "file": "reasoning-gate/gate1-skip-decision.md",
+        "title": "Gate 1 Skip Decision",
+        "context": "When probability exceeds skip threshold",
+        "triggers": ["gate_1", "skip_decision", "high_probability"],
+        "status": "complete"
+      },
+      {
+        "id": "rg-gate2-oi",
+        "file": "reasoning-gate/gate2-observable-implications.md",
+        "title": "Observable Implications Testing",
+        "context": "Gate 2 hypothesis testing",
+        "triggers": ["gate_2", "observable_implications", "hypothesis_test"],
+        "status": "complete"
+      },
+      {
+        "id": "rg-contradiction",
+        "file": "reasoning-gate/contradiction-resolution.md",
+        "title": "Contradiction Resolution",
+        "context": "When conflicting evidence detected",
+        "triggers": ["contradiction", "conflict", "resolution"],
+        "status": "planned"
+      }
+    ],
+
+    "adversarial-challenger": [
+      {
+        "id": "ac-full-challenge",
+        "file": "adversarial-challenger/full-challenge-protocol.md",
+        "title": "Full Adversarial Challenge",
+        "context": "Complete 5-part challenge protocol",
+        "triggers": ["adversarial", "full_challenge", "counter_case"],
+        "status": "planned"
+      },
+      {
+        "id": "ac-steelman",
+        "file": "adversarial-challenger/steelman-technique.md",
+        "title": "Steelman Argument Construction",
+        "context": "Building strongest counter-argument",
+        "triggers": ["steelman", "alternative_hypothesis", "strong_counter"],
+        "status": "complete"
+      },
+      {
+        "id": "ac-verdict-revised",
+        "file": "adversarial-challenger/verdict-classification-changed.md",
+        "title": "Verdict: Classification Changed",
+        "context": "When adversarial challenge changes classification",
+        "triggers": ["verdict", "revised", "classification_change"],
+        "status": "planned"
+      }
+    ],
+
+    "qa-validator": [
+      {
+        "id": "qa-ordinal-violation",
+        "file": "qa-validator/ordinal-ranking-violation.md",
+        "title": "Ordinal Ranking Violation",
+        "context": "When bank rankings are inconsistent",
+        "triggers": ["ordinal", "ranking", "violation", "consistency"],
+        "status": "complete"
+      },
+      {
+        "id": "qa-anchor-failure",
+        "file": "qa-validator/anchor-coherence-failure.md",
+        "title": "Anchor Point Violation",
+        "context": "When classification violates anchor facts",
+        "triggers": ["anchor", "coherence", "violation", "immutable"],
+        "status": "complete"
+      },
+      {
+        "id": "qa-cross-bank",
+        "file": "qa-validator/cross-bank-pattern.md",
+        "title": "Cross-Bank Pattern Detection",
+        "context": "Identifying patterns across phase",
+        "triggers": ["cross_bank", "pattern", "phase_synthesis"],
+        "status": "planned"
+      },
+      {
+        "id": "qa-cohort-analysis",
+        "file": "qa-validator/cohort-behavior-analysis.md",
+        "title": "Cohort Behavior Analysis",
+        "context": "Analyzing similar bank groups",
+        "triggers": ["cohort", "similar_profile", "regional"],
+        "status": "planned"
+      }
+    ],
+
+    "synthesis": [
+      {
+        "id": "sy-confidence-cal",
+        "file": "synthesis/confidence-calibration.md",
+        "title": "6-Step Confidence Calibration",
+        "context": "Calculating final confidence",
+        "triggers": ["confidence", "calibration", "betting_test"],
+        "status": "complete"
+      },
+      {
+        "id": "sy-diagnostic-brief",
+        "file": "synthesis/diagnostic-engagement-brief.md",
+        "title": "Diagnostic Engagement Brief",
+        "context": "When confidence < 60%",
+        "triggers": ["diagnostic", "low_confidence", "engagement"],
+        "status": "planned"
+      }
+    ],
+
+    "orchestrator": [
+      {
+        "id": "or-checkpoint-block",
+        "file": "orchestrator/checkpoint-block-handling.md",
+        "title": "BLOCK Checkpoint Handling",
+        "context": "When workflow hits blocking checkpoint",
+        "triggers": ["checkpoint", "block", "human_review"],
+        "status": "planned"
+      }
+    ]
+  },
+
+  "statistics": {
+    "total_examples": 17,
+    "complete": 10,
+    "planned": 7
+  },
+
+  "trigger_definitions": {
+    "description": "Standard triggers that can activate example loading",
+    "stage_triggers": [
+      "pre_mortem", "tier1", "tier2", "tier3",
+      "bayesian", "gate_1", "gate_2", "gate_3",
+      "adversarial", "synthesis", "phase_qa"
+    ],
+    "condition_triggers": [
+      "high_probability", "low_probability", "skip_decision",
+      "contradiction", "null_result", "strong_architect", "strong_pragmatist",
+      "production_usage", "low_confidence", "classification_change"
+    ],
+    "quality_triggers": [
+      "informative_absence", "corroboration", "violation", "coherence"
+    ]
+  },
+
+  "usage": {
+    "loading_method": "prompt_assembler._inject_relevant_example(stage, ctx)",
+    "trigger_matching": "any(trigger in example.triggers for trigger in context_triggers)",
+    "fallback": "Return empty string if no matching example"
+  }
+}
