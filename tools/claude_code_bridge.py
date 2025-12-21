@@ -119,6 +119,9 @@ class ClaudeCodeBridge:
         self.phase = phase
         self.outputs_dir = outputs_dir or PROJECT_ROOT / "outputs"
 
+        # Track parsing errors for propagation (Phase 1 fix: no silent failures)
+        self._parsing_errors: List[str] = []
+
         # Initialize state manager
         self.state_manager = UnifiedStateManager(self.outputs_dir)
 
@@ -206,8 +209,16 @@ class ClaudeCodeBridge:
             try:
                 data = json.loads(evidence_file.read_text(encoding='utf-8'))
                 evidence_count = len(data.get('evidence_items', []))
-            except Exception:
-                pass
+            except json.JSONDecodeError as e:
+                # Phase 1 fix: Log and track parsing errors instead of silent failure
+                error_msg = f"evidence.json parse error: {e}"
+                logger.error(f"Failed to parse evidence.json for {self.bank_id}: {e}")
+                self._parsing_errors.append(error_msg)
+            except Exception as e:
+                # Phase 1 fix: Log and track unexpected errors
+                error_msg = f"evidence.json read error: {e}"
+                logger.error(f"Unexpected error reading evidence.json for {self.bank_id}: {e}")
+                self._parsing_errors.append(error_msg)
 
         return {
             "bank_id": self.bank_id,
@@ -226,6 +237,7 @@ class ClaudeCodeBridge:
             "evidence_count": evidence_count,
             "stages_completed": state.stages_completed if state else [],
             "thresholds": self.thresholds,
+            "parsing_errors": self._parsing_errors,  # Phase 1 fix: expose errors
         }
 
     def get_skip_decision(self) -> Optional[str]:
@@ -262,6 +274,10 @@ class ClaudeCodeBridge:
         errors = []
         warnings = []
         details = {}
+
+        # Phase 1 fix: Include any parsing errors from earlier operations
+        if self._parsing_errors:
+            errors.extend(self._parsing_errors)
 
         # Stage-specific validation
         if stage.startswith("tier") and stage.endswith("_evidence"):
