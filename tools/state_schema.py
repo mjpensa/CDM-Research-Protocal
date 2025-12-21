@@ -246,6 +246,13 @@ class BankState:
     # Errors
     errors: List[str] = field(default_factory=list)
 
+    # Phase 3: Stage progress tracking for resumability
+    stage_started_at: Optional[str] = None  # When current stage began
+    stage_outputs_written: List[str] = field(default_factory=list)  # Files created this stage
+    last_checkpoint_at: Optional[str] = None  # Last successful checkpoint
+    retry_count: int = 0  # Number of retries for current stage
+    max_retries: int = 3  # Maximum retries before blocking
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         data = asdict(self)
@@ -332,6 +339,28 @@ class BankState:
         if stage not in self.skipped_stages:
             self.skipped_stages.append(stage)
         self.last_updated = datetime.now(timezone.utc).isoformat()
+
+    # Phase 3: Checkpoint methods for resumability
+    def start_stage(self, stage: str) -> None:
+        """Mark the beginning of a new stage."""
+        self.current_stage = stage
+        self.stage_started_at = datetime.now(timezone.utc).isoformat()
+        self.stage_outputs_written = []
+        self.retry_count = 0
+        self.last_updated = self.stage_started_at
+
+    def checkpoint_stage_progress(self, files_written: List[str] = None) -> None:
+        """Record a checkpoint within the current stage."""
+        self.last_checkpoint_at = datetime.now(timezone.utc).isoformat()
+        if files_written:
+            self.stage_outputs_written.extend(files_written)
+        self.last_updated = self.last_checkpoint_at
+
+    def increment_retry(self) -> bool:
+        """Increment retry count. Returns False if max retries exceeded."""
+        self.retry_count += 1
+        self.last_updated = datetime.now(timezone.utc).isoformat()
+        return self.retry_count <= self.max_retries
 
     def set_blocked(self, checkpoint: str, reason: str) -> None:
         """Set the bank as blocked at a checkpoint."""

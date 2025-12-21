@@ -524,6 +524,55 @@ class ClaudeCodeBridge:
 
         return next_stage, None  # Instruction files handled separately
 
+    # Phase 3: Resume context methods for batch recovery
+    def get_resume_context(self) -> Dict[str, Any]:
+        """Get context for resuming interrupted research."""
+        state = self.state_manager.load_bank_state(self.bank_id, self.phase)
+        if not state:
+            return {"can_resume": False, "reason": "No state file found"}
+
+        return {
+            "can_resume": True,
+            "current_stage": state.current_stage,
+            "stage_started_at": state.stage_started_at,
+            "files_already_written": state.stage_outputs_written,
+            "retry_count": state.retry_count,
+            "max_retries": state.max_retries,
+            "last_checkpoint": state.last_checkpoint_at,
+            "probability": state.current_probability,
+            "evidence_counts": state.evidence_counts,
+            "stages_completed": state.stages_completed,
+            "instruction": self._generate_resume_instruction(state)
+        }
+
+    def _generate_resume_instruction(self, state) -> str:
+        """Generate human-readable resume instruction for Claude Code."""
+        if state.current_stage == "complete":
+            return "Research is complete. No action needed."
+
+        if state.is_blocked():
+            return f"Research is BLOCKED at {state.blocked_checkpoint}: {state.blocked_reason}"
+
+        if state.stage_outputs_written:
+            files = ", ".join(state.stage_outputs_written)
+            return f"Resume stage '{state.current_stage}'. Already written: {files}. Continue from where you left off."
+
+        if state.stage_started_at:
+            return f"Stage '{state.current_stage}' was started but no files written yet. Restart the stage."
+
+        return f"Start stage '{state.current_stage}' from the beginning."
+
+    def checkpoint_progress(self, files_written: List[str] = None) -> bool:
+        """Record a checkpoint for the current stage."""
+        state = self.state_manager.load_bank_state(self.bank_id, self.phase)
+        if not state:
+            return False
+
+        state.checkpoint_stage_progress(files_written)
+        self.state_manager.save_bank_state(state)
+        logger.info(f"Checkpoint recorded for {self.bank_id} stage {state.current_stage}")
+        return True
+
     def mark_complete(self) -> None:
         """Mark bank research as complete."""
         state = self.state_manager.load_bank_state(self.bank_id, self.phase)
@@ -550,6 +599,8 @@ def main():
     parser.add_argument("--context", action="store_true", help="Show bank context")
     parser.add_argument("--test", action="store_true", help="Run self-test")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
+    parser.add_argument("--resume", action="store_true", help="Show resume context for interrupted research")
+    parser.add_argument("--checkpoint", nargs="*", metavar="FILE", help="Record checkpoint with optional files written")
 
     args = parser.parse_args()
 
@@ -594,6 +645,37 @@ def main():
             context = bridge.load_bank_context()
             print(json.dumps(context, indent=2))
             return 0
+
+        # Phase 3: Resume context handler
+        if args.resume:
+            resume = bridge.get_resume_context()
+            if args.json:
+                print(json.dumps(resume, indent=2))
+            else:
+                if resume["can_resume"]:
+                    print(f"Current Stage: {resume['current_stage']}")
+                    print(f"Stages Completed: {', '.join(resume['stages_completed']) or 'None'}")
+                    print(f"P(ARCHITECT): {resume['probability']*100:.1f}%")
+                    if resume['files_already_written']:
+                        print(f"Files Written: {', '.join(resume['files_already_written'])}")
+                    print(f"Retry Count: {resume['retry_count']}/{resume['max_retries']}")
+                    print(f"\nInstruction: {resume['instruction']}")
+                else:
+                    print(f"Cannot resume: {resume['reason']}")
+            return 0
+
+        # Phase 3: Checkpoint handler
+        if args.checkpoint is not None:
+            files = args.checkpoint if args.checkpoint else None
+            success = bridge.checkpoint_progress(files)
+            if args.json:
+                print(json.dumps({"success": success, "files": files}))
+            else:
+                if success:
+                    print(f"Checkpoint recorded" + (f" with files: {files}" if files else ""))
+                else:
+                    print("Failed to record checkpoint")
+            return 0 if success else 1
 
         # Default: show status
         context = bridge.load_bank_context()
