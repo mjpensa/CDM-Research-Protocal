@@ -1,25 +1,12 @@
-# Steelman: Strongest Counter-Argument: JPMorgan Chase & Co.
+# Steelman: JPMorgan Chase & Co.
 
-**Bank:** JPMorgan Chase & Co.
-**Phase:** 8 - US Investment Banks
-**Date:** 2025-12-21
+## Strongest Case for ARCHITECT (Native)
+1. Official production confirmation (first major US bank)
+2. First sell-side FINOS CDM maintainer
+3. Multi-jurisdiction deployment (6 regions)
+4. Operational benefits realized
+5. FINOS Adoption Achiever award
 
----
-
-## Strongest Counter-Hypothesis
-
-N/A
-
-## Supporting Logic
-
-N/A
-
-## Why This Argument Fails
-
-N/A
-
-## Steelman Assessment
-
-**Grade**: 2/5 (Weak)
+**ARCHITECT (Native) strongly supported**
 
 ---

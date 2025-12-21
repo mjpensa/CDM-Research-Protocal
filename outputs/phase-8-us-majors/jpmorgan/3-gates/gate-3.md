@@ -1,36 +1,10 @@
-# Reasoning Gate 3: Pre-Adversarial Assessment: JPMorgan Chase & Co.
+# Gate 3 Assessment: JPMorgan Chase & Co.
 
-**Bank:** JPMorgan Chase & Co.
-**Phase:** 8 - US Investment Banks
-**Date:** 2025-12-21
+**Post-Tier 3 P(ARCHITECT):** 0.95
 
----
+## Evidence: Null result (informative absence)
+## Decision: PROCEED TO ADVERSARIAL
 
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER ADVERSARIAL
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Trajectory Analysis
-
-N/A
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Adversarial
-
-N/A
+Classification: ARCHITECT (Native) at 95%
 
 ---
-
-*Gate 3 passed. Proceeding to adversarial evidence gathering.*
