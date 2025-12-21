@@ -1,0 +1,87 @@
+{
+  "$schema": "CDM/DRR Conference Speakers Registry v1.0",
+  "description": "CDM-related conference speakers and presentations tracking",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "event_types": {
+    "isda_agm": {
+      "description": "ISDA Annual General Meeting",
+      "cdm_relevance": "high",
+      "lr_weight": 1.3,
+      "typical_frequency": "annual"
+    },
+    "finos_osff": {
+      "description": "FINOS Open Source in Finance Forum",
+      "cdm_relevance": "high",
+      "lr_weight": 1.4,
+      "typical_frequency": "annual"
+    },
+    "risk_live": {
+      "description": "Risk.net Risk Live Conference",
+      "cdm_relevance": "medium",
+      "lr_weight": 1.1,
+      "typical_frequency": "annual"
+    },
+    "derivhack": {
+      "description": "ISDA DerivHack Hackathon",
+      "cdm_relevance": "high",
+      "lr_weight": 1.2,
+      "typical_frequency": "annual"
+    },
+    "isda_regional": {
+      "description": "ISDA Regional Conference",
+      "cdm_relevance": "medium",
+      "lr_weight": 1.1,
+      "typical_frequency": "quarterly"
+    },
+    "sibos": {
+      "description": "SWIFT Sibos Conference",
+      "cdm_relevance": "medium",
+      "lr_weight": 1.0,
+      "typical_frequency": "annual"
+    },
+    "cftc_roundtable": {
+      "description": "CFTC Technical Roundtable",
+      "cdm_relevance": "high",
+      "lr_weight": 1.3,
+      "typical_frequency": "as_needed"
+    },
+    "webinar": {
+      "description": "Online Webinar/Virtual Event",
+      "cdm_relevance": "varies",
+      "lr_weight": 0.9,
+      "typical_frequency": "frequent"
+    },
+    "other": {
+      "description": "Other conference or event",
+      "cdm_relevance": "varies",
+      "lr_weight": 1.0,
+      "typical_frequency": "varies"
+    }
+  },
+
+  "cdm_relevance_keywords": [
+    "cdm", "common domain model", "digital regulatory reporting", "drr",
+    "isda", "finos", "derivatives reporting", "emir refit", "cftc rewrite",
+    "trade reporting", "regulatory reporting", "standardization", "interoperability"
+  ],
+
+  "events": [],
+
+  "speakers_by_bank": {},
+
+  "statistics": {
+    "total_events": 0,
+    "total_speakers": 0,
+    "banks_represented": 0,
+    "cdm_relevant_sessions": 0
+  },
+
+  "usage_notes": [
+    "Events are added via validate_conference_speakers.py --add-event",
+    "Speakers are added via validate_conference_speakers.py --add-speaker",
+    "CDM relevance is determined by keyword matching in session titles",
+    "Bank ID mapping uses fuzzy matching against bank-manifest.json"
+  ]
+}

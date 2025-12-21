@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "CDM/DRR Evidence Documentation Schema v4.2",
-  "description": "Documents the structure of research outputs. Primary output format is JSON (Ledger-First principle); Markdown files are rendered views for human readability. v4.0 adds product-level and jurisdiction-level operational intelligence. v4.1 adds adoption drivers and knowledge gap frameworks. v4.2 adds counterparty interoperability and vendor analysis.",
-  "version": "4.2",
+  "title": "CDM/DRR Evidence Documentation Schema v4.3",
+  "description": "Documents the structure of research outputs. Primary output format is JSON (Ledger-First principle); Markdown files are rendered views for human readability. v4.0 adds product-level and jurisdiction-level operational intelligence. v4.1 adds adoption drivers and knowledge gap frameworks. v4.2 adds counterparty interoperability and vendor analysis. v4.3 adds WebSearch completion tracking for batch validation.",
+  "version": "4.3",
   "last_updated": "2025-12-20",
 
   "output_format": "json",
@@ -133,6 +133,91 @@
           "generated_at": {"type": "string", "format": "date-time"},
           "searches_executed": {"type": "integer"},
           "evidence_hash": {"type": "string", "description": "SHA256 of evidence_items for integrity"}
+        }
+      },
+      "search_tracking": {
+        "type": "object",
+        "description": "v4.3: Track WebSearch completion status for overnight batch validation",
+        "properties": {
+          "tier1_searches": {
+            "type": "object",
+            "properties": {
+              "expected": {"type": "integer", "description": "Expected number of searches for Tier 1 sources"},
+              "completed": {"type": "integer", "description": "Number of searches successfully completed"},
+              "failed": {"type": "integer", "description": "Number of searches that failed or timed out"},
+              "queries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "query": {"type": "string"},
+                    "source_category": {"type": "string", "enum": ["official_website", "isda", "finos", "regulatory", "annual_report"]},
+                    "status": {"type": "string", "enum": ["completed", "failed", "timeout", "skipped"]},
+                    "results_found": {"type": "integer"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          },
+          "tier2_searches": {
+            "type": "object",
+            "properties": {
+              "expected": {"type": "integer"},
+              "completed": {"type": "integer"},
+              "failed": {"type": "integer"},
+              "queries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "query": {"type": "string"},
+                    "source_category": {"type": "string", "enum": ["trade_press", "business_press", "conference", "vendor", "analyst"]},
+                    "status": {"type": "string", "enum": ["completed", "failed", "timeout", "skipped"]},
+                    "results_found": {"type": "integer"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          },
+          "tier3_searches": {
+            "type": "object",
+            "properties": {
+              "expected": {"type": "integer"},
+              "completed": {"type": "integer"},
+              "failed": {"type": "integer"},
+              "queries": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "query": {"type": "string"},
+                    "source_category": {"type": "string", "enum": ["job_postings", "linkedin", "patents", "blogs", "analyst"]},
+                    "status": {"type": "string", "enum": ["completed", "failed", "timeout", "skipped"]},
+                    "results_found": {"type": "integer"},
+                    "timestamp": {"type": "string", "format": "date-time"}
+                  }
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "total_expected": {"type": "integer"},
+              "total_completed": {"type": "integer"},
+              "total_failed": {"type": "integer"},
+              "completion_rate": {"type": "number", "minimum": 0, "maximum": 1},
+              "all_tiers_complete": {"type": "boolean"},
+              "validation_status": {
+                "type": "string",
+                "enum": ["complete", "partial", "failed"],
+                "description": "Overall search completion status"
+              },
+              "notes": {"type": "string"}
+            }
+          }
         }
       },
       "product_coverage": {

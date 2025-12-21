@@ -1,0 +1,23 @@
+{
+  "bank_id": "bank-of-china",
+  "bank_name": "Bank of China",
+  "phase": 7,
+  "phase_name": "Asian Banks",
+  "classification": "UNKNOWN",
+  "sub_classification": "Insufficient-Evidence",
+  "confidence": 30,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.10,
+  "probability_pragmatist": 0.90,
+  "prior_probability": 0.10,
+  "evidence_count": {"tier1": 0, "tier2": 0, "tier3": 0, "null_results": 4},
+  "last_updated": "2025-12-20T06:30:00Z",
+  "notes": "No CDM evidence found. One of China's Big Four banks but no evidence of CDM adoption.",
+  "key_findings": [
+    "No CDM/DRR evidence in official sources",
+    "Not a FINOS member or CDM contributor",
+    "No ISDA CDM working group participation found",
+    "Mentioned in ISDA China derivatives development whitepaper (context only)"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "CDM/DRR Peer Cohorts v1.0",
+  "description": "Bank peer groupings for cross-bank calibration comparison",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "cohorts": [
+    {
+      "cohort_id": "eu-tier1",
+      "name": "European Tier 1 Investment Banks",
+      "description": "Major European G-SIBs with significant derivatives operations",
+      "members": ["deutsche-bank", "barclays", "ubs", "societe-generale", "hsbc", "bnp-paribas", "credit-suisse"],
+      "calibration_expectations": {
+        "expected_distribution": {
+          "ARCHITECT": 0.30,
+          "PRAGMATIST": 0.60,
+          "UNKNOWN": 0.10
+        },
+        "confidence_std_max": 15,
+        "allowed_classification_variance": 2,
+        "rationale": "EMIR Refit creates similar forcing function for all"
+      }
+    },
+    {
+      "cohort_id": "us-gsib",
+      "name": "US G-SIB Banks",
+      "description": "US systemically important banks",
+      "members": ["jpmorgan", "goldman-sachs", "morgan-stanley", "citigroup", "bank-of-america"],
+      "calibration_expectations": {
+        "expected_distribution": {
+          "ARCHITECT": 0.40,
+          "PRAGMATIST": 0.50,
+          "UNKNOWN": 0.10
+        },
+        "confidence_std_max": 12,
+        "rationale": "CFTC Rewrite and ISDA proximity create similar pressures"
+      }
+    },
+    {
+      "cohort_id": "japanese-megabanks",
+      "name": "Japanese Megabanks",
+      "description": "Major Japanese banks subject to JSCC requirements",
+      "members": ["nomura", "mufg", "mizuho", "smbc", "daiwa"],
+      "calibration_expectations": {
+        "expected_homogeneity": 0.75,
+        "confidence_std_max": 10,
+        "rationale": "JSCC CDM mandate creates strong homogeneity expectation"
+      }
+    },
+    {
+      "cohort_id": "swiss-private",
+      "name": "Swiss Private Banks",
+      "description": "Major Swiss private banking institutions",
+      "members": ["ubs", "credit-suisse", "pictet", "julius-baer"],
+      "calibration_expectations": {
+        "expected_distribution": {
+          "ARCHITECT": 0.25,
+          "PRAGMATIST": 0.65,
+          "UNKNOWN": 0.10
+        },
+        "rationale": "Swiss banks traditionally less transparent about technology adoption"
+      }
+    },
+    {
+      "cohort_id": "known-producers",
+      "name": "Known CDM Production Users",
+      "description": "Banks with confirmed CDM production usage (per anchor-points.json)",
+      "members": ["jpmorgan", "bnp-paribas", "jscc", "pictet"],
+      "calibration_expectations": {
+        "required_classification": "ARCHITECT",
+        "minimum_confidence": 80,
+        "rationale": "Anchor points - these must be classified as ARCHITECT"
+      }
+    }
+  ],
+
+  "calibration_expectations_defaults": {
+    "confidence_std_max": 15,
+    "probability_variance_max": 0.25,
+    "min_members_for_comparison": 3
+  },
+
+  "usage_notes": [
+    "Cohorts are used for peer calibration in consistency checking",
+    "A bank can belong to multiple cohorts",
+    "Known producers cohort provides hard constraints (must be ARCHITECT)",
+    "Other cohorts provide soft constraints (statistical consistency)"
+  ]
+}

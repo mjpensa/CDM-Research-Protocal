@@ -1,0 +1,314 @@
+{
+  "bank_id": "barclays",
+  "bank_name": "Barclays PLC",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "BARC-001",
+      "claim": "Barclays demonstration of interest rate swap processing using CDM, introduced by Lee Braine (Managing Director)",
+      "source_url": "https://resources.finos.org/content/barclays-demonstration-of-interest-rate-swap-processing-using-common-domain-model-cdm/",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2023-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "recent",
+        "specificity": "specific"
+      },
+      "excerpt": "Barclays has demonstrated interest rate swap processing using the Common Domain Model (CDM) open standard. This demonstration was introduced by Lee Braine, Managing Director.",
+      "caveats": "Demonstration/prototype level, not confirmed production deployment.",
+      "lr_mapping": {
+        "evidence_type": "prototype_demonstration",
+        "likelihood_ratio": 3.5
+      },
+      "product_scope": [
+        "IRS"
+      ],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "explicit",
+      "freshness": {
+        "age_days": 1085,
+        "category": "dated",
+        "weight_multiplier": 0.51
+      },
+      "source_domain": "resources.finos.org"
+    },
+    {
+      "id": "BARC-002",
+      "claim": "Barclays released CDM prototype for CCPs showing how derivatives industry could implement common data standard for IRS",
+      "source_url": "https://www.risk.net/risk-management/7886321/barclays-looks-to-woo-ccps-with-cdm-prototype",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2021-10-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "dated",
+        "specificity": "specific"
+      },
+      "excerpt": "Barclays has released a blueprint showing how the derivatives industry could implement a common data standard for interest rate swaps – a potentially big step towards reducing post-trade costs.",
+      "caveats": "Blueprint/prototype level. Would require new utility to maintain golden record of trades.",
+      "lr_mapping": {
+        "evidence_type": "prototype_release",
+        "likelihood_ratio": 3.0
+      },
+      "product_scope": [
+        "IRS"
+      ],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "explicit",
+      "freshness": {
+        "age_days": 1542,
+        "category": "historical",
+        "weight_multiplier": 0.25
+      },
+      "source_domain": "risk.net"
+    },
+    {
+      "id": "BARC-003",
+      "claim": "Lee Braine (Director R&E, Barclays) warned 'some business lines might die' without CDM adoption (Nov 2019)",
+      "source_url": "https://www.risk.net/derivatives/7147901/use-cdm-or-some-business-lines-might-die-barclays",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2019-11-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Lee Braine, director of research and engineering at Barclays: 'It will become an unacceptable scenario if this continues – cost of doing business will be too high in many product categories.'",
+      "caveats": "Advocacy statement from 2019. Shows strategic commitment to CDM at senior level.",
+      "lr_mapping": {
+        "evidence_type": "executive_advocacy",
+        "likelihood_ratio": 2.5
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "unknown",
+      "freshness": {
+        "age_days": 2242,
+        "category": "historical",
+        "weight_multiplier": 0.25
+      },
+      "source_domain": "risk.net"
+    },
+    {
+      "id": "BARC-004",
+      "claim": "Barclays hosted DerivHack 2018 and DerivHack 2019 coding hackathons for CDM exploration (in collaboration with ISDA and REGnosys)",
+      "source_url": "https://www.risk.net/journal-of-financial-market-infrastructures/7914891/industry-adoption-scenarios-for-authoritative-data-stores-using-the-international-swaps-and-derivatives-association-common-domain-model",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "date": "2019-11-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Barclays (in collaboration with ISDA and REGnosys) hosted the Barclays DerivHack 2018 coding hackathon for market participants to explore the CDM for derivatives as well as the Barclays DerivHack 2019 for securities.",
+      "caveats": "Hackathons from 2018-2019. Shows early leadership but dated.",
+      "lr_mapping": {
+        "evidence_type": "ecosystem_leadership",
+        "likelihood_ratio": 2.5
+      },
+      "product_scope": [
+        "IRS",
+        "Securities"
+      ],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "explicit",
+      "freshness": {
+        "age_days": 2242,
+        "category": "historical",
+        "weight_multiplier": 0.25
+      },
+      "source_domain": "risk.net"
+    },
+    {
+      "id": "BARC-005",
+      "claim": "Barclays advocates that exchanges and CCPs should take lead role in CDM infrastructure delivery",
+      "source_url": "https://www.risk.net/derivatives/7655006/common-domain-model-needs-infrastructure-push-says-barclays",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2021-03-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "dated",
+        "specificity": "moderate"
+      },
+      "excerpt": "Exchanges and clearing houses should take a lead role in delivering the International Swaps and Derivatives Association's data standardisation project to the market, according to a new paper from Barclays.",
+      "caveats": "Published paper advocating infrastructure-led adoption strategy.",
+      "lr_mapping": {
+        "evidence_type": "thought_leadership",
+        "likelihood_ratio": 2.0
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "unknown",
+      "freshness": {
+        "age_days": 1756,
+        "category": "historical",
+        "weight_multiplier": 0.25
+      },
+      "source_domain": "risk.net"
+    },
+    {
+      "id": "BARC-006",
+      "claim": "Barclays says repo clearing could spur CDM adoption (Dec 2023)",
+      "source_url": "https://www.risk.net/risk-management/7958532/repo-clearing-could-spur-cdm-adoption-barclays",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2023-12-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "recent",
+        "specificity": "moderate"
+      },
+      "excerpt": "Proponents of the common domain model (CDM) say it could save dealers at least $3 billion a year in swaps reconciliation and post-trade processing costs.",
+      "caveats": "Recent continued advocacy for CDM adoption.",
+      "lr_mapping": {
+        "evidence_type": "continued_advocacy",
+        "likelihood_ratio": 1.8
+      },
+      "product_scope": [
+        "Repo"
+      ],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "unknown",
+      "freshness": {
+        "age_days": 751,
+        "category": "dated",
+        "weight_multiplier": 0.74
+      },
+      "source_domain": "risk.net"
+    }
+  ],
+  "null_results": [],
+  "meta": {
+    "tier_completed": 3,
+    "generated_at": "2025-12-20T03:00:00Z",
+    "searches_executed": 6,
+    "evidence_fingerprint": {
+      "tier1_count": 3,
+      "tier2_count": 3,
+      "tier3_count": 0,
+      "null_results_count": 0,
+      "highest_tier": 1,
+      "highest_claim_type": "pilot_or_poc",
+      "evidence_direction_ratio": 1.0,
+      "average_freshness": 0.52,
+      "source_diversity": 0.33,
+      "vendor_signals_present": false,
+      "production_signals_present": false,
+      "contribution_signals_present": true,
+      "claim_type_vector": [
+        0,
+        2,
+        3,
+        1,
+        0,
+        0
+      ]
+    },
+    "provenance": {
+      "evidence_hash": "80ea5c51eb968215fe4d1b017fc1b3399f8e29815ce8325f69a570106d8cb8a2",
+      "signed_at": "2025-12-21T06:40:53.079114",
+      "previous_hash": null
+    },
+    "schema_version": "2.3"
+  },
+  "search_tracking": {
+    "summary": {
+      "total_expected": 6,
+      "total_completed": 6,
+      "all_tiers_complete": true,
+      "validation_status": "complete"
+    }
+  },
+  "key_individual": {
+    "name": "Lee Braine",
+    "title": "Managing Director, Research and Engineering",
+    "role": "CDM Advocate and Thought Leader",
+    "evidence_ids": [
+      "BARC-001",
+      "BARC-003"
+    ]
+  },
+  "adoption_drivers": {
+    "assessment_date": "2025-12-20",
+    "pressures_to_adopt": [
+      {
+        "driver_type": "cost_reduction",
+        "description": "Post-trade cost reduction - $3B industry savings potential",
+        "strength": "high",
+        "evidence_ids": [
+          "BARC-003",
+          "BARC-006"
+        ],
+        "confidence": 80
+      },
+      {
+        "driver_type": "regulatory_mandate",
+        "description": "UK EMIR Refit and EMIR 3.0",
+        "strength": "medium",
+        "evidence_ids": [],
+        "confidence": 60
+      }
+    ],
+    "hesitations_against": [],
+    "net_assessment": {
+      "outcome": "adoption_likely",
+      "rationale": "Strong executive sponsorship (Lee Braine), prototype work, thought leadership, and hackathon hosting demonstrate strategic commitment to CDM.",
+      "timeline_estimate": "Likely in production or near-production for specific use cases",
+      "confidence": 75
+    }
+  },
+  "trust_metrics": {
+    "overall_confidence": 15,
+    "confidence_rationale": "No verified evidence",
+    "source_diversity_score": 0.306,
+    "temporal_health_score": 0.0,
+    "corroboration_rate": 0.333,
+    "verification_rate": 0.0,
+    "authority_score": 1.0,
+    "enhanced_authority_score": 0.5,
+    "relationship_corroboration_rate": 0.46,
+    "pressure_vector": {
+      "bank_id": "barclays",
+      "architect_pressure": 0.0,
+      "pragmatist_pressure": 0.0,
+      "net_direction": "NEUTRAL",
+      "net_strength": 0.0,
+      "confidence": 0.2,
+      "contributing_relationships": []
+    },
+    "excerpt_verification_rate": 0.0,
+    "warnings": [
+      "Single-source claim: BARC-003 (membership_or_participation)",
+      "Single-source claim: BARC-005 (membership_or_participation)",
+      "Single-source claim: BARC-006 (membership_or_participation)",
+      "Uncorroborated Tier 1 claim: BARC-004",
+      "BARC-002: Tier 1 too high for risk.net (expected T2+)",
+      "BARC-004: Tier 1 too high for risk.net (expected T2+)",
+      "Most evidence is dated or historical: 0% current",
+      "Low verification rate: 0%",
+      "[CONSISTENCY] PEER_OUTLIER_CONFIDENCE: Bank confidence (75%) is outlier in European Tier 1 Investment Banks (mean: 54%, std: 5%)",
+      "[CONSISTENCY] PEER_OUTLIER_CLASSIFICATION: Bank classified as ARCHITECT while 4/4 peers are PRAGMATIST"
+    ],
+    "flags": [
+      "STALE_EVIDENCE",
+      "UNVERIFIED_URLS",
+      "TIER_AUTHORITY_MISMATCH",
+      "CONSISTENCY_WARNING",
+      "CONSISTENCY_WARNING",
+      "PEER_OUTLIER",
+      "PEER_OUTLIER"
+    ]
+  },
+  "contradictions": [],
+  "contradiction_details": []
+}

@@ -1,0 +1,301 @@
+{
+  "$schema": "CDM/DRR Source Credibility Registry v1.0",
+  "description": "Granular credibility scoring for sources beyond simple tier mapping",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "credibility_dimensions": {
+    "accuracy": {
+      "weight": 0.35,
+      "description": "Historical accuracy of CDM-related claims"
+    },
+    "specificity": {
+      "weight": 0.25,
+      "description": "Level of technical detail provided"
+    },
+    "verification_rate": {
+      "weight": 0.20,
+      "description": "How often claims can be independently verified"
+    },
+    "recency_bias": {
+      "weight": 0.10,
+      "description": "Tendency to favor recent vs. comprehensive coverage"
+    },
+    "vendor_affinity": {
+      "weight": 0.10,
+      "description": "Known commercial relationships (negative signal)"
+    }
+  },
+
+  "domain_credibility": {
+    "risk.net": {
+      "base_tier": 2,
+      "composite_score": 0.85,
+      "cdm_coverage_quality": "excellent",
+      "credibility_scores": {
+        "accuracy": 0.90,
+        "specificity": 0.85,
+        "verification_rate": 0.80,
+        "recency_bias": 0.15,
+        "vendor_affinity": 0.10
+      },
+      "notes": "Best trade press coverage of CDM/DRR. Leo Sheridan covers regularly.",
+      "lr_multiplier": 1.15
+    },
+    "waterstechnology.com": {
+      "base_tier": 2,
+      "composite_score": 0.78,
+      "cdm_coverage_quality": "good",
+      "credibility_scores": {
+        "accuracy": 0.80,
+        "specificity": 0.75,
+        "verification_rate": 0.75,
+        "recency_bias": 0.20,
+        "vendor_affinity": 0.15
+      },
+      "notes": "Good fintech coverage, less CDM-specific depth than Risk.net",
+      "lr_multiplier": 1.05
+    },
+    "fnlondon.com": {
+      "base_tier": 2,
+      "composite_score": 0.72,
+      "cdm_coverage_quality": "moderate",
+      "credibility_scores": {
+        "accuracy": 0.75,
+        "specificity": 0.65,
+        "verification_rate": 0.70,
+        "recency_bias": 0.25,
+        "vendor_affinity": 0.20
+      },
+      "notes": "Financial News London - general banking tech coverage",
+      "lr_multiplier": 1.0
+    },
+    "isda.org": {
+      "base_tier": 1,
+      "composite_score": 0.95,
+      "cdm_coverage_quality": "authoritative",
+      "credibility_scores": {
+        "accuracy": 1.00,
+        "specificity": 0.95,
+        "verification_rate": 0.95,
+        "recency_bias": 0.05,
+        "vendor_affinity": 0.00
+      },
+      "notes": "Standards body - authoritative source",
+      "lr_multiplier": 1.3
+    },
+    "finos.org": {
+      "base_tier": 1,
+      "composite_score": 0.92,
+      "cdm_coverage_quality": "authoritative",
+      "credibility_scores": {
+        "accuracy": 0.95,
+        "specificity": 0.90,
+        "verification_rate": 0.90,
+        "recency_bias": 0.10,
+        "vendor_affinity": 0.05
+      },
+      "notes": "Open source foundation - code artifacts provide verification",
+      "lr_multiplier": 1.25
+    },
+    "github.com": {
+      "base_tier": 1,
+      "composite_score": 0.90,
+      "cdm_coverage_quality": "verifiable",
+      "credibility_scores": {
+        "accuracy": 0.95,
+        "specificity": 1.00,
+        "verification_rate": 1.00,
+        "recency_bias": 0.00,
+        "vendor_affinity": 0.00
+      },
+      "notes": "Code artifacts are verifiable - highest specificity",
+      "lr_multiplier": 1.2
+    },
+    "linkedin.com": {
+      "base_tier": 3,
+      "composite_score": 0.40,
+      "cdm_coverage_quality": "variable",
+      "credibility_scores": {
+        "accuracy": 0.50,
+        "specificity": 0.30,
+        "verification_rate": 0.20,
+        "recency_bias": 0.60,
+        "vendor_affinity": 0.40
+      },
+      "notes": "Self-reported, promotional bias, requires corroboration",
+      "lr_multiplier": 0.7
+    },
+    "medium.com": {
+      "base_tier": 3,
+      "composite_score": 0.35,
+      "cdm_coverage_quality": "variable",
+      "credibility_scores": {
+        "accuracy": 0.40,
+        "specificity": 0.40,
+        "verification_rate": 0.25,
+        "recency_bias": 0.50,
+        "vendor_affinity": 0.45
+      },
+      "notes": "Blog platform - quality varies widely, often promotional",
+      "lr_multiplier": 0.65
+    },
+    "substack.com": {
+      "base_tier": 3,
+      "composite_score": 0.45,
+      "cdm_coverage_quality": "variable",
+      "credibility_scores": {
+        "accuracy": 0.50,
+        "specificity": 0.50,
+        "verification_rate": 0.30,
+        "recency_bias": 0.40,
+        "vendor_affinity": 0.35
+      },
+      "notes": "Newsletter platform - some quality analysts, verify author",
+      "lr_multiplier": 0.75
+    },
+    "ft.com": {
+      "base_tier": 2,
+      "composite_score": 0.70,
+      "cdm_coverage_quality": "general",
+      "credibility_scores": {
+        "accuracy": 0.85,
+        "specificity": 0.50,
+        "verification_rate": 0.70,
+        "recency_bias": 0.30,
+        "vendor_affinity": 0.10
+      },
+      "notes": "High accuracy but limited CDM-specific depth",
+      "lr_multiplier": 0.95
+    },
+    "bloomberg.com": {
+      "base_tier": 2,
+      "composite_score": 0.72,
+      "cdm_coverage_quality": "general",
+      "credibility_scores": {
+        "accuracy": 0.85,
+        "specificity": 0.55,
+        "verification_rate": 0.75,
+        "recency_bias": 0.25,
+        "vendor_affinity": 0.15
+      },
+      "notes": "High accuracy, moderate CDM-specific coverage",
+      "lr_multiplier": 0.95
+    },
+    "reuters.com": {
+      "base_tier": 2,
+      "composite_score": 0.68,
+      "cdm_coverage_quality": "general",
+      "credibility_scores": {
+        "accuracy": 0.80,
+        "specificity": 0.45,
+        "verification_rate": 0.70,
+        "recency_bias": 0.35,
+        "vendor_affinity": 0.10
+      },
+      "notes": "General wire coverage, limited CDM depth",
+      "lr_multiplier": 0.90
+    }
+  },
+
+  "vendor_domain_adjustments": {
+    "description": "Domains from CDM vendors require additional scrutiny",
+    "domains": {
+      "regnosys.com": {
+        "vendor_type": "cdm_tooling",
+        "bias_adjustment": 0.3,
+        "requires_corroboration": true,
+        "notes": "CDM tooling vendor - strong marketing incentive"
+      },
+      "deltacapita.com": {
+        "vendor_type": "managed_service",
+        "bias_adjustment": 0.35,
+        "requires_corroboration": true,
+        "notes": "CDM managed services - claims need bank confirmation"
+      },
+      "murex.com": {
+        "vendor_type": "platform",
+        "bias_adjustment": 0.25,
+        "requires_corroboration": true,
+        "notes": "Platform vendor with CDM module"
+      },
+      "calypso.com": {
+        "vendor_type": "platform",
+        "bias_adjustment": 0.25,
+        "requires_corroboration": true,
+        "notes": "Platform vendor with CDM module"
+      },
+      "finastra.com": {
+        "vendor_type": "platform",
+        "bias_adjustment": 0.25,
+        "requires_corroboration": true,
+        "notes": "Platform vendor with CDM module"
+      }
+    }
+  },
+
+  "author_credibility": {
+    "description": "Individual authors with known credibility profiles",
+    "authors": [
+      {
+        "name": "Leo Sheridan",
+        "primary_domain": "risk.net",
+        "credibility_multiplier": 1.15,
+        "specialty_areas": ["cdm", "regulatory_reporting", "drr"],
+        "notes": "Risk.net's primary CDM/DRR reporter"
+      },
+      {
+        "name": "Scott O'Malia",
+        "primary_domain": "isda.org",
+        "credibility_multiplier": 1.3,
+        "specialty_areas": ["isda", "cdm", "regulatory"],
+        "notes": "ISDA CEO - authoritative on ISDA initiatives"
+      },
+      {
+        "name": "PJ Di Giammarino",
+        "primary_domain": "jwg-it.eu",
+        "credibility_multiplier": 1.1,
+        "specialty_areas": ["regulatory_technology", "drr"],
+        "notes": "JWG founder - regulatory technology expert"
+      },
+      {
+        "name": "Leo Sherlock",
+        "primary_domain": "regnosys.com",
+        "credibility_multiplier": 0.85,
+        "specialty_areas": ["cdm", "rosetta"],
+        "notes": "REGnosys - expert but vendor-affiliated"
+      }
+    ]
+  },
+
+  "bias_registry": {
+    "description": "Sources with documented bias patterns",
+    "sources_with_known_bias": [
+      {
+        "source_pattern": "*.vendor.com/press-release/*",
+        "bias_type": "promotional",
+        "adjustment_factor": 0.6,
+        "mitigation": "Require bank confirmation for customer claims"
+      },
+      {
+        "source_pattern": "linkedin.com/posts/*",
+        "bias_type": "self_promotional",
+        "adjustment_factor": 0.7,
+        "mitigation": "Corroborate with official sources"
+      },
+      {
+        "source_pattern": "*.consultancy.com/insights/*",
+        "bias_type": "lead_generation",
+        "adjustment_factor": 0.8,
+        "mitigation": "Focus on factual claims, discount predictions"
+      }
+    ]
+  },
+
+  "usage_notes": [
+    "composite_score is weighted sum of credibility_scores",
+    "lr_multiplier adjusts the base LR from bayesian-lr-tables.json",
+    "vendor_affinity should be subtracted from (1 - vendor_affinity) for final score",
+    "Domains not listed should use tier-based defaults from CLAUDE.md"
+  ]
+}

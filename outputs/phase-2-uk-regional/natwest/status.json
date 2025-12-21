@@ -1,0 +1,23 @@
+{
+  "bank_id": "natwest",
+  "bank_name": "NatWest Group plc",
+  "phase": 2,
+  "phase_name": "UK Regional",
+  "classification": "OBSERVER",
+  "sub_classification": "Historical-Engagement",
+  "confidence": 55,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.35,
+  "probability_pragmatist": 0.65,
+  "prior_probability": 0.20,
+  "evidence_count": {"tier1": 2, "tier2": 0, "tier3": 0, "null_results": 1},
+  "stages_completed": ["initialize", "pre_mortem", "tier1_evidence", "bayesian_1", "gate_1", "tier2_evidence", "bayesian_2", "gate_2", "tier3_evidence", "bayesian_3", "gate_3", "adversarial_challenge", "final_classification", "synthesis"],
+  "last_updated": "2025-12-20T04:00:00Z",
+  "notes": "UK DRR pilot participant (2018-2019) + Fluxnova FINOS contributor. OBSERVER due to dated CDM evidence and no current CDM activity.",
+  "key_findings": [
+    "UK FCA DRR Pilot Phase 1 & 2 participant (2018-2019)",
+    "Fluxnova FINOS co-maintainer (James McLeod)",
+    "Strong open source capability but NOT contributing to CDM"
+  ]
+}

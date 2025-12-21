@@ -1,0 +1,21 @@
+{
+  "bank_id": "santander",
+  "bank_name": "Banco Santander",
+  "phase": 5,
+  "phase_name": "Spanish Banks",
+  "classification": "OBSERVER",
+  "sub_classification": "Historical-Engagement",
+  "confidence": 50,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.30,
+  "probability_pragmatist": 0.70,
+  "prior_probability": 0.20,
+  "evidence_count": {"tier1": 1, "tier2": 0, "tier3": 0, "null_results": 2},
+  "last_updated": "2025-12-20T05:00:00Z",
+  "notes": "UK DRR pilot participant (2018-2019) but no recent CDM evidence. OBSERVER due to dated engagement only.",
+  "key_findings": [
+    "UK FCA DRR Pilot participant (2018-2019)",
+    "No recent CDM activity (5+ years since pilot)"
+  ]
+}

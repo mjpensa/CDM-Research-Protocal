@@ -27,6 +27,8 @@ import json
 import os
 import sys
 import time
+import gzip
+import hashlib
 import logging
 import platform
 from pathlib import Path
@@ -46,6 +48,43 @@ from state_schema import (
     BankState, WorkflowState, ProbabilityUpdate, CheckpointEvent,
     ErrorEvent, ReviewItem, STAGE_SEQUENCE
 )
+from config_loader import (
+    get_prior_for_bank,
+    get_state_validation_config,
+    get_state_versioning_config,
+    get_state_management_config
+)
+
+# Import shared locking utilities using direct import (avoid broken __init__.py)
+import importlib.util
+_file_lock_path = Path(__file__).parent / "orchestrator" / "file_lock.py"
+if _file_lock_path.exists():
+    _spec = importlib.util.spec_from_file_location("file_lock", _file_lock_path)
+    _file_lock_module = importlib.util.module_from_spec(_spec)
+    _spec.loader.exec_module(_file_lock_module)
+    _shared_process_exists = _file_lock_module.process_exists
+    _shared_file_lock = _file_lock_module.file_lock
+    SHARED_LOCK_AVAILABLE = True
+else:
+    SHARED_LOCK_AVAILABLE = False
+    _shared_file_lock = None
+
+# Import LockingService for centralized locking configuration
+try:
+    from locking_service import get_locking_service
+    LOCKING_SERVICE_AVAILABLE = True
+except ImportError:
+    LOCKING_SERVICE_AVAILABLE = False
+    get_locking_service = None
+
+# Import log rotation manager
+try:
+    from log_rotation import notify_log_entry as _notify_log_rotation
+    LOG_ROTATION_AVAILABLE = True
+except ImportError:
+    LOG_ROTATION_AVAILABLE = False
+    def _notify_log_rotation(log_type: str, state_dir=None):
+        pass  # No-op if module not available
 
 logger = logging.getLogger(__name__)
 
@@ -58,6 +97,258 @@ class StateLockError(Exception):
 class StateValidationError(Exception):
     """Raised when state validation fails."""
     pass
+
+
+class TransactionRollbackError(Exception):
+    """Raised when transaction rollback fails."""
+    pass
+
+
+class PhaseResolutionError(Exception):
+    """
+    Raised when phase directory cannot be uniquely determined.
+
+    This indicates ambiguous state in the outputs directory that
+    requires manual resolution (e.g., duplicate phase-N-* directories
+    for the same bank).
+
+    Gap 9 fix: Fail loudly on ambiguity instead of silent fallback.
+    """
+    pass
+
+
+class ValidationMode:
+    """
+    Validation mode for state operations.
+
+    Modes:
+        STRICT: Raise exception on validation errors (production default)
+        WARN: Log warning but proceed with save (development/debugging)
+        OFF: Disable validation entirely (emergency override only)
+    """
+    STRICT = "strict"
+    WARN = "warn"
+    OFF = "off"
+
+
+def _determine_validation_mode() -> str:
+    """
+    Determine validation mode from environment variable or config.
+
+    Priority:
+        1. CDM_VALIDATION_MODE environment variable
+        2. state_validation.mode from config/validation-rules.json
+        3. Default to STRICT
+
+    Returns:
+        Validation mode string (strict, warn, or off)
+    """
+    import os
+
+    # Check environment variable first
+    config = get_state_validation_config()
+    env_var = config.get("mode_override_env_var", "CDM_VALIDATION_MODE")
+    env_mode = os.environ.get(env_var, "").lower()
+
+    if env_mode in (ValidationMode.STRICT, ValidationMode.WARN, ValidationMode.OFF):
+        return env_mode
+
+    # Fall back to config file
+    config_mode = config.get("mode", ValidationMode.STRICT).lower()
+    if config_mode in (ValidationMode.STRICT, ValidationMode.WARN, ValidationMode.OFF):
+        return config_mode
+
+    # Default to STRICT for safety
+    return ValidationMode.STRICT
+
+
+class StateTransaction:
+    """
+    Transaction manager for multi-state atomic updates.
+
+    Implements the Saga pattern with compensation:
+    - Acquires all locks upfront (prevents deadlock via consistent ordering)
+    - Tracks original state for rollback
+    - Provides atomic commit or full rollback
+
+    Usage:
+        with manager.multi_state_transaction() as txn:
+            txn.acquire_locks([bank_path, workflow_path])
+
+            # Modify states
+            bank_state.set_blocked(...)
+            workflow.mark_bank_blocked(...)
+
+            # Stage writes
+            txn.stage_write(bank_path, bank_state.to_dict())
+            txn.stage_write(workflow_path, workflow.to_dict())
+
+            # Commit atomically
+            txn.commit()
+    """
+
+    def __init__(self, manager: 'UnifiedStateManager'):
+        self.manager = manager
+        self._locks_held: List[Path] = []
+        self._lock_fds: Dict[Path, int] = {}
+        self._original_states: Dict[Path, dict] = {}
+        self._pending_writes: Dict[Path, dict] = {}
+        self._committed = False
+
+    def acquire_locks(self, paths: List[Path]) -> None:
+        """
+        Acquire all locks in consistent order to prevent deadlock.
+
+        Sorts paths alphabetically to ensure all processes acquire
+        locks in the same order.
+
+        Args:
+            paths: List of file paths to lock
+
+        Raises:
+            StateLockError: If any lock cannot be acquired
+        """
+        # Sort for consistent ordering (prevents deadlock)
+        sorted_paths = sorted(paths, key=lambda p: str(p))
+
+        for path in sorted_paths:
+            try:
+                fd = self._acquire_single_lock(path)
+                self._lock_fds[path] = fd
+                self._locks_held.append(path)
+
+                # Snapshot original state for rollback
+                if path.exists():
+                    try:
+                        with open(path, 'r', encoding='utf-8') as f:
+                            self._original_states[path] = json.load(f)
+                    except (json.JSONDecodeError, IOError):
+                        pass  # No original state to restore
+
+            except Exception as e:
+                # Failed to acquire - release all held locks
+                self._release_all_locks()
+                raise StateLockError(f"Failed to acquire lock on {path}: {e}")
+
+    def _acquire_single_lock(self, path: Path) -> int:
+        """Acquire lock on single file, returning file descriptor."""
+        lock_path = path.with_suffix('.lock')
+        start_time = time.time()
+
+        while True:
+            try:
+                fd = os.open(str(lock_path), os.O_CREAT | os.O_EXCL | os.O_RDWR)
+
+                lock_info = json.dumps({
+                    "pid": os.getpid(),
+                    "acquired": datetime.now(timezone.utc).isoformat(),
+                    "host": platform.node(),
+                    "file": str(path),
+                    "transaction": True,  # Mark as part of transaction
+                })
+                os.write(fd, lock_info.encode('utf-8'))
+                return fd
+
+            except FileExistsError:
+                if self.manager._handle_stale_lock(lock_path):
+                    continue  # Stale lock removed, try again
+
+                if time.time() - start_time > self.manager.lock_timeout:
+                    raise StateLockError(f"Timeout acquiring lock: {path}")
+
+                time.sleep(0.1)
+
+            except OSError as e:
+                if time.time() - start_time > self.manager.lock_timeout:
+                    raise StateLockError(f"Error acquiring lock on {path}: {e}")
+                time.sleep(0.1)
+
+    def stage_write(self, path: Path, data: dict) -> None:
+        """
+        Stage a write for atomic commit.
+
+        Args:
+            path: File path to write to
+            data: Data to write (will be JSON serialized)
+        """
+        import copy
+        self._pending_writes[path] = copy.deepcopy(data)
+
+    def commit(self) -> None:
+        """
+        Atomically commit all staged writes.
+
+        If any write fails, rolls back all changes.
+
+        Raises:
+            ValueError: If transaction already committed
+            TransactionRollbackError: If rollback fails after write error
+        """
+        if self._committed:
+            raise ValueError("Transaction already committed")
+
+        written_paths = []
+
+        try:
+            for path, data in self._pending_writes.items():
+                self.manager._atomic_write(path, data)
+                written_paths.append(path)
+
+            self._committed = True
+            logger.debug(f"Transaction committed: {len(written_paths)} files written")
+
+        except Exception as e:
+            logger.error(f"Transaction write failed, rolling back: {e}")
+            self._rollback(written_paths)
+            raise
+
+        finally:
+            self._release_all_locks()
+
+    def _rollback(self, written_paths: List[Path]) -> None:
+        """Restore original state for all written paths."""
+        rollback_errors = []
+
+        for path in written_paths:
+            if path in self._original_states:
+                try:
+                    self.manager._atomic_write(path, self._original_states[path])
+                    logger.debug(f"Rolled back: {path}")
+                except Exception as e:
+                    rollback_errors.append(f"{path}: {e}")
+            else:
+                # File was new - delete it
+                try:
+                    if path.exists():
+                        path.unlink()
+                        logger.debug(f"Removed new file: {path}")
+                except Exception as e:
+                    rollback_errors.append(f"delete {path}: {e}")
+
+        if rollback_errors:
+            raise TransactionRollbackError(
+                f"Rollback failed for: {'; '.join(rollback_errors)}"
+            )
+
+    def _release_all_locks(self) -> None:
+        """Release all held locks."""
+        for path in reversed(self._locks_held):
+            fd = self._lock_fds.get(path)
+            lock_path = path.with_suffix('.lock')
+
+            if fd is not None:
+                try:
+                    os.close(fd)
+                except OSError:
+                    pass
+
+            try:
+                lock_path.unlink()
+            except (FileNotFoundError, OSError):
+                pass
+
+        self._locks_held.clear()
+        self._lock_fds.clear()
 
 
 class UnifiedStateManager:
@@ -92,13 +383,33 @@ class UnifiedStateManager:
         self.error_log_path = self.state_dir / "error-log.json"
         self.review_queue_path = self.state_dir / "review-queue.json"
 
-        # Lock configuration
-        self.lock_timeout = 30  # seconds
-        self.stale_lock_age = 300  # 5 minutes - Phase 7: reduced for faster recovery
+        # Lock configuration from config file (Gap 10 fix)
+        self._timing_config = self._load_timing_config()
+        self.lock_timeout = self._timing_config.get('lock_timeout_seconds', 30)
+        self.stale_lock_age = self._timing_config.get('stale_lock_age_seconds', 300)
+        self.workflow_staleness_hours = self._timing_config.get('workflow_staleness_hours', 1)
+
+        # Phase scan range from config
+        phase_range = self._timing_config.get('phase_scan_range', {'min': 1, 'max': 9})
+        self.phase_min = phase_range.get('min', 1)
+        self.phase_max = phase_range.get('max', 9)
 
         # Phase 5: Auto-sync workflow state from bank states on startup
         if auto_sync:
             self._auto_sync_if_needed()
+
+    def _load_timing_config(self) -> Dict[str, Any]:
+        """Load timing configuration from decision-thresholds.json (Gap 10 fix)."""
+        try:
+            return get_state_management_config()
+        except Exception as e:
+            logger.warning(f"Could not load timing config: {e}. Using defaults.")
+            return {
+                'lock_timeout_seconds': 30,
+                'stale_lock_age_seconds': 300,
+                'workflow_staleness_hours': 1,
+                'phase_scan_range': {'min': 1, 'max': 9}
+            }
 
     def _auto_sync_if_needed(self) -> None:
         """
@@ -128,11 +439,12 @@ class UnifiedStateManager:
             logger.info("Workflow state empty, scanning for existing bank states...")
             self._scan_and_sync_all_phases()
         else:
-            # Check for stale state (last update > 1 hour ago)
+            # Check for stale state (configurable staleness threshold - Gap 10 fix)
             try:
                 last = datetime.fromisoformat(workflow.last_updated.replace('Z', '+00:00'))
                 age = (datetime.now(timezone.utc) - last).total_seconds()
-                if age > 3600:  # 1 hour
+                staleness_seconds = self.workflow_staleness_hours * 3600
+                if age > staleness_seconds:
                     logger.info(f"Workflow state is stale ({age/3600:.1f}h old), syncing from bank states...")
                     self._scan_and_sync_all_phases()
             except Exception as e:
@@ -140,7 +452,7 @@ class UnifiedStateManager:
 
     def _scan_and_sync_all_phases(self) -> None:
         """Phase 5: Scan all phase directories and sync workflow state."""
-        for phase in range(1, 10):
+        for phase in range(self.phase_min, self.phase_max + 1):
             try:
                 self.sync_workflow_state_from_bank_states(phase)
             except Exception as e:
@@ -184,179 +496,101 @@ class UnifiedStateManager:
         """
         Get the path to a bank's status.json file.
 
-        Uses deterministic path resolution via bank manifest (Issue #8 fix).
+        Uses deterministic path resolution via bank manifest.
+        Fails loudly on ambiguity (Gap 9 fix).
+
+        Args:
+            bank_id: Bank identifier
+            phase: Phase number
+
+        Returns:
+            Path to status.json file
+
+        Raises:
+            PhaseResolutionError: If multiple phase directories exist for
+                                  the same phase number and manifest lookup fails
         """
         # First try the canonical name from manifest
         phase_name = self._get_phase_name(phase)
 
         if phase_name:
+            # Manifest-based resolution (preferred)
             bank_dir = self.outputs_dir / f"phase-{phase}-{phase_name}" / bank_id
         else:
             # Fall back to glob if manifest not available
             phase_dirs = sorted(self.outputs_dir.glob(f"phase-{phase}-*"))
-            if phase_dirs:
+
+            if len(phase_dirs) == 0:
+                # No existing phase directory - create default
+                bank_dir = self.outputs_dir / f"phase-{phase}" / bank_id
+            elif len(phase_dirs) == 1:
+                # Single match - use it
                 bank_dir = phase_dirs[0] / bank_id
             else:
-                # Create default phase directory
-                bank_dir = self.outputs_dir / f"phase-{phase}" / bank_id
+                # AMBIGUITY DETECTED - fail loudly (Gap 9 fix)
+                # Check if bank exists in any of them
+                matches = [d for d in phase_dirs if (d / bank_id).exists()]
+
+                if len(matches) == 0:
+                    # Bank doesn't exist in any - use first directory
+                    bank_dir = phase_dirs[0] / bank_id
+                elif len(matches) == 1:
+                    # Bank exists in exactly one - use that
+                    bank_dir = matches[0] / bank_id
+                else:
+                    # Bank exists in multiple directories - ambiguous!
+                    raise PhaseResolutionError(
+                        f"Ambiguous phase {phase} resolution for {bank_id}. "
+                        f"Bank found in multiple directories: {[d.name for d in matches]}. "
+                        f"Fix bank-manifest.json or remove duplicate directories."
+                    )
 
         bank_dir.mkdir(parents=True, exist_ok=True)
         return bank_dir / "status.json"
 
-    def _process_exists(self, pid: int) -> bool:
-        """
-        Check if a process with given PID exists.
-
-        Args:
-            pid: Process ID to check
-
-        Returns:
-            True if process exists, False otherwise
-        """
-        if WINDOWS:
-            try:
-                import ctypes
-                kernel32 = ctypes.windll.kernel32
-                PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
-                handle = kernel32.OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
-                if handle:
-                    kernel32.CloseHandle(handle)
-                    return True
-                return False
-            except Exception:
-                return True  # Assume exists if we can't check
-        else:
-            try:
-                os.kill(pid, 0)
-                return True
-            except OSError:
-                return False
-
-    def _handle_stale_lock(self, lock_path: Path) -> bool:
-        """
-        Detect and handle stale locks using multiple signals.
-
-        Args:
-            lock_path: Path to the lock file
-
-        Returns:
-            True if stale lock was removed, False otherwise
-        """
-        if not lock_path.exists():
-            return False
-
-        try:
-            # Try to read lock info
-            lock_content = lock_path.read_text(encoding='utf-8')
-            try:
-                lock_info = json.loads(lock_content)
-            except json.JSONDecodeError:
-                # Corrupted lock file - safe to remove
-                logger.warning(f"Removing corrupted lock file: {lock_path}")
-                lock_path.unlink()
-                return True
-
-            # Check 1: Is the process still running?
-            lock_pid = lock_info.get('pid')
-            if lock_pid and not self._process_exists(lock_pid):
-                logger.warning(f"Removing stale lock - PID {lock_pid} no longer exists: {lock_path}")
-                lock_path.unlink()
-                return True
-
-            # Check 2: Is lock older than maximum allowed time?
-            acquired_str = lock_info.get('acquired')
-            if acquired_str:
-                try:
-                    acquired = datetime.fromisoformat(acquired_str.replace('Z', '+00:00'))
-                    age_seconds = (datetime.now(timezone.utc) - acquired).total_seconds()
-
-                    if age_seconds > self.stale_lock_age:
-                        logger.warning(f"Removing stale lock - held for {age_seconds:.0f}s: {lock_path}")
-                        lock_path.unlink()
-                        return True
-                except (ValueError, TypeError):
-                    pass
-
-            return False
-
-        except OSError as e:
-            logger.debug(f"Error checking stale lock: {e}")
-            return False
+    # NOTE: _process_exists, _process_exists_windows, and _handle_stale_lock
+    # have been removed - these are now handled by the shared file_lock module
+    # in tools/orchestrator/file_lock.py via the LockingService.
 
     @contextmanager
-    def _file_lock(self, path: Path):
+    def _file_lock(self, path: Path, operation: str = None):
         """
-        Context manager for file locking with proper lock held during operations.
+        Context manager for file locking - delegates to centralized LockingService.
 
-        Uses exclusive lock file creation with PID/timestamp tracking.
-        The lock is held for the duration of the context.
+        Uses the shared file locking infrastructure for consistent lock handling
+        across all components. Falls back to direct file_lock if LockingService
+        is not available.
 
         Args:
             path: Path to the file being locked (lock file is path.lock)
+            operation: Optional description for logging
 
         Raises:
             StateLockError: If lock cannot be acquired within timeout
         """
-        lock_path = path.with_suffix('.lock')
-        fd = None
-        retries = 0
-
         try:
-            start_time = time.time()
-            while True:
-                try:
-                    # Create lock file exclusively
-                    fd = os.open(str(lock_path), os.O_CREAT | os.O_EXCL | os.O_RDWR)
-
-                    # Write lock info for debugging and stale detection
-                    lock_info = json.dumps({
-                        "pid": os.getpid(),
-                        "acquired": datetime.now(timezone.utc).isoformat(),
-                        "host": platform.node(),
-                        "file": str(path),
-                    })
-                    os.write(fd, lock_info.encode('utf-8'))
-
-                    # Log contention if we had to retry
-                    if retries > 0:
-                        elapsed = time.time() - start_time
-                        logger.debug(f"Lock acquired after {retries} retries ({elapsed:.2f}s): {lock_path}")
-
-                    break
-
-                except FileExistsError:
-                    # Lock exists - check if stale
-                    if self._handle_stale_lock(lock_path):
-                        continue  # Stale lock removed, try again
-
-                    # Check timeout
-                    if time.time() - start_time > self.lock_timeout:
-                        raise StateLockError(
-                            f"Timeout ({self.lock_timeout}s) waiting for lock on {path}"
-                        )
-
-                    retries += 1
-                    time.sleep(0.1)
-
-                except OSError as e:
-                    if time.time() - start_time > self.lock_timeout:
-                        raise StateLockError(f"Error acquiring lock on {path}: {e}")
-                    time.sleep(0.1)
-
-            yield
-
-        finally:
-            # Release lock
-            if fd is not None:
-                try:
-                    os.close(fd)
-                except OSError:
-                    pass
-
-            try:
-                lock_path.unlink()
-            except (FileNotFoundError, OSError):
-                pass
+            # Prefer LockingService for centralized configuration
+            if LOCKING_SERVICE_AVAILABLE and get_locking_service is not None:
+                with get_locking_service().lock_file(path, operation=operation):
+                    yield
+            # Fall back to shared file_lock
+            elif SHARED_LOCK_AVAILABLE and _shared_file_lock is not None:
+                with _shared_file_lock(
+                    path,
+                    timeout=self.lock_timeout,
+                    stale_lock_age=self.stale_lock_age,
+                    operation=operation
+                ):
+                    yield
+            else:
+                # No locking available - proceed without lock (log warning)
+                logger.warning(f"No locking mechanism available - proceeding without lock: {path}")
+                yield
+        except Exception as e:
+            # Convert locking exceptions to StateLockError for consistency
+            if "timeout" in str(e).lower() or "Timeout" in str(e):
+                raise StateLockError(f"Timeout waiting for lock on {path}: {e}")
+            raise StateLockError(f"Error acquiring lock on {path}: {e}")
 
     def _atomic_write(self, path: Path, data: dict) -> None:
         """
@@ -372,6 +606,43 @@ class UnifiedStateManager:
 
         # Atomic rename
         temp_path.replace(path)
+
+    @contextmanager
+    def multi_state_transaction(self):
+        """
+        Context manager for multi-state atomic updates.
+
+        Provides transactional semantics with rollback on failure.
+        All locks are acquired upfront to prevent deadlocks.
+
+        Usage:
+            with manager.multi_state_transaction() as txn:
+                txn.acquire_locks([bank_path, workflow_path])
+
+                # Load and modify states
+                bank_state = self.load_bank_state(bank_id, phase)
+                bank_state.set_blocked(checkpoint, reason)
+
+                workflow = self.load_workflow_state()
+                workflow.mark_bank_blocked(bank_id)
+
+                # Stage writes
+                txn.stage_write(bank_path, bank_state.to_dict())
+                txn.stage_write(workflow_path, workflow.to_dict())
+
+                # Commit atomically
+                txn.commit()
+
+        Yields:
+            StateTransaction: Transaction object with acquire_locks,
+                             stage_write, and commit methods
+        """
+        txn = StateTransaction(self)
+        try:
+            yield txn
+        except Exception:
+            # Transaction will auto-release locks
+            raise
 
     def _load_json(self, path: Path, default: dict = None) -> dict:
         """Load JSON file, returning default if not exists."""
@@ -411,25 +682,45 @@ class UnifiedStateManager:
             return None
 
     def save_bank_state(self, state: BankState, validate: bool = True,
-                         strict: bool = False) -> None:
+                         strict: bool = None) -> None:
         """
         Save bank state with atomic write.
 
+        Validation mode is determined by (in priority order):
+        1. CDM_VALIDATION_MODE environment variable
+        2. state_validation.mode from config/validation-rules.json
+        3. Default to STRICT
+
         Args:
             state: BankState to save
-            validate: If True, run validation and log warnings (default True)
-            strict: If True, raise exception on validation errors (default False)
+            validate: If True, run validation (default True)
+            strict: DEPRECATED - use config or env var instead.
+                   If explicitly True/False, overrides config for backwards compat.
         """
-        # Validate state before saving (Issue #6 fix)
+        # Determine validation mode from config (Gap 5 fix)
+        validation_mode = _determine_validation_mode()
+
+        # Handle legacy strict parameter for backwards compatibility
+        if strict is True:
+            validation_mode = ValidationMode.STRICT
+        elif strict is False:
+            validation_mode = ValidationMode.WARN
+
+        # Skip validation entirely if mode is OFF
+        if validation_mode == ValidationMode.OFF:
+            validate = False
+
+        # Validate state before saving
         if validate:
             errors = self.validate_bank_state(state)
             if errors:
-                if strict:
-                    # Phase 6: Strict mode - fail on validation errors
+                if validation_mode == ValidationMode.STRICT:
+                    # STRICT mode: fail on validation errors (production default)
                     raise StateValidationError(
                         f"Validation failed for {state.bank_id}: {errors}"
                     )
                 else:
+                    # WARN mode: log warning but proceed
                     logger.warning(f"Validation warnings for {state.bank_id}: {errors}")
 
         path = self._get_bank_status_path(state.bank_id, state.phase)
@@ -441,22 +732,274 @@ class UnifiedStateManager:
         self._atomic_write(path, state.to_dict())
         logger.debug(f"Saved state for {state.bank_id}")
 
+    # ========== State Versioning (Gap 6 fix) ==========
+
+    def _get_versions_dir(self, bank_id: str, phase: int) -> Path:
+        """Get the versions directory for a bank's state files."""
+        bank_dir = self._get_bank_dir(bank_id, phase)
+        config = get_state_versioning_config()
+        version_dir_name = config.get("version_directory", "versions")
+        return bank_dir / version_dir_name
+
+    def _create_version_backup(
+        self,
+        state_path: Path,
+        trigger: str = "manual"
+    ) -> Optional[Path]:
+        """
+        Create a version backup of a state file.
+
+        Args:
+            state_path: Path to the state file to backup
+            trigger: What triggered this backup (stage_complete, probability_update, etc.)
+
+        Returns:
+            Path to the version file, or None if versioning disabled/failed
+        """
+        config = get_state_versioning_config()
+
+        if not config.get("enabled", True):
+            return None
+
+        if not state_path.exists():
+            return None
+
+        try:
+            # Read current state
+            with open(state_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            # Add version metadata
+            content_str = json.dumps(data, sort_keys=True)
+            checksum = hashlib.sha256(content_str.encode()).hexdigest()[:16]
+
+            # Get version number (next sequential)
+            versions_dir = state_path.parent / config.get("version_directory", "versions")
+            versions_dir.mkdir(parents=True, exist_ok=True)
+
+            existing = list(versions_dir.glob(f"{state_path.stem}.*.json*"))
+            version_num = len(existing) + 1
+
+            # Create version filename
+            timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+            version_name = f"{state_path.stem}.{version_num:03d}.{timestamp}.json"
+
+            # Add version metadata to the backup
+            data["_version_meta"] = {
+                "version": version_num,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "trigger": trigger,
+                "checksum": checksum,
+                "original_path": str(state_path)
+            }
+
+            # Write version (optionally compressed)
+            if config.get("compress_old_versions", True) and version_num > 1:
+                version_path = versions_dir / (version_name + ".gz")
+                with gzip.open(version_path, 'wt', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2)
+            else:
+                version_path = versions_dir / version_name
+                with open(version_path, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2)
+
+            # Cleanup old versions if exceeding max
+            self._cleanup_old_versions(versions_dir, state_path.stem, config.get("max_versions", 5))
+
+            logger.debug(f"Created version backup: {version_path.name} (trigger: {trigger})")
+            return version_path
+
+        except Exception as e:
+            logger.warning(f"Failed to create version backup for {state_path}: {e}")
+            return None
+
+    def _cleanup_old_versions(self, versions_dir: Path, base_name: str, max_versions: int) -> int:
+        """
+        Remove old versions exceeding the max limit.
+
+        Args:
+            versions_dir: Directory containing version files
+            base_name: Base name of the state file (e.g., "status")
+            max_versions: Maximum versions to keep
+
+        Returns:
+            Number of versions deleted
+        """
+        versions = list(versions_dir.glob(f"{base_name}.*"))
+        versions.sort(key=lambda p: p.stat().st_mtime)
+
+        deleted = 0
+        while len(versions) > max_versions:
+            oldest = versions.pop(0)
+            try:
+                oldest.unlink()
+                logger.debug(f"Deleted old version: {oldest.name}")
+                deleted += 1
+            except OSError as e:
+                logger.warning(f"Could not delete old version {oldest}: {e}")
+
+        return deleted
+
+    def get_state_versions(self, bank_id: str, phase: int) -> List[Dict[str, Any]]:
+        """
+        List available state versions for a bank.
+
+        Args:
+            bank_id: Bank identifier
+            phase: Phase number
+
+        Returns:
+            List of version info dicts, sorted newest first
+        """
+        versions_dir = self._get_versions_dir(bank_id, phase)
+
+        if not versions_dir.exists():
+            return []
+
+        versions = []
+        for path in versions_dir.glob("status.*"):
+            try:
+                # Read version metadata
+                if path.suffix == '.gz':
+                    with gzip.open(path, 'rt', encoding='utf-8') as f:
+                        data = json.load(f)
+                else:
+                    with open(path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+
+                meta = data.get("_version_meta", {})
+                versions.append({
+                    "path": str(path),
+                    "filename": path.name,
+                    "version": meta.get("version", 0),
+                    "created_at": meta.get("created_at"),
+                    "trigger": meta.get("trigger"),
+                    "checksum": meta.get("checksum"),
+                    "size_bytes": path.stat().st_size,
+                    "compressed": path.suffix == '.gz'
+                })
+            except Exception as e:
+                logger.warning(f"Could not read version {path}: {e}")
+
+        # Sort by version number descending
+        versions.sort(key=lambda v: v.get("version", 0), reverse=True)
+        return versions
+
+    def rollback_bank_state(
+        self,
+        bank_id: str,
+        phase: int,
+        version: int = None,
+        create_backup: bool = True
+    ) -> Optional[BankState]:
+        """
+        Rollback bank state to a previous version.
+
+        Args:
+            bank_id: Bank identifier
+            phase: Phase number
+            version: Version number to restore (default: latest version before current)
+            create_backup: If True, backup current state before rollback
+
+        Returns:
+            Restored BankState, or None if rollback failed
+
+        Raises:
+            ValueError: If version not found
+        """
+        versions = self.get_state_versions(bank_id, phase)
+
+        if not versions:
+            raise ValueError(f"No versions available for {bank_id} phase {phase}")
+
+        # Find the requested version
+        if version is None:
+            # Default to the most recent version
+            target = versions[0]
+        else:
+            target = next((v for v in versions if v["version"] == version), None)
+            if target is None:
+                available = [v["version"] for v in versions]
+                raise ValueError(f"Version {version} not found. Available: {available}")
+
+        # Backup current state before rollback
+        if create_backup:
+            state_path = self._get_bank_status_path(bank_id, phase)
+            self._create_version_backup(state_path, trigger="pre_rollback")
+
+        # Restore the version
+        try:
+            version_path = Path(target["path"])
+
+            if version_path.suffix == '.gz':
+                with gzip.open(version_path, 'rt', encoding='utf-8') as f:
+                    data = json.load(f)
+            else:
+                with open(version_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+
+            # Remove version metadata from restored state
+            data.pop("_version_meta", None)
+
+            # Save as current state
+            state = BankState.from_dict(data)
+            state.log_event("rollback", f"Restored from version {target['version']}")
+            self.save_bank_state(state, validate=False)
+
+            logger.info(f"Rolled back {bank_id} to version {target['version']}")
+            return state
+
+        except Exception as e:
+            logger.error(f"Rollback failed for {bank_id}: {e}")
+            raise
+
+    def save_bank_state_versioned(
+        self,
+        state: BankState,
+        trigger: str = "manual",
+        validate: bool = True
+    ) -> None:
+        """
+        Save bank state with automatic version backup.
+
+        Use this instead of save_bank_state when you want to
+        create a version backup before the save.
+
+        Args:
+            state: BankState to save
+            trigger: What triggered this save (for version metadata)
+            validate: If True, run validation
+        """
+        state_path = self._get_bank_status_path(state.bank_id, state.phase)
+
+        # Create version backup of current state if it exists
+        if state_path.exists():
+            self._create_version_backup(state_path, trigger=trigger)
+
+        # Save the new state
+        self.save_bank_state(state, validate=validate)
+
     def create_bank_state(self, bank_id: str, bank_name: str, phase: int,
-                          prior_probability: float = 0.30,
+                          prior_probability: Optional[float] = None,
                           execution_tier: str = "B") -> BankState:
         """
-        Create a new bank state.
+        Create a new bank state with calculated prior from bank-manifest.json.
 
         Args:
             bank_id: Bank identifier
             bank_name: Bank display name
             phase: Phase number
-            prior_probability: Starting probability for Architect
+            prior_probability: Optional explicit prior (if None, calculated from manifest)
             execution_tier: A, B, or C
 
         Returns:
-            New BankState
+            New BankState with adjusted prior based on bank metadata
         """
+        # Calculate prior from manifest if not explicitly provided
+        if prior_probability is None:
+            prior_probability = get_prior_for_bank(bank_id)
+            logger.info(f"Using calculated prior {prior_probability*100:.1f}% for {bank_id} from manifest")
+
         state = BankState(
             bank_id=bank_id,
             bank_name=bank_name,
@@ -523,40 +1066,71 @@ class UnifiedStateManager:
         """
         Set a bank as blocked at a checkpoint.
 
-        Uses proper locking to prevent race conditions when multiple
-        processes update state simultaneously.
+        Uses StateTransaction for atomic update of both BankState and
+        WorkflowState. If either update fails, both are rolled back.
         """
         bank_path = self._get_bank_status_path(bank_id, phase)
 
-        # Lock and update bank state
-        with self._file_lock(bank_path):
+        with self.multi_state_transaction() as txn:
+            # Acquire both locks upfront (prevents race conditions)
+            txn.acquire_locks([bank_path, self.workflow_state_path])
+
+            # Load and modify bank state
             state = self.load_bank_state(bank_id, phase)
             if state is None:
                 raise ValueError(f"No state found for {bank_id}")
 
             state.set_blocked(checkpoint, reason)
-            self.save_bank_state(state)
+            state.last_updated = datetime.now(timezone.utc).isoformat()
 
-        # Lock and update workflow state (separate lock to avoid deadlock)
-        with self._file_lock(self.workflow_state_path):
+            # Load and modify workflow state
             workflow = self.load_workflow_state()
             workflow.mark_bank_blocked(bank_id)
-            self.save_workflow_state(workflow)
+            workflow.last_updated = datetime.now(timezone.utc).isoformat()
+
+            # Stage both writes
+            txn.stage_write(bank_path, state.to_dict())
+            txn.stage_write(self.workflow_state_path, workflow.to_dict())
+
+            # Atomic commit (rolls back on failure)
+            txn.commit()
+
+        logger.debug(f"Blocked {bank_id} at {checkpoint}: {reason}")
 
     def clear_bank_block(self, bank_id: str, phase: int) -> None:
-        """Clear the blocked status for a bank and sync workflow state."""
-        state = self.load_bank_state(bank_id, phase)
-        if state is None:
-            raise ValueError(f"No state found for {bank_id}")
+        """
+        Clear the blocked status for a bank and sync workflow state.
 
-        state.clear_block()
-        self.save_bank_state(state)
+        Uses StateTransaction for atomic update of both BankState and
+        WorkflowState. If either update fails, both are rolled back.
+        """
+        bank_path = self._get_bank_status_path(bank_id, phase)
 
-        # Sync workflow state to reflect unblocked status
-        with self._file_lock(self.workflow_state_path):
+        with self.multi_state_transaction() as txn:
+            # Acquire both locks upfront
+            txn.acquire_locks([bank_path, self.workflow_state_path])
+
+            # Load and modify bank state
+            state = self.load_bank_state(bank_id, phase)
+            if state is None:
+                raise ValueError(f"No state found for {bank_id}")
+
+            state.clear_block()
+            state.last_updated = datetime.now(timezone.utc).isoformat()
+
+            # Load and modify workflow state
             workflow = self.load_workflow_state()
             workflow.mark_bank_unblocked(bank_id)
-            self.save_workflow_state(workflow)
+            workflow.last_updated = datetime.now(timezone.utc).isoformat()
+
+            # Stage both writes
+            txn.stage_write(bank_path, state.to_dict())
+            txn.stage_write(self.workflow_state_path, workflow.to_dict())
+
+            # Atomic commit
+            txn.commit()
+
+        logger.debug(f"Unblocked {bank_id}")
 
     def check_and_handle_timeouts(self, phase: int,
                                    stage_timeouts: Dict[str, int] = None,
@@ -674,14 +1248,28 @@ class UnifiedStateManager:
 
     # ========== Checkpoint Logging ==========
 
-    def log_checkpoint(self, event: CheckpointEvent) -> None:
+    def log_checkpoint(self, event: CheckpointEvent) -> bool:
         """
         Log a checkpoint event with atomic read-modify-write.
 
         Uses file locking to prevent concurrent appends from losing data.
+        Triggers rotation check after write to prevent unbounded growth.
+        Includes duplicate detection via checkpoint_id+bank_id (Gap 7 fix).
+
+        Returns:
+            True if logged, False if duplicate detected
         """
         with self._file_lock(self.checkpoint_log_path):
             data = self._load_json(self.checkpoint_log_path, {"checkpoints": [], "summary": {}})
+
+            # Check for duplicate checkpoint (same checkpoint_id + bank_id)
+            for existing in data["checkpoints"]:
+                if (existing.get("checkpoint_id") == event.checkpoint_id and
+                    existing.get("bank_id") == event.bank_id):
+                    logger.debug(
+                        f"Duplicate checkpoint detected: {event.checkpoint_id} for {event.bank_id}"
+                    )
+                    return False
 
             data["checkpoints"].append(event.to_dict())
 
@@ -699,6 +1287,10 @@ class UnifiedStateManager:
 
             self._atomic_write(self.checkpoint_log_path, data)
 
+        # Notify log rotation manager (triggers check every N entries)
+        _notify_log_rotation("checkpoint_log", self.state_dir)
+        return True
+
     def get_checkpoints_for_bank(self, bank_id: str) -> List[CheckpointEvent]:
         """Get all checkpoint events for a bank."""
         data = self._load_json(self.checkpoint_log_path, {"checkpoints": []})
@@ -710,14 +1302,38 @@ class UnifiedStateManager:
 
     # ========== Error Logging ==========
 
-    def log_error(self, event: ErrorEvent) -> None:
+    def log_error(self, event: ErrorEvent) -> bool:
         """
         Log an error event with atomic read-modify-write.
 
         Uses file locking to prevent concurrent appends from losing data.
+        Triggers rotation check after write to prevent unbounded growth.
+        Includes duplicate detection for same error within 60s (Gap 7 fix).
+
+        Returns:
+            True if logged, False if duplicate detected
         """
         with self._file_lock(self.error_log_path):
             data = self._load_json(self.error_log_path, {"errors": [], "summary": {}})
+
+            # Check for duplicate error (same error_type + bank_id + stage within 60s)
+            now = datetime.now(timezone.utc)
+            for existing in data["errors"]:
+                if (existing.get("error_type") == event.error_type and
+                    existing.get("bank_id") == event.bank_id and
+                    existing.get("stage") == event.stage):
+                    try:
+                        existing_time = datetime.fromisoformat(
+                            existing.get("timestamp", "").replace('Z', '+00:00')
+                        )
+                        delta = abs((now - existing_time).total_seconds())
+                        if delta < 60:
+                            logger.debug(
+                                f"Duplicate error detected: {event.error_type} for {event.bank_id}"
+                            )
+                            return False
+                    except (ValueError, TypeError):
+                        pass
 
             data["errors"].append(event.to_dict())
 
@@ -729,11 +1345,14 @@ class UnifiedStateManager:
 
             self._atomic_write(self.error_log_path, data)
 
+        # Notify log rotation manager (triggers check every N entries)
+        _notify_log_rotation("error_log", self.state_dir)
+
         # Also add to bank state
         try:
             # Find phase from bank manifest or existing state
             state = None
-            for phase in range(1, 10):
+            for phase in range(self.phase_min, self.phase_max + 1):
                 state = self.load_bank_state(event.bank_id, phase)
                 if state:
                     break
@@ -778,14 +1397,36 @@ class UnifiedStateManager:
 
     # ========== Review Queue ==========
 
-    def add_to_review_queue(self, item: ReviewItem) -> None:
-        """Add an item to the review queue."""
-        data = self._load_json(self.review_queue_path, {"items": [], "last_updated": None})
+    def add_to_review_queue(self, item: ReviewItem) -> bool:
+        """
+        Add an item to the review queue with locking to prevent race conditions.
 
-        data["items"].append(item.to_dict())
-        data["last_updated"] = datetime.now(timezone.utc).isoformat()
+        Includes duplicate detection for same bank_id + checkpoint_id (Gap 7 fix).
 
-        self._atomic_write(self.review_queue_path, data)
+        Returns:
+            True if added, False if duplicate pending item detected
+        """
+        with self._file_lock(self.review_queue_path):
+            data = self._load_json(self.review_queue_path, {"items": [], "last_updated": None})
+
+            # Check for duplicate pending item (same bank_id + checkpoint_id)
+            for existing in data["items"]:
+                if (existing.get("bank_id") == item.bank_id and
+                    existing.get("checkpoint_id") == item.checkpoint_id and
+                    existing.get("status") == "pending"):
+                    logger.debug(
+                        f"Duplicate review item detected: {item.checkpoint_id} for {item.bank_id}"
+                    )
+                    return False
+
+            data["items"].append(item.to_dict())
+            data["last_updated"] = datetime.now(timezone.utc).isoformat()
+
+            self._atomic_write(self.review_queue_path, data)
+
+        # Notify log rotation manager (triggers check every N entries)
+        _notify_log_rotation("review_queue", self.state_dir)
+        return True
 
     def get_pending_reviews(self) -> List[ReviewItem]:
         """Get all pending review items."""
@@ -797,19 +1438,20 @@ class UnifiedStateManager:
         ]
 
     def resolve_review(self, bank_id: str, resolution: str, resolved_by: str = "human") -> None:
-        """Resolve a review item."""
-        data = self._load_json(self.review_queue_path, {"items": []})
+        """Resolve a review item with locking to prevent race conditions."""
+        with self._file_lock(self.review_queue_path):
+            data = self._load_json(self.review_queue_path, {"items": []})
 
-        for item in data["items"]:
-            if item.get("bank_id") == bank_id and item.get("status") == "pending":
-                item["status"] = "resolved"
-                item["resolution"] = resolution
-                item["resolved_at"] = datetime.now(timezone.utc).isoformat()
-                item["resolved_by"] = resolved_by
-                break
+            for item in data["items"]:
+                if item.get("bank_id") == bank_id and item.get("status") == "pending":
+                    item["status"] = "resolved"
+                    item["resolution"] = resolution
+                    item["resolved_at"] = datetime.now(timezone.utc).isoformat()
+                    item["resolved_by"] = resolved_by
+                    break
 
-        data["last_updated"] = datetime.now(timezone.utc).isoformat()
-        self._atomic_write(self.review_queue_path, data)
+            data["last_updated"] = datetime.now(timezone.utc).isoformat()
+            self._atomic_write(self.review_queue_path, data)
 
     # ========== Query Methods ==========
 
@@ -862,10 +1504,10 @@ class UnifiedStateManager:
 
     def mark_bank_complete(self, bank_id: str, phase: int) -> None:
         """
-        Mark a bank as complete in BOTH BankState AND WorkflowState.
+        Mark a bank as complete in BOTH BankState AND WorkflowState atomically.
 
-        This ensures state consistency between the authoritative per-bank
-        state (status.json) and the workflow index (workflow-state.json).
+        Uses StateTransaction to ensure both states are updated together
+        or neither is updated (saga pattern with rollback on failure).
 
         Args:
             bank_id: Bank identifier
@@ -873,23 +1515,36 @@ class UnifiedStateManager:
 
         Raises:
             ValueError: If no state found for bank
+            TransactionRollbackError: If atomic update fails
         """
-        # Update BankState (authoritative source)
+        # Load BankState first to validate it exists
         bank_state = self.load_bank_state(bank_id, phase)
         if bank_state is None:
             raise ValueError(f"No state found for {bank_id}")
 
-        bank_state.completed_at = datetime.now(timezone.utc).isoformat()
-        bank_state.mark_stage_complete("complete")
-        self.save_bank_state(bank_state)
+        bank_path = self._get_bank_dir(bank_id, phase) / "status.json"
 
-        # Sync to WorkflowState (index/cache)
-        with self._file_lock(self.workflow_state_path):
+        # Use transaction for atomic multi-state update
+        with self.multi_state_transaction() as txn:
+            # Acquire locks on both files upfront
+            txn.acquire_locks([bank_path, self.workflow_state_path])
+
+            # Prepare BankState update
+            bank_state.completed_at = datetime.now(timezone.utc).isoformat()
+            bank_state.mark_stage_complete("complete")
+
+            # Load and prepare WorkflowState update
             workflow = self.load_workflow_state()
             workflow.mark_bank_completed(bank_id)
-            self.save_workflow_state(workflow)
 
-        logger.info(f"Marked {bank_id} as complete (both states synchronized)")
+            # Stage both writes
+            txn.stage_write(bank_path, bank_state.to_dict())
+            txn.stage_write(self.workflow_state_path, workflow.to_dict())
+
+            # Atomic commit (both succeed or rollback)
+            txn.commit()
+
+        logger.info(f"Marked {bank_id} as complete (atomic transaction)")
 
     def sync_workflow_state_from_bank_states(self, phase: int) -> 'WorkflowState':
         """

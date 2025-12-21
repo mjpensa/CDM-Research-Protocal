@@ -1,0 +1,133 @@
+{
+  "$schema": "CDM/DRR Calibration Configuration v1.0",
+  "description": "Configuration for prediction tracking, Brier score calculation, and calibration drift detection",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "brier_score_thresholds": {
+    "description": "Thresholds for interpreting Brier score calibration quality",
+    "excellent": 0.10,
+    "good": 0.15,
+    "acceptable": 0.20,
+    "marginal": 0.25,
+    "poor": 0.30,
+    "rationale": {
+      "excellent": "Tetlock superforecasters achieve ~0.10-0.14",
+      "good": "Professional forecasters typically achieve ~0.15-0.18",
+      "acceptable": "Our target per decision-thresholds.json",
+      "marginal": "Approaching random chance for binary predictions",
+      "poor": "Worse than random guessing; indicates systematic miscalibration"
+    }
+  },
+
+  "minimum_validations": {
+    "description": "Minimum sample sizes for statistical significance",
+    "overall_assessment": 10,
+    "tier_level_assessment": 5,
+    "evidence_type_assessment": 5,
+    "confidence_bucket_assessment": 5,
+    "adjustment_recommendation": 8,
+    "rationale": "Fewer observations produce unreliable calibration metrics"
+  },
+
+  "drift_detection": {
+    "description": "Parameters for detecting systematic over/under-confidence",
+    "window_size": 10,
+    "direction_threshold": 0.60,
+    "significance_level": 0.05,
+    "severity_thresholds": {
+      "low": 0.05,
+      "medium": 0.10,
+      "high": 0.15
+    },
+    "rationale": {
+      "window_size": "Analyze last N predictions for trend detection",
+      "direction_threshold": "Flag if >60% of errors are in same direction",
+      "significance_level": "p-value threshold for chi-square test"
+    }
+  },
+
+  "lr_adjustment_rules": {
+    "description": "Rules for recommending LR table updates based on observed outcomes",
+    "divergence_threshold_for_flag": 0.20,
+    "divergence_threshold_for_recommendation": 0.30,
+    "minimum_sample_for_empirical_lr": 5,
+    "maximum_recommended_lr_change": 2.0,
+    "rationale": {
+      "divergence_for_flag": "20% divergence between expected and observed warrants attention",
+      "divergence_for_recommendation": "30% divergence justifies formal update proposal",
+      "minimum_sample": "Need at least 5 observations for empirical LR estimate",
+      "max_change": "Limit single update to 2x change to prevent overcorrection"
+    }
+  },
+
+  "staleness_thresholds": {
+    "description": "When predictions become stale if not validated",
+    "warning_days": 365,
+    "stale_days": 730,
+    "archive_days": 1095,
+    "rationale": {
+      "warning": "Flag predictions unvalidated after 1 year",
+      "stale": "Mark as stale after 2 years (unlikely to ever validate)",
+      "archive": "Archive after 3 years (no longer affects metrics)"
+    }
+  },
+
+  "outcome_types": {
+    "description": "Valid outcome types for recording validations",
+    "values": [
+      "production_announcement",
+      "official_pilot_announcement",
+      "rejection_statement",
+      "vendor_only_confirmation",
+      "finos_cdm_contribution",
+      "regulatory_filing",
+      "time_based_expiration",
+      "expert_assessment"
+    ],
+    "architect_outcomes": [
+      "production_announcement",
+      "official_pilot_announcement",
+      "finos_cdm_contribution"
+    ],
+    "pragmatist_outcomes": [
+      "rejection_statement",
+      "vendor_only_confirmation",
+      "time_based_expiration"
+    ]
+  },
+
+  "confidence_buckets": {
+    "description": "Buckets for calibration analysis by confidence level",
+    "buckets": [
+      {"name": "very_high", "lower": 90, "upper": 100},
+      {"name": "high", "lower": 70, "upper": 89},
+      {"name": "medium", "lower": 50, "upper": 69},
+      {"name": "low", "lower": 30, "upper": 49},
+      {"name": "very_low", "lower": 0, "upper": 29}
+    ]
+  },
+
+  "prediction_log_settings": {
+    "description": "Settings for the prediction log file",
+    "max_entries": 1000,
+    "backup_on_rotate": true,
+    "include_evidence_snapshot": true
+  },
+
+  "reporting": {
+    "description": "Settings for calibration reports",
+    "auto_generate_after_validation": true,
+    "quarterly_report_enabled": true,
+    "include_lr_performance": true,
+    "include_drift_analysis": true
+  },
+
+  "usage_notes": [
+    "All thresholds should be accessed via config_loader.py",
+    "Brier score = mean((predicted_probability - actual_outcome)^2)",
+    "Actual outcome: 1 for ARCHITECT confirmed, 0 for PRAGMATIST confirmed",
+    "Predictions use probability of ARCHITECT classification",
+    "Changes to this file require cache clear via config_loader.clear_config_cache()"
+  ]
+}

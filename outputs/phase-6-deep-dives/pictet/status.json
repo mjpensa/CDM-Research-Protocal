@@ -1,0 +1,23 @@
+{
+  "bank_id": "pictet",
+  "bank_name": "Pictet Group",
+  "phase": 6,
+  "phase_name": "Deep Dives",
+  "classification": "ARCHITECT",
+  "sub_classification": "Native",
+  "confidence": 85,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.90,
+  "probability_pragmatist": 0.10,
+  "prior_probability": 0.35,
+  "evidence_count": {"tier1": 2, "tier2": 2, "tier3": 0, "null_results": 0},
+  "last_updated": "2025-12-20T05:00:00Z",
+  "notes": "Using CDM and DRR in PRODUCTION. Contributing to DRR development. Emmanuel Geinoz at ISDA events.",
+  "key_findings": [
+    "Using CDM and DRR in PRODUCTION (confirmed)",
+    "Contributing to DRR development",
+    "Emmanuel Geinoz (Market Infrastructure & Derivatives Expert) at ISDA",
+    "One of first banks with production CDM alongside BNP Paribas, JPMorgan"
+  ]
+}

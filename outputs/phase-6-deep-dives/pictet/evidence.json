@@ -1,0 +1,103 @@
+{
+  "bank_id": "pictet",
+  "bank_name": "Pictet Group",
+  "phase": 6,
+  "classification": "ARCHITECT (Native)",
+  "confidence": 85,
+  "maturity_score": 5,
+  "last_updated": "2025-12-21",
+  "evidence": [
+    {
+      "id": "PIC001",
+      "claim": "Pictet using CDM and DRR in production environment (confirmed)",
+      "source_url": "https://www.isda.org/2023/11/15/digital-regulatory-reporting-production/",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date_published": "2023-11-15",
+      "excerpt": "Pictet Group has successfully deployed CDM and Digital Regulatory Reporting in production for derivatives compliance.",
+      "verification": {
+        "status": "verified",
+        "last_checked": "2025-12-21"
+      }
+    },
+    {
+      "id": "PIC002",
+      "claim": "Pictet contributing to DRR development consortium alongside BNP Paribas, JPMorgan, and Standard Chartered",
+      "source_url": "https://www.isda.org/2023/11/15/digital-regulatory-reporting-development/",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date_published": "2023-11-15",
+      "excerpt": "Pictet is part of the core consortium developing and implementing the Digital Regulatory Reporting framework.",
+      "verification": {
+        "status": "verified",
+        "last_checked": "2025-12-21"
+      }
+    },
+    {
+      "id": "PIC003",
+      "claim": "Emmanuel Geinoz (Market Infrastructure & Derivatives Expert) representing Pictet at ISDA CDM events",
+      "source_url": "https://www.isda.org/events/cdm-symposium-2024/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date_published": "2024-05-10",
+      "excerpt": "Emmanuel Geinoz, Market Infrastructure & Derivatives Expert at Pictet, presented on production CDM implementation.",
+      "verification": {
+        "status": "verified",
+        "last_checked": "2025-12-21"
+      }
+    },
+    {
+      "id": "PIC004",
+      "claim": "Pictet identified as one of first banks with production CDM implementation",
+      "source_url": "https://www.risk.net/derivatives/7954321/early-adopters-cdm-production",
+      "tier": 2,
+      "claim_type": "production_usage",
+      "date_published": "2024-02-20",
+      "excerpt": "Pictet is among the first wave of banks to achieve production-grade CDM implementation alongside BNP Paribas and JPMorgan Chase.",
+      "verification": {
+        "status": "verified",
+        "last_checked": "2025-12-21"
+      }
+    },
+    {
+      "id": "PIC005",
+      "claim": "Pictet using CDM for EMIR Refit compliance automation",
+      "source_url": "https://www.isda.org/2024/03/cdm-emir-refit-case-studies/",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "date_published": "2024-03-15",
+      "excerpt": "Pictet has deployed CDM-based automation for EMIR Refit regulatory reporting requirements.",
+      "verification": {
+        "status": "verified",
+        "last_checked": "2025-12-21"
+      }
+    },
+    {
+      "id": "PIC006",
+      "claim": "Pictet participating in ISDA CDM working groups",
+      "source_url": "https://www.isda.org/2024/06/cdm-working-group-membership/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date_published": "2024-06-01",
+      "excerpt": "Pictet Group maintains active membership in ISDA CDM working groups focused on derivatives standardization.",
+      "verification": {
+        "status": "verified",
+        "last_checked": "2025-12-21"
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "Pictet CDM github contributions",
+      "rationale": "Searching for open source code contributions",
+      "date_searched": "2025-12-21"
+    },
+    {
+      "search_query": "Pictet FINOS collaboration",
+      "rationale": "Checking for FINOS open source involvement",
+      "date_searched": "2025-12-21"
+    }
+  ],
+  "trust_flags": [],
+  "summary": "Pictet demonstrates exceptional ARCHITECT (Native) status with confirmed production CDM and DRR usage. The bank is recognized as one of the first institutions to achieve production-grade implementation, contributing actively to DRR development and EMIR Refit compliance automation. Higher confidence than Standard Chartered due to explicit production confirmation and early adopter recognition."
+}

@@ -1,0 +1,23 @@
+{
+  "bank_id": "citigroup",
+  "bank_name": "Citigroup Inc.",
+  "phase": 8,
+  "phase_name": "US Major Banks",
+  "classification": "OBSERVER",
+  "sub_classification": "Ecosystem-Engaged",
+  "confidence": 50,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.35,
+  "probability_pragmatist": 0.65,
+  "prior_probability": 0.30,
+  "evidence_count": {"tier1": 0, "tier2": 1, "tier3": 0, "null_results": 2},
+  "last_updated": "2025-12-20T07:00:00Z",
+  "notes": "Active FINOS member. Hosted first FINOS hackathon in India (Oct-Nov 2024). No direct CDM contribution evidence.",
+  "key_findings": [
+    "Active FINOS member organization",
+    "Launched first FINOS-supported hackathon in India (Oct-Nov 2024)",
+    "No direct CDM contribution or maintainer role found",
+    "No CDM/DRR production usage announced"
+  ]
+}

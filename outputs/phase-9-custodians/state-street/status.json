@@ -1,0 +1,23 @@
+{
+  "bank_id": "state-street",
+  "bank_name": "State Street Corporation",
+  "phase": 9,
+  "phase_name": "Custodian Banks",
+  "classification": "UNKNOWN",
+  "sub_classification": "Insufficient-Evidence",
+  "confidence": 30,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.15,
+  "probability_pragmatist": 0.85,
+  "prior_probability": 0.15,
+  "evidence_count": {"tier1": 0, "tier2": 0, "tier3": 0, "null_results": 4},
+  "last_updated": "2025-12-20T07:30:00Z",
+  "notes": "No CDM evidence found. Major custodian bank but no FINOS membership or CDM adoption announced.",
+  "key_findings": [
+    "No CDM/DRR evidence in official sources",
+    "Not listed as FINOS member",
+    "No ISDA CDM working group participation found",
+    "Major custody and asset servicing business but no CDM signal"
+  ]
+}

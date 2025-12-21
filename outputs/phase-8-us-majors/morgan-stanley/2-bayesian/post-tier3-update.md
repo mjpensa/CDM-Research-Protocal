@@ -1,0 +1,27 @@
+# Post-Tier 3 Bayesian Update: Morgan Stanley
+
+**Research Phase**: 8 (US Major Banks)
+**Bank**: Morgan Stanley
+**Date**: 2025-12-21
+
+---
+
+## Prior Probability (Post-Tier 2)
+
+*Carried forward from post-tier2-update.md*
+
+---
+
+## Tier 3 Evidence Impact
+
+*Bayesian probability update will be calculated after Tier 3 research*
+
+---
+
+## Final Posterior Probability
+
+*Final probabilities will be documented here*
+
+---
+
+**Methodology**: Bayesian inference following Tetlock superforecasting principles

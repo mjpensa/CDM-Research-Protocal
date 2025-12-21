@@ -1,0 +1,112 @@
+{
+  "bank_id": "bbva",
+  "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+  "research_date": "2025-12-21",
+  "researcher": "Claude Code",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_query": "BBVA ISDA CDM adoption 2020-2025",
+      "tier": 1,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "bbva.com",
+        "isda.org",
+        "finos.org",
+        "github.com/finos"
+      ],
+      "finding": "No evidence of CDM adoption, FINOS membership, or official announcements found"
+    },
+    {
+      "search_query": "BBVA Common Domain Model derivatives reporting",
+      "tier": 1,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "bbva.com/en/",
+        "esma.europa.eu",
+        "cnmv.es"
+      ],
+      "finding": "No regulatory filings or official communications mentioning ISDA CDM"
+    },
+    {
+      "search_query": "BBVA CDM EMIR Refit compliance",
+      "tier": 2,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "risk.net",
+        "waterstechnology.com",
+        "fnlondon.com"
+      ],
+      "finding": "No trade press coverage of BBVA CDM initiatives or EMIR Refit CDM compliance"
+    },
+    {
+      "search_query": "BBVA regulatory reporting technology CDM",
+      "tier": 2,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "ft.com",
+        "bloomberg.com",
+        "reuters.com"
+      ],
+      "finding": "No business press articles on BBVA CDM adoption or derivatives reporting modernization"
+    },
+    {
+      "search_query": "BBVA ISDA working groups membership",
+      "tier": 1,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "isda.org/membership",
+        "isda.org/category/cdm/"
+      ],
+      "finding": "BBVA is ISDA member (standard for derivatives dealers) but no evidence of CDM working group participation"
+    },
+    {
+      "search_query": "BBVA ISDA CDM developer jobs 2023-2025",
+      "tier": 3,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "linkedin.com/jobs",
+        "bbva.com/careers"
+      ],
+      "finding": "No job postings mentioning ISDA CDM, Common Domain Model, or DRR initiatives"
+    },
+    {
+      "search_query": "BBVA digital regulatory reporting DRR pilot",
+      "tier": 1,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "fca.org.uk",
+        "bbva.com"
+      ],
+      "finding": "BBVA not among FCA DRR pilot participants (UK pilot included Barclays, NatWest, Santander UK, others)"
+    },
+    {
+      "search_query": "BBVA derivatives data model standardization",
+      "tier": 3,
+      "date_searched": "2025-12-21",
+      "sources_checked": [
+        "linkedin.com/company/bbva",
+        "medium.com",
+        "bbva.com/innovation"
+      ],
+      "finding": "No LinkedIn posts, blog articles, or innovation announcements mentioning CDM or derivatives standardization"
+    }
+  ],
+  "classification": {
+    "maturity": "UNKNOWN",
+    "maturity_qualifier": "Insufficient-Evidence",
+    "confidence": 30,
+    "rationale": "Comprehensive search across all evidence tiers yielded no CDM-related evidence. BBVA is a standard ISDA member (typical for derivatives dealers) but shows no signals of CDM adoption, pilot participation, FINOS membership, vendor partnerships, hiring activity, or trade press coverage. Lower confidence (30%) reflects thorough null results across multiple sources."
+  },
+  "metadata": {
+    "total_evidence_items": 0,
+    "tier1_count": 0,
+    "tier2_count": 0,
+    "tier3_count": 0,
+    "null_results_count": 8,
+    "highest_tier": null,
+    "oldest_evidence": null,
+    "newest_evidence": null,
+    "all_evidence_stale": false
+  }
+}

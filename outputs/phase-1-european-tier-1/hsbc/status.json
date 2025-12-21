@@ -1,0 +1,25 @@
+{
+  "bank_id": "hsbc",
+  "bank_name": "HSBC Holdings plc",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Regulatory-Driven",
+  "confidence": 50,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.18,
+  "probability_pragmatist": 0.82,
+  "prior_probability": 0.25,
+  "evidence_count": {"tier1": 1, "tier2": 2, "tier3": 0, "null_results": 4},
+  "stages_completed": ["initialize", "pre_mortem", "tier1_evidence", "bayesian_1", "gate_1", "tier2_evidence", "bayesian_2", "gate_2", "tier3_evidence", "bayesian_3", "gate_3", "adversarial_challenge", "final_classification", "synthesis"],
+  "last_updated": "2025-12-20T03:30:00Z",
+  "notes": "No CDM evidence despite being major derivatives player. Traditional DTCC approach for EMIR Refit. Pattern similar to Deutsche Bank.",
+  "key_findings": [
+    "Official EMIR REFIT page using DTCC Trade Repository",
+    "OTC clearing leader (€22.2T, 59.6% cleared)",
+    "Calypso platform for equity derivatives (traditional)",
+    "No FINOS CDM contribution",
+    "No CDM job postings or hiring signals"
+  ]
+}

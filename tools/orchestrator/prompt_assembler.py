@@ -11,9 +11,18 @@ Usage:
 
 import json
 import logging
+import sys
 from pathlib import Path
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
+
+# Add parent to path for config_loader access
+_SCRIPT_DIR = Path(__file__).parent.resolve()
+_TOOLS_DIR = _SCRIPT_DIR.parent
+if str(_TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(_TOOLS_DIR))
+
+from config_loader import get_confidence_caps
 
 logger = logging.getLogger(__name__)
 
@@ -658,9 +667,14 @@ Begin your synthesis now.
 '''
 
     def _get_confidence_cap(self, highest_tier: int) -> int:
-        """Get confidence cap for tier."""
-        caps = {1: 95, 2: 75, 3: 50, 4: 35}
-        return caps.get(highest_tier, 35)
+        """Get confidence cap for tier from centralized config."""
+        try:
+            caps = get_confidence_caps()  # Returns {1: 95, 2: 75, 3: 50, 4: 35}
+            return caps.get(highest_tier, 35)
+        except Exception:
+            # Fallback if config loading fails
+            fallback_caps = {1: 95, 2: 75, 3: 50, 4: 35}
+            return fallback_caps.get(highest_tier, 35)
 
     def _assemble_default(self, stage: str, ctx: StageContext) -> str:
         """Assemble default prompt for unknown stages."""

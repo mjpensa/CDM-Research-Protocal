@@ -1,0 +1,65 @@
+{
+  "bank_id": "icbc",
+  "bank_name": "Industrial and Commercial Bank of China (ICBC)",
+  "research_date": "2025-12-21",
+  "researcher": "Claude Code (Opus 4.5)",
+  "protocol_version": "2.3",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_type": "Tier 1",
+      "query": "ICBC CDM ISDA Common Domain Model",
+      "sources_checked": ["icbc.com.cn", "icbc-ltd.com", "isda.org", "finos.org"],
+      "date_searched": "2025-12-21",
+      "notes": "No official announcements or FINOS membership. ICBC websites primarily in Chinese with limited CDM-related content."
+    },
+    {
+      "search_type": "Tier 1",
+      "query": "ICBC FINOS contribution derivatives reporting",
+      "sources_checked": ["github.com/finos", "finos.org/members"],
+      "date_searched": "2025-12-21",
+      "notes": "ICBC not listed as FINOS member. No code contributions found."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "ICBC China derivatives data standardization CDM",
+      "sources_checked": ["risk.net", "waterstechnology.com", "reuters.com", "bloomberg.com", "scmp.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No Western trade press coverage of ICBC CDM adoption. Chinese financial media focuses on retail banking and Belt & Road financing."
+    },
+    {
+      "search_type": "Tier 2",
+      "query": "ICBC ISDA working group derivatives reporting",
+      "sources_checked": ["isda.org", "risk.net"],
+      "date_searched": "2025-12-21",
+      "notes": "No evidence of ICBC staff participation in ISDA CDM working groups."
+    },
+    {
+      "search_type": "Tier 3",
+      "query": "ICBC CDM job postings LinkedIn China",
+      "sources_checked": ["linkedin.com/jobs", "zhipin.com", "51job.com"],
+      "date_searched": "2025-12-21",
+      "notes": "No job postings mentioning ISDA CDM or Common Domain Model in English or Chinese (数据标准化)."
+    }
+  ],
+  "classification": {
+    "maturity_level": "UNKNOWN",
+    "maturity_sublevel": "Insufficient-Evidence",
+    "confidence": 30,
+    "rationale": "Comprehensive search across Tier 1-3 sources yielded zero evidence of CDM adoption, FINOS membership, or ISDA working group participation. ICBC is the world's largest bank by assets (~$6.3 trillion USD) with significant derivatives operations, but operates primarily within Chinese regulatory framework (CBIRC/PBOC) which does not mandate CDM. Lack of evidence reflects both genuine non-adoption and disclosure gap between Chinese and Western banking systems. 30% confidence reflects high certainty of null results but acknowledges possible internal initiatives not disclosed publicly.",
+    "highest_claim_type": null,
+    "evidence_quality": "High-confidence null results across all tiers"
+  },
+  "metadata": {
+    "total_evidence_items": 0,
+    "tier1_count": 0,
+    "tier2_count": 0,
+    "tier3_count": 0,
+    "null_searches": 5,
+    "trust_flags": [
+      "ZERO_EVIDENCE",
+      "DISCLOSURE_GAP_POSSIBLE",
+      "REGIONAL_REGULATORY_DIVERGENCE"
+    ]
+  }
+}

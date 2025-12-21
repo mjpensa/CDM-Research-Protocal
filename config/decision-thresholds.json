@@ -181,6 +181,58 @@
     }
   },
 
+  "log_rotation": {
+    "description": "Configuration for log file rotation and archival (Gap 4 fix)",
+    "enabled": true,
+    "thresholds": {
+      "checkpoint_log": {"max_entries": 1000, "archive_threshold": 800},
+      "error_log": {"max_entries": 500, "archive_threshold": 400},
+      "review_queue": {"max_entries": 200, "archive_threshold": 150},
+      "violation_queue": {"max_entries": 200, "archive_threshold": 150}
+    },
+    "archive_directory": "archives",
+    "retention_days": 90,
+    "compress_archives": true,
+    "check_interval": 100,
+    "rationale": {
+      "thresholds": "Rotate before hitting max to avoid degraded performance during rotation",
+      "retention": "90 days balances audit trail needs with storage efficiency",
+      "compression": "Gzip reduces archive size by ~90% for JSON logs"
+    }
+  },
+
+  "state_management": {
+    "description": "Configuration for state file management (Gaps 3, 8, 10 fixes)",
+    "lock_timeout_seconds": 30,
+    "stale_lock_age_seconds": 300,
+    "workflow_staleness_hours": 1,
+    "phase_scan_range": {"min": 1, "max": 9},
+    "retry_config": {
+      "max_retries": 5,
+      "base_delay_seconds": 0.1,
+      "max_delay_seconds": 2.0
+    },
+    "rationale": {
+      "lock_timeout": "30 seconds allows for slow I/O but prevents indefinite hangs",
+      "stale_lock": "5 minutes covers typical stage execution time",
+      "workflow_staleness": "1 hour triggers re-sync from authoritative bank states"
+    }
+  },
+
+  "state_versioning": {
+    "description": "Configuration for state file versioning and rollback (Gap 6 fix)",
+    "enabled": true,
+    "max_versions": 5,
+    "version_directory": "versions",
+    "compress_old_versions": true,
+    "version_triggers": ["stage_complete", "probability_update", "blocked", "manual"],
+    "rationale": {
+      "max_versions": "Keep last 5 versions to balance storage with recovery options",
+      "compression": "Compress versions older than current to save space",
+      "triggers": "Create version on significant state changes for recovery"
+    }
+  },
+
   "usage_notes": [
     "All thresholds in this file should be referenced by agent prompts rather than hardcoded",
     "Changes to thresholds here will propagate to all agents on next execution",

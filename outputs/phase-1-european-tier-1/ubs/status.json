@@ -1,0 +1,39 @@
+{
+  "bank_id": "ubs",
+  "bank_name": "UBS Group AG",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Integration-Constrained",
+  "confidence": 60,
+  "status": "completed",
+  "current_stage": "complete",
+  "probability_architect": 0.22,
+  "probability_pragmatist": 0.78,
+  "prior_probability": 0.10,
+  "prior_calculation": {
+    "base_prior": 0.15,
+    "adjustments": {
+      "derivatives_dominant": {"applied": true, "adjustment": 0.10},
+      "active_ma_integration": {"applied": true, "adjustment": -0.15, "rationale": "Credit Suisse integration consuming capacity"}
+    },
+    "final_prior": 0.10
+  },
+  "evidence_count": {"tier1": 2, "tier2": 2, "tier3": 0, "null_results": 2},
+  "stages_completed": ["initialize", "pre_mortem", "tier1_evidence", "bayesian_1", "gate_1", "tier2_evidence", "bayesian_2", "gate_2", "tier3_evidence", "bayesian_3", "gate_3", "adversarial_challenge", "final_classification", "synthesis"],
+  "last_updated": "2025-12-20T02:30:00Z",
+  "notes": "Historical CDM engagement (2020 DAML pilot with Vinay Srinivas) but integration-constrained. Hypothesis CONFIRMED.",
+  "hypothesis_status": {
+    "original_hypothesis": "Credit Suisse integration consuming CDM investment capacity through 2026",
+    "verification_status": "CONFIRMED",
+    "recommendation": "Re-assess Q1 2027 post-integration"
+  },
+  "key_findings": [
+    "ISDA CDM DAML pilot participation (Oct 2020) - HISTORICAL capability",
+    "Credit Suisse CDM capability (Sunil Challa) - INHERITED via acquisition",
+    "Integration is 'largest data migration in financial services' - 1.3M clients",
+    "All technology capacity consumed through 2026",
+    "Risk.net Derivatives House of Year 2024 but no CDM mention"
+  ],
+  "unique_pattern": "Historical engagement + current constraint = different from non-engagement"
+}

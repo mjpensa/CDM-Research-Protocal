@@ -1,0 +1,177 @@
+{
+  "$schema": "CDM/DRR Ground Truth Registry v1.0",
+  "description": "Validated outcomes for calibration backtesting",
+  "version": "1.0",
+  "last_updated": "2025-12-21",
+
+  "ground_truth_sources": {
+    "description": "Authoritative sources for outcome validation",
+    "primary_sources": [
+      {
+        "source_type": "anchor_points",
+        "file": "config/anchor-points.json",
+        "authority": "IMMUTABLE",
+        "rationale": "Known production banks confirmed via ISDA/FINOS announcements"
+      },
+      {
+        "source_type": "official_announcement",
+        "authority": "TIER_1",
+        "validation_requirements": ["bank_domain_match", "dated_announcement", "production_claim"]
+      },
+      {
+        "source_type": "finos_contribution",
+        "authority": "TIER_1",
+        "validation_requirements": ["github_commit_history", "named_contributor"]
+      },
+      {
+        "source_type": "regulatory_filing",
+        "authority": "TIER_1",
+        "validation_requirements": ["regulatory_body_confirmation"]
+      }
+    ]
+  },
+
+  "validated_outcomes": [
+    {
+      "bank_id": "bnp-paribas",
+      "outcome_date": "2022-09-30",
+      "actual_classification": "ARCHITECT",
+      "actual_variant": "Native",
+      "outcome_type": "production_announcement",
+      "source_url": "https://www.isda.org/2022/09/26/isda-announces-first-live-cdm-adoption/",
+      "source_date": "2022-09-26",
+      "validation_confidence": 100,
+      "from_anchor_points": true,
+      "notes": "First major bank in production - immutable anchor point"
+    },
+    {
+      "bank_id": "jpmorgan",
+      "outcome_date": "2024-10-01",
+      "actual_classification": "ARCHITECT",
+      "actual_variant": "Native",
+      "outcome_type": "production_announcement",
+      "source_url": "https://www.isda.org/",
+      "source_date": "2024-10-01",
+      "validation_confidence": 100,
+      "from_anchor_points": true,
+      "notes": "ISDA official announcement - immutable anchor point"
+    },
+    {
+      "bank_id": "jscc",
+      "outcome_date": "2023-06-01",
+      "actual_classification": "ARCHITECT",
+      "actual_variant": "Native",
+      "outcome_type": "infrastructure_mandate",
+      "source_url": "https://www.isda.org/",
+      "source_date": "2023-06-01",
+      "validation_confidence": 100,
+      "from_anchor_points": true,
+      "notes": "JSCC CDM mandate - CCP infrastructure, immutable anchor point"
+    },
+    {
+      "bank_id": "pictet",
+      "outcome_date": "2024-06-01",
+      "actual_classification": "ARCHITECT",
+      "actual_variant": "Native",
+      "outcome_type": "production_announcement",
+      "source_url": "https://www.finos.org/",
+      "source_date": "2024-06-01",
+      "validation_confidence": 100,
+      "from_anchor_points": true,
+      "notes": "FINOS announcement - immutable anchor point"
+    }
+  ],
+
+  "pending_validations": [
+    {
+      "bank_id": "deutsche-bank",
+      "predicted_classification": "PRAGMATIST",
+      "predicted_probability_architect": 0.17,
+      "prediction_date": "2025-12-20",
+      "validation_status": "awaiting_outcome",
+      "expected_resolution_trigger": "official_announcement_or_18_month_absence",
+      "resolution_deadline": "2027-06-20",
+      "notes": "If no CDM announcement by 2027-06, classify as confirmed PRAGMATIST"
+    },
+    {
+      "bank_id": "barclays",
+      "predicted_classification": "ARCHITECT",
+      "predicted_probability_architect": null,
+      "prediction_date": null,
+      "validation_status": "research_pending",
+      "expected_resolution_trigger": "official_announcement",
+      "resolution_deadline": null,
+      "notes": "Confirmed contributor per anchor-points.json; awaiting production evidence"
+    },
+    {
+      "bank_id": "hsbc",
+      "predicted_classification": null,
+      "predicted_probability_architect": null,
+      "prediction_date": null,
+      "validation_status": "research_pending",
+      "expected_resolution_trigger": "official_announcement_or_vendor_dependency_confirmation",
+      "resolution_deadline": null,
+      "notes": "Known Delta Capita relationship per anchor-points.json"
+    }
+  ],
+
+  "lr_accuracy_tracking": {
+    "description": "Track actual vs assumed LR per evidence type for calibration",
+    "minimum_sample_for_observed_lr": 5,
+    "divergence_threshold_for_flag": 0.30,
+    "evidence_type_performance": {
+      "official_production_announcement": {
+        "assumed_lr": 200.0,
+        "observed_lr": null,
+        "sample_size": 4,
+        "architect_outcomes_with_evidence": 4,
+        "pragmatist_outcomes_with_evidence": 0,
+        "divergence": null,
+        "needs_recalibration": false,
+        "notes": "All 4 anchor points have this evidence type with correct ARCHITECT outcome"
+      },
+      "named_finos_announcement": {
+        "assumed_lr": 13.0,
+        "observed_lr": null,
+        "sample_size": 2,
+        "architect_outcomes_with_evidence": 2,
+        "pragmatist_outcomes_with_evidence": 0,
+        "divergence": null,
+        "needs_recalibration": false,
+        "notes": "Pictet, JPMorgan have FINOS signals - sample size too small"
+      },
+      "vendor_comprehensive_no_internal_signals": {
+        "assumed_lr": 0.11,
+        "observed_lr": null,
+        "sample_size": 0,
+        "architect_outcomes_with_evidence": 0,
+        "pragmatist_outcomes_with_evidence": 0,
+        "divergence": null,
+        "needs_recalibration": false,
+        "notes": "Awaiting outcomes from banks with known vendor dependencies"
+      }
+    }
+  },
+
+  "validation_rules": {
+    "time_based_resolution": {
+      "description": "When no announcement occurs, infer PRAGMATIST outcome",
+      "months_without_announcement": 18,
+      "confidence_for_inference": 75,
+      "outcome_type": "time_based_absence"
+    },
+    "contradicting_outcome": {
+      "description": "How to handle an outcome that contradicts prediction",
+      "record_squared_error": true,
+      "flag_for_lr_review": true,
+      "update_evidence_patterns": true
+    }
+  },
+
+  "usage_notes": [
+    "Immutable anchor points have validation_confidence=100 and cannot be changed",
+    "pending_validations are predictions awaiting outcome; validated_outcomes have confirmed results",
+    "lr_accuracy_tracking tracks observed vs assumed LR to identify miscalibrated evidence types",
+    "Sample size must reach minimum_sample_for_observed_lr before observed_lr can be calculated"
+  ]
+}

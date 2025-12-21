@@ -30,11 +30,22 @@ try:
         get_source_authority_mapping,
         get_authority_levels,
         get_vendor_domains,
-        get_maturity_weights
+        get_maturity_weights,
+        get_domain_credibility,
+        get_author_credibility,
+        get_bank_relationships,
+        load_source_credibility
     )
     CONFIG_AVAILABLE = True
 except ImportError:
     CONFIG_AVAILABLE = False
+
+# Import relationship analyzer
+try:
+    from relationship_analyzer import RelationshipAnalyzer
+    RELATIONSHIP_ANALYZER_AVAILABLE = True
+except ImportError:
+    RELATIONSHIP_ANALYZER_AVAILABLE = False
 
 # --- SAFE DOMAIN MATCHING ---
 def is_trusted_domain(url: str, domain_pattern: str) -> bool:
@@ -126,6 +137,73 @@ def check_deprecated_terminology(data: dict) -> list:
             warnings.append(f"DEPRECATED_TERM: '{term}' found - use PRAGMATIST instead")
 
     return warnings
+
+
+def check_consistency_flags(json_path: str, data: dict) -> tuple[list, list]:
+    """
+    Check for cross-bank consistency issues.
+
+    Uses the ConsistencyChecker to compare this bank's evidence profile
+    against known patterns and peer cohorts.
+
+    Args:
+        json_path: Path to evidence.json
+        data: Parsed evidence data
+
+    Returns:
+        Tuple of (flags, warnings)
+    """
+    flags = []
+    warnings = []
+
+    try:
+        # Import consistency checker
+        from consistency_checker import ConsistencyChecker
+
+        # Determine phase directory from path
+        json_path = Path(json_path)
+        bank_dir = json_path.parent
+        phase_dir = bank_dir.parent
+        bank_id = bank_dir.name
+
+        # Initialize checker and generate fingerprint
+        checker = ConsistencyChecker()
+        fingerprint = checker.generate_fingerprint(data)
+
+        # Store fingerprint in data for future reference
+        if 'meta' not in data:
+            data['meta'] = {}
+        data['meta']['evidence_fingerprint'] = fingerprint.to_dict()
+
+        # Check for consistency issues
+        issues = checker.check_bank_consistency(bank_id, phase_dir)
+
+        for issue in issues:
+            if issue.severity == "critical":
+                flags.append("CONSISTENCY_CRITICAL")
+                warnings.append(f"[CONSISTENCY] {issue.issue_type}: {issue.description}")
+            elif issue.severity == "warning":
+                flags.append("CONSISTENCY_WARNING")
+                warnings.append(f"[CONSISTENCY] {issue.issue_type}: {issue.description}")
+            else:
+                warnings.append(f"[CONSISTENCY INFO] {issue.description}")
+
+        # Check for similar profile divergence specifically
+        for issue in issues:
+            if issue.issue_type == "SIMILAR_PROFILE_CLASSIFICATION_DIVERGENCE":
+                flags.append("SIMILAR_PROFILE_DIVERGENCE")
+            elif issue.issue_type == "PEER_OUTLIER_CONFIDENCE":
+                flags.append("PEER_OUTLIER")
+            elif issue.issue_type == "PEER_OUTLIER_CLASSIFICATION":
+                flags.append("PEER_OUTLIER")
+
+    except ImportError:
+        # Consistency checker not available - skip
+        pass
+    except Exception as e:
+        warnings.append(f"[CONSISTENCY] Error during consistency check: {str(e)}")
+
+    return flags, warnings
 
 
 def parse_date(date_str: str | None) -> datetime | None:
@@ -664,6 +742,140 @@ def check_source_authority(items: list[dict]) -> tuple[float, list[str]]:
     return round(avg_authority, 3), warnings
 
 
+def check_enhanced_source_authority(items: list[dict]) -> tuple[float, list[str], dict]:
+    """
+    Enhanced source authority check using source_credibility.json.
+    Returns (enhanced_score, warnings, details).
+    """
+    if not items or not CONFIG_AVAILABLE:
+        return 0.5, [], {}
+
+    warnings = []
+    enhanced_scores = []
+    details = {
+        'domains_checked': [],
+        'lr_multipliers_applied': [],
+        'vendor_bias_adjustments': []
+    }
+
+    source_credibility = load_source_credibility()
+    vendor_adjustments = source_credibility.get('vendor_domain_adjustments', {}).get('domains', {})
+
+    for item in items:
+        url = item.get('source_url', '')
+        item_id = item.get('id', 'unknown')
+
+        # Extract domain
+        try:
+            parsed = urlparse(url.lower())
+            domain = parsed.netloc
+            if ':' in domain:
+                domain = domain.split(':')[0]
+        except Exception:
+            domain = ''
+
+        if not domain:
+            enhanced_scores.append(0.5)
+            continue
+
+        # Check domain credibility
+        domain_cred = get_domain_credibility(domain)
+
+        if domain_cred:
+            composite = domain_cred.get('composite_score', 0.5)
+            lr_mult = domain_cred.get('lr_multiplier', 1.0)
+
+            enhanced_scores.append(composite)
+            details['domains_checked'].append({
+                'domain': domain,
+                'item_id': item_id,
+                'composite_score': composite,
+                'cdm_coverage_quality': domain_cred.get('cdm_coverage_quality', 'unknown')
+            })
+
+            if lr_mult != 1.0:
+                details['lr_multipliers_applied'].append({
+                    'domain': domain,
+                    'item_id': item_id,
+                    'multiplier': lr_mult
+                })
+        else:
+            # Check if it's a vendor domain
+            vendor_info = vendor_adjustments.get(domain)
+            if vendor_info:
+                bias_adj = vendor_info.get('bias_adjustment', 0.3)
+                enhanced_scores.append(0.5 * (1 - bias_adj))
+                details['vendor_bias_adjustments'].append({
+                    'domain': domain,
+                    'item_id': item_id,
+                    'adjustment': bias_adj,
+                    'requires_corroboration': vendor_info.get('requires_corroboration', True)
+                })
+                if vendor_info.get('requires_corroboration'):
+                    warnings.append(
+                        f"{item_id}: Vendor source ({domain}) requires bank confirmation"
+                    )
+            else:
+                enhanced_scores.append(0.5)
+
+    avg_score = sum(enhanced_scores) / len(enhanced_scores) if enhanced_scores else 0.5
+    return round(avg_score, 3), warnings, details
+
+
+def check_relationship_corroboration(bank_id: str, items: list[dict]) -> tuple[float, list[str], dict]:
+    """
+    Check if evidence aligns with known relationship pressure.
+    Returns (corroboration_rate, warnings, pressure_vector).
+    """
+    if not bank_id or not RELATIONSHIP_ANALYZER_AVAILABLE:
+        return 0.5, [], {}
+
+    warnings = []
+
+    try:
+        analyzer = RelationshipAnalyzer()
+        metrics = analyzer.calculate_network_metrics(bank_id)
+        pressure_vector = metrics.pressure_vector
+
+        # Calculate evidence direction
+        architect_evidence = 0
+        pragmatist_evidence = 0
+
+        for item in items:
+            direction = item.get('direction', '').upper()
+            if 'ARCHITECT' in direction:
+                architect_evidence += 1
+            elif 'PRAGMATIST' in direction:
+                pragmatist_evidence += 1
+
+        total = architect_evidence + pragmatist_evidence
+        if total == 0:
+            return 0.5, [], pressure_vector.to_dict()
+
+        evidence_direction = 'ARCHITECT' if architect_evidence > pragmatist_evidence else 'PRAGMATIST'
+
+        # Check alignment with pressure vector
+        aligned = evidence_direction == pressure_vector.net_direction
+
+        if not aligned and pressure_vector.confidence > 0.5:
+            warnings.append(
+                f"Evidence direction ({evidence_direction}) contradicts "
+                f"relationship pressure ({pressure_vector.net_direction})"
+            )
+
+        # Calculate corroboration rate based on alignment
+        if aligned:
+            corroboration_rate = 0.7 + (pressure_vector.confidence * 0.3)
+        else:
+            corroboration_rate = 0.3 + (1 - pressure_vector.confidence) * 0.2
+
+        return round(corroboration_rate, 3), warnings, pressure_vector.to_dict()
+
+    except Exception as e:
+        logger.warning(f"Relationship analysis failed: {e}")
+        return 0.5, [], {}
+
+
 def check_duplicates(items: list[dict]) -> tuple[list[str], list[str]]:
     """
     Check for duplicate IDs and URLs.
@@ -771,6 +983,81 @@ def check_excerpt_verification(items: list[dict]) -> tuple[float, list[str]]:
     return round(rate, 3), warnings
 
 
+# Product weights for coverage analysis
+PRODUCT_WEIGHTS = {
+    "IRS": 0.35,
+    "CDS": 0.25,
+    "FX_Forwards": 0.15,
+    "FX_Options": 0.05,
+    "Equity_Swaps": 0.05,
+    "Equity_Options": 0.05,
+    "Commodities": 0.05,
+    "Structured_Products": 0.02,
+    "Repo": 0.02,
+    "ETD": 0.01
+}
+
+
+def check_product_coverage(items: list[dict]) -> tuple[dict, list[str]]:
+    """
+    Check product coverage breadth in evidence.
+    Flags narrow product focus that may indicate incomplete research.
+
+    Returns (coverage_metrics, warnings).
+    """
+    warnings = []
+
+    # Extract products from all evidence items
+    products_found = set()
+    product_evidence_count = {}
+
+    for item in items:
+        product_scope = item.get('product_scope', [])
+        if product_scope:
+            for product in product_scope:
+                products_found.add(product)
+                product_evidence_count[product] = product_evidence_count.get(product, 0) + 1
+
+    # Calculate coverage metrics
+    total_products = len(PRODUCT_WEIGHTS)
+    products_covered = len(products_found)
+    coverage_rate = products_covered / total_products if total_products > 0 else 0
+
+    # Calculate regulatory-weighted coverage
+    weighted_coverage = sum(
+        PRODUCT_WEIGHTS.get(p, 0.05) for p in products_found
+    ) / sum(PRODUCT_WEIGHTS.values())
+
+    # Determine if evidence is narrowly focused
+    if products_covered == 1 and len(items) > 3:
+        warnings.append(
+            f"Evidence concentrated in single product: {list(products_found)[0]}"
+        )
+    elif coverage_rate < 0.3 and len(items) > 5:
+        warnings.append(
+            f"Narrow product coverage: {products_covered}/{total_products} products"
+        )
+
+    # Check if high-weight products are covered
+    high_weight_products = ['IRS', 'CDS', 'FX_Forwards']
+    covered_high_weight = [p for p in high_weight_products if p in products_found]
+    if not covered_high_weight and products_found:
+        warnings.append(
+            "Evidence missing core products (IRS, CDS, FX_Forwards)"
+        )
+
+    metrics = {
+        "products_covered": list(products_found),
+        "coverage_count": products_covered,
+        "total_products": total_products,
+        "coverage_rate": round(coverage_rate, 3),
+        "weighted_coverage": round(weighted_coverage, 3),
+        "product_evidence_counts": product_evidence_count
+    }
+
+    return metrics, warnings
+
+
 def run_trust_audit(json_path: str) -> dict:
     """
     Run full trust audit on evidence file.
@@ -839,15 +1126,31 @@ def run_trust_audit(json_path: str) -> dict:
     # NEW: Excerpt verification check
     excerpt_rate, excerpt_warnings = check_excerpt_verification(items)
 
+    # NEW: Enhanced source authority using source_credibility.json
+    enhanced_authority, enhanced_auth_warnings, auth_details = check_enhanced_source_authority(items)
+
+    # NEW: Relationship corroboration check
+    bank_id = data.get('bank_id', '')
+    rel_corr_rate, rel_corr_warnings, pressure_vector = check_relationship_corroboration(bank_id, items)
+
+    # NEW: Product coverage check
+    product_coverage, product_warnings = check_product_coverage(items)
+
     # Confidence calculation (now includes authority adjustment)
     confidence, confidence_rationale = calculate_confidence(
         items, verification_rate, corroboration_rate, len(contradictions) > 0
     )
 
-    # Apply authority adjustment
-    if authority_score < 0.5:
+    # Apply authority adjustment (use enhanced score if available)
+    effective_authority = enhanced_authority if enhanced_authority > 0 else authority_score
+    if effective_authority < 0.5:
         confidence = max(20, confidence - 10)
-        confidence_rationale += f" | Low authority ({authority_score:.2f}): -10%"
+        confidence_rationale += f" | Low authority ({effective_authority:.2f}): -10%"
+
+    # Apply relationship pressure adjustment
+    if pressure_vector and rel_corr_rate < 0.4:
+        confidence = max(15, confidence - 5)
+        confidence_rationale += f" | Relationship contradiction: -5%"
 
     # --- Generate flags ---
     flags = []
@@ -859,6 +1162,9 @@ def run_trust_audit(json_path: str) -> dict:
     warnings.extend(url_dup_warnings)
     warnings.extend(xref_warnings)
     warnings.extend(excerpt_warnings)
+    warnings.extend(enhanced_auth_warnings)
+    warnings.extend(rel_corr_warnings)
+    warnings.extend(product_warnings)
 
     if source_diversity < 0.3:
         flags.append("SINGLE_SOURCE_CLAIM")
@@ -898,11 +1204,24 @@ def run_trust_audit(json_path: str) -> dict:
     if authority_warnings:
         flags.append("TIER_AUTHORITY_MISMATCH")
 
+    # NEW: Relationship pressure contradiction flag
+    if rel_corr_warnings:
+        flags.append("RELATIONSHIP_PRESSURE_CONTRADICTION")
+
+    # NEW: Product coverage flag
+    if product_warnings:
+        flags.append("NARROW_PRODUCT_COVERAGE")
+
     # Check for deprecated terminology
     deprecated_warnings = check_deprecated_terminology(data)
     if deprecated_warnings:
         warnings.extend(deprecated_warnings)
         flags.append("DEPRECATED_TERMINOLOGY")
+
+    # --- Consistency checking integration ---
+    consistency_flags, consistency_warnings = check_consistency_flags(json_path, data)
+    flags.extend(consistency_flags)
+    warnings.extend(consistency_warnings)
 
     # --- Build trust metrics ---
     trust_metrics = {
@@ -913,7 +1232,11 @@ def run_trust_audit(json_path: str) -> dict:
         "corroboration_rate": corroboration_rate,
         "verification_rate": round(verification_rate, 3),
         "authority_score": authority_score,
+        "enhanced_authority_score": enhanced_authority,
+        "relationship_corroboration_rate": rel_corr_rate,
+        "pressure_vector": pressure_vector,
         "excerpt_verification_rate": excerpt_rate,
+        "product_coverage": product_coverage,
         "warnings": warnings,
         "flags": flags
     }

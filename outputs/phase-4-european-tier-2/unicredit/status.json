@@ -1,0 +1,60 @@
+{
+  "bank_id": "unicredit",
+  "bank_name": "UniCredit",
+  "phase": 4,
+  "phase_name": "European Tier 2",
+  "classification": "OBSERVER",
+  "sub_classification": "Historical-Engagement",
+  "confidence": 40,
+  "status": "completed",
+  "current_stage": "synthesis",
+  "probability_architect": 0.001,
+  "probability_pragmatist": 0.479,
+  "probability_observer": 0.510,
+  "probability_unknown": 0.010,
+  "prior_probability": 0.05,
+  "evidence_count": {
+    "tier1": 1,
+    "tier2": 0,
+    "tier3": 0,
+    "null_results": 10
+  },
+  "last_updated": "2025-12-20T12:00:00Z",
+  "notes": "Historical ISDA Board member (TJ Lim 2011-2016) but no current CDM evidence. OBSERVER (Historical-Engagement) at 40% confidence due to 9-year-old evidence with 0.3 temporal weight multiplier. Evidence predates CDM development (2017). Comprehensive null results (10:1 ratio) corroborate ended engagement.",
+  "key_findings": [
+    "TJ Lim (Global Co-Head of Markets) was ISDA Board member 2011-2016",
+    "Board tenure ended before ISDA CDM development began (2017)",
+    "No current ISDA Board representation (9-year gap)",
+    "No FINOS membership or CDM contribution",
+    "No trade press coverage since 2016 (4 Tier 2 sources searched)",
+    "No hiring signals for CDM roles (3 Tier 3 sources searched)",
+    "10:1 null-to-positive evidence ratio supports historical-only engagement"
+  ],
+  "bayesian_summary": {
+    "post_tier1": {
+      "architect": 0.064,
+      "pragmatist": 0.593,
+      "observer": 0.339,
+      "unknown": 0.004
+    },
+    "post_tier2": {
+      "architect": 0.006,
+      "pragmatist": 0.548,
+      "observer": 0.439,
+      "unknown": 0.007
+    },
+    "post_tier3": {
+      "architect": 0.001,
+      "pragmatist": 0.479,
+      "observer": 0.510,
+      "unknown": 0.010
+    }
+  },
+  "temporal_analysis": {
+    "evidence_age_days": 3277,
+    "evidence_age_years": 9.0,
+    "freshness_category": "historical",
+    "weight_multiplier": 0.3,
+    "confidence_penalty": -11.0
+  }
+}

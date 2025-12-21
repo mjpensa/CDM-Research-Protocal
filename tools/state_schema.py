@@ -25,7 +25,7 @@ import json
 
 
 # Schema version for migration support
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"  # Added prediction tracking fields
 
 
 class StageStatus(Enum):
@@ -94,13 +94,18 @@ def normalize_stage(stage: str) -> str:
 
 @dataclass
 class ProbabilityUpdate:
-    """Record of a probability update after evidence gathering."""
+    """
+    Record of a probability update after evidence gathering.
+
+    Includes idempotency_key for duplicate detection (Gap 7 fix).
+    """
     stage: str
     prior: float
     posterior: float
     combined_lr: float
     evidence_count: int
     timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    idempotency_key: Optional[str] = None
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -111,6 +116,29 @@ class ProbabilityUpdate:
         valid_fields = {f.name for f in fields(cls)}
         filtered_data = {k: v for k, v in data.items() if k in valid_fields}
         return cls(**filtered_data)
+
+    @classmethod
+    def generate_idempotency_key(cls, stage: str, bank_id: str, timestamp: str = None) -> str:
+        """
+        Generate a unique idempotency key for duplicate detection.
+
+        Format: {stage}_{bank_id}_{timestamp_truncated}
+
+        Args:
+            stage: Stage name (e.g., "bayesian_1")
+            bank_id: Bank identifier
+            timestamp: Optional timestamp (defaults to current time)
+
+        Returns:
+            Idempotency key string
+        """
+        import hashlib
+        if timestamp is None:
+            timestamp = datetime.now(timezone.utc).isoformat()
+        # Truncate timestamp to minute precision for near-duplicate detection
+        ts_minute = timestamp[:16]  # "2025-12-21T10:30"
+        raw = f"{stage}_{bank_id}_{ts_minute}"
+        return hashlib.sha256(raw.encode()).hexdigest()[:16]
 
 
 @dataclass
@@ -253,6 +281,12 @@ class BankState:
     retry_count: int = 0  # Number of retries for current stage
     max_retries: int = 3  # Maximum retries before blocking
 
+    # Phase 4: Prediction tracking for calibration (v1.2)
+    prediction_id: Optional[str] = None  # Reference to prediction-log entry
+    validation_id: Optional[str] = None  # Reference to validation-log entry (if validated)
+    validation_status: str = "pending"  # pending | validated | stale
+    evidence_fingerprint: Optional[Dict[str, Any]] = None  # For cross-bank consistency
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         data = asdict(self)
@@ -323,18 +357,64 @@ class BankState:
         return instance
 
     def update_probability(self, posterior: float, combined_lr: float,
-                          evidence_count: int, stage: str) -> None:
-        """Record a probability update."""
+                          evidence_count: int, stage: str,
+                          idempotency_key: str = None) -> bool:
+        """
+        Record a probability update with idempotency check.
+
+        If an idempotency_key is provided, checks for duplicate updates
+        to prevent double-processing (Gap 7 fix).
+
+        Args:
+            posterior: New probability value
+            combined_lr: Combined likelihood ratio
+            evidence_count: Number of evidence items
+            stage: Stage name (e.g., "bayesian_1")
+            idempotency_key: Optional key for duplicate detection
+
+        Returns:
+            True if update was applied, False if duplicate was detected
+        """
+        # Generate idempotency key if not provided
+        if idempotency_key is None:
+            idempotency_key = ProbabilityUpdate.generate_idempotency_key(
+                stage, self.bank_id
+            )
+
+        # Check for existing update with same idempotency key
+        for existing in self.probability_history:
+            if existing.idempotency_key == idempotency_key:
+                # Duplicate detected - skip update
+                return False
+
+        # Also check for near-duplicate by stage+timestamp (legacy compatibility)
+        # Same stage within 60 seconds is likely a duplicate
+        now = datetime.now(timezone.utc)
+        for existing in self.probability_history:
+            if existing.stage == stage:
+                try:
+                    existing_time = datetime.fromisoformat(
+                        existing.timestamp.replace('Z', '+00:00')
+                    )
+                    delta = abs((now - existing_time).total_seconds())
+                    if delta < 60:
+                        # Near-duplicate - skip
+                        return False
+                except (ValueError, TypeError):
+                    pass
+
         update = ProbabilityUpdate(
             stage=stage,
             prior=self.current_probability,
             posterior=posterior,
             combined_lr=combined_lr,
-            evidence_count=evidence_count
+            evidence_count=evidence_count,
+            idempotency_key=idempotency_key
         )
         self.probability_history.append(update)
         self.current_probability = posterior
         self.last_updated = datetime.now(timezone.utc).isoformat()
+        return True
 
     def mark_stage_complete(self, stage: str) -> None:
         """Mark a stage as completed."""

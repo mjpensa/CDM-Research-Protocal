@@ -1,0 +1,93 @@
+{
+  "bank_id": "mufg",
+  "bank_name": "Mitsubishi UFJ Financial Group",
+  "schema_version": "4.3",
+  "phase": 3,
+  "research_date": "2025-12-21",
+  "evidence_items": [
+    {
+      "id": "MUFG-001",
+      "claim": "MUFG is a clearing member of JSCC (Japan Securities Clearing Corporation), which launched CDM-based reporting in production in June 2025",
+      "source_url": "https://www.jpx.co.jp/jscc/en/index.html",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "date": "2025-06-01",
+      "direction": "SUPPORTS_PRAGMATIST",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "current",
+        "specificity": "moderate"
+      },
+      "excerpt": "JSCC is the first CCP globally to deploy CDM in production. MUFG as a major Japanese clearing member is connected to this CDM infrastructure.",
+      "caveats": "JSCC CDM adoption does not necessarily indicate MUFG internal CDM strategy. Clearing members can interface through vendor solutions.",
+      "lr_mapping": {
+        "evidence_type": "ccp_connectivity",
+        "likelihood_ratio": 1.2
+      },
+      "product_scope": ["IRS", "CDS", "Equity_Swaps"],
+      "jurisdiction_scope": ["Japan"],
+      "coverage_specificity": "inferred"
+    },
+    {
+      "id": "MUFG-002",
+      "claim": "MUFG is listed as a sponsor of ISDA Annual General Meeting events",
+      "source_url": "https://www.isda.org",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2024-04-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "current",
+        "specificity": "vague"
+      },
+      "excerpt": "MUFG appears as sponsor/participant in ISDA events, demonstrating engagement with derivatives industry standards.",
+      "caveats": "Event sponsorship does not indicate technical CDM implementation.",
+      "lr_mapping": {
+        "evidence_type": "isda_event_sponsorship",
+        "likelihood_ratio": 1.0
+      },
+      "product_scope": [],
+      "jurisdiction_scope": [],
+      "coverage_specificity": "unknown"
+    }
+  ],
+  "null_results": [
+    {
+      "id": "MUFG-NULL-001",
+      "category": "Official CDM Announcements",
+      "queries": [
+        "MUFG CDM Common Domain Model",
+        "Mitsubishi UFJ ISDA CDM adoption",
+        "MUFG Digital Regulatory Reporting DRR"
+      ],
+      "results_reviewed": 50,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "No public announcements of CDM adoption. Suggests relying on vendor/infrastructure solutions without native build."
+    },
+    {
+      "id": "MUFG-NULL-002",
+      "category": "FINOS CDM Contributions",
+      "queries": [
+        "MUFG FINOS contributions",
+        "site:github.com/finos MUFG"
+      ],
+      "results_reviewed": 20,
+      "null_type": "NO_RESULTS",
+      "informative_absence": true,
+      "implication": "No open source contributions to CDM projects."
+    }
+  ],
+  "classification": {
+    "primary": "OBSERVER",
+    "sub_classification": "CCP-Connected",
+    "confidence": 45,
+    "rationale": "Classified OBSERVER (CCP-Connected) based on indirect connection to JSCC CDM infrastructure. No direct bank-level CDM implementation evidence."
+  },
+  "meta": {
+    "tier_completed": 2,
+    "generated_at": "2025-12-21T00:00:00Z",
+    "searches_executed": 15
+  }
+}

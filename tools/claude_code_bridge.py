@@ -26,6 +26,7 @@ Usage:
 """
 
 import json
+import re
 import sys
 import logging
 from pathlib import Path
@@ -44,6 +45,13 @@ from config_loader import (
 )
 from state_manager import UnifiedStateManager
 from state_schema import BankState, STAGE_SEQUENCE, normalize_stage
+
+# Optional calibration tracking integration
+try:
+    from calibration_tracker import CalibrationTracker
+    CALIBRATION_AVAILABLE = True
+except ImportError:
+    CALIBRATION_AVAILABLE = False
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -409,6 +417,115 @@ class ClaudeCodeBridge:
             "tier": tier
         }
 
+    def validate_search_completion(self) -> Dict[str, Any]:
+        """
+        Validate that WebSearch execution completed successfully.
+
+        Checks the search_tracking section of evidence.json to detect:
+        - Missing search tracking data
+        - Failed searches
+        - Incomplete tier coverage
+        - Low completion rate
+
+        Returns:
+            Dict with 'valid', 'errors', 'warnings', 'completion_rate'
+        """
+        errors = []
+        warnings = []
+
+        evidence_file = self.bank_dir / "evidence.json"
+        if not evidence_file.exists():
+            return {
+                "valid": False,
+                "errors": ["evidence.json not found"],
+                "warnings": [],
+                "completion_rate": 0.0
+            }
+
+        try:
+            data = json.loads(evidence_file.read_text(encoding='utf-8'))
+        except json.JSONDecodeError as e:
+            return {
+                "valid": False,
+                "errors": [f"evidence.json parse error: {e}"],
+                "warnings": [],
+                "completion_rate": 0.0
+            }
+
+        search_tracking = data.get('search_tracking', {})
+
+        if not search_tracking:
+            warnings.append("No search_tracking data found - search completion cannot be validated")
+            # Fall back to checking if evidence items exist per tier
+            evidence_items = data.get('evidence_items', [])
+            tier1_items = [i for i in evidence_items if i.get('tier') == 1]
+            tier2_items = [i for i in evidence_items if i.get('tier') == 2]
+            tier3_items = [i for i in evidence_items if i.get('tier') == 3]
+
+            if len(tier1_items) == 0:
+                warnings.append("No Tier 1 evidence - searches may have failed")
+            if len(tier2_items) == 0:
+                warnings.append("No Tier 2 evidence - searches may have failed")
+
+            return {
+                "valid": len(errors) == 0,
+                "errors": errors,
+                "warnings": warnings,
+                "completion_rate": None,
+                "fallback_check": True
+            }
+
+        # Check summary if available
+        summary = search_tracking.get('summary', {})
+        completion_rate = summary.get('completion_rate', None)
+        validation_status = summary.get('validation_status', 'unknown')
+
+        if validation_status == 'failed':
+            errors.append("Search validation status is 'failed'")
+        elif validation_status == 'partial':
+            warnings.append("Search validation status is 'partial' - some searches incomplete")
+
+        # Check each tier
+        for tier_key in ['tier1_searches', 'tier2_searches', 'tier3_searches']:
+            tier_data = search_tracking.get(tier_key, {})
+            if tier_data:
+                expected = tier_data.get('expected', 0)
+                completed = tier_data.get('completed', 0)
+                failed = tier_data.get('failed', 0)
+
+                if expected > 0:
+                    tier_num = tier_key.replace('tier', '').replace('_searches', '')
+                    if failed > 0:
+                        warnings.append(f"Tier {tier_num}: {failed}/{expected} searches failed")
+                    if completed < expected:
+                        warnings.append(f"Tier {tier_num}: only {completed}/{expected} searches completed")
+
+        # Calculate overall completion rate if not in summary
+        if completion_rate is None:
+            total_expected = 0
+            total_completed = 0
+            for tier_key in ['tier1_searches', 'tier2_searches', 'tier3_searches']:
+                tier_data = search_tracking.get(tier_key, {})
+                total_expected += tier_data.get('expected', 0)
+                total_completed += tier_data.get('completed', 0)
+
+            if total_expected > 0:
+                completion_rate = total_completed / total_expected
+            else:
+                completion_rate = None
+
+        # Flag low completion rate
+        if completion_rate is not None and completion_rate < 0.8:
+            errors.append(f"Search completion rate is low: {completion_rate*100:.1f}%")
+
+        return {
+            "valid": len(errors) == 0,
+            "errors": errors,
+            "warnings": warnings,
+            "completion_rate": completion_rate,
+            "validation_status": validation_status
+        }
+
     def _validate_bayesian(self, tier: int) -> Dict[str, Any]:
         """Validate Bayesian update output."""
         errors = []
@@ -529,6 +646,119 @@ class ClaudeCodeBridge:
             "warnings": warnings
         }
 
+    def validate_before_completion(self) -> Dict[str, Any]:
+        """
+        Validate bank is ready for completion. Must pass before mark_complete().
+
+        Validates:
+        1. All required synthesis files exist
+        2. Confidence is within valid bounds [20, 95]
+        3. Probability-classification alignment
+        4. State is in a valid completion state
+
+        Returns:
+            Dict with 'valid' bool, 'errors' list, 'warnings' list
+        """
+        errors = []
+        warnings = []
+
+        # Load current state
+        state = self.state_manager.load_bank_state(self.bank_id, self.phase)
+        if not state:
+            return {"valid": False, "errors": ["No state found for bank"], "warnings": []}
+
+        # 1. Validate synthesis files exist
+        synthesis_result = self._validate_synthesis()
+        errors.extend(synthesis_result.get("errors", []))
+        warnings.extend(synthesis_result.get("warnings", []))
+
+        # 2. Extract and validate confidence from confidence-calibration.md
+        calib_file = self.bank_dir / "5-synthesis" / "confidence-calibration.md"
+        confidence = None
+        classification = None
+
+        if calib_file.exists():
+            try:
+                content = calib_file.read_text(encoding='utf-8')
+
+                # Extract confidence value (look for patterns like "Final Confidence: 72%" or "**72%**")
+                conf_match = re.search(r'(?:final\s+confidence|confidence)\s*[:=]?\s*\**(\d+(?:\.\d+)?)\s*%?\**', content, re.IGNORECASE)
+                if conf_match:
+                    confidence = float(conf_match.group(1))
+                else:
+                    # Try alternative pattern: standalone percentage in calibration section
+                    conf_match = re.search(r'\*\*(\d+(?:\.\d+)?)\s*%\*\*', content)
+                    if conf_match:
+                        confidence = float(conf_match.group(1))
+
+                # Extract classification
+                class_match = re.search(r'(?:classification|final\s+classification)\s*[:=]?\s*\**([A-Z][A-Za-z\-]+)', content, re.IGNORECASE)
+                if class_match:
+                    classification = class_match.group(1).upper()
+
+            except Exception as e:
+                errors.append(f"Failed to parse confidence-calibration.md: {e}")
+
+        # Validate confidence bounds
+        CONFIDENCE_FLOOR = 20
+        CONFIDENCE_CEILING = 95
+
+        if confidence is not None:
+            if confidence < CONFIDENCE_FLOOR:
+                errors.append(f"Confidence {confidence}% below minimum {CONFIDENCE_FLOOR}% - requires human review")
+            elif confidence > CONFIDENCE_CEILING:
+                errors.append(f"Confidence {confidence}% exceeds maximum {CONFIDENCE_CEILING}% - reduce to account for uncertainty")
+        else:
+            warnings.append("Could not extract confidence value from confidence-calibration.md")
+
+        # 3. Validate probability-classification alignment
+        # Load thresholds from config
+        try:
+            thresholds = load_decision_thresholds()
+            prob_anchors = thresholds.get('probability_anchors', {})
+            strong_architect = prob_anchors.get('strong_architect', 80)
+            strong_pragmatist = prob_anchors.get('strong_pragmatist', 20)
+        except Exception:
+            strong_architect = 80
+            strong_pragmatist = 20
+
+        prob = state.current_probability
+        # Convert to percentage if in 0-1 scale
+        prob_pct = prob * 100 if prob <= 1 else prob
+
+        if classification:
+            if 'ARCHITECT' in classification:
+                # ARCHITECT requires P(Architect) >= 60% (architect_follower threshold)
+                if prob_pct < 60:
+                    errors.append(f"Classification {classification} requires P(Architect) >= 60%, but P={prob_pct:.1f}%")
+            elif 'PRAGMATIST' in classification:
+                # PRAGMATIST requires P(Architect) < 50%
+                if prob_pct >= 50:
+                    errors.append(f"Classification {classification} requires P(Architect) < 50%, but P={prob_pct:.1f}%")
+        else:
+            warnings.append("Could not extract classification from confidence-calibration.md for alignment check")
+
+        # 4. Validate state is ready for completion
+        if state.is_blocked():
+            errors.append(f"Bank is blocked at checkpoint '{state.blocked_checkpoint}': {state.blocked_reason}")
+
+        # Check minimum stages completed
+        required_stages = ['tier1_evidence', 'bayesian_1', 'adversarial_challenge']
+        for stage in required_stages:
+            if stage not in state.stages_completed and stage != state.current_stage:
+                warnings.append(f"Stage '{stage}' not in completed stages - verify workflow")
+
+        is_valid = len(errors) == 0
+
+        return {
+            "valid": is_valid,
+            "errors": errors,
+            "warnings": warnings,
+            "confidence": confidence,
+            "classification": classification,
+            "probability": prob_pct
+        }
+
     def _get_next_stage(self, current_stage: str) -> Optional[str]:
         """Get the next stage in sequence using canonical STAGE_SEQUENCE."""
         # Phase 2 fix: Use canonical sequence with normalization
@@ -615,13 +845,129 @@ class ClaudeCodeBridge:
         logger.info(f"Checkpoint recorded for {self.bank_id} stage {state.current_stage}")
         return True
 
-    def mark_complete(self) -> None:
-        """Mark bank research as complete."""
+    def mark_complete(self, force: bool = False) -> Dict[str, Any]:
+        """
+        Mark bank research as complete after validation.
+
+        Args:
+            force: If True, skip validation (use with caution)
+
+        Returns:
+            Dict with 'success' bool, 'errors' list, 'warnings' list
+        """
+        # Validate before completion unless forced
+        if not force:
+            validation = self.validate_before_completion()
+            if not validation['valid']:
+                logger.error(f"Cannot mark {self.bank_id} complete: {validation['errors']}")
+                return {
+                    "success": False,
+                    "errors": validation['errors'],
+                    "warnings": validation['warnings']
+                }
+
+            # Log warnings even on success
+            for warning in validation.get('warnings', []):
+                logger.warning(f"Completion warning for {self.bank_id}: {warning}")
+
         state = self.state_manager.load_bank_state(self.bank_id, self.phase)
         if state:
             state.current_stage = "complete"
             state.completed_at = datetime.now(timezone.utc).isoformat()
             self.state_manager.save_bank_state(state)
+            logger.info(f"Bank {self.bank_id} marked as complete")
+
+            # Capture prediction for calibration tracking
+            if CALIBRATION_AVAILABLE:
+                self._capture_prediction_for_calibration(state, validation)
+
+            return {
+                "success": True,
+                "errors": [],
+                "warnings": validation.get('warnings', []) if not force else []
+            }
+
+        return {
+            "success": False,
+            "errors": ["No state found for bank"],
+            "warnings": []
+        }
+
+    def _capture_prediction_for_calibration(self, state: BankState, validation: Dict[str, Any]) -> None:
+        """Capture final prediction for calibration tracking."""
+        try:
+            tracker = CalibrationTracker()
+
+            # Extract classification and probability from validation or state
+            classification = validation.get('classification', 'UNKNOWN')
+            probability = getattr(state, 'probability_architect', 0.50)
+            confidence = validation.get('confidence', 50)
+
+            # Determine variant/sub-classification
+            variant = "Unknown"
+            if classification == "ARCHITECT":
+                variant = "Native" if probability >= 0.85 else "Active"
+            elif classification == "PRAGMATIST":
+                variant = "Vendor-Dependent"
+
+            # Extract evidence summary from evidence.json
+            evidence_summary = self._get_evidence_summary_for_calibration()
+
+            pred_id = tracker.capture_prediction(
+                bank_id=self.bank_id,
+                phase=self.phase,
+                classification=classification,
+                variant=variant,
+                probability_architect=probability,
+                confidence=int(confidence),
+                prior=0.30,
+                combined_lr=self._calculate_combined_lr(probability),
+                evidence_summary=evidence_summary,
+                key_evidence_ids=self._get_key_evidence_ids_for_calibration()
+            )
+            logger.info(f"Calibration prediction captured: {pred_id}")
+        except Exception as e:
+            logger.warning(f"Could not capture calibration prediction: {e}")
+
+    def _get_evidence_summary_for_calibration(self) -> Dict[str, int]:
+        """Extract evidence tier counts for calibration."""
+        evidence_path = self.bank_dir / "evidence.json"
+        if not evidence_path.exists():
+            return {}
+
+        try:
+            data = json.loads(evidence_path.read_text(encoding='utf-8'))
+            evidence = data.get('evidence', [])
+            return {
+                'tier1_count': sum(1 for e in evidence if e.get('tier') == 1),
+                'tier2_count': sum(1 for e in evidence if e.get('tier') == 2),
+                'tier3_count': sum(1 for e in evidence if e.get('tier') == 3),
+                'null_count': len(data.get('null_results', []))
+            }
+        except Exception:
+            return {}
+
+    def _calculate_combined_lr(self, current_prob: float, prior: float = 0.30) -> float:
+        """Calculate combined likelihood ratio from probability shift."""
+        if prior <= 0 or prior >= 1 or current_prob <= 0 or current_prob >= 1:
+            return 1.0
+        # LR = (P_posterior / P_prior) * ((1 - P_prior) / (1 - P_posterior))
+        return (current_prob / prior) * ((1 - prior) / (1 - current_prob))
+
+    def _get_key_evidence_ids_for_calibration(self) -> List[str]:
+        """Get key evidence IDs (tier 1 and high-value claims)."""
+        evidence_path = self.bank_dir / "evidence.json"
+        if not evidence_path.exists():
+            return []
+
+        try:
+            data = json.loads(evidence_path.read_text(encoding='utf-8'))
+            evidence = data.get('evidence', [])
+            key_types = ['production_usage', 'pilot_or_poc', 'open_source_contribution']
+            return [e['id'] for e in evidence
+                    if e.get('tier') == 1 or e.get('claim_type') in key_types][:10]
+        except Exception:
+            return []
 
     def is_complete(self) -> bool:
         """Check if bank research is complete."""

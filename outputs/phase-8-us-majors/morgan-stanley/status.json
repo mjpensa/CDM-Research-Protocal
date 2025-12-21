@@ -1,0 +1,20 @@
+{
+  "bank_id": "morgan-stanley",
+  "bank_name": "Morgan Stanley",
+  "phase": 8,
+  "status": "pending",
+  "classification": {
+    "category": "UNKNOWN",
+    "maturity_score": 0,
+    "confidence": 0
+  },
+  "research_progress": {
+    "tier1_complete": false,
+    "tier2_complete": false,
+    "tier3_complete": false,
+    "synthesis_complete": false
+  },
+  "last_updated": "2025-12-21T00:00:00Z",
+  "trust_flags": [],
+  "notes": "Expected: ARCHITECT (Active) at 70% confidence based on Legend pilot participation and ISDA engagement"
+}
