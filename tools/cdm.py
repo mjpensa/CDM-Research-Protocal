@@ -56,6 +56,9 @@ def cmd_validate(args):
         # Find bank directory
         outputs_dir = PROJECT_ROOT / "outputs"
         bank_dir = None
+        if not outputs_dir.exists():
+            print(f"Error: Outputs directory not found: {outputs_dir}")
+            return 1
         for phase_dir in outputs_dir.iterdir():
             if phase_dir.is_dir():
                 candidate = phase_dir / args.bank

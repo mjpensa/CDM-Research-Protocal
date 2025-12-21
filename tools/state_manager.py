@@ -466,6 +466,9 @@ class UnifiedStateManager:
             execution_tier=execution_tier
         )
 
+        # Initialize stage timing for the initial stage
+        state.start_stage(state.current_stage)
+
         self.save_bank_state(state)
         return state
 
@@ -499,9 +502,10 @@ class UnifiedStateManager:
         state.mark_stage_complete(stage)
 
         # Update current stage to next in sequence
+        # CRITICAL: Use start_stage() to initialize stage timing for timeout detection
         next_stage = state.get_next_stage()
         if next_stage:
-            state.current_stage = next_stage
+            state.start_stage(next_stage)
 
         self.save_bank_state(state)
 

@@ -560,8 +560,8 @@ class ClaudeCodeBridge:
         if state:
             if current not in state.stages_completed:
                 state.stages_completed.append(current)
-            state.current_stage = next_stage
-            state.last_updated = datetime.now(timezone.utc).isoformat()
+            # CRITICAL: Use start_stage() to initialize stage timing for timeout detection
+            state.start_stage(next_stage)
             self.state_manager.save_bank_state(state)
 
         return next_stage, None  # Instruction files handled separately

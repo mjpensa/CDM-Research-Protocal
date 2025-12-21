@@ -73,7 +73,9 @@ class ResearchRunner:
 
     def get_bank_dir(self, bank_id: str, phase: int) -> Path:
         """Get output directory for a bank."""
-        # Find the phase directory
+        # Find the phase directory (check exists before iterating)
+        if not self.outputs_dir.exists():
+            self.outputs_dir.mkdir(parents=True, exist_ok=True)
         for phase_dir in self.outputs_dir.iterdir():
             if phase_dir.is_dir() and f"phase-{phase}" in phase_dir.name:
                 bank_dir = phase_dir / bank_id

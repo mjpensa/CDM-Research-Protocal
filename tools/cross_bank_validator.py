@@ -42,6 +42,10 @@ def load_all_statuses(outputs_dir: Path) -> dict:
     """
     statuses = {}
 
+    # Check directory exists before iterating (batch safety)
+    if not outputs_dir.exists():
+        return statuses
+
     for phase in outputs_dir.iterdir():
         if not phase.is_dir() or not phase.name.startswith('phase-'):
             continue

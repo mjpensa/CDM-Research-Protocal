@@ -330,6 +330,10 @@ def run_bank_auto(bank_id: str, phase: int, resume: bool = True) -> dict:
     outputs_dir = PROJECT_ROOT / "outputs"
     bank_dir = None
 
+    # Check directory exists before iterating (batch safety)
+    if not outputs_dir.exists():
+        outputs_dir.mkdir(parents=True, exist_ok=True)
+
     for phase_dir in outputs_dir.iterdir():
         if phase_dir.is_dir() and f"phase-{phase}" in phase_dir.name:
             candidate = phase_dir / bank_id

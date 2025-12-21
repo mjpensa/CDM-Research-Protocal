@@ -312,7 +312,15 @@ class BankState:
                 normalize_stage(s) for s in filtered_data['skipped_stages']
             ]
 
-        return cls(**filtered_data)
+        # Create instance
+        instance = cls(**filtered_data)
+
+        # Phase 3 migration: Initialize stage timing if missing
+        # This ensures timeout detection works for migrated/resumed states
+        if instance.stage_started_at is None and instance.current_stage != "complete":
+            instance.stage_started_at = datetime.now(timezone.utc).isoformat()
+
+        return instance
 
     def update_probability(self, posterior: float, combined_lr: float,
                           evidence_count: int, stage: str) -> None:

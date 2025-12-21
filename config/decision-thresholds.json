@@ -166,7 +166,8 @@
       "gate_3": 10,
       "adversarial_challenge": 30,
       "final_classification": 15,
-      "synthesis": 20
+      "synthesis": 20,
+      "complete": 1
     },
     "rationale": {
       "evidence_stages": "Evidence gathering may require multiple web searches, allow 30-45 minutes",

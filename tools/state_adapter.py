@@ -129,6 +129,10 @@ def convert_research_state_to_bank_state(
         errors=data.get('errors', []),
     )
 
+    # Initialize stage timing for timeout detection (Phase 3 migration)
+    if bank_state.current_stage != "complete":
+        bank_state.start_stage(bank_state.current_stage)
+
     return bank_state
 
 
@@ -225,6 +229,10 @@ def convert_orchestrate_state_to_bank_state(
         trust_flags=[],
         errors=data.get('errors', []),
     )
+
+    # Initialize stage timing for timeout detection (Phase 3 migration)
+    if bank_state.current_stage != "complete":
+        bank_state.start_stage(bank_state.current_stage)
 
     return bank_state
 
