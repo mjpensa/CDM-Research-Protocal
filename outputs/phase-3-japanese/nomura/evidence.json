@@ -1,0 +1,107 @@
+{
+  "bank_id": "nomura",
+  "bank_name": "Nomura Holdings",
+  "phase": 3,
+  "last_updated": "2025-12-21T14:00:00Z",
+  "evidence_items": [
+    {
+      "id": "NOM_T1_001",
+      "claim": "Shigeru Nonomura (MD, Global Markets Japan, Nomura Securities) serves on ISDA Board of Directors",
+      "source_url": "https://www.isda.org/2024/04/18/four-directors-join-isda-board/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2024-04-18",
+      "excerpt": "This is Nonomura-san's second stint as a Board member, bringing his deep knowledge of Japanese and global derivatives markets."
+    },
+    {
+      "id": "NOM_T1_002",
+      "claim": "Nomura is NOT a FINOS member - not listed on FINOS members page",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-12-21",
+      "excerpt": "Nomura Holdings is not listed among FINOS Platinum, Gold, Silver, or Associate members."
+    },
+    {
+      "id": "NOM_T2_001",
+      "claim": "Nomura sponsored ISDA Derivatives Trading Forum Tokyo where Digital Regulatory Reporting was a key topic",
+      "source_url": "https://mondovisione.com/media-and-resources/news/isda-derivatives-trading-forum-tokyo-scott-omalia-isda-chief-executive-office-20251017/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "authority": "MEDIUM-HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-10-17",
+      "excerpt": "Digital Regulatory Reporting dramatically reduces the risk of inaccurate or incomplete reporting by converting an industry interpretation of reporting rules into unambiguous code."
+    },
+    {
+      "id": "NOM_T2_002",
+      "claim": "Nomura International PLC is enhancing post-trade reporting systems for UK EMIR REFIT compliance",
+      "source_url": "https://www.nomuranow.com/portal/site/public/en-gb/resources/upload/NIP-Annual-Report-310324.pdf",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-03-31",
+      "excerpt": "Nomura International PLC has updated systems, policies and procedures for UK EMIR REFIT reporting effective since 18 December 2023."
+    },
+    {
+      "id": "NOM_T2_003",
+      "claim": "Nomura operates integrated cross-asset derivatives platform with global scope",
+      "source_url": "https://www.nomuranow.com/portal/site/nnextranet/en/global-markets/structured-derivatives/",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-01-01",
+      "excerpt": "Truly integrated, cross-asset platform which includes research, sales and trading in currencies, interest rates and credit in cash and derivative products."
+    },
+    {
+      "id": "NOM_T3_001",
+      "claim": "Nomura has Regulatory Reporting technology position in Mumbai involving systems integration",
+      "source_url": "https://careers.nomura.com/Nomura/job/Mumbai-Regulatory-Reporting/1233402400/",
+      "tier": 3,
+      "claim_type": "hiring_signal",
+      "authority": "LOW",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-09-01",
+      "excerpt": "Collaborating with technology teams to ensure operational systems and platforms are aligned, leading the evaluation, selection, and implementation of new technologies."
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "Nomura FINOS membership CDM contribution",
+      "expected_finding": "FINOS membership or CDM contribution",
+      "actual_result": "Nomura is NOT a FINOS member. No CDM contribution found.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "Nomura CDM production deployment",
+      "expected_finding": "CDM implementation in production",
+      "actual_result": "No evidence of CDM production deployment. EMIR REFIT updates use traditional approach.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "Nomura ISDA DRR adoption 2024",
+      "expected_finding": "ISDA DRR adoption announcement",
+      "actual_result": "Sponsored forum where DRR discussed but no adoption announcement.",
+      "search_date": "2025-12-21"
+    }
+  ],
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "ISDA Governance (Board Member)",
+    "confidence": 0.72,
+    "engagement_type": "isda_governance"
+  }
+}

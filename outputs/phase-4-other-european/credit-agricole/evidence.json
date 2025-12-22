@@ -1,0 +1,93 @@
+{
+  "bank_id": "credit-agricole",
+  "bank_name": "Credit Agricole",
+  "research_date": "2025-12-21",
+  "classification": "PRAGMATIST",
+  "sub_classification": "ISDA Governance",
+  "confidence": 0.72,
+  "maturity_score": 2,
+  "evidence": [
+    {
+      "id": "CA001",
+      "claim": "Credit Agricole is NOT a FINOS member",
+      "claim_type": "null_result",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Neither Credit Agricole nor CACIB listed among FINOS members (Platinum, Gold, Silver, or Associate tiers)",
+      "verification": {
+        "status": "verified",
+        "method": "direct_page_check"
+      }
+    },
+    {
+      "id": "CA002",
+      "claim": "Christine Cremel from Credit Agricole CIB serves on ISDA Board since July 2020",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.isda.org/2024/04/18/four-directors-join-isda-board/",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Christine Cremel, Managing Director, Head of Onboarding, Transaction Management & Clearing at Credit Agricole CIB - Board member since July 2020, re-elected 2020, 2022, 2024",
+      "verification": {
+        "status": "verified",
+        "method": "isda_official_announcement"
+      }
+    },
+    {
+      "id": "CA003",
+      "claim": "Credit Agricole CIB is a CFTC registered swap dealer",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.ca-cib.com/en/about-us/compliance-rules/dodd-frank-disclosures-and-notices",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Crédit Agricole Corporate and Investment Bank is registered with the Commodities Future Exchange Commission (CFTC) as a non-U.S. swap dealer pursuant to Title VII of the Dodd-Frank Wall Street Reform and Consumer Protection Act",
+      "verification": {
+        "status": "verified",
+        "method": "bank_official_disclosure"
+      }
+    },
+    {
+      "id": "CA004",
+      "claim": "Christine Cremel leads EMIR compliance for Credit Agricole CIB",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://theorg.com/org/credit-agricole-sa-london/org-chart/christine-cremel",
+      "tier": 2,
+      "date_accessed": "2025-12-21",
+      "excerpt": "In charge of all remediations required for Credit Agricole CIB to comply for OTC Derivatives with Dodd Frank, EMIR and new Asian regulations",
+      "verification": {
+        "status": "verified",
+        "method": "organizational_profile"
+      }
+    },
+    {
+      "id": "CA005",
+      "claim": "No CDM-specific job postings found at Credit Agricole",
+      "claim_type": "null_result",
+      "source_url": "https://jobs.ca-cib.com",
+      "tier": 3,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Web search for Credit Agricole CDM or Digital Regulatory Reporting job postings returned no results",
+      "verification": {
+        "status": "verified",
+        "method": "web_search"
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "Credit Agricole FINOS member",
+      "date_searched": "2025-12-21",
+      "result": "Not found - confirmed not member via official FINOS member list"
+    },
+    {
+      "search_query": "Credit Agricole CDM Common Domain Model",
+      "date_searched": "2025-12-21",
+      "result": "No results linking Credit Agricole to CDM"
+    },
+    {
+      "search_query": "Credit Agricole Digital Regulatory Reporting job",
+      "date_searched": "2025-12-21",
+      "result": "No CDM/DRR job postings found"
+    }
+  ]
+}

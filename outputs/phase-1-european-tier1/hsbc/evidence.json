@@ -1,0 +1,167 @@
+{
+  "bank_id": "hsbc",
+  "bank_name": "HSBC Holdings plc",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "HSBC-001",
+      "claim": "HSBC participated in FCA/BOE Digital Regulatory Reporting pilot phases 1 and 2 (2018-2019) with 6 other UK banks",
+      "source_url": "https://www.fca.org.uk/innovation/regtech/digital-regulatory-reporting",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2019-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Two phases of the DRR pilot have been completed, involving collaboration between the FCA, BOE and seven banks: Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, Natwest and Santander.",
+      "caveats": "Historical pilot (2018-2019). Does not confirm current DRR/CDM production usage.",
+      "lr_mapping": {
+        "evidence_type": "pilot_proof_of_concept",
+        "likelihood_ratio": 3.0
+      }
+    },
+    {
+      "id": "HSBC-002",
+      "claim": "Jeroen Krens (HSBC MD, COO Markets & Securities Services) elected ISDA Board Chair effective January 2025",
+      "source_url": "https://www.isda.org/2024/12/16/isda-board-appoints-new-chair-as-eric-litvack-steps-down-after-10-years/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-12-16",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "ISDA announced its Board of Directors elected Jeroen Krens as its new Chair. Krens is Managing Director, COO, Markets & Securities Services at HSBC Bank Plc and has been on the ISDA Board since 2016.",
+      "caveats": "ISDA Board Chair is governance role. Does not directly indicate CDM adoption.",
+      "lr_mapping": {
+        "evidence_type": "isda_governance_role",
+        "likelihood_ratio": 4.0
+      }
+    },
+    {
+      "id": "HSBC-003",
+      "claim": "HSBC is NOT listed as a FINOS member at any tier (Platinum, Gold, Silver)",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-12-21",
+      "direction": "CONTRADICTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "FINOS members page lists Platinum (Citi, Goldman Sachs, JP Morgan, UBS, etc.), Gold (Deutsche Bank, Lloyds, NatWest, etc.), Silver members. HSBC is absent from all tiers.",
+      "caveats": "Despite ISDA Board Chair role, HSBC has not joined FINOS.",
+      "lr_mapping": {
+        "evidence_type": "membership_absence",
+        "likelihood_ratio": 0.6
+      }
+    },
+    {
+      "id": "HSBC-004",
+      "claim": "Jakir Alam from HSBC participated in ISDA Future Leaders in Derivatives program (2024 cohort)",
+      "source_url": "https://derivsource.com/2025/05/15/isda-future-leaders-in-derivatives-publishes-whitepaper-on-collateral-and-liquidity-efficiency/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2024-10-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "current",
+        "specificity": "medium"
+      },
+      "excerpt": "Jakir Alam, Program Manager, New Product Development, Markets & Securities Services at HSBC, participated in the ISDA Future Leaders in Derivatives (IFLD) program. The cohort's whitepaper examines collateral efficiency and liquidity resilience.",
+      "caveats": "Industry program participation, not CDM-specific.",
+      "lr_mapping": {
+        "evidence_type": "industry_engagement",
+        "likelihood_ratio": 1.5
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "category": "FINOS Membership",
+      "queries": ["HSBC FINOS member CDM 2024", "site:finos.org HSBC"],
+      "results_reviewed": 10,
+      "null_type": "CONTRADICTORY",
+      "informative_absence": true,
+      "implication": "HSBC is not a FINOS member despite having ISDA Board Chair. Unusual pattern for G-SIB."
+    },
+    {
+      "category": "CDM Contribution",
+      "queries": ["HSBC CDM Common Domain Model contribution"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No direct CDM contribution evidence found. ISDA engagement is governance-focused."
+    },
+    {
+      "category": "DRR Production 2024",
+      "queries": ["HSBC DRR Digital Regulatory Reporting implementation 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No DRR production announcement for 2024. Historical pilot participation (2018-2019) only."
+    },
+    {
+      "category": "CDM Job Postings",
+      "queries": ["HSBC CDM Common Domain Model jobs regulatory reporting"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": false,
+      "implication": "Standard regulatory reporting jobs, no CDM-specific postings."
+    }
+  ],
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 5,
+      "completed": 5,
+      "failed": 0,
+      "queries": [
+        "HSBC FINOS member CDM Common Domain Model 2024",
+        "HSBC ISDA CDM working group derivatives contribution",
+        "HSBC EMIR Refit regulatory reporting CDM DRR 2024",
+        "site:finos.org HSBC member",
+        "HSBC ISDA member derivatives working group 2024"
+      ]
+    },
+    "tier2_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        "HSBC derivatives technology reporting Regnosys vendor 2024",
+        "HSBC derivatives technology infrastructure Risk.net Waters Technology 2024",
+        "HSBC DRR Digital Regulatory Reporting implementation 2024"
+      ]
+    },
+    "tier3_searches": {
+      "expected": 1,
+      "completed": 1,
+      "failed": 0,
+      "queries": [
+        "HSBC CDM Common Domain Model jobs regulatory reporting engineer LinkedIn"
+      ]
+    },
+    "summary": {
+      "total_completed": 9,
+      "all_tiers_complete": true,
+      "notes": "ISDA Board Chair (Jeroen Krens) is HSBC executive. Historical DRR pilot participation (2018-2019). NOT a FINOS member. No CDM-specific contribution or production evidence."
+    }
+  },
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "Governance (ISDA Board)",
+    "confidence": 0.70,
+    "engagement_type": "governance_historical_pilot",
+    "generated_at": "2025-12-21T00:00:00Z",
+    "completed_at": "2025-12-21T00:00:00Z"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "bank_id": "mizuho",
+  "bank_name": "Mizuho Financial Group",
+  "phase": 3,
+  "phase_name": "Japanese",
+  "classification": "PRAGMATIST",
+  "sub_classification": "ISDA Governance (Board Member)",
+  "confidence": 0.70,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.15,
+    "pragmatist": 0.82,
+    "observer": 0.03
+  },
+  "prior_probability": 0.30,
+  "evidence_count": {
+    "tier1": 2,
+    "tier2": 3,
+    "tier3": 0,
+    "null_results": 3
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "Yoji Imafuku serves on ISDA Board (CSO Mizuho EMEA, elected 2023)",
+    "Historical ISDA Board: Taihei Okabe (2020), Yasuhiro Shibata (2011)",
+    "NOT a FINOS member - confirmed",
+    "ISDA Future Leaders Program participant (2024 AI whitepaper)",
+    "Progmat shareholder (~6.5% stake)",
+    "Sponsored ISDA Japan asset management event (2024)",
+    "NO CDM contribution or production deployment"
+  ],
+  "last_updated": "2025-12-21T16:30:00Z",
+  "notes": "PRAGMATIST (ISDA Governance) classification. Third Japanese mega-bank confirming 'ISDA Governance' pattern - strong ISDA Board representation without FINOS membership or CDM adoption. All three mega-banks (Nomura, MUFG, Mizuho) exhibit identical pattern."
+}

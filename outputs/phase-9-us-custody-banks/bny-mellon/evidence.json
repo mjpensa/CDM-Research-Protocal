@@ -1,0 +1,80 @@
+{
+  "bank_id": "bny-mellon",
+  "bank_name": "Bank of New York Mellon",
+  "phase": 9,
+  "cohort": "us_custody_banks",
+  "research_date": "2025-12-21",
+  "protocol_version": "2.3",
+  "evidence": [
+    {
+      "id": "E001",
+      "claim": "BNY Mellon is a FINOS Platinum Member with CIO Suresh Kumar quoted",
+      "source_url": "https://www.finos.org/press/expanding-open-source-developer-platform",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date_accessed": "2025-12-21",
+      "excerpt": "Suresh Kumar, CIO of BNY Mellon, a Platinum Member of the Foundation and member of the Open Developer program"
+    },
+    {
+      "id": "E002",
+      "claim": "BNY Mellon represented at FINOS Open Source Strategy Forum alongside JP Morgan, Goldman Sachs",
+      "source_url": "https://www.linkedin.com/pulse/finos-open-source-strategy-forum-nyc-donal-quinn",
+      "tier": 3,
+      "claim_type": "membership_or_participation",
+      "date_accessed": "2025-12-21",
+      "excerpt": "large banks including Morgan Stanley, JP Morgan Chase, Goldman, BNY Mellon, CitiBank, and RBC were represented"
+    },
+    {
+      "id": "E003",
+      "claim": "Donald Raab of BNY Mellon speaks at FINOS about open source talent strategy",
+      "source_url": "https://www.digfingroup.com/bny-mellon-open-source/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date_accessed": "2025-12-21",
+      "excerpt": "Donald Raab, Managing Director at BNY Mellon - The war for talent is over — all the talent is working on open source"
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "BNY Mellon CDM ISDA Common Domain Model",
+      "source_type": "web_search",
+      "date_searched": "2025-12-21",
+      "reason_for_null": "No evidence of BNY Mellon CDM involvement"
+    },
+    {
+      "search_query": "BNY Mellon DRR Digital Regulatory Reporting",
+      "source_type": "web_search",
+      "date_searched": "2025-12-21",
+      "reason_for_null": "No DRR implementation evidence found"
+    }
+  ],
+  "negative_evidence": [
+    {
+      "id": "N001",
+      "claim": "BNY Mellon paid $5 million CFTC penalty for swap reporting failures in 2024",
+      "source_url": "https://www.bloomberg.com/news/articles/2024-08-26/bny-to-pay-5-million-to-settle-cftc-case-over-swaps-reporting",
+      "tier": 2,
+      "date_accessed": "2025-12-21",
+      "implication": "Swap reporting failures suggest CDM not deployed for regulatory reporting"
+    },
+    {
+      "id": "N002",
+      "claim": "BNY Mellon paid $750,000 CFTC penalty for swap reporting violations in 2019",
+      "source_url": "https://www.cftc.gov/PressRoom/PressReleases/8042-19",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "implication": "Recurring swap reporting issues over multiple years"
+    }
+  ],
+  "classification": {
+    "primary": "OBSERVER",
+    "subtype": "FINOS Platinum Member",
+    "confidence": 0.55,
+    "maturity_score": 1
+  },
+  "flags": [
+    "finos_platinum_member",
+    "custody_bank_business_model",
+    "cftc_reporting_enforcement"
+  ]
+}

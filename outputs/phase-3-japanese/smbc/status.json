@@ -1,0 +1,51 @@
+{
+  "bank_id": "smbc",
+  "bank_name": "Sumitomo Mitsui Banking Corporation",
+  "phase": 3,
+  "phase_name": "Japanese",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional (Derivatives Active, Governance Absent)",
+  "confidence": 0.65,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.10,
+    "pragmatist": 0.80,
+    "observer": 0.10
+  },
+  "prior_probability": 0.25,
+  "evidence_count": {
+    "tier1": 2,
+    "tier2": 3,
+    "tier3": 0,
+    "null_results": 3
+  },
+  "maturity_score": 1,
+  "highest_claim_type": "vendor_proxy_signal",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "NOT a FINOS member - confirmed",
+    "NO current ISDA Board member (unlike Nomura, MUFG, Mizuho)",
+    "SMBC Capital Markets is CFTC registered swap dealer",
+    "Derivatives assets $8.9B (Dec 2024)",
+    "Progmat shareholder (~6.5% stake)",
+    "Uses ISDA Master Agreements but no governance role",
+    "NO CDM contribution or production deployment"
+  ],
+  "last_updated": "2025-12-21T17:30:00Z",
+  "notes": "PRAGMATIST (Traditional) classification. Only Japanese mega-bank WITHOUT ISDA Board representation. Has active derivatives business but lacks governance engagement seen in Nomura, MUFG, Mizuho. Lower maturity score (1) and confidence (65%) than peers."
+}

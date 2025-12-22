@@ -1,0 +1,50 @@
+{
+  "bank_id": "barclays",
+  "bank_name": "Barclays PLC",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Active (CDM Advocate)",
+  "confidence": 0.75,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.25,
+    "pragmatist": 0.75
+  },
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 4,
+    "tier2": 3,
+    "tier3": 0,
+    "null_results": 3
+  },
+  "maturity_score": 3,
+  "highest_claim_type": "pilot_or_poc",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_evidence",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_evidence",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_evidence",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "DerivHack hackathons (2018, 2019) - pioneered CDM industry events",
+    "Repo hackathon 2023 - extended CDM to securities lending with FINOS",
+    "Lee Braine (CTO Office) - leading CDM advocate, estimated $2.5B savings",
+    "Internal CDM working group - estimated 25% efficiency gains in clearing",
+    "NOT a FINOS member despite 6+ years of FINOS partnership",
+    "Pilot confirmed but no production DRR announcement",
+    "Unique 'CDM Advocate' pattern - high visibility without formal commitment"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "Highest-engaged PRAGMATIST in Phase 1. Exhibits 'Advocate Paradox': extensive CDM thought leadership (hackathons, CTO advocacy) without FINOS membership or production deployment. Strong FINOS membership correlation emerging - all ARCHITECT banks are FINOS Platinum."
+}

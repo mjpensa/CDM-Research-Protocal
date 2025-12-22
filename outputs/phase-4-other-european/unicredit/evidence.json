@@ -1,0 +1,93 @@
+{
+  "bank_id": "unicredit",
+  "bank_name": "UniCredit",
+  "research_date": "2025-12-21",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional (European Focus)",
+  "confidence": 0.68,
+  "maturity_score": 1,
+  "evidence": [
+    {
+      "id": "UC001",
+      "claim": "UniCredit is NOT a FINOS member",
+      "claim_type": "null_result",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "UniCredit not listed among FINOS members (Platinum, Gold, Silver, or Associate tiers)",
+      "verification": {
+        "status": "verified",
+        "method": "direct_page_check"
+      }
+    },
+    {
+      "id": "UC002",
+      "claim": "TJ Lim (UniCredit) stepped down from ISDA Board in 2018 after 9 years of service",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.isda.org/2018/04/26/isda-elects-new-board-members-expands-ccp-representation-on-board/",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "TJ Lim of UniCredit stepped down from the ISDA Board after nine years of service. He played an integral role in helping ISDA and the broader industry adapt to regulatory changes.",
+      "verification": {
+        "status": "verified",
+        "method": "isda_official_announcement"
+      }
+    },
+    {
+      "id": "UC003",
+      "claim": "UniCredit deliberately chose not to register as CFTC swap dealer",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.privatebankerinternational.com/news/unicredit-to-shun-us-derivatives-trading/",
+      "tier": 2,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Italy's UniCredit has no interest in registering to trade OTC derivatives with US institutions. TJ Lim stated that 'uncertainty' over the rules meant UniCredit has 'decided not to register.'",
+      "verification": {
+        "status": "verified",
+        "method": "trade_press"
+      }
+    },
+    {
+      "id": "UC004",
+      "claim": "TJ Lim is current Group Chief Risk Officer at UniCredit (since 2017)",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.unicreditgroup.eu/en/governance/management/tj-lim.html",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "TJ Lim serves as Group Chief Risk Officer at UniCredit SpA since 2017",
+      "verification": {
+        "status": "verified",
+        "method": "bank_official"
+      }
+    },
+    {
+      "id": "UC005",
+      "claim": "No CDM/DRR evidence found for UniCredit",
+      "claim_type": "null_result",
+      "source_url": "https://www.finos.org/common-domain-model",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Web search for UniCredit CDM Common Domain Model returned no relevant results",
+      "verification": {
+        "status": "verified",
+        "method": "web_search"
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "UniCredit FINOS member",
+      "date_searched": "2025-12-21",
+      "result": "Not found - confirmed not member via official FINOS member list"
+    },
+    {
+      "search_query": "UniCredit CDM Common Domain Model",
+      "date_searched": "2025-12-21",
+      "result": "No results linking UniCredit to CDM"
+    },
+    {
+      "search_query": "UniCredit ISDA Board 2024",
+      "date_searched": "2025-12-21",
+      "result": "No current ISDA Board member - TJ Lim stepped down 2018"
+    }
+  ]
+}

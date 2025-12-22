@@ -1,0 +1,98 @@
+{
+  "bank_id": "jpmorgan",
+  "bank_name": "JPMorgan Chase & Co.",
+  "phase": 8,
+  "last_updated": "2025-12-21",
+  "evidence_items": [
+    {
+      "id": "JPM-E001",
+      "claim": "JPMorgan is the first major US bank to implement CDM/DRR as primary reporting mechanism",
+      "source_url": "https://www.jpmorganchase.com/about/technology/blog/jpmc-launches-finos-open-source-solution",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "excerpt": "JPMorgan Chase is proud to be the first major U.S. bank to implement CDM/DRR as a primary reporting mechanism.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "JPM-E002",
+      "claim": "Nick Moger of JPMorgan is the first sell-side CDM maintainer at FINOS",
+      "source_url": "https://www.finos.org/blog/cdm-new-horizons-welcoming-the-first-sell-side-maintainer",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "excerpt": "Nick Moger of J.P. Morgan Chase announced as an addition to the dedicated team of maintainers of the CDM... The addition of a maintainer from J.P. Morgan—a leading bank with the CDM in production—ensures the model's evolution reflects the practical, everyday challenges and requirements of its adopters.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "JPM-E003",
+      "claim": "JPMorgan received FINOS 'Adoption Achiever' award at Open Source Finance Forum",
+      "source_url": "https://www.jpmorganchase.com/about/technology/blog/jpmc-launches-finos-open-source-solution",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "excerpt": "JPMorgan Chase received FINOS's 'Adoption Achiever' award at the Open-Source Finance Forum in New York.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "JPM-E004",
+      "claim": "JPMorgan DRR implementation for ASIC and MAS regimes showing positive results",
+      "source_url": "https://www.finos.org/blog/banks-harness-open-source-innovation-to-transform-regulatory-reporting",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "excerpt": "Moger stated that JP Morgan's adoption of DRR for ASIC (Australia) and MAS (Singapore) regimes is already yielding positive results. 'We're in the middle of our ASIC implementation and already seeing reduced testing complexity and increased automation capabilities.'",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "JPM-E005",
+      "claim": "Nick Moger presented JPMorgan's DRR production implementation at CDM Showcase",
+      "source_url": "https://regnosys.com/insights/regnosys-at-the-cdm-showcase-key-takeaways-and-insights/",
+      "tier": 2,
+      "claim_type": "production_usage",
+      "excerpt": "Nicholas Moger demonstrated how DRR is currently in production at JP Morgan and leveraging the CDM. He explained the journey of leveraging CDM and emphasised the importance of stakeholder buy-in.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "JPM-E006",
+      "claim": "JPMorgan participated in G-SIB digital derivatives reporting project for EMIR Refit",
+      "source_url": "https://jwg-it.eu/article/g-sibs-back-digital-derivatives-reporting-programme-to-be-online-for-emir-refit/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Bank of America Merrill Lynch, BNP Paribas, Citi, Deutsche Bank, Goldman Sachs and JPMorgan are among the project's backers of a digital derivatives reporting programme.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "JPM-E007",
+      "claim": "ISDA webinar featuring JPMorgan's DRR implementation journey (October 2024)",
+      "source_url": "https://lists.finos.org/g/cdm/topic/fw_isda_webinar_materials/109513424",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "excerpt": "ISDA webinar on 'One firm's journey to Digital Regulatory Reporting (DRR) implementation using the Common Domain Model (CDM)' featuring JPMorgan's implementation details.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    }
+  ],
+  "classification": {
+    "value": "ARCHITECT",
+    "subtype": "Native",
+    "confidence": 0.95,
+    "maturity_score": 5
+  },
+  "flags": [
+    "production_cdm_usage",
+    "first_us_bank_drr_primary",
+    "finos_cdm_maintainer",
+    "finos_adoption_achiever_award",
+    "multi_jurisdiction_drr"
+  ]
+}

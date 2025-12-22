@@ -1,0 +1,49 @@
+{
+  "bank_id": "hsbc",
+  "bank_name": "HSBC Holdings plc",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Governance (ISDA Board)",
+  "confidence": 0.70,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.30,
+    "pragmatist": 0.70
+  },
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 3,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 4
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_evidence",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_evidence",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_evidence",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "Jeroen Krens (HSBC) elected ISDA Board Chair effective January 2025",
+    "FCA/BOE DRR pilot participation (2018-2019) with 6 other UK banks",
+    "NOT a FINOS member despite ISDA Board leadership",
+    "No CDM contribution or production DRR announcement",
+    "No CDM-specific job postings",
+    "Unique 'Governance Gap' pattern - ISDA leadership without FINOS/CDM adoption"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "Only Phase 1 bank with top ISDA governance (Board Chair) but no FINOS membership. Demonstrates that ISDA policy influence does not equal CDM technical adoption. Historical DRR pilot (2018-2019) did not translate to production."
+}

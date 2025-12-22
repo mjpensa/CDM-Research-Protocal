@@ -1,0 +1,36 @@
+{
+  "bank_id": "bny-mellon",
+  "bank_name": "Bank of New York Mellon",
+  "phase": 9,
+  "cohort": "us_custody_banks",
+  "status": "COMPLETE",
+  "current_stage": "synthesis",
+  "stages_completed": [
+    "initialization",
+    "tier1_search",
+    "tier2_search",
+    "tier3_search",
+    "bayesian_updates",
+    "gates",
+    "adversarial",
+    "synthesis"
+  ],
+  "classification": {
+    "primary": "OBSERVER",
+    "subtype": "FINOS Platinum Member",
+    "confidence": 0.55,
+    "maturity_score": 1
+  },
+  "evidence_counts": {
+    "tier1": 1,
+    "tier2": 1,
+    "tier3": 1,
+    "null_results": 2,
+    "negative_evidence": 2
+  },
+  "timestamps": {
+    "started": "2025-12-21T00:00:00Z",
+    "completed": "2025-12-21T00:00:00Z"
+  },
+  "protocol_version": "2.3"
+}

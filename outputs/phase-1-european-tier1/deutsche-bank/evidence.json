@@ -1,0 +1,180 @@
+{
+  "bank_id": "deutsche-bank",
+  "bank_name": "Deutsche Bank AG",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "DB-001",
+      "claim": "Deutsche Bank participated in the FINOS Legend Studio 6-month pilot (2020-2021) to prototype interbank collaborative data modeling, specifically to build FX Options extensions to the CDM",
+      "source_url": "https://www.finos.org/hubfs/FINOS/assets/FINOS%20Legend%20Case%20Study%202021.pdf",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2021-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Leading investment banks including Deutsche Bank, Morgan Stanley and RBC Capital Markets participated in a six-month pilot using a shared version of Legend, hosted on FINOS infrastructure in the public cloud, to prototype interbank collaborative data modeling and standardization, particularly to build extensions to the Common Domain Model (CDM).",
+      "caveats": "Pilot from 2020-2021. Historical evidence (>3 years old). Need to verify continued engagement.",
+      "lr_mapping": {
+        "evidence_type": "trade_press_reports_cdm_pilot",
+        "likelihood_ratio": 10.0
+      },
+      "product_scope": ["FX Options"],
+      "named_individual": "Russell Green, MD, Head of Group Architecture"
+    },
+    {
+      "id": "DB-002",
+      "claim": "Deutsche Bank's FX Options extensions (specifically the Averaging Model) from the Legend pilot were proposed into the CDM, accepted, and integrated into a public CDM release",
+      "source_url": "https://www.finos.org/hubfs/FINOS/assets/FINOS%20Legend%20Case%20Study%202021.pdf",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "date": "2021-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "The FX option extensions, specifically the Averaging Model used in the CDM, modeled collaboratively by the pilot group financial institutions participants using Legend, were proposed into the CDM and have since been accepted, released and integrated into a recent release to the public.",
+      "caveats": "Contribution from 2021. One-time contribution without evidence of sustained engagement.",
+      "lr_mapping": {
+        "evidence_type": "named_isda_press_release_contributor",
+        "likelihood_ratio": 14.0
+      },
+      "product_scope": ["FX Options"]
+    },
+    {
+      "id": "DB-003",
+      "claim": "Russell Green (MD, Head of Group Architecture) elected as FINOS Board Vice Chairman in August 2021, advocating for CDM and data modeling collaboration",
+      "source_url": "https://www.finos.org/press/technology-leaders-from-goldman-sachs-and-deutsche-bank-elected-finos-new-governing-board-chairs-as-open-source-collaboration-expands-further-across-financial-services",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2021-08-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "John Madsen, chief architect for technology at Goldman Sachs, became FINOS board chairman and Russell Green, head of cloud architecture at Deutsche Bank, became the new vice chairman.",
+      "caveats": "FINOS board role indicates governance engagement. Does not confirm CDM production usage.",
+      "lr_mapping": {
+        "evidence_type": "isda_working_group_member",
+        "likelihood_ratio": 6.0
+      },
+      "named_individual": "Russell Green, MD, Head of Cloud Architecture"
+    },
+    {
+      "id": "DB-004",
+      "claim": "Deutsche Bank participated in the Kaizen Regulatory Reporting 2024 conference alongside ISDA and other industry experts, discussing EMIR Refit and regulatory reporting topics (but no CDM-specific content)",
+      "source_url": "https://www.kaizenreporting.com/regulatory-reporting-2024/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2024-10-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "current",
+        "specificity": "low"
+      },
+      "excerpt": "Kaizen Reporting hosted their annual regulatory reporting conference welcoming more than 200 clients, with panellists including representatives from the ISDA, FIA, Regis-TR, BMO, HSBC, Deutsche Bank, ABRDN and other industry experts.",
+      "caveats": "General regulatory reporting engagement. No CDM-specific content mentioned. Indicates compliance focus but not CDM adoption.",
+      "lr_mapping": {
+        "evidence_type": "conference_speaker_cdm_topic",
+        "likelihood_ratio": 1.0
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "category": "CDM Production Deployment 2023-2024",
+      "queries": ["Deutsche Bank CDM production deployment 2023 2024", "Deutsche Bank Common Domain Model implementation"],
+      "results_reviewed": 20,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No evidence of CDM production deployment. Legend pilot was exploratory only."
+    },
+    {
+      "category": "Post-2021 CDM Activity",
+      "queries": ["Deutsche Bank CDM 2022", "Deutsche Bank CDM 2023", "Deutsche Bank ISDA CDM recent"],
+      "results_reviewed": 15,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No evidence of CDM engagement after 2021 pilot. 3+ year gap suggests pilot did not lead to production."
+    },
+    {
+      "category": "EMIR Refit CDM Approach",
+      "queries": ["Deutsche Bank EMIR Refit CDM 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No evidence of CDM-based EMIR Refit response. Deutsche Bank likely used traditional methods."
+    },
+    {
+      "category": "CDM Job Postings",
+      "queries": ["Deutsche Bank CDM Common Domain Model job posting careers 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No CDM-specific hiring signals. Traditional regulatory reporting roles only."
+    },
+    {
+      "category": "LinkedIn/FINOS Community",
+      "queries": ["Deutsche Bank Common Domain Model CDM FINOS employee LinkedIn 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No Deutsche Bank employees visible in CDM community. Compare to GS, Barclays with active participants."
+    }
+  ],
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 6,
+      "completed": 6,
+      "failed": 0,
+      "queries": [
+        "Deutsche Bank Common Domain Model CDM ISDA 2024 2025",
+        "Deutsche Bank FINOS Legend CDM contribution derivatives",
+        "Deutsche Bank EMIR Refit regulatory reporting CDM 2024",
+        "Deutsche Bank FX Options CDM ISDA digital regulatory reporting",
+        "Deutsche Bank CDM production deployment 2023 2024",
+        "Russell Green Deutsche Bank FINOS CDM data architecture"
+      ]
+    },
+    "tier2_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        "Deutsche Bank regulatory reporting conference 2024",
+        "Deutsche Bank EMIR Refit technology approach 2024",
+        "Deutsche Bank derivatives technology modernization"
+      ]
+    },
+    "tier3_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        "Deutsche Bank CDM Common Domain Model job posting careers 2024",
+        "Deutsche Bank ISDA regulatory reporting hiring LinkedIn 2024",
+        "Deutsche Bank Common Domain Model CDM FINOS employee LinkedIn 2024"
+      ]
+    },
+    "summary": {
+      "total_completed": 12,
+      "all_tiers_complete": true,
+      "notes": "All tiers complete. Historical FINOS Legend pilot (2020-2021) with FX Options CDM contribution. No evidence of post-2021 activity. Classification: PRAGMATIST @ 95% confidence."
+    }
+  },
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "confidence": 95,
+    "final_probability_architect": 0.035,
+    "generated_at": "2025-12-21T00:00:00Z"
+  }
+}

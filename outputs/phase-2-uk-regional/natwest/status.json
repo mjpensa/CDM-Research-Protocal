@@ -1,0 +1,54 @@
+{
+  "bank_id": "natwest",
+  "bank_name": "NatWest Group",
+  "phase": 2,
+  "phase_name": "UK Regional",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Ecosystem (Active FINOS Contributor)",
+  "confidence": 0.78,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.10,
+    "pragmatist": 0.88,
+    "observer": 0.02
+  },
+  "prior_probability": 0.25,
+  "evidence_count": {
+    "tier1": 4,
+    "tier2": 3,
+    "tier3": 1,
+    "null_results": 3
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "open_source_contribution",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "FINOS Gold member since 2021",
+    "Fluxnova founding contributor (October 2025) - FINOS project",
+    "Git Proxy active engagement - FINOS project",
+    "FDC3 was entry point to FINOS engagement",
+    "James McLeod - Open Source Program Lead",
+    "OSFF London 2024 presenter and sponsor",
+    "FCA/BOE DRR Pilot participant (2018-2019, historical)",
+    "EMIR Trade Reporting Service offered to clients",
+    "NatWest Markets N.V. trading assets €6.7B",
+    "NO CDM-specific contribution despite active FINOS engagement"
+  ],
+  "last_updated": "2025-12-21T13:00:00Z",
+  "notes": "PRAGMATIST (Active FINOS Contributor) classification. Unique pattern: strongest FINOS engagement of UK regional banks with active project contributions (Fluxnova, Git Proxy) but deliberate non-adoption of CDM. Open Source First culture focused on operational technology not derivatives standardization. More engaged than Lloyds (passive member) but still no CDM work despite clear capability."
+}

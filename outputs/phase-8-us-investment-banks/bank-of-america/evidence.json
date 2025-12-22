@@ -1,0 +1,42 @@
+{
+  "bank_id": "bank-of-america",
+  "bank_name": "Bank of America Corporation",
+  "phase": 8,
+  "last_updated": "2025-12-21",
+  "evidence_items": [
+    {
+      "id": "BOFA-E001",
+      "claim": "Bank of America is among G-SIB backers of digital derivatives reporting project",
+      "source_url": "https://jwg-it.eu/article/g-sibs-back-digital-derivatives-reporting-programme-to-be-online-for-emir-refit/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Bank of America Merrill Lynch, BNP Paribas, Citi, Deutsche Bank, Goldman Sachs and JPMorgan are among the project's backers; Bloomberg is also participating. The project is training 25 G-SIB-supplied specialists to study the data fields required for the EMIR refit implementation.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "BOFA-E002",
+      "claim": "Bank of America is fourth-largest global OTC derivatives dealer",
+      "source_url": "https://www.risk.net/risk-quantum/7962708/bank-of-america-leaps-to-fourth-on-global-otc-derivatives-ranking",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Bank of America climbed four spots to become the fourth-largest dealer of over-the-counter derivatives globally in 2024.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    }
+  ],
+  "classification": {
+    "value": "OBSERVER",
+    "subtype": "G-SIB Participant",
+    "confidence": 0.55,
+    "maturity_score": 1
+  },
+  "flags": [
+    "g_sib_drr_project",
+    "fourth_largest_otc_dealer",
+    "no_production_claims",
+    "no_major_contribution"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "bank_id": "goldman-sachs",
+  "bank_name": "Goldman Sachs Group, Inc.",
+  "phase": 8,
+  "phase_name": "phase-8-us-investment-banks",
+  "status": "complete",
+  "stages_completed": [
+    "initialization",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_analysis",
+    "synthesis"
+  ],
+  "classification": "PRAGMATIST",
+  "subtype": "Ecosystem",
+  "confidence": 0.70,
+  "maturity_score": 2,
+  "flags": [
+    "legend_platform_contributor",
+    "finos_platinum_member",
+    "cdm_model_contributor",
+    "g_sib_drr_project",
+    "drr_investment_confirmed"
+  ],
+  "evidence_summary": {
+    "tier1_count": 4,
+    "tier2_count": 3,
+    "tier3_count": 0,
+    "total_count": 7
+  },
+  "key_findings": [
+    "Developed and open-sourced Legend platform to FINOS",
+    "Led CDM pilot with Deutsche Bank, Morgan Stanley, RBC",
+    "FX option extensions accepted into CDM",
+    "G-SIB digital derivatives reporting project backer",
+    "Investing to implement DRR - not yet confirmed in production"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z"
+}

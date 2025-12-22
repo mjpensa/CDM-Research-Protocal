@@ -1,0 +1,53 @@
+{
+  "bank_id": "bbva",
+  "bank_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+  "phase": 5,
+  "phase_name": "Spanish",
+  "research_status": "complete",
+  "current_stage": "synthesis",
+  "stages_completed": [
+    "initialization",
+    "pre-mortem",
+    "tier1-search",
+    "tier1-evidence",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-search",
+    "tier2-evidence",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-search",
+    "tier3-evidence",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial-review",
+    "synthesis"
+  ],
+  "classification": {
+    "primary": "PRAGMATIST",
+    "subtype": "Traditional",
+    "confidence": 45,
+    "maturity_score": 1,
+    "alternative": {
+      "classification": "OBSERVER",
+      "probability": 47
+    }
+  },
+  "evidence_summary": {
+    "total_count": 4,
+    "tier1_count": 1,
+    "tier2_count": 3,
+    "tier3_count": 0,
+    "cdm_evidence_count": 0,
+    "key_evidence": "None - classification based on derivatives operations",
+    "key_evidence_freshness": "N/A"
+  },
+  "flags": [
+    "LOW_CONFIDENCE",
+    "OBSERVER_BOUNDARY",
+    "NO_CDM_EVIDENCE"
+  ],
+  "started_at": "2025-12-21T01:00:00Z",
+  "completed_at": "2025-12-21T02:00:00Z",
+  "last_updated": "2025-12-21T02:00:00Z"
+}

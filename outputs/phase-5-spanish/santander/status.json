@@ -1,0 +1,51 @@
+{
+  "bank_id": "santander",
+  "bank_name": "Banco Santander S.A.",
+  "phase": 5,
+  "phase_name": "Spanish",
+  "research_status": "complete",
+  "current_stage": "synthesis",
+  "stages_completed": [
+    "initialization",
+    "pre-mortem",
+    "tier1-search",
+    "tier1-evidence",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-search",
+    "tier2-evidence",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-search",
+    "tier3-evidence",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial-review",
+    "synthesis"
+  ],
+  "classification": {
+    "primary": "PRAGMATIST",
+    "subtype": "Ecosystem",
+    "confidence": 55,
+    "maturity_score": 2,
+    "alternative": {
+      "classification": "OBSERVER",
+      "probability": 35
+    }
+  },
+  "evidence_summary": {
+    "total_count": 5,
+    "tier1_count": 3,
+    "tier2_count": 2,
+    "tier3_count": 0,
+    "key_evidence": "UK DRR pilot participation (February 2022)",
+    "key_evidence_freshness": "dated"
+  },
+  "flags": [
+    "SINGLE_SOURCE_CLAIM",
+    "STALE_EVIDENCE"
+  ],
+  "started_at": "2025-12-21T00:00:00Z",
+  "completed_at": "2025-12-21T01:00:00Z",
+  "last_updated": "2025-12-21T01:00:00Z"
+}

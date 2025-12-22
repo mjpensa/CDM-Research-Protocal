@@ -1,0 +1,106 @@
+{
+  "bank_id": "commerzbank",
+  "bank_name": "Commerzbank",
+  "research_date": "2025-12-21",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional",
+  "confidence": 0.65,
+  "maturity_score": 1,
+  "evidence": [
+    {
+      "id": "CB001",
+      "claim": "Commerzbank is NOT a FINOS member",
+      "claim_type": "null_result",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Commerzbank not listed among FINOS members (Platinum, Gold, Silver, or Associate tiers)",
+      "verification": {
+        "status": "verified",
+        "method": "direct_page_check"
+      }
+    },
+    {
+      "id": "CB002",
+      "claim": "Commerzbank AG is a CFTC registered swap dealer since December 31, 2012",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.cftc.gov/PressRoom/PressReleases/7837-18",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Commerzbank AG is a global banking and financial services company based in Frankfurt, Germany, that has been provisionally registered with the CFTC as a Swap Dealer since December 31, 2012",
+      "verification": {
+        "status": "verified",
+        "method": "cftc_official"
+      }
+    },
+    {
+      "id": "CB003",
+      "claim": "CFTC ordered Commerzbank to pay $12M penalty for swap dealing violations (2018)",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.cftc.gov/PressRoom/PressReleases/7837-18",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "The CFTC ordered Commerzbank AG to pay a civil penalty of $12 million to settle charges that it made misleading statements and material omissions as well as failed to supervise its swap dealing activities from December 31, 2012 until at least 2018",
+      "verification": {
+        "status": "verified",
+        "method": "cftc_official"
+      }
+    },
+    {
+      "id": "CB004",
+      "claim": "Commerzbank AG is an ISDA member with regulatory disclosure license",
+      "claim_type": "membership_or_participation",
+      "source_url": "https://www.commerzbank.com/corporateclients/regulatory-disclosure/",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Disclosures are provided pursuant to a limited license granted by the International Swaps and Derivatives Association, Inc. (ISDA) to Commerzbank AG",
+      "verification": {
+        "status": "verified",
+        "method": "bank_official"
+      }
+    },
+    {
+      "id": "CB005",
+      "claim": "No current Commerzbank representative on ISDA Board",
+      "claim_type": "null_result",
+      "source_url": "https://www.isda.org",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Search for Commerzbank ISDA Board member returned no current representation",
+      "verification": {
+        "status": "verified",
+        "method": "web_search"
+      }
+    },
+    {
+      "id": "CB006",
+      "claim": "No CDM evidence found for Commerzbank",
+      "claim_type": "null_result",
+      "source_url": "https://www.finos.org/common-domain-model",
+      "tier": 1,
+      "date_accessed": "2025-12-21",
+      "excerpt": "Search for Commerzbank CDM Common Domain Model returned no results",
+      "verification": {
+        "status": "verified",
+        "method": "web_search"
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "Commerzbank FINOS member",
+      "date_searched": "2025-12-21",
+      "result": "Not found - confirmed not member via official FINOS member list"
+    },
+    {
+      "search_query": "Commerzbank CDM Common Domain Model",
+      "date_searched": "2025-12-21",
+      "result": "No results linking Commerzbank to CDM"
+    },
+    {
+      "search_query": "Commerzbank ISDA Board 2024",
+      "date_searched": "2025-12-21",
+      "result": "No current ISDA Board representation found"
+    }
+  ]
+}

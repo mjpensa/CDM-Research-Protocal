@@ -1,0 +1,92 @@
+{
+  "$schema": "../../templates/evidence-schema.json",
+  "bank_id": "pictet",
+  "bank_name": "Pictet Group",
+  "research_date": "2025-12-21",
+  "evidence": [
+    {
+      "id": "PCT-E001",
+      "claim": "Pictet Group is using CDM and DRR in production, confirmed alongside BNP Paribas and JPMorgan as production users",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
+      "tier": 1,
+      "claim_type": "production_usage",
+      "source_date": "2024-06-01",
+      "excerpt": "BNP Paribas, Pictet Group, and JPMorgan are some of the firms using CDM and DRR in production.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 203,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Direct confirmation of production usage - the highest evidence tier for CDM adoption."
+    },
+    {
+      "id": "PCT-E002",
+      "claim": "Pictet Group is contributing to the development of DRR alongside BNP Paribas, Standard Chartered, and JPMorgan",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
+      "tier": 2,
+      "claim_type": "open_source_contribution",
+      "source_date": "2024-06-01",
+      "excerpt": "Financial institutions such as BNP Paribas, Pictet Group, Standard Chartered, and JPMorgan are contributing to the development of DRR.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 203,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Active DRR contribution confirms sustained engagement beyond just production usage."
+    },
+    {
+      "id": "PCT-E003",
+      "claim": "Emmanuel Geinoz, market infrastructure and derivatives expert at Pictet Group, speaks at ISDA AGM Studio on DRR implementation challenges",
+      "source_url": "https://www.isda.org/2025/05/21/isda-agm-studio-emmanuel-geinoz-and-eleanor-kelly",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_date": "2025-05-21",
+      "excerpt": "Emmanuel Geinoz, market infrastructure and derivatives expert at Pictet Group, has been publicly discussing the challenges of implementation and the benefits of ISDA's Digital Regulatory Reporting initiative.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 214,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "ISDA AGM speaking role indicates thought leadership and deep implementation experience."
+    },
+    {
+      "id": "PCT-E004",
+      "claim": "Emmanuel Geinoz from Pictet Group presented on CDM for Buy Side at FINOS Regulation Innovation SIG in February 2024",
+      "source_url": "https://www.finos.org/featured-events/2024-02-28-cdm-showcase",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-02-28",
+      "excerpt": "Emmanuel Geinoz from Pictet Group discussed CDM for Buy Side involvement and sharing goals and accomplishments from Pictet's perspective.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 296,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Demonstrates FINOS engagement and unique buy-side perspective on CDM adoption."
+    }
+  ],
+  "null_searches": [],
+  "classification": {
+    "primary": "ARCHITECT",
+    "subtype": "Native",
+    "confidence": 90,
+    "maturity_score": 5,
+    "rationale": "Pictet Group is confirmed in CDM/DRR production alongside BNP Paribas and JPMorgan. Production usage is explicitly stated, not inferred. Active DRR contribution and ISDA AGM speaking role further confirm deep engagement. Unique as a wealth management firm (low derivatives relevance) achieving ARCHITECT-Native status."
+  }
+}

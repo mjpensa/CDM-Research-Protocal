@@ -1,0 +1,44 @@
+{
+  "bank_id": "bank-of-america",
+  "bank_name": "Bank of America Corporation",
+  "phase": 8,
+  "phase_name": "phase-8-us-investment-banks",
+  "status": "complete",
+  "stages_completed": [
+    "initialization",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_analysis",
+    "synthesis"
+  ],
+  "classification": "OBSERVER",
+  "subtype": "G-SIB Participant",
+  "confidence": 0.55,
+  "maturity_score": 1,
+  "flags": [
+    "g_sib_drr_project",
+    "fourth_largest_otc_dealer",
+    "no_production_claims",
+    "no_major_contribution"
+  ],
+  "evidence_summary": {
+    "tier1_count": 0,
+    "tier2_count": 2,
+    "tier3_count": 0,
+    "total_count": 2
+  },
+  "key_findings": [
+    "G-SIB digital derivatives reporting project backer",
+    "Fourth-largest global OTC derivatives dealer",
+    "No production CDM/DRR claims",
+    "No major platform or model contributions"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z"
+}

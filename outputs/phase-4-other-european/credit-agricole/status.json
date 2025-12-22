@@ -1,0 +1,51 @@
+{
+  "bank_id": "credit-agricole",
+  "bank_name": "Credit Agricole",
+  "phase": 4,
+  "phase_name": "Other European",
+  "classification": "PRAGMATIST",
+  "sub_classification": "ISDA Governance",
+  "confidence": 0.72,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.05,
+    "pragmatist": 0.88,
+    "observer": 0.07
+  },
+  "prior_probability": 0.25,
+  "evidence_count": {
+    "tier1": 3,
+    "tier2": 1,
+    "tier3": 1,
+    "null_results": 3
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre-mortem",
+    "tier1-search",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-search",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-search",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial",
+    "synthesis"
+  ],
+  "key_findings": [
+    "NOT a FINOS member",
+    "ISDA Board member: Christine Cremel (since July 2020)",
+    "Re-elected to ISDA Board 2020, 2022, 2024",
+    "CFTC registered swap dealer",
+    "Leads EMIR compliance for Credit Agricole CIB",
+    "No CDM contribution or adoption evidence",
+    "ISDA Governance pattern - same as Nomura, MUFG, Mizuho"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "Credit Agricole has 5 years of ISDA Board presence (Christine Cremel) without FINOS/CDM engagement. Classic ISDA Governance pattern."
+}

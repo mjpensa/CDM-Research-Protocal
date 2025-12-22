@@ -1,0 +1,49 @@
+{
+  "bank_id": "deutsche-bank",
+  "bank_name": "Deutsche Bank AG",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional",
+  "confidence": 95,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.035,
+    "pragmatist": 0.965
+  },
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 3,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 5
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "pilot_or_poc",
+  "stages_completed": [
+    "initialize",
+    "pre-mortem",
+    "tier1-evidence",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-evidence",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-evidence",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial-challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "FINOS Legend pilot participant (2020-2021)",
+    "FX Options Averaging Model contributed to CDM",
+    "Russell Green elected FINOS Board Vice Chairman (2021)",
+    "No evidence of CDM activity since 2021",
+    "3+ year gap suggests pilot did not lead to production"
+  ],
+  "historical_note": "Former FINOS Legend pilot participant with CDM contribution accepted into public release",
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "Classification: PRAGMATIST @ 95% confidence. Historical pilot engagement (2020-2021) did not transition to production. No current CDM signals across all tiers."
+}

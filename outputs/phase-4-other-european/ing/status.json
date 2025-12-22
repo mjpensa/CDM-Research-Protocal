@@ -1,0 +1,51 @@
+{
+  "bank_id": "ing",
+  "bank_name": "ING Group",
+  "phase": 4,
+  "phase_name": "Other European",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional (Innovative but CDM Absent)",
+  "confidence": 0.65,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.05,
+    "pragmatist": 0.85,
+    "observer": 0.10
+  },
+  "prior_probability": 0.25,
+  "evidence_count": {
+    "tier1": 1,
+    "tier2": 4,
+    "tier3": 0,
+    "null_results": 2
+  },
+  "maturity_score": 1,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre-mortem",
+    "tier1-search",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-search",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-search",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial",
+    "synthesis"
+  ],
+  "key_findings": [
+    "NOT a FINOS member",
+    "NO ISDA Board representation",
+    "ISDA member (standard)",
+    "CFTC registered swap dealer",
+    "First Sustainability-Linked Derivative (2019)",
+    "Active GitHub presence (56 repos) but not financial standardization",
+    "Innovation capability not applied to CDM/DRR direction"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "ING demonstrates innovation capability (first SLD, extensive GitHub) but has not engaged with FINOS or CDM. Traditional pattern with innovation elsewhere."
+}

@@ -1,0 +1,95 @@
+{
+  "bank_id": "ing",
+  "bank_name": "ING Group",
+  "phase": 4,
+  "last_updated": "2025-12-21T18:00:00Z",
+  "evidence_items": [
+    {
+      "id": "ING_T1_001",
+      "claim": "ING is NOT a FINOS member - not listed on FINOS members page",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-12-21",
+      "excerpt": "ING, ING Bank, and ING Group are not listed among FINOS members across any membership tier."
+    },
+    {
+      "id": "ING_T2_001",
+      "claim": "ING is a member of ISDA and has adhered to ISDA protocols (IBOR 2020, Resolution Stay)",
+      "source_url": "https://www.ing.com/MediaEditPage/FAQ-IBOR-transition.htm",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2024-01-01",
+      "excerpt": "ING Bank N.V. and several subsidiaries have registered adherence to the IBOR (2020) Protocol in line with the recommendations of various industry bodies and working groups."
+    },
+    {
+      "id": "ING_T2_002",
+      "claim": "ING Capital Markets LLC is CFTC registered swap dealer, subject to Dodd-Frank regulation",
+      "source_url": "https://www.ing.com/Investors/Financial-performance/Annual-reports/2024/2024-ING-Groep-NV-Form-20-F.htm",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-12-31",
+      "excerpt": "ING Capital Markets LLC is registered with the CFTC as a swap dealer and is subject to CFTC regulation."
+    },
+    {
+      "id": "ING_T2_003",
+      "claim": "ING executed world's first Sustainability-Linked Derivative (2019) - innovation in derivatives",
+      "source_url": "https://iclg.com/practice-areas/derivatives-laws-and-regulations/netherlands",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "MEDIUM-HIGH",
+      "recency": "historical",
+      "specificity": "direct",
+      "date_published": "2019-08-01",
+      "excerpt": "In August 2019, ING executed the world's first Sustainability-Linked Derivative by using KPIs to determine certain sustainable goals."
+    },
+    {
+      "id": "ING_T2_004",
+      "claim": "ING has open source presence on GitHub with 56 repositories including Open Banking SDK",
+      "source_url": "https://github.com/ing-bank",
+      "tier": 2,
+      "claim_type": "open_source_contribution",
+      "authority": "MEDIUM",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-01-01",
+      "excerpt": "ING Bank maintains 56 repositories on GitHub including Open Banking SDK."
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "ING FINOS membership CDM contribution",
+      "expected_finding": "FINOS membership or CDM contribution",
+      "actual_result": "ING is NOT a FINOS member. No CDM contribution found.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "ING ISDA board director",
+      "expected_finding": "ISDA Board representation",
+      "actual_result": "No ING representative on current ISDA Board.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "ING CDM production deployment",
+      "expected_finding": "CDM implementation",
+      "actual_result": "No evidence of CDM production deployment.",
+      "search_date": "2025-12-21"
+    }
+  ],
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "Traditional (Innovative but CDM Absent)",
+    "confidence": 0.65,
+    "engagement_type": "traditional"
+  }
+}

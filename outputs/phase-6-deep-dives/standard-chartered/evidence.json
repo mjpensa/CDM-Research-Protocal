@@ -1,0 +1,101 @@
+{
+  "$schema": "../../templates/evidence-schema.json",
+  "bank_id": "standard-chartered",
+  "bank_name": "Standard Chartered PLC",
+  "research_date": "2025-12-21",
+  "evidence": [
+    {
+      "id": "SC-E001",
+      "claim": "Emmanuel Ramambason is ISDA Board Member and Global co-Head of Credit Portfolio Management at Standard Chartered, serving as Financial Markets Head of Standard Chartered Bank AG",
+      "source_url": "https://www.isda.org/about-isda/board-of-directors/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-12-01",
+      "excerpt": "Emmanuel Ramambason is an ISDA Board Member and the Global co-Head of Credit Portfolio Management at Standard Chartered. He serves as the Global Head of Resource Management and Optimization (RMO), Financial Markets, at Standard Chartered Bank.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 20,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "ISDA Board membership provides direct governance involvement in derivatives standardization."
+    },
+    {
+      "id": "SC-E002",
+      "claim": "Standard Chartered is contributing to the development of ISDA Digital Regulatory Reporting (DRR), alongside BNP Paribas, Pictet Group, and JPMorgan",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
+      "tier": 2,
+      "claim_type": "open_source_contribution",
+      "source_date": "2024-06-01",
+      "excerpt": "Financial institutions such as BNP Paribas, Pictet Group, Standard Chartered, and JPMorgan are contributing to the development of DRR.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 203,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Active DRR contribution places Standard Chartered among leading CDM adopters."
+    },
+    {
+      "id": "SC-E003",
+      "claim": "Standard Chartered has supported the development of FINOS open source projects including CDM and Rune DSL for regulatory reporting",
+      "source_url": "https://fintech.global/2024/06/24/regnosys-contributes-rune-dsl-to-finos-open-source-initiative/",
+      "tier": 2,
+      "claim_type": "open_source_contribution",
+      "source_date": "2024-06-24",
+      "excerpt": "Several leading financial entities, including BNP Paribas, J.P. Morgan Chase, and Standard Chartered, have supported the development of these open-source projects - specifically relating to the Common Domain Model (CDM) and Rune DSL initiatives.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 180,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Support for both CDM and Rune DSL indicates deep engagement with regulatory reporting infrastructure."
+    },
+    {
+      "id": "SC-E004",
+      "claim": "Ewen Crawford, Senior Product Owner at Standard Chartered Bank, participated in expert panel on CFTC and EMIR reporting rewrites, demonstrating internal regulatory reporting expertise",
+      "source_url": "https://du.co/5-key-takeaways-from-our-expert-panel-on-the-cftc-and-emir-rewrites/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2022-10-27",
+      "excerpt": "Ewen Crawford, Senior Product Owner at Standard Chartered Bank, highlighted that the process flow structure creates problems, noting the decade old GTR engine implemented for global firms.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 786,
+        "category": "recent",
+        "weight_multiplier": 0.8
+      },
+      "notes": "Demonstrates internal regulatory reporting expertise and engagement with industry discussions."
+    }
+  ],
+  "null_searches": [
+    {
+      "search_target": "Standard Chartered CDM production announcement",
+      "queries_executed": [
+        "Standard Chartered CDM production deployment"
+      ],
+      "result": "No production announcement found",
+      "implication": "No confirmed production usage, but active contribution established"
+    }
+  ],
+  "classification": {
+    "primary": "ARCHITECT",
+    "subtype": "Follower",
+    "confidence": 80,
+    "maturity_score": 3,
+    "rationale": "Strong evidence of CDM/DRR ecosystem contribution: ISDA Board member, active DRR contributor alongside BNP/JPMorgan/Pictet, FINOS CDM/Rune DSL supporter. Not ARCHITECT-Native due to no production announcement, but clearly ARCHITECT-Follower based on contribution activity."
+  }
+}

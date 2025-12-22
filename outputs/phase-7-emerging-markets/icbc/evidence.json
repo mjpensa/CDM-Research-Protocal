@@ -1,0 +1,66 @@
+{
+  "bank_id": "icbc",
+  "bank_name": "Industrial and Commercial Bank of China",
+  "phase": 7,
+  "schema_version": "3.2",
+  "evidence": [
+    {
+      "id": "ICBC-E001",
+      "claim": "ICBC awarded Best Financial Derivatives Provider in China (2024) by Asian Banker",
+      "source_url": "https://www.theasianbanker.com/updates-and-articles/best-financial-derivatives-provider-in-china-goes-to-icbc-2024",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-01-01",
+      "access_date": "2025-12-21",
+      "excerpt": "ICBC, a major player in China's interbank foreign exchange derivatives and Renminbi interest rate trading markets, exceeded $3 trillion in derivatives trading in 2023. The award for Best Financial Derivatives Provider in China goes to ICBC.",
+      "freshness": "current",
+      "notes": "Demonstrates derivatives capability but does not indicate CDM adoption. ICBC operates in NAFMII framework, not ISDA CDM scope."
+    },
+    {
+      "id": "ICBC-E002",
+      "claim": "Chinese banks mandated to use NAFMII Master Agreement for interbank derivatives, not ISDA",
+      "source_url": "https://practiceguides.chambers.com/practice-guides/derivatives-2025/china",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2025-01-01",
+      "access_date": "2025-12-21",
+      "excerpt": "As mandated by PBoC, participants in the interbank market are required to use the China Interbank Market Financial Derivatives Transaction Master Agreement formulated by NAFMII to document their transactions.",
+      "freshness": "current",
+      "notes": "Contextual - explains why CDM adoption is structurally unlikely for domestic Chinese operations. NAFMII is separate from ISDA CDM ecosystem."
+    }
+  ],
+  "null_results": [
+    {
+      "search_type": "ISDA CDM involvement",
+      "query": "ICBC ISDA CDM Common Domain Model",
+      "result": "Not found - no CDM involvement",
+      "date": "2025-12-21"
+    },
+    {
+      "search_type": "FINOS membership",
+      "query": "ICBC FINOS CDM contribution",
+      "result": "Not found - ICBC not a FINOS member",
+      "date": "2025-12-21"
+    },
+    {
+      "search_type": "DRR participation",
+      "query": "ICBC Digital Regulatory Reporting",
+      "result": "Not found - no DRR involvement",
+      "date": "2025-12-21"
+    },
+    {
+      "search_type": "ISDA Board membership",
+      "query": "ICBC ISDA Board member",
+      "result": "Not found - no Board representation",
+      "date": "2025-12-21"
+    }
+  ],
+  "contextual_notes": [
+    "ICBC operates in NAFMII framework for domestic derivatives - structurally separate from ISDA CDM",
+    "ISDA CDM focuses on CFTC, EMIR, MAS, ASIC jurisdictions - not Chinese regulatory reporting",
+    "ICBC has US operations (NY branch, national bank) which could theoretically use ISDA, but no CDM evidence found",
+    "China's margin rules for non-centrally cleared derivatives only enforced from early 2025"
+  ],
+  "created_at": "2025-12-21T05:00:00Z",
+  "last_updated": "2025-12-21T05:30:00Z"
+}

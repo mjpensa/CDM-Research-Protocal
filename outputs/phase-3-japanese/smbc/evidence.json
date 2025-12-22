@@ -1,0 +1,95 @@
+{
+  "bank_id": "smbc",
+  "bank_name": "Sumitomo Mitsui Banking Corporation",
+  "phase": 3,
+  "last_updated": "2025-12-21T17:00:00Z",
+  "evidence_items": [
+    {
+      "id": "SMBC_T1_001",
+      "claim": "SMBC is NOT a FINOS member - not listed on FINOS members page",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-12-21",
+      "excerpt": "SMBC, Sumitomo Mitsui, SMFG, or any SMBC subsidiary is not listed among FINOS members."
+    },
+    {
+      "id": "SMBC_T1_002",
+      "claim": "SMBC has NO current ISDA Board member (unlike Nomura, MUFG, Mizuho)",
+      "source_url": "https://www.isda.org/about-isda/board-of-directors/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-12-21",
+      "excerpt": "No current ISDA board members are directly affiliated with SMBC, Sumitomo Mitsui, or SMFG."
+    },
+    {
+      "id": "SMBC_T2_001",
+      "claim": "SMBC Capital Markets is CFTC registered swap dealer with $8.9B assets (Dec 2024)",
+      "source_url": "https://www.fdic.gov/resolutions/2025-sumitomo-mitsui-165d-resolution-plan-public-section.pdf",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2025-01-01",
+      "excerpt": "SMBC Capital Markets, Inc. engages in swap dealing activities sufficient to require registration with the CFTC as a 'swap dealer'. Total assets of $8.9B."
+    },
+    {
+      "id": "SMBC_T2_002",
+      "claim": "SMBC is a shareholder in Progmat digital securities platform (~6.5% stake)",
+      "source_url": "https://www.ledgerinsights.com/mufg-diluted-in-progmat-digital-securities-funding-motivations-clarified/",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "MEDIUM-HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2025-04-01",
+      "excerpt": "Other shareholders include SMBC, Mizuho, and Sumitomo Mitsui Trust—which each now own just under 6.5%."
+    },
+    {
+      "id": "SMBC_T2_003",
+      "claim": "SMBC uses ISDA Master Agreements for derivatives but no governance role identified",
+      "source_url": "https://www.smbcgroup.com/emea/images/SMBC/media/SMBC/pdf/disclosures/smbcbi-pillar3-2024.pdf",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-12-31",
+      "excerpt": "SMBC BI uses ISDA Credit Support Annex terms for collateral against certain derivative transactions."
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "SMBC FINOS membership CDM contribution",
+      "expected_finding": "FINOS membership or CDM contribution",
+      "actual_result": "SMBC is NOT a FINOS member. No CDM contribution found.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "SMBC ISDA board director",
+      "expected_finding": "ISDA Board representation",
+      "actual_result": "No SMBC representative on current ISDA Board (unlike Nomura, MUFG, Mizuho).",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "SMBC CDM production deployment",
+      "expected_finding": "CDM implementation",
+      "actual_result": "No evidence of CDM production deployment.",
+      "search_date": "2025-12-21"
+    }
+  ],
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "Traditional (Derivatives Active, Governance Absent)",
+    "confidence": 0.65,
+    "engagement_type": "traditional"
+  }
+}

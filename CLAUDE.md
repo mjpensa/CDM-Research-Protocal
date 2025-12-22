@@ -433,5 +433,57 @@ Evidence must conform to `templates/evidence-schema.json`.
 
 ---
 
-_Last Updated: 2025-12-20_
-_Schema Version: 3.1_
+## 16. Mandatory Completion Check
+
+After completing **synthesis** (final stage) for any bank, you **MUST** run the completeness audit:
+
+```bash
+python tools/audit_completeness.py --bank {bank-id} --phase {phase}
+```
+
+**CRITICAL**: Do NOT mark a bank as complete in the todo list until this audit passes with `[OK] COMPLETE`.
+
+### If Audit Fails
+
+1. Review the missing files listed in the output
+2. Generate the missing stage outputs
+3. Re-run the audit until it passes
+4. Only then mark the bank as complete
+
+### Required Files (18 total)
+
+Each bank must have ALL of these files with non-trivial content:
+
+- `1-evidence/tier1-evidence.md`
+- `1-evidence/tier2-evidence.md`
+- `1-evidence/tier3-evidence.md`
+- `2-bayesian/post-tier1-update.md`
+- `2-bayesian/post-tier2-update.md`
+- `2-bayesian/post-tier3-update.md`
+- `3-gates/pre-mortem.md`
+- `3-gates/gate-1.md`
+- `3-gates/gate-2.md`
+- `3-gates/gate-3.md`
+- `4-adversarial/counter-case.md`
+- `4-adversarial/disconfirming-searches.md`
+- `4-adversarial/steelman.md`
+- `4-adversarial/verdict.md`
+- `5-synthesis/assessment.md`
+- `5-synthesis/framework-integration.md`
+- `status.json`
+- `evidence.json`
+
+### Minimum File Sizes
+
+Files must meet minimum size thresholds to prevent empty/truncated outputs:
+
+| File Type | Minimum Size |
+|-----------|--------------|
+| `status.json` | 300 bytes |
+| `evidence.json` | 400 bytes |
+| `.md` files | 100 bytes |
+
+---
+
+_Last Updated: 2025-12-21_
+_Schema Version: 3.2_
