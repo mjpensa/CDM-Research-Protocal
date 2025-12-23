@@ -1,0 +1,164 @@
+{
+  "$schema": "Domain Configuration v1.0",
+  "domain_id": "regulatory_posture",
+  "display_name": "Regulatory Posture",
+  "description": "Enforcement history, compliance investments, regulator relationships",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "workflow": {
+    "type": "simplified",
+    "stages": 5,
+    "description": "Simplified workflow without Bayesian/adversarial stages",
+    "stages_list": [
+      "initialize", "evidence_collection", "source_verification", "synthesis", "report"
+    ]
+  },
+
+  "applicable_entity_types": ["bank", "ccp", "regulator"],
+
+  "source_authority": {
+    "tier1": {
+      "description": "Official sources",
+      "max_confidence": 0.95,
+      "sources": [
+        "Regulatory enforcement actions",
+        "Consent orders and settlements",
+        "SEC/CFTC/FCA filings",
+        "Annual reports (risk and compliance sections)",
+        "Official regulatory announcements"
+      ]
+    },
+    "tier2": {
+      "description": "Trade and industry sources",
+      "max_confidence": 0.75,
+      "sources": [
+        "Trade press coverage of enforcement",
+        "Analyst reports on regulatory risk",
+        "Annual report risk sections",
+        "Industry compliance surveys"
+      ]
+    },
+    "tier3": {
+      "description": "Signal sources",
+      "max_confidence": 0.50,
+      "sources": [
+        "Industry commentary",
+        "LinkedIn discussions",
+        "Blog analysis",
+        "Compliance job postings"
+      ]
+    }
+  },
+
+  "classification_taxonomy": [
+    {
+      "id": "proactive",
+      "label": "Proactive",
+      "description": "Ahead of requirements, significant compliance investment",
+      "indicators": ["Early adoption", "Compliance investment announcements", "Industry leadership"]
+    },
+    {
+      "id": "compliant",
+      "label": "Compliant",
+      "description": "Meets requirements on schedule, no major issues",
+      "indicators": ["Timely compliance", "No enforcement", "Standard approach"]
+    },
+    {
+      "id": "reactive",
+      "label": "Reactive",
+      "description": "Responds to enforcement, catching up on requirements",
+      "indicators": ["Late compliance", "Minor enforcement", "Remediation programs"]
+    },
+    {
+      "id": "troubled",
+      "label": "Troubled",
+      "description": "Active enforcement, consent orders, significant remediation",
+      "indicators": ["Major enforcement", "Consent orders", "Ongoing remediation"]
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "description": "Insufficient evidence to classify",
+      "indicators": []
+    }
+  ],
+
+  "claim_types": [
+    {
+      "id": "enforcement_action",
+      "label": "Enforcement Action",
+      "description": "Regulatory enforcement action taken"
+    },
+    {
+      "id": "consent_order",
+      "label": "Consent Order",
+      "description": "Formal consent order or settlement"
+    },
+    {
+      "id": "compliance_investment",
+      "label": "Compliance Investment",
+      "description": "Announced investment in compliance technology"
+    },
+    {
+      "id": "regulatory_relationship",
+      "label": "Regulatory Relationship",
+      "description": "Nature of relationship with regulators"
+    },
+    {
+      "id": "deadline_response",
+      "label": "Deadline Response",
+      "description": "How entity responded to regulatory deadline"
+    },
+    {
+      "id": "remediation_program",
+      "label": "Remediation Program",
+      "description": "Active remediation or improvement program"
+    }
+  ],
+
+  "key_questions": [
+    "Any recent enforcement actions related to derivatives?",
+    "What consent orders or remediation programs are active?",
+    "How much is invested in compliance technology?",
+    "What is relationship with primary regulators?",
+    "How did they handle EMIR Refit / CFTC Rewrite deadlines?",
+    "What regulatory risk is disclosed in annual reports?"
+  ],
+
+  "regulators_of_interest": [
+    {"id": "cftc", "jurisdiction": "US", "focus": "Derivatives, swaps"},
+    {"id": "sec", "jurisdiction": "US", "focus": "Securities, security-based swaps"},
+    {"id": "fca", "jurisdiction": "UK", "focus": "All financial services"},
+    {"id": "esma", "jurisdiction": "EU", "focus": "Securities, derivatives"},
+    {"id": "bafin", "jurisdiction": "Germany", "focus": "All financial services"},
+    {"id": "amf", "jurisdiction": "France", "focus": "Securities, derivatives"},
+    {"id": "finma", "jurisdiction": "Switzerland", "focus": "All financial services"},
+    {"id": "mas", "jurisdiction": "Singapore", "focus": "All financial services"},
+    {"id": "fsa-japan", "jurisdiction": "Japan", "focus": "All financial services"},
+    {"id": "hkma", "jurisdiction": "Hong Kong", "focus": "Banking"}
+  ],
+
+  "enforcement_categories": [
+    {
+      "id": "derivatives_reporting",
+      "label": "Derivatives Reporting",
+      "description": "Violations related to EMIR, CFTC, MiFID reporting"
+    },
+    {
+      "id": "market_conduct",
+      "label": "Market Conduct",
+      "description": "Manipulation, front-running, best execution"
+    },
+    {
+      "id": "risk_management",
+      "label": "Risk Management",
+      "description": "Inadequate risk controls or governance"
+    },
+    {
+      "id": "data_quality",
+      "label": "Data Quality",
+      "description": "Data accuracy and completeness issues"
+    }
+  ]
+}

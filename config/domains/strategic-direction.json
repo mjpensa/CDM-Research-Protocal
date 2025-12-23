@@ -1,0 +1,184 @@
+{
+  "$schema": "Domain Configuration v1.0",
+  "domain_id": "strategic_direction",
+  "display_name": "Strategic Direction",
+  "description": "Investor communications, M&A activity, stated priorities for derivatives business",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "workflow": {
+    "type": "simplified",
+    "stages": 5,
+    "description": "Simplified workflow without Bayesian/adversarial stages",
+    "stages_list": [
+      "initialize", "evidence_collection", "source_verification", "synthesis", "report"
+    ]
+  },
+
+  "applicable_entity_types": ["bank", "vendor", "ccp", "regulator", "consultant"],
+
+  "source_authority": {
+    "tier1": {
+      "description": "Official sources",
+      "max_confidence": 0.95,
+      "sources": [
+        "Investor day presentations",
+        "Annual reports (strategy sections)",
+        "SEC filings (MD&A)",
+        "Official press releases",
+        "CEO/CFO letters to shareholders"
+      ]
+    },
+    "tier2": {
+      "description": "Analyst and press sources",
+      "max_confidence": 0.75,
+      "sources": [
+        "Earnings call transcripts",
+        "Analyst reports",
+        "Trade press strategic coverage",
+        "M&A announcements"
+      ]
+    },
+    "tier3": {
+      "description": "Commentary sources",
+      "max_confidence": 0.50,
+      "sources": [
+        "Industry commentary",
+        "LinkedIn posts from executives",
+        "Conference remarks",
+        "Blog analysis"
+      ]
+    }
+  },
+
+  "classification_taxonomy": [
+    {
+      "id": "expanding",
+      "label": "Expanding",
+      "description": "Growing derivatives business, active investment",
+      "indicators": ["Investment announcements", "M&A activity", "Hiring", "New product launches"]
+    },
+    {
+      "id": "optimizing",
+      "label": "Optimizing",
+      "description": "Maintaining position, efficiency focus",
+      "indicators": ["Efficiency programs", "Stable footprint", "Technology modernization"]
+    },
+    {
+      "id": "restructuring",
+      "label": "Restructuring",
+      "description": "Strategic review, portfolio changes underway",
+      "indicators": ["Strategic review announced", "Portfolio changes", "Leadership changes"]
+    },
+    {
+      "id": "exiting",
+      "label": "Exiting",
+      "description": "Reducing derivatives exposure, divesting",
+      "indicators": ["Divestiture announcements", "Exit from products/regions", "Wind-down"]
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "description": "Insufficient evidence to classify",
+      "indicators": []
+    }
+  ],
+
+  "claim_types": [
+    {
+      "id": "strategic_statement",
+      "label": "Strategic Statement",
+      "description": "Official statement about derivatives strategy"
+    },
+    {
+      "id": "ma_activity",
+      "label": "M&A Activity",
+      "description": "Acquisition, merger, or partnership"
+    },
+    {
+      "id": "investment_announcement",
+      "label": "Investment Announcement",
+      "description": "Announced investment in derivatives capability"
+    },
+    {
+      "id": "divestiture_signal",
+      "label": "Divestiture Signal",
+      "description": "Exit from product or region"
+    },
+    {
+      "id": "priority_shift",
+      "label": "Priority Shift",
+      "description": "Change in strategic priorities"
+    },
+    {
+      "id": "investor_communication",
+      "label": "Investor Communication",
+      "description": "Investor day or earnings guidance"
+    }
+  ],
+
+  "key_questions": [
+    "What is stated strategy for derivatives business?",
+    "Any M&A activity affecting derivatives capability?",
+    "What technology investments are prioritized?",
+    "How does derivatives fit in overall strategy?",
+    "What do investor day presentations emphasize?",
+    "Are there exit or divestiture signals?"
+  ],
+
+  "strategic_themes": [
+    {
+      "id": "digital_transformation",
+      "label": "Digital Transformation",
+      "description": "Modernization and technology investment"
+    },
+    {
+      "id": "efficiency",
+      "label": "Efficiency & Cost Reduction",
+      "description": "Cost optimization and operational efficiency"
+    },
+    {
+      "id": "growth",
+      "label": "Growth & Expansion",
+      "description": "Market share growth and new capabilities"
+    },
+    {
+      "id": "regulatory_compliance",
+      "label": "Regulatory Compliance",
+      "description": "Meeting regulatory requirements"
+    },
+    {
+      "id": "client_focus",
+      "label": "Client Focus",
+      "description": "Client service and relationship enhancement"
+    },
+    {
+      "id": "risk_management",
+      "label": "Risk Management",
+      "description": "Risk reduction and control enhancement"
+    }
+  ],
+
+  "event_types": [
+    {
+      "id": "investor_day",
+      "label": "Investor Day",
+      "description": "Annual or periodic investor presentation"
+    },
+    {
+      "id": "earnings_call",
+      "label": "Earnings Call",
+      "description": "Quarterly earnings discussion"
+    },
+    {
+      "id": "strategic_review",
+      "label": "Strategic Review",
+      "description": "Announced strategic review or update"
+    },
+    {
+      "id": "ma_announcement",
+      "label": "M&A Announcement",
+      "description": "Acquisition or divestiture announcement"
+    }
+  ]
+}

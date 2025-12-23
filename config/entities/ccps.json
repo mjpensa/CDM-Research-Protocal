@@ -1,0 +1,156 @@
+{
+  "$schema": "Entity Registry - CCPs v1.0",
+  "entity_type": "ccp",
+  "description": "Central counterparties and financial market infrastructures for derivatives clearing",
+  "count": 8,
+  "last_updated": "2025-12-22",
+
+  "entities": [
+    {
+      "entity_id": "lch",
+      "entity_name": "LCH Group (LSEG)",
+      "headquarters": "London, UK",
+      "parent_company": "London Stock Exchange Group",
+      "description": "Global multi-asset CCP, dominant in IRS clearing",
+      "products": ["SwapClear", "ForexClear", "CDSClear", "RepoClear"],
+      "asset_classes": ["interest_rate", "fx", "credit", "repo"],
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Document LCH CDM adoption and member requirements",
+        "key_questions": [
+          "What CDM capabilities does LCH require from members?",
+          "What is SwapClear CDM roadmap?",
+          "Which members are CDM-connected?",
+          "How does LCH integrate with DRR initiatives?"
+        ]
+      }
+    },
+    {
+      "entity_id": "cme",
+      "entity_name": "CME Clearing",
+      "headquarters": "Chicago, USA",
+      "parent_company": "CME Group",
+      "description": "Largest US derivatives clearinghouse",
+      "products": ["CME Clearing", "CME ClearPort"],
+      "asset_classes": ["interest_rate", "fx", "equity", "commodity", "credit"],
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand CME CDM involvement and CFTC compliance",
+        "key_questions": [
+          "What is CME's position on CDM adoption?",
+          "How does CME support CFTC Rewrite compliance?",
+          "What data standards does CME mandate?"
+        ]
+      }
+    },
+    {
+      "entity_id": "ice-clear",
+      "entity_name": "ICE Clear",
+      "headquarters": "Atlanta, USA",
+      "parent_company": "Intercontinental Exchange",
+      "description": "Multi-asset clearinghouse with US and European entities",
+      "products": ["ICE Clear US", "ICE Clear Europe", "ICE Clear Credit"],
+      "asset_classes": ["credit", "energy", "interest_rate", "fx"],
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Document ICE CDM capabilities and CDS clearing",
+        "key_questions": [
+          "What CDM support exists for credit derivatives?",
+          "How does ICE Clear Credit handle CDM?",
+          "What DRR capabilities does ICE provide?"
+        ]
+      }
+    },
+    {
+      "entity_id": "eurex",
+      "entity_name": "Eurex Clearing",
+      "headquarters": "Frankfurt, Germany",
+      "parent_company": "Deutsche Börse",
+      "description": "European derivatives CCP",
+      "products": ["Eurex OTC Clear", "C7"],
+      "asset_classes": ["interest_rate", "equity", "repo"],
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand Eurex CDM and EMIR Refit approach",
+        "key_questions": [
+          "What CDM capabilities does Eurex mandate?",
+          "How does Eurex support EMIR Refit reporting?",
+          "What is the C7 platform CDM integration?"
+        ]
+      }
+    },
+    {
+      "entity_id": "jscc",
+      "entity_name": "Japan Securities Clearing Corporation",
+      "headquarters": "Tokyo, Japan",
+      "parent_company": "Japan Exchange Group",
+      "description": "Japanese CCP for derivatives, leading CDM production deployment",
+      "products": ["JSCC IRS Clearing", "JSCC CDS Clearing"],
+      "asset_classes": ["interest_rate", "credit"],
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Document JSCC CDM production deployment (2025)",
+        "key_questions": [
+          "What CDM connectivity is required for members?",
+          "Which members are preparing for June 2025 go-live?",
+          "What is the production CDM message format?",
+          "How does JSCC CDM integrate with DRR?"
+        ]
+      }
+    },
+    {
+      "entity_id": "dtcc",
+      "entity_name": "DTCC (Depository Trust & Clearing Corporation)",
+      "headquarters": "New York, USA",
+      "parent_company": null,
+      "description": "Trade repository and post-trade infrastructure",
+      "products": ["GTR (Global Trade Repository)", "TIW", "FICC"],
+      "asset_classes": ["all"],
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Document DTCC CDM/DRR integration for trade reporting",
+        "key_questions": [
+          "How does DTCC GTR support CDM format?",
+          "What is DTCC's role in DRR initiatives?",
+          "How does DTCC integrate with CFTC/EMIR reporting?"
+        ]
+      }
+    },
+    {
+      "entity_id": "sgx",
+      "entity_name": "SGX DC (Singapore Exchange Derivatives Clearing)",
+      "headquarters": "Singapore",
+      "parent_company": "Singapore Exchange",
+      "description": "Asian derivatives clearinghouse",
+      "products": ["SGX DC"],
+      "asset_classes": ["interest_rate", "fx", "equity", "commodity"],
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess SGX CDM adoption and Asian expansion",
+        "key_questions": [
+          "What CDM capabilities does SGX support?",
+          "How does SGX coordinate with JSCC on CDM?",
+          "What is MAS regulatory stance on CDM?"
+        ]
+      }
+    },
+    {
+      "entity_id": "hkex",
+      "entity_name": "HKEX Clearing (OTC Clear)",
+      "headquarters": "Hong Kong",
+      "parent_company": "Hong Kong Exchanges and Clearing",
+      "description": "Hong Kong derivatives clearinghouse",
+      "products": ["OTC Clear", "HKCC"],
+      "asset_classes": ["interest_rate", "fx"],
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess HKEX CDM adoption",
+        "key_questions": [
+          "What CDM support exists in OTC Clear?",
+          "How does HKMA regulatory stance affect CDM?",
+          "What is coordination with mainland China CCPs?"
+        ]
+      }
+    }
+  ]
+}

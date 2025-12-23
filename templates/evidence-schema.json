@@ -1,29 +1,52 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "CDM/DRR Evidence Documentation Schema v4.3",
-  "description": "Documents the structure of research outputs. Primary output format is JSON (Ledger-First principle); Markdown files are rendered views for human readability. v4.0 adds product-level and jurisdiction-level operational intelligence. v4.1 adds adoption drivers and knowledge gap frameworks. v4.2 adds counterparty interoperability and vendor analysis. v4.3 adds WebSearch completion tracking for batch validation.",
-  "version": "4.3",
-  "last_updated": "2025-12-20",
+  "title": "Derivatives Market Intelligence Schema v5.0",
+  "description": "Multi-domain research platform schema. v5.0 adds domain_type for 7 research domains, entity_type for 5 entity classes, cross-domain evidence linking, temporal tracking, relationship graphs, and risk assessment. Backward compatible with v4.x CDM-only research. v4.0 adds product-level and jurisdiction-level operational intelligence. v4.1 adds adoption drivers and knowledge gap frameworks. v4.2 adds counterparty interoperability and vendor analysis. v4.3 adds WebSearch completion tracking for batch validation.",
+  "version": "5.0",
+  "last_updated": "2025-12-22",
 
   "output_format": "json",
-  "note": "Per CLAUDE.md Ledger-First mandate: evidence.json is the PRIMARY output. Markdown tier*-evidence.md files are RENDERED from JSON. All downstream agents (Bayesian, Gates, Adversarial) read from evidence.json.",
+  "note": "Per CLAUDE.md Ledger-First mandate: evidence.json is the PRIMARY output. Markdown files are RENDERED from JSON. For v5.0+, evidence is organized by entity_type/entity_id/domain_type/.",
 
   "evidence_json_structure": {
     "filename": "evidence.json",
-    "location": "outputs/phase-[N]/[bank_id]/",
+    "location": "outputs/[entity_type]/[entity_id]/[domain_type]/",
+    "legacy_location": "outputs/phase-[N]/[bank_id]/",
     "description": "Primary evidence ledger. Agent appends items after each tier; do not overwrite.",
     "schema": {
+      "entity_id": {
+        "type": "string",
+        "description": "Lowercase hyphenated identifier (e.g., 'deutsche-bank', 'murex', 'lch')"
+      },
+      "entity_name": {
+        "type": "string",
+        "description": "Full display name (e.g., 'Deutsche Bank AG', 'Murex S.A.S.', 'LCH Group')"
+      },
+      "entity_type": {
+        "type": "string",
+        "enum": ["bank", "vendor", "ccp", "regulator", "consultant"],
+        "default": "bank",
+        "description": "v5.0: Entity type classification"
+      },
+      "domain_type": {
+        "type": "string",
+        "enum": ["cdm_adoption", "tech_stack", "counterparty", "people_talent", "regulatory_posture", "financial_metrics", "strategic_direction"],
+        "default": "cdm_adoption",
+        "description": "v5.0: Research domain this evidence belongs to"
+      },
       "bank_id": {
         "type": "string",
-        "description": "Lowercase hyphenated identifier (e.g., 'deutsche-bank')"
+        "deprecated": true,
+        "description": "DEPRECATED v5.0: Use entity_id instead. Kept for backward compatibility."
       },
       "bank_name": {
         "type": "string",
-        "description": "Full display name (e.g., 'Deutsche Bank AG')"
+        "deprecated": true,
+        "description": "DEPRECATED v5.0: Use entity_name instead. Kept for backward compatibility."
       },
       "schema_version": {
         "type": "string",
-        "default": "4.2"
+        "default": "5.0"
       },
       "evidence_items": {
         "type": "array",
@@ -77,6 +100,33 @@
           "caveats": {
             "type": "string",
             "description": "Limitations or alternative interpretations"
+          },
+          "related_evidence": {
+            "type": "array",
+            "description": "v5.0: Cross-domain evidence references",
+            "items": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "enum": ["cdm_adoption", "tech_stack", "counterparty", "people_talent", "regulatory_posture", "financial_metrics", "strategic_direction"],
+                  "description": "Domain containing the related evidence"
+                },
+                "evidence_id": {
+                  "type": "string",
+                  "description": "ID of the related evidence item"
+                },
+                "relationship": {
+                  "type": "string",
+                  "enum": ["supports", "contradicts", "extends", "supersedes", "related"],
+                  "description": "How this evidence relates to the referenced evidence"
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Explanation of the relationship"
+                }
+              }
+            }
           },
           "lr_mapping": {
             "type": "object",
@@ -820,6 +870,185 @@
                 "enum": ["supports_architect", "supports_pragmatist_vendor", "supports_pragmatist_hybrid", "neutral", "insufficient_data"],
                 "description": "What does vendor analysis imply for classification?"
               }
+            }
+          }
+        }
+      },
+      "temporal_tracking": {
+        "type": "object",
+        "description": "v5.0: Track evidence changes over time (2017-present)",
+        "properties": {
+          "first_evidence_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of earliest evidence for this entity/domain"
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last modification timestamp"
+          },
+          "version_history": {
+            "type": "array",
+            "description": "Version snapshots of this evidence file",
+            "items": {
+              "type": "object",
+              "properties": {
+                "version": {"type": "integer"},
+                "timestamp": {"type": "string", "format": "date-time"},
+                "evidence_count": {"type": "integer"},
+                "classification": {"type": "string"},
+                "confidence": {"type": "integer"},
+                "change_summary": {"type": "string"}
+              }
+            }
+          },
+          "milestones": {
+            "type": "array",
+            "description": "Key events in this entity's journey",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {"type": "string", "format": "date"},
+                "event_type": {
+                  "type": "string",
+                  "enum": ["pilot_launch", "production_go_live", "announcement", "regulatory_deadline", "acquisition", "partnership", "other"]
+                },
+                "description": {"type": "string"},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          },
+          "trend_analysis": {
+            "type": "object",
+            "properties": {
+              "adoption_trajectory": {
+                "type": "string",
+                "enum": ["accelerating", "steady", "stalled", "declining", "unknown"]
+              },
+              "momentum_score": {"type": "integer", "minimum": -100, "maximum": 100},
+              "last_significant_change": {"type": "string", "format": "date"}
+            }
+          }
+        }
+      },
+      "relationship_graph": {
+        "type": "object",
+        "description": "v5.0: Entity-to-entity relationships",
+        "properties": {
+          "relationships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target_entity_type": {
+                  "type": "string",
+                  "enum": ["bank", "vendor", "ccp", "regulator", "consultant"]
+                },
+                "target_entity_id": {"type": "string"},
+                "relationship_type": {
+                  "type": "string",
+                  "enum": ["uses_platform", "clears_at", "trades_with", "regulated_by", "advised_by", "competes_with", "partners_with", "acquired", "subsidiary_of"]
+                },
+                "strength": {
+                  "type": "string",
+                  "enum": ["primary", "secondary", "minor", "unknown"]
+                },
+                "products": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "Products involved in this relationship"
+                },
+                "start_date": {"type": "string", "format": "date"},
+                "end_date": {"type": ["string", "null"], "format": "date"},
+                "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}},
+                "notes": {"type": "string"}
+              }
+            }
+          }
+        }
+      },
+      "risk_assessment": {
+        "type": "object",
+        "description": "v5.0: Entity risk scoring across dimensions",
+        "properties": {
+          "assessment_date": {"type": "string", "format": "date"},
+          "operational_risk": {
+            "type": "object",
+            "properties": {
+              "score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "factors": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "evidence_ids": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "technology_risk": {
+            "type": "object",
+            "properties": {
+              "score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "legacy_debt_level": {
+                "type": "string",
+                "enum": ["high", "medium", "low", "unknown"]
+              },
+              "modernization_status": {
+                "type": "string",
+                "enum": ["completed", "in_progress", "planned", "not_started", "unknown"]
+              },
+              "evidence_ids": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "regulatory_risk": {
+            "type": "object",
+            "properties": {
+              "score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "active_enforcement": {"type": "boolean"},
+              "consent_orders": {"type": "integer"},
+              "compliance_gaps": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "evidence_ids": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "concentration_risk": {
+            "type": "object",
+            "properties": {
+              "score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "vendor_concentration": {
+                "type": "string",
+                "enum": ["single_vendor", "dual_vendor", "multi_vendor", "unknown"]
+              },
+              "counterparty_concentration": {
+                "type": "string",
+                "enum": ["high", "medium", "low", "unknown"]
+              },
+              "evidence_ids": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "overall_risk_score": {"type": "integer", "minimum": 0, "maximum": 100},
+          "risk_trend": {
+            "type": "string",
+            "enum": ["improving", "stable", "deteriorating", "unknown"]
+          }
+        }
+      },
+      "event_references": {
+        "type": "array",
+        "description": "v5.0: Links to events from event calendar",
+        "items": {
+          "type": "object",
+          "properties": {
+            "event_id": {"type": "string"},
+            "event_type": {
+              "type": "string",
+              "enum": ["regulatory_deadline", "conference", "earnings", "ma_announcement", "product_launch"]
+            },
+            "relevance": {
+              "type": "string",
+              "enum": ["direct", "indirect", "contextual"]
             }
           }
         }

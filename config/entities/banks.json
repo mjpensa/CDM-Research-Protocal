@@ -1,0 +1,707 @@
+{
+  "$schema": "Entity Registry - Banks v1.0",
+  "entity_type": "bank",
+  "description": "Financial institutions engaged in derivatives trading, derived from bank-manifest.json",
+  "count": 31,
+  "last_updated": "2025-12-22",
+  "source_migration": "config/bank-manifest.json",
+
+  "entities": [
+    {
+      "entity_id": "deutsche-bank",
+      "entity_name": "Deutsche Bank AG",
+      "headquarters": "Frankfurt, Germany",
+      "region": "Europe",
+      "subregion": "Germany",
+      "business_model": "Global universal bank with significant investment banking",
+      "derivatives_relevance": "high",
+      "primary_regulator": "bafin",
+      "market_segment": "tier1_global",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Validate 'Pilot; production expected 2025' claim from framework v20",
+        "key_questions": [
+          "Has Deutsche Bank announced any CDM/DRR pilot or production timeline?",
+          "Is Deutsche Bank contributing to CDM development at ISDA or FINOS?",
+          "How did Deutsche Bank address EMIR Refit (April 2024)?",
+          "Are regulatory enforcement priorities consuming technology capacity?",
+          "What do named individuals say about derivatives technology direction?"
+        ]
+      }
+    },
+    {
+      "entity_id": "societe-generale",
+      "entity_name": "Societe Generale",
+      "headquarters": "Paris, France",
+      "region": "Europe",
+      "subregion": "France",
+      "business_model": "Universal bank with strong investment banking",
+      "derivatives_relevance": "high",
+      "primary_regulator": "amf",
+      "market_segment": "tier1_global",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Assess whether SocGen is following BNP Paribas CDM path",
+        "key_questions": [
+          "Has Societe Generale announced any CDM/DRR initiatives?",
+          "Is there evidence of BNP -> SocGen knowledge transfer or pattern following?",
+          "How did SocGen address EMIR Refit (April 2024)?",
+          "Are there named individuals at SocGen involved in CDM/ISDA working groups?",
+          "What is SocGen's derivatives technology direction?"
+        ]
+      }
+    },
+    {
+      "entity_id": "ubs",
+      "entity_name": "UBS Group AG",
+      "headquarters": "Zurich, Switzerland",
+      "region": "Europe",
+      "subregion": "Switzerland",
+      "business_model": "Global wealth management and investment banking",
+      "derivatives_relevance": "high",
+      "primary_regulator": "finma",
+      "market_segment": "tier1_global",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Assess if Credit Suisse integration is consuming CDM capacity",
+        "key_questions": [
+          "Is there ANY evidence of CDM work at UBS despite integration?",
+          "Did Credit Suisse have CDM initiatives that UBS may have inherited?",
+          "What are FINMA requirements for derivatives reporting?",
+          "What is UBS post-integration technology strategy for derivatives?",
+          "When will integration capacity constraints free up?"
+        ]
+      }
+    },
+    {
+      "entity_id": "barclays",
+      "entity_name": "Barclays PLC",
+      "headquarters": "London, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "Universal bank with strong investment banking",
+      "derivatives_relevance": "high",
+      "primary_regulator": "fca",
+      "market_segment": "tier1_global",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess if Barclays is upgrading from Follower to Leader",
+        "key_questions": [
+          "Is Barclays moving toward production commitment?",
+          "What is the scope and depth of their FINOS contribution?",
+          "Have they demonstrated production-grade capabilities?",
+          "Are they taking governance/leadership roles in CDM ecosystem?",
+          "How did they respond to UK EMIR (September 2024)?"
+        ]
+      }
+    },
+    {
+      "entity_id": "hsbc",
+      "entity_name": "HSBC Holdings PLC",
+      "headquarters": "London, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "Global universal bank with Asia focus",
+      "derivatives_relevance": "high",
+      "primary_regulator": "fca",
+      "market_segment": "tier1_global",
+      "phase": 1,
+      "phase_name": "European Tier 1",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Assess if HSBC is building internal CDM capability or vendor-only",
+        "key_questions": [
+          "Is HSBC building internal CDM capability in addition to Delta Capita?",
+          "Or is HSBC purely relying on vendor for CDM connectivity?",
+          "What is the scope of the Delta Capita engagement?",
+          "Did HSBC's 2018 pilot participation lead to sustained internal capability?",
+          "How do Asian regulatory requirements (HKMA, MAS) affect HSBC's approach?"
+        ]
+      }
+    },
+    {
+      "entity_id": "natwest",
+      "entity_name": "NatWest Group PLC",
+      "headquarters": "Edinburgh, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "UK-focused retail and commercial bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "fca",
+      "market_segment": "regional",
+      "phase": 2,
+      "phase_name": "UK Regional",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess UK regional bank CDM positioning",
+        "key_questions": [
+          "Is NatWest following larger UK banks (Barclays/HSBC)?",
+          "What is UK EMIR (Sept 2024) impact on NatWest?",
+          "Is NatWest relying on vendor solutions?"
+        ]
+      }
+    },
+    {
+      "entity_id": "lloyds",
+      "entity_name": "Lloyds Banking Group PLC",
+      "headquarters": "London, United Kingdom",
+      "region": "Europe",
+      "subregion": "UK",
+      "business_model": "UK-focused retail and commercial bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "fca",
+      "market_segment": "regional",
+      "phase": 2,
+      "phase_name": "UK Regional",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess UK regional bank CDM positioning",
+        "key_questions": [
+          "Is Lloyds following larger UK banks (Barclays/HSBC)?",
+          "What is UK EMIR (Sept 2024) impact on Lloyds?",
+          "Is Lloyds relying on vendor solutions?"
+        ]
+      }
+    },
+    {
+      "entity_id": "nomura",
+      "entity_name": "Nomura Holdings, Inc.",
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Investment bank and broker",
+      "derivatives_relevance": "high",
+      "primary_regulator": "fsa-japan",
+      "market_segment": "tier1_regional",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production (June 2025)",
+        "key_questions": [
+          "Is Nomura building CDM capability for JSCC connectivity?",
+          "What type of response: CDM-native build vs minimum connectivity vs vendor?",
+          "Are there ISDA/FINOS contributions from Nomura?",
+          "What is FSA position on CDM/DRR?"
+        ]
+      }
+    },
+    {
+      "entity_id": "mufg",
+      "entity_name": "Mitsubishi UFJ Financial Group",
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Megabank with global presence",
+      "derivatives_relevance": "high",
+      "primary_regulator": "fsa-japan",
+      "market_segment": "tier1_global",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production",
+        "key_questions": [
+          "Is MUFG building CDM capability for JSCC connectivity?",
+          "What is MUFG's derivatives technology strategy?",
+          "Are there ISDA/FINOS contributions from MUFG?"
+        ]
+      }
+    },
+    {
+      "entity_id": "mizuho",
+      "entity_name": "Mizuho Financial Group",
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Megabank with global presence",
+      "derivatives_relevance": "high",
+      "primary_regulator": "fsa-japan",
+      "market_segment": "tier1_global",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production",
+        "key_questions": [
+          "Is Mizuho building CDM capability for JSCC connectivity?",
+          "What is Mizuho's derivatives technology strategy?",
+          "Are there ISDA/FINOS contributions from Mizuho?"
+        ]
+      }
+    },
+    {
+      "entity_id": "smbc",
+      "entity_name": "Sumitomo Mitsui Banking Corporation",
+      "headquarters": "Tokyo, Japan",
+      "region": "Asia",
+      "subregion": "Japan",
+      "business_model": "Megabank with global presence",
+      "derivatives_relevance": "high",
+      "primary_regulator": "fsa-japan",
+      "market_segment": "tier1_global",
+      "phase": 3,
+      "phase_name": "Japanese",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess response to JSCC CDM production",
+        "key_questions": [
+          "Is SMBC building CDM capability for JSCC connectivity?",
+          "What is SMBC's derivatives technology strategy?",
+          "Are there ISDA/FINOS contributions from SMBC?"
+        ]
+      }
+    },
+    {
+      "entity_id": "ing",
+      "entity_name": "ING Group N.V.",
+      "headquarters": "Amsterdam, Netherlands",
+      "region": "Europe",
+      "subregion": "Netherlands",
+      "business_model": "Retail and commercial bank with investment banking",
+      "derivatives_relevance": "medium_high",
+      "primary_regulator": "dnb",
+      "market_segment": "tier2_european",
+      "phase": 4,
+      "phase_name": "Other European",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Rapid assessment of CDM positioning",
+        "key_questions": [
+          "What is ING's derivatives technology strategy?",
+          "How did ING address EMIR Refit?",
+          "Is ING building CDM capability or using vendors?"
+        ]
+      }
+    },
+    {
+      "entity_id": "credit-agricole",
+      "entity_name": "Credit Agricole S.A.",
+      "headquarters": "Paris, France",
+      "region": "Europe",
+      "subregion": "France",
+      "business_model": "Universal bank",
+      "derivatives_relevance": "medium_high",
+      "primary_regulator": "amf",
+      "market_segment": "tier2_european",
+      "phase": 4,
+      "phase_name": "Other European",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess if following BNP/SocGen French cohort",
+        "key_questions": [
+          "Is Credit Agricole following French peer banks on CDM?",
+          "What is Credit Agricole's derivatives technology strategy?",
+          "How did Credit Agricole address EMIR Refit?"
+        ]
+      }
+    },
+    {
+      "entity_id": "unicredit",
+      "entity_name": "UniCredit S.p.A.",
+      "headquarters": "Milan, Italy",
+      "region": "Europe",
+      "subregion": "Italy",
+      "business_model": "Universal bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "banca-ditalia",
+      "market_segment": "tier2_european",
+      "phase": 4,
+      "phase_name": "Other European",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Rapid assessment of CDM positioning",
+        "key_questions": [
+          "What is UniCredit's derivatives technology strategy?",
+          "How did UniCredit address EMIR Refit?",
+          "Is UniCredit building CDM capability or using vendors?"
+        ]
+      }
+    },
+    {
+      "entity_id": "commerzbank",
+      "entity_name": "Commerzbank AG",
+      "headquarters": "Frankfurt, Germany",
+      "region": "Europe",
+      "subregion": "Germany",
+      "business_model": "Commercial and investment bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "bafin",
+      "market_segment": "tier2_european",
+      "phase": 4,
+      "phase_name": "Other European",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Rapid assessment of CDM positioning",
+        "key_questions": [
+          "Is Commerzbank following Deutsche Bank on CDM?",
+          "What is Commerzbank's derivatives technology strategy?",
+          "How did Commerzbank address EMIR Refit?"
+        ]
+      }
+    },
+    {
+      "entity_id": "santander",
+      "entity_name": "Banco Santander S.A.",
+      "headquarters": "Madrid, Spain",
+      "region": "Europe",
+      "subregion": "Spain",
+      "business_model": "Global retail and commercial bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "banco-de-espana",
+      "market_segment": "tier1_global",
+      "phase": 5,
+      "phase_name": "Spanish",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess Spanish bank CDM positioning",
+        "key_questions": [
+          "What is Santander's derivatives technology strategy?",
+          "How did Santander address EMIR Refit?",
+          "Is Santander building CDM capability or using vendors?"
+        ]
+      }
+    },
+    {
+      "entity_id": "bbva",
+      "entity_name": "Banco Bilbao Vizcaya Argentaria S.A.",
+      "headquarters": "Bilbao, Spain",
+      "region": "Europe",
+      "subregion": "Spain",
+      "business_model": "Global retail and commercial bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "banco-de-espana",
+      "market_segment": "tier1_global",
+      "phase": 5,
+      "phase_name": "Spanish",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess Spanish bank CDM positioning",
+        "key_questions": [
+          "What is BBVA's derivatives technology strategy?",
+          "How did BBVA address EMIR Refit?",
+          "Is BBVA building CDM capability or using vendors?"
+        ]
+      }
+    },
+    {
+      "entity_id": "standard-chartered",
+      "entity_name": "Standard Chartered PLC",
+      "headquarters": "London, United Kingdom",
+      "region": "Asia",
+      "subregion": "Emerging Markets Focus",
+      "business_model": "Asia/Africa/Middle East focused bank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "fca",
+      "market_segment": "tier1_regional",
+      "phase": 6,
+      "phase_name": "Deep Dives",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand WHY contributing despite smaller derivatives footprint",
+        "key_questions": [
+          "What is the scope of Standard Chartered's CDM contribution?",
+          "What strategic motivation drives contribution despite smaller derivatives business?",
+          "Is this regulatory driven, client driven, or strategic positioning?"
+        ]
+      }
+    },
+    {
+      "entity_id": "pictet",
+      "entity_name": "Pictet Group",
+      "headquarters": "Geneva, Switzerland",
+      "region": "Europe",
+      "subregion": "Switzerland",
+      "business_model": "Private bank and asset manager",
+      "derivatives_relevance": "low",
+      "primary_regulator": "finma",
+      "market_segment": "wealth_management",
+      "phase": 6,
+      "phase_name": "Deep Dives",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Understand production deployment for wealth management firm",
+        "key_questions": [
+          "What drove Pictet to CDM production?",
+          "What is the scope of production deployment?",
+          "Is this client-driven, regulatory-driven, or strategic?"
+        ]
+      }
+    },
+    {
+      "entity_id": "dbs",
+      "entity_name": "DBS Bank Ltd.",
+      "headquarters": "Singapore",
+      "region": "Asia",
+      "subregion": "Singapore",
+      "business_model": "Regional bank with strong digital focus",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "mas",
+      "market_segment": "tier1_regional",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess Asian emerging market bank positioning",
+        "key_questions": [
+          "What is DBS's derivatives technology strategy?",
+          "How does MAS regulatory environment affect CDM adoption?",
+          "Is DBS coordinating with JSCC CDM initiative?"
+        ]
+      }
+    },
+    {
+      "entity_id": "icbc",
+      "entity_name": "Industrial and Commercial Bank of China",
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "cbirc",
+      "market_segment": "tier1_global",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [
+          "What is ICBC's international derivatives technology strategy?",
+          "How does Chinese regulatory environment affect CDM adoption?",
+          "Is there any ISDA/FINOS engagement?"
+        ]
+      }
+    },
+    {
+      "entity_id": "bank-of-china",
+      "entity_name": "Bank of China Limited",
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank with international presence",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "cbirc",
+      "market_segment": "tier1_global",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [
+          "What is Bank of China's international derivatives technology strategy?",
+          "How does Chinese regulatory environment affect CDM adoption?",
+          "Is there any ISDA/FINOS engagement?"
+        ]
+      }
+    },
+    {
+      "entity_id": "ccb",
+      "entity_name": "China Construction Bank Corporation",
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "cbirc",
+      "market_segment": "tier1_global",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [
+          "What is CCB's derivatives technology strategy?",
+          "How does Chinese regulatory environment affect CDM adoption?"
+        ]
+      }
+    },
+    {
+      "entity_id": "abc",
+      "entity_name": "Agricultural Bank of China Limited",
+      "headquarters": "Beijing, China",
+      "region": "Asia",
+      "subregion": "China",
+      "business_model": "State-owned megabank with agricultural focus",
+      "derivatives_relevance": "low_medium",
+      "primary_regulator": "cbirc",
+      "market_segment": "tier1_global",
+      "phase": 7,
+      "phase_name": "Emerging Markets",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess Chinese bank CDM positioning (limited evidence expected)",
+        "key_questions": [
+          "What is ABC's derivatives technology strategy?",
+          "How does Chinese regulatory environment affect CDM adoption?"
+        ]
+      }
+    },
+    {
+      "entity_id": "jpmorgan",
+      "entity_name": "JPMorgan Chase & Co.",
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global investment bank and financial services",
+      "derivatives_relevance": "very_high",
+      "primary_regulator": "cftc",
+      "market_segment": "tier1_global",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Document confirmed ARCHITECT-Native status and production scope",
+        "key_questions": [
+          "What is the scope of JPMorgan's CDM production deployment?",
+          "What products/workflows are in CDM production?",
+          "Is JPMorgan contributing to CDM governance/development?",
+          "How does CFTC Rewrite drive their CDM strategy?"
+        ]
+      }
+    },
+    {
+      "entity_id": "goldman-sachs",
+      "entity_name": "Goldman Sachs Group, Inc.",
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global investment bank",
+      "derivatives_relevance": "very_high",
+      "primary_regulator": "cftc",
+      "market_segment": "tier1_global",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess if Goldman Sachs is following JPMorgan CDM path",
+        "key_questions": [
+          "Is Goldman Sachs building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from Goldman Sachs?",
+          "How is Goldman Sachs addressing CFTC Rewrite?",
+          "Is there evidence of CDM pilot or production planning?"
+        ]
+      }
+    },
+    {
+      "entity_id": "morgan-stanley",
+      "entity_name": "Morgan Stanley",
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global investment bank and wealth management",
+      "derivatives_relevance": "very_high",
+      "primary_regulator": "cftc",
+      "market_segment": "tier1_global",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Assess if Morgan Stanley is following JPMorgan CDM path",
+        "key_questions": [
+          "Is Morgan Stanley building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from Morgan Stanley?",
+          "How is Morgan Stanley addressing CFTC Rewrite?",
+          "Is there evidence of CDM pilot or production planning?"
+        ]
+      }
+    },
+    {
+      "entity_id": "citigroup",
+      "entity_name": "Citigroup Inc.",
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global universal bank",
+      "derivatives_relevance": "high",
+      "primary_regulator": "cftc",
+      "market_segment": "tier1_global",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Assess Citigroup CDM positioning",
+        "key_questions": [
+          "Is Citigroup building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from Citigroup?",
+          "How is Citigroup addressing CFTC Rewrite?",
+          "Is vendor path more likely given universal bank model?"
+        ]
+      }
+    },
+    {
+      "entity_id": "bank-of-america",
+      "entity_name": "Bank of America Corporation",
+      "headquarters": "Charlotte, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Global universal bank with retail focus",
+      "derivatives_relevance": "high",
+      "primary_regulator": "cftc",
+      "market_segment": "tier1_global",
+      "phase": 8,
+      "phase_name": "US Investment Banks",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Assess Bank of America CDM positioning",
+        "key_questions": [
+          "Is Bank of America building internal CDM capability?",
+          "Are there ISDA/FINOS contributions from BofA?",
+          "How is BofA addressing CFTC Rewrite?",
+          "Does retail banking focus reduce CDM priority?"
+        ]
+      }
+    },
+    {
+      "entity_id": "state-street",
+      "entity_name": "State Street Corporation",
+      "headquarters": "Boston, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Custody bank and asset servicing",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "sec",
+      "market_segment": "custody",
+      "phase": 9,
+      "phase_name": "US Custody Banks",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess custody bank CDM positioning",
+        "key_questions": [
+          "Does custody/asset servicing drive different CDM motivation?",
+          "Is State Street building CDM capability for client servicing?",
+          "How does CFTC Rewrite affect custody bank derivatives operations?"
+        ]
+      }
+    },
+    {
+      "entity_id": "bny-mellon",
+      "entity_name": "The Bank of New York Mellon Corporation",
+      "headquarters": "New York, USA",
+      "region": "North America",
+      "subregion": "USA",
+      "business_model": "Custody bank and asset servicing",
+      "derivatives_relevance": "medium",
+      "primary_regulator": "sec",
+      "market_segment": "custody",
+      "phase": 9,
+      "phase_name": "US Custody Banks",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess custody bank CDM positioning",
+        "key_questions": [
+          "Does custody/asset servicing drive different CDM motivation?",
+          "Is BNY Mellon building CDM capability for client servicing?",
+          "How does CFTC Rewrite affect custody bank derivatives operations?"
+        ]
+      }
+    }
+  ]
+}

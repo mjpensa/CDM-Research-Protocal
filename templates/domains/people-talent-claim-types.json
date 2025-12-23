@@ -1,0 +1,171 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "people_talent",
+  "display_name": "People & Talent Claim Types",
+  "description": "Claim types for people and talent research domain",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "executive_appointment",
+      "label": "Executive Appointment",
+      "description": "New leadership hire announced for derivatives/technology role",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Press release", "LinkedIn announcement", "Trade press"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "New Head of Derivatives Technology appointed",
+        "Chief Technology Officer hired from competitor",
+        "CDM Program Lead appointed"
+      ]
+    },
+    {
+      "id": "team_structure",
+      "label": "Team Structure",
+      "description": "Information about organization and team structure",
+      "tier_required": [1, 2, 3],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["LinkedIn profiles", "Org announcements", "Conference bios"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Derivatives technology team of 50+",
+        "CDM team formed under CTO",
+        "Global markets technology organization"
+      ]
+    },
+    {
+      "id": "hiring_surge",
+      "label": "Hiring Surge",
+      "description": "Evidence of increased hiring activity in derivatives/technology",
+      "tier_required": [2, 3],
+      "evidence_requirements": {
+        "min_sources": 3,
+        "preferred_sources": ["Job postings", "LinkedIn", "Career pages"],
+        "note": "Multiple positions strengthen signal"
+      },
+      "examples": [
+        "15 open derivatives technology roles",
+        "Expanding CDM implementation team",
+        "Hiring blitz for regulatory reporting"
+      ]
+    },
+    {
+      "id": "departure_pattern",
+      "label": "Departure Pattern",
+      "description": "Notable departures or turnover pattern",
+      "tier_required": [2, 3],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["LinkedIn", "Trade press", "News articles"],
+        "corroboration_required": true
+      },
+      "examples": [
+        "Head of Derivatives resigned",
+        "CDM team lost to competitor",
+        "Third technology leader departure"
+      ]
+    },
+    {
+      "id": "conference_speaker",
+      "label": "Conference Speaker",
+      "description": "Key personnel speaking at industry events",
+      "tier_required": [2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Conference agenda", "Speaker list", "Event website"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "CTO spoke at ISDA AGM",
+        "Head of Derivatives on Risk.net panel",
+        "CDM Lead presenting at FINOS"
+      ]
+    },
+    {
+      "id": "linkedin_signal",
+      "label": "LinkedIn Signal",
+      "description": "Profile information indicating expertise or team composition",
+      "tier_required": [3],
+      "evidence_requirements": {
+        "min_sources": 3,
+        "preferred_sources": ["LinkedIn profiles"],
+        "note": "Pattern across multiple profiles strengthens"
+      },
+      "examples": [
+        "Team members show CDM expertise",
+        "Murex experience across profiles",
+        "Recent hires from competitor"
+      ]
+    },
+    {
+      "id": "job_posting_signal",
+      "label": "Job Posting Signal",
+      "description": "Open positions indicating team needs and direction",
+      "tier_required": [3],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["LinkedIn", "Company careers", "Job boards"],
+        "freshness_requirement": "< 6 months"
+      },
+      "examples": [
+        "CDM Developer role posted",
+        "Senior Risk Quant opening",
+        "Head of Regulatory Reporting search"
+      ]
+    }
+  ],
+
+  "role_categories": [
+    {
+      "id": "derivatives_head",
+      "label": "Head of Derivatives",
+      "seniority": "executive",
+      "description": "Business head for derivatives trading"
+    },
+    {
+      "id": "derivatives_tech_head",
+      "label": "Head of Derivatives Technology",
+      "seniority": "executive",
+      "description": "Technology leader for derivatives systems"
+    },
+    {
+      "id": "quant_lead",
+      "label": "Quant Lead",
+      "seniority": "senior",
+      "description": "Head of quantitative research for derivatives"
+    },
+    {
+      "id": "regulatory_head",
+      "label": "Head of Regulatory Reporting",
+      "seniority": "senior",
+      "description": "Leader for derivatives regulatory compliance"
+    },
+    {
+      "id": "cdm_lead",
+      "label": "CDM/DRR Lead",
+      "seniority": "senior",
+      "description": "Specific lead for CDM/DRR initiatives"
+    },
+    {
+      "id": "developer",
+      "label": "Developer/Engineer",
+      "seniority": "individual_contributor",
+      "description": "Technical implementation roles"
+    }
+  ],
+
+  "conference_watchlist": [
+    {"name": "ISDA AGM", "frequency": "Annual", "relevance": "CDM, derivatives"},
+    {"name": "FIA Boca", "frequency": "Annual", "relevance": "Clearing, derivatives"},
+    {"name": "Risk.net events", "frequency": "Multiple", "relevance": "Risk, technology"},
+    {"name": "FINOS OSFF", "frequency": "Annual", "relevance": "CDM, open source"},
+    {"name": "TradeTech", "frequency": "Annual", "relevance": "Technology"},
+    {"name": "WatersTechnology events", "frequency": "Multiple", "relevance": "Technology"}
+  ]
+}

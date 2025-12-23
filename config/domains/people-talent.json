@@ -1,0 +1,169 @@
+{
+  "$schema": "Domain Configuration v1.0",
+  "domain_id": "people_talent",
+  "display_name": "People & Talent",
+  "description": "Key personnel, hiring patterns, team structures, industry speakers",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "workflow": {
+    "type": "simplified",
+    "stages": 5,
+    "description": "Simplified workflow without Bayesian/adversarial stages",
+    "stages_list": [
+      "initialize", "evidence_collection", "source_verification", "synthesis", "report"
+    ]
+  },
+
+  "applicable_entity_types": ["bank", "vendor", "consultant"],
+
+  "source_authority": {
+    "tier1": {
+      "description": "Official sources",
+      "max_confidence": 0.95,
+      "sources": [
+        "Official company announcements",
+        "SEC filings (executive compensation)",
+        "Annual reports (leadership sections)",
+        "Press releases on appointments"
+      ]
+    },
+    "tier2": {
+      "description": "Trade and industry sources",
+      "max_confidence": 0.75,
+      "sources": [
+        "Trade press profiles",
+        "Conference speaker lists",
+        "Press release quotes",
+        "Industry awards and recognition"
+      ]
+    },
+    "tier3": {
+      "description": "Signal sources",
+      "max_confidence": 0.50,
+      "sources": [
+        "LinkedIn profiles",
+        "Job postings",
+        "GitHub contributions",
+        "Industry blogs and podcasts"
+      ]
+    }
+  },
+
+  "classification_taxonomy": [
+    {
+      "id": "talent_magnet",
+      "label": "Talent Magnet",
+      "description": "Attracts top derivatives talent, industry leaders",
+      "indicators": ["High-profile hires", "Industry leaders on staff", "Low turnover", "Strong employer brand"]
+    },
+    {
+      "id": "stable_team",
+      "label": "Stable Team",
+      "description": "Experienced team with low turnover, established expertise",
+      "indicators": ["Long tenures", "Consistent team structure", "Steady state hiring"]
+    },
+    {
+      "id": "building",
+      "label": "Building",
+      "description": "Active hiring, growing team, investment phase",
+      "indicators": ["Many open positions", "New leadership hires", "Team expansion"]
+    },
+    {
+      "id": "constrained",
+      "label": "Constrained",
+      "description": "Hiring freezes, departures, capacity issues",
+      "indicators": ["Hiring freeze evidence", "Key departures", "Capacity complaints"]
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "description": "Insufficient evidence to classify",
+      "indicators": []
+    }
+  ],
+
+  "claim_types": [
+    {
+      "id": "executive_appointment",
+      "label": "Executive Appointment",
+      "description": "New leadership hire announced"
+    },
+    {
+      "id": "team_structure",
+      "label": "Team Structure",
+      "description": "Information about team organization"
+    },
+    {
+      "id": "hiring_surge",
+      "label": "Hiring Surge",
+      "description": "Evidence of increased hiring activity"
+    },
+    {
+      "id": "departure_pattern",
+      "label": "Departure Pattern",
+      "description": "Notable departures or turnover"
+    },
+    {
+      "id": "conference_speaker",
+      "label": "Conference Speaker",
+      "description": "Key personnel speaking at industry events"
+    },
+    {
+      "id": "linkedin_signal",
+      "label": "LinkedIn Signal",
+      "description": "Profile information indicating expertise"
+    },
+    {
+      "id": "job_posting_signal",
+      "label": "Job Posting Signal",
+      "description": "Open positions indicating team needs"
+    }
+  ],
+
+  "key_questions": [
+    "Who are the key derivatives technology leaders?",
+    "What is the hiring trend (growing, stable, shrinking)?",
+    "Are they losing talent to competitors?",
+    "Who speaks at industry conferences?",
+    "What open positions indicate strategic direction?",
+    "What is the team structure for derivatives technology?"
+  ],
+
+  "role_categories": [
+    {
+      "id": "derivatives_head",
+      "label": "Head of Derivatives",
+      "description": "Business head for derivatives trading"
+    },
+    {
+      "id": "derivatives_tech_head",
+      "label": "Head of Derivatives Technology",
+      "description": "Technology leader for derivatives systems"
+    },
+    {
+      "id": "quant_lead",
+      "label": "Quant Lead",
+      "description": "Head of quantitative research for derivatives"
+    },
+    {
+      "id": "regulatory_head",
+      "label": "Head of Regulatory Reporting",
+      "description": "Leader for derivatives regulatory compliance"
+    },
+    {
+      "id": "cdm_lead",
+      "label": "CDM/DRR Lead",
+      "description": "Specific lead for CDM/DRR initiatives"
+    }
+  ],
+
+  "conference_watchlist": [
+    "ISDA AGM",
+    "FIA Boca",
+    "Risk.net events",
+    "FINOS Open Source in Finance Forum",
+    "TradeTech",
+    "WatersTechnology conferences"
+  ]
+}

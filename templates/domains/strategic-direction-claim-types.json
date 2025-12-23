@@ -1,0 +1,163 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "strategic_direction",
+  "display_name": "Strategic Direction Claim Types",
+  "description": "Claim types for strategic direction research domain",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "strategic_statement",
+      "label": "Strategic Statement",
+      "description": "Official statement about derivatives business strategy",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Investor presentation", "Annual report", "CEO letter"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Derivatives core to FICC strategy",
+        "Investing in derivatives technology",
+        "Expanding Asia derivatives presence"
+      ]
+    },
+    {
+      "id": "ma_activity",
+      "label": "M&A Activity",
+      "description": "Acquisition, merger, or strategic partnership affecting derivatives",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Press release", "SEC filing", "Deal announcement"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Acquired derivatives trading firm",
+        "Merged with competitor",
+        "Strategic partnership with fintech"
+      ]
+    },
+    {
+      "id": "investment_announcement",
+      "label": "Investment Announcement",
+      "description": "Announced investment in derivatives capability",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Press release", "Investor presentation", "Annual report"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "$500M derivatives technology investment",
+        "New trading platform build",
+        "Cloud migration program"
+      ]
+    },
+    {
+      "id": "divestiture_signal",
+      "label": "Divestiture Signal",
+      "description": "Exit from product, region, or business line",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Press release", "Regulatory filing", "Earnings call"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Exiting commodity derivatives",
+        "Selling prime brokerage business",
+        "Closing Asian operations"
+      ]
+    },
+    {
+      "id": "priority_shift",
+      "label": "Priority Shift",
+      "description": "Change in strategic priorities affecting derivatives",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Investor day", "Earnings call", "Strategy announcement"],
+        "corroboration_required": true
+      },
+      "examples": [
+        "Shifting focus to flow derivatives",
+        "De-emphasizing structured products",
+        "Prioritizing electronic trading"
+      ]
+    },
+    {
+      "id": "investor_communication",
+      "label": "Investor Communication",
+      "description": "Investor day presentation or earnings guidance",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Investor day deck", "Earnings transcript", "Guidance update"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Derivatives revenue target 15% growth",
+        "Capital allocation to FICC",
+        "ROE targets for derivatives"
+      ]
+    }
+  ],
+
+  "strategic_themes": [
+    {
+      "id": "digital_transformation",
+      "label": "Digital Transformation",
+      "description": "Technology modernization and digital initiatives",
+      "indicators": ["Cloud migration", "API adoption", "Automation", "AI/ML investment"]
+    },
+    {
+      "id": "efficiency",
+      "label": "Efficiency & Cost Reduction",
+      "description": "Operational efficiency and cost optimization",
+      "indicators": ["Cost reduction targets", "Headcount reduction", "Process automation"]
+    },
+    {
+      "id": "growth",
+      "label": "Growth & Expansion",
+      "description": "Market share growth and capability expansion",
+      "indicators": ["Revenue targets", "Market share goals", "Geographic expansion", "New products"]
+    },
+    {
+      "id": "regulatory_compliance",
+      "label": "Regulatory Compliance",
+      "description": "Meeting regulatory requirements and standards",
+      "indicators": ["Compliance investment", "Regulatory remediation", "CDM/DRR adoption"]
+    },
+    {
+      "id": "client_focus",
+      "label": "Client Focus",
+      "description": "Client service enhancement and relationship building",
+      "indicators": ["Client experience", "Service quality", "Client retention"]
+    },
+    {
+      "id": "risk_management",
+      "label": "Risk Management",
+      "description": "Risk reduction and control enhancement",
+      "indicators": ["Risk appetite reduction", "Control enhancement", "Limit management"]
+    }
+  ],
+
+  "event_calendar": {
+    "investor_days": {
+      "description": "Annual investor presentations",
+      "typical_timing": "Q4 or Q1",
+      "content": "Strategy, targets, capital allocation"
+    },
+    "earnings_calls": {
+      "description": "Quarterly earnings discussions",
+      "frequency": "Quarterly",
+      "content": "Performance, outlook, strategic updates"
+    },
+    "industry_conferences": {
+      "examples": ["Bank of America Financials Conference", "Goldman Sachs Financials Conference", "Morgan Stanley Financials Conference"],
+      "content": "Strategic positioning, peer comparisons"
+    }
+  }
+}

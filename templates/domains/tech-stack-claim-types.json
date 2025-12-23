@@ -1,0 +1,150 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "tech_stack",
+  "display_name": "Technology Stack Claim Types",
+  "description": "Claim types for technology stack architecture research domain",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "platform_confirmed",
+      "label": "Platform Confirmed",
+      "description": "Entity confirmed using specific trading/risk platform",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Vendor case study", "Bank annual report", "Official announcement"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Deutsche Bank using Murex MX.3",
+        "Goldman Sachs SecDB platform",
+        "Standard Chartered Calypso implementation"
+      ]
+    },
+    {
+      "id": "vendor_relationship",
+      "label": "Vendor Relationship",
+      "description": "Contract or partnership with technology vendor",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Press release", "Vendor announcement", "Case study"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Multi-year Murex license renewal",
+        "ION Group platform agreement",
+        "Bloomberg TOMS deployment"
+      ]
+    },
+    {
+      "id": "cloud_migration",
+      "label": "Cloud Migration",
+      "description": "Evidence of cloud infrastructure adoption",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Annual report", "Investor presentation", "Tech press"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Migration to AWS announced",
+        "Azure partnership for derivatives",
+        "Google Cloud analytics platform"
+      ]
+    },
+    {
+      "id": "job_posting_signal",
+      "label": "Job Posting Signal",
+      "description": "Hiring for specific technology",
+      "tier_required": [3],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["LinkedIn", "Company careers", "Job boards"],
+        "freshness_requirement": "< 6 months"
+      },
+      "examples": [
+        "Murex Developer needed",
+        "Calypso Configuration Specialist",
+        "AWS Cloud Engineer - Derivatives"
+      ]
+    },
+    {
+      "id": "conference_mention",
+      "label": "Conference Mention",
+      "description": "Technology discussed in conference presentation or panel",
+      "tier_required": [2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Conference slides", "Speaker bio", "Event summary"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Discussed Murex migration at TradeTech",
+        "Panel on cloud adoption at Risk.net",
+        "Presented derivatives modernization"
+      ]
+    },
+    {
+      "id": "linkedin_signal",
+      "label": "LinkedIn Signal",
+      "description": "Employee profiles mentioning technology",
+      "tier_required": [3],
+      "evidence_requirements": {
+        "min_sources": 3,
+        "preferred_sources": ["LinkedIn profiles"],
+        "note": "Multiple profiles strengthen signal"
+      },
+      "examples": [
+        "5+ employees mention Calypso",
+        "Team profiles show Murex experience",
+        "AWS skills across trading tech team"
+      ]
+    },
+    {
+      "id": "inference_from_peers",
+      "label": "Inference from Peers",
+      "description": "Technology inferred from peer bank patterns",
+      "tier_required": [3],
+      "evidence_requirements": {
+        "min_sources": 2,
+        "note": "Weak signal, requires corroboration"
+      },
+      "examples": [
+        "Other European Tier 1 banks use Murex",
+        "Japanese megabanks standardizing on platform",
+        "Industry trend toward cloud"
+      ]
+    }
+  ],
+
+  "technology_categories": [
+    {
+      "id": "trading_platform",
+      "label": "Trading Platform",
+      "vendors": ["murex", "calypso", "ion", "bloomberg", "finastra"]
+    },
+    {
+      "id": "risk_system",
+      "label": "Risk Management",
+      "vendors": ["murex", "calypso", "numerix", "fincad"]
+    },
+    {
+      "id": "data_platform",
+      "label": "Data Infrastructure",
+      "vendors": ["bloomberg", "refinitiv", "snowflake", "databricks"]
+    },
+    {
+      "id": "cloud_provider",
+      "label": "Cloud Provider",
+      "vendors": ["aws", "azure", "gcp"]
+    },
+    {
+      "id": "regulatory_reporting",
+      "label": "Regulatory Reporting",
+      "vendors": ["regnosys", "delta-capita", "axiom-sl", "rimes"]
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "$schema": "Entity Registry - Vendors v1.0",
+  "entity_type": "vendor",
+  "description": "Technology vendors providing derivatives trading and processing platforms",
+  "count": 15,
+  "last_updated": "2025-12-22",
+
+  "entities": [
+    {
+      "entity_id": "murex",
+      "entity_name": "Murex S.A.S.",
+      "headquarters": "Paris, France",
+      "description": "Trading, risk management, and processing platform",
+      "products": ["MX.3"],
+      "market_segment": "tier1_banks",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand Murex CDM/DRR integration roadmap",
+        "key_questions": [
+          "Does MX.3 support CDM natively?",
+          "What is the DRR reporting capability?",
+          "Which banks use Murex for derivatives?"
+        ]
+      }
+    },
+    {
+      "entity_id": "calypso",
+      "entity_name": "Calypso Technology (Adenza)",
+      "headquarters": "San Francisco, USA",
+      "description": "Capital markets platform acquired by Adenza (Thoma Bravo)",
+      "products": ["Calypso"],
+      "market_segment": "investment_banks",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand Calypso CDM integration post-Adenza",
+        "key_questions": [
+          "Post-Adenza acquisition, what is CDM strategy?",
+          "Which clients use Calypso for derivatives?",
+          "What is Calypso DRR reporting capability?"
+        ]
+      }
+    },
+    {
+      "entity_id": "finastra",
+      "entity_name": "Finastra",
+      "headquarters": "London, UK",
+      "description": "Financial software provider with derivatives solutions",
+      "products": ["Fusion Summit", "Fusion Kondor"],
+      "market_segment": "universal_banks",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess Finastra CDM/DRR capabilities",
+        "key_questions": [
+          "What CDM support exists in Fusion products?",
+          "What is EMIR Refit reporting solution?"
+        ]
+      }
+    },
+    {
+      "entity_id": "ion",
+      "entity_name": "ION Group",
+      "headquarters": "Dublin, Ireland",
+      "description": "Trading and workflow automation platforms",
+      "products": ["Openlink Endur", "ION XTP"],
+      "market_segment": "commodities_energy",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand ION derivatives and CDM strategy",
+        "key_questions": [
+          "What CDM capabilities exist in ION products?",
+          "How does ION handle regulatory reporting?"
+        ]
+      }
+    },
+    {
+      "entity_id": "bloomberg",
+      "entity_name": "Bloomberg L.P.",
+      "headquarters": "New York, USA",
+      "description": "Financial data and trading platform provider",
+      "products": ["Bloomberg Terminal", "TOMS", "AIM"],
+      "market_segment": "all_segments",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand Bloomberg CDM/FINOS involvement",
+        "key_questions": [
+          "What is Bloomberg's role in CDM ecosystem?",
+          "How does Bloomberg support DRR?",
+          "Which clients use Bloomberg for derivatives?"
+        ]
+      }
+    },
+    {
+      "entity_id": "refinitiv",
+      "entity_name": "Refinitiv (LSEG)",
+      "headquarters": "London, UK",
+      "description": "Financial market data and infrastructure (part of LSEG)",
+      "products": ["Eikon", "Elektron"],
+      "market_segment": "all_segments",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand Refinitiv derivatives data and CDM",
+        "key_questions": [
+          "What CDM data services does Refinitiv offer?",
+          "How does LSEG ownership affect strategy?"
+        ]
+      }
+    },
+    {
+      "entity_id": "ss-and-c",
+      "entity_name": "SS&C Technologies",
+      "headquarters": "Windsor, CT, USA",
+      "description": "Financial services software and services",
+      "products": ["Advent", "Eze"],
+      "market_segment": "asset_managers",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess SS&C derivatives and CDM relevance",
+        "key_questions": [
+          "What derivatives capabilities exist?",
+          "Is CDM relevant to SS&C client base?"
+        ]
+      }
+    },
+    {
+      "entity_id": "simcorp",
+      "entity_name": "SimCorp (Deutsche Börse)",
+      "headquarters": "Copenhagen, Denmark",
+      "description": "Investment management software",
+      "products": ["SimCorp Dimension"],
+      "market_segment": "asset_managers",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess SimCorp derivatives and CDM relevance",
+        "key_questions": [
+          "What derivatives capabilities exist in Dimension?",
+          "How does Deutsche Börse ownership affect strategy?"
+        ]
+      }
+    },
+    {
+      "entity_id": "blackrock-aladdin",
+      "entity_name": "BlackRock (Aladdin)",
+      "headquarters": "New York, USA",
+      "description": "Investment and risk management platform",
+      "products": ["Aladdin"],
+      "market_segment": "asset_managers",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand Aladdin derivatives and CDM",
+        "key_questions": [
+          "What derivatives capabilities exist in Aladdin?",
+          "Is BlackRock involved in CDM ecosystem?"
+        ]
+      }
+    },
+    {
+      "entity_id": "delta-capita",
+      "entity_name": "Delta Capita",
+      "headquarters": "London, UK",
+      "description": "CDM-specialist managed services provider",
+      "products": ["CDM Managed Services", "DRR Solutions"],
+      "market_segment": "cdm_specialist",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Document Delta Capita CDM capabilities and clients",
+        "key_questions": [
+          "Which banks use Delta Capita for CDM?",
+          "What is scope of managed services?",
+          "What is production deployment status?"
+        ]
+      }
+    },
+    {
+      "entity_id": "regnosys",
+      "entity_name": "REGnosys",
+      "headquarters": "London, UK",
+      "description": "CDM/DRR technology provider and ISDA partner",
+      "products": ["Rosetta DSL", "DRR Engine"],
+      "market_segment": "cdm_specialist",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Document REGnosys CDM tools and adoption",
+        "key_questions": [
+          "Who uses Rosetta DSL?",
+          "What is REGnosys relationship with ISDA?",
+          "Which clients are in production?"
+        ]
+      }
+    },
+    {
+      "entity_id": "axiom-sl",
+      "entity_name": "AxiomSL (Deutsche Börse)",
+      "headquarters": "New York, USA",
+      "description": "Regulatory reporting and data management",
+      "products": ["ControllerView"],
+      "market_segment": "regulatory_reporting",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess AxiomSL DRR capabilities",
+        "key_questions": [
+          "What EMIR/CFTC reporting capabilities exist?",
+          "Is CDM integration on roadmap?"
+        ]
+      }
+    },
+    {
+      "entity_id": "rimes",
+      "entity_name": "RIMES Technologies",
+      "headquarters": "New York, USA",
+      "description": "Enterprise data management for financial institutions",
+      "products": ["RIMES Data Management"],
+      "market_segment": "data_management",
+      "cdm_relevance": "low",
+      "research_objective": {
+        "primary_goal": "Assess RIMES derivatives data relevance",
+        "key_questions": [
+          "What derivatives data services exist?",
+          "Is CDM relevant to RIMES offering?"
+        ]
+      }
+    },
+    {
+      "entity_id": "smartstream",
+      "entity_name": "SmartStream Technologies",
+      "headquarters": "London, UK",
+      "description": "Transaction lifecycle management",
+      "products": ["TLM"],
+      "market_segment": "operations",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess SmartStream derivatives operations",
+        "key_questions": [
+          "What derivatives processing capabilities exist?",
+          "Is CDM integration relevant?"
+        ]
+      }
+    },
+    {
+      "entity_id": "quantile",
+      "entity_name": "Quantile Technologies",
+      "headquarters": "London, UK",
+      "description": "Portfolio optimization and compression",
+      "products": ["Quantile Compression"],
+      "market_segment": "compression",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Understand Quantile CDM involvement",
+        "key_questions": [
+          "Is Quantile using CDM for compression?",
+          "What is relationship with ISDA/FINOS?"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "cdm_adoption",
+  "display_name": "CDM/DRR Adoption Claim Types",
+  "description": "Claim types for CDM/DRR adoption research domain",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "production_usage",
+      "label": "Production Usage",
+      "description": "Entity has live CDM usage in production environment for real business operations",
+      "tier_required": [1, 2],
+      "triggers_classification": "architect_native",
+      "maturity_score": 5,
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Official announcement", "Regulatory filing", "ISDA/FINOS confirmation"],
+        "corroboration_required": true
+      },
+      "examples": [
+        "JPMorgan CDM production October 2024",
+        "BNP Paribas CDM production Q3 2022",
+        "Pictet CDM production deployment"
+      ]
+    },
+    {
+      "id": "pilot_or_poc",
+      "label": "Pilot or POC",
+      "description": "Entity has experimental CDM usage or proof of concept, not yet in production",
+      "tier_required": [1, 2],
+      "triggers_classification": "architect_active",
+      "maturity_score": 3,
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Official announcement", "Conference presentation", "Trade press"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Deutsche Bank pilot expected 2025",
+        "HSBC 2018 DRR pilot participation",
+        "Testing CDM connectivity with JSCC"
+      ]
+    },
+    {
+      "id": "membership_or_participation",
+      "label": "Membership/Participation",
+      "description": "Entity is member of CDM working groups without demonstrated technical artifacts",
+      "tier_required": [1, 2],
+      "triggers_classification": "observer",
+      "maturity_score": 1,
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["ISDA membership list", "FINOS member page", "Working group roster"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "ISDA CDM Working Group member",
+        "FINOS CDM Design Working Group participant",
+        "DRR Industry Steering Group member"
+      ]
+    },
+    {
+      "id": "open_source_contribution",
+      "label": "Open Source Contribution",
+      "description": "Entity has code commits to CDM/FINOS repositories",
+      "tier_required": [1],
+      "triggers_classification": "pragmatist_ecosystem",
+      "maturity_score": 2,
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["GitHub commit history", "FINOS contributor page", "Pull request record"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Barclays FINOS CDM contributor",
+        "Standard Chartered CDM commits",
+        "Code contribution to rosetta-dsl"
+      ]
+    },
+    {
+      "id": "vendor_proxy_signal",
+      "label": "Vendor Proxy Signal",
+      "description": "Entity implied to have CDM capability via vendor relationship",
+      "tier_required": [2],
+      "triggers_classification": "pragmatist_vendor",
+      "maturity_score": 2,
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Vendor announcement", "Client case study", "Press release"],
+        "corroboration_required": true,
+        "note": "Bank confirmation strengthens claim"
+      },
+      "examples": [
+        "HSBC Delta Capita CDM contract January 2025",
+        "Using Murex MX.3 with CDM capability",
+        "REGnosys DRR implementation client"
+      ]
+    },
+    {
+      "id": "hiring_signal",
+      "label": "Hiring Signal",
+      "description": "Entity has job postings indicating CDM/DRR intent",
+      "tier_required": [3],
+      "triggers_classification": "observer",
+      "maturity_score": 1,
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["LinkedIn job posting", "Company careers page", "Job board listing"],
+        "corroboration_required": false,
+        "freshness_requirement": "< 6 months"
+      },
+      "examples": [
+        "CDM Developer role posted",
+        "DRR Implementation Lead opening",
+        "ISDA CDM experience required"
+      ]
+    }
+  ],
+
+  "confidence_modifiers": {
+    "positive": [
+      {"condition": "Bank-confirmed vendor claim", "modifier": "+10%"},
+      {"condition": "Multiple independent sources", "modifier": "+15%"},
+      {"condition": "Recent evidence (< 6 months)", "modifier": "+5%"}
+    ],
+    "negative": [
+      {"condition": "Vendor-only claim", "modifier": "-15%"},
+      {"condition": "Single source", "modifier": "-10%"},
+      {"condition": "Stale evidence (> 18 months)", "modifier": "-20%"}
+    ]
+  },
+
+  "validation_rules": [
+    {
+      "rule": "production_requires_corroboration",
+      "description": "Production claims require at least 2 independent sources or Tier 1 official source"
+    },
+    {
+      "rule": "vendor_claims_require_bank_check",
+      "description": "Vendor-only claims should be verified against bank sources"
+    },
+    {
+      "rule": "hiring_signals_expire",
+      "description": "Hiring signals older than 6 months should be verified as still active"
+    }
+  ]
+}

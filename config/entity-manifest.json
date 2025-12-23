@@ -1,0 +1,179 @@
+{
+  "$schema": "Entity Manifest v1.0",
+  "description": "Unified registry of all research entities across 5 types. v5.0 extension of bank-manifest.json.",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+  "total_entities": 69,
+
+  "entity_types": {
+    "bank": {
+      "source_file": "config/entities/banks.json",
+      "legacy_source": "config/bank-manifest.json",
+      "applicable_domains": [
+        "cdm_adoption",
+        "tech_stack",
+        "counterparty",
+        "people_talent",
+        "regulatory_posture",
+        "financial_metrics",
+        "strategic_direction"
+      ],
+      "count": 31,
+      "description": "Financial institutions engaged in derivatives trading"
+    },
+    "vendor": {
+      "source_file": "config/entities/vendors.json",
+      "applicable_domains": [
+        "tech_stack",
+        "people_talent",
+        "financial_metrics",
+        "strategic_direction"
+      ],
+      "count": 15,
+      "description": "Technology vendors providing derivatives trading and processing platforms"
+    },
+    "ccp": {
+      "source_file": "config/entities/ccps.json",
+      "applicable_domains": [
+        "cdm_adoption",
+        "counterparty",
+        "regulatory_posture",
+        "strategic_direction"
+      ],
+      "count": 8,
+      "description": "Central counterparties and financial market infrastructures"
+    },
+    "regulator": {
+      "source_file": "config/entities/regulators.json",
+      "applicable_domains": [
+        "regulatory_posture",
+        "strategic_direction"
+      ],
+      "count": 10,
+      "description": "Regulatory bodies overseeing derivatives markets"
+    },
+    "consultant": {
+      "source_file": "config/entities/consultants.json",
+      "applicable_domains": [
+        "people_talent",
+        "strategic_direction"
+      ],
+      "count": 5,
+      "description": "Consulting firms advising on derivatives technology and strategy"
+    }
+  },
+
+  "domain_registry": {
+    "cdm_adoption": {
+      "source_file": "config/domains/cdm-adoption.json",
+      "display_name": "CDM/DRR Adoption",
+      "workflow": "full",
+      "description": "ISDA Common Domain Model and Digital Regulatory Reporting adoption"
+    },
+    "tech_stack": {
+      "source_file": "config/domains/tech-stack.json",
+      "display_name": "Technology Stack",
+      "workflow": "simplified",
+      "description": "Trading platforms, risk systems, data infrastructure"
+    },
+    "counterparty": {
+      "source_file": "config/domains/counterparty.json",
+      "display_name": "Counterparty Relationships",
+      "workflow": "simplified",
+      "description": "CCP memberships, bilateral relationships, netting agreements"
+    },
+    "people_talent": {
+      "source_file": "config/domains/people-talent.json",
+      "display_name": "People & Talent",
+      "workflow": "simplified",
+      "description": "Key personnel, hiring patterns, team structures"
+    },
+    "regulatory_posture": {
+      "source_file": "config/domains/regulatory-posture.json",
+      "display_name": "Regulatory Posture",
+      "workflow": "simplified",
+      "description": "Enforcement history, compliance investments, regulator relationships"
+    },
+    "financial_metrics": {
+      "source_file": "config/domains/financial-metrics.json",
+      "display_name": "Financial Metrics",
+      "workflow": "simplified",
+      "description": "Derivatives notional, revenue contribution, market share"
+    },
+    "strategic_direction": {
+      "source_file": "config/domains/strategic-direction.json",
+      "display_name": "Strategic Direction",
+      "workflow": "simplified",
+      "description": "Investor communications, M&A activity, stated priorities"
+    }
+  },
+
+  "product_types": {
+    "description": "Derivative product types for granular analysis",
+    "types": [
+      {
+        "id": "irs",
+        "display_name": "Interest Rate Derivatives",
+        "products": ["IRS", "swaptions", "caps", "floors", "basis_swaps"]
+      },
+      {
+        "id": "credit",
+        "display_name": "Credit Derivatives",
+        "products": ["CDS", "CDX", "iTraxx", "CLN"]
+      },
+      {
+        "id": "fx",
+        "display_name": "FX Derivatives",
+        "products": ["FX_forwards", "FX_options", "FX_swaps", "NDFs"]
+      },
+      {
+        "id": "equity",
+        "display_name": "Equity Derivatives",
+        "products": ["equity_options", "equity_swaps", "variance_swaps", "dividend_swaps"]
+      },
+      {
+        "id": "commodity",
+        "display_name": "Commodity Derivatives",
+        "products": ["commodity_futures", "commodity_options", "commodity_swaps"]
+      }
+    ]
+  },
+
+  "relationship_types": {
+    "description": "Valid relationship types between entities",
+    "types": [
+      {"id": "uses_platform", "source_types": ["bank"], "target_types": ["vendor"]},
+      {"id": "clears_at", "source_types": ["bank"], "target_types": ["ccp"]},
+      {"id": "trades_with", "source_types": ["bank"], "target_types": ["bank"]},
+      {"id": "regulated_by", "source_types": ["bank", "vendor", "ccp"], "target_types": ["regulator"]},
+      {"id": "advised_by", "source_types": ["bank"], "target_types": ["consultant"]},
+      {"id": "competes_with", "source_types": ["bank", "vendor"], "target_types": ["bank", "vendor"]},
+      {"id": "partners_with", "source_types": ["bank", "vendor", "ccp"], "target_types": ["bank", "vendor", "ccp"]},
+      {"id": "acquired", "source_types": ["bank", "vendor"], "target_types": ["bank", "vendor"]},
+      {"id": "subsidiary_of", "source_types": ["bank", "vendor"], "target_types": ["bank", "vendor"]},
+      {"id": "integrates_with", "source_types": ["vendor"], "target_types": ["ccp", "vendor"]}
+    ]
+  },
+
+  "output_structure": {
+    "description": "v5.0 output directory structure",
+    "pattern": "outputs/{entity_type}/{entity_id}/{domain_type}/",
+    "legacy_pattern": "outputs/phase-{N}/{bank_id}/",
+    "example": "outputs/banks/deutsche-bank/tech-stack/evidence.json"
+  },
+
+  "research_ordering": {
+    "description": "Order of research execution",
+    "strategy": "all_domains_per_entity",
+    "entity_type_order": ["bank", "vendor", "ccp", "regulator", "consultant"],
+    "note": "Complete all 7 domains for one entity before moving to next entity"
+  },
+
+  "backward_compatibility": {
+    "description": "Compatibility with v4.x bank-only research",
+    "bank_id_mapping": "entity_id for entity_type=bank",
+    "bank_name_mapping": "entity_name for entity_type=bank",
+    "legacy_outputs_supported": true,
+    "migration_tool": "tools/migrate_v4_to_v5.py"
+  }
+}

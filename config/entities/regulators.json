@@ -1,0 +1,183 @@
+{
+  "$schema": "Entity Registry - Regulators v1.0",
+  "entity_type": "regulator",
+  "description": "Regulatory bodies overseeing derivatives markets and driving reporting standards",
+  "count": 10,
+  "last_updated": "2025-12-22",
+
+  "entities": [
+    {
+      "entity_id": "cftc",
+      "entity_name": "Commodity Futures Trading Commission",
+      "headquarters": "Washington, DC, USA",
+      "jurisdiction": "United States",
+      "scope": "Derivatives, futures, swaps",
+      "description": "US derivatives regulator driving CFTC Rewrite",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Track CFTC Rewrite requirements and CDM alignment",
+        "key_questions": [
+          "What is CFTC Rewrite timeline and requirements?",
+          "How does CFTC view CDM for swap reporting?",
+          "What enforcement actions relate to derivatives reporting?",
+          "What is Part 45/Part 43 reporting roadmap?"
+        ]
+      }
+    },
+    {
+      "entity_id": "sec",
+      "entity_name": "Securities and Exchange Commission",
+      "headquarters": "Washington, DC, USA",
+      "jurisdiction": "United States",
+      "scope": "Securities, security-based swaps",
+      "description": "US securities regulator with security-based swap oversight",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand SEC security-based swap reporting requirements",
+        "key_questions": [
+          "What reporting requirements apply to security-based swaps?",
+          "How does SEC coordinate with CFTC on data standards?",
+          "What is SEC stance on CDM adoption?"
+        ]
+      }
+    },
+    {
+      "entity_id": "fca",
+      "entity_name": "Financial Conduct Authority",
+      "headquarters": "London, UK",
+      "jurisdiction": "United Kingdom",
+      "scope": "All financial services",
+      "description": "UK financial regulator, post-Brexit derivatives oversight",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Track UK EMIR and derivatives reporting requirements",
+        "key_questions": [
+          "What is UK EMIR reporting status post-Brexit?",
+          "How does FCA view CDM/DRR adoption?",
+          "What enforcement actions relate to derivatives?",
+          "How does FCA coordinate with ESMA?"
+        ]
+      }
+    },
+    {
+      "entity_id": "esma",
+      "entity_name": "European Securities and Markets Authority",
+      "headquarters": "Paris, France",
+      "jurisdiction": "European Union",
+      "scope": "Securities, derivatives regulation",
+      "description": "EU-level regulator driving EMIR Refit",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Track EMIR Refit requirements and implementation",
+        "key_questions": [
+          "What is EMIR Refit timeline and requirements?",
+          "What is ESMA's position on CDM adoption?",
+          "How does ESMA coordinate ISO 20022 and CDM?",
+          "What guidance exists on DRR implementation?"
+        ]
+      }
+    },
+    {
+      "entity_id": "bafin",
+      "entity_name": "Bundesanstalt für Finanzdienstleistungsaufsicht",
+      "headquarters": "Frankfurt, Germany",
+      "jurisdiction": "Germany",
+      "scope": "All financial services",
+      "description": "German financial regulator",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand German derivatives regulatory landscape",
+        "key_questions": [
+          "What German-specific requirements exist?",
+          "How does BaFin enforce EMIR compliance?",
+          "What enforcement actions affect derivatives?"
+        ]
+      }
+    },
+    {
+      "entity_id": "amf",
+      "entity_name": "Autorité des Marchés Financiers",
+      "headquarters": "Paris, France",
+      "jurisdiction": "France",
+      "scope": "Securities, derivatives",
+      "description": "French financial markets regulator",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand French derivatives regulatory landscape",
+        "key_questions": [
+          "What French-specific requirements exist?",
+          "How does AMF enforce EMIR compliance?",
+          "What is AMF position on CDM?"
+        ]
+      }
+    },
+    {
+      "entity_id": "finma",
+      "entity_name": "Swiss Financial Market Supervisory Authority",
+      "headquarters": "Bern, Switzerland",
+      "jurisdiction": "Switzerland",
+      "scope": "All financial services",
+      "description": "Swiss financial regulator",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand Swiss derivatives regulatory landscape",
+        "key_questions": [
+          "What Swiss derivatives reporting requirements exist?",
+          "How does FINMA align with EU EMIR?",
+          "What is FINMA stance on CDM adoption?"
+        ]
+      }
+    },
+    {
+      "entity_id": "mas",
+      "entity_name": "Monetary Authority of Singapore",
+      "headquarters": "Singapore",
+      "jurisdiction": "Singapore",
+      "scope": "All financial services, central bank",
+      "description": "Singapore financial regulator and central bank",
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Track Singapore derivatives reporting and CDM adoption",
+        "key_questions": [
+          "What Singapore derivatives reporting requirements exist?",
+          "How does MAS view CDM adoption?",
+          "What coordination exists with JSCC CDM initiative?"
+        ]
+      }
+    },
+    {
+      "entity_id": "fsa-japan",
+      "entity_name": "Financial Services Agency (Japan)",
+      "headquarters": "Tokyo, Japan",
+      "jurisdiction": "Japan",
+      "scope": "All financial services",
+      "description": "Japanese financial regulator",
+      "cdm_relevance": "very_high",
+      "research_objective": {
+        "primary_goal": "Track Japanese CDM mandate and JSCC coordination",
+        "key_questions": [
+          "What is FSA role in JSCC CDM mandate?",
+          "What Japanese reporting requirements drive CDM?",
+          "How does FSA coordinate with international regulators?"
+        ]
+      }
+    },
+    {
+      "entity_id": "hkma",
+      "entity_name": "Hong Kong Monetary Authority",
+      "headquarters": "Hong Kong",
+      "jurisdiction": "Hong Kong",
+      "scope": "Banking, monetary policy",
+      "description": "Hong Kong banking regulator and quasi-central bank",
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Understand Hong Kong derivatives regulatory landscape",
+        "key_questions": [
+          "What Hong Kong derivatives reporting requirements exist?",
+          "How does HKMA coordinate with mainland China?",
+          "What is HKMA stance on CDM adoption?"
+        ]
+      }
+    }
+  ]
+}
