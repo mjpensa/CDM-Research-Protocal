@@ -138,11 +138,18 @@ class ClaudeCodeBridge:
     def _init_bank_directory(self) -> None:
         """Initialize the bank output directory."""
         # Try to find existing phase directory
+        # Canonical phase naming per CLAUDE.md section 13
         phase_dirs = [
             self.outputs_dir / f"phase-{self.phase}",
             self.outputs_dir / f"phase-{self.phase}-european-tier1",
-            self.outputs_dir / f"phase-{self.phase}-us-tier1",
-            self.outputs_dir / f"phase-{self.phase}-apac-tier1",
+            self.outputs_dir / f"phase-{self.phase}-uk-regional",
+            self.outputs_dir / f"phase-{self.phase}-japanese",
+            self.outputs_dir / f"phase-{self.phase}-other-european",
+            self.outputs_dir / f"phase-{self.phase}-spanish",
+            self.outputs_dir / f"phase-{self.phase}-deep-dives",
+            self.outputs_dir / f"phase-{self.phase}-emerging-markets",
+            self.outputs_dir / f"phase-{self.phase}-us-investment-banks",
+            self.outputs_dir / f"phase-{self.phase}-us-custody-banks",
         ]
 
         for phase_dir in phase_dirs:

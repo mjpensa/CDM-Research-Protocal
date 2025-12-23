@@ -71,17 +71,17 @@ FILE_TYPES = {
     "5-synthesis": ["assessment.md"],
 }
 
-# Phase directories
+# Phase directories (must match actual filesystem structure in outputs/)
 PHASE_DIRS = {
-    1: "phase-1-european-tier-1",
+    1: "phase-1-european-tier1",
     2: "phase-2-uk-regional",
     3: "phase-3-japanese",
-    4: "phase-4-european-tier-2",
+    4: "phase-4-other-european",
     5: "phase-5-spanish",
     6: "phase-6-deep-dives",
-    7: "phase-7-asian",
-    8: "phase-8-us-majors",
-    9: "phase-9-custodians",
+    7: "phase-7-emerging-markets",
+    8: "phase-8-us-investment-banks",
+    9: "phase-9-us-custody-banks",
 }
 
 

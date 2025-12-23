@@ -1,23 +1,50 @@
 {
   "bank_id": "lloyds",
-  "bank_name": "Lloyds Banking Group plc",
+  "bank_name": "Lloyds Banking Group",
   "phase": 2,
   "phase_name": "UK Regional",
-  "classification": "OBSERVER",
-  "sub_classification": "Historical-Engagement",
-  "confidence": 50,
-  "status": "completed",
-  "current_stage": "complete",
-  "probability_architect": 0.30,
-  "probability_pragmatist": 0.70,
-  "prior_probability": 0.15,
-  "evidence_count": {"tier1": 1, "tier2": 0, "tier3": 0, "null_results": 2},
-  "stages_completed": ["initialize", "pre_mortem", "tier1_evidence", "bayesian_1", "gate_1", "tier2_evidence", "bayesian_2", "gate_2", "tier3_evidence", "bayesian_3", "gate_3", "adversarial_challenge", "final_classification", "synthesis"],
-  "last_updated": "2025-12-20T04:00:00Z",
-  "notes": "UK DRR pilot participant (2018-2019) but no recent CDM activity. OBSERVER due to dated evidence only.",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Ecosystem (FINOS + OSPO)",
+  "confidence": 0.75,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.20,
+    "pragmatist": 0.75,
+    "observer": 0.05
+  },
+  "prior_probability": 0.30,
+  "evidence_count": {
+    "tier1": 2,
+    "tier2": 2,
+    "tier3": 1,
+    "null_results": 3
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
   "key_findings": [
-    "UK FCA DRR Pilot Phase 1 & 2 participant (2018-2019)",
-    "No FINOS CDM contribution",
-    "No recent CDM activity (5+ years since pilot)"
-  ]
+    "FINOS Gold member since March 2023",
+    "Active OSPO with Red Hat partnership (May 2024)",
+    "FCA/BOE DRR pilot participant (2018-2019, historical)",
+    "No CDM-specific contribution to FINOS repositories",
+    "OSPO focus on InnerSource, not derivatives standardization",
+    "Retail banking focus limits derivatives exposure"
+  ],
+  "last_updated": "2025-12-21T12:00:00Z",
+  "notes": "PRAGMATIST (Ecosystem) classification. Exhibits 'Ecosystem Participant' pattern similar to Société Générale - FINOS Gold membership without CDM-specific engagement. OSPO mature but focused on broader technology transformation, not derivatives standardization. Retail banking focus reduces CDM relevance compared to investment banks."
 }

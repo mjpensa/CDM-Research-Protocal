@@ -1,168 +1,135 @@
-# Reasoning Gate 3: Pre-Adversarial Assessment: Banco Santander S.A.
+# Reasoning Gate 3: Post-Tier 3 (Final)
 
-**Bank:** Banco Santander S.A.
-**Phase:** 5 - Spanish
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER ADVERSARIAL
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Trajectory Analysis
-
-N/A
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Adversarial
-
-### Q1: Have we exhausted all search avenues?
-
-**Tier 1 Coverage:**
-- ✅ Regulatory sources (FCA, ESMA, CNMV)
-- ✅ Standards bodies (ISDA, FINOS)
-- ✅ Official bank communications
-- ✅ Annual reports and filings
-
-**Tier 2 Coverage:**
-- ✅ English trade press (Risk.net, Waters, FN London)
-- ✅ Business press (FT, Bloomberg, Reuters, WSJ)
-- ✅ Vendor announcements
-- ✅ Analyst reports
-- ⚠️ Spanish trade press (light coverage)
-- ⚠️ Conference proceedings (partial)
-
-**Tier 3 Coverage:**
-- ✅ LinkedIn jobs
-- ✅ LinkedIn posts
-- ✅ Technology blogs
-- ✅ Career portal
-
-**Assessment:** ✅ SUFFICIENT - Core sources comprehensively covered, peripheral sources adequately checked
+**Bank**: Banco Santander S.A.
+**Phase**: 5 (Spanish)
+**Date**: 2025-12-21
 
 ---
 
-### Q2: Is our null evidence truly diagnostic?
+## Gate Purpose
 
-**Diagnostic Value of Absence:**
-
-For each tier, absence of evidence is informative:
-
-**Tier 1:** If Santander had adopted CDM post-pilot, would expect:
-- Official announcements (bank or ISDA)
-- FINOS membership or contributions
-- Annual report mentions
-- **Absence → Strong evidence of non-adoption**
-
-**Tier 2:** If CDM implementation underway, would expect:
-- Trade press coverage (Risk.net routinely covers CDM)
-- Vendor partnership announcements
-- Conference presentations
-- **Absence → Strong evidence of non-adoption**
-
-**Tier 3:** If CDM project active, would expect:
-- Job postings for CDM developers
-- LinkedIn activity from employees
-- **Absence → Moderate evidence of non-adoption**
-
-**Assessment:** ✅ PASS - Null evidence is highly diagnostic across all tiers
+Final reasoning gate before classification. Evaluate complete evidence inventory and make classification decision.
 
 ---
 
-### Q3: Have we correctly weighted historical evidence?
+## Complete Evidence Inventory
 
-**Temporal Analysis:**
-
-| Evidence | Date | Age | Freshness | Weight |
-|----------|------|-----|-----------|--------|
-| E001 | 2019-06-01 | 6.5 years | Historical | 0.3 |
-| E002 | 2019-12-01 | 6.1 years | Historical | 0.3 |
-
-**Weighting Impact:**
-- Historical evidence alone cannot drive high-confidence classification
-- Requires recent corroboration (not found)
-- Correctly applied 0.3 multiplier per CLAUDE.md Section 6
-
-**Bayesian Trajectory:**
-- Historical evidence WITHOUT recent follow-up decreases probability
-- Correctly decreased from 15% → 9.1% → 1.6% → 0.5%
-
-**Assessment:** ✅ PASS - Historical weighting correctly applied
+| ID | Claim | Type | Tier | Freshness | Weight |
+|----|-------|------|------|-----------|--------|
+| SANT-E001 | UK DRR pilot (2022) | pilot_or_poc | 2 | Dated | 0.5 |
+| SANT-E002 | CFTC swap dealer | membership | 1 | Current | 1.0 |
+| SANT-E003 | FCM/CME clearing | membership | 1 | Current | 1.0 |
+| SANT-E004 | ISDA protocol | membership | 2 | Historical | 0.3 |
+| SANT-E005 | CFTC enforcement | membership | 1 | Current | 1.0 |
+| Null | No CDM jobs | - | 3 | - | - |
+| Null | No LinkedIn CDM | - | 3 | - | - |
 
 ---
 
-### Q4: DRR/CDM Relationship Clarity
+## Tier 3 Null Results
 
-**Key Question:** Did FCA DRR pilot involve ISDA CDM specifically?
+| Search | Result | Interpretation |
+|--------|--------|----------------|
+| CDM job postings | None found | No active CDM hiring |
+| LinkedIn CDM posts | None found | No visible advocacy |
+| Employee blogs | None found | No thought leadership |
+| GitHub personal | None found | No personal contributions |
 
-**Evidence Review:**
-- FCA DRR pilot (2018-2019) explored machine-readable regulatory reporting
-- Timeline: Predates widespread CDM adoption (CDM 1.0 released 2019)
-- Scope: Regulatory reporting automation, not necessarily derivatives-specific
-- Relationship: DRR informed later CDM adoption but wasn't identical
-
-**Relevance to Our Scope:**
-Per CLAUDE.md Section 4 (Research Scope):
-- ✅ IN SCOPE: "Digital Regulatory Reporting (DRR) initiatives"
-- ✅ DRR pilot is explicitly relevant
-- ⚠️ But need to note: DRR ≠ ISDA CDM (related but distinct)
-
-**Classification Implication:**
-- Pilot participation = awareness of regulatory reporting standardization
-- NOT evidence of ISDA CDM adoption specifically
-- Supports OBSERVER (aware, exploring) rather than ARCHITECT
-
-**Assessment:** ✅ CLARIFIED - DRR pilot is relevant but not CDM adoption evidence
+**Implication**: Complete absence of Tier 3 signals confirms that Santander's 2022 DRR pilot participation has not translated into sustained CDM investment.
 
 ---
 
-### Q5: Final Classification Justification
+## Classification Matrix
 
-**Proposed Classification:** OBSERVER (Historical-Engagement) at 50% confidence
-
-**Justification Chain:**
-
-1. **Why OBSERVER (not UNKNOWN)?**
-   - Documented participation in DRR pilot (verified Tier 1)
-   - Demonstrates awareness and exploration of regulatory reporting standards
-   - Distinguishes from banks with zero engagement
-
-2. **Why Historical-Engagement qualifier?**
-   - All evidence is 5+ years old
-   - No subsequent activity found
-   - Captures temporal limitation
-
-3. **Why 50% confidence?**
-   - HIGH certainty pilot occurred (95%)
-   - MODERATE uncertainty about current relevance (50%)
-   - LOW certainty about DRR-to-CDM connection (30%)
-   - Weighted assessment: ~50%
-
-4. **Why not ARCHITECT/PRAGMATIST?**
-   - No production usage evidence
-   - No vendor implementation evidence
-   - Pilot ≠ adoption
-
-5. **Why not UNKNOWN?**
-   - UNKNOWN = "insufficient evidence to classify"
-   - We HAVE evidence: historical pilot (fact)
-   - Historical engagement is a meaningful categorization
-
-**Assessment:** ✅ PASS - Classification is well-justified
+| Classification | Evidence For | Evidence Against | Probability |
+|---------------|--------------|------------------|-------------|
+| ARCHITECT | DRR pilot (weak, dated) | No FINOS, no jobs, enforcement | 1% |
+| PRAGMATIST | DRR pilot, derivatives ops | Dated evidence, no recent signals | 62% |
+| OBSERVER | ISDA protocol adherence | DRR pilot participation | 32% |
+| UNKNOWN | - | Evidence exists | 5% |
 
 ---
 
-*Gate 3 passed. Proceeding to adversarial evidence gathering.*
+## Subtype Determination
+
+If PRAGMATIST, which subtype?
+
+| Subtype | Criteria | Fit |
+|---------|----------|-----|
+| ISDA Governance | Board/Steering membership | ❌ No |
+| Ecosystem | Pilot participation, no build | ✅ Yes |
+| Vendor-Dependent | Vendor CDM relationship | ❌ No |
+| Traditional | Active derivatives, no CDM | Partial |
+
+**Selected Subtype**: PRAGMATIST (Ecosystem)
+
+---
+
+## Confidence Calculation
+
+Starting from Tier 2 maximum (75%):
+
+| Factor | Adjustment | Running Total |
+|--------|------------|---------------|
+| Tier 2 cap | Base | 75% |
+| Dated evidence (35 months) | -15% | 60% |
+| Single source for key claim | -5% | 55% |
+| Tier 3 null (no corroboration) | -5% | 50% |
+| CFTC enforcement (negative signal) | -5% | 45% |
+| Derivatives operations (context) | +5% | 50% |
+| Peer cohort alignment | +5% | 55% |
+
+**Final Confidence**: 55%
+
+---
+
+## Maturity Score
+
+| Level | Description | Score |
+|-------|-------------|-------|
+| ARCHITECT (Native) | Production usage | 5 |
+| ARCHITECT (Active) | Pilot/POC | 3 |
+| PRAGMATIST (Ecosystem) | Working group/pilot (no build) | **2** |
+| PRAGMATIST (Vendor) | Vendor-dependent | 2 |
+| OBSERVER | Membership only | 1 |
+| UNKNOWN | No evidence | 0 |
+
+**Maturity Score**: 2 (PRAGMATIST Ecosystem)
+
+---
+
+## Final Classification
+
+| Field | Value |
+|-------|-------|
+| **Classification** | PRAGMATIST |
+| **Subtype** | Ecosystem |
+| **Confidence** | 55% |
+| **Maturity Score** | 2 |
+
+---
+
+## Uncertainty Acknowledgment
+
+This classification has notable uncertainty:
+
+1. **Dated evidence**: Primary CDM evidence is 35 months old
+2. **Single source**: DRR pilot claim not independently corroborated
+3. **OBSERVER boundary**: 32% probability of OBSERVER classification
+4. **Recent enforcement**: CFTC action suggests infrastructure challenges
+
+The classification could shift to:
+- **OBSERVER** (32%): If DRR pilot was minimal participation without internal capability
+- **PRAGMATIST (Traditional)** (partial): If Santander is addressing EMIR Refit through traditional means
+
+---
+
+## Gate 3 Verdict
+
+| Criterion | Status |
+|-----------|--------|
+| Sufficient evidence for classification | ✅ Yes |
+| Classification confidence adequate | ⚠️ Moderate (55%) |
+| Proceed to adversarial review | ✅ Yes |
+
+**Decision**: **CLASSIFICATION COMPLETE - PROCEED TO ADVERSARIAL REVIEW**

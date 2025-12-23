@@ -1,48 +1,58 @@
-# Null Results Registry: NatWest Group PLC
-
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
+# NatWest Group - Null Results
 
 ## Summary
+| Metric | Value |
+|--------|-------|
+| Null Results | 3 |
+| Pattern | FINOS Active, CDM Absent |
 
-This document catalogs **searches that yielded no results** during NatWest Group's CDM research. Per the CDM Research Protocol, null results from authoritative sources are **informative absences** that provide evidence for classification.
+## Searches Without Positive Results
 
-**Key Insight**: NatWest demonstrates FINOS open-source capability (Fluxnova co-maintainer) but is NOT applying that capability to CDM projects.
+### NULL_001: CDM Contribution Absence
+| Field | Value |
+|-------|-------|
+| **Search Query** | NatWest common domain model CDM contribution |
+| **Expected Finding** | CDM contribution to finos/common-domain-model |
+| **Actual Result** | No evidence of CDM-specific contribution despite FINOS Gold membership and active FINOS project contributions |
+| **Date** | 2025-12-21 |
 
-## Tier 1 Null Results
+### NULL_002: CDM Production Absence
+| Field | Value |
+|-------|-------|
+| **Search Query** | NatWest CDM production usage deployment |
+| **Expected Finding** | CDM implementation in production systems |
+| **Actual Result** | No evidence of CDM production deployment. EMIR reporting uses traditional approach. |
+| **Date** | 2025-12-21 |
 
-### FINOS CDM Contributor
+### NULL_003: ISDA DRR Absence
+| Field | Value |
+|-------|-------|
+| **Search Query** | NatWest ISDA DRR digital regulatory reporting adoption 2024 |
+| **Expected Finding** | ISDA DRR adoption for regulatory reporting |
+| **Actual Result** | No evidence of ISDA DRR adoption. FCA DRR pilot was 2018-2019 only. |
+| **Date** | 2025-12-21 |
 
-**Category**: FINOS CDM Contributor
+## Pattern Analysis
 
-**Queries Executed**:
-1. `site:finos.org NatWest CDM contributor`
-2. `site:github.com/finos/common-domain-model NatWest`
-3. `NatWest ISDA CDM contribution`
+### "Active FINOS Contributor, CDM Absent" Pattern
+NatWest exhibits a distinctive pattern:
+- **FINOS Gold Member** with active engagement
+- **Multiple FINOS Project Contributions** (Fluxnova, Git Proxy, FDC3)
+- **Named Open Source Program Lead** (James McLeod)
+- **Yet NO CDM Engagement** despite obvious awareness and capability
 
-**Results Reviewed**: 10+
+This suggests CDM is not perceived as business-critical for NatWest's derivatives operations, likely due to:
+1. Smaller derivatives footprint than global investment banks
+2. OSPO focus on operational efficiency (Fluxnova) not derivatives standardization
+3. Traditional regulatory reporting deemed sufficient for current needs
 
-**Null Type**: NO_RESULTS
+### Comparison to Lloyds
+| Bank | FINOS | FINOS Contributions | CDM Activity |
+|------|-------|---------------------|--------------|
+| NatWest | Gold | Active (Fluxnova, Git Proxy) | None |
+| Lloyds | Gold | Passive (membership only) | None |
 
-**Informative Absence**: YES (highly informative)
-
-**Implication**: Despite being a FINOS Gold Member and co-maintaining Fluxnova (a major FINOS project), NatWest is **NOT contributing to CDM**. This creates a significant "FINOS Paradox" - the bank has demonstrated open-source capability but is deliberately NOT applying it to CDM.
-
-**Evidence Direction**: SUPPORTS_PRAGMATIST
-
-## Tier 2 Null Results
-
-N/A
-
-## Tier 3 Null Results
-
-N/A
-
-## Implications for Classification
-
-Informative absence supports PRAGMATIST classification.
+NatWest's stronger FINOS engagement without CDM involvement is more significant than Lloyds' passive membership.
 
 ---
+*Generated: 2025-12-21*

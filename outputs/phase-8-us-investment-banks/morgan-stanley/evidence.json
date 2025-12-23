@@ -1,0 +1,87 @@
+{
+  "bank_id": "morgan-stanley",
+  "bank_name": "Morgan Stanley",
+  "phase": 8,
+  "last_updated": "2025-12-21",
+  "evidence_items": [
+    {
+      "id": "MS-E001",
+      "claim": "Morgan Stanley participated in FINOS Legend pilot for CDM extensions",
+      "source_url": "https://www.finos.org/hubfs/FINOS/assets/FINOS%20Legend%20Case%20Study%202021.pdf",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Deutsche Bank, Morgan Stanley and RBC Capital Markets participated in a six-month pilot where they used a shared version of Legend, hosted on FINOS infrastructure in the public cloud, to prototype interbank collaborative data modeling and standardization, in particular to build extensions to the Common Domain Model (CDM).",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "MS-E002",
+      "claim": "Morgan Stanley contributed Morphir to FINOS for business logic representation",
+      "source_url": "https://www.finos.org/blog/morgan-stanley-microsoft-and-regnosys-break-new-ground-in-regtech-with-finos",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "excerpt": "In September Morgan Stanley contributed Morphir to FINOS. Morphir allows users to represent, store, share and process business logic in an implementation-agnostic way, including the types of rules and calculations often found in regulations.",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "MS-E003",
+      "claim": "Morgan Stanley participated in TechSprint with Microsoft and REGnosys for DRR tooling",
+      "source_url": "https://www.finos.org/blog/morgan-stanley-microsoft-and-regnosys-break-new-ground-in-regtech-with-finos",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "excerpt": "In the first quarter of 2022, a multi-organisation, multi-location team of developers planned, scheduled and delivered an ambitious three day 'RegTech' collaboration challenge. Seven representatives from three teams at Morgan Stanley, Microsoft and REGnosys worked together for three days. The main objective was to develop a Rosetta-to-Morphir code generator.",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "MS-E004",
+      "claim": "Morgan Stanley is FINOS Platinum member with CDM involvement",
+      "source_url": "https://www.finos.org/press/goldman-sachs-open-sources-its-data-modeling-platform-through-finos",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "excerpt": "'Legend is an impressive technology with great potential for improving industry efficiency,' said Stephen Goldbaum, an executive director at FINOS platinum member Morgan Stanley. 'We see tremendous potential for synergies between Legend and our own Morphir project.'",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "MS-E005",
+      "claim": "Morphir positioned as key component of FINOS Regulation Innovation SIG",
+      "source_url": "https://www.finos.org/blog/morgan-stanley-microsoft-and-regnosys-break-new-ground-in-regtech-with-finos",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "excerpt": "Morphir, an open-source project contributed by Morgan Stanley, is positioned as a key component of the FINOS Regulation Innovation SIG (Special Interest Group).",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "MS-E006",
+      "claim": "Morgan Stanley participates in FINOS AI governance framework",
+      "source_url": "https://www.finos.org/blog/banks-harness-open-source-innovation-to-transform-regulatory-reporting",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "FINOS Members including Citi, Scott Logic, Morgan Stanley, ControlPlane, Microsoft, London Stock Exchange Group, Publicis Sapient, Databricks, EPAM and Provectus collaborate to develop a governance framework for the onboarding, development and running of AI-based solutions within financial services.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    }
+  ],
+  "classification": {
+    "value": "PRAGMATIST",
+    "subtype": "Ecosystem",
+    "confidence": 0.65,
+    "maturity_score": 2
+  },
+  "flags": [
+    "morphir_contributor",
+    "legend_pilot_participant",
+    "finos_platinum_member",
+    "regtech_collaboration",
+    "regulation_innovation_sig"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "$schema": "Domain Configuration v1.0",
+  "domain_id": "tech_stack",
+  "display_name": "Technology Stack Architecture",
+  "description": "Trading platforms, risk systems, data infrastructure used for derivatives",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "workflow": {
+    "type": "simplified",
+    "stages": 5,
+    "description": "Simplified workflow without Bayesian/adversarial stages",
+    "stages_list": [
+      "initialize", "evidence_collection", "source_verification", "synthesis", "report"
+    ]
+  },
+
+  "applicable_entity_types": ["bank", "vendor"],
+
+  "source_authority": {
+    "tier1": {
+      "description": "Official sources",
+      "max_confidence": 0.95,
+      "sources": [
+        "Vendor official websites",
+        "Bank annual reports",
+        "Regulatory filings (technology disclosures)",
+        "Official press releases",
+        "Vendor case studies (with client confirmation)"
+      ]
+    },
+    "tier2": {
+      "description": "Trade and industry sources",
+      "max_confidence": 0.75,
+      "sources": [
+        "Risk.net technology coverage",
+        "WatersTechnology articles",
+        "Vendor press releases",
+        "Conference presentations",
+        "Analyst technology reports"
+      ]
+    },
+    "tier3": {
+      "description": "Signal sources",
+      "max_confidence": 0.50,
+      "sources": [
+        "LinkedIn profiles mentioning technology",
+        "Job postings for specific platforms",
+        "GitHub repositories",
+        "Technology blogs"
+      ]
+    }
+  },
+
+  "classification_taxonomy": [
+    {
+      "id": "modern_integrated",
+      "label": "Modern Integrated",
+      "description": "Cloud-native, API-first architecture with modern platforms",
+      "indicators": ["Cloud deployment", "API-first design", "Microservices", "Modern data stack"]
+    },
+    {
+      "id": "legacy_modernizing",
+      "label": "Legacy Modernizing",
+      "description": "Traditional on-prem with active cloud migration underway",
+      "indicators": ["Cloud migration announced", "Hybrid architecture", "Modernization program"]
+    },
+    {
+      "id": "legacy_stable",
+      "label": "Legacy Stable",
+      "description": "Traditional on-prem architecture, no migration evidence",
+      "indicators": ["On-premises only", "Traditional platforms", "No cloud mentions"]
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "description": "Insufficient evidence to classify",
+      "indicators": []
+    }
+  ],
+
+  "claim_types": [
+    {
+      "id": "platform_confirmed",
+      "label": "Platform Confirmed",
+      "description": "Bank confirmed using specific platform"
+    },
+    {
+      "id": "vendor_relationship",
+      "label": "Vendor Relationship",
+      "description": "Contract or partnership with vendor"
+    },
+    {
+      "id": "job_posting_signal",
+      "label": "Job Posting Signal",
+      "description": "Hiring for specific technology"
+    },
+    {
+      "id": "conference_mention",
+      "label": "Conference Mention",
+      "description": "Speaker or attendee discussing tech stack"
+    },
+    {
+      "id": "linkedin_signal",
+      "label": "LinkedIn Signal",
+      "description": "Employee profiles mentioning technology"
+    },
+    {
+      "id": "inference_from_peers",
+      "label": "Inference from Peers",
+      "description": "Peer banks using similar approach"
+    }
+  ],
+
+  "key_questions": [
+    "What trading platform(s) does the entity use?",
+    "What risk management system(s)?",
+    "Is there evidence of cloud migration?",
+    "What data infrastructure (on-prem vs cloud)?",
+    "Are they using modern APIs or legacy integrations?",
+    "What is the derivatives technology strategy?"
+  ],
+
+  "vendors_of_interest": [
+    {"id": "murex", "products": ["MX.3"]},
+    {"id": "calypso", "products": ["Calypso"]},
+    {"id": "finastra", "products": ["Fusion Summit", "Fusion Kondor"]},
+    {"id": "ion", "products": ["Openlink Endur", "ION XTP"]},
+    {"id": "bloomberg", "products": ["TOMS", "AIM"]},
+    {"id": "refinitiv", "products": ["Eikon", "Elektron"]},
+    {"id": "ss-and-c", "products": ["Advent", "Eze"]},
+    {"id": "simcorp", "products": ["SimCorp Dimension"]},
+    {"id": "blackrock-aladdin", "products": ["Aladdin"]}
+  ],
+
+  "technology_categories": [
+    {
+      "id": "trading_platform",
+      "label": "Trading Platform",
+      "description": "Primary derivatives trading and booking system"
+    },
+    {
+      "id": "risk_system",
+      "label": "Risk Management System",
+      "description": "Market risk, credit risk, XVA calculation"
+    },
+    {
+      "id": "data_infrastructure",
+      "label": "Data Infrastructure",
+      "description": "Data warehouse, data lake, analytics platform"
+    },
+    {
+      "id": "regulatory_reporting",
+      "label": "Regulatory Reporting",
+      "description": "EMIR, CFTC, MiFID reporting systems"
+    },
+    {
+      "id": "post_trade",
+      "label": "Post-Trade Processing",
+      "description": "Confirmation, settlement, lifecycle management"
+    }
+  ]
+}

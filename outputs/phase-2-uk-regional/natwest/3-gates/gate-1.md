@@ -1,49 +1,42 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment: NatWest Group PLC
+# NatWest Group - Gate 1
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
+## Current State
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 30% |
-| P(PRAGMATIST) | 70% |
-| Confidence | 40% |
+| P(ARCHITECT) | 16% |
+| P(PRAGMATIST) | 84% |
+| Tier 1 Items | 4 |
 
-## Gate Decision Criteria
+## Gate 1 Criteria Evaluation
 
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-- Current P(ARCHITECT) = 30% → **Between thresholds**
+### 1. Evidence Quality
+- **FINOS Gold Membership**: HIGH authority, verified
+- **DRR Pilot**: HIGH authority, historical
+- **Fluxnova Contribution**: HIGH authority, current
+- **Git Proxy**: HIGH authority, current
 
-## Decision: PROCEED TO TIER 2
+**Verdict**: PASS - Multiple high-authority sources
 
-**Rationale**: Per protocol to process all tiers.
+### 2. Temporal Freshness
+- 3 of 4 items are current (2024-2025)
+- 1 historical item (2018-2019 DRR pilot)
 
-## Evidence Quality Assessment
+**Verdict**: PASS - Majority current evidence
 
-### Strengths
-- High-authority Tier 1 sources (FCA, FINOS)
-- Clear historical pilot participation documented
-- FINOS open-source capability demonstrated
+### 3. Classification Momentum
+- Prior P(ARCHITECT) = 25%
+- Post-Tier 1 P(ARCHITECT) = 16%
+- Direction: Toward PRAGMATIST
 
-### Weaknesses
-- Evidence is 5+ years old
-- FINOS capability NOT applied to CDM
-- No recent CDM signals
-- Reliance on one historical pilot + informative absences
+**Verdict**: CONSISTENT - Active FINOS without CDM signals
 
-## Key Questions for Tier 2
+### 4. Contradiction Check
+No contradictions detected.
 
-1. Did the 2019 FCA DRR pilot lead to any industry press coverage of continuation?
-2. Are there vendor announcements linking NatWest to CDM solutions?
-3. Has NatWest participated in ISDA or FINOS CDM conferences since 2019?
-4. What is NatWest's EMIR Refit compliance approach?
+**Verdict**: PASS
+
+## Gate Decision
+**PROCEED TO TIER 2** - Strong Tier 1 evidence with clear PRAGMATIST direction.
 
 ---
-
-*Gate 1 passed. Proceeding to tier 2 evidence gathering.*
+*Generated: 2025-12-21*

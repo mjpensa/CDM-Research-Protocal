@@ -1,0 +1,46 @@
+{
+  "bank_id": "jpmorgan",
+  "bank_name": "JPMorgan Chase & Co.",
+  "phase": 8,
+  "phase_name": "phase-8-us-investment-banks",
+  "status": "complete",
+  "stages_completed": [
+    "initialization",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_analysis",
+    "synthesis"
+  ],
+  "classification": "ARCHITECT",
+  "subtype": "Native",
+  "confidence": 0.95,
+  "maturity_score": 5,
+  "flags": [
+    "production_cdm_usage",
+    "first_us_bank_drr_primary",
+    "finos_cdm_maintainer",
+    "finos_adoption_achiever_award",
+    "multi_jurisdiction_drr"
+  ],
+  "evidence_summary": {
+    "tier1_count": 5,
+    "tier2_count": 2,
+    "tier3_count": 0,
+    "total_count": 7
+  },
+  "key_findings": [
+    "First major US bank to use CDM/DRR as primary reporting mechanism",
+    "Nick Moger is first sell-side CDM maintainer at FINOS",
+    "Received FINOS 'Adoption Achiever' award",
+    "DRR in production for ASIC (Australia) and MAS (Singapore) regimes",
+    "Active participant in ISDA DRR development and advocacy"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z"
+}

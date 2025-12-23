@@ -1,0 +1,76 @@
+{
+  "bank_id": "dbs",
+  "bank_name": "DBS Bank Ltd.",
+  "phase": 7,
+  "schema_version": "3.2",
+  "evidence": [
+    {
+      "id": "DBS-E001",
+      "claim": "Andrew Ng, Group Executive & Head of Treasury and Markets at DBS, serves on ISDA Board of Directors",
+      "source_url": "https://www.isda.org/about-isda/board-of-directors/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_date": "2019-04-11",
+      "access_date": "2025-12-21",
+      "excerpt": "The International Swaps and Derivatives Association appointed three new directors to its board, from Eurex, DBS Bank and Nomura.",
+      "supporting_sources": [
+        "https://www.globalcapital.com/article/b1dy0s0vfglg10/isda-adds-german-singaporean-and-japanese-experts-to-board",
+        "https://www.asifma.org/speakers/andrew-ng/"
+      ],
+      "freshness": "current",
+      "notes": "Andrew Ng joined DBS in 2000, appointed Managing Director and Regional Head of Trading in 2005. Has overseen growth of DBS pan-Asia derivatives business."
+    },
+    {
+      "id": "DBS-E002",
+      "claim": "DBS Bank subject to MAS OTC Derivatives Reporting Rewrite effective October 21, 2024",
+      "source_url": "https://www.reedsmith.com/en/perspectives/2024/06/updated-otc-derivatives-contract-reporting-regime-from-21-october-2024",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-06-01",
+      "access_date": "2025-12-21",
+      "excerpt": "A rewrite of the rules went live on 21 October 2024. MAS implemented its own rewrite of the reporting rules, aligning with ASIC Rewrite.",
+      "freshness": "current",
+      "notes": "Contextual - all Singapore banks subject to MAS Rewrite. Adoption of ISO 20022 XML format and 134 reportable fields."
+    },
+    {
+      "id": "DBS-E003",
+      "claim": "ISDA DRR extended to cover Singapore MAS regulatory reporting October 2024",
+      "source_url": "https://www.isda.org/2024/04/17/isda-extends-digital-regulatory-reporting-initiative-to-new-jurisdictions/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-04-17",
+      "access_date": "2025-12-21",
+      "excerpt": "The ISDA DRR is being extended to cover rule amendments being implemented by the Monetary Authority of Singapore. Those rule changes are due to be implemented October 21, 2024 in Singapore.",
+      "freshness": "current",
+      "notes": "Contextual - ISDA DRR availability does not confirm DBS adoption"
+    }
+  ],
+  "null_results": [
+    {
+      "search_type": "FINOS CDM contribution",
+      "query": "DBS Bank FINOS CDM contribution",
+      "result": "Not found - DBS not listed as FINOS member",
+      "date": "2025-12-21"
+    },
+    {
+      "search_type": "CDM production usage",
+      "query": "DBS Bank CDM production deployment",
+      "result": "Not found - no production usage announced",
+      "date": "2025-12-21"
+    },
+    {
+      "search_type": "DRR pilot/POC",
+      "query": "DBS Bank DRR proof-of-concept pilot",
+      "result": "Unverified - mentioned in search summary but primary source not confirmed",
+      "date": "2025-12-21"
+    },
+    {
+      "search_type": "CDM job postings",
+      "query": "DBS Bank CDM regulatory reporting jobs",
+      "result": "25+ regulatory reporting jobs found, but none explicitly mention CDM",
+      "date": "2025-12-21"
+    }
+  ],
+  "created_at": "2025-12-21T04:00:00Z",
+  "last_updated": "2025-12-21T04:30:00Z"
+}

@@ -1,25 +1,34 @@
-# Tier 2 Evidence: Lloyds Banking Group PLC
+# Lloyds Banking Group - Tier 2 Evidence
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Search Execution Summary
+## Summary
 
 | Metric | Value |
 |--------|-------|
-| Date | 2025-12-21 |
-| Evidence Items Found | 0 |
-| Schema Version | 4.3 |
+| **Sources Found** | 1 |
+| **Direction** | SUPPORTS (weak) |
+| **Key Finding** | FINOS event hosting |
 
-## Evidence Inventory
+## Evidence Items
 
-No Tier 2 evidence found.
+### LBG-004: FINOS Event Hosting
+| Field | Value |
+|-------|-------|
+| **Claim** | Hosted FINOS "Open Source Edinburgh" event (October 2023) |
+| **Source** | [FINOS Events](https://www.finos.org/hosted-events/2023-10-05-open-source-edinburgh) |
+| **Direction** | SUPPORTS_ARCHITECT (weak) |
+| **LR** | 1.5 |
 
-## Informative Absences
-
-N/A
+**Analysis**: Hosting FINOS events demonstrates community engagement but is not CDM-specific.
 
 ---
+
+## Tier 2 Aggregate
+
+| Metric | Value |
+|--------|-------|
+| **LR** | 1.5 |
+| **Pattern** | Community engagement |
+
+---
+*Tier 2 Evidence Complete*
+*Generated: 2025-12-21*

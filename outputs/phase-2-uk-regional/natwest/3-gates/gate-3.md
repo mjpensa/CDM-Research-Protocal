@@ -1,53 +1,50 @@
-# Reasoning Gate 3: Pre-Adversarial Assessment: NatWest Group PLC
+# NatWest Group - Gate 3
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
+## Current State
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 14% |
-| P(PRAGMATIST) | 86% |
-| Confidence | 55% |
+| P(ARCHITECT) | 10% |
+| P(PRAGMATIST) | 88% |
+| Evidence Complete | Yes |
 
-## Gate Decision Criteria
+## Gate 3 Criteria Evaluation
 
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-- Current P(ARCHITECT) = 14% → **Below 20% threshold**
+### 1. Final Classification Confidence
+| Classification | Probability | Status |
+|----------------|-------------|--------|
+| PRAGMATIST | 88% | PRIMARY |
+| ARCHITECT | 10% | SECONDARY |
+| OBSERVER | 2% | NEGLIGIBLE |
 
-## Decision: PROCEED TO TIER ADVERSARIAL
+**Verdict**: PASS - Clear primary classification
 
-**Rationale**: Per protocol to process all tiers.
+### 2. Evidence Saturation
+- Tier 1: 4 items (saturated)
+- Tier 2: 3 items (saturated)
+- Tier 3: 1 item (limited but expected)
+- Null Results: 3 (CDM absence confirmed)
 
-## Evidence Trajectory Analysis
+**Verdict**: PASS - Sufficient evidence collected
 
-N/A
+### 3. Confidence Calibration
+- Highest tier: Tier 1 (FINOS membership, contributions)
+- Maximum allowed: 95%
+- Claimed confidence: 78%
+- Within bounds: YES
 
-## Evidence Quality Assessment
+**Verdict**: PASS - Confidence appropriately calibrated
 
-### Strengths
-- Comprehensive evidence gathering across all three tiers
-- Consistent pattern of informative absences
-- FINOS Paradox clearly established (capability without CDM application)
-- High-authority sources searched
+### 4. Final Review Checklist
+- [x] All evidence tiers searched
+- [x] Null results documented
+- [x] No unresolved contradictions
+- [x] Pattern analysis complete
+- [x] Peer comparison available (Lloyds)
 
-### Weaknesses
-- Classification based primarily on absence of evidence
-- No direct "we are not doing CDM" statement
-- Possibility of silent implementation (though increasingly unlikely)
+**Verdict**: PASS - Ready for adversarial challenge
 
-## Key Questions for Adversarial
-
-1. Could NatWest be implementing CDM silently despite Fluxnova publicity?
-2. Is the FINOS Paradox actually evidence of strategic CDM avoidance?
-3. Could retail banking focus legitimately deprioritize CDM?
-4. What is the strongest case FOR ARCHITECT classification?
+## Gate Decision
+**PROCEED TO ADVERSARIAL** - Classification ready for challenge.
 
 ---
-
-*Gate 3 passed. Proceeding to adversarial evidence gathering.*
+*Generated: 2025-12-21*

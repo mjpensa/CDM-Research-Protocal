@@ -1,0 +1,98 @@
+{
+  "bank_id": "goldman-sachs",
+  "bank_name": "Goldman Sachs Group, Inc.",
+  "phase": 8,
+  "last_updated": "2025-12-21",
+  "evidence_items": [
+    {
+      "id": "GS-E001",
+      "claim": "Goldman Sachs developed and open-sourced Legend data management platform to FINOS",
+      "source_url": "https://www.finos.org/press/goldman-sachs-open-sources-its-data-modeling-platform-through-finos",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "excerpt": "FINOS, together with platinum member Goldman Sachs, announced the launch of Legend, Goldman's flagship data management and data governance platform. Developed internally and used by both engineers and non-engineers alike across all divisions of the bank.",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "GS-E002",
+      "claim": "Goldman Sachs led FINOS Legend pilot for CDM extensions with major banks",
+      "source_url": "https://www.finos.org/hubfs/FINOS/assets/FINOS%20Legend%20Case%20Study%202021.pdf",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Six-month pilot in which leading investment banks, such as Deutsche Bank, Morgan Stanley and RBC Capital Markets, used a shared version of Legend, hosted on FINOS infrastructure in the public cloud, to prototype interbank collaborative data modeling and standardization, particularly to build extensions to the Common Domain Model (CDM).",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "GS-E003",
+      "claim": "Goldman Sachs contributed FX option extensions (Averaging Model) accepted into CDM",
+      "source_url": "https://www.finos.org/legend",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "excerpt": "The FX option extensions, specifically the Averaging Model used in the CDM, modeled collaboratively by the pilot group financial institutions participants using Legend, were proposed into the CDM and have since been accepted, released and integrated into a recent release to the public.",
+      "freshness": "recent",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "GS-E004",
+      "claim": "Goldman Sachs won FINOS Banking Tech Award for Legend partnership",
+      "source_url": "https://www.finos.org/blog/banking-tech-awards-best-fintech-partnership-goldman-sachs-and-finos-for-legend",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "excerpt": "FINOS won the 2021 Banking Tech Awards for Best Fintech Partnership Award with Goldman Sachs for their collaboration on the Legend project.",
+      "freshness": "dated",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "GS-E005",
+      "claim": "Goldman Sachs among G-SIB backers of digital derivatives reporting project",
+      "source_url": "https://jwg-it.eu/article/g-sibs-back-digital-derivatives-reporting-programme-to-be-online-for-emir-refit/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Bank of America Merrill Lynch, BNP Paribas, Citi, Deutsche Bank, Goldman Sachs and JPMorgan are among the project's backers of a digital derivatives reporting programme.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "GS-E006",
+      "claim": "Goldman Sachs investing to implement DRR",
+      "source_url": "https://regnosys.com/insights/five-trends-reshaping-regulatory-reporting/",
+      "tier": 2,
+      "claim_type": "pilot_or_poc",
+      "excerpt": "Following in BNP Paribas' footsteps, other global financial institutions including J.P. Morgan, Goldman Sachs and Standard Chartered have been investing to implement DRR.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "GS-E007",
+      "claim": "Goldman Sachs leads FINOS Financial Objects Special Interest Group with ISDA",
+      "source_url": "https://www.finos.org/common-domain-model",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "excerpt": "The FINOS Financial Objects Special Interest Group (FO SIG), led by Goldman Sachs and ISDA, provides a forum for collaboration on data modelling.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    }
+  ],
+  "classification": {
+    "value": "PRAGMATIST",
+    "subtype": "Ecosystem",
+    "confidence": 0.70,
+    "maturity_score": 2
+  },
+  "flags": [
+    "legend_platform_contributor",
+    "finos_platinum_member",
+    "cdm_model_contributor",
+    "g_sib_drr_project",
+    "drr_investment_confirmed"
+  ]
+}

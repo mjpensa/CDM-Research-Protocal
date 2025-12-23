@@ -1,0 +1,360 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Entity Relationship Graph Schema v1.0",
+  "description": "Schema for mapping entity-to-entity relationships in the derivatives market intelligence platform",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "relationship_graph_structure": {
+    "filename": "relationship-graph.json",
+    "location": "outputs/relationships/",
+    "description": "Central repository of all entity relationships"
+  },
+
+  "definitions": {
+    "relationship": {
+      "type": "object",
+      "description": "A directional relationship between two entities",
+      "required": ["relationship_id", "relationship_type", "source_entity", "target_entity"],
+      "properties": {
+        "relationship_id": {
+          "type": "string",
+          "pattern": "^REL-[A-Z0-9]{8}$",
+          "description": "Unique relationship identifier"
+        },
+        "relationship_type": {
+          "type": "string",
+          "enum": [
+            "uses_platform",
+            "clears_at",
+            "trades_with",
+            "regulated_by",
+            "advised_by",
+            "competes_with",
+            "partners_with",
+            "acquired",
+            "subsidiary_of",
+            "integrates_with"
+          ],
+          "description": "Type of relationship between entities"
+        },
+        "source_entity": {
+          "$ref": "#/definitions/entity_reference"
+        },
+        "target_entity": {
+          "$ref": "#/definitions/entity_reference"
+        },
+        "relationship_attributes": {
+          "$ref": "#/definitions/relationship_attributes"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/relationship_evidence"},
+          "description": "Evidence supporting this relationship"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence score (0-1) in relationship validity"
+        },
+        "temporal": {
+          "$ref": "#/definitions/temporal_range"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive", "historical", "rumored"],
+          "default": "active"
+        },
+        "last_verified": {
+          "type": "string",
+          "format": "date",
+          "description": "Date relationship was last verified"
+        }
+      }
+    },
+
+    "entity_reference": {
+      "type": "object",
+      "required": ["entity_id", "entity_type"],
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "description": "Entity identifier"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": ["bank", "vendor", "ccp", "regulator", "consultant"],
+          "description": "Entity type"
+        },
+        "entity_name": {
+          "type": "string",
+          "description": "Entity display name"
+        }
+      }
+    },
+
+    "relationship_attributes": {
+      "type": "object",
+      "description": "Type-specific attributes for the relationship",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Products involved (for uses_platform, clears_at)"
+        },
+        "asset_classes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["interest_rate", "credit", "fx", "equity", "commodity"]
+          },
+          "description": "Asset classes covered"
+        },
+        "contract_type": {
+          "type": "string",
+          "enum": ["license", "subscription", "partnership", "membership", "regulatory"],
+          "description": "Type of contractual relationship"
+        },
+        "membership_type": {
+          "type": "string",
+          "enum": ["general_clearing_member", "individual_clearing_member", "client_clearer"],
+          "description": "CCP membership type"
+        },
+        "estimated_volume": {
+          "type": "string",
+          "description": "Estimated volume or value of relationship"
+        },
+        "jurisdictions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Jurisdictions where relationship applies"
+        },
+        "deal_value_usd": {
+          "type": "number",
+          "description": "Deal value for M&A relationships"
+        },
+        "ownership_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Ownership percentage for subsidiary relationships"
+        }
+      }
+    },
+
+    "relationship_evidence": {
+      "type": "object",
+      "required": ["evidence_id", "source_url"],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "description": "Reference to evidence item"
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of evidence source"
+        },
+        "source_type": {
+          "type": "string",
+          "enum": ["official_announcement", "regulatory_filing", "press_release", "trade_press", "membership_list", "case_study"],
+          "description": "Type of source"
+        },
+        "excerpt": {
+          "type": "string",
+          "description": "Relevant excerpt from source"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of evidence"
+        }
+      }
+    },
+
+    "temporal_range": {
+      "type": "object",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "When relationship began"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "When relationship ended (null if ongoing)"
+        },
+        "duration_type": {
+          "type": "string",
+          "enum": ["ongoing", "fixed_term", "historical"],
+          "description": "Nature of temporal duration"
+        }
+      }
+    }
+  },
+
+  "relationship_types": {
+    "uses_platform": {
+      "description": "Bank uses vendor's trading/risk platform",
+      "source_types": ["bank"],
+      "target_types": ["vendor"],
+      "required_attributes": ["products"],
+      "optional_attributes": ["contract_type", "asset_classes"]
+    },
+    "clears_at": {
+      "description": "Bank is clearing member at CCP",
+      "source_types": ["bank"],
+      "target_types": ["ccp"],
+      "required_attributes": ["membership_type"],
+      "optional_attributes": ["products", "asset_classes", "estimated_volume"]
+    },
+    "trades_with": {
+      "description": "Bilateral trading relationship between banks",
+      "source_types": ["bank"],
+      "target_types": ["bank"],
+      "required_attributes": [],
+      "optional_attributes": ["asset_classes", "estimated_volume"]
+    },
+    "regulated_by": {
+      "description": "Entity is regulated by regulator",
+      "source_types": ["bank", "vendor", "ccp"],
+      "target_types": ["regulator"],
+      "required_attributes": [],
+      "optional_attributes": ["jurisdictions"]
+    },
+    "advised_by": {
+      "description": "Bank uses consultant for advisory services",
+      "source_types": ["bank"],
+      "target_types": ["consultant"],
+      "required_attributes": [],
+      "optional_attributes": ["contract_type"]
+    },
+    "competes_with": {
+      "description": "Entities compete in same market segment",
+      "source_types": ["bank", "vendor"],
+      "target_types": ["bank", "vendor"],
+      "required_attributes": [],
+      "optional_attributes": ["asset_classes"]
+    },
+    "partners_with": {
+      "description": "Strategic partnership between entities",
+      "source_types": ["bank", "vendor", "ccp"],
+      "target_types": ["bank", "vendor", "ccp"],
+      "required_attributes": [],
+      "optional_attributes": ["products", "contract_type"]
+    },
+    "acquired": {
+      "description": "Entity acquired another entity",
+      "source_types": ["bank", "vendor"],
+      "target_types": ["bank", "vendor"],
+      "required_attributes": [],
+      "optional_attributes": ["deal_value_usd"]
+    },
+    "subsidiary_of": {
+      "description": "Entity is subsidiary of parent entity",
+      "source_types": ["bank", "vendor"],
+      "target_types": ["bank", "vendor"],
+      "required_attributes": [],
+      "optional_attributes": ["ownership_pct"]
+    },
+    "integrates_with": {
+      "description": "Vendor platform integrates with CCP or other vendor",
+      "source_types": ["vendor"],
+      "target_types": ["ccp", "vendor"],
+      "required_attributes": [],
+      "optional_attributes": ["products"]
+    }
+  },
+
+  "graph_operations": {
+    "queries": [
+      {
+        "name": "get_relationships_for_entity",
+        "description": "Get all relationships involving a specific entity",
+        "parameters": ["entity_id", "entity_type", "direction"]
+      },
+      {
+        "name": "get_relationships_by_type",
+        "description": "Get all relationships of a specific type",
+        "parameters": ["relationship_type"]
+      },
+      {
+        "name": "find_path",
+        "description": "Find relationship path between two entities",
+        "parameters": ["source_entity", "target_entity", "max_hops"]
+      },
+      {
+        "name": "get_entity_network",
+        "description": "Get full relationship network for entity",
+        "parameters": ["entity_id", "depth"]
+      }
+    ],
+    "aggregations": [
+      {
+        "name": "relationship_count_by_type",
+        "description": "Count relationships by type for an entity"
+      },
+      {
+        "name": "vendor_market_share",
+        "description": "Count banks using each vendor platform"
+      },
+      {
+        "name": "ccp_member_count",
+        "description": "Count clearing members at each CCP"
+      }
+    ]
+  },
+
+  "visualization": {
+    "node_colors": {
+      "bank": "#4A90D9",
+      "vendor": "#7B68EE",
+      "ccp": "#2ECC71",
+      "regulator": "#E74C3C",
+      "consultant": "#F39C12"
+    },
+    "edge_styles": {
+      "uses_platform": {"style": "solid", "color": "#7B68EE"},
+      "clears_at": {"style": "solid", "color": "#2ECC71"},
+      "trades_with": {"style": "dashed", "color": "#4A90D9"},
+      "regulated_by": {"style": "dotted", "color": "#E74C3C"},
+      "advised_by": {"style": "dashed", "color": "#F39C12"},
+      "competes_with": {"style": "dotted", "color": "#95A5A6"},
+      "partners_with": {"style": "solid", "color": "#9B59B6"},
+      "acquired": {"style": "solid", "color": "#1ABC9C"},
+      "subsidiary_of": {"style": "solid", "color": "#34495E"},
+      "integrates_with": {"style": "dashed", "color": "#16A085"}
+    }
+  },
+
+  "example_graph": {
+    "relationships": [
+      {
+        "relationship_id": "REL-DB001234",
+        "relationship_type": "uses_platform",
+        "source_entity": {"entity_id": "deutsche-bank", "entity_type": "bank"},
+        "target_entity": {"entity_id": "murex", "entity_type": "vendor"},
+        "relationship_attributes": {
+          "products": ["MX.3"],
+          "asset_classes": ["interest_rate", "fx"]
+        },
+        "confidence": 0.85,
+        "status": "active"
+      },
+      {
+        "relationship_id": "REL-HS001235",
+        "relationship_type": "clears_at",
+        "source_entity": {"entity_id": "hsbc", "entity_type": "bank"},
+        "target_entity": {"entity_id": "lch", "entity_type": "ccp"},
+        "relationship_attributes": {
+          "membership_type": "general_clearing_member",
+          "products": ["SwapClear", "ForexClear"]
+        },
+        "confidence": 0.95,
+        "status": "active"
+      }
+    ]
+  }
+}

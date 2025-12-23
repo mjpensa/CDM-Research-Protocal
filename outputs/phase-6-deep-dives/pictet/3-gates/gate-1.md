@@ -1,32 +1,21 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment: Pictet Group
+# Reasoning Gate 1: Post-Tier 1
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER 2
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 2
-
-N/A
+**Bank**: Pictet Group
+**Date**: 2025-12-21
 
 ---
 
-*Gate 1 passed. Proceeding to tier 2 evidence gathering.*
+## Evidence
+
+| ID | Claim | Tier |
+|----|-------|------|
+| PCT-E001 | Production usage | 1 |
+| PCT-E003 | ISDA AGM speaking | 1 |
+
+---
+
+## Verdict
+
+**SUFFICIENT** - Production evidence is the highest classification signal.
+
+Proceed to Tier 2 for corroboration.

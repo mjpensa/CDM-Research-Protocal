@@ -1,0 +1,51 @@
+{
+  "bank_id": "nomura",
+  "bank_name": "Nomura Holdings",
+  "phase": 3,
+  "phase_name": "Japanese",
+  "classification": "PRAGMATIST",
+  "sub_classification": "ISDA Governance (Board Member)",
+  "confidence": 0.72,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.18,
+    "pragmatist": 0.78,
+    "observer": 0.04
+  },
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 2,
+    "tier2": 3,
+    "tier3": 1,
+    "null_results": 3
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "Shigeru Nonomura serves on ISDA Board of Directors (current)",
+    "Historical ISDA Board members: Hideo Kitano (2016), Yutaka Nakajima (2011)",
+    "NOT a FINOS member - confirmed",
+    "Sponsored ISDA Tokyo Derivatives Trading Forum (DRR discussed)",
+    "UK EMIR REFIT compliance using traditional approach",
+    "Global integrated derivatives platform",
+    "NO CDM contribution or production deployment"
+  ],
+  "last_updated": "2025-12-21T14:30:00Z",
+  "notes": "PRAGMATIST (ISDA Governance) classification. Exhibits same pattern as HSBC - strong ISDA Board presence without FINOS membership or CDM adoption. Aware of DRR (sponsored Tokyo forum) but has not adopted. JSCC (Japanese CCP) adopted CDM/DRR but banks have not followed."
+}

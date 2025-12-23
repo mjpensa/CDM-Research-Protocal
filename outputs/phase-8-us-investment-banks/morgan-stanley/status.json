@@ -1,0 +1,46 @@
+{
+  "bank_id": "morgan-stanley",
+  "bank_name": "Morgan Stanley",
+  "phase": 8,
+  "phase_name": "phase-8-us-investment-banks",
+  "status": "complete",
+  "stages_completed": [
+    "initialization",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_analysis",
+    "synthesis"
+  ],
+  "classification": "PRAGMATIST",
+  "subtype": "Ecosystem",
+  "confidence": 0.65,
+  "maturity_score": 2,
+  "flags": [
+    "morphir_contributor",
+    "legend_pilot_participant",
+    "finos_platinum_member",
+    "regtech_collaboration",
+    "regulation_innovation_sig"
+  ],
+  "evidence_summary": {
+    "tier1_count": 5,
+    "tier2_count": 1,
+    "tier3_count": 0,
+    "total_count": 6
+  },
+  "key_findings": [
+    "Participated in FINOS Legend pilot for CDM extensions",
+    "Contributed Morphir to FINOS for business logic representation",
+    "TechSprint with Microsoft and REGnosys for DRR tooling",
+    "FINOS Platinum member",
+    "No production CDM/DRR usage confirmed"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z"
+}

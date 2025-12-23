@@ -1,51 +1,21 @@
-# Bayesian Update: Post-Tier 3 Evidence: Pictet Group
+# Bayesian Update: Post-Tier 3
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
-
----
-
-## Prior Probability
-
-P(ARCHITECT) prior: 20%
-
-## Tier 3 Evidence Summary
-
-No Tier 3 evidence found.
-
-## Likelihood Ratio Calculation
-
-```
-Combined LR = 1.0 (no evidence)
-```
-
-## Posterior Calculation
-
-```
-Posterior = Prior (no update)
-```
-
-## Updated Probabilities
-
-N/A
-
-## Key Insights
-
-N/A
-
-## Cumulative Evidence Summary
-
-| Tier | Combined LR | Cumulative LR |
-|------|-------------|---------------|
-| Tier 1 | 1.0 | 1.0 |
-| Tier 2 | 1.0 | 1.0 |
-| Tier 3 | 1.0 | 1.0 |
-
-## Final Confidence Assessment
-
-Final confidence: 50%
+**Bank**: Pictet Group
+**Date**: 2025-12-21
 
 ---
 
-*Proceeding to adversarial review.*
+## Final Classification
+
+| Field | Value |
+|-------|-------|
+| **Classification** | ARCHITECT |
+| **Subtype** | Native |
+| **Confidence** | 90% |
+| **Maturity Score** | 5 |
+
+---
+
+## Rationale
+
+Production usage explicitly confirmed. Pictet is one of only 4 global firms with confirmed CDM production (alongside BNP Paribas, JPMorgan, JSCC).

@@ -1,67 +1,59 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment: Banco Bilbao Vizcaya Argentaria S.A.
+# Reasoning Gate 2: Post-Tier 2
 
-**Bank:** Banco Bilbao Vizcaya Argentaria S.A.
-**Phase:** 5 - Spanish
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER 3
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Trajectory Analysis
-
-N/A
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 3
-
-### Q1: Were Tier 2 sources comprehensively searched?
-
-**Assessment:** ✅ PASS
-- Major trade press covered
-- Business press checked
-- Vendor databases searched
-- Conference speaker lists reviewed
+**Bank**: Banco Bilbao Vizcaya Argentaria S.A.
+**Phase**: 5 (Spanish)
+**Date**: 2025-12-21
 
 ---
 
-### Q2: Is null evidence being correctly interpreted?
+## Gate Purpose
 
-**Null Results Significance:**
-
-For a Spanish Tier 1 bank, complete absence of Tier 2 coverage is highly diagnostic:
-
-**L(No Tier 2|Adoption) = 0.10**
-**L(No Tier 2|No Adoption) = 0.98**
-
-**Bayesian:** 0.9% → 0.09% (strong corroboration)
-
-**Assessment:** ✅ PASS
+Evaluate whether Tier 2 evidence is sufficient for classification.
 
 ---
 
-### Q3: Have we checked Spanish-language sources?
+## Evidence Inventory (Cumulative)
 
-**Status:** ✅ ADEQUATE
-- Expansión and Cinco Días: No BBVA CDM coverage
-- Spanish banking press: No mentions
-
-**Assessment:** ✅ PASS
+| ID | Claim | Type | Tier | Direction |
+|----|-------|------|------|-----------|
+| BBVA-E001 | CFTC/SEC swap dealer | membership | 1 | Neutral |
+| BBVA-E002 | ISDA FATCA Protocol | membership | 2 | Neutral |
+| BBVA-E003 | ISDA Resolution Stay | membership | 2 | Neutral |
+| BBVA-E004 | Accenture/Murex/Calypso | vendor_proxy | 2 | Weak positive |
+| **Null** | **NOT in UK DRR pilot** | - | 2 | **Key negative** |
 
 ---
 
-*Gate 2 passed. Proceeding to tier 3 evidence gathering.*
+## Key Finding: DRR Pilot Absence
+
+BBVA confirmed NOT in UK DRR pilot. Participants were: Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, NatWest, Santander.
+
+### Comparison with Spanish Peer
+
+| Bank | DRR Pilot | CDM Evidence |
+|------|-----------|--------------|
+| Santander | ✅ Yes | Tier 2 |
+| BBVA | ❌ No | None |
+
+---
+
+## Decision Criteria
+
+| Question | Answer |
+|----------|--------|
+| CDM pilot participation? | No |
+| Vendor CDM relationship? | No (Murex/Calypso but not CDM-specific) |
+| Trade press coverage? | No |
+| Sufficient to classify? | **Marginal** |
+
+---
+
+## Gate 2 Verdict
+
+| Criterion | Status |
+|-----------|--------|
+| Sufficient for classification | ⚠️ Marginal |
+| Proceed to Tier 3 | ✅ Yes |
+| Provisional classification | PRAGMATIST (Traditional) or OBSERVER |
+
+**Decision**: **PROCEED TO TIER 3** - Need to check for hiring signals before finalizing close PRAGMATIST vs OBSERVER call.

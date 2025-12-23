@@ -1,55 +1,59 @@
-# Bayesian Update: Post-Tier 2 Evidence: NatWest Group PLC
+# NatWest Group - Post-Tier 2 Bayesian Update
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Prior Probability
-
-P(ARCHITECT) prior: 0%
+## Prior (from Tier 1)
+| Classification | Prior |
+|----------------|-------|
+| ARCHITECT | 16% |
+| PRAGMATIST | 84% |
+| OBSERVER | <1% |
 
 ## Tier 2 Evidence Summary
+| Evidence | LR(ARCHITECT) | LR(PRAGMATIST) |
+|----------|---------------|----------------|
+| OSFF 2024 Presenter/Sponsor | 0.8 | 1.2 |
+| EMIR Trade Reporting Service | 0.6 | 1.1 |
+| €6.7B Trading Assets | 1.1 | 1.0 |
 
-No Tier 2 evidence found.
+## Likelihood Ratio Analysis
 
-## Likelihood Ratio Calculation
+### OSFF Presenter/Sponsor (LR_A=0.8, LR_P=1.2)
+- Conference participation without CDM content
+- "Open Source First Culture" presentation is general, not derivatives-specific
+- Favors PRAGMATIST pattern
 
-```
-Combined LR = 1.0 (no evidence)
-```
+### EMIR Trade Reporting Service (LR_A=0.6, LR_P=1.1)
+- Traditional regulatory reporting approach
+- No CDM/DRR indication in service description
+- Slightly favors PRAGMATIST (traditional approach)
+
+### €6.7B Trading Assets (LR_A=1.1, LR_P=1.0)
+- Active derivatives business could justify CDM investment
+- But neutral evidence - activity alone doesn't indicate CDM adoption
 
 ## Posterior Calculation
 
-```
-Prior odds = 0.30 / 0.70 = 0.429
-Posterior odds = 0.429 × 0.648 = 0.278
-Posterior P(ARCHITECT) = 0.278 / (1 + 0.278) = 0.218 = 21.8%
-```
+### Combined LR (Tier 2)
+| Classification | Combined LR |
+|----------------|-------------|
+| ARCHITECT | 0.8 × 0.6 × 1.1 = 0.53 |
+| PRAGMATIST | 1.2 × 1.1 × 1.0 = 1.32 |
 
-## Updated Probabilities
+### Posterior (Unnormalized)
+| Classification | Prior × LR |
+|----------------|------------|
+| ARCHITECT | 0.16 × 0.53 = 0.085 |
+| PRAGMATIST | 0.84 × 1.32 = 1.109 |
+| OBSERVER | 0.00 × 1.0 = 0.000 |
 
-| Metric | Value |
-|--------|-------|
-| P(ARCHITECT) | 0% |
-| P(PRAGMATIST) | 0% |
-| Confidence | 0% |
+### Normalized Posterior
+| Classification | Posterior |
+|----------------|-----------|
+| ARCHITECT | 7% |
+| PRAGMATIST | 93% |
+| OBSERVER | <1% |
 
-## Key Insights
-
-1. **No Industry Validation**: Complete absence of trade press coverage since 2019 pilot
-2. **No Vendor Partnerships**: No CDM vendor announcements suggest traditional approach
-3. **No Thought Leadership**: No conference participation indicates lack of CDM expertise to share
-4. **Pilot Abandonment Pattern**: Evidence suggests 2019 pilot was not continued
-
-## Cumulative Evidence Summary
-
-| Tier | Combined LR | Cumulative LR |
-|------|-------------|---------------|
-| Tier 1 | 1.0 | 1.0 |
-| Tier 2 | 1.0 | 1.0 |
+## Key Update
+Tier 2 evidence reinforces PRAGMATIST classification. Traditional EMIR reporting service without CDM signals conventional approach despite active derivatives business.
 
 ---
-
-*Proceeding to Tier 3.*
+*Generated: 2025-12-21*

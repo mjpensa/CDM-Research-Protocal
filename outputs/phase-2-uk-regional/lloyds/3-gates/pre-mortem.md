@@ -1,64 +1,56 @@
-# Pre-Mortem Analysis: Lloyds Banking Group PLC
+# Lloyds Banking Group - Pre-Mortem Analysis
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
+## Bank Profile
 
----
+| Attribute | Value |
+|-----------|-------|
+| **Bank** | Lloyds Banking Group |
+| **Headquarters** | London, UK |
+| **Type** | Retail/Commercial Bank (UK-focused) |
+| **G-SIB Status** | No (D-SIB) |
+| **Key Regulators** | FCA, PRA |
+| **Prior P(Architect)** | 30% |
 
-## Research Objective
+## Key Research Questions
 
-**Primary Goal**: Assess Lloyds Banking Group's CDM adoption status for UK Regional bank classification
+1. Is Lloyds a FINOS member?
+2. Does Lloyds have significant derivatives operations requiring CDM?
+3. How is Lloyds handling EMIR Refit (if applicable)?
+4. Any partnerships with CDM vendors (Regnosys, etc.)?
 
-**Key Questions**:
-1. Did Lloyds continue CDM work after 2018-2019 FCA/BoE DRR pilot?
-2. How is Lloyds addressing EMIR Refit compliance?
-3. Does Lloyds' retail/commercial focus reduce CDM priority?
-4. Is there any derivatives technology strategy involving CDM?
+## Pre-Mortem: Potential Failure Modes
 
-## Potential Failure Modes
+### Failure Mode 1: Retail Focus Obscures Derivatives Activity
+**Risk**: Lloyds' retail emphasis may hide commercial/treasury derivatives
+**Mitigation**: Search for Lloyds Commercial Banking and Treasury operations
 
-| Risk | Description | Mitigation |
-|------|-------------|------------|
-| False Positive | Overstating CDM engagement | Require Tier 1 corroboration |
-| False Negative | Missing silent implementation | Check job postings, LinkedIn |
-| Stale Evidence | Outdated information | Apply temporal weighting |
+### Failure Mode 2: Subsidiary-Level Engagement
+**Risk**: CDM work may be under Scottish Widows or other subsidiaries
+**Mitigation**: Search for Lloyds group companies
+
+### Failure Mode 3: FCA DRR Pilot Participation
+**Risk**: Lloyds was in FCA DRR pilot (2018-2019) - may have current engagement
+**Mitigation**: Search for post-pilot DRR activity
 
 ## Search Strategy
 
-### Tier 1 (Official Sources)
-- Lloyds official news/press releases
-- FCA DRR pilot documentation
-- FINOS contributor searches
-- Annual reports
+### Tier 1 Searches (Official)
+1. "Lloyds FINOS member CDM"
+2. "Lloyds Banking Group ISDA CDM"
+3. "Lloyds EMIR Refit regulatory reporting"
+4. "Lloyds DRR Digital Regulatory Reporting"
 
-### Tier 2 (Industry Sources)
-- Risk.net, Waters Technology coverage
-- Vendor announcements
-- Conference participation
+### Tier 2 Searches (Trade Press)
+1. "Lloyds derivatives technology Risk.net"
+2. "Lloyds regulatory reporting vendor"
 
-### Tier 3 (Signal Sources)
-- LinkedIn job postings
-- Employee profiles
-- GitHub activity
+### Tier 3 Searches (Signals)
+1. "Lloyds CDM jobs LinkedIn"
 
-## Key Hypotheses to Test
+## Null Hypothesis
 
-### H1: Lloyds continued CDM work after 2019 pilot
-- **Disconfirming evidence**: Complete absence of post-2019 activity
-
-### H2: Retail banking focus reduces CDM priority
-- **Supporting evidence**: Small derivatives book, limited CIB operations
-- **Disconfirming evidence**: Significant derivatives business
-
-## Decision Points
-
-1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
-2. After Tier 2: Assess if Tier 3 signals will add value
-3. After Tier 3: Proceed to adversarial challenge
-
-## Null Hypothesis Reminder
-
-Assume Lloyds Banking Group PLC is PRAGMATIST until evidence proves otherwise.
+Lloyds is assumed to be a **PRAGMATIST** or **OBSERVER** until evidence proves otherwise. Lower prior (30%) due to retail focus.
 
 ---
+*Pre-Mortem Analysis Complete*
+*Generated: 2025-12-21*

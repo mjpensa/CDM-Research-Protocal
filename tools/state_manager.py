@@ -598,7 +598,10 @@ class UnifiedStateManager:
                 name = phase_info.get("name", "")
                 if name:
                     # Convert "European Tier 1" to "european-tier1"
-                    return name.lower().replace(" ", "-")
+                    # Note: Remove space but keep "Tier1" as single unit
+                    normalized = name.lower().replace(" ", "-")
+                    # Fix: tier-1 -> tier1 to match canonical naming
+                    return normalized.replace("tier-1", "tier1").replace("tier-2", "tier2")
         except Exception as e:
             logger.debug(f"Could not load phase name from manifest: {e}")
 

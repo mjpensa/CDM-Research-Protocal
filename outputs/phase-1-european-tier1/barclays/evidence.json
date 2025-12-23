@@ -1,0 +1,219 @@
+{
+  "bank_id": "barclays",
+  "bank_name": "Barclays PLC",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "BARC-001",
+      "claim": "Barclays hosted DerivHack hackathons (2018, 2019) using ISDA CDM to explore post-trade derivatives processing",
+      "source_url": "https://www.ledgerinsights.com/barclays-blockchain-hackathon-derivatives/",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2018-09-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Barclays hosted DerivHack, a hackathon supported by ISDA that brought teams of coders face to face with the ISDA Common Domain Model. Their task was to bring the CDM to life using new technologies.",
+      "caveats": "Historical events (2018-2019). Demonstrates CDM thought leadership but not production usage.",
+      "lr_mapping": {
+        "evidence_type": "pilot_proof_of_concept",
+        "likelihood_ratio": 4.0
+      }
+    },
+    {
+      "id": "BARC-002",
+      "claim": "Barclays hosted repo hackathon in September 2023 using FINOS CDM with ICMA, ISLA, ISDA, and FINOS",
+      "source_url": "https://finadium.com/barclays-announces-repo-hackathon-using-cdm/",
+      "tier": 1,
+      "claim_type": "pilot_or_poc",
+      "date": "2023-09-27",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "recent",
+        "specificity": "specific"
+      },
+      "excerpt": "Barclays announced a hackathon for market participants to code and showcase solutions that explore novel industry architectures for repo post-trade services. Participants will use FINOS CDM as the industry standard framework.",
+      "caveats": "Hackathon partnership with FINOS but Barclays is not a FINOS member.",
+      "lr_mapping": {
+        "evidence_type": "pilot_proof_of_concept",
+        "likelihood_ratio": 5.0
+      }
+    },
+    {
+      "id": "BARC-003",
+      "claim": "Lee Braine from Barclays CTO office is a leading CDM advocate, calling for infrastructure adoption and estimating $2.5B industry savings",
+      "source_url": "https://www.coindesk.com/markets/2018/04/26/barclays-goldman-champion-isda-standard-for-blockchain-derivatives/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2018-04-26",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Perhaps the biggest champion of CDM as the key to making blockchain a reality in the derivatives space is Barclays. Lee Braine from the CTO office stated the industry could save $2.5 billion a year.",
+      "caveats": "Advocacy and thought leadership, not production implementation evidence.",
+      "lr_mapping": {
+        "evidence_type": "conference_speaker_cdm_topic",
+        "likelihood_ratio": 3.0
+      }
+    },
+    {
+      "id": "BARC-004",
+      "claim": "Barclays has an internal CDM adoption working group that estimated 25% efficiency gains from CDM in clearing",
+      "source_url": "https://www.risk.net/derivatives/7655006/common-domain-model-needs-infrastructure-push-says-barclays",
+      "tier": 2,
+      "claim_type": "pilot_or_poc",
+      "date": "2020-07-14",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "dated",
+        "specificity": "specific"
+      },
+      "excerpt": "Barclays' working group estimated around 25% gains in efficiency from using CDM only in clearing.",
+      "caveats": "Paywalled article. Working group confirms internal evaluation but not production adoption.",
+      "lr_mapping": {
+        "evidence_type": "pilot_proof_of_concept",
+        "likelihood_ratio": 3.5
+      }
+    },
+    {
+      "id": "BARC-005",
+      "claim": "Barclays named among G-SIBs that have piloted CDM projects for trade and transaction reporting",
+      "source_url": "https://regrisksolutions.com/intelligence/article/g-sibs-increasingly-turn-to-open-source-domain-model-to-retool-reporting-systems-and-drive-digital-regulatory-reporting/",
+      "tier": 2,
+      "claim_type": "pilot_or_poc",
+      "date": "2024-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "current",
+        "specificity": "medium"
+      },
+      "excerpt": "Goldman Sachs, JP Morgan, Barclays and BNP Paribas have all piloted various projects related to trade and transaction reporting and are examining further use cases.",
+      "caveats": "Confirms pilot activity but not production usage. Grouped with other G-SIBs.",
+      "lr_mapping": {
+        "evidence_type": "pilot_proof_of_concept",
+        "likelihood_ratio": 4.0
+      }
+    },
+    {
+      "id": "BARC-006",
+      "claim": "Barclays won Interest Rate Derivatives House of the Year and Derivatives Client Clearer of the Year at Risk Awards 2024",
+      "source_url": "https://www.ib.barclays/news-and-events/risk-awards-2024.html",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2024-01-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "current",
+        "specificity": "medium"
+      },
+      "excerpt": "Barclays was named Interest Rate Derivatives House of the Year and Derivatives Client Clearer of the Year, with global client clearing revenues growing 55% since 2018.",
+      "caveats": "Awards recognize derivatives capability but do not speak to CDM adoption.",
+      "lr_mapping": {
+        "evidence_type": "market_position_indicator",
+        "likelihood_ratio": 1.3
+      }
+    },
+    {
+      "id": "BARC-007",
+      "claim": "Barclays is NOT listed as a FINOS member at any tier (Platinum, Gold, Silver)",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-12-21",
+      "direction": "CONTRADICTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "FINOS members page lists Platinum (Citi, Goldman Sachs, JP Morgan, Morgan Stanley, UBS, etc.), Gold (Bank of America, Deutsche Bank, Lloyds, NatWest, etc.), Silver members. Barclays is absent.",
+      "caveats": "Barclays partners with FINOS on hackathons but has not joined as a member.",
+      "lr_mapping": {
+        "evidence_type": "membership_absence",
+        "likelihood_ratio": 0.6
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "category": "FINOS Membership",
+      "queries": ["site:finos.org Barclays member"],
+      "results_reviewed": 10,
+      "null_type": "CONTRADICTORY",
+      "informative_absence": true,
+      "implication": "Barclays is not a FINOS member despite significant CDM engagement through hackathons. This is an unusual pattern."
+    },
+    {
+      "category": "Production DRR Usage",
+      "queries": ["Barclays DRR production CDM 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No confirmed DRR production usage. Barclays confirmed to have piloted but not confirmed production adoption."
+    },
+    {
+      "category": "CDM Job Postings",
+      "queries": ["Barclays CDM Common Domain Model jobs careers"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": false,
+      "implication": "No CDM-specific job postings. Standard regulatory reporting roles found."
+    }
+  ],
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 5,
+      "completed": 5,
+      "failed": 0,
+      "queries": [
+        "Barclays FINOS member CDM Common Domain Model 2024",
+        "Barclays ISDA CDM working group derivatives contribution",
+        "Barclays EMIR Refit regulatory reporting CDM 2024",
+        "site:finos.org Barclays member",
+        "Barclays Lee Braine CDM ISDA derivatives"
+      ]
+    },
+    "tier2_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        "Barclays derivatives house year award Risk.net 2024",
+        "Barclays CDM DRR production implementation 2023 2024",
+        "Barclays derivatives reporting technology vendor Regnosys"
+      ]
+    },
+    "tier3_searches": {
+      "expected": 1,
+      "completed": 1,
+      "failed": 0,
+      "queries": [
+        "Barclays CDM Common Domain Model jobs careers regulatory reporting"
+      ]
+    },
+    "summary": {
+      "total_completed": 9,
+      "all_tiers_complete": true,
+      "notes": "Strong CDM advocacy (DerivHack hackathons, Lee Braine) but NOT a FINOS member. Pilots confirmed, production usage unconfirmed."
+    }
+  },
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "Active (CDM Advocate)",
+    "confidence": 0.75,
+    "engagement_type": "pilot_advocate",
+    "generated_at": "2025-12-21T00:00:00Z",
+    "completed_at": "2025-12-21T00:00:00Z"
+  }
+}

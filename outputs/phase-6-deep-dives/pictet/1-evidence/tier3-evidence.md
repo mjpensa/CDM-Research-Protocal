@@ -1,25 +1,16 @@
-# Tier 3 Evidence: Pictet Group
+# Tier 3 Evidence: Pictet
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
+**Bank**: Pictet Group
+**Phase**: 6 (Deep Dives)
+**Date**: 2025-12-21
+**Tier**: 3 - Signal Sources
+
+---
+
+## Summary
+
+Tier 3 searches not required - classification well-supported by Tier 1 production evidence.
 
 ---
 
-## Search Execution Summary
-
-| Metric | Value |
-|--------|-------|
-| Date | 2025-12-21 |
-| Evidence Items Found | 0 |
-| Schema Version | 4.3 |
-
-## Evidence Inventory
-
-No Tier 3 evidence found.
-
-## Informative Absences
-
-N/A
-
----
+*Tier 3 optional per protocol - ARCHITECT (Native) established.*

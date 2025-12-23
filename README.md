@@ -63,13 +63,15 @@ PRAGMATIST — Will adopt when necessary, not building
 │   ├── reasoning-gates.md       ← Required checkpoints
 │   └── adversarial-checks.md    ← Challenge protocols
 ├── phases/
-│   ├── phase-1-european-tier1/  ← Deutsche Bank, SocGen, UBS, Barclays, HSBC
-│   ├── phase-2-uk-regional/     ← NatWest, Lloyds
-│   ├── phase-3-japanese/        ← Nomura, MUFG, Mizuho, SMBC
-│   ├── phase-4-other-european/  ← ING, Crédit Agricole, UniCredit, Commerzbank
-│   ├── phase-5-spanish/         ← Santander, BBVA
-│   ├── phase-6-deep-dives/      ← Standard Chartered, Pictet
-│   └── phase-7-emerging/        ← DBS, Chinese banks
+│   ├── phase-1-european-tier1/      ← Deutsche Bank, SocGen, UBS, Barclays, HSBC
+│   ├── phase-2-uk-regional/         ← NatWest, Lloyds
+│   ├── phase-3-japanese/            ← Nomura, MUFG, Mizuho, SMBC
+│   ├── phase-4-other-european/      ← ING, Crédit Agricole, UniCredit, Commerzbank
+│   ├── phase-5-spanish/             ← Santander, BBVA
+│   ├── phase-6-deep-dives/          ← Standard Chartered, Pictet
+│   ├── phase-7-emerging-markets/    ← DBS, Chinese banks
+│   ├── phase-8-us-investment-banks/ ← JPMorgan, Goldman Sachs, Morgan Stanley, Citi, BofA
+│   └── phase-9-us-custody-banks/    ← State Street, BNY Mellon
 ├── appendices/
 │   ├── search-strategies.md     ← Query templates and iteration
 │   ├── contradiction-resolution.md

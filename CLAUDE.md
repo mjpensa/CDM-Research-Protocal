@@ -336,7 +336,32 @@ python tools/render_evidence_md.py --batch outputs/phase-1-european-tier1/
 
 ---
 
-## 13. Output Files
+## 13. Canonical Phase Names (MANDATORY)
+
+**CRITICAL**: Always use the exact phase folder names from `config/bank-manifest.json`. NEVER create variant folder names.
+
+| Phase | Canonical Folder Name | Banks |
+|-------|----------------------|-------|
+| 1 | `phase-1-european-tier1` | deutsche-bank, societe-generale, ubs, barclays, hsbc |
+| 2 | `phase-2-uk-regional` | natwest, lloyds |
+| 3 | `phase-3-japanese` | nomura, mufg, mizuho, smbc |
+| 4 | `phase-4-other-european` | ing, credit-agricole, unicredit, commerzbank |
+| 5 | `phase-5-spanish` | santander, bbva |
+| 6 | `phase-6-deep-dives` | standard-chartered, pictet |
+| 7 | `phase-7-emerging-markets` | dbs, icbc, bank-of-china, ccb, abc |
+| 8 | `phase-8-us-investment-banks` | jpmorgan, goldman-sachs, morgan-stanley, citigroup, bank-of-america |
+| 9 | `phase-9-us-custody-banks` | state-street, bny-mellon |
+
+**Prohibited Variants** (NEVER use these):
+- `phase-1-european-tier-1` (wrong hyphenation - tier-1 vs tier1)
+- `phase-4-european-tier-2` (wrong name - should be other-european)
+- `phase-7-asian` (wrong name - should be emerging-markets)
+- `phase-8-us-majors` (wrong name - should be us-investment-banks)
+- `phase-9-custodians` (wrong name - should be us-custody-banks)
+
+---
+
+## 14. Output Files
 
 After successful processing, each bank folder contains:
 
@@ -408,5 +433,57 @@ Evidence must conform to `templates/evidence-schema.json`.
 
 ---
 
-_Last Updated: 2025-12-20_
-_Schema Version: 3.1_
+## 16. Mandatory Completion Check
+
+After completing **synthesis** (final stage) for any bank, you **MUST** run the completeness audit:
+
+```bash
+python tools/audit_completeness.py --bank {bank-id} --phase {phase}
+```
+
+**CRITICAL**: Do NOT mark a bank as complete in the todo list until this audit passes with `[OK] COMPLETE`.
+
+### If Audit Fails
+
+1. Review the missing files listed in the output
+2. Generate the missing stage outputs
+3. Re-run the audit until it passes
+4. Only then mark the bank as complete
+
+### Required Files (18 total)
+
+Each bank must have ALL of these files with non-trivial content:
+
+- `1-evidence/tier1-evidence.md`
+- `1-evidence/tier2-evidence.md`
+- `1-evidence/tier3-evidence.md`
+- `2-bayesian/post-tier1-update.md`
+- `2-bayesian/post-tier2-update.md`
+- `2-bayesian/post-tier3-update.md`
+- `3-gates/pre-mortem.md`
+- `3-gates/gate-1.md`
+- `3-gates/gate-2.md`
+- `3-gates/gate-3.md`
+- `4-adversarial/counter-case.md`
+- `4-adversarial/disconfirming-searches.md`
+- `4-adversarial/steelman.md`
+- `4-adversarial/verdict.md`
+- `5-synthesis/assessment.md`
+- `5-synthesis/framework-integration.md`
+- `status.json`
+- `evidence.json`
+
+### Minimum File Sizes
+
+Files must meet minimum size thresholds to prevent empty/truncated outputs:
+
+| File Type | Minimum Size |
+|-----------|--------------|
+| `status.json` | 300 bytes |
+| `evidence.json` | 400 bytes |
+| `.md` files | 100 bytes |
+
+---
+
+_Last Updated: 2025-12-21_
+_Schema Version: 3.2_

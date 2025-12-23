@@ -1,0 +1,166 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "regulatory_posture",
+  "display_name": "Regulatory Posture Claim Types",
+  "description": "Claim types for regulatory posture research domain",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "enforcement_action",
+      "label": "Enforcement Action",
+      "description": "Regulatory enforcement action taken against entity",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Regulatory announcement", "SEC/CFTC filing", "FCA notice"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "CFTC fine for swap reporting failures",
+        "FCA enforcement for trade reporting",
+        "ESMA action on EMIR compliance"
+      ]
+    },
+    {
+      "id": "consent_order",
+      "label": "Consent Order",
+      "description": "Formal consent order or settlement agreement",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Regulatory filing", "Court document", "Official announcement"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Consent order with remediation requirements",
+        "Settlement agreement with CFTC",
+        "Undertaking with FCA"
+      ]
+    },
+    {
+      "id": "compliance_investment",
+      "label": "Compliance Investment",
+      "description": "Announced investment in compliance technology or programs",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Annual report", "Investor presentation", "Press release"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "$100M compliance technology investment",
+        "Regulatory reporting modernization program",
+        "Multi-year compliance transformation"
+      ]
+    },
+    {
+      "id": "regulatory_relationship",
+      "label": "Regulatory Relationship",
+      "description": "Nature of relationship with regulators",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Annual report", "Trade press", "Regulatory filings"],
+        "corroboration_required": true
+      },
+      "examples": [
+        "Primary regulator is FCA/PRA",
+        "Multiple jurisdictional oversight",
+        "Enhanced supervision status"
+      ]
+    },
+    {
+      "id": "deadline_response",
+      "label": "Deadline Response",
+      "description": "How entity responded to regulatory deadline",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Press coverage", "Official statement", "Industry survey"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "EMIR Refit compliant by April 2024",
+        "CFTC Rewrite implementation on track",
+        "Requested deadline extension"
+      ]
+    },
+    {
+      "id": "remediation_program",
+      "label": "Remediation Program",
+      "description": "Active remediation or improvement program",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Regulatory filing", "Annual report", "Press release"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "Trade reporting remediation ongoing",
+        "Data quality improvement program",
+        "Regulatory capital optimization"
+      ]
+    }
+  ],
+
+  "enforcement_categories": [
+    {
+      "id": "derivatives_reporting",
+      "label": "Derivatives Reporting",
+      "description": "Violations related to EMIR, CFTC, MiFID reporting"
+    },
+    {
+      "id": "market_conduct",
+      "label": "Market Conduct",
+      "description": "Manipulation, front-running, best execution"
+    },
+    {
+      "id": "risk_management",
+      "label": "Risk Management",
+      "description": "Inadequate risk controls or governance"
+    },
+    {
+      "id": "data_quality",
+      "label": "Data Quality",
+      "description": "Data accuracy and completeness issues"
+    },
+    {
+      "id": "capital_requirements",
+      "label": "Capital Requirements",
+      "description": "Capital adequacy and leverage violations"
+    }
+  ],
+
+  "regulatory_deadlines": [
+    {
+      "id": "emir_refit",
+      "name": "EMIR Refit",
+      "jurisdiction": "EU",
+      "effective_date": "2024-04-29",
+      "description": "EU derivatives reporting overhaul"
+    },
+    {
+      "id": "uk_emir",
+      "name": "UK EMIR",
+      "jurisdiction": "UK",
+      "effective_date": "2024-09-30",
+      "description": "UK post-Brexit derivatives reporting"
+    },
+    {
+      "id": "cftc_rewrite",
+      "name": "CFTC Rewrite",
+      "jurisdiction": "US",
+      "effective_date": "2024-2025",
+      "description": "US swap data reporting overhaul"
+    },
+    {
+      "id": "jscc_cdm",
+      "name": "JSCC CDM",
+      "jurisdiction": "Japan",
+      "effective_date": "2025-06-01",
+      "description": "JSCC CDM production go-live"
+    }
+  ]
+}

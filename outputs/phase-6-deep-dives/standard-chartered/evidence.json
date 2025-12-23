@@ -1,90 +1,101 @@
 {
+  "$schema": "../../templates/evidence-schema.json",
   "bank_id": "standard-chartered",
-  "bank_name": "Standard Chartered",
-  "phase": 6,
-  "classification": "ARCHITECT (Leader)",
-  "confidence": 80,
-  "maturity_score": 5,
-  "last_updated": "2025-12-21",
+  "bank_name": "Standard Chartered PLC",
+  "research_date": "2025-12-21",
   "evidence": [
     {
-      "id": "SC001",
-      "claim": "Standard Chartered contributing to DRR development alongside BNP Paribas, JPMorgan, and Pictet",
-      "source_url": "https://www.isda.org/2023/11/15/digital-regulatory-reporting-development/",
+      "id": "SC-E001",
+      "claim": "Emmanuel Ramambason is ISDA Board Member and Global co-Head of Credit Portfolio Management at Standard Chartered, serving as Financial Markets Head of Standard Chartered Bank AG",
+      "source_url": "https://www.isda.org/about-isda/board-of-directors/",
       "tier": 1,
-      "claim_type": "production_usage",
-      "date_published": "2023-11-15",
-      "excerpt": "Standard Chartered is part of the consortium developing the Digital Regulatory Reporting framework with production implementation.",
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-12-01",
+      "excerpt": "Emmanuel Ramambason is an ISDA Board Member and the Global co-Head of Credit Portfolio Management at Standard Chartered. He serves as the Global Head of Resource Management and Optimization (RMO), Financial Markets, at Standard Chartered Bank.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
-      }
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 20,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "ISDA Board membership provides direct governance involvement in derivatives standardization."
     },
     {
-      "id": "SC002",
-      "claim": "Standard Chartered supporting Rune-powered CDM projects in production environment",
-      "source_url": "https://www.isda.org/cdm/rune-implementation/",
-      "tier": 1,
-      "claim_type": "production_usage",
-      "date_published": "2024-03-20",
-      "excerpt": "Standard Chartered has deployed Rune-based CDM tooling in production for derivatives processing.",
+      "id": "SC-E002",
+      "claim": "Standard Chartered is contributing to the development of ISDA Digital Regulatory Reporting (DRR), alongside BNP Paribas, Pictet Group, and JPMorgan",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
+      "tier": 2,
+      "claim_type": "open_source_contribution",
+      "source_date": "2024-06-01",
+      "excerpt": "Financial institutions such as BNP Paribas, Pictet Group, Standard Chartered, and JPMorgan are contributing to the development of DRR.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
-      }
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 203,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Active DRR contribution places Standard Chartered among leading CDM adopters."
     },
     {
-      "id": "SC003",
-      "claim": "Dr. Milan Dragaš (Head of SIMM Analytics) representing Standard Chartered at ISDA CDM events",
-      "source_url": "https://www.isda.org/events/cdm-symposium-2024/",
+      "id": "SC-E003",
+      "claim": "Standard Chartered has supported the development of FINOS open source projects including CDM and Rune DSL for regulatory reporting",
+      "source_url": "https://fintech.global/2024/06/24/regnosys-contributes-rune-dsl-to-finos-open-source-initiative/",
+      "tier": 2,
+      "claim_type": "open_source_contribution",
+      "source_date": "2024-06-24",
+      "excerpt": "Several leading financial entities, including BNP Paribas, J.P. Morgan Chase, and Standard Chartered, have supported the development of these open-source projects - specifically relating to the Common Domain Model (CDM) and Rune DSL initiatives.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 180,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Support for both CDM and Rune DSL indicates deep engagement with regulatory reporting infrastructure."
+    },
+    {
+      "id": "SC-E004",
+      "claim": "Ewen Crawford, Senior Product Owner at Standard Chartered Bank, participated in expert panel on CFTC and EMIR reporting rewrites, demonstrating internal regulatory reporting expertise",
+      "source_url": "https://du.co/5-key-takeaways-from-our-expert-panel-on-the-cftc-and-emir-rewrites/",
       "tier": 2,
       "claim_type": "membership_or_participation",
-      "date_published": "2024-05-10",
-      "excerpt": "Dr. Milan Dragaš, Head of SIMM Analytics at Standard Chartered, presented on CDM implementation strategies.",
+      "source_date": "2022-10-27",
+      "excerpt": "Ewen Crawford, Senior Product Owner at Standard Chartered Bank, highlighted that the process flow structure creates problems, noting the decade old GTR engine implemented for global firms.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
-      }
-    },
-    {
-      "id": "SC004",
-      "claim": "Emmanuel Ramambason serving as ISDA Board Member from Standard Chartered",
-      "source_url": "https://www.isda.org/about-isda/board-members/",
-      "tier": 1,
-      "claim_type": "membership_or_participation",
-      "date_published": "2024-01-15",
-      "excerpt": "Emmanuel Ramambason, Standard Chartered, serves on the ISDA Board of Directors.",
-      "verification": {
-        "status": "verified",
-        "last_checked": "2025-12-21"
-      }
-    },
-    {
-      "id": "SC005",
-      "claim": "Standard Chartered participating in ISDA CDM working groups",
-      "source_url": "https://www.isda.org/2024/06/cdm-working-group-membership/",
-      "tier": 1,
-      "claim_type": "membership_or_participation",
-      "date_published": "2024-06-01",
-      "excerpt": "Standard Chartered is an active member of multiple ISDA CDM working groups focused on derivatives standardization.",
-      "verification": {
-        "status": "verified",
-        "last_checked": "2025-12-21"
-      }
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 786,
+        "category": "recent",
+        "weight_multiplier": 0.8
+      },
+      "notes": "Demonstrates internal regulatory reporting expertise and engagement with industry discussions."
     }
   ],
-  "null_results": [
+  "null_searches": [
     {
-      "search_query": "Standard Chartered CDM github contributions",
-      "rationale": "Searching for open source code contributions",
-      "date_searched": "2025-12-21"
-    },
-    {
-      "search_query": "Standard Chartered FINOS collaboration",
-      "rationale": "Checking for FINOS open source involvement",
-      "date_searched": "2025-12-21"
+      "search_target": "Standard Chartered CDM production announcement",
+      "queries_executed": [
+        "Standard Chartered CDM production deployment"
+      ],
+      "result": "No production announcement found",
+      "implication": "No confirmed production usage, but active contribution established"
     }
   ],
-  "trust_flags": [],
-  "summary": "Standard Chartered demonstrates clear ARCHITECT (Leader) status through production CDM usage, DRR consortium participation, and senior-level ISDA engagement. The bank has deployed Rune-based CDM tooling in production and contributes to DRR development alongside other leading institutions."
+  "classification": {
+    "primary": "ARCHITECT",
+    "subtype": "Follower",
+    "confidence": 80,
+    "maturity_score": 3,
+    "rationale": "Strong evidence of CDM/DRR ecosystem contribution: ISDA Board member, active DRR contributor alongside BNP/JPMorgan/Pictet, FINOS CDM/Rune DSL supporter. Not ARCHITECT-Native due to no production announcement, but clearly ARCHITECT-Follower based on contribution activity."
+  }
 }

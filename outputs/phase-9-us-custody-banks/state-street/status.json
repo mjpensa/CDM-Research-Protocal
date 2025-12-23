@@ -1,0 +1,35 @@
+{
+  "bank_id": "state-street",
+  "bank_name": "State Street Corporation",
+  "phase": 9,
+  "cohort": "us_custody_banks",
+  "status": "COMPLETE",
+  "current_stage": "synthesis",
+  "stages_completed": [
+    "initialization",
+    "tier1_search",
+    "tier2_search",
+    "tier3_search",
+    "bayesian_updates",
+    "gates",
+    "adversarial",
+    "synthesis"
+  ],
+  "classification": {
+    "primary": "UNKNOWN",
+    "subtype": "Custody Focus",
+    "confidence": 0.35,
+    "maturity_score": 0
+  },
+  "evidence_counts": {
+    "tier1": 0,
+    "tier2": 0,
+    "tier3": 0,
+    "null_results": 4
+  },
+  "timestamps": {
+    "started": "2025-12-21T00:00:00Z",
+    "completed": "2025-12-21T00:00:00Z"
+  },
+  "protocol_version": "2.3"
+}

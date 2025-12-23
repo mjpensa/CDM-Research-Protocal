@@ -1,39 +1,27 @@
-# Bayesian Update: Post-Tier 1 Evidence: Pictet Group
+# Bayesian Update: Post-Tier 1
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
-
----
-
-## Prior Probability
-
-P(ARCHITECT) prior: 25%
-
-## Tier 1 Evidence Summary
-
-No Tier 1 evidence found.
-
-## Likelihood Ratio Calculation
-
-```
-Combined LR = 1.0 (no evidence)
-```
-
-## Posterior Calculation
-
-```
-Posterior = Prior (no update)
-```
-
-## Updated Probabilities
-
-N/A
-
-## Key Insights
-
-N/A
+**Bank**: Pictet Group
+**Date**: 2025-12-21
 
 ---
 
-*Proceeding to Tier 2.*
+## Tier 1 Evidence
+
+| Evidence | Direction |
+|----------|-----------|
+| CDM/DRR production usage confirmed | Strong positive |
+| ISDA AGM speaking role | Strong positive |
+
+---
+
+## Posterior
+
+| Classification | Probability |
+|---------------|-------------|
+| **ARCHITECT (Native)** | **90%** |
+| ARCHITECT (Follower) | 8% |
+| PRAGMATIST | 2% |
+
+---
+
+**Decision**: Sufficient for ARCHITECT (Native). Tier 2 for corroboration.

@@ -1,0 +1,45 @@
+{
+  "bank_id": "state-street",
+  "bank_name": "State Street Corporation",
+  "phase": 9,
+  "cohort": "us_custody_banks",
+  "research_date": "2025-12-21",
+  "protocol_version": "2.3",
+  "evidence": [],
+  "null_results": [
+    {
+      "search_query": "State Street CDM ISDA Common Domain Model",
+      "source_type": "web_search",
+      "date_searched": "2025-12-21",
+      "reason_for_null": "No evidence of State Street involvement with CDM initiatives"
+    },
+    {
+      "search_query": "State Street FINOS regulatory reporting",
+      "source_type": "web_search",
+      "date_searched": "2025-12-21",
+      "reason_for_null": "FINOS initiatives highlight JPMorgan, BNP Paribas, RBC, BMO - no State Street"
+    },
+    {
+      "search_query": "State Street DRR Digital Regulatory Reporting derivatives",
+      "source_type": "web_search",
+      "date_searched": "2025-12-21",
+      "reason_for_null": "No DRR implementation evidence found"
+    },
+    {
+      "search_query": "State Street EMIR Refit CFTC Rewrite reporting",
+      "source_type": "web_search",
+      "date_searched": "2025-12-21",
+      "reason_for_null": "No CDM-specific regulatory reporting evidence"
+    }
+  ],
+  "classification": {
+    "primary": "UNKNOWN",
+    "subtype": "Custody Focus",
+    "confidence": 0.35,
+    "maturity_score": 0
+  },
+  "flags": [
+    "custody_bank_business_model",
+    "derivatives_not_primary_business"
+  ]
+}

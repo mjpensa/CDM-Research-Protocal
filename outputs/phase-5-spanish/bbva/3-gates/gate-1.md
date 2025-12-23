@@ -1,98 +1,48 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment: Banco Bilbao Vizcaya Argentaria S.A.
+# Reasoning Gate 1: Post-Tier 1
 
-**Bank:** Banco Bilbao Vizcaya Argentaria S.A.
-**Phase:** 5 - Spanish
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER 2
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 2
-
-### Q1: Did we search all relevant Tier 1 sources?
-
-**Assessment:** ✅ PASS
-
-- Comprehensive coverage of official sources
-- Both English and Spanish checked
-- Regulatory, standards body, and bank sources covered
-
-**Minor Gap:** Could check Latin American regulators (Mexico, Argentina) for BBVA subsidiary activity
-**Priority:** Low (CDM is primarily European/US initiative)
+**Bank**: Banco Bilbao Vizcaya Argentaria S.A.
+**Phase**: 5 (Spanish)
+**Date**: 2025-12-21
 
 ---
 
-### Q2: Is ISDA membership being correctly interpreted?
+## Gate Purpose
 
-**Finding:** BBVA is an ISDA member (confirmed)
-
-**Correct Interpretation:** ✅ YES
-- ISDA membership is baseline for derivatives dealers
-- NOT evidence of CDM adoption
-- Documented as non-diagnostic
-
-**Mitigation:** Clearly stated in null-results.md that standard membership doesn't indicate CDM engagement
-
-**Assessment:** ✅ PASS
+Evaluate whether Tier 1 evidence is sufficient for classification or if additional tiers are required.
 
 ---
 
-### Q3: Are null results correctly documented?
+## Evidence Inventory
 
-**Null Searches Conducted:** 4 at Tier 1
-1. CDM adoption evidence (isda.org, finos.org, bbva.com)
-2. Regulatory communications (esma.europa.eu, cnmv.es)
-3. DRR pilot participation (fca.org.uk)
-4. ISDA working groups (isda.org membership lists)
-
-**Assessment:** ✅ PASS - Comprehensive null documentation
-
----
-
-### Q4: What is our current classification trajectory?
-
-**Post-Tier 1 Position:**
-- Zero official evidence found
-- Bayesian probability: 0.9% (strong decrease from 15% prior)
-
-**Likely Final Classification:** UNKNOWN (Insufficient-Evidence)
-
-**Confidence Range:** 25-35%
-
-**Assessment:** ✅ PASS - Trajectory is sound
+| ID | Claim | Type | Tier | Direction |
+|----|-------|------|------|-----------|
+| BBVA-E001 | CFTC/SEC swap dealer | membership | 1 | Neutral |
+| Null | No FINOS membership | - | 1 | Negative |
+| Null | No ISDA Board | - | 1 | Negative |
+| Null | No CDM claims | - | 1 | Negative |
 
 ---
 
-### Q5: Are we falling into pre-mortem failure modes?
+## Decision Criteria
 
-**Language/Regional Gaps:** ✅ MITIGATED
-- Searched Spanish sources (bbva.com/es, cnmv.es)
+### Can we classify with Tier 1 alone?
 
-**ISDA Membership Conflation:** ✅ AVOIDED
-- Correctly identified as baseline, not evidence
+| Question | Answer | Notes |
+|----------|--------|-------|
+| Is there production evidence? | No | No CDM production claims |
+| Is there FINOS contribution? | No | Not a FINOS member |
+| Is there ISDA governance role? | No | Not on Board/Steering |
+| Is there swap dealer status? | Yes | CFTC/SEC registered |
 
-**Over-Confidence in Nulls:** ✅ APPROPRIATE
-- Bayesian 0.9% reflects strong but not absolute certainty
-- Planning 25-35% classification confidence (conservative)
-
-**Assessment:** ✅ PASS
+**Answer**: No. Tier 1 evidence establishes derivatives presence but provides no CDM differentiation between PRAGMATIST and OBSERVER.
 
 ---
 
-*Gate 1 passed. Proceeding to tier 2 evidence gathering.*
+## Gate 1 Verdict
+
+| Criterion | Status |
+|-----------|--------|
+| Sufficient evidence | ❌ No |
+| Proceed to Tier 2 | ✅ Yes |
+
+**Decision**: **PROCEED TO TIER 2** - Must search for pilot participation, vendor CDM relationships, and trade press coverage.

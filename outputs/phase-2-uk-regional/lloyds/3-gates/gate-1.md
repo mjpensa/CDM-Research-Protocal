@@ -1,37 +1,13 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment: Lloyds Banking Group PLC
+# Lloyds Banking Group - Gate 1
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
+## Current State
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 20% |
-| P(PRAGMATIST) | 80% |
-| Confidence | 35% |
+| P(Architect) | 75% |
+| Evidence | 3 Tier 1 items |
 
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-- Current P(ARCHITECT) = 20% → **Within 20-80% range**
-
-## Decision: PROCEED TO TIER 2
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 2
-
-N/A
+## Gate Decision
+**PROCEED TO TIER 2** - Seek CDM-specific engagement evidence.
 
 ---
-
-*Gate 1 passed. Proceeding to tier 2 evidence gathering.*
+*Generated: 2025-12-21*

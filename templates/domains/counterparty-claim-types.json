@@ -1,0 +1,140 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "counterparty",
+  "display_name": "Counterparty Relationship Claim Types",
+  "description": "Claim types for counterparty relationship research domain",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "ccp_membership",
+      "label": "CCP Membership",
+      "description": "Confirmed clearing member at CCP",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["CCP member directory", "Regulatory filing", "CCP announcement"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "LCH SwapClear clearing member",
+        "CME ClearPort participant",
+        "JSCC IRS clearing member"
+      ]
+    },
+    {
+      "id": "bilateral_relationship",
+      "label": "Bilateral Relationship",
+      "description": "Evidence of direct trading relationship between counterparties",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Deal announcement", "Regulatory filing", "Annual report"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "ISDA master agreement referenced",
+        "Bilateral trading disclosed in filing",
+        "Counterparty exposure in Pillar 3"
+      ]
+    },
+    {
+      "id": "regulatory_filing",
+      "label": "Regulatory Filing",
+      "description": "Counterparty exposure disclosed in regulatory reports",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["10-K", "Pillar 3 disclosure", "Annual report"],
+        "quantitative": true
+      },
+      "examples": [
+        "Top 10 counterparty exposure disclosed",
+        "Derivatives counterparty credit risk",
+        "Netting arrangements disclosed"
+      ]
+    },
+    {
+      "id": "news_mention",
+      "label": "News Mention",
+      "description": "Trade relationship mentioned in press",
+      "tier_required": [2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Trade press", "Business press", "Deal announcement"],
+        "corroboration_required": true
+      },
+      "examples": [
+        "Banks executed large IRS trade",
+        "CDS novation between banks",
+        "Compression exercise participants"
+      ]
+    },
+    {
+      "id": "inference_from_deals",
+      "label": "Inference from Deals",
+      "description": "Relationship implied from deal or transaction announcements",
+      "tier_required": [2, 3],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "note": "Weaker signal, requires context"
+      },
+      "examples": [
+        "Both banks on syndicate",
+        "Joint lead on bond issuance",
+        "Shared clearing member"
+      ]
+    },
+    {
+      "id": "prime_broker_relationship",
+      "label": "Prime Broker Relationship",
+      "description": "Prime brokerage or clearing relationship",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Fund annual report", "Regulatory filing", "Press release"],
+        "corroboration_required": false
+      },
+      "examples": [
+        "JPMorgan prime broker for fund",
+        "Clearing client of Goldman Sachs",
+        "Prime brokerage agreement"
+      ]
+    }
+  ],
+
+  "relationship_categories": [
+    {
+      "id": "clearing_member",
+      "label": "Clearing Member",
+      "description": "Direct clearing member at CCP"
+    },
+    {
+      "id": "client_clearer",
+      "label": "Client Clearer",
+      "description": "Clears through another member"
+    },
+    {
+      "id": "bilateral_counterparty",
+      "label": "Bilateral Counterparty",
+      "description": "Non-cleared trading relationship"
+    },
+    {
+      "id": "prime_broker_client",
+      "label": "Prime Broker Client",
+      "description": "Uses prime broker for clearing/execution"
+    }
+  ],
+
+  "ccps": [
+    {"id": "lch", "products": ["SwapClear", "ForexClear", "CDSClear", "RepoClear"]},
+    {"id": "cme", "products": ["CME Clearing", "CME ClearPort"]},
+    {"id": "ice-clear", "products": ["ICE Clear US", "ICE Clear Europe", "ICE Clear Credit"]},
+    {"id": "eurex", "products": ["Eurex OTC Clear"]},
+    {"id": "jscc", "products": ["JSCC IRS Clearing", "JSCC CDS Clearing"]},
+    {"id": "dtcc", "products": ["GTR", "TIW", "FICC"]},
+    {"id": "sgx", "products": ["SGX DC"]},
+    {"id": "hkex", "products": ["OTC Clear"]}
+  ]
+}

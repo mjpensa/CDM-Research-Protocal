@@ -1,0 +1,174 @@
+{
+  "$schema": "Claim Type Registry v1.0",
+  "domain_id": "financial_metrics",
+  "display_name": "Financial Metrics Claim Types",
+  "description": "Claim types for financial metrics research domain with quantitative extraction",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "claim_types": [
+    {
+      "id": "notional_disclosed",
+      "label": "Notional Disclosed",
+      "description": "Derivatives notional outstanding disclosed in regulatory filing",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["10-K", "Pillar 3", "Annual report", "OCC quarterly"],
+        "quantitative": true
+      },
+      "quantitative_fields": ["notional_total_usd", "notional_by_product"],
+      "examples": [
+        "Total derivatives notional $50T",
+        "IRS notional $30T disclosed",
+        "Credit derivatives $5T"
+      ]
+    },
+    {
+      "id": "revenue_disclosed",
+      "label": "Revenue Disclosed",
+      "description": "Derivatives revenue disclosed in earnings or filings",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Earnings release", "10-K", "Annual report"],
+        "quantitative": true
+      },
+      "quantitative_fields": ["revenue_derivatives_usd", "revenue_derivatives_pct"],
+      "examples": [
+        "FICC trading revenue $5B",
+        "Derivatives 15% of total revenue",
+        "Equity derivatives revenue $1B"
+      ]
+    },
+    {
+      "id": "market_share_estimate",
+      "label": "Market Share Estimate",
+      "description": "Market share from analyst report or industry survey",
+      "tier_required": [2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Coalition rankings", "Analyst report", "ISDA survey"],
+        "quantitative": true
+      },
+      "quantitative_fields": ["market_share_by_product"],
+      "examples": [
+        "Top 3 in IRS market share",
+        "15% CDS market share",
+        "#1 in FX derivatives"
+      ]
+    },
+    {
+      "id": "exposure_disclosed",
+      "label": "Exposure Disclosed",
+      "description": "Counterparty credit exposure disclosed in filings",
+      "tier_required": [1],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["10-K", "Pillar 3", "Annual report"],
+        "quantitative": true
+      },
+      "quantitative_fields": ["counterparty_exposure_usd", "gross_exposure_usd", "net_exposure_usd"],
+      "examples": [
+        "Net counterparty exposure $50B",
+        "Gross derivatives exposure $200B",
+        "CVA reserve $500M"
+      ]
+    },
+    {
+      "id": "trend_signal",
+      "label": "Trend Signal",
+      "description": "Indication of growth or decline in derivatives business",
+      "tier_required": [1, 2],
+      "evidence_requirements": {
+        "min_sources": 1,
+        "preferred_sources": ["Earnings commentary", "Analyst report", "Investor presentation"],
+        "quantitative": false
+      },
+      "examples": [
+        "Derivatives revenue up 20% YoY",
+        "Notional growth slowing",
+        "Exiting commodity derivatives"
+      ]
+    }
+  ],
+
+  "quantitative_schema": {
+    "notional_total_usd": {
+      "type": "currency",
+      "unit": "USD",
+      "description": "Total derivatives notional outstanding in USD"
+    },
+    "notional_by_product": {
+      "type": "object",
+      "description": "Breakdown of notional by product type",
+      "fields": {
+        "interest_rate": {"type": "currency", "unit": "USD"},
+        "credit": {"type": "currency", "unit": "USD"},
+        "fx": {"type": "currency", "unit": "USD"},
+        "equity": {"type": "currency", "unit": "USD"},
+        "commodity": {"type": "currency", "unit": "USD"}
+      }
+    },
+    "revenue_derivatives_usd": {
+      "type": "currency",
+      "unit": "USD",
+      "description": "Derivatives trading revenue in USD"
+    },
+    "revenue_derivatives_pct": {
+      "type": "percentage",
+      "description": "Derivatives as percentage of total revenue"
+    },
+    "counterparty_exposure_usd": {
+      "type": "currency",
+      "unit": "USD",
+      "description": "Net counterparty credit exposure"
+    },
+    "var_derivatives_usd": {
+      "type": "currency",
+      "unit": "USD",
+      "description": "Value at Risk for derivatives portfolio"
+    },
+    "market_share_by_product": {
+      "type": "object",
+      "description": "Market share by product type",
+      "fields": {
+        "interest_rate": {"type": "percentage"},
+        "credit": {"type": "percentage"},
+        "fx": {"type": "percentage"},
+        "equity": {"type": "percentage"},
+        "commodity": {"type": "percentage"}
+      }
+    }
+  },
+
+  "data_sources": [
+    {
+      "id": "occ_quarterly",
+      "name": "OCC Quarterly Report",
+      "url": "https://www.occ.gov/publications-and-resources/publications/quarterly-report-on-bank-trading-and-derivatives-activities/",
+      "coverage": "US banks",
+      "frequency": "Quarterly"
+    },
+    {
+      "id": "isda_survey",
+      "name": "ISDA Market Surveys",
+      "url": "https://www.isda.org/category/research/surveys/",
+      "coverage": "Global",
+      "frequency": "Annual"
+    },
+    {
+      "id": "bis_statistics",
+      "name": "BIS OTC Derivatives Statistics",
+      "url": "https://www.bis.org/statistics/derstats.htm",
+      "coverage": "Global",
+      "frequency": "Semi-annual"
+    },
+    {
+      "id": "coalition_rankings",
+      "name": "Coalition Greenwich Rankings",
+      "coverage": "Global banks",
+      "frequency": "Annual"
+    }
+  ]
+}

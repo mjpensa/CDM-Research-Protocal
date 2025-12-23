@@ -1,0 +1,50 @@
+{
+  "bank_id": "mufg",
+  "bank_name": "Mitsubishi UFJ Financial Group",
+  "phase": 3,
+  "phase_name": "Japanese",
+  "classification": "PRAGMATIST",
+  "sub_classification": "ISDA Governance (Board Member)",
+  "confidence": 0.70,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.15,
+    "pragmatist": 0.82,
+    "observer": 0.03
+  },
+  "prior_probability": 0.30,
+  "evidence_count": {
+    "tier1": 2,
+    "tier2": 3,
+    "tier3": 0,
+    "null_results": 3
+  },
+  "maturity_score": 2,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_search",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_search",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_search",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "Koichiro Funayama joined ISDA Board May 2025 (MD, Head of Derivatives Business Strategy, MUMSS)",
+    "NOT a FINOS member - confirmed",
+    "Operates Progmat digital securities platform (security tokens, stablecoins)",
+    "Japan's largest bank with active derivatives business",
+    "Subject to JFSA derivatives reporting (April 2024 rewrite)",
+    "NO CDM contribution or production deployment"
+  ],
+  "last_updated": "2025-12-21T15:30:00Z",
+  "notes": "PRAGMATIST (ISDA Governance) classification. Same pattern as Nomura - ISDA Board presence without FINOS membership or CDM adoption. Digital innovation focused on Progmat (security tokens) not derivatives standardization. Japanese mega-banks favor ISDA governance over FINOS open source."
+}

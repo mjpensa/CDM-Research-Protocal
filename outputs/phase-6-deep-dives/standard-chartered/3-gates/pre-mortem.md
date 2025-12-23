@@ -1,52 +1,47 @@
-# Pre-Mortem Analysis: Standard Chartered PLC
+# Pre-Mortem Analysis: Standard Chartered
 
-**Bank:** Standard Chartered PLC
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
+**Bank**: Standard Chartered PLC
+**Phase**: 6 (Deep Dives)
+**Date**: 2025-12-21
+
+---
+
+## 1. Research Objective
+
+Per manifest: Standard Chartered is a **confirmed CDM contributor**. The objective is to:
+- Validate contributor status with specific evidence
+- Understand the scope and depth of contribution
+- Determine strategic motivation (regulatory, client-driven, or strategic positioning)
+- Classify within ARCHITECT subtypes
+
+## 2. Prior Probability Assessment
+
+**Starting Assumption**: ARCHITECT (Follower) based on confirmed contributor status
+
+**Adjustments**:
+- Confirmed contributor: +30% (per manifest)
+- Medium derivatives relevance: 0%
+- Asia/Africa/Middle East focus: 0%
+- FCA/PRA regulation: +5%
+
+**Adjusted Prior**: 75% ARCHITECT probability
+
+## 3. Key Questions
+
+1. What is the scope of Standard Chartered's CDM contribution?
+2. What strategic motivation drives contribution despite smaller derivatives footprint?
+3. Is engagement regulatory-driven, client-driven, or strategic positioning?
+4. Is there evidence of production usage or only contribution?
+
+## 4. Expected Outcome
+
+| Classification | Probability |
+|---------------|-------------|
+| ARCHITECT (Native) | 15% |
+| ARCHITECT (Follower) | 60% |
+| PRAGMATIST | 20% |
+| OBSERVER | 5% |
 
 ---
 
-## Research Objective
-
-Assess Standard Chartered PLC's CDM/DRR adoption maturity.
-
-## Potential Failure Modes
-
-| Risk | Description | Mitigation |
-|------|-------------|------------|
-| False Positive | Overstating CDM engagement | Require Tier 1 corroboration |
-| False Negative | Missing silent implementation | Check job postings, LinkedIn |
-| Stale Evidence | Outdated information | Apply temporal weighting |
-
-## Search Strategy
-
-### Tier 1 (Official Sources)
-- Bank official website, annual reports
-- ISDA.org, FINOS.org
-- Regulatory filings
-
-### Tier 2 (Industry Sources)
-- Risk.net, Waters Technology
-- Trade press coverage
-- Vendor announcements
-
-### Tier 3 (Signal Sources)
-- Job postings
-- LinkedIn profiles
-- Conference presentations
-
-## Key Hypotheses to Test
-
-N/A
-
-## Decision Points
-
-1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
-2. After Tier 2: Assess if Tier 3 signals will add value
-3. After Tier 3: Proceed to adversarial challenge
-
-## Null Hypothesis Reminder
-
-Assume Standard Chartered PLC is PRAGMATIST until evidence proves otherwise.
-
----
+*Pre-mortem completed. Proceeding to evidence collection.*

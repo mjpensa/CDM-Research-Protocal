@@ -47,10 +47,47 @@ REQUIRED_FILES = [
     '5-synthesis/assessment.md',
     '5-synthesis/framework-integration.md',
     'status.json',
+    'evidence.json',
 ]
+
+# Minimum file sizes to prevent empty/truncated files from passing validation
+# Files smaller than these thresholds are considered incomplete
+MIN_FILE_SIZES = {
+    'status.json': 300,      # status.json must have meaningful content
+    'evidence.json': 400,    # evidence.json must have evidence_items array
+    '.md': 100,              # Markdown files must have content
+    '.json': 50,             # Default for other JSON files
+}
 
 # Deprecated terms that should not appear
 DEPRECATED_TERMS = ['NOT ENGAGED', 'NOT_ENGAGED', 'NON-ARCHITECT', 'NON_ARCHITECT']
+
+
+def get_min_size(filename: str) -> int:
+    """Get minimum size threshold for a file."""
+    if filename in MIN_FILE_SIZES:
+        return MIN_FILE_SIZES[filename]
+    ext = Path(filename).suffix
+    return MIN_FILE_SIZES.get(ext, 50)
+
+
+def validate_file_size(path: Path) -> tuple:
+    """
+    Check file meets minimum size threshold.
+
+    Returns:
+        (is_valid, issue_message) tuple
+    """
+    if not path.exists():
+        return (False, f"File not found: {path.name}")
+
+    min_size = get_min_size(path.name)
+    actual_size = path.stat().st_size
+
+    if actual_size < min_size:
+        return (False, f"File truncated: {path.name} ({actual_size} < {min_size} bytes)")
+
+    return (True, None)
 
 
 def validate_bank(bank_dir: Path) -> ValidationResult:
@@ -65,12 +102,19 @@ def validate_bank(bank_dir: Path) -> ValidationResult:
     """
     # Check for missing files (universal standard for all banks)
     missing = []
+    truncated = []
+
     for rel_path in REQUIRED_FILES:
         full_path = bank_dir / rel_path
         if not full_path.exists():
             missing.append(rel_path)
+        else:
+            # Check file size
+            is_valid, issue = validate_file_size(full_path)
+            if not is_valid:
+                truncated.append(issue)
 
-    issues = []
+    issues = truncated.copy()  # Truncated files are issues
 
     # Check status.json consistency
     status_path = bank_dir / 'status.json'

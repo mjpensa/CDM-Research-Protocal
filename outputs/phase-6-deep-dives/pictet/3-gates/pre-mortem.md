@@ -1,52 +1,41 @@
-# Pre-Mortem Analysis: Pictet Group
+# Pre-Mortem Analysis: Pictet
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
+**Bank**: Pictet Group
+**Phase**: 6 (Deep Dives)
+**Date**: 2025-12-21
+
+---
+
+## 1. Research Objective
+
+Per manifest: Pictet is **confirmed in CDM production**. The objective is to:
+- Validate production status with specific evidence
+- Understand what drove a wealth management firm to CDM production
+- Document the scope of production deployment
+- Assess whether this is client-driven, regulatory-driven, or strategic
+
+## 2. Prior Probability Assessment
+
+**Starting Assumption**: ARCHITECT (Native) based on confirmed production
+
+**Adjusted Prior**: 85% ARCHITECT (Native) probability
+
+## 3. Key Questions
+
+1. What drove Pictet to CDM production?
+2. What is the scope of production deployment?
+3. Is this client-driven, regulatory-driven, or strategic positioning?
+4. How does a low-derivatives-relevance firm justify CDM investment?
+
+## 4. Expected Outcome
+
+| Classification | Probability |
+|---------------|-------------|
+| ARCHITECT (Native) | 85% |
+| ARCHITECT (Follower) | 10% |
+| PRAGMATIST | 5% |
+| OBSERVER | 0% |
 
 ---
 
-## Research Objective
-
-Assess Pictet Group's CDM/DRR adoption maturity.
-
-## Potential Failure Modes
-
-| Risk | Description | Mitigation |
-|------|-------------|------------|
-| False Positive | Overstating CDM engagement | Require Tier 1 corroboration |
-| False Negative | Missing silent implementation | Check job postings, LinkedIn |
-| Stale Evidence | Outdated information | Apply temporal weighting |
-
-## Search Strategy
-
-### Tier 1 (Official Sources)
-- Bank official website, annual reports
-- ISDA.org, FINOS.org
-- Regulatory filings
-
-### Tier 2 (Industry Sources)
-- Risk.net, Waters Technology
-- Trade press coverage
-- Vendor announcements
-
-### Tier 3 (Signal Sources)
-- Job postings
-- LinkedIn profiles
-- Conference presentations
-
-## Key Hypotheses to Test
-
-N/A
-
-## Decision Points
-
-1. After Tier 1: If P(ARCHITECT) < 20% or > 80%, consider early classification
-2. After Tier 2: Assess if Tier 3 signals will add value
-3. After Tier 3: Proceed to adversarial challenge
-
-## Null Hypothesis Reminder
-
-Assume Pictet Group is PRAGMATIST until evidence proves otherwise.
-
----
+*Pre-mortem completed. Proceeding to evidence collection.*

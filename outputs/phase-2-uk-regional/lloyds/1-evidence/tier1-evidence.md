@@ -1,75 +1,58 @@
-# Tier 1 Evidence: Lloyds Banking Group PLC
+# Lloyds Banking Group - Tier 1 Evidence
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Search Execution Summary
+## Summary
 
 | Metric | Value |
 |--------|-------|
-| Date | 2025-12-21 |
-| Evidence Items Found | 1 |
-| Schema Version | 4.3 |
+| **Sources Found** | 3 |
+| **Direction** | SUPPORTS (ecosystem engagement) |
+| **Key Finding** | FINOS Gold member with active OSPO, no CDM-specific engagement |
 
-## Evidence Inventory
+## Evidence Items
 
-### LBG-001: UK FCA/BoE DRR Pilot Participation (2018-2019)
-
+### LBG-001: FINOS Gold Membership
 | Field | Value |
 |-------|-------|
-| Source | N/A |
-| Date | N/A |
-| Tier | 1 |
-| Claim Type | N/A |
-| Direction | NEUTRAL |
-| LR | 1.0 |
+| **Claim** | Lloyds Banking Group is a FINOS Gold member (joined March 2023) |
+| **Source** | [FINOS Press Release](https://www.finos.org/press/finos-adds-new-members-and-expands-its-governing-board-as-open-source-footprint-is-on-the-rise-across-the-financial-value-chain) |
+| **Direction** | SUPPORTS_ARCHITECT |
+| **LR** | 4.0 |
 
-**Excerpt:** N/A
-
-**Analysis:** N/A
-
-**Quality Assessment:**
-- Authority: N/A
-- Recency: N/A
-- Specificity: N/A
-
-**Caveats:** N/A
-
-## Informative Absences
-
-### FINOS CDM Contributor Search
-
-**Queries Executed**:
-- `site:finos.org Lloyds CDM contributor`
-- `site:github.com/finos/common-domain-model Lloyds`
-- `Lloyds ISDA CDM contribution`
-
-**Results Reviewed**: 10+
-
-**Null Type**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: Lloyds is NOT listed as a FINOS CDM contributor. Unlike NatWest (which contributes to Fluxnova), Lloyds has no visible FINOS engagement at all.
+**Excerpt**: "Allan Woodcock, Engineering Services Director at Lloyds Banking Group: 'Partnering with FINOS will empower our talented engineers to give back to the Open Source Community.'"
 
 ---
 
-### Official CDM Announcements
+### LBG-002: Active OSPO
+| Field | Value |
+|-------|-------|
+| **Claim** | Lloyds has an Open Source Program Office with dedicated leadership |
+| **Source** | [Red Hat Press Release](https://www.redhat.com/en/about/press-releases/red-hat-collaborates-lloyds-banking-group-boost-developer-experience-software-quality-and-speed-market) |
+| **Direction** | SUPPORTS_ARCHITECT |
+| **LR** | 2.5 |
 
-**Queries Executed**:
-- `site:lloydsbankinggroup.com CDM`
-- `site:lloydsbankinggroup.com "Common Domain Model"`
-- `site:lloydsbankinggroup.com ISDA derivatives`
-
-**Results Reviewed**: 15+
-
-**Null Type**: NO_RESULTS
-
-**Informative Absence**: YES
-
-**Implication**: No official announcements about CDM adoption, pilot continuation, or production deployment since 2019.
+**Analysis**: Having a dedicated OSPO indicates open source maturity. However, focus is on InnerSource practices, not CDM/derivatives specifically.
 
 ---
+
+### LBG-003: FCA/BOE DRR Pilot
+| Field | Value |
+|-------|-------|
+| **Claim** | Participated in FCA/BOE DRR pilot phases 1 and 2 (2018-2019) |
+| **Source** | [FCA DRR Page](https://www.fca.org.uk/innovation/regtech/digital-regulatory-reporting) |
+| **Direction** | SUPPORTS_ARCHITECT |
+| **LR** | 3.0 (temporal weighted: 0.3) |
+
+**Analysis**: Historical pilot participation demonstrates early DRR engagement but no follow-through to production.
+
+---
+
+## Tier 1 Aggregate
+
+| Metric | Value |
+|--------|-------|
+| **Combined LR** | ~10 (before temporal weighting) |
+| **Pattern** | Ecosystem engagement (FINOS + OSPO) |
+
+---
+*Tier 1 Evidence Complete*
+*Generated: 2025-12-21*

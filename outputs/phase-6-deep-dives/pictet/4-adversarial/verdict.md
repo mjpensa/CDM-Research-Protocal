@@ -1,43 +1,27 @@
-# Adversarial Verdict: Pictet Group
+# Adversarial Review Verdict: Pictet
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
+**Bank**: Pictet Group
+**Date**: 2025-12-21
 
 ---
 
 ## Final Classification
 
-| Element | Value |
-|---------|-------|
-| Classification | PRAGMATIST |
-| Sub-Classification | Native |
-| Confidence | 50% |
-| P(ARCHITECT) | 20% |
-| P(PRAGMATIST) | 80% |
-
-## Verdict Rationale
-
-N/A
-
-## Sub-Classification Justification
-
-N/A
-
-## Why Not Other Classifications
-
-| Alternative | Reason Rejected |
-|-------------|-----------------|
-| N/A | N/A |
-
-## Confidence Assessment
-
-N/A
-
-## Adversarial Challenge Status
-
-**Status**: UPHELD
-
-Classification confirmed after adversarial review.
+| Field | Value |
+|-------|-------|
+| **Classification** | ARCHITECT |
+| **Subtype** | Native |
+| **Confidence** | 90% |
+| **Maturity Score** | 5 |
 
 ---
+
+## Verdict
+
+Classification is **highly robust**:
+1. Production usage explicitly confirmed
+2. Named alongside BNP Paribas and JPMorgan (confirmed production)
+3. ISDA AGM speaking role demonstrates recognized expertise
+4. Active DRR contribution confirms sustained engagement
+
+**APPROVED for synthesis.**

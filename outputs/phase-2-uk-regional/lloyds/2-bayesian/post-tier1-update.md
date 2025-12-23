@@ -1,48 +1,32 @@
-# Bayesian Update: Post-Tier 1 Evidence: Lloyds Banking Group PLC
+# Lloyds Banking Group - Bayesian Update: Post-Tier 1
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Prior Probability
-
-P(ARCHITECT) prior: 25%
-
-## Tier 1 Evidence Summary
-
-No Tier 1 evidence found.
-
-## Likelihood Ratio Calculation
-
-```
-Combined LR = 1.0 (no evidence)
-```
-
-## Posterior Calculation
-
-```
-Prior odds = 0.15 / 0.85 = 0.176
-Posterior odds = 0.176 × 1.44 = 0.254
-Posterior P(ARCHITECT) = 0.254 / (1 + 0.254) = 0.203 = 20.3%
-```
-
-## Updated Probabilities
-
+## Prior State
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 0% |
-| P(PRAGMATIST) | 0% |
-| Confidence | 0% |
+| P(Architect) | 30% |
+| P(Pragmatist) | 70% |
 
-## Key Insights
+## Tier 1 Evidence
+| ID | Claim | LR | Temporal Weight |
+|----|-------|-----|-----------------|
+| LBG-001 | FINOS Gold member | 4.0 | 0.8 |
+| LBG-002 | Active OSPO | 2.5 | 1.0 |
+| LBG-003 | FCA DRR pilot | 3.0 | 0.3 |
 
-1. **Historical Pilot Engagement**: Lloyds participated in UK FCA DRR pilot using ISDA CDM 2.0
-2. **No FINOS Engagement**: Unlike some peers, no FINOS participation
-3. **Dated Evidence**: Pilot evidence is 5+ years old
-4. **Minimal Evidence Base**: Only one Tier 1 item (vs 2 for NatWest)
+## Calculation
+```
+LR_weighted = (4.0^0.8) × (2.5^1.0) × (3.0^0.3) = 2.64 × 2.5 × 1.39 = 9.18
+Prior odds = 0.30 / 0.70 = 0.43
+Posterior odds = 0.43 × 9.18 = 3.95
+P(Architect) = 3.95 / (1 + 3.95) = 79.8%
+```
+
+Cap at 75% (no production evidence)
+
+## Posterior State
+| Metric | Before | After |
+|--------|--------|-------|
+| P(Architect) | 30% | 75% |
 
 ---
-
-*Proceeding to Tier 2.*
+*Generated: 2025-12-21*

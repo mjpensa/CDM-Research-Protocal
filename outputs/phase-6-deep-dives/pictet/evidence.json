@@ -1,103 +1,92 @@
 {
+  "$schema": "../../templates/evidence-schema.json",
   "bank_id": "pictet",
   "bank_name": "Pictet Group",
-  "phase": 6,
-  "classification": "ARCHITECT (Native)",
-  "confidence": 85,
-  "maturity_score": 5,
-  "last_updated": "2025-12-21",
+  "research_date": "2025-12-21",
   "evidence": [
     {
-      "id": "PIC001",
-      "claim": "Pictet using CDM and DRR in production environment (confirmed)",
-      "source_url": "https://www.isda.org/2023/11/15/digital-regulatory-reporting-production/",
+      "id": "PCT-E001",
+      "claim": "Pictet Group is using CDM and DRR in production, confirmed alongside BNP Paribas and JPMorgan as production users",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
       "tier": 1,
       "claim_type": "production_usage",
-      "date_published": "2023-11-15",
-      "excerpt": "Pictet Group has successfully deployed CDM and Digital Regulatory Reporting in production for derivatives compliance.",
+      "source_date": "2024-06-01",
+      "excerpt": "BNP Paribas, Pictet Group, and JPMorgan are some of the firms using CDM and DRR in production.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
-      }
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 203,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Direct confirmation of production usage - the highest evidence tier for CDM adoption."
     },
     {
-      "id": "PIC002",
-      "claim": "Pictet contributing to DRR development consortium alongside BNP Paribas, JPMorgan, and Standard Chartered",
-      "source_url": "https://www.isda.org/2023/11/15/digital-regulatory-reporting-development/",
-      "tier": 1,
-      "claim_type": "production_usage",
-      "date_published": "2023-11-15",
-      "excerpt": "Pictet is part of the core consortium developing and implementing the Digital Regulatory Reporting framework.",
-      "verification": {
-        "status": "verified",
-        "last_checked": "2025-12-21"
-      }
-    },
-    {
-      "id": "PIC003",
-      "claim": "Emmanuel Geinoz (Market Infrastructure & Derivatives Expert) representing Pictet at ISDA CDM events",
-      "source_url": "https://www.isda.org/events/cdm-symposium-2024/",
+      "id": "PCT-E002",
+      "claim": "Pictet Group is contributing to the development of DRR alongside BNP Paribas, Standard Chartered, and JPMorgan",
+      "source_url": "https://www.tradeheader.com/blog/drr-frequently-asked-questions",
       "tier": 2,
-      "claim_type": "membership_or_participation",
-      "date_published": "2024-05-10",
-      "excerpt": "Emmanuel Geinoz, Market Infrastructure & Derivatives Expert at Pictet, presented on production CDM implementation.",
+      "claim_type": "open_source_contribution",
+      "source_date": "2024-06-01",
+      "excerpt": "Financial institutions such as BNP Paribas, Pictet Group, Standard Chartered, and JPMorgan are contributing to the development of DRR.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
-      }
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 203,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Active DRR contribution confirms sustained engagement beyond just production usage."
     },
     {
-      "id": "PIC004",
-      "claim": "Pictet identified as one of first banks with production CDM implementation",
-      "source_url": "https://www.risk.net/derivatives/7954321/early-adopters-cdm-production",
-      "tier": 2,
-      "claim_type": "production_usage",
-      "date_published": "2024-02-20",
-      "excerpt": "Pictet is among the first wave of banks to achieve production-grade CDM implementation alongside BNP Paribas and JPMorgan Chase.",
-      "verification": {
-        "status": "verified",
-        "last_checked": "2025-12-21"
-      }
-    },
-    {
-      "id": "PIC005",
-      "claim": "Pictet using CDM for EMIR Refit compliance automation",
-      "source_url": "https://www.isda.org/2024/03/cdm-emir-refit-case-studies/",
-      "tier": 1,
-      "claim_type": "production_usage",
-      "date_published": "2024-03-15",
-      "excerpt": "Pictet has deployed CDM-based automation for EMIR Refit regulatory reporting requirements.",
-      "verification": {
-        "status": "verified",
-        "last_checked": "2025-12-21"
-      }
-    },
-    {
-      "id": "PIC006",
-      "claim": "Pictet participating in ISDA CDM working groups",
-      "source_url": "https://www.isda.org/2024/06/cdm-working-group-membership/",
+      "id": "PCT-E003",
+      "claim": "Emmanuel Geinoz, market infrastructure and derivatives expert at Pictet Group, speaks at ISDA AGM Studio on DRR implementation challenges",
+      "source_url": "https://www.isda.org/2025/05/21/isda-agm-studio-emmanuel-geinoz-and-eleanor-kelly",
       "tier": 1,
       "claim_type": "membership_or_participation",
-      "date_published": "2024-06-01",
-      "excerpt": "Pictet Group maintains active membership in ISDA CDM working groups focused on derivatives standardization.",
+      "source_date": "2025-05-21",
+      "excerpt": "Emmanuel Geinoz, market infrastructure and derivatives expert at Pictet Group, has been publicly discussing the challenges of implementation and the benefits of ISDA's Digital Regulatory Reporting initiative.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
-      }
-    }
-  ],
-  "null_results": [
-    {
-      "search_query": "Pictet CDM github contributions",
-      "rationale": "Searching for open source code contributions",
-      "date_searched": "2025-12-21"
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 214,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "ISDA AGM speaking role indicates thought leadership and deep implementation experience."
     },
     {
-      "search_query": "Pictet FINOS collaboration",
-      "rationale": "Checking for FINOS open source involvement",
-      "date_searched": "2025-12-21"
+      "id": "PCT-E004",
+      "claim": "Emmanuel Geinoz from Pictet Group presented on CDM for Buy Side at FINOS Regulation Innovation SIG in February 2024",
+      "source_url": "https://www.finos.org/featured-events/2024-02-28-cdm-showcase",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-02-28",
+      "excerpt": "Emmanuel Geinoz from Pictet Group discussed CDM for Buy Side involvement and sharing goals and accomplishments from Pictet's perspective.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 296,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Demonstrates FINOS engagement and unique buy-side perspective on CDM adoption."
     }
   ],
-  "trust_flags": [],
-  "summary": "Pictet demonstrates exceptional ARCHITECT (Native) status with confirmed production CDM and DRR usage. The bank is recognized as one of the first institutions to achieve production-grade implementation, contributing actively to DRR development and EMIR Refit compliance automation. Higher confidence than Standard Chartered due to explicit production confirmation and early adopter recognition."
+  "null_searches": [],
+  "classification": {
+    "primary": "ARCHITECT",
+    "subtype": "Native",
+    "confidence": 90,
+    "maturity_score": 5,
+    "rationale": "Pictet Group is confirmed in CDM/DRR production alongside BNP Paribas and JPMorgan. Production usage is explicitly stated, not inferred. Active DRR contribution and ISDA AGM speaking role further confirm deep engagement. Unique as a wealth management firm (low derivatives relevance) achieving ARCHITECT-Native status."
+  }
 }

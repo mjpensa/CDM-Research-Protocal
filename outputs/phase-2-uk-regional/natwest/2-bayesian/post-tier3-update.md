@@ -1,60 +1,62 @@
-# Bayesian Update: Post-Tier 3 Evidence: NatWest Group PLC
+# NatWest Group - Post-Tier 3 Bayesian Update
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Prior Probability
-
-P(ARCHITECT) prior: 0%
+## Prior (from Tier 2)
+| Classification | Prior |
+|----------------|-------|
+| ARCHITECT | 7% |
+| PRAGMATIST | 93% |
+| OBSERVER | <1% |
 
 ## Tier 3 Evidence Summary
+| Evidence | LR(ARCHITECT) | LR(PRAGMATIST) |
+|----------|---------------|----------------|
+| Quant Analyst Hiring (Python/C++) | 1.0 | 1.0 |
 
-No Tier 3 evidence found.
+## Likelihood Ratio Analysis
 
-## Likelihood Ratio Calculation
-
-```
-Combined LR = 1.0 (no evidence)
-```
+### Quant Analyst Hiring (LR_A=1.0, LR_P=1.0)
+- Standard derivatives technology roles
+- Python and C++ are common in financial services
+- No CDM-specific requirements in postings
+- Neutral evidence - doesn't distinguish classifications
 
 ## Posterior Calculation
 
-```
-Prior odds = 0.22 / 0.78 = 0.282
-Posterior odds = 0.282 × 0.578 = 0.163
-Posterior P(ARCHITECT) = 0.163 / (1 + 0.163) = 0.140 = 14.0%
-```
+### Combined LR (Tier 3)
+| Classification | Combined LR |
+|----------------|-------------|
+| ARCHITECT | 1.0 |
+| PRAGMATIST | 1.0 |
 
-## Updated Probabilities
+### Normalized Posterior (unchanged)
+| Classification | Posterior |
+|----------------|-----------|
+| ARCHITECT | 7% |
+| PRAGMATIST | 93% |
+| OBSERVER | <1% |
 
+## Final Probability Assessment
+
+Given the limited Tier 3 signal, apply confidence adjustment:
+
+| Classification | Raw Posterior | Adjusted |
+|----------------|---------------|----------|
+| ARCHITECT | 7% | 10% |
+| PRAGMATIST | 93% | 88% |
+| OBSERVER | <1% | 2% |
+
+**Reasoning**: Slight regression toward mean due to:
+1. Active FINOS engagement suggests above-average awareness
+2. Could pivot to CDM if business case emerges
+3. But no current CDM signals
+
+## Summary
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 0% |
-| P(PRAGMATIST) | 0% |
-| Confidence | 0% |
-
-## Key Insights
-
-1. **No Implementation Signals**: Complete absence of hiring, employee advocacy, and GitHub activity
-2. **FINOS Paradox Confirmed**: GitHub activity for Fluxnova BUT NOT for CDM reinforces deliberate choice
-3. **Pilot Abandonment**: No signals of continued work after 2019 pilot
-4. **Strategic Focus Elsewhere**: Resources directed to non-CDM initiatives (Fluxnova, retail banking)
-
-## Cumulative Evidence Summary
-
-**Net Combined LR (All Tiers)**: 1.68 × 0.648 × 0.578 = **0.629**
-
-**Final Assessment**: The evidence trajectory consistently points toward PRAGMATIST classification. The initial increase from historical pilot participation was offset by comprehensive absence of follow-through signals across all evidence tiers.
-
-## Final Confidence Assessment
-
-- **Tier 3 Evidence Quality**: Moderate (consistent pattern of informative absences)
-- **Highest Tier Cap**: 95% (Tier 1 present)
-- **Applied Confidence**: 55% (strong pattern across all tiers, but reliance on absences)
+| P(ARCHITECT) | 10% |
+| P(PRAGMATIST) | 88% |
+| Classification | PRAGMATIST |
+| Sub-Classification | Ecosystem (Active Contributor) |
 
 ---
-
-*Proceeding to adversarial review.*
+*Generated: 2025-12-21*

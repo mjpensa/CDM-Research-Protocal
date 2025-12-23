@@ -1,0 +1,53 @@
+{
+  "bank_id": "citigroup",
+  "bank_name": "Citigroup Inc.",
+  "phase": 8,
+  "last_updated": "2025-12-21",
+  "evidence_items": [
+    {
+      "id": "CITI-E001",
+      "claim": "Citi is among G-SIB backers of digital derivatives reporting project",
+      "source_url": "https://jwg-it.eu/article/g-sibs-back-digital-derivatives-reporting-programme-to-be-online-for-emir-refit/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Bank of America Merrill Lynch, BNP Paribas, Citi, Deutsche Bank, Goldman Sachs and JPMorgan are among the project's backers; Bloomberg is also participating. The project is training 25 G-SIB-supplied specialists to study the data fields required for the EMIR refit implementation.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "CITI-E002",
+      "claim": "Citi sponsored first FINOS hackathon in India",
+      "source_url": "https://www.finos.org/newsletter/2024-10-23",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "Citi is proud to launch the very first FINOS supported hackathon in India! This hybrid event is open to employees from FINOS Member Companies and students in India.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    },
+    {
+      "id": "CITI-E003",
+      "claim": "Citi participates in FINOS AI governance framework",
+      "source_url": "https://www.finos.org/blog/banks-harness-open-source-innovation-to-transform-regulatory-reporting",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "excerpt": "FINOS Members including Citi, Scott Logic, Morgan Stanley, ControlPlane, Microsoft, London Stock Exchange Group, Publicis Sapient, Databricks, EPAM and Provectus collaborate to develop a governance framework for the onboarding, development and running of AI-based solutions within financial services.",
+      "freshness": "current",
+      "date_collected": "2025-12-21",
+      "verified": true
+    }
+  ],
+  "classification": {
+    "value": "OBSERVER",
+    "subtype": "G-SIB Participant",
+    "confidence": 0.55,
+    "maturity_score": 1
+  },
+  "flags": [
+    "g_sib_drr_project",
+    "finos_member",
+    "no_production_claims",
+    "no_major_contribution"
+  ]
+}

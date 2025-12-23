@@ -1,50 +1,46 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment: NatWest Group PLC
+# NatWest Group - Gate 2
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
+## Current State
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 22% |
-| P(PRAGMATIST) | 78% |
-| Confidence | 45% |
+| P(ARCHITECT) | 7% |
+| P(PRAGMATIST) | 93% |
+| Tier 2 Items | 3 |
 
-## Gate Decision Criteria
+## Gate 2 Criteria Evaluation
 
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-- Current P(ARCHITECT) = 22% → **Slightly above 20% threshold**
+### 1. Evidence Corroboration
+- **FINOS engagement**: Corroborated (membership + presentations + contributions)
+- **Derivatives business**: Corroborated (annual reports + services)
+- **Open source culture**: Corroborated (OSFF + Git Proxy + Fluxnova)
 
-## Decision: PROCEED TO TIER 3
+**Verdict**: PASS - Multiple independent confirmations
 
-**Rationale**: Per protocol to process all tiers.
+### 2. Pattern Consistency
+- Tier 1: Active FINOS contributor
+- Tier 2: Strong open source visibility, traditional reporting
+- Pattern: "Active FINOS, CDM Absent"
 
-## Evidence Trajectory Analysis
+**Verdict**: PASS - Consistent pattern emerging
 
-N/A
+### 3. Classification Stability
+- Post-Tier 1: 84% PRAGMATIST
+- Post-Tier 2: 93% PRAGMATIST
+- Change: +9% (continued drift in same direction)
 
-## Evidence Quality Assessment
+**Verdict**: PASS - Stable classification
 
-### Strengths
-- Comprehensive Tier 2 searches conducted (Risk.net, Waters Tech, FT)
-- Consistent pattern of no CDM coverage since 2019
-- No vendor partnership announcements found
+### 4. Coverage Assessment
+- ✓ FINOS membership status
+- ✓ FINOS contribution activity
+- ✓ Historical regulatory pilot
+- ✓ Current derivatives business
+- ✗ CDM-specific evidence (null result expected)
 
-### Weaknesses
-- Reliance on informative absences rather than positive evidence
-- Possibility of silent implementation remains
+**Verdict**: PASS - Comprehensive coverage
 
-## Key Questions for Tier 3
-
-1. Are there job postings indicating CDM hiring intent?
-2. Do NatWest Markets employees list CDM experience on LinkedIn?
-3. Is there GitHub CDM activity from NatWest accounts?
+## Gate Decision
+**PROCEED TO TIER 3** - Classification stabilizing at PRAGMATIST (Ecosystem).
 
 ---
-
-*Gate 2 passed. Proceeding to tier 3 evidence gathering.*
+*Generated: 2025-12-21*

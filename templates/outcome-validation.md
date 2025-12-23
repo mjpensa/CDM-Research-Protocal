@@ -14,7 +14,7 @@ Use this template to record when a prediction can be validated against an actual
 |-------|-------|
 | **Bank ID** | [e.g., deutsche-bank] |
 | **Assessment Date** | [YYYY-MM-DD] |
-| **Phase** | [e.g., phase-1-european-tier-1] |
+| **Phase** | [e.g., phase-1-european-tier1] |
 | **Classification** | [ARCHITECT-Native / ARCHITECT-Leader / ARCHITECT-Follower / PRAGMATIST] |
 | **Confidence** | [X]% |
 | **Implied Probability (ARCHITECT)** | [X/100] |

@@ -1,0 +1,52 @@
+{
+  "bank_id": "unicredit",
+  "bank_name": "UniCredit",
+  "phase": 4,
+  "phase_name": "Other European",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional (European Focus)",
+  "confidence": 0.68,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.05,
+    "pragmatist": 0.82,
+    "observer": 0.13
+  },
+  "prior_probability": 0.25,
+  "evidence_count": {
+    "tier1": 4,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 3
+  },
+  "maturity_score": 1,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre-mortem",
+    "tier1-search",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-search",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-search",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial",
+    "synthesis"
+  ],
+  "key_findings": [
+    "NOT a FINOS member",
+    "Former ISDA Board member: TJ Lim (2009-2018, 9 years)",
+    "TJ Lim stepped down from ISDA Board in 2018",
+    "NO current ISDA Board representation",
+    "Deliberately rejected CFTC swap dealer registration (2017)",
+    "European market focus only",
+    "TJ Lim now Group CRO (internal focus)",
+    "No CDM/DRR evidence found"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "UniCredit shows deliberate governance disengagement. TJ Lim served 9 years on ISDA Board but stepped down 2018. Bank rejected US market. European focus only - unique among Phase 4 banks."
+}

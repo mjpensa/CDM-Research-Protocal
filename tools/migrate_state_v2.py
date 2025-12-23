@@ -16,7 +16,7 @@ Usage:
     python tools/migrate_state_v2.py outputs/ --backup-dir migrations/backup/
 
     # Migrate specific bank
-    python tools/migrate_state_v2.py outputs/phase-1-european-tier-1/deutsche-bank/
+    python tools/migrate_state_v2.py outputs/phase-1-european-tier1/deutsche-bank/
 
     # Show migration summary
     python tools/migrate_state_v2.py outputs/ --summary-only
@@ -478,7 +478,7 @@ Examples:
   python migrate_state_v2.py outputs/ --backup-dir migrations/backup/
 
   # Migrate specific bank folder
-  python migrate_state_v2.py outputs/phase-1-european-tier-1/deutsche-bank/
+  python migrate_state_v2.py outputs/phase-1-european-tier1/deutsche-bank/
 
   # Create version backups for existing files
   python migrate_state_v2.py outputs/ --create-version-backups

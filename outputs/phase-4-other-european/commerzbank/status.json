@@ -1,0 +1,52 @@
+{
+  "bank_id": "commerzbank",
+  "bank_name": "Commerzbank",
+  "phase": 4,
+  "phase_name": "Other European",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Traditional",
+  "confidence": 0.65,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.05,
+    "pragmatist": 0.87,
+    "observer": 0.08
+  },
+  "prior_probability": 0.25,
+  "evidence_count": {
+    "tier1": 6,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 3
+  },
+  "maturity_score": 1,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre-mortem",
+    "tier1-search",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-search",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-search",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial",
+    "synthesis"
+  ],
+  "key_findings": [
+    "NOT a FINOS member",
+    "CFTC registered swap dealer since December 31, 2012",
+    "$12M CFTC penalty in 2018 for swap dealing violations",
+    "ISDA member (standard, not Board)",
+    "NO ISDA Board representation",
+    "No CDM/DRR evidence found",
+    "Traditional pattern - same as ING, SMBC",
+    "Deutsche Bank contrast: same market, different approach"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "Commerzbank shows Traditional pattern. 2018 CFTC enforcement ($12M) likely focused resources on compliance remediation rather than innovation. Stark contrast with Deutsche Bank (same market, FINOS Platinum)."
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "Entity Registry - Consultants v1.0",
+  "entity_type": "consultant",
+  "description": "Consulting firms advising on derivatives technology, regulation, and strategy",
+  "count": 5,
+  "last_updated": "2025-12-22",
+
+  "entities": [
+    {
+      "entity_id": "oliver-wyman",
+      "entity_name": "Oliver Wyman",
+      "headquarters": "New York, USA",
+      "parent_company": "Marsh McLennan",
+      "description": "Strategy consulting firm with deep capital markets practice",
+      "specializations": ["capital_markets", "derivatives", "regulatory_strategy"],
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Track Oliver Wyman CDM/DRR advisory and thought leadership",
+        "key_questions": [
+          "What CDM/DRR advisory work has Oliver Wyman published?",
+          "Which banks use Oliver Wyman for derivatives strategy?",
+          "What thought leadership exists on CDM adoption?",
+          "Who are key derivatives partners/principals?"
+        ]
+      }
+    },
+    {
+      "entity_id": "mckinsey",
+      "entity_name": "McKinsey & Company",
+      "headquarters": "New York, USA",
+      "parent_company": null,
+      "description": "Global strategy consulting firm",
+      "specializations": ["banking", "technology_transformation", "regulatory"],
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Track McKinsey capital markets and regulatory advisory",
+        "key_questions": [
+          "What McKinsey publications address derivatives technology?",
+          "What is McKinsey stance on CDM/standards adoption?",
+          "Which banks use McKinsey for derivatives transformation?"
+        ]
+      }
+    },
+    {
+      "entity_id": "accenture",
+      "entity_name": "Accenture",
+      "headquarters": "Dublin, Ireland",
+      "parent_company": null,
+      "description": "Technology and consulting services firm",
+      "specializations": ["technology_implementation", "capital_markets", "regulatory"],
+      "cdm_relevance": "high",
+      "research_objective": {
+        "primary_goal": "Track Accenture CDM/DRR implementation capabilities",
+        "key_questions": [
+          "What CDM implementation services does Accenture offer?",
+          "Which banks use Accenture for derivatives technology?",
+          "What partnerships exist with CDM vendors (REGnosys, Delta Capita)?",
+          "What thought leadership exists on regulatory reporting?"
+        ]
+      }
+    },
+    {
+      "entity_id": "capgemini",
+      "entity_name": "Capgemini",
+      "headquarters": "Paris, France",
+      "parent_company": null,
+      "description": "Technology consulting and services firm",
+      "specializations": ["technology_services", "capital_markets", "regulatory"],
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Assess Capgemini derivatives and regulatory capabilities",
+        "key_questions": [
+          "What derivatives technology services does Capgemini offer?",
+          "What regulatory reporting capabilities exist?",
+          "Is CDM/DRR implementation part of service offering?"
+        ]
+      }
+    },
+    {
+      "entity_id": "deloitte",
+      "entity_name": "Deloitte",
+      "headquarters": "London, UK",
+      "parent_company": null,
+      "description": "Professional services firm with regulatory and technology practices",
+      "specializations": ["regulatory", "risk", "technology_advisory"],
+      "cdm_relevance": "medium",
+      "research_objective": {
+        "primary_goal": "Track Deloitte derivatives regulatory advisory",
+        "key_questions": [
+          "What Deloitte publications address derivatives regulation?",
+          "What EMIR/CFTC advisory services does Deloitte offer?",
+          "Is CDM/DRR part of Deloitte service offering?"
+        ]
+      }
+    }
+  ]
+}

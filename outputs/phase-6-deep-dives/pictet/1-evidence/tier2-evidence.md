@@ -1,67 +1,44 @@
-# Tier 2 Evidence: Pictet Group
+# Tier 2 Evidence: Pictet
 
-**Bank:** Pictet Group
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
+**Bank**: Pictet Group
+**Phase**: 6 (Deep Dives)
+**Date**: 2025-12-21
+**Tier**: 2 - Partner/Ecosystem Sources
+
+---
+
+## Summary
+
+Tier 2 evidence provides additional confirmation of DRR contribution and FINOS engagement.
 
 ---
 
-## Search Execution Summary
+## Evidence Items
 
-| Metric | Value |
-|--------|-------|
-| Date | 2025-12-21 |
-| Evidence Items Found | 2 |
-| Schema Version | 4.3 |
-
-## Evidence Inventory
-
-### PIC-004: Early Adopter Recognition
+### PCT-E002: DRR Development Contribution
 
 | Field | Value |
 |-------|-------|
-| Source | N/A |
-| Date | N/A |
-| Tier | 1 |
-| Claim Type | N/A |
-| Direction | NEUTRAL |
-| LR | 1.0 |
+| **Claim** | Pictet is contributing to DRR development alongside BNP, Standard Chartered, JPMorgan |
+| **Source** | [TradeHeader DRR FAQ](https://www.tradeheader.com/blog/drr-frequently-asked-questions) |
+| **Claim Type** | `open_source_contribution` |
 
-**Excerpt:** N/A
-
-**Analysis:** N/A
-
-**Quality Assessment:**
-- Authority: N/A
-- Recency: N/A
-- Specificity: N/A
-
-**Caveats:** N/A
-
-### PIC-003: Emmanuel Geinoz at ISDA CDM Symposium
-
-| Field | Value |
-|-------|-------|
-| Source | N/A |
-| Date | N/A |
-| Tier | 1 |
-| Claim Type | N/A |
-| Direction | NEUTRAL |
-| LR | 1.0 |
-
-**Excerpt:** N/A
-
-**Analysis:** N/A
-
-**Quality Assessment:**
-- Authority: N/A
-- Recency: N/A
-- Specificity: N/A
-
-**Caveats:** N/A
-
-## Informative Absences
-
-N/A
+**Analysis**: Active contribution, not just usage. Demonstrates sustained engagement.
 
 ---
+
+### PCT-E004: FINOS CDM Showcase Presentation
+
+| Field | Value |
+|-------|-------|
+| **Claim** | Emmanuel Geinoz presented "CDM for Buy Side" at FINOS Regulation Innovation SIG |
+| **Source** | [FINOS CDM Showcase](https://www.finos.org/featured-events/2024-02-28-cdm-showcase) |
+| **Claim Type** | `membership_or_participation` |
+
+**Analysis**: Unique buy-side perspective demonstrates Pictet's distinct approach to CDM.
+
+---
+
+## Tier 2 Conclusion
+
+Corroborating evidence supports ARCHITECT (Native) classification.

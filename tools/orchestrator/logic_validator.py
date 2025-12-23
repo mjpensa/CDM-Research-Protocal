@@ -12,7 +12,7 @@ Usage:
         bank_id="deutsche-bank",
         phase=1,
         stage="bayesian_1",
-        bank_dir=Path("outputs/phase-1-european-tier-1/deutsche-bank"),
+        bank_dir=Path("outputs/phase-1-european-tier1/deutsche-bank"),
         state=bank_state
     )
 

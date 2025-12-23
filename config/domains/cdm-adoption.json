@@ -1,0 +1,210 @@
+{
+  "$schema": "Domain Configuration v1.0",
+  "domain_id": "cdm_adoption",
+  "display_name": "CDM/DRR Adoption",
+  "description": "ISDA Common Domain Model and Digital Regulatory Reporting adoption tracking",
+  "version": "1.0",
+  "last_updated": "2025-12-22",
+
+  "workflow": {
+    "type": "full",
+    "stages": 14,
+    "description": "Full 14-stage Bayesian workflow with adversarial review",
+    "stages_list": [
+      "initialize", "tier1_collection", "bayesian_update_1", "gate_1",
+      "tier2_collection", "bayesian_update_2", "gate_2",
+      "tier3_collection", "bayesian_update_3", "gate_3",
+      "pre_mortem", "adversarial", "synthesis", "report"
+    ]
+  },
+
+  "applicable_entity_types": ["bank", "vendor", "ccp"],
+
+  "source_authority": {
+    "tier1": {
+      "description": "Official sources with highest authority",
+      "max_confidence": 0.95,
+      "sources": [
+        "Bank official domain announcements",
+        "ISDA official publications (isda.org)",
+        "FINOS official repositories (finos.org, github.com/finos)",
+        "Regulatory filings (SEC, FCA, BaFin, ESMA)",
+        "Annual reports with CDM/DRR references"
+      ]
+    },
+    "tier2": {
+      "description": "Partner/ecosystem sources",
+      "max_confidence": 0.75,
+      "sources": [
+        "Trade press: Risk.net, Waters Technology, Financial News London",
+        "Business press: FT, Bloomberg, Reuters, WSJ",
+        "Conference presentations and speaker listings",
+        "Vendor press releases (with bank confirmation)",
+        "Analyst reports (McKinsey, Oliver Wyman)"
+      ]
+    },
+    "tier3": {
+      "description": "Signal sources with lower authority",
+      "max_confidence": 0.50,
+      "sources": [
+        "Job postings mentioning CDM/ISDA/DRR",
+        "LinkedIn profiles and posts",
+        "Blogs and Medium articles",
+        "Substack newsletters"
+      ]
+    }
+  },
+
+  "classification_taxonomy": [
+    {
+      "id": "architect_native",
+      "label": "ARCHITECT (Native)",
+      "description": "Live CDM usage in production environment",
+      "maturity_score": 5,
+      "evidence_required": ["production_usage"]
+    },
+    {
+      "id": "architect_active",
+      "label": "ARCHITECT (Active)",
+      "description": "Pilot or POC with production commitment",
+      "maturity_score": 3,
+      "evidence_required": ["pilot_or_poc"]
+    },
+    {
+      "id": "pragmatist_ecosystem",
+      "label": "PRAGMATIST (Ecosystem)",
+      "description": "Contributing to CDM development",
+      "maturity_score": 2,
+      "evidence_required": ["open_source_contribution"]
+    },
+    {
+      "id": "pragmatist_vendor",
+      "label": "PRAGMATIST (Vendor)",
+      "description": "CDM through vendor relationship",
+      "maturity_score": 2,
+      "evidence_required": ["vendor_proxy_signal"]
+    },
+    {
+      "id": "observer",
+      "label": "OBSERVER",
+      "description": "Working group participation or hiring signals only",
+      "maturity_score": 1,
+      "evidence_required": ["membership_or_participation", "hiring_signal"]
+    },
+    {
+      "id": "unknown",
+      "label": "UNKNOWN",
+      "description": "No verified evidence",
+      "maturity_score": 0,
+      "evidence_required": []
+    }
+  ],
+
+  "claim_types": [
+    {
+      "id": "production_usage",
+      "label": "Production Usage",
+      "description": "Live usage in production environment",
+      "tier_required": [1, 2],
+      "triggers_classification": "architect_native"
+    },
+    {
+      "id": "pilot_or_poc",
+      "label": "Pilot or POC",
+      "description": "Experimental usage or proof of concept",
+      "tier_required": [1, 2],
+      "triggers_classification": "architect_active"
+    },
+    {
+      "id": "membership_or_participation",
+      "label": "Membership/Participation",
+      "description": "Working group member without technical artifacts",
+      "tier_required": [1, 2],
+      "triggers_classification": "observer"
+    },
+    {
+      "id": "open_source_contribution",
+      "label": "Open Source Contribution",
+      "description": "Code commits to CDM/FINOS repositories",
+      "tier_required": [1],
+      "triggers_classification": "pragmatist_ecosystem"
+    },
+    {
+      "id": "vendor_proxy_signal",
+      "label": "Vendor Proxy Signal",
+      "description": "Implied usage via vendor relationship",
+      "tier_required": [2],
+      "triggers_classification": "pragmatist_vendor"
+    },
+    {
+      "id": "hiring_signal",
+      "label": "Hiring Signal",
+      "description": "Job postings indicating intent",
+      "tier_required": [3],
+      "triggers_classification": "observer"
+    }
+  ],
+
+  "key_questions": [
+    "Has the entity announced any CDM/DRR initiatives?",
+    "Is the entity contributing to CDM development at ISDA or FINOS?",
+    "How did the entity address EMIR Refit / CFTC Rewrite requirements?",
+    "What vendor relationships exist for CDM/DRR?",
+    "Are there named individuals involved in CDM working groups?",
+    "What is the production timeline for CDM deployment?"
+  ],
+
+  "regulatory_drivers": [
+    {
+      "id": "emir_refit",
+      "name": "EMIR Refit",
+      "jurisdiction": "EU",
+      "effective_date": "2024-04-29",
+      "description": "EU derivatives reporting overhaul"
+    },
+    {
+      "id": "uk_emir",
+      "name": "UK EMIR",
+      "jurisdiction": "UK",
+      "effective_date": "2024-09-30",
+      "description": "UK post-Brexit derivatives reporting"
+    },
+    {
+      "id": "cftc_rewrite",
+      "name": "CFTC Rewrite",
+      "jurisdiction": "US",
+      "effective_date": "2024-2025",
+      "description": "US swap data reporting overhaul"
+    },
+    {
+      "id": "jscc_cdm",
+      "name": "JSCC CDM",
+      "jurisdiction": "Japan",
+      "effective_date": "2025-06-01",
+      "description": "JSCC CDM production go-live"
+    }
+  ],
+
+  "anchor_points": [
+    {
+      "anchor": "BNP Paribas",
+      "fact": "First major bank in CDM production (Q3 2022)",
+      "check": "No bank can claim earlier major bank production"
+    },
+    {
+      "anchor": "JPMorgan",
+      "fact": "CDM production announced October 2024",
+      "check": "Validates US bank CDM adoption"
+    },
+    {
+      "anchor": "JSCC",
+      "fact": "CDM production June 2025",
+      "check": "Structural forcing function for Japanese banks"
+    },
+    {
+      "anchor": "Total in production",
+      "fact": "4 firms globally (BNP, JPM, JSCC, Pictet)",
+      "check": "Production claims require extraordinary evidence"
+    }
+  ]
+}

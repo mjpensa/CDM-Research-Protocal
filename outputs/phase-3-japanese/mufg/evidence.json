@@ -1,0 +1,95 @@
+{
+  "bank_id": "mufg",
+  "bank_name": "Mitsubishi UFJ Financial Group",
+  "phase": 3,
+  "last_updated": "2025-12-21T15:00:00Z",
+  "evidence_items": [
+    {
+      "id": "MUFG_T1_001",
+      "claim": "Koichiro Funayama (MD, Head of Derivatives Business Strategy, MUMSS) joined ISDA Board in May 2025",
+      "source_url": "https://www.isda.org/2025/05/13/four-directors-join-isda-board-2/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-05-13",
+      "excerpt": "Funayama took on his current role in May 2025, having previously served as Head of Derivatives Trading Office. He joined MUFG Bank in 2001."
+    },
+    {
+      "id": "MUFG_T1_002",
+      "claim": "MUFG is NOT a FINOS member - not listed on FINOS members page",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-12-21",
+      "excerpt": "MUFG, Mitsubishi UFJ, or any MUFG subsidiary is not listed among FINOS Platinum, Gold, Silver, or Associate members."
+    },
+    {
+      "id": "MUFG_T2_001",
+      "claim": "MUFG operates Progmat digital securities platform for tokenized securities and stablecoins",
+      "source_url": "https://www.ledgerinsights.com/mufg-progmat-security-token-digital-asset-joint-venture/",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "MEDIUM-HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-10-01",
+      "excerpt": "MUFG initially developed Progmat as an enterprise blockchain network for tokenized securities, including bonds, equities, and other digital assets."
+    },
+    {
+      "id": "MUFG_T2_002",
+      "claim": "MUFG is Japan's largest bank with active derivatives operations (Risk.net coverage)",
+      "source_url": "https://www.risk.net/organisations/mitsubishi-ufj-financial-group-mufg",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "MEDIUM-HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-01-01",
+      "excerpt": "MUFG lowered credit and CCR charges the most among Japan's top dealers. MUFG's derivatives portfolio consists of interest rate and FX transactions."
+    },
+    {
+      "id": "MUFG_T2_003",
+      "claim": "MUFG subject to JFSA derivatives reporting requirements (April 2024 rewrite)",
+      "source_url": "https://www.lseg.com/en/post-trade/regulatory-reporting/regulation/jfsa-reporting",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-04-01",
+      "excerpt": "Japan Financial Services Agency (JFSA) reporting regulation went into effect April 1, 2024 with ISO 20022 messaging and 139 reporting fields."
+    }
+  ],
+  "null_results": [
+    {
+      "search_query": "MUFG FINOS membership CDM contribution",
+      "expected_finding": "FINOS membership or CDM contribution",
+      "actual_result": "MUFG is NOT a FINOS member. No CDM contribution found.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "MUFG CDM production deployment",
+      "expected_finding": "CDM implementation in production",
+      "actual_result": "No evidence. Digital focus is on Progmat (security tokens), not CDM.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "MUFG ISDA DRR adoption",
+      "expected_finding": "ISDA DRR adoption announcement",
+      "actual_result": "No evidence of ISDA DRR adoption despite ISDA Board presence.",
+      "search_date": "2025-12-21"
+    }
+  ],
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "ISDA Governance (Board Member)",
+    "confidence": 0.70,
+    "engagement_type": "isda_governance"
+  }
+}

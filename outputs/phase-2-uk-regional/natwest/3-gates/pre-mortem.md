@@ -1,81 +1,49 @@
-# Pre-Mortem Analysis: NatWest Group PLC
+# NatWest Group - Pre-Mortem Analysis
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
+## Bank Profile
+| Attribute | Value |
+|-----------|-------|
+| **Bank** | NatWest Group (formerly Royal Bank of Scotland) |
+| **Headquarters** | Edinburgh, UK |
+| **Type** | Universal bank (retail/commercial focus) |
+| **Prior P(ARCHITECT)** | 25% |
 
----
+## Pre-Mortem: Why Classification Might Fail
 
-## Research Objective
+### Scenario 1: False Positive (ARCHITECT when actually PRAGMATIST)
+**Risk**: NatWest's legacy RBS investment banking unit (scaled down post-2008) may show historical CDM involvement that no longer reflects current state.
+**Mitigation**: Verify recency of any CDM evidence; post-restructuring focus is retail/commercial.
 
-**Primary Goal**: Assess NatWest Group's CDM adoption status for UK Regional bank classification
+### Scenario 2: False Negative (PRAGMATIST when actually ARCHITECT)
+**Risk**: NatWest may have quiet CDM adoption through UK regulatory compliance (EMIR Refit) without public announcement.
+**Mitigation**: Search for FCA/BOE regulatory sandboxes, DRR pilot participation.
 
-**Key Questions**:
-1. Did NatWest continue CDM work after 2018-2019 FCA/BoE DRR pilot?
-2. Is NatWest contributing to FINOS CDM despite other FINOS participation?
-3. How is NatWest addressing EMIR Refit compliance?
-4. What is NatWest's derivatives technology strategy?
-5. Does NatWest's retail focus reduce CDM priority?
+### Scenario 3: Missing Evidence
+**Risk**: UK domestic focus may mean less visibility in international CDM coverage.
+**Mitigation**: Focus on UK-specific sources (FCA, BOE, UK fintech press).
 
-## Potential Failure Modes
+## Key Search Hypotheses
 
-### 2.1 False Positive Risks (Wrongly classifying as ARCHITECT)
+### H1: FCA/BOE DRR Engagement
+NatWest may have participated in UK digital regulatory reporting pilots alongside other UK banks.
 
-| Risk | Description | Mitigation |
-|------|-------------|------------|
-| **Pilot Overweight** | Treating 2018-2019 pilot as evidence of current adoption | Apply temporal decay to historical evidence |
-| **FINOS Conflation** | Mistaking Fluxnova participation for CDM work | Verify CDM-specific contributions |
-| **UK Regulatory Pressure** | Assuming FCA DRR pilot led to production | Search for post-pilot evidence |
-| **Retail Bank Underestimation** | Assuming CIB operations drive CDM adoption | Assess derivatives book size |
+### H2: FINOS Membership
+Check for FINOS membership status similar to Lloyds.
 
-### 2.2 False Negative Risks (Wrongly classifying as PRAGMATIST)
+### H3: ISDA Working Groups
+Check for ISDA working group participation despite lower derivatives exposure.
 
-| Risk | Description | Mitigation |
-|------|-------------|------------|
-| **Silent Implementation** | NatWest may not publicize CDM work | Search job postings, LinkedIn, vendor announcements |
-| **Subsidiary Fragmentation** | CDM work may be in specific business units | Search NatWest Markets separately |
-| **Post-Pilot Quiet Period** | Pilot may have led to internal build | Look for 2020-2025 activity |
+### H4: Technology Partners
+NatWest has partnerships with various technology vendors; check for CDM-related implementations.
 
-### 2.3 Evidence Quality Risks
+## Prediction
+| Classification | Probability |
+|----------------|-------------|
+| ARCHITECT | 25% |
+| PRAGMATIST | 65% |
+| OBSERVER | 10% |
 
-| Risk | Description | Mitigation |
-|------|-------------|------------|
-| **Stale Evidence** | 2019 pilot evidence is 5+ years old | Require recent corroboration |
-| **Retail Focus Bias** | Coverage may focus on retail operations | Target CIB/derivatives searches |
-
-## Search Strategy
-
-### Tier 1 (Official Sources)
-- NatWest official news/press releases
-- FCA DRR pilot documentation
-- FINOS.org contributor searches
-- GitHub finos/common-domain-model contributors
-- Annual Report 2023/2024 mentions
-
-### Tier 2 (Industry Sources)
-- Risk.net NatWest CDM/DRR coverage
-- Waters Technology derivatives technology
-- Financial News London coverage
-- Vendor announcements (Regnology, AxiomSL, DTCC)
-
-### Tier 3 (Signal Sources)
-- LinkedIn job postings (CDM, ISDA, DRR keywords)
-- LinkedIn profiles of NatWest Markets employees
-- Blog posts from employees
-
-## Key Hypotheses to Test
-
-N/A
-
-## Decision Points
-
-After each evidence tier, evaluate:
-1. **Probability Update**: How does evidence change P(ARCHITECT)?
-2. **Confidence Level**: Is evidence sufficient for classification?
-3. **Continue/Skip**: Does probability exceed 80% in either direction?
-
-## Null Hypothesis Reminder
-
-Assume NatWest Group PLC is PRAGMATIST until evidence proves otherwise.
+**Reasoning**: Lower derivatives exposure than Lloyds, less likely to have FINOS membership given retail focus post-RBS restructuring.
 
 ---
+*Pre-mortem generated: 2025-12-21*

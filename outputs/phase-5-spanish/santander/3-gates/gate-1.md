@@ -1,123 +1,94 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment: Banco Santander S.A.
+# Reasoning Gate 1: Post-Tier 1
 
-**Bank:** Banco Santander S.A.
-**Phase:** 5 - Spanish
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER 2
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 2
-
-### Q1: Did we search all relevant Tier 1 sources?
-
-**Sources Checked:**
-- ✅ fca.org.uk (UK regulator)
-- ✅ isda.org (standards body)
-- ✅ finos.org (open source foundation)
-- ✅ github.com/finos (code repositories)
-- ✅ santander.com (official bank domain)
-- ✅ esma.europa.eu (EU regulator)
-- ✅ cnmv.es (Spanish regulator)
-
-**Missing Sources?**
-- SEC.gov (US) - Lower priority (Spanish bank)
-- BaFin.de (Germany) - Checked, no results
-
-**Assessment:** ✅ PASS - Comprehensive Tier 1 search completed
+**Bank**: Banco Santander S.A.
+**Phase**: 5 (Spanish)
+**Date**: 2025-12-21
 
 ---
 
-### Q2: Is the evidence correctly categorized?
+## Gate Purpose
 
-**FCA DRR Pilot Evidence:**
-- **Correct Tier?** YES - FCA is official regulatory source (Tier 1)
-- **Correct Claim Type?** YES - Pilot participation = `pilot_or_poc`
-- **Correct Freshness?** YES - 2019 = >5 years = Historical (0.3 weight)
-
-**DRR vs. CDM Verification:**
-- Did FCA pilot use ISDA CDM? PARTIAL - DRR explored machine-readable regulation, which informed but predated widespread CDM adoption
-- Is this relevant to our scope? YES - DRR is in-scope per CLAUDE.md Section 4 (Digital Regulatory Reporting initiatives)
-
-**Assessment:** ✅ PASS - Evidence correctly categorized, though DRR/CDM relationship requires synthesis clarity
+Evaluate whether Tier 1 evidence is sufficient for classification or if additional tiers are required.
 
 ---
 
-### Q3: Are we correctly applying temporal discounting?
+## Evidence Inventory
 
-**Evidence Age Calculation:**
-- E001: 2019-06-01 → 2025-12-21 = 6.5 years
-- E002: 2019-12-01 → 2025-12-21 = 6.1 years
-
-**Correct Category:**
-- Both > 3 years → Historical
-- Weight multiplier: 0.3
-
-**Bayesian Impact:**
-- Historical evidence without recent corroboration significantly reduces adoption probability
-- Correctly decreased from 15% prior to 9.1% post-Tier 1
-
-**Assessment:** ✅ PASS - Temporal discounting correctly applied
+| ID | Claim | Type | Tier | Direction |
+|----|-------|------|------|-----------|
+| SANT-E002 | CFTC swap dealer registration | membership | 1 | Neutral |
+| SANT-E003 | FCM/CME clearing | membership | 1 | Neutral |
+| SANT-E005 | CFTC enforcement | membership | 1 | Negative |
+| Null | No FINOS membership | - | 1 | Negative |
+| Null | No ISDA Board | - | 1 | Negative |
 
 ---
 
-### Q4: Did we conduct sufficient null result searches?
+## Decision Criteria
 
-**Null Searches Documented:** 2 at Tier 1
+### Can we classify with Tier 1 alone?
 
-1. Recent CDM adoption (2023-2025) - santander.com, isda.org, finos.org
-2. FINOS membership and contributions - finos.org, github.com/finos
+| Question | Answer | Notes |
+|----------|--------|-------|
+| Is there production evidence? | No | No CDM production claims |
+| Is there FINOS contribution? | No | Not a FINOS member |
+| Is there ISDA governance role? | No | Not on Board/Steering |
+| Is there regulatory filing CDM mention? | No | CFTC filings standard format |
 
-**Adequacy Check:**
-- ✅ Searched for recent activity (disconfirms continuation)
-- ✅ Checked open-source participation
-- ✅ Documented absence as evidence
-
-**Missing Searches:**
-- Annual reports (Santander IR section) - Should check for CDM mentions
-- ISDA working groups - Should verify membership status
-
-**Assessment:** ⚠️ CONDITIONAL PASS - Add searches for:
-1. Santander annual reports (2022-2024) for CDM/DRR mentions
-2. ISDA working group membership verification
+**Answer**: No. Tier 1 evidence establishes derivatives presence but provides no CDM-specific signals.
 
 ---
 
-### Q5: What is our current classification trajectory?
+## Null Result Analysis
 
-**Post-Tier 1 Position:**
-- Historical pilot participation confirmed
-- No recent activity found
-- Bayesian probability: 9.1% (decreasing)
+### FINOS Membership
+- **Expected if ARCHITECT**: Strong expectation (80%)
+- **Observed**: Absent
+- **Interpretation**: Evidence against ARCHITECT
 
-**Likely Final Classification:**
-- **OBSERVER (Historical-Engagement)** - Most probable
-- Confidence: 40-60% range
-- Rationale: Documented past engagement without sustained adoption
+### ISDA Board/CDM Steering
+- **Expected if ARCHITECT-Leader**: Strong expectation (90%)
+- **Expected if ARCHITECT-Follower**: Moderate (40%)
+- **Observed**: Absent
+- **Interpretation**: Evidence against leadership role
 
-**Alternative Scenarios:**
-- If Tier 2 finds vendor implementation → PRAGMATIST (Vendor)
-- If Tier 2 finds recent announcement → Increase confidence
-- If all tiers null → Consider UNKNOWN vs. OBSERVER
-
-**Assessment:** ✅ PASS - Trajectory is sound
+### CFTC Enforcement Action
+- **Significance**: The September 2024 enforcement action for recordkeeping violations suggests technology infrastructure challenges. This is **negative evidence** for CDM adoption - organizations with modern CDM-based reporting infrastructure would be less likely to have such violations.
 
 ---
 
-*Gate 1 passed. Proceeding to tier 2 evidence gathering.*
+## Pre-Mortem Check
+
+Reviewing pre-mortem failure modes:
+
+| Risk | Realized? | Notes |
+|------|-----------|-------|
+| Vendor marketing conflation | No | No vendor claims found |
+| FINOS project confusion | No | No FINOS activity at all |
+| Retail banking noise | Partially | Coverage focused on retail |
+| Spanish language barrier | Possible | Only English searches conducted |
+
+---
+
+## Tier 2 Search Strategy
+
+Based on Tier 1 results, prioritize:
+
+1. **UK/EU regulatory pilot participation**: Check for DRR, FCA, BOE initiatives
+2. **Trade press coverage**: Risk.net, Waters Technology for any CDM mentions
+3. **Vendor relationships**: Murex, Calypso, REGnosys partnerships
+4. **Conference presentations**: ISDA events, Sibos
+
+---
+
+## Gate 1 Verdict
+
+| Criterion | Status |
+|-----------|--------|
+| Sufficient evidence for classification | ❌ No |
+| Proceed to Tier 2 | ✅ Yes |
+| Special searches required | Spanish-language queries recommended |
+
+**Decision**: **PROCEED TO TIER 2**
+
+**Rationale**: Tier 1 provides context (derivatives presence, regulatory challenges) but no CDM-specific evidence. Must search for ecosystem signals.

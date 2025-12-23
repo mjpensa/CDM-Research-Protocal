@@ -1,145 +1,111 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment: Banco Santander S.A.
+# Reasoning Gate 2: Post-Tier 2
 
-**Bank:** Banco Santander S.A.
-**Phase:** 5 - Spanish
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER 3
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Trajectory Analysis
-
-N/A
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 3
-
-### Q1: Were Tier 2 sources comprehensively searched?
-
-**Search Queries Used:**
-- "Santander ISDA CDM"
-- "Santander Common Domain Model"
-- "Santander derivatives reporting modernization"
-- "Santander EMIR Refit compliance"
-- "Santander UK DRR pilot outcomes"
-- "Banco Santander regulatory reporting technology"
-
-**Sources Checked:**
-- ✅ Risk.net (2019-2025 archives)
-- ✅ Waters Technology (2019-2025)
-- ✅ FN London (European banking coverage)
-- ✅ FT (Santander technology coverage)
-- ✅ Bloomberg Terminal searches
-- ✅ Reuters (regulatory compliance coverage)
-- ✅ Vendor press release databases
-
-**Missing Searches:**
-- Spanish trade press (banking technology publications)
-- Conference presentation databases (SIFMA, ISDA conferences)
-
-**Assessment:** ⚠️ CONDITIONAL - Should add Spanish-language sources
+**Bank**: Banco Santander S.A.
+**Phase**: 5 (Spanish)
+**Date**: 2025-12-21
 
 ---
 
-### Q2: Is null evidence being correctly interpreted?
+## Gate Purpose
 
-**Null Results Significance:**
-
-For a major European Tier 1 bank, the complete absence of Tier 2 coverage is highly diagnostic:
-
-**L(No Tier 2|Adoption) = 0.15**
-- CDM implementations at banks of Santander's size virtually always generate trade press coverage
-- Vendor partnerships are publicized
-- Regulatory compliance projects are covered
-
-**L(No Tier 2|No Adoption) = 0.95**
-- Expected outcome for non-adopters
-- Consistent with "historical pilot only" hypothesis
-
-**Bayesian Impact:**
-- Bayes Factor = 0.15/0.95 = 0.158 (strong negative evidence)
-- Probability decreased from 9.1% to 1.6%
-
-**Assessment:** ✅ PASS - Null evidence correctly interpreted as strong signal
+Evaluate whether Tier 2 evidence is sufficient for classification or if Tier 3 searches are required.
 
 ---
 
-### Q3: Did we search for DRR pilot outcomes specifically?
+## Evidence Inventory (Cumulative)
 
-**Pilot Retrospective Searches:**
-
-**Query:** "FCA DRR pilot outcomes Santander"
-**Sources:** FCA.org.uk, trade press
-**Results:** General pilot reports found, but no Santander-specific outcomes published
-
-**Query:** "Santander UK digital regulatory reporting results"
-**Sources:** Risk.net, FN London
-**Results:** No coverage of post-pilot implementation
-
-**Interpretation:**
-- Pilot participation documented (Tier 1)
-- No public reporting of pilot leading to production systems
-- Absence suggests pilot did not progress to adoption
-
-**Assessment:** ✅ PASS - Pilot outcomes adequately searched
+| ID | Claim | Type | Tier | Direction |
+|----|-------|------|------|-----------|
+| SANT-E001 | UK DRR pilot participation | pilot_or_poc | 2 | **Positive** |
+| SANT-E002 | CFTC swap dealer registration | membership | 1 | Neutral |
+| SANT-E003 | FCM/CME clearing | membership | 1 | Neutral |
+| SANT-E004 | ISDA protocol adherence | membership | 2 | Neutral |
+| SANT-E005 | CFTC enforcement | membership | 1 | Negative |
 
 ---
 
-### Q4: Have we differentiated Santander UK vs. parent company?
+## Key Finding: UK DRR Pilot
 
-**Entity-Specific Searches:**
+**Evidence**: Santander participated in UK Digital Regulatory Reporting pilot Phase 2 (February 2022) alongside FCA, BOE, Barclays, Credit Suisse, HSBC, NatWest, and Lloyds.
 
-**Santander UK:**
-- DRR pilot participant (confirmed)
-- No post-pilot CDM announcements
-- No vendor partnership announcements (2019-2025)
+**Significance**:
+- First direct CDM-related evidence for Santander
+- Demonstrates hands-on exposure to ISDA CDM 2.0
+- Peer cohort includes known ARCHITECT (Barclays)
 
-**Banco Santander (Parent/Spain):**
-- No CDM initiatives found
-- Not in FINOS membership
-- No ESMA/CNMV filing mentions of CDM
-
-**Assessment:** ✅ PASS - Both entities searched separately, both null
+**Limitations**:
+- Evidence is 35 months old (dated category)
+- Freshness weight: 0.5
+- No visible follow-through since 2022
 
 ---
 
-### Q5: Are there unexplored Tier 2 avenues?
+## Decision Criteria
 
-**Potential Gaps:**
+### Can we classify with Tier 1+2?
 
-1. **Conference Presentations:**
-   - ISDA AGM speaker lists (2019-2025)
-   - SIFMA Ops Conference
-   - European Financial Services Conference
-   - **Action:** Check conference proceedings
+| Question | Answer | Notes |
+|----------|--------|-------|
+| Is there CDM engagement evidence? | Yes | DRR pilot participation |
+| Is evidence current? | No | Dated (35 months) |
+| Is there corroboration? | No | Single source |
+| Is there follow-through? | No | No recent activity |
 
-2. **Spanish Trade Press:**
-   - Expansión (Spanish business daily)
-   - Cinco Días (banking coverage)
-   - **Action:** Search Spanish-language sources
+**Provisional Classification**: PRAGMATIST (Ecosystem)
 
-3. **Vendor Case Studies:**
-   - Vendor white papers mentioning clients
-   - Implementation partner case studies
-   - **Action:** Check consulting firm publications
-
-**Assessment:** ⚠️ PARTIAL - Some Tier 2 avenues unexplored
+**Confidence Level**: 55-60% (capped by dated evidence)
 
 ---
 
-*Gate 2 passed. Proceeding to tier 3 evidence gathering.*
+## Freshness Analysis
+
+| Evidence | Age (days) | Category | Weight |
+|----------|-----------|----------|--------|
+| SANT-E001 (DRR pilot) | 1,054 | Dated | 0.5 |
+| SANT-E002 (CFTC reg) | 173 | Current | 1.0 |
+| SANT-E003 (FCM) | 20 | Current | 1.0 |
+| SANT-E004 (ISDA protocol) | 4,538 | Historical | 0.3 |
+| SANT-E005 (Enforcement) | 108 | Current | 1.0 |
+
+**Issue**: The only CDM-specific evidence (DRR pilot) is dated. Current evidence relates to derivatives operations, not CDM.
+
+---
+
+## Corroboration Check
+
+| Claim | Sources | Status |
+|-------|---------|--------|
+| DRR pilot participation | 1 (Regulation Asia) | ⚠️ Single source |
+| CFTC registration | Multiple official | ✅ Corroborated |
+| Enforcement action | CFTC official | ✅ Official |
+
+**Flag**: `SINGLE_SOURCE_CLAIM` for DRR pilot participation
+
+---
+
+## Tier 3 Value Assessment
+
+Would Tier 3 searches add value?
+
+| Signal Type | Expected Value |
+|-------------|---------------|
+| Job postings | High - would indicate active build |
+| LinkedIn activity | Medium - could show recent interest |
+| GitHub personal | Low - already confirmed no FINOS |
+
+**Decision**: Proceed to Tier 3 to check for recent CDM hiring signals.
+
+---
+
+## Gate 2 Verdict
+
+| Criterion | Status |
+|-----------|--------|
+| Sufficient evidence for classification | ⚠️ Partial |
+| Proceed to Tier 3 | ✅ Yes |
+| Provisional classification | PRAGMATIST (Ecosystem) |
+| Confidence if stopped here | 55% |
+
+**Decision**: **PROCEED TO TIER 3**
+
+**Rationale**: Dated DRR pilot evidence establishes historical engagement but need to verify no recent CDM activity before finalizing. Job postings would be a strong signal of active investment.

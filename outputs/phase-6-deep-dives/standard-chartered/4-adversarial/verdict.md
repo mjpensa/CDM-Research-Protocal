@@ -1,39 +1,40 @@
-# Adversarial Verdict: Standard Chartered PLC
+# Adversarial Review Verdict: Standard Chartered
 
-**Bank:** Standard Chartered PLC
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
+**Bank**: Standard Chartered PLC
+**Phase**: 6 (Deep Dives)
+**Date**: 2025-12-21
+
+---
+
+## Summary
+
+| Analysis | Finding |
+|----------|---------|
+| Counter-Case (PRAGMATIST) | Weak (10%) |
+| Counter-Case (Native) | Weak (5%) |
+| Disconfirming Searches | ARCHITECT confirmed |
+| Steelman | Insufficient (10%) |
 
 ---
 
 ## Final Classification
 
-| Element | Value |
-|---------|-------|
-| Classification | ARCHITECT |
-| Sub-Classification | Leader |
-| Confidence | 50% |
-| P(ARCHITECT) | 20% |
-| P(PRAGMATIST) | 80% |
-
-## Verdict Rationale
-
-N/A
-
-## Sub-Classification Justification
-
-N/A
-
-## Why Not Other Classifications
-
-## Confidence Assessment
-
-N/A
-
-## Adversarial Challenge Status
-
-**Status**: UPHELD
-
-Classification confirmed after adversarial review.
+| Field | Value |
+|-------|-------|
+| **Classification** | ARCHITECT |
+| **Subtype** | Follower |
+| **Confidence** | 80% |
+| **Maturity Score** | 3 |
 
 ---
+
+## Verdict
+
+Classification is **robust**. Multiple independent sources confirm:
+1. ISDA Board membership (Tier 1)
+2. DRR contribution alongside BNP/JPMorgan/Pictet (Tier 2)
+3. FINOS CDM/Rune DSL support (Tier 2)
+
+No evidence for production (Native) upgrade. Follower is appropriate.
+
+**APPROVED for synthesis.**

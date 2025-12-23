@@ -1,0 +1,49 @@
+{
+  "bank_id": "societe-generale",
+  "bank_name": "Société Générale S.A.",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "PRAGMATIST",
+  "sub_classification": "Ecosystem",
+  "confidence": 90,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.10,
+    "pragmatist": 0.90
+  },
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 3,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 6
+  },
+  "maturity_score": 1,
+  "highest_claim_type": "membership_or_participation",
+  "stages_completed": [
+    "initialize",
+    "pre-mortem",
+    "tier1-evidence",
+    "bayesian-update-1",
+    "gate-1",
+    "tier2-evidence",
+    "bayesian-update-2",
+    "gate-2",
+    "tier3-evidence",
+    "bayesian-update-3",
+    "gate-3",
+    "adversarial-challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "FINOS Gold member (May 2022)",
+    "Open Source First policy (2017), OSPO (2020)",
+    "Active FINOS participation in CCC (Cloud Controls)",
+    "NO CDM-specific engagement despite FINOS access",
+    "Derivatives focus on clearing, not data standardization"
+  ],
+  "notable_pattern": "FINOS paradox - Gold member with zero CDM engagement",
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "Classification: PRAGMATIST @ 90% confidence. SG demonstrates selective open source adoption - infrastructure yes, CDM no."
+}

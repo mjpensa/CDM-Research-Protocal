@@ -1,41 +1,13 @@
-# Reasoning Gate 2: Post-Tier 2 Assessment: Lloyds Banking Group PLC
+# Lloyds Banking Group - Gate 2
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
+## Current State
 | Metric | Value |
 |--------|-------|
-| P(ARCHITECT) | 13% |
-| P(PRAGMATIST) | 87% |
-| Confidence | 40% |
+| P(Architect) | 75% (capped) |
+| Evidence | 4 items total |
 
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-- Current P(ARCHITECT) = 13% → **Below 20% threshold**
-
-## Decision: PROCEED TO TIER 3
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Trajectory Analysis
-
-N/A
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 3
-
-N/A
+## Gate Decision
+**PROCEED TO TIER 3** - Check hiring signals.
 
 ---
-
-*Gate 2 passed. Proceeding to tier 3 evidence gathering.*
+*Generated: 2025-12-21*

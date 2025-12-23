@@ -1,25 +1,27 @@
-# Tier 3 Evidence: Lloyds Banking Group PLC
+# Lloyds Banking Group - Tier 3 Evidence
 
-**Bank:** Lloyds Banking Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Search Execution Summary
+## Summary
 
 | Metric | Value |
 |--------|-------|
-| Date | 2025-12-21 |
-| Evidence Items Found | 0 |
-| Schema Version | 4.3 |
+| **Sources Found** | 0 CDM-specific |
+| **Direction** | NEUTRAL |
+| **Key Finding** | No CDM-specific hiring signals |
 
-## Evidence Inventory
+## Tier 3 Search Results
 
-No Tier 3 evidence found.
-
-## Informative Absences
-
-N/A
+### Job Posting Search
+**Query**: "Lloyds Banking Group CDM Common Domain Model jobs"
+**Result**: No CDM-specific job postings found. OSPO roles focus on InnerSource.
 
 ---
+
+## Tier 3 Aggregate
+
+| Metric | Value |
+|--------|-------|
+| **LR** | 1.0 (neutral) |
+
+---
+*Tier 3 Evidence Complete*
+*Generated: 2025-12-21*

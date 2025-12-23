@@ -1,0 +1,49 @@
+{
+  "bank_id": "ubs",
+  "bank_name": "UBS Group AG",
+  "phase": 1,
+  "phase_name": "European Tier 1",
+  "classification": "ARCHITECT",
+  "sub_classification": "Active (standards development)",
+  "confidence": 0.95,
+  "status": "complete",
+  "current_stage": "synthesis",
+  "current_probability": {
+    "architect": 0.95,
+    "pragmatist": 0.05
+  },
+  "prior_probability": 0.35,
+  "evidence_count": {
+    "tier1": 4,
+    "tier2": 1,
+    "tier3": 0,
+    "null_results": 2
+  },
+  "maturity_score": 4,
+  "highest_claim_type": "open_source_contribution",
+  "stages_completed": [
+    "initialize",
+    "pre_mortem",
+    "tier1_evidence",
+    "bayesian_update_1",
+    "gate_1",
+    "tier2_evidence",
+    "bayesian_update_2",
+    "gate_2",
+    "tier3_evidence",
+    "bayesian_update_3",
+    "gate_3",
+    "adversarial_challenge",
+    "synthesis"
+  ],
+  "key_findings": [
+    "FINOS Platinum member since 2018 (when SSF became FINOS)",
+    "Confirmed CDM contributions documented by FINOS",
+    "Active on FINOS Technical Oversight Committee",
+    "Led Open Source Readiness SIG",
+    "Upstream ARCHITECT pattern: standards development + governance",
+    "EMIR Refit compliance via traditional ISDA Amend (not DRR)"
+  ],
+  "last_updated": "2025-12-21T00:00:00Z",
+  "notes": "First Phase 1 ARCHITECT. UBS demonstrates 'upstream' ARCHITECT pattern through standards development and governance participation rather than production CDM usage. CDM engagement predates and is independent of Credit Suisse acquisition."
+}

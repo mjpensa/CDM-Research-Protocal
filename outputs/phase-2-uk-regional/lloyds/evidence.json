@@ -1,41 +1,157 @@
 {
   "bank_id": "lloyds",
-  "bank_name": "Lloyds Banking Group plc",
+  "bank_name": "Lloyds Banking Group",
   "schema_version": "4.3",
   "evidence_items": [
     {
       "id": "LBG-001",
-      "claim": "Lloyds participated in UK FCA/Bank of England Digital Regulatory Reporting (DRR) Pilot Phase 1 and 2 (2018-2019) using ISDA CDM 2.0",
+      "claim": "Lloyds Banking Group is a FINOS Gold member, joined March 2023",
+      "source_url": "https://www.finos.org/press/finos-adds-new-members-and-expands-its-governing-board-as-open-source-footprint-is-on-the-rise-across-the-financial-value-chain",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2023-03-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "recent",
+        "specificity": "specific"
+      },
+      "excerpt": "FINOS announced the addition of Lloyds Banking Group as a new Gold member. Allan Woodcock, Engineering Services Director: 'Partnering with FINOS will empower our talented engineers to give back to the Open Source Community.'",
+      "caveats": "FINOS Gold membership indicates ecosystem commitment but does not confirm CDM-specific engagement.",
+      "lr_mapping": {
+        "evidence_type": "finos_gold_member",
+        "likelihood_ratio": 4.0
+      }
+    },
+    {
+      "id": "LBG-002",
+      "claim": "Lloyds has an active Open Source Program Office (OSPO) with dedicated leadership",
+      "source_url": "https://www.redhat.com/en/about/press-releases/red-hat-collaborates-lloyds-banking-group-boost-developer-experience-software-quality-and-speed-market",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-05-06",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "Red Hat collaborates with Lloyds Banking Group's Open Source Program Office (OSPO) to support InnerSource implementation. Pooi Ling Cheong, OSPO Lead.",
+      "caveats": "OSPO indicates open source maturity but focus is on InnerSource practices, not derivatives/CDM.",
+      "lr_mapping": {
+        "evidence_type": "ospo_establishment",
+        "likelihood_ratio": 2.5
+      }
+    },
+    {
+      "id": "LBG-003",
+      "claim": "Lloyds participated in FCA/BOE Digital Regulatory Reporting pilot phases 1 and 2 (2018-2019)",
       "source_url": "https://www.fca.org.uk/innovation/regtech/digital-regulatory-reporting",
       "tier": 1,
       "claim_type": "pilot_or_poc",
-      "date": "2019-02-01",
+      "date": "2019-01-01",
       "direction": "SUPPORTS_ARCHITECT",
-      "quality_assessment": {"authority": "HIGH", "recency": "historical", "specificity": "specific"},
-      "excerpt": "In 2018 and 2019, the 2 UK regulators collaborated with 7 banks to complete 2 pilots. The banks were Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, NatWest and Santander.",
-      "caveats": "Pilot from 2018-2019 (5+ years old). Phase 2 identified gaps but no continued evidence.",
-      "lr_mapping": {"evidence_type": "regulatory_pilot_historical", "likelihood_ratio": 2.0},
-      "product_scope": ["IRS", "CDS"],
-      "jurisdiction_scope": ["UK"]
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "Two phases of the DRR pilot have been completed, involving collaboration between the FCA, BOE and seven banks: Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, Natwest and Santander.",
+      "caveats": "Historical pilot (2018-2019). No evidence of post-pilot DRR production adoption.",
+      "lr_mapping": {
+        "evidence_type": "pilot_proof_of_concept",
+        "likelihood_ratio": 3.0
+      }
+    },
+    {
+      "id": "LBG-004",
+      "claim": "Lloyds hosted FINOS 'Open Source Edinburgh' event at their offices (October 2023)",
+      "source_url": "https://www.finos.org/hosted-events/2023-10-05-open-source-edinburgh",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2023-10-05",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "MEDIUM",
+        "recency": "recent",
+        "specificity": "medium"
+      },
+      "excerpt": "FINOS and Scott Logic held 'Open Source Edinburgh' at Lloyds Banking Group offices as part of Scottish Fintech Festival. Attendees learned about Lloyds' OSPO journey.",
+      "caveats": "Event hosting shows FINOS engagement but not CDM-specific activity.",
+      "lr_mapping": {
+        "evidence_type": "community_engagement",
+        "likelihood_ratio": 1.5
+      }
     }
   ],
   "null_results": [
     {
-      "category": "FINOS CDM Contributor",
-      "queries": ["site:finos.org Lloyds CDM contributor"],
+      "category": "CDM Contribution",
+      "queries": ["Lloyds Banking Group CDM contribution FINOS derivatives 2024"],
       "results_reviewed": 10,
-      "null_type": "NO_RESULTS",
+      "null_type": "IRRELEVANT",
       "informative_absence": true,
-      "implication": "Not listed as FINOS CDM contributor"
+      "implication": "No CDM contribution evidence despite FINOS Gold membership. Similar to Société Générale pattern."
     },
     {
-      "category": "Recent CDM Activity",
-      "queries": ["Lloyds CDM 2023 2024 derivatives"],
+      "category": "CDM Job Postings",
+      "queries": ["Lloyds Banking Group CDM Common Domain Model jobs"],
       "results_reviewed": 10,
-      "null_type": "NO_RESULTS",
+      "null_type": "IRRELEVANT",
+      "informative_absence": false,
+      "implication": "No CDM-specific roles. OSPO focus is on InnerSource practices."
+    },
+    {
+      "category": "DRR Production",
+      "queries": ["Lloyds DRR production CDM 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
       "informative_absence": true,
-      "implication": "No recent CDM activity since 2019 pilot"
+      "implication": "No DRR production announcement. Historical pilot (2018-2019) only."
     }
   ],
-  "meta": {"tier_completed": 3, "generated_at": "2025-12-20T04:00:00Z"}
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 4,
+      "completed": 4,
+      "failed": 0,
+      "queries": [
+        "Lloyds Banking Group FINOS member CDM 2024",
+        "Lloyds ISDA CDM derivatives working group",
+        "Lloyds DRR Digital Regulatory Reporting FCA pilot 2024",
+        "Lloyds Banking Group OSPO open source derivatives"
+      ]
+    },
+    "tier2_searches": {
+      "expected": 2,
+      "completed": 2,
+      "failed": 0,
+      "queries": [
+        "Lloyds Banking Group CDM contribution FINOS derivatives 2024",
+        "Lloyds derivatives trading technology regulatory reporting 2024"
+      ]
+    },
+    "tier3_searches": {
+      "expected": 1,
+      "completed": 1,
+      "failed": 0,
+      "queries": [
+        "Lloyds Banking Group CDM Common Domain Model jobs regulatory reporting"
+      ]
+    },
+    "summary": {
+      "total_completed": 7,
+      "all_tiers_complete": true,
+      "notes": "FINOS Gold member with active OSPO and InnerSource focus. Historical FCA DRR pilot (2018-2019). No CDM-specific contribution or production evidence."
+    }
+  },
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "Ecosystem (FINOS + OSPO)",
+    "confidence": 0.75,
+    "engagement_type": "ecosystem_ospo",
+    "generated_at": "2025-12-21T00:00:00Z",
+    "completed_at": "2025-12-21T00:00:00Z"
+  }
 }

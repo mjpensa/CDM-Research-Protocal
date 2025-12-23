@@ -1,82 +1,105 @@
-# CDM/DRR Assessment: NatWest Group PLC
-
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
+# NatWest Group - Final Assessment
 
 ## Executive Summary
 
-NatWest Group plc is classified as an **OBSERVER (Historical-Engagement)** with 55% confidence. The bank participated in the UK FCA/Bank of England Digital Regulatory Reporting (DRR) pilot in 2018-2019 using ISDA CDM 2.0, demonstrating historical awareness of the standard. However, there is no evidence of continued CDM activity in the 5+ years since the pilot. 
-
-Notably, NatWest demonstrates significant open-source capability through co-maintaining FINOS Fluxnova, yet is NOT contributing to FINOS CDM projects. This "FINOS Paradox" suggests a strategic choice not to pursue CDM rather than a capability limitation.
-
-**Key Finding**: NatWest engaged with CDM historically (2019 pilot) but has not continued that engagement. The bank's technology focus appears directed toward infrastructure (Fluxnova) rather than derivatives standards (CDM).
-
-## Bank Profile
-
-| Attribute | Value |
+| Dimension | Value |
 |-----------|-------|
-| Full Name | NatWest Group plc |
-| Headquarters | Edinburgh, United Kingdom |
-| Primary Regulator | FCA (UK Financial Conduct Authority) |
-| Derivatives Relevance | Medium (primarily retail/commercial with CIB operations) |
-| Business Model | UK-focused retail and commercial bank with NatWest Markets CIB unit |
-| G-SIB Status | No |
-| Phase | 2 (UK Regional) |
+| **Bank** | NatWest Group |
+| **Classification** | PRAGMATIST |
+| **Sub-Classification** | Ecosystem (Active FINOS Contributor) |
+| **Confidence** | 78% |
+| **Maturity Score** | 2 |
 
-## Classification Summary
+## Evidence Summary
 
-| Metric | Value |
-|--------|-------|
-| Classification | OBSERVER |
-| Sub-Classification | Historical-Engagement |
-| P(ARCHITECT) | 14% |
-| P(PRAGMATIST) | 86% |
-| Confidence | 55% |
+### Tier 1 Evidence
+| Evidence | Source | Weight |
+|----------|--------|--------|
+| FINOS Gold Membership | finos.org (2021) | 0.8 |
+| Fluxnova Founding Contributor | finos.org (Oct 2025) | 1.0 |
+| Git Proxy Engagement | finos.org (2024) | 1.0 |
+| FCA/BOE DRR Pilot | fca.org.uk (2018-2019) | 0.3 |
 
-## Evidence Inventory
+### Tier 2 Evidence
+| Evidence | Source | Weight |
+|----------|--------|--------|
+| OSFF London 2024 Presenter | osfflondon2024.sched.com | 1.0 |
+| EMIR Trade Reporting Service | natwest.com | 1.0 |
+| €6.7B Trading Assets | Investor relations | 1.0 |
 
-### Tier 1 Evidence (Official Sources)
-
-| ID | Finding | Direction | Quality | Date |
-|----|---------|-----------|---------|------|
-| NW-001 | UK FCA/BoE DRR Pilot Phase 1 & 2 participant (2018-2019) | SUPPORTS_ARCHITECT | HIGH | 2019-02-01 |
-| NW-002 | FINOS Fluxnova co-maintainer (NOT CDM) | NEUTRAL | HIGH | 2025-10-21 |
-
-**Tier 1 Assessment**: Mixed signal. Historical pilot participation offset by FINOS Paradox (capability without CDM application).
-
-### Tier 2 Evidence (Industry Sources)
-
-**No Tier 2 evidence found.**
-
-### Tier 3 Evidence (Signal Sources)
-
-**No Tier 3 evidence found.**
-
-## Probability Trajectory
-
-```
-Prior:        20%
-Post-Tier 1:  30%
-Post-Tier 2:  22%
-Post-Tier 3:  14%
-```
-
-## The FINOS Paradox (Critical Finding)
-
-NatWest has demonstrated capability for FINOS open-source collaboration (Fluxnova co-maintainer) but deliberately chooses not to apply it to CDM. This is not a capability gap; it is a strategic decision.
+### Tier 3 Evidence
+| Evidence | Source | Weight |
+|----------|--------|--------|
+| Quant Analyst hiring | Job postings | 0.8 |
 
 ## Classification Rationale
 
-**Why OBSERVER (Historical-Engagement)?**
+### Why PRAGMATIST (Active Contributor) not ARCHITECT
+1. **No CDM Production Usage**: Despite FINOS Gold and active contributions, no CDM implementation
+2. **No CDM Contribution**: Contributions focus on operational tech (Fluxnova, Git Proxy), not CDM
+3. **Traditional Regulatory Reporting**: EMIR service uses standard approach
+4. **Strategic Choice**: Active FINOS engagement without CDM suggests deliberate prioritization
 
-- Participated in UK FCA/BoE DRR pilot (2018-2019)
-- 5+ years since pilot with no follow-through
-- FINOS capability NOT applied to CDM
-- Complete absence of Tier 2 and Tier 3 signals
+### Why Not OBSERVER
+1. **FINOS Gold Member**: Since 2021
+2. **Active Project Contributor**: Fluxnova founding contributor, Git Proxy engagement
+3. **Named Open Source Lead**: James McLeod, Open Source Program Lead
+4. **Conference Presence**: OSFF presenter and sponsor
+
+### Why "Active Contributor" Sub-Classification
+NatWest is differentiated from passive FINOS members like Lloyds:
+- Actual code/project contributions (Fluxnova, Git Proxy)
+- Named organizational lead (James McLeod)
+- Public "Open Source First" strategy
+- Yet still no CDM engagement
+
+## Pattern Recognition
+
+### "Active FINOS, CDM Absent" Pattern
+NatWest demonstrates the most interesting pattern in Phase 2:
+- Strongest FINOS engagement of UK regional banks
+- Clear capability to contribute complex projects
+- Deliberate non-adoption of CDM
+- Focus on operational technology over derivatives standardization
+
+### UK Regional Cohort Summary
+| Bank | FINOS | FINOS Contributions | CDM | Classification |
+|------|-------|---------------------|-----|----------------|
+| NatWest | Gold | Active (Fluxnova, Git Proxy) | None | PRAGMATIST (Active) |
+| Lloyds | Gold | None (passive) | None | PRAGMATIST (Ecosystem) |
+
+## Confidence Calibration
+
+### Base Confidence: 75%
+- Strong FINOS engagement provides clear signal
+- Active contributions confirm organizational commitment
+
+### Adjustments
+| Factor | Adjustment |
+|--------|------------|
+| Fluxnova founding contributor | +5% (clear capability) |
+| Named OSPO lead | +3% (institutional commitment) |
+| No CDM despite capability | -5% (slight uncertainty on future) |
+
+### Final Confidence: 78%
+
+## Risk Factors
+
+### Classification Risk: LOW
+- Strong evidence in both positive (FINOS) and negative (no CDM) directions
+- Pattern is coherent and well-documented
+
+### Future Trajectory
+- Most likely UK regional bank to adopt CDM if regulatory pressure increases
+- Fluxnova contribution demonstrates capability
+- "Open Source First" culture provides foundation
+
+## Recommendations
+
+1. **Monitor Fluxnova Evolution**: May expand to financial process automation
+2. **Track FINOS Tier Changes**: Upgrade to Platinum would signal increased commitment
+3. **Watch for CDM Working Group Participation**: Natural next step if CDM interest emerges
 
 ---
-
-*Assessment complete. Classification: OBSERVER (Historical-Engagement) with 55% confidence.*
+*Assessment generated: 2025-12-21*
+*Protocol version: 2.3*

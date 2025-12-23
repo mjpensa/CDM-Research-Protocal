@@ -1,53 +1,131 @@
 {
   "bank_id": "natwest",
-  "bank_name": "NatWest Group plc",
-  "schema_version": "4.3",
+  "bank_name": "NatWest Group",
+  "phase": 2,
+  "last_updated": "2025-12-21T12:30:00Z",
   "evidence_items": [
     {
-      "id": "NW-001",
-      "claim": "NatWest participated in UK FCA/Bank of England Digital Regulatory Reporting (DRR) Pilot Phase 1 and 2 (2018-2019) using ISDA CDM 2.0",
+      "id": "NW_T1_001",
+      "claim": "NatWest is a FINOS Gold member, joined to engage with open source financial services projects starting with FDC3",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2021-03-01",
+      "excerpt": "Our decision to join FINOS demonstrates our commitment to the natural open source contributor progression of 'learn, consume, participate, contribute, and lead' - Jennifer Scott, Head of Digital Technology NatWest Markets"
+    },
+    {
+      "id": "NW_T1_002",
+      "claim": "NatWest participated in FCA/BOE Digital Regulatory Reporting pilot Phases 1 and 2 (2018-2019) as one of 7 banks",
       "source_url": "https://www.fca.org.uk/innovation/regtech/digital-regulatory-reporting",
       "tier": 1,
       "claim_type": "pilot_or_poc",
-      "date": "2019-02-01",
-      "direction": "SUPPORTS_ARCHITECT",
-      "quality_assessment": {"authority": "HIGH", "recency": "historical", "specificity": "specific"},
-      "excerpt": "In 2018 and 2019, the 2 UK regulators collaborated with 7 banks to complete 2 pilots. The banks were Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, NatWest and Santander.",
-      "caveats": "Pilot from 2018-2019 (5+ years old). Historical engagement.",
-      "lr_mapping": {"evidence_type": "regulatory_pilot_historical", "likelihood_ratio": 2.0},
-      "product_scope": ["IRS", "CDS"],
-      "jurisdiction_scope": ["UK"]
+      "authority": "HIGH",
+      "recency": "historical",
+      "specificity": "direct",
+      "date_published": "2019-01-01",
+      "excerpt": "In 2018 and 2019, the 2 UK regulators collaborated with 7 banks to complete 2 pilots. The banks were Barclays, Credit Suisse, HSBC, Lloyds, Nationwide, NatWest and Santander."
     },
     {
-      "id": "NW-002",
-      "claim": "NatWest Group is a co-maintainer of FINOS Fluxnova orchestration platform with James McLeod (Head of Open Source)",
+      "id": "NW_T1_003",
+      "claim": "NatWest is a founding contributor to FINOS Fluxnova, an open source orchestration platform launched October 2025",
       "source_url": "https://www.finos.org/press/finos-launches-fluxnova-with-fidelity-investments-natwest-group-deutsche-bank-and-capital-one-an-open-source-orchestration-platform-to-scale-process-automation",
       "tier": 1,
       "claim_type": "open_source_contribution",
-      "date": "2025-10-21",
-      "direction": "NEUTRAL",
-      "quality_assessment": {"authority": "HIGH", "recency": "current", "specificity": "specific"},
-      "excerpt": "Fluxnova is a new open source orchestration platform developed under FINOS governance and co-maintained by Fidelity, NatWest Group, Deutsche Bank, Capital One and BMO.",
-      "caveats": "Fluxnova is NOT CDM - it's process orchestration. Shows FINOS open source capability but not CDM-specific.",
-      "lr_mapping": {"evidence_type": "finos_contributor_non_cdm", "likelihood_ratio": 1.2},
-      "product_scope": [],
-      "jurisdiction_scope": []
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2025-10-21",
+      "excerpt": "Fluxnova shows what's possible through open collaboration - creating shared solutions that make innovation faster and more accessible across the industry - James McLeod, Open Source Program Lead at NatWest Group"
+    },
+    {
+      "id": "NW_T1_004",
+      "claim": "NatWest is actively engaging with FINOS Git Proxy project for secure open source repository access",
+      "source_url": "https://www.finos.org/blog/natwest-gitproxy-first-steps",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2024-01-15",
+      "excerpt": "NatWest's engineering approach is driving modern tooling, rapid customer value and a collaborative culture - like most organisations we are built on and proud to contribute to Open Source projects."
+    },
+    {
+      "id": "NW_T2_001",
+      "claim": "NatWest presented at OSFF London 2024 on 'Pioneering a Successful Open Source First Culture at NatWest Group' and was a conference sponsor",
+      "source_url": "https://osfflondon2024.sched.com/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "authority": "MEDIUM-HIGH",
+      "recency": "current",
+      "specificity": "direct",
+      "date_published": "2024-11-01",
+      "excerpt": "NatWest Group hosted a FINOS member-only roundtable on Open Source Supply Chain Security for the DevOps Automation SIG."
+    },
+    {
+      "id": "NW_T2_002",
+      "claim": "NatWest offers EMIR Trade Reporting Service for OTC derivatives to clients under both EU and UK EMIR regulations",
+      "source_url": "https://www.natwest.com/corporates/support/regulatory-information/emir-trade-reporting-service/emir-trade-reporting-service-faqs.html",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-04-29",
+      "excerpt": "NatWest Markets Plc reports the in-scope OTC derivatives when facing UK NFC- entities. NWM NV reports the in-scope OTC derivatives when facing EU/EEA NFC- entities."
+    },
+    {
+      "id": "NW_T2_003",
+      "claim": "NatWest Markets trading assets increased 43% to €6.7 billion in 2024, indicating active derivatives business",
+      "source_url": "https://www.investors.rbs.com/~/media/Files/R/RBS-IR-V2/results-center/14022025/NWM-N-V-ARA-2024.pdf",
+      "tier": 2,
+      "claim_type": "vendor_proxy_signal",
+      "authority": "HIGH",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2025-02-14",
+      "excerpt": "Trading assets increased by €1,995 million, or 43%, to €6,688 million in 2024."
+    },
+    {
+      "id": "NW_T3_001",
+      "claim": "NatWest Markets Quantitative Analytics teams develop models and tools for derivatives and algorithmic trading using Python and C++",
+      "source_url": "https://www.brightnetwork.co.uk/graduate-jobs/natwest-group/graduate-trainee-natwest-markets-quantitative-analyst-London-2024",
+      "tier": 3,
+      "claim_type": "hiring_signal",
+      "authority": "LOW",
+      "recency": "current",
+      "specificity": "indirect",
+      "date_published": "2024-09-01",
+      "excerpt": "Design and implement systems in a Python-based infrastructure that trades billions of dollars a day, creating models used for derivative pricing."
     }
   ],
   "null_results": [
     {
-      "category": "FINOS CDM Contributor",
-      "queries": ["site:finos.org NatWest CDM contributor"],
-      "results_reviewed": 10,
-      "null_type": "NO_RESULTS",
-      "informative_absence": true,
-      "implication": "Not contributing to CDM despite Fluxnova participation"
+      "search_query": "NatWest common domain model CDM contribution",
+      "expected_finding": "CDM contribution to finos/common-domain-model",
+      "actual_result": "No evidence of CDM-specific contribution despite FINOS Gold membership and active FINOS project contributions",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "NatWest CDM production usage deployment",
+      "expected_finding": "CDM implementation in production systems",
+      "actual_result": "No evidence of CDM production deployment. EMIR reporting uses traditional approach.",
+      "search_date": "2025-12-21"
+    },
+    {
+      "search_query": "NatWest ISDA DRR digital regulatory reporting adoption 2024",
+      "expected_finding": "ISDA DRR adoption for regulatory reporting",
+      "actual_result": "No evidence of ISDA DRR adoption. FCA DRR pilot was 2018-2019 only.",
+      "search_date": "2025-12-21"
     }
   ],
-  "meta": {"tier_completed": 3, "generated_at": "2025-12-20T04:00:00Z"},
-  "key_individual": {
-    "name": "James McLeod",
-    "title": "Head of Open Source",
-    "role": "FINOS Gold Member Representative, Fluxnova co-maintainer"
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "sub_classification": "Ecosystem (Active FINOS Contributor)",
+    "confidence": 0.78,
+    "engagement_type": "ecosystem_active_contributor"
   }
 }

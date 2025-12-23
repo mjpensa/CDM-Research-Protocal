@@ -1,0 +1,185 @@
+{
+  "bank_id": "societe-generale",
+  "bank_name": "Société Générale S.A.",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "SG-001",
+      "claim": "Société Générale joined FINOS as a Gold member in May 2022",
+      "source_url": "https://www.finos.org/press/six-new-members-join-finos-as-open-source-collaboration-becomes-increasingly-critical-across-the-global-financial-ecosystem",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2022-05-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "recent",
+        "specificity": "specific"
+      },
+      "excerpt": "Société Générale (SocGen), a French multinational investment bank and financial services company, joins FINOS as a Gold member.",
+      "caveats": "FINOS membership does not confirm CDM-specific adoption.",
+      "lr_mapping": {
+        "evidence_type": "isda_working_group_member",
+        "likelihood_ratio": 4.0
+      },
+      "named_individual": "Alain Voiment, CIO"
+    },
+    {
+      "id": "SG-002",
+      "claim": "Société Générale implemented 'Open Source First' policy in 2017 and established OSPO in 2020",
+      "source_url": "https://www.linux.com/news/google-cloud-societe-generale-american-express-point72-mirantis-and-the-digital-dollar-project-join-finos-as-open-source-collaboration-becomes-increasingly-critical-across-the-global-financial-e/",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2022-05-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "recent",
+        "specificity": "medium"
+      },
+      "excerpt": "Société Générale implemented an 'Open Source First' policy in 2017 and established its Open Source Program office (OSPO) in 2020.",
+      "caveats": "Open source focus is infrastructure (PostgreSQL), not CDM/derivatives.",
+      "lr_mapping": {
+        "evidence_type": "industry_publication_mentions_bank_cdm",
+        "likelihood_ratio": 2.0
+      },
+      "named_individual": "Alain Voiment, CIO"
+    },
+    {
+      "id": "SG-003",
+      "claim": "Société Générale participated in FINOS Common Cloud Controls (CCC) formation",
+      "source_url": "https://www.finos.org/press/finos-announces-open-sourcing-common-cloud-controls",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-01-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "Société Générale is among the member organizations that have participated in FINOS CCC's formation and definition phase.",
+      "caveats": "CCC is cloud/cybersecurity focused, NOT CDM/derivatives focused.",
+      "lr_mapping": {
+        "evidence_type": "conference_speaker_cdm_topic",
+        "likelihood_ratio": 1.0
+      }
+    },
+    {
+      "id": "SG-T2-001",
+      "claim": "Risk.net named Société Générale Derivatives Client Clearer of Year 2024",
+      "source_url": "https://www.risk.net/awards/7960372/derivatives-client-clearer-of-the-year-societe-generale",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "date": "2024-11-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "low"
+      },
+      "excerpt": "Societe Generale's edge comes from a post-trade platform and clearing capability expansion.",
+      "caveats": "Derivatives clearing capability without CDM specificity.",
+      "lr_mapping": {
+        "evidence_type": "conference_speaker_cdm_topic",
+        "likelihood_ratio": 1.0
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "category": "CDM-Specific Engagement",
+      "queries": ["Société Générale Common Domain Model CDM ISDA FINOS 2024"],
+      "results_reviewed": 20,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No CDM-specific engagement despite FINOS Gold membership."
+    },
+    {
+      "category": "DRR Adoption",
+      "queries": ["Societe Generale DRR Digital Regulatory Reporting ISDA 2024"],
+      "results_reviewed": 15,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No DRR adoption evidence. Traditional EMIR approach."
+    },
+    {
+      "category": "Vendor Partnerships",
+      "queries": ["Société Générale Regnosys CDM vendor partnership"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No CDM vendor relationships."
+    },
+    {
+      "category": "Conference Speaking",
+      "queries": ["Societe Generale CDM Showcase FINOS conference speaker"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "Not among CDM Showcase speakers."
+    },
+    {
+      "category": "CDM Job Postings",
+      "queries": ["Société Générale CDM job posting careers 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No CDM-specific hiring signals."
+    },
+    {
+      "category": "LinkedIn Community",
+      "queries": ["Societe Generale ISDA derivatives standards LinkedIn employee"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "Traditional ISDA documentation focus, not CDM."
+    }
+  ],
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 6,
+      "completed": 6,
+      "failed": 0,
+      "queries": [
+        "Société Générale Common Domain Model CDM ISDA FINOS 2024",
+        "Societe Generale CDM derivatives regulatory reporting digital 2024",
+        "Société Générale EMIR Refit CDM implementation 2024",
+        "Societe Generale FINOS member open source CDM Legend",
+        "Société Générale Alain Voiment FINOS CDM open source",
+        "Societe Generale DRR Digital Regulatory Reporting ISDA 2024"
+      ]
+    },
+    "tier2_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        "Société Générale Regnosys CDM vendor partnership",
+        "Societe Generale derivatives technology modernization 2024 Risk.net",
+        "Societe Generale CDM Showcase FINOS conference speaker"
+      ]
+    },
+    "tier3_searches": {
+      "expected": 2,
+      "completed": 2,
+      "failed": 0,
+      "queries": [
+        "Société Générale CDM Common Domain Model job posting careers 2024",
+        "Societe Generale ISDA derivatives standards LinkedIn employee 2024"
+      ]
+    },
+    "summary": {
+      "total_completed": 11,
+      "all_tiers_complete": true,
+      "notes": "FINOS Gold member (2022) with CCC participation but NO CDM-specific engagement. Classification: PRAGMATIST @ 90% confidence."
+    }
+  },
+  "meta": {
+    "tier_completed": 3,
+    "classification": "PRAGMATIST",
+    "confidence": 90,
+    "final_probability_architect": 0.10,
+    "generated_at": "2025-12-21T00:00:00Z"
+  }
+}

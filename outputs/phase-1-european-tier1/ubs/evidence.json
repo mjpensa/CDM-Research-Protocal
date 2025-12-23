@@ -1,0 +1,153 @@
+{
+  "bank_id": "ubs",
+  "bank_name": "UBS Group AG",
+  "schema_version": "4.3",
+  "evidence_items": [
+    {
+      "id": "UBS-001",
+      "claim": "UBS is a FINOS Platinum member and joined when Symphony Software Foundation became FINOS in 2018",
+      "source_url": "https://www.finos.org/press/symphony-software-foundation-becomes-finos-expands-charter-adds-new-corporate-members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2018-04-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "historical",
+        "specificity": "specific"
+      },
+      "excerpt": "UBS was announced as a new Platinum Member when the Symphony Software Foundation rebranded and launched as FINOS in April 2018.",
+      "caveats": "Platinum membership indicates strong commitment. Confirmed active through 2025.",
+      "lr_mapping": {
+        "evidence_type": "isda_working_group_member",
+        "likelihood_ratio": 8.0
+      }
+    },
+    {
+      "id": "UBS-002",
+      "claim": "UBS has made contributions to the FINOS Common Domain Model",
+      "source_url": "https://www.finos.org/news/finos-in-the-news-ubs-streamlines-software-product-development-with-gitlab",
+      "tier": 1,
+      "claim_type": "open_source_contribution",
+      "date": "2024-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "UBS has made contributions to the FINOS Common Domain Model and backstage_community-plugins.",
+      "caveats": "Confirms CDM contribution but specific scope/extent not detailed.",
+      "lr_mapping": {
+        "evidence_type": "named_isda_press_release_contributor",
+        "likelihood_ratio": 14.0
+      }
+    },
+    {
+      "id": "UBS-003",
+      "claim": "UBS is active on FINOS Technical Oversight Committee and helped lead Open Source Readiness SIG",
+      "source_url": "https://www.finos.org/members",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-01-01",
+      "direction": "SUPPORTS_ARCHITECT",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "specific"
+      },
+      "excerpt": "In addition to FINOS board member participation over the years, UBS is also active on FINOS' Technical Oversight Committee.",
+      "caveats": "Governance role indicates strategic commitment to FINOS ecosystem.",
+      "lr_mapping": {
+        "evidence_type": "isda_working_group_member",
+        "likelihood_ratio": 6.0
+      }
+    },
+    {
+      "id": "UBS-004",
+      "claim": "UBS implemented EMIR Refit compliance with April 2024 (EU) and September 2024 (UK) deadlines met",
+      "source_url": "https://www.ubs.com/global/en/investment-bank/regulatory-directory/emir-refit/overview.html",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "date": "2024-04-01",
+      "direction": "NEUTRAL",
+      "quality_assessment": {
+        "authority": "HIGH",
+        "recency": "current",
+        "specificity": "medium"
+      },
+      "excerpt": "UBS's CRDE was decommissioned from the respective EMIR Refit go-live dates: 29 April 2024 for EU EMIR and 30 September 2024 for UK Onshored EMIR.",
+      "caveats": "EMIR compliance confirmed but method (CDM-based vs traditional) not specified. Uses ISDA Amend for data collection.",
+      "lr_mapping": {
+        "evidence_type": "conference_speaker_cdm_topic",
+        "likelihood_ratio": 1.5
+      }
+    }
+  ],
+  "null_results": [
+    {
+      "category": "Credit Suisse CDM Legacy",
+      "queries": ["Credit Suisse CDM Regnosys partnership derivatives"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": false,
+      "implication": "No specific Credit Suisse CDM/Regnosys partnership found. CS had derivatives capability but no documented CDM engagement."
+    },
+    {
+      "category": "DRR Production Usage",
+      "queries": ["UBS DRR Digital Regulatory Reporting production 2024"],
+      "results_reviewed": 10,
+      "null_type": "IRRELEVANT",
+      "informative_absence": true,
+      "implication": "No evidence of DRR production usage. EMIR Refit compliance via traditional ISDA Amend approach."
+    }
+  ],
+  "search_tracking": {
+    "tier1_searches": {
+      "expected": 6,
+      "completed": 6,
+      "failed": 0,
+      "queries": [
+        "UBS Common Domain Model CDM ISDA FINOS 2024",
+        "Credit Suisse CDM Regnosys partnership derivatives",
+        "UBS EMIR Refit regulatory reporting CDM 2024",
+        "UBS FINOS member open source financial services",
+        "UBS Credit Suisse CDM integration merger 2023 2024",
+        "UBS FINOS CDM contribution Common Domain Model Vuu 2024"
+      ]
+    },
+    "tier2_searches": {
+      "expected": 3,
+      "completed": 3,
+      "failed": 0,
+      "queries": [
+        "UBS derivatives technology Risk.net Waters Technology 2024",
+        "UBS OTC derivatives market share trading 2024",
+        "UBS Credit Suisse integration derivatives technology"
+      ]
+    },
+    "tier3_searches": {
+      "expected": 2,
+      "completed": 2,
+      "failed": 0,
+      "queries": [
+        "UBS CDM Common Domain Model jobs LinkedIn",
+        "UBS DRR ISDA regulatory reporting engineer"
+      ]
+    },
+    "summary": {
+      "total_completed": 11,
+      "all_tiers_complete": true,
+      "notes": "Strong Tier 1 evidence. FINOS Platinum member with confirmed CDM contributions and TOC participation. Tier 2 added context (Derivatives House awards). Tier 3 showed no CDM-specific hiring (informative absence)."
+    }
+  },
+  "meta": {
+    "tier_completed": 3,
+    "classification": "ARCHITECT",
+    "sub_classification": "Active (standards development)",
+    "confidence": 0.95,
+    "engagement_type": "upstream",
+    "generated_at": "2025-12-21T00:00:00Z",
+    "completed_at": "2025-12-21T00:00:00Z"
+  }
+}

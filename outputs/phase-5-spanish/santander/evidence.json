@@ -1,103 +1,137 @@
 {
+  "$schema": "../../templates/evidence-schema.json",
   "bank_id": "santander",
   "bank_name": "Banco Santander S.A.",
   "research_date": "2025-12-21",
-  "researcher": "Claude Code",
   "evidence": [
     {
-      "id": "E001",
-      "claim": "Santander UK participated in FCA's Digital Regulatory Reporting (DRR) Pilot Phase 1",
-      "source_url": "https://www.fca.org.uk/publication/research/digital-regulatory-reporting.pdf",
-      "tier": 1,
+      "id": "SANT-E001",
+      "claim": "Santander participated in UK Digital Regulatory Reporting (DRR) pilot Phase 2 with FCA/BOE, testing ISDA CDM 2.0 deployment for derivatives regulatory reporting",
+      "source_url": "https://www.regulationasia.com/isda-cdm-deployed-in-uk-digital-regulatory-reporting-pilot/",
+      "tier": 2,
       "claim_type": "pilot_or_poc",
-      "date_published": "2019-06-01",
-      "excerpt": "Santander UK was among the participating firms in Phase 1 of the FCA's Digital Regulatory Reporting pilot, which explored machine-executable regulatory reporting using standardized data models.",
+      "source_date": "2022-02-01",
+      "excerpt": "In addition to the FCA and BOE, Barclays, Credit Suisse, HSBC, NatWest, Santander, and Lloyds are participating in the UK Digital Regulatory Reporting pilot.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
+        "verified_date": "2025-12-21"
       },
       "freshness": {
-        "age_category": "historical",
-        "weight_multiplier": 0.3
-      }
+        "age_days": 1054,
+        "category": "dated",
+        "weight_multiplier": 0.5
+      },
+      "notes": "DRR Phase 2 began February 2022. While dated, establishes historical engagement with CDM-based reporting."
     },
     {
-      "id": "E002",
-      "claim": "Santander UK continued participation in FCA DRR Pilot Phase 2",
-      "source_url": "https://www.fca.org.uk/publications/research/digital-regulatory-reporting-pilot-phase-2",
+      "id": "SANT-E002",
+      "claim": "Banco Santander S.A. is registered with CFTC as a non-US swap dealer with reporting obligations",
+      "source_url": "https://www.santanderus.com/wp-content/uploads/2024/07/1.55k-Report-7_2024_SanCap-_Final_uploaded.pdf",
       "tier": 1,
-      "claim_type": "pilot_or_poc",
-      "date_published": "2019-12-01",
-      "excerpt": "Phase 2 of the pilot expanded on Phase 1 learnings with Santander UK continuing as a participating firm in exploring automated regulatory reporting solutions.",
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-07-01",
+      "excerpt": "Banco Santander, S.A. has been registered with the Commission (CFTC) as a non-U.S. swap dealer.",
       "verification": {
         "status": "verified",
-        "last_checked": "2025-12-21"
+        "verified_date": "2025-12-21"
       },
       "freshness": {
-        "age_category": "historical",
+        "age_days": 173,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Establishes derivatives market participation and regulatory reporting obligations."
+    },
+    {
+      "id": "SANT-E003",
+      "claim": "Santander US Capital Markets LLC registered as FCM with CFTC; CME clearing membership includes OTC interest rate swaps",
+      "source_url": "https://www.santandercib.com/sancap",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-12-01",
+      "excerpt": "SanCap is registered as a Futures Commission Merchant (FCM) with the CFTC. SanCap's CME clearing membership includes OTC interest rate swaps.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 20,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Confirms active derivatives clearing operations requiring regulatory reporting."
+    },
+    {
+      "id": "SANT-E004",
+      "claim": "Banco Santander S.A. is an adhering organization to ISDA 2013 EMIR Port Rec, Dispute Res and Disclosure Protocol",
+      "source_url": "https://www.isda.org/protocol-adherence/26657/",
+      "tier": 2,
+      "claim_type": "membership_or_participation",
+      "source_date": "2013-07-19",
+      "excerpt": "BANCO SANTANDER, S.A. adhered to the ISDA 2013 EMIR Port Rec, Dispute Res and Disclosure Protocol.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 4538,
+        "category": "historical",
         "weight_multiplier": 0.3
-      }
+      },
+      "notes": "Standard ISDA protocol adherence, not CDM-specific. Historical context only."
+    },
+    {
+      "id": "SANT-E005",
+      "claim": "CFTC enforcement action against Santander for recordkeeping and reporting violations (January 2021 to present)",
+      "source_url": "https://www.cftc.gov/media/12621/enfsantanderorder090425/download",
+      "tier": 1,
+      "claim_type": "membership_or_participation",
+      "source_date": "2024-09-04",
+      "excerpt": "From at least January 2021 to present, Banco Santander, S.A. and Santander US Capital Markets LLC violated Sections 4g, 4s(f)(1)(B), 4s(g)(1), and 4s(h)(1)(B) of the Commodity Exchange Act and Commission Regulations related to recordkeeping and reporting requirements.",
+      "verification": {
+        "status": "verified",
+        "verified_date": "2025-12-21"
+      },
+      "freshness": {
+        "age_days": 108,
+        "category": "current",
+        "weight_multiplier": 1.0
+      },
+      "notes": "Regulatory enforcement related to reporting failures. May indicate technology gaps in reporting infrastructure."
     }
   ],
-  "null_results": [
+  "null_searches": [
     {
-      "search_query": "Santander ISDA CDM adoption 2023-2025",
-      "tier": 1,
-      "date_searched": "2025-12-21",
-      "sources_checked": [
-        "santander.com",
-        "isda.org",
-        "finos.org"
+      "search_target": "FINOS CDM membership or contribution",
+      "queries_executed": [
+        "Santander FINOS CDM Common Domain Model member contributor 2024 2025",
+        "site:github.com/finos Santander CDM contribution"
       ],
-      "finding": "No recent evidence of CDM implementation or adoption found"
+      "result": "No evidence found",
+      "implication": "Santander is not an active FINOS CDM contributor"
     },
     {
-      "search_query": "Santander FINOS membership CDM contribution",
-      "tier": 1,
-      "date_searched": "2025-12-21",
-      "sources_checked": [
-        "finos.org/members",
-        "github.com/finos"
+      "search_target": "ISDA Board or CDM Steering Committee",
+      "queries_executed": [
+        "Santander ISDA Board Director CDM steering committee 2024"
       ],
-      "finding": "No FINOS membership or CDM repository contributions found"
+      "result": "No evidence found",
+      "implication": "Santander does not hold CDM governance positions"
     },
     {
-      "search_query": "Santander derivatives reporting CDM EMIR Refit",
-      "tier": 2,
-      "date_searched": "2025-12-21",
-      "sources_checked": [
-        "risk.net",
-        "waterstechnology.com",
-        "fnlondon.com"
+      "search_target": "CDM-specific job postings",
+      "queries_executed": [
+        "Santander derivatives technology CDM job posting LinkedIn 2024"
       ],
-      "finding": "No trade press coverage of recent CDM or EMIR Refit initiatives"
-    },
-    {
-      "search_query": "Santander ISDA CDM developer jobs 2024-2025",
-      "tier": 3,
-      "date_searched": "2025-12-21",
-      "sources_checked": [
-        "linkedin.com/jobs",
-        "santander.com/careers"
-      ],
-      "finding": "No job postings found mentioning ISDA CDM or DRR initiatives"
+      "result": "No CDM-specific postings found",
+      "implication": "No visible CDM hiring activity"
     }
   ],
   "classification": {
-    "maturity": "OBSERVER",
-    "maturity_qualifier": "Historical-Engagement",
-    "confidence": 50,
-    "rationale": "Historical participation in FCA DRR Pilot (2018-2019) demonstrates awareness and past engagement with regulatory reporting standardization. However, evidence is 5+ years old with no subsequent CDM activity. Classification reflects past pilot participation without evidence of continued adoption."
-  },
-  "metadata": {
-    "total_evidence_items": 2,
-    "tier1_count": 2,
-    "tier2_count": 0,
-    "tier3_count": 0,
-    "null_results_count": 4,
-    "highest_tier": 1,
-    "oldest_evidence": "2019-06-01",
-    "newest_evidence": "2019-12-01",
-    "all_evidence_stale": true
+    "primary": "PRAGMATIST",
+    "subtype": "Ecosystem",
+    "confidence": 55,
+    "maturity_score": 2,
+    "rationale": "UK DRR pilot participation (2022) demonstrates CDM awareness and ecosystem engagement, but no evidence of sustained internal development or production. CFTC enforcement action suggests technology gaps. No FINOS contribution or ISDA governance role."
   }
 }

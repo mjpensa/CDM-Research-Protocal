@@ -1,25 +1,33 @@
-# Tier 3 Evidence: NatWest Group PLC
+# NatWest Group - Tier 3 Evidence
 
-**Bank:** NatWest Group PLC
-**Phase:** 2 - UK Regional
-**Date:** 2025-12-21
-
----
-
-## Search Execution Summary
-
+## Summary
 | Metric | Value |
 |--------|-------|
-| Date | 2025-12-21 |
-| Evidence Items Found | 0 |
-| Schema Version | 4.3 |
+| Evidence Count | 1 |
+| Sources | Job Postings |
+| Authority | LOW |
 
-## Evidence Inventory
+## Evidence Items
 
-No Tier 3 evidence found.
+### NW_T3_001: Quantitative Analyst Hiring
+| Field | Value |
+|-------|-------|
+| **Claim** | NatWest Markets Quantitative Analytics teams develop models and tools for derivatives and algorithmic trading using Python and C++ |
+| **Source** | [NatWest Careers](https://www.brightnetwork.co.uk/graduate-jobs/natwest-group/graduate-trainee-natwest-markets-quantitative-analyst-London-2024) |
+| **Authority** | LOW |
+| **Recency** | Current |
+| **Date** | 2024-09-01 |
 
-## Informative Absences
+**Excerpt**: "Design and implement systems in a Python-based infrastructure that trades billions of dollars a day, creating models used for derivative pricing."
 
-N/A
+## Key Observations
+
+1. **Modern Technology Stack**: Python and C++ for derivatives infrastructure
+2. **Active Quantitative Function**: Hiring for derivatives pricing and risk models
+3. **No CDM-Specific Roles**: Job postings focus on general quant/derivatives, not CDM/ISDA standardization
+
+## Tier 3 Confidence Impact
+Tier 3 evidence provides limited signal - confirms derivatives technology activity but no CDM intent.
 
 ---
+*Generated: 2025-12-21*

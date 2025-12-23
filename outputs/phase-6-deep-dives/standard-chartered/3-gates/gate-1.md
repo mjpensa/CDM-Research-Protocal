@@ -1,32 +1,24 @@
-# Reasoning Gate 1: Post-Tier 1 Assessment: Standard Chartered PLC
+# Reasoning Gate 1: Post-Tier 1
 
-**Bank:** Standard Chartered PLC
-**Phase:** 6 - Deep Dives
-**Date:** 2025-12-21
-
----
-
-## Current Probability State
-
-N/A
-
-## Gate Decision Criteria
-
-Per `config/decision-thresholds.json`:
-- Skip to adversarial if P(ARCHITECT) > 80% OR P(ARCHITECT) < 20%
-
-## Decision: PROCEED TO TIER 2
-
-**Rationale**: Per protocol to process all tiers.
-
-## Evidence Quality Assessment
-
-N/A
-
-## Key Questions for Tier 2
-
-N/A
+**Bank**: Standard Chartered PLC
+**Phase**: 6 (Deep Dives)
+**Date**: 2025-12-21
 
 ---
 
-*Gate 1 passed. Proceeding to tier 2 evidence gathering.*
+## Evidence Inventory
+
+| ID | Claim | Tier | Direction |
+|----|-------|------|-----------|
+| SC-E001 | ISDA Board member | 1 | Strong positive |
+
+---
+
+## Decision
+
+| Question | Answer |
+|----------|--------|
+| Sufficient for classification? | No - need contribution evidence |
+| Proceed to Tier 2? | ✅ Yes |
+
+**PROCEED TO TIER 2** - ISDA Board membership supports governance role; need to confirm contribution activity per manifest.
